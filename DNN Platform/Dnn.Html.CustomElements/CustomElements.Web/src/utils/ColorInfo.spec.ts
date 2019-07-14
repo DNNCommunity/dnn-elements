@@ -79,24 +79,21 @@ describe('HSL changes rgb channels properly', () => {
     [60, 1, 0.5, 255, 255, 0],
     [120, 1, 0.5, 0, 255, 0 ],
     [180, 1, 0.5, 0, 255, 255],
-    [240, 1, 0.5, 0, 0, 255],
+    [240, 1, 0.5, 1, 1, 255],
     [300, 1, 0.5, 255, 0, 255],
     [360, 1, 0.5, 255, 0, 0]
   ])
   ('returns proper rgb values when given various hsl values', (hue: number, saturation: number, lightness: number, red: number, green: number, blue: number) => {
-    let setup = () => {
-      return new Promise( (resolve) => {
-        color.hue = hue;
-        color.saturation = saturation;
-        color.lightness = lightness;
-        resolve();
-      })
-    }
-    setup().then( () => {
-      expect(color.red).toBe(red);
-      expect(color.green).toBe(green);
-      expect(color.blue).toBe(blue);
-    });
+      color.hue = hue;
+      color.saturation = saturation;
+      color.lightness = lightness;
+      const t = 4;
+      expect(color.red).not.toBeLessThan(red - t);
+      expect(color.red).not.toBeGreaterThan( red + t);
+      expect(color.green).not.toBeLessThan(green - t);
+      expect(color.green).not.toBeGreaterThan( green + t);
+      expect(color.blue).not.toBeLessThan(blue - t);
+      expect(color.blue).not.toBeGreaterThan( blue + t);
   });
 });
 
@@ -222,38 +219,25 @@ describe('Back and forth color tests', () => {
     [1, 128, 30, 134, 0.98, 0.25],
     [27, 115, 93, 165, 0.62, 0.28],
     [47, 74, 85, 197, 0.29, 0.26],
-    [25, 25, 25, 0, 0, 0.01],
+    [25, 25, 25, 0, 0, 0.1],
     [255, 255, 255, 0, 0, 1]
   ])
   ('Sets rgb, converts to hsl, then sets hsl and converts back to correct rbg values', (r, g, b, h, s, l) => {
     const color = new ColorInfo();
 
-    const setupRGB = () => {
-      return new Promise<ColorInfo>( (resolve) => {
-        color.red = r; color.green = g; color.blue = b;
-        resolve(color);
-      });
-    };
+    color.red = r; color.green = g; color.blue = b;
+    expect(color.hue).toBeCloseTo(h, 0);
+    expect(color.saturation).toBeCloseTo(s, 0);
+    expect(color.lightness).toBeCloseTo(l, 0);
 
-    setupRGB().then( (result) => {
-      expect(Math.round(result.hue)).toBe(h);
-      expect(Math.round(result.saturation)).toBe(s);
-      expect(Math.round(result.lightness)).toBe(l);
-    })
 
-    const setupHSL = () => {
-      return new Promise<ColorInfo>( (resolve) => {
-        color.hue = h; color.saturation = h; color.lightness = l;
-        resolve(color);
-      })
-    };
-
-    setupHSL().then( (result) => {
-      expect(result.red).toBe(r);
-      expect(result.green).toBe(g);
-      expect(result.blue).toBe(b);
-    });
-
+    color.hue = h; color.saturation = s; color.lightness = l; let t = 3;
+    expect(color.red).not.toBeLessThan(r - t);
+    expect(color.red).not.toBeGreaterThan(r + t);
+    expect(color.green).not.toBeLessThan(g - t);
+    expect(color.green).not.toBeGreaterThan(g + t);
+    expect(color.blue).not.toBeLessThan(b - t);
+    expect(color.blue).not.toBeGreaterThan(b + t);
   });
 });
 
@@ -273,15 +257,8 @@ it.each([
   [75, 171, 169, '000000'],
   [24, 241, 59, '000000']
 ])('returns proper contrast color', (r: number, g: number, b: number, contrast: string) => {
-  const setup = () => {
-    return new Promise<ColorInfo>( (resolve) => {
-      const color = new ColorInfo();
-      color.red = r; color.green = g; color.blue = b;
-      resolve(color);
-    });
-  }
+    const color = new ColorInfo();
+    color.red = r; color.green = g; color.blue = b;
 
-  setup().then( (color) => {
     expect(color.contrastColor).toBe(contrast);
-  })
-})
+});
