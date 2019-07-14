@@ -3,7 +3,7 @@
  * @license MIT 
  */
 
-import { Component, h, State } from "@stencil/core";
+import { Component, h, State, Element } from "@stencil/core";
 import { ColorInfo } from '../../utils/ColorInfo';
 
 /** Color Picker for Dnn */
@@ -14,12 +14,19 @@ import { ColorInfo } from '../../utils/ColorInfo';
 })
 export class DnnColorPicker {
 
+    private saturationLightnessBox?: HTMLDivElement;
+
+    @Element() el: HTMLElement;
+
     @State() color: ColorInfo;
+
+    
 
     componentWillLoad() {
         this.color = new ColorInfo();
     }
 
+    
     getHex() {
        return this.getDoublet(this.color.red) + this.getDoublet(this.color.green) + this.getDoublet(this.color.blue);
     }
@@ -32,8 +39,36 @@ export class DnnColorPicker {
         return valueString;
     }
 
-    handleSaturationLighnessDrag(e){
-        console.log(e.target);
+    handleSaturationLightnessMouseDown = (e) => {
+        e.preventDefault();
+        this.handleDragLightnessSaturation(e);
+        window.addEventListener('mousemove', this.handleDragLightnessSaturation);
+        window.addEventListener('mouseup', this.handleSaturationLightnessMouseUp);
+    }
+
+    handleDragLightnessSaturation = (e) => {
+        const rect = this.saturationLightnessBox.getBoundingClientRect();        
+
+        let x = e.clientX - rect.left;        
+        if (x < 0) { x = 0}
+        if (x > rect.width) { x = rect.width}
+        x = x/rect.width;
+
+        let y = e.clientY - rect.top;
+        if (y < 0) { y = 0}
+        if (y > rect.height) { y = rect.height}
+        y = 1 - (y/rect.height);
+
+        const newColor = new ColorInfo();
+        newColor.hue = this.color.hue;
+        newColor.saturation = x;
+        newColor.lightness = y;
+        this.color = newColor;
+    }
+
+    handleSaturationLightnessMouseUp = () => {
+        window.removeEventListener('mousemove', this.handleDragLightnessSaturation);
+        window.removeEventListener('mouseup', this.handleSaturationLightnessMouseUp);
     }
 
     render() {
@@ -44,17 +79,17 @@ export class DnnColorPicker {
         const green = this.color.green;
         const blue = this.color.blue;
         const contrastColor = "#" + this.color.contrastColor;
-
         return (
             <div class="dnn-color-picker">
                 <div class="dnn-color-sliders">
-                    <div class="dnn-color-s-b" style={{backgroundColor: `hsl(${hue},100%,50%)`}}>
-                        <button class="dnn-s-b-picker" 
-                            draggable
-                            onDragStart={this.handleSaturationLighnessDrag.bind(this)}
+                    <div class="dnn-color-s-b" ref={(element) => this.saturationLightnessBox = element as HTMLDivElement}
+                        style={{backgroundColor: `hsl(${hue},100%,50%)`}}
+                        onMouseDown={this.handleSaturationLightnessMouseDown.bind(this)}
+                    >
+                        <button class="dnn-s-b-picker"                            
                             style={{
-                                left: saturation + "%",
-                                bottom: lightness + "%"
+                                left: Math.round(saturation * 100)  + "%",
+                                bottom: Math.round(lightness * 100)  + "%"
                             }}
                         />
                     </div>
@@ -65,40 +100,12 @@ export class DnnColorPicker {
                     </div>
                 </div>
                 <div class="dnn-color-fields">
-                    <div class="dnn-rgb-color-fields">
-                        <div class="dnn-rgb-color-field">
-                            <label>R</label>
-                            <input type="number" min="0" max="255" step="1" class="red" value={red} />
-                        </div>
-                        <div class="dnn-rgb-color-field">
-                            <label>G</label>
-                            <input type="number" min="0" max="255" class="green" value={green} />
-                        </div>
-                        <div class="dnn-rgb-color-field">
-                            <label>B</label>
-                            <input type="number" min="0" max="255" class="blue" value={blue} />
-                        </div>
-                    </div>
-                    <div class="dnn-hsl-color-fields">
-                        <div class="dnn-hsl-color-field">
-                            <label>H</label>
-                            <input type="number" min="0" max="259" value={hue} />
-                        </div>
-                        <div class="dnn-hsl-color-field">
-                            <label>S</label>
-                            <input type="number" min="0" max="100" value={saturation} />
-                        </div>
-                        <div class="dnn-hsl-color-field">
-                            <label>L</label>
-                            <input type="number" min="0" max="100" value={lightness} />
-                        </div>
-                    </div>
-                    <div class="dnn-hex-color-fields">
-                        <div class="dnn-hex-color-field">
-                            <label>HEX</label>
-                            <input type="text" value={this.getHex()} />
-                        </div>
-                    </div>
+                    <input type="number" min="0" max="255" step="1" class="red" value={red}></input>
+                    <input type="number" min="0" max="255" class="green" value={green}></input>
+                    <input type="number" min="0" max="255" class="blue" value={blue}></input>
+                    H: <input type="number" min="0" max="259" value={Math.round(hue*100)}></input>
+                    S: <input type="number" min="0" max="100" value={Math.round(saturation*100)}></input>
+                    L: <input type="number" min="0" max="100" value={Math.round(lightness*100)}></input>
                     <div class="string">
                         <input type="text" 
                             value={this.getHex()}
