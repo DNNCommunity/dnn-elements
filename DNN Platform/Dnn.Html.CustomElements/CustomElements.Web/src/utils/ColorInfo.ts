@@ -19,23 +19,23 @@ export class ColorInfo{
 
     private _saturation: number = 0;
     /** gets the color saturation
-     * @returns a number between 0 and 100, could contain decimals
+     * @returns a number between 0 and 1, could contain decimals
     */
     get saturation() { return this._saturation; }
     set saturation(value: number) {
         if (value < 0) { value = 0; }
-        if (value > 100) { value = 100; }
+        if (value > 1) { value = 1; }
         this._saturation = value;
     }
 
     private _lightness: number = 0;
     /** gets the color lightness
-     * @returns a number between 0 and 100, could contain decimals
+     * @returns a number between 0 and 1, could contain decimals
      */
     get lightness() { return this._lightness; }
     set lightness(value: number) {
         if (value < 0) { value = 0; }
-        if (value > 100) { value = 100; }
+        if (value > 1) { value = 1; }
         this._lightness = value;
     }
 

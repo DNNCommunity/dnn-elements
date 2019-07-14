@@ -4,6 +4,7 @@
     "allowUnreachableCode": false,
     "declaration": false,
     "experimentalDecorators": true,
+    "downlevelIteration": true,
     "lib": [
       "dom",
       "es2017"
