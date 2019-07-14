@@ -81,7 +81,7 @@ export class ColorInfo{
     }
 
     private getRGB() {
-        const chroma = this.getChroma();
+        const chroma = (1 - Math.abs((2 * this._lightness) - 1)) * this.saturation;
         // find the quandrant of the hue
         const quadrant = this._hue / 60;
         // calculate the offset from the quandrant center
@@ -89,7 +89,7 @@ export class ColorInfo{
 
         // Apply the chroma to the primary component and the offset to the 2nd most important component
         let r = 0, g = 0, b = 0;
-        if (0 <= quadrant && quadrant < 1) {
+        if (0 <= quadrant && quadrant <= 1) {
             r = chroma; g = offset; // red to yellow
         } else if (1 <= quadrant && quadrant <= 2) {
             g = chroma; r = offset; // yellow to green
@@ -103,7 +103,7 @@ export class ColorInfo{
             r = chroma; b = offset; // magenta to red
         }
         // calculate the bias to add to all channels to match the lightness
-        const bias = (this._lightness / 100) - (chroma / 2);
+        const bias = this._lightness - (chroma / 2);
 
         return {
             red: Math.round((r + bias) * 255),
@@ -146,11 +146,7 @@ export class ColorInfo{
         }
 
         this._hue = h;
-        this._saturation = s * 100;
-        this._lightness =l * 100;
-    }
-
-    private getChroma() {
-        return (1 - Math.abs((2 * (this._lightness / 100)) - 1));
+        this._saturation = s;
+        this._lightness = l;
     }
 }
