@@ -27,7 +27,7 @@ export class DnnColorPicker {
     getDoublet(value: number){
         const valueString = value.toString(16).toUpperCase();
         if (valueString.length === 1){
-            return valueString + valueString;
+            return '0' + valueString;
         }
         return valueString;
     }
@@ -37,6 +37,7 @@ export class DnnColorPicker {
     }
 
     render() {
+        console.log(this.color)
         const hue = this.color.hue;
         const saturation = this.color.saturation;
         const lightness = this.color.lightness;
