@@ -66,33 +66,36 @@
                 }
             } 
         }
-        .dnn-color-hue{
-            height: 16px;
-            border: 1px solid #ccc;
+        .dnn-color-bar {
+            display: flex;
+            align-items: center;;
             margin-top: 15px;
-            position: relative;
-            background: linear-gradient(
-                to right, 
-                #f00 0, 
-                #ff0 17%,
-                #0f0 33%,
-                #0ff 50%,
-                #00f 67%,
-                #f0f 84%,
-                #f00 100%
-            );
-            button{
-                width: 10px;
-                height: 20px;
-                position: absolute;
-                top: -2px;
-                left: calc(50% - 4px);
-                border: 0;
-                padding: 0;
-                background-color: transparent;
-                padding-left: -8px;
-                &:before{
-                    content:'';
+            .dnn-color-result {
+                flex-direction: column;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: red;
+            }
+            .dnn-color-hue{
+                flex: auto;
+                margin-left: 10px;
+                height: 16px;
+                border: 1px solid #ccc;
+                position: relative;
+                background: linear-gradient(
+                    to right, 
+                    #f00 0, 
+                    #ff0 17%,
+                    #0f0 33%,
+                    #0ff 50%,
+                    #00f 67%,
+                    #f0f 84%,
+                    #f00 100%
+                );
+                button{
+                    width: 10px;
+                    height: 20px;
                     position: absolute;
                     top: -2px;
                     left: 0px;
@@ -101,6 +104,22 @@
                     height: 100%;
                     border: 1px solid #ccc;
                     background-color: #fff;
+                    left: calc(50% - 4px);
+                    border: 0;
+                    padding: 0;
+                    background-color: transparent;
+                    padding-left: -8px;
+                    &:before{
+                        content:'';
+                        position: absolute;
+                        top: -2px;
+                        left: 0px;
+                        border-radius: 3px;
+                        width: 100%;
+                        height: 100%;
+                        border: 1px solid #ccc;
+                        background-color: #fff;
+                    }
                 }
             }
         }
