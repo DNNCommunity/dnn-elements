@@ -66,36 +66,33 @@
                 }
             } 
         }
-        .dnn-color-bar {
-            display: flex;
-            align-items: center;;
+        .dnn-color-hue{
+            height: 16px;
+            border: 1px solid #ccc;
             margin-top: 15px;
-            .dnn-color-result {
-                flex-direction: column;
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                background: red;
-            }
-            .dnn-color-hue{
-                flex: auto;
-                margin-left: 10px;
-                height: 16px;
-                border: 1px solid #ccc;
-                position: relative;
-                background: linear-gradient(
-                    to right, 
-                    #f00 0, 
-                    #ff0 17%,
-                    #0f0 33%,
-                    #0ff 50%,
-                    #00f 67%,
-                    #f0f 84%,
-                    #f00 100%
-                );
-                button{
-                    width: 10px;
-                    height: 20px;
+            position: relative;
+            background: linear-gradient(
+                to right, 
+                #f00 0, 
+                #ff0 17%,
+                #0f0 33%,
+                #0ff 50%,
+                #00f 67%,
+                #f0f 84%,
+                #f00 100%
+            );
+            button{
+                width: 10px;
+                height: 20px;
+                position: absolute;
+                top: -2px;
+                left: calc(50% - 4px);
+                border: 0;
+                padding: 0;
+                background-color: transparent;
+                padding-left: -8px;
+                &:before{
+                    content:'';
                     position: absolute;
                     top: -2px;
                     left: 0px;
@@ -104,22 +101,6 @@
                     height: 100%;
                     border: 1px solid #ccc;
                     background-color: #fff;
-                    left: calc(50% - 4px);
-                    border: 0;
-                    padding: 0;
-                    background-color: transparent;
-                    padding-left: -8px;
-                    &:before{
-                        content:'';
-                        position: absolute;
-                        top: -2px;
-                        left: 0px;
-                        border-radius: 3px;
-                        width: 100%;
-                        height: 100%;
-                        border: 1px solid #ccc;
-                        background-color: #fff;
-                    }
                 }
             }
         }
@@ -195,45 +176,35 @@
                 label {
                     padding-bottom: .25em;
                 }
-                input{
+                .hex-input{
+                    position: relative;
                     border-radius: var(--dnn-button-radius, 3px);
                     border: 1px solid #ccc;
                     padding: 0.5em;
                     text-align: center;
+                    input{
+                        border:0;
+                        padding:0;
+                        margin:0;
+                        width:100%;
+                        height:100%;
+                        text-align:center;
+                    }
+                    button{
+                        position: absolute;
+                        height: 100%;
+                        top: 0;
+                        right: 1em;
+                        background-color: transparent;
+                        border:0;
+                        padding:0;
+                        margin:0;
+                        svg{
+                            min-width: 1em;
+                        }
+                    }
                 }
             }
-        }
-        .string{
-            display: none;
-            position: relative;
-            i{
-                &.symbol{
-                    position: absolute;
-                    display: block;
-                    transform: translate(0, -50%);
-                    top: 50%;
-                    pointer-events: none;
-                    width: 1em;
-                    font-style: normal;
-                    left: 0.5em;
-                }                
-            }
-            button{
-                margin: 0;
-                border: 0;
-                padding: 0;
-                background-color: transparent;
-                &.copy{
-                    position: absolute;
-                    display: block;
-                    transform: translate(0, -50%);
-                    top: 50%;
-                    cursor: pointer;
-                    width: 1em;
-                    font-style: normal;
-                    right: 0.5em;
-                }
-            }
-        }
+        }        
     }
 }
