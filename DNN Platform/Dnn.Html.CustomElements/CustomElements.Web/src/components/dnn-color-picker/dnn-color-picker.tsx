@@ -47,7 +47,6 @@ export class DnnColorPicker {
         const red = this.color.red;
         const green = this.color.green;
         const blue = this.color.blue;
-        const contrastColor = "#" + this.color.contrastColor;
 
         return (
             <div class="dnn-color-picker">
