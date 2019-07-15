@@ -183,6 +183,7 @@ export class DnnColorPicker {
     }
 
     render() {
+        
         const hue = this.color.hue;
         const saturation = this.color.saturation;
         const lightness = this.color.lightness;
