@@ -117,6 +117,9 @@ export class DnnColorPicker {
                 b = value;
                 break;
             default:
+                this.rgbDisplay = "flex";
+                this.hslDisplay = "none";
+                this.hexDisplay = "none";
                 break;
         }
         newColor.green = g;

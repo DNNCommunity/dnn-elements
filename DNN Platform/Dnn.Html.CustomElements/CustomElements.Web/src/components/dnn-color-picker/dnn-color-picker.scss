@@ -111,7 +111,17 @@
         justify-content: space-between;
         .dnn-color-mode-switch {
             display: flex;
+            align-items: flex-end;
             padding: .5em;
+            button {
+                background-color: transparent;
+                border: none;
+                svg {
+                    min-width: 3em;
+                    pointer-events: none;
+                    outline: none;
+                }
+            }
         }
         .dnn-rgb-color-fields {
             display: flex;
