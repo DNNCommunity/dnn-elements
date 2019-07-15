@@ -202,7 +202,7 @@ export class DnnColorPicker {
                         />
                     </div>
                     <div class="dnn-color-bar">
-                        <div class="dnn-color-result"></div>
+                        <div class="dnn-color-result" style={{backgroundColor: '#' + this.getHex()}}></div>
                         <div class="dnn-color-hue">
                             <button class="dnn-hue-picker"
                                 style={{left: (hue/359*100).toString() + "%"}}
