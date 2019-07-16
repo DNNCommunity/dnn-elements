@@ -140,16 +140,7 @@
                     border: 1px solid #ccc;
                     padding: 0.5em;
                     padding-left: 1.3em;
-                    text-align: center;
-                    &.red{
-                        border-color: red;
-                    }
-                    &.green{
-                        border-color: green;                
-                    }
-                    &.blue{
-                        border-color: blue;
-                    }            
+                    text-align: center;           
                 }
             }
         }
@@ -161,6 +152,7 @@
                 flex-direction: column;
                 flex: auto;
                 text-align: center;
+                background-color: #fff;
                 padding: .5em;
                 label {
                     padding-bottom: .25em;
