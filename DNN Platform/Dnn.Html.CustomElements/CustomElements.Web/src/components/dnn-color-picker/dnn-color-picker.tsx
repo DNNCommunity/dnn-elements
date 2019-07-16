@@ -15,6 +15,7 @@ import { ColorInfo } from '../../utils/ColorInfo';
 export class DnnColorPicker {
 
     @Element() el: HTMLElement;
+    
     private saturationLightnessBox?: HTMLDivElement;
     private hueRange?: HTMLDivElement;
 
@@ -183,7 +184,7 @@ export class DnnColorPicker {
     }
 
     render() {
-        
+
         const hue = this.color.hue;
         const saturation = this.color.saturation;
         const lightness = this.color.lightness;
