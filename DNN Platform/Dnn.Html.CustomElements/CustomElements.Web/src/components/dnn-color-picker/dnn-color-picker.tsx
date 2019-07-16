@@ -3,7 +3,7 @@
  * @license MIT 
  */
 
-import { Component, h, State, Element } from "@stencil/core";
+import { Component, h, State, Element, Prop } from "@stencil/core";
 import { ColorInfo } from '../../utils/ColorInfo';
 
 /** Color Picker for Dnn */
@@ -15,7 +15,7 @@ import { ColorInfo } from '../../utils/ColorInfo';
 export class DnnColorPicker {
 
     @Element() el: HTMLElement;
-    
+
     private saturationLightnessBox?: HTMLDivElement;
     private hueRange?: HTMLDivElement;
 
