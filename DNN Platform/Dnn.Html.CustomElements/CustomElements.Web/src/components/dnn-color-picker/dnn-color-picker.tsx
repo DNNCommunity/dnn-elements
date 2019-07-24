@@ -18,6 +18,7 @@ export class DnnColorPicker {
 
     private saturationLightnessBox?: HTMLDivElement;
     private hueRange?: HTMLDivElement;
+    private something: string;
 
     @State() color: ColorInfo;
     
