@@ -22,10 +22,8 @@ steps:
 
 - task: Yarn@3
   inputs:
-    projectDirectory: 'dnn'
     arguments: 'install'
 
 - task: Yarn@3
   inputs:
-    projectDirectory: 'dnn'
     arguments: 'build'
