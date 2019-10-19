@@ -16,6 +16,15 @@ steps:
     filePath: './build.ps1'
     pwsh: true
 
+- task: CopyFiles@2
+  inputs:
+    Contents: |
+      *
+      dist\**
+      loader\**
+      src\**
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
