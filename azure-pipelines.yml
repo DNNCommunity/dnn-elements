@@ -20,10 +20,6 @@ steps:
   inputs:
     versionSpec: '1.x'
 
-- task: Yarn@3
+- task: Bash@3
   inputs:
-    arguments: 'install'
-
-- task: Yarn@3
-  inputs:
-    arguments: 'build'
+    filePath: 'build.sh'
