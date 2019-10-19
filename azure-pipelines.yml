@@ -1,0 +1,17 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+- development
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: PowerShell@2
+  inputs:
+    filePath: './build.ps1'
+    pwsh: true
