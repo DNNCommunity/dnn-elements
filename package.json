@@ -1,5 +1,5 @@
 {
-  "name": "dnn",
+  "name": "@eraware/dnn-elements",
   "version": "0.2.0-gitversion.1",
   "description": "Stencil Component Starter",
   "main": "dist/index.js",
