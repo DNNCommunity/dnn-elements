@@ -6,5 +6,8 @@
     },
     "extends": [
       "plugin:@stencil/recommended"
-    ]
+    ],
+    "rules": {
+      "react/jsx-no-bind": "off"
+    }
   }
