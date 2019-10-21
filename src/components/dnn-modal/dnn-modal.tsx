@@ -7,7 +7,7 @@ import { Component, Element, Host, h, Prop, Event, EventEmitter, Method, State }
 })
 export class DnnModal {
   
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLDnnModalElement;
   
   /**
    * Pass false to remove the backdrop click auto-dismiss feature.
@@ -50,12 +50,12 @@ export class DnnModal {
    */
   @Event() dismissed!: EventEmitter;
 
-  handleDismiss(){
+  private handleDismiss(){
     this.visible = false;
     this.dismissed.emit();
   }
 
-  handleBackdropClick(e: MouseEvent): void {
+  private handleBackdropClick(e: MouseEvent): void {
     const element = (e.target as HTMLElement);
     if (element.id === "backdrop" && this.backdropDismiss){
       this.handleDismiss();

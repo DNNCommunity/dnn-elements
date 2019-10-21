@@ -49,7 +49,7 @@ export class DnnButton {
   @State() modalVisible: boolean = false;
   @State() disabled: boolean = false;
 
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLDnnButtonElement;
 
   private modal!: HTMLDnnModalElement;
 
@@ -79,23 +79,23 @@ export class DnnButton {
       this.el.classList.add(this.size);
     }
 
-    this.modal = this.el.shadowRoot ? this.el.shadowRoot.querySelector('dnn-modal') : this.el.querySelector('dnn-modal');
+    this.modal = this.el.shadowRoot.querySelector('dnn-modal');
   }
 
-  handleConfirm(){
+  private handleConfirm(){
     console.log('handling confirm');
     this.modal.hide();
     this.modalVisible = false;
     this.confirmed.emit();
   }
 
-  handleCancel(){
+  private handleCancel(){
     this.modal.hide();
     this.modalVisible = false;
     this.canceled.emit();
   }
   
-  handleClick(): void {
+  private handleClick(): void {
     if (this.confirm && !this.modalVisible){
       this.modal.show();
       this.modalVisible = true;
