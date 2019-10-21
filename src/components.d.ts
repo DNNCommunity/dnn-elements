@@ -10,53 +10,141 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface MyComponent {
+  interface DnnButton {
     /**
-    * The first name
+    * Optionally add a confirmation dialog before firing the action.
     */
-    'first': string;
+    'confirm'?: boolean;
     /**
-    * The last name
+    * The text of the confirmation message;
     */
-    'last': string;
+    'confirmMessage'?: string;
     /**
-    * The middle name
+    * The text of the no button for confirmation.
     */
-    'middle': string;
+    'confirmNoText'?: string;
+    /**
+    * The text of the yes button for confirmation.
+    */
+    'confirmYesText'?: string;
+    /**
+    * Optionally reverses the button style.
+    */
+    'reversed': boolean;
+    /**
+    * Optionally sets the button size, small normal or large, defaults to normal
+    */
+    'size'?: 'small' | 'normal' | 'large';
+    /**
+    * Optional button style, can be either primary, secondary or tertiary and defaults to primary if not specified
+    */
+    'type': 'primary' | 'secondary' | 'tertiary';
+  }
+  interface DnnModal {
+    /**
+    * Pass false to remove the backdrop click auto-dismiss feature.
+    */
+    'backdropDismiss': boolean;
+    /**
+    * Optionally pass the aria-label text for the close button. Defaults to "Close modal" if not provided.
+    */
+    'closeText'?: string;
+    /**
+    * Hides the modal
+    */
+    'hide': () => Promise<void>;
+    /**
+    * Shows the modal
+    */
+    'show': () => Promise<void>;
+    /**
+    * Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
+    */
+    'showCloseButton'?: boolean;
   }
 }
 
 declare global {
 
 
-  interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
-  const HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
+  interface HTMLDnnButtonElement extends Components.DnnButton, HTMLStencilElement {}
+  const HTMLDnnButtonElement: {
+    prototype: HTMLDnnButtonElement;
+    new (): HTMLDnnButtonElement;
+  };
+
+  interface HTMLDnnModalElement extends Components.DnnModal, HTMLStencilElement {}
+  const HTMLDnnModalElement: {
+    prototype: HTMLDnnModalElement;
+    new (): HTMLDnnModalElement;
   };
   interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
+    'dnn-button': HTMLDnnButtonElement;
+    'dnn-modal': HTMLDnnModalElement;
   }
 }
 
 declare namespace LocalJSX {
-  interface MyComponent {
+  interface DnnButton {
     /**
-    * The first name
+    * Optionally add a confirmation dialog before firing the action.
     */
-    'first'?: string;
+    'confirm'?: boolean;
     /**
-    * The last name
+    * The text of the confirmation message;
     */
-    'last'?: string;
+    'confirmMessage'?: string;
     /**
-    * The middle name
+    * The text of the no button for confirmation.
     */
-    'middle'?: string;
+    'confirmNoText'?: string;
+    /**
+    * The text of the yes button for confirmation.
+    */
+    'confirmYesText'?: string;
+    /**
+    * Fires when confirm is true and the user cancels the action.
+    */
+    'onCanceled'?: (event: CustomEvent<any>) => void;
+    /**
+    * Fires when confirm is true and the user confirms the action.
+    */
+    'onConfirmed'?: (event: CustomEvent<any>) => void;
+    /**
+    * Optionally reverses the button style.
+    */
+    'reversed'?: boolean;
+    /**
+    * Optionally sets the button size, small normal or large, defaults to normal
+    */
+    'size'?: 'small' | 'normal' | 'large';
+    /**
+    * Optional button style, can be either primary, secondary or tertiary and defaults to primary if not specified
+    */
+    'type'?: 'primary' | 'secondary' | 'tertiary';
+  }
+  interface DnnModal {
+    /**
+    * Pass false to remove the backdrop click auto-dismiss feature.
+    */
+    'backdropDismiss'?: boolean;
+    /**
+    * Optionally pass the aria-label text for the close button. Defaults to "Close modal" if not provided.
+    */
+    'closeText'?: string;
+    /**
+    * Fires when the modal is dismissed.
+    */
+    'onDismissed'?: (event: CustomEvent<any>) => void;
+    /**
+    * Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
+    */
+    'showCloseButton'?: boolean;
   }
 
   interface IntrinsicElements {
-    'my-component': MyComponent;
+    'dnn-button': DnnButton;
+    'dnn-modal': DnnModal;
   }
 }
 
@@ -66,7 +154,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
-      'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+      'dnn-button': LocalJSX.DnnButton & JSXBase.HTMLAttributes<HTMLDnnButtonElement>;
+      'dnn-modal': LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
     }
   }
 }

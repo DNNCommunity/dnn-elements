@@ -1,4 +1,6 @@
 import { Config } from '@stencil/core';
+import { sass } from '@stencil/sass';
+import { rules } from '@stencil/eslint-plugin'
 
 export const config: Config = {
   namespace: 'dnn',
@@ -14,5 +16,9 @@ export const config: Config = {
       type: 'www',
       serviceWorker: null // disable service workers
     }
+  ],
+  plugins: [
+    sass(),
+    rules
   ]
 };
