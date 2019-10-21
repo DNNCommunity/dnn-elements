@@ -7,11 +7,84 @@
 
   <script type="module" src="/build/dnn.esm.js"></script>
   <script nomodule src="/build/dnn.js"></script>
-
+  <style type="text/css">
+    :root {
+        --dnn-color-primary: #3792ED;
+        --dnn-color-primary-light: #6CB6F3;
+        --dnn-color-primary-dark: #0D569E;
+        --dnn-color-primary-contrast: #FFF;
+        --dnn-color-secondary:#CCC;
+        --dnn-color-secondary-light: #EEE;
+        --dnn-color-secondary-dark: #AAA;
+        --dnn-color-secondary-contrast: #222;
+        --dnn-color-tertiary: #EAEAEA;
+        --dnn-color-tertiary-light: #F2F2F2;
+        --dnn-color-tertiary-dark: #D8D8D8;
+        --dnn-color-tertiary-contrast: #333;
+        --dnn-controls-radius: 5px;
+        --dnn-controls-padding: 5px;
+    }
+    section{
+      margin: 15px;
+      padding: 15px;
+      border-radius: 15px;
+      border: 1px solid grey;
+    }
+  </style>
 </head>
 <body>
+  <h1>Dnn HTML custom elements</h1>
+  <!-- dnn-button -->
+  <section>
+    <h2>dnn-button</h2>
+    <dnn-button onclick="alert('clicked')">Default</dnn-button>
+    <dnn-button onclick="alert('clicked')" type="primary">Primary</dnn-button>
+    <dnn-button onclick="alert('clicked')" type="secondary">Secondary</dnn-button>
+    <dnn-button onclick="alert('clicked')" type="tertiary">Tertiary</dnn-button>
+    <dnn-button onclick="alert('clicked')" type="primary" reversed="reversed">Primary reversed</dnn-button>
+    <dnn-button onclick="alert('clicked')" type="secondary" reversed>Secondary reversed</dnn-button>
+    <dnn-button onclick="alert('clicked')" type="tertiary" reversed>Tertiary reversed</dnn-button>
+    <dnn-button onclick="alert('clicked')" disabled>Disabled</dnn-button>
+    <dnn-button onclick="alert('clicked')" size="small">Small</dnn-button>
+    <dnn-button onclick="alert('clicked')" size="large">Large</dnn-button>
+    <dnn-button id="confirm-button" confirm="true">Confirm</dnn-button>
 
-  <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+    <script type="text/javascript">
+      let btn = document.querySelector('#confirm-button');
+      btn.addEventListener('confirmed', function(){alert('confirmed')});
+      btn.addEventListener('canceled', function(){alert('canceled')});
+    </script>
+  </section>
 
+  <!-- dnn-modal -->
+  <section>
+    <h2>dnn-modal</h2>
+    <dnn-modal id="my-modal" backdrop-dismiss="false">I am a modal !</dnn-modal>
+    <dnn-modal id="my-modal2" >I am a modal, but you can click outside me to dismiss me !</dnn-modal>
+    <dnn-modal id="my-modal3" show-close-button="false" >I am a modal, I have no close button, so click the backdrop to get rid of me !</dnn-modal>
+    <dnn-button
+      onclick="showModal()"
+    >Show Modal</dnn-button>
+    <dnn-button
+      onclick="showModal2()"
+    >Modal with backdrop dismiss</dnn-button>
+    <dnn-button
+      onclick="showModal3()"
+    >Modal with no close button</dnn-button>
+
+    <script type="text/javascript">
+      function showModal(){
+        document.querySelector('#my-modal').show();
+      }
+
+      function showModal2(){
+        document.querySelector('#my-modal2').show();
+      }
+
+      function showModal3(){
+        document.querySelector('#my-modal3').show();
+      }
+    </script>
+  </section>
 </body>
 </html>
