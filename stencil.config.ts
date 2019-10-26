@@ -1,6 +1,7 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
-import { rules } from '@stencil/eslint-plugin'
+import {  inlineSvg } from 'stencil-inline-svg';
+
 
 export const config: Config = {
   namespace: 'dnn',
@@ -19,6 +20,6 @@ export const config: Config = {
   ],
   plugins: [
     sass(),
-    rules
+    inlineSvg()
   ]
 };

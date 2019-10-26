@@ -1,0 +1,57 @@
+:host {
+  position: relative;
+  display: inline-block;
+  --background-color: transparent;
+  --color: #333;
+  --border-size: 1px;
+  --border-color: grey;
+  --border-active-color: black;
+  --border-radius: var(--dnn-controls-radius, 5px);
+  --padding: var(--dnn-controls-padding, 5px);
+  --focus-color: var(--dnn-color-primary, blue);
+  input {
+    border: var(--border-size) solid var(--border-color);
+    outline: none;
+    border-radius: var(--border-radius);
+    padding: var(--padding);
+    padding-right: 32px;
+    transition: all 300ms ease-in-out;
+    &:focus, &:hover{
+      outline: none;
+      box-shadow: 0 0 2px 2px var(--focus-color);
+    }
+  }
+  .svg{
+    background: transparent;
+    border: none;
+    padding: none;
+    margin: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 32px;
+    padding: var(--padding);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg{
+      flex:1;
+      color: var(--border-color);
+      fill: var(--border-color);
+      outline: var(--border-color);
+      max-height: 100%;
+    }
+  }
+  button.svg{
+    outline: none;
+    &:focus, &:hover{
+      svg{
+        color: var(--focus-color);
+        fill: var(--focus-color);
+        outline: var(--focus-color);
+      }
+    }
+  }
+}

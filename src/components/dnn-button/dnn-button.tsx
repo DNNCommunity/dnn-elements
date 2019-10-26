@@ -83,7 +83,6 @@ export class DnnButton {
   }
 
   private handleConfirm(){
-    console.log('handling confirm');
     this.modal.hide();
     this.modalVisible = false;
     this.confirmed.emit();
