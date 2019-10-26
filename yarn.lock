@@ -18,11 +18,6 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@fortawesome/fontawesome-free@^5.11.2":
-  version "5.11.2"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.11.2.tgz#8644bc25b19475779a7b7c1fc104bc0a794f4465"
-  integrity sha512-XiUPoS79r1G7PcpnNtq85TJ7inJWe0v+b5oZJZKb0pGHNIV6+UiNeQWiFGmuQ0aj7GEhnD/v9iqxIsjuRKtEnQ==
-
 "@stencil/core@^1.3.3":
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-1.7.3.tgz#ffc67fe416bc24cbd5e4a3a2c98e2fdff32424dd"
@@ -1032,11 +1027,6 @@ sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
-
-stencil-inline-svg@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/stencil-inline-svg/-/stencil-inline-svg-1.0.1.tgz#1ae2ae279f47b5d53efcdd5b1a3bf55a3e675177"
-  integrity sha512-0pi9bMta3uQjLdB+yrieZLLURAq25ZC3ZGGRy7C95mKalcZVltW3gokUVyIM4Sq1xDW2i667Pkxtk6hASarrnQ==
 
 string-width@^2.1.0:
   version "2.1.1"
