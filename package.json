@@ -33,8 +33,5 @@
     "eslint-plugin-react": "^7.16.0",
     "stencil-inline-svg": "^1.0.1"
   },
-  "license": "MIT",
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.11.2"
-  }
+  "license": "MIT"
 }

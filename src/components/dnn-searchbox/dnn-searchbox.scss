@@ -1,6 +1,7 @@
 :host {
   position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
   --background-color: transparent;
   --color: #333;
   --border-size: 1px;
@@ -10,6 +11,7 @@
   --padding: var(--dnn-controls-padding, 5px);
   --focus-color: var(--dnn-color-primary, blue);
   input {
+    width:100%;
     border: var(--border-size) solid var(--border-color);
     outline: none;
     border-radius: var(--border-radius);
@@ -21,36 +23,27 @@
       box-shadow: 0 0 2px 2px var(--focus-color);
     }
   }
-  .svg{
-    background: transparent;
-    border: none;
-    padding: none;
-    margin: none;
+  svg{
     position: absolute;
-    top: 0;
-    right: 0;
+    top:0;
+    right:0;
     height: 100%;
-    width: 32px;
-    padding: var(--padding);
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    svg{
-      flex:1;
-      color: var(--border-color);
-      fill: var(--border-color);
-      outline: var(--border-color);
-      max-height: 100%;
-    }
+    transform: scale(0.7);
+    fill: var(--color);
+    outline: var(--color);
+    color: var(--color);
+    transition: all 300ms ease-in-out;
   }
-  button.svg{
-    outline: none;
+  button{
+    background: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
     &:focus, &:hover{
       svg{
-        color: var(--focus-color);
         fill: var(--focus-color);
-        outline: var(--focus-color);
+      outline: var(--focus-color);
+      color: var(--focus-color);
       }
     }
   }
