@@ -1028,11 +1028,6 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-stencil-inline-svg@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/stencil-inline-svg/-/stencil-inline-svg-1.0.1.tgz#1ae2ae279f47b5d53efcdd5b1a3bf55a3e675177"
-  integrity sha512-0pi9bMta3uQjLdB+yrieZLLURAq25ZC3ZGGRy7C95mKalcZVltW3gokUVyIM4Sq1xDW2i667Pkxtk6hASarrnQ==
-
 string-width@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-2.1.1.tgz#ab93f27a8dc13d28cac815c462143a6d9012ae9e"

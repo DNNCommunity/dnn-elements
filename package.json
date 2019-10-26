@@ -1,6 +1,6 @@
 {
   "name": "@eraware/dnn-elements",
-  "version": "0.2.0-gitversion.1",
+  "version": "0.3.0-fix-search-icons.1",
   "description": "Stencil Component Starter",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -30,8 +30,7 @@
     "@typescript-eslint/eslint-plugin": "^2.4.0",
     "@typescript-eslint/parser": "^2.4.0",
     "eslint": "^6.5.1",
-    "eslint-plugin-react": "^7.16.0",
-    "stencil-inline-svg": "^1.0.1"
+    "eslint-plugin-react": "^7.16.0"
   },
   "license": "MIT"
 }
