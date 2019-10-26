@@ -62,6 +62,12 @@ export namespace Components {
     */
     'showCloseButton'?: boolean;
   }
+  interface DnnSearchbox {
+    /**
+    * Sets the field placeholder text.
+    */
+    'placeholder'?: string;
+  }
 }
 
 declare global {
@@ -78,9 +84,16 @@ declare global {
     prototype: HTMLDnnModalElement;
     new (): HTMLDnnModalElement;
   };
+
+  interface HTMLDnnSearchboxElement extends Components.DnnSearchbox, HTMLStencilElement {}
+  const HTMLDnnSearchboxElement: {
+    prototype: HTMLDnnSearchboxElement;
+    new (): HTMLDnnSearchboxElement;
+  };
   interface HTMLElementTagNameMap {
     'dnn-button': HTMLDnnButtonElement;
     'dnn-modal': HTMLDnnModalElement;
+    'dnn-searchbox': HTMLDnnSearchboxElement;
   }
 }
 
@@ -141,10 +154,21 @@ declare namespace LocalJSX {
     */
     'showCloseButton'?: boolean;
   }
+  interface DnnSearchbox {
+    /**
+    * Fires up each time the search query changes. The data passed is the new query.
+    */
+    'onQueryChanged'?: (event: CustomEvent<any>) => void;
+    /**
+    * Sets the field placeholder text.
+    */
+    'placeholder'?: string;
+  }
 
   interface IntrinsicElements {
     'dnn-button': DnnButton;
     'dnn-modal': DnnModal;
+    'dnn-searchbox': DnnSearchbox;
   }
 }
 
@@ -156,6 +180,7 @@ declare module "@stencil/core" {
     interface IntrinsicElements {
       'dnn-button': LocalJSX.DnnButton & JSXBase.HTMLAttributes<HTMLDnnButtonElement>;
       'dnn-modal': LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
+      'dnn-searchbox': LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
     }
   }
 }

@@ -8,6 +8,7 @@
       "plugin:@stencil/recommended"
     ],
     "rules": {
-      "react/jsx-no-bind": "off"
+      "react/jsx-no-bind": "off",
+      "no-console": "warn"
     }
   }
