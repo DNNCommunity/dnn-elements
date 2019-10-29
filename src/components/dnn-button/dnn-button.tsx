@@ -58,7 +58,7 @@ export class DnnButton {
   */
   @Event({
     eventName: 'confirmed',
-    bubbles: true,
+    bubbles: false,
     cancelable: true,
     composed: true
   }) confirmed: EventEmitter;
@@ -66,7 +66,7 @@ export class DnnButton {
   /**
    * Fires when confirm is true and the user cancels the action.
    */
-  @Event() canceled: EventEmitter;
+  @Event({bubbles: false}) canceled: EventEmitter;
 
   componentDidLoad(){
     this.el.classList.add(this.type);
