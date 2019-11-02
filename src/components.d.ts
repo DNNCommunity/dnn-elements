@@ -28,6 +28,10 @@ export namespace Components {
     */
     'confirmYesText'?: string;
     /**
+    * Disables the button
+    */
+    'disabled': boolean;
+    /**
     * Optionally reverses the button style.
     */
     'reversed': boolean;
@@ -115,6 +119,10 @@ declare namespace LocalJSX {
     * The text of the yes button for confirmation.
     */
     'confirmYesText'?: string;
+    /**
+    * Disables the button
+    */
+    'disabled'?: boolean;
     /**
     * Fires when confirm is true and the user cancels the action.
     */
