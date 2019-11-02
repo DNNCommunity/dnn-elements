@@ -9,6 +9,10 @@
   width: auto;
 }
 
+:host(.disabled){
+  pointer-events: none;
+}
+
 :host(.primary){
   --background-color: var(--dnn-color-primary, blue);
   --color: var(--dnn-color-primary-contrast, white);
