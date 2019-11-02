@@ -1,4 +1,6 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Event } from '@stencil/core';
+import { EventEmitter } from '@stencil/core';
+import { Watch } from '@stencil/core';
 
 @Component({
   tag: 'dnn-chevron',
@@ -15,6 +17,14 @@ export class DnnChevron {
 
   /** Is the chevron expanded */
   @Prop({mutable: true, reflect: true}) expanded?: boolean = false;
+
+  /** Fires up when the expanded status changes */
+  @Event() changed: EventEmitter;
+
+  @Watch('expanded')
+  handleExpandedChanged(newValue: boolean) {
+    this.changed.emit(newValue);
+  }
 
   render() {
     return (

@@ -58,6 +58,16 @@ export namespace Components {
     */
     'expanded'?: boolean;
   }
+  interface DnnCollapsible {
+    /**
+    * Defines if the panel is expanded or not.
+    */
+    'expanded': boolean;
+    /**
+    * Defines the transition time in ms, defaults to 300ms
+    */
+    'transitionDuration'?: number;
+  }
   interface DnnModal {
     /**
     * Pass false to remove the backdrop click auto-dismiss feature.
@@ -103,6 +113,12 @@ declare global {
     new (): HTMLDnnChevronElement;
   };
 
+  interface HTMLDnnCollapsibleElement extends Components.DnnCollapsible, HTMLStencilElement {}
+  const HTMLDnnCollapsibleElement: {
+    prototype: HTMLDnnCollapsibleElement;
+    new (): HTMLDnnCollapsibleElement;
+  };
+
   interface HTMLDnnModalElement extends Components.DnnModal, HTMLStencilElement {}
   const HTMLDnnModalElement: {
     prototype: HTMLDnnModalElement;
@@ -117,6 +133,7 @@ declare global {
   interface HTMLElementTagNameMap {
     'dnn-button': HTMLDnnButtonElement;
     'dnn-chevron': HTMLDnnChevronElement;
+    'dnn-collapsible': HTMLDnnCollapsibleElement;
     'dnn-modal': HTMLDnnModalElement;
     'dnn-searchbox': HTMLDnnSearchboxElement;
   }
@@ -178,6 +195,20 @@ declare namespace LocalJSX {
     * Is the chevron expanded
     */
     'expanded'?: boolean;
+    /**
+    * Fires up when the expanded status changes
+    */
+    'onChanged'?: (event: CustomEvent<any>) => void;
+  }
+  interface DnnCollapsible {
+    /**
+    * Defines if the panel is expanded or not.
+    */
+    'expanded'?: boolean;
+    /**
+    * Defines the transition time in ms, defaults to 300ms
+    */
+    'transitionDuration'?: number;
   }
   interface DnnModal {
     /**
@@ -211,6 +242,7 @@ declare namespace LocalJSX {
   interface IntrinsicElements {
     'dnn-button': DnnButton;
     'dnn-chevron': DnnChevron;
+    'dnn-collapsible': DnnCollapsible;
     'dnn-modal': DnnModal;
     'dnn-searchbox': DnnSearchbox;
   }
@@ -224,6 +256,7 @@ declare module "@stencil/core" {
     interface IntrinsicElements {
       'dnn-button': LocalJSX.DnnButton & JSXBase.HTMLAttributes<HTMLDnnButtonElement>;
       'dnn-chevron': LocalJSX.DnnChevron & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
+      'dnn-collapsible': LocalJSX.DnnCollapsible & JSXBase.HTMLAttributes<HTMLDnnCollapsibleElement>;
       'dnn-modal': LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
       'dnn-searchbox': LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
     }

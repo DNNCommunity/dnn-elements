@@ -107,18 +107,58 @@
     </script>
   </section>
 
+  <!-- dnn-chevron / dnn-collapsible -->
+  <section>
+      <h2>dnn-chevron / dnn-collapsible</h2>
+      
+      <style type="text/css">
+        .collapse-row{
+          border: 1px solid grey;
+        }
+        .collapse-row .collapse-title{
+          display:flex;
+          align-items: center;
+          background-color: whitesmoke;
+        }
+        .collapse-row .collapse-title>*{
+          margin: 10px;
+        }
+      </style>
+      
+      <div class="collapse-row">
+        <div class="collapse-title">
+          <dnn-chevron id="dnn-chevron1"></dnn-chevron>
+          <strong>Collapsible Panel</strong>
+        </div>
+        <dnn-collapsible id="dnn-collapsible1" transition-duration="1000">
+          <div style="padding: 15px;">
+            <h2>Details</h2>
+            <p>
+              Spicy jalapeno bacon ipsum dolor amet bresaola kielbasa doner ham hock biltong, swine shoulder leberkas cupim. Sausage capicola buffalo, tongue jerky frankfurter biltong pork swine landjaeger. Porchetta alcatra burgdoggen beef ribs short ribs corned beef, biltong flank bresaola kielbasa. Ham hock beef kielbasa, cupim cow beef ribs doner. T-bone cow shoulder chuck pastrami. Alcatra pig filet mignon shank. Pancetta shankle meatloaf sausage meatball cupim.
+            </p>
+            <p>
+              Capicola short ribs boudin chicken andouille cow. Short loin bresaola buffalo short ribs meatball tongue. Buffalo tri-tip short ribs corned beef. Pork belly turducken picanha bresaola, sausage ham cupim. Ribeye venison shoulder t-bone filet mignon rump, pork belly meatloaf turkey frankfurter spare ribs ham hamburger cupim. Tri-tip pastrami ham hock corned beef. Frankfurter shankle cow tail venison.
+            </p>
+            <p>
+              Fatback boudin doner, frankfurter buffalo meatball sirloin. Pork loin pastrami rump short loin venison. Venison pastrami beef bresaola. Leberkas hamburger short ribs burgdoggen short loin cow shankle meatloaf andouille.
+            </p>
+          </div>
+        </dnn-collapsible>
+      </div>
+  
+      <script type="text/javascript">
+        document.querySelector('#dnn-chevron1').addEventListener('changed', e => {
+          document.querySelector('#dnn-collapsible1').expanded = e.detail;
+        });
+      </script>
+    </section>
+
   <!-- dnn-searchbox -->
   <section>
     <h2>dnn-searchbox</h2>
     <dnn-searchbox></dnn-searchbox>
     <br /> <br />
     <dnn-searchbox placeholder="With a placeholder..."></dnn-searchbox>
-  </section>
-
-  <!-- dnn-chevron / dnn-collapsible -->
-  <section>
-    <h2>dnn-chevron / dnn-collapsible</h2>
-    <dnn-chevron></dnn-chevron>
   </section>
 
 </body>
