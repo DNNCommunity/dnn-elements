@@ -44,6 +44,20 @@ export namespace Components {
     */
     'type': 'primary' | 'secondary' | 'tertiary';
   }
+  interface DnnChevron {
+    /**
+    * Collapse text for screen readers
+    */
+    'collapseText'?: string;
+    /**
+    * Expand text for screen readers
+    */
+    'expandText'?: string;
+    /**
+    * Is the chevron expanded
+    */
+    'expanded'?: boolean;
+  }
   interface DnnModal {
     /**
     * Pass false to remove the backdrop click auto-dismiss feature.
@@ -83,6 +97,12 @@ declare global {
     new (): HTMLDnnButtonElement;
   };
 
+  interface HTMLDnnChevronElement extends Components.DnnChevron, HTMLStencilElement {}
+  const HTMLDnnChevronElement: {
+    prototype: HTMLDnnChevronElement;
+    new (): HTMLDnnChevronElement;
+  };
+
   interface HTMLDnnModalElement extends Components.DnnModal, HTMLStencilElement {}
   const HTMLDnnModalElement: {
     prototype: HTMLDnnModalElement;
@@ -96,6 +116,7 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'dnn-button': HTMLDnnButtonElement;
+    'dnn-chevron': HTMLDnnChevronElement;
     'dnn-modal': HTMLDnnModalElement;
     'dnn-searchbox': HTMLDnnSearchboxElement;
   }
@@ -144,6 +165,20 @@ declare namespace LocalJSX {
     */
     'type'?: 'primary' | 'secondary' | 'tertiary';
   }
+  interface DnnChevron {
+    /**
+    * Collapse text for screen readers
+    */
+    'collapseText'?: string;
+    /**
+    * Expand text for screen readers
+    */
+    'expandText'?: string;
+    /**
+    * Is the chevron expanded
+    */
+    'expanded'?: boolean;
+  }
   interface DnnModal {
     /**
     * Pass false to remove the backdrop click auto-dismiss feature.
@@ -175,6 +210,7 @@ declare namespace LocalJSX {
 
   interface IntrinsicElements {
     'dnn-button': DnnButton;
+    'dnn-chevron': DnnChevron;
     'dnn-modal': DnnModal;
     'dnn-searchbox': DnnSearchbox;
   }
@@ -187,6 +223,7 @@ declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
       'dnn-button': LocalJSX.DnnButton & JSXBase.HTMLAttributes<HTMLDnnButtonElement>;
+      'dnn-chevron': LocalJSX.DnnChevron & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
       'dnn-modal': LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
       'dnn-searchbox': LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
     }
