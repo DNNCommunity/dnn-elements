@@ -8,13 +8,13 @@ import { Component, Host, h, Prop } from '@stencil/core';
 export class DnnChevron {
 
   /** Expand text for screen readers */
-  @Prop()expandText?: string = "expand";
+  @Prop() expandText?: string = "expand";
 
   /** Collapse text for screen readers */
-  @Prop()collapseText?: string = "collapse";
+  @Prop() collapseText?: string = "collapse";
 
   /** Is the chevron expanded */
-  @Prop({mutable: true, reflect: true})expanded?: boolean = false;
+  @Prop({mutable: true, reflect: true}) expanded?: boolean = false;
 
   render() {
     return (
