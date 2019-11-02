@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Prop, State, Event, EventEmitter, Listen } from '@stencil/core';
+import { Component, Element, Host, h, Prop, State, Event, EventEmitter } from '@stencil/core';
 
 /**
  * @slot Content of the button

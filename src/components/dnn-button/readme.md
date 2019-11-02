@@ -13,6 +13,7 @@
 | `confirmMessage` | `confirm-message`  | The text of the confirmation message;                                                                        | `string`                                 | `"Are you sure ?"` |
 | `confirmNoText`  | `confirm-no-text`  | The text of the no button for confirmation.                                                                  | `string`                                 | `"No"`             |
 | `confirmYesText` | `confirm-yes-text` | The text of the yes button for confirmation.                                                                 | `string`                                 | `"Yes"`            |
+| `disabled`       | `disabled`         | Disables the button                                                                                          | `boolean`                                | `false`            |
 | `reversed`       | `reversed`         | Optionally reverses the button style.                                                                        | `boolean`                                | `false`            |
 | `size`           | `size`             | Optionally sets the button size, small normal or large, defaults to normal                                   | `"large" \| "normal" \| "small"`         | `'normal'`         |
 | `type`           | `type`             | Optional button style, can be either primary, secondary or tertiary and defaults to primary if not specified | `"primary" \| "secondary" \| "tertiary"` | `'primary'`        |

@@ -1,6 +1,6 @@
 {
   "name": "@eraware/dnn-elements",
-  "version": "0.3.0-fix-search-icons.1",
+  "version": "0.4.0-flex-buttons.1",
   "description": "Stencil Component Starter",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
