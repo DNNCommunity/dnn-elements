@@ -4,7 +4,9 @@
   --border-size: 1px;
   --border-color: var(--backround-color);
   --border-radius: var(--dnn-controls-radius, 5px);
-  --padding: var(--dnn-controls-padding, 5px)
+  --padding: var(--dnn-controls-padding, 5px);
+  display: inline-block;
+  width: auto;
 }
 
 :host(.primary){
@@ -61,8 +63,11 @@
   }
 }
 
-:host([disabled]){
-  opacity: 0.5;
+:host(:disabled, [disabled]){
+  button{
+    pointer-events: none;
+    opacity: 0.5;
+  }
 }
 
 :host(.small){
@@ -77,4 +82,10 @@
     padding: calc(var(--padding) * 1.5) calc(var(--padding) * 3);
     font-size: 1.2em;
   }
+}
+
+button{
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
 }

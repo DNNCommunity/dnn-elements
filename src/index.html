@@ -44,10 +44,30 @@
     <dnn-button onclick="alert('clicked')" type="primary" reversed="reversed">Primary reversed</dnn-button>
     <dnn-button onclick="alert('clicked')" type="secondary" reversed>Secondary reversed</dnn-button>
     <dnn-button onclick="alert('clicked')" type="tertiary" reversed>Tertiary reversed</dnn-button>
-    <dnn-button onclick="alert('clicked')" disabled>Disabled</dnn-button>
+    <dnn-button onclick="alert('clicked')" disabled={true}>Disabled</dnn-button>
     <dnn-button onclick="alert('clicked')" size="small">Small</dnn-button>
     <dnn-button onclick="alert('clicked')" size="large">Large</dnn-button>
     <dnn-button id="confirm-button" confirm="true">Confirm</dnn-button>
+
+    <h3>Flexed sized buttons</h3>
+    <style type="text/css">
+      .flex-buttons{
+        display: flex;
+        justify-content: stretch;
+        align-items: stretch;
+        margin: -15px;
+        height: 75px;
+      }
+      .flex-buttons dnn-button{
+        flex-grow: 1;
+        margin: 15px;
+      }
+    </style>
+    <div class="flex-buttons">
+      <dnn-button>First</dnn-button>
+      <dnn-button>Second</dnn-button>
+      <dnn-button>Third</dnn-button>
+    </div>
 
     <script type="text/javascript">
       let btn = document.querySelector('#confirm-button');

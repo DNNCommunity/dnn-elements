@@ -45,9 +45,13 @@ export class DnnButton {
    * The text of the confirmation message;
    */
   @Prop() confirmMessage?: string = "Are you sure ?";
+  
+  /**
+   * Disables the button
+   */
+  @Prop() disabled: boolean = false;
 
   @State() modalVisible: boolean = false;
-  @State() disabled: boolean = false;
 
   @Element() el!: HTMLDnnButtonElement;
 
