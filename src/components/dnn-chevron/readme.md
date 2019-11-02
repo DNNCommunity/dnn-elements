@@ -14,6 +14,13 @@
 | `expanded`     | `expanded`      | Is the chevron expanded          | `boolean` | `false`      |
 
 
+## Events
+
+| Event     | Description                               | Type               |
+| --------- | ----------------------------------------- | ------------------ |
+| `changed` | Fires up when the expanded status changes | `CustomEvent<any>` |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
