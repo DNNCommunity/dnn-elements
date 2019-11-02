@@ -49,7 +49,7 @@ export class DnnButton {
   @State() modalVisible: boolean = false;
   @State() disabled: boolean = false;
 
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLDnnButtonElement;
 
   private modal!: HTMLDnnModalElement;
 
@@ -58,7 +58,7 @@ export class DnnButton {
   */
   @Event({
     eventName: 'confirmed',
-    bubbles: true,
+    bubbles: false,
     cancelable: true,
     composed: true
   }) confirmed: EventEmitter;
@@ -66,7 +66,7 @@ export class DnnButton {
   /**
    * Fires when confirm is true and the user cancels the action.
    */
-  @Event() canceled: EventEmitter;
+  @Event({bubbles: false}) canceled: EventEmitter;
 
   componentDidLoad(){
     this.el.classList.add(this.type);
@@ -79,23 +79,22 @@ export class DnnButton {
       this.el.classList.add(this.size);
     }
 
-    this.modal = this.el.shadowRoot ? this.el.shadowRoot.querySelector('dnn-modal') : this.el.querySelector('dnn-modal');
+    this.modal = this.el.shadowRoot.querySelector('dnn-modal');
   }
 
-  handleConfirm(){
-    console.log('handling confirm');
+  private handleConfirm(){
     this.modal.hide();
     this.modalVisible = false;
     this.confirmed.emit();
   }
 
-  handleCancel(){
+  private handleCancel(){
     this.modal.hide();
     this.modalVisible = false;
     this.canceled.emit();
   }
   
-  handleClick(): void {
+  private handleClick(): void {
     if (this.confirm && !this.modalVisible){
       this.modal.show();
       this.modalVisible = true;
