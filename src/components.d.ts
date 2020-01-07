@@ -28,6 +28,10 @@ export namespace Components {
     */
     'confirmYesText'?: string;
     /**
+    * Disables the button
+    */
+    'disabled': boolean;
+    /**
     * Optionally reverses the button style.
     */
     'reversed': boolean;
@@ -39,6 +43,30 @@ export namespace Components {
     * Optional button style, can be either primary, secondary or tertiary and defaults to primary if not specified
     */
     'type': 'primary' | 'secondary' | 'tertiary';
+  }
+  interface DnnChevron {
+    /**
+    * Collapse text for screen readers
+    */
+    'collapseText'?: string;
+    /**
+    * Expand text for screen readers
+    */
+    'expandText'?: string;
+    /**
+    * Is the chevron expanded
+    */
+    'expanded'?: boolean;
+  }
+  interface DnnCollapsible {
+    /**
+    * Defines if the panel is expanded or not.
+    */
+    'expanded': boolean;
+    /**
+    * Defines the transition time in ms, defaults to 300ms
+    */
+    'transitionDuration'?: number;
   }
   interface DnnModal {
     /**
@@ -79,6 +107,18 @@ declare global {
     new (): HTMLDnnButtonElement;
   };
 
+  interface HTMLDnnChevronElement extends Components.DnnChevron, HTMLStencilElement {}
+  const HTMLDnnChevronElement: {
+    prototype: HTMLDnnChevronElement;
+    new (): HTMLDnnChevronElement;
+  };
+
+  interface HTMLDnnCollapsibleElement extends Components.DnnCollapsible, HTMLStencilElement {}
+  const HTMLDnnCollapsibleElement: {
+    prototype: HTMLDnnCollapsibleElement;
+    new (): HTMLDnnCollapsibleElement;
+  };
+
   interface HTMLDnnModalElement extends Components.DnnModal, HTMLStencilElement {}
   const HTMLDnnModalElement: {
     prototype: HTMLDnnModalElement;
@@ -92,6 +132,8 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'dnn-button': HTMLDnnButtonElement;
+    'dnn-chevron': HTMLDnnChevronElement;
+    'dnn-collapsible': HTMLDnnCollapsibleElement;
     'dnn-modal': HTMLDnnModalElement;
     'dnn-searchbox': HTMLDnnSearchboxElement;
   }
@@ -116,6 +158,10 @@ declare namespace LocalJSX {
     */
     'confirmYesText'?: string;
     /**
+    * Disables the button
+    */
+    'disabled'?: boolean;
+    /**
     * Fires when confirm is true and the user cancels the action.
     */
     'onCanceled'?: (event: CustomEvent<any>) => void;
@@ -135,6 +181,34 @@ declare namespace LocalJSX {
     * Optional button style, can be either primary, secondary or tertiary and defaults to primary if not specified
     */
     'type'?: 'primary' | 'secondary' | 'tertiary';
+  }
+  interface DnnChevron {
+    /**
+    * Collapse text for screen readers
+    */
+    'collapseText'?: string;
+    /**
+    * Expand text for screen readers
+    */
+    'expandText'?: string;
+    /**
+    * Is the chevron expanded
+    */
+    'expanded'?: boolean;
+    /**
+    * Fires up when the expanded status changes
+    */
+    'onChanged'?: (event: CustomEvent<any>) => void;
+  }
+  interface DnnCollapsible {
+    /**
+    * Defines if the panel is expanded or not.
+    */
+    'expanded'?: boolean;
+    /**
+    * Defines the transition time in ms, defaults to 300ms
+    */
+    'transitionDuration'?: number;
   }
   interface DnnModal {
     /**
@@ -167,6 +241,8 @@ declare namespace LocalJSX {
 
   interface IntrinsicElements {
     'dnn-button': DnnButton;
+    'dnn-chevron': DnnChevron;
+    'dnn-collapsible': DnnCollapsible;
     'dnn-modal': DnnModal;
     'dnn-searchbox': DnnSearchbox;
   }
@@ -179,6 +255,8 @@ declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
       'dnn-button': LocalJSX.DnnButton & JSXBase.HTMLAttributes<HTMLDnnButtonElement>;
+      'dnn-chevron': LocalJSX.DnnChevron & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
+      'dnn-collapsible': LocalJSX.DnnCollapsible & JSXBase.HTMLAttributes<HTMLDnnCollapsibleElement>;
       'dnn-modal': LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
       'dnn-searchbox': LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
     }

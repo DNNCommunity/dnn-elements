@@ -1,0 +1,8 @@
+:host {
+  display: block;
+  #container{
+    height:0;
+    overflow: hidden;
+    transition: height 300ms ease-in-out;
+  }
+}

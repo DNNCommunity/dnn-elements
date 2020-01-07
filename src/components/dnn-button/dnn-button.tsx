@@ -45,9 +45,13 @@ export class DnnButton {
    * The text of the confirmation message;
    */
   @Prop() confirmMessage?: string = "Are you sure ?";
+  
+  /**
+   * Disables the button
+   */
+  @Prop() disabled: boolean = false;
 
   @State() modalVisible: boolean = false;
-  @State() disabled: boolean = false;
 
   @Element() el!: HTMLDnnButtonElement;
 
@@ -103,8 +107,8 @@ export class DnnButton {
 
   render() {
     return (
-      <Host disabled={this.disabled}>
-        <button class="button" onClick={() => this.handleClick()}>
+      <Host disabled={this.disabled} style={{'pointer-events': this.disabled ? 'none' : 'all'}}>
+        <button class="button" onClick={() => this.handleClick()} disabled={this.disabled}>
           <slot></slot>
         </button>
         {this.confirm &&
