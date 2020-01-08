@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property      | Attribute     | Description                      | Type     | Default |
-| ------------- | ------------- | -------------------------------- | -------- | ------- |
-| `placeholder` | `placeholder` | Sets the field placeholder text. | `string` | `""`    |
+| Property      | Attribute     | Description                          | Type      | Default |
+| ------------- | ------------- | ------------------------------------ | --------- | ------- |
+| `debounced`   | `debounced`   | Debounces the queryChanged by 500ms. | `boolean` | `true`  |
+| `placeholder` | `placeholder` | Sets the field placeholder text.     | `string`  | `""`    |
 
 
 ## Events
