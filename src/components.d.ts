@@ -92,6 +92,10 @@ export namespace Components {
   }
   interface DnnSearchbox {
     /**
+    * Debounces the queryChanged by 500ms.
+    */
+    'debounced': boolean;
+    /**
     * Sets the field placeholder text.
     */
     'placeholder'?: string;
@@ -102,31 +106,31 @@ declare global {
 
 
   interface HTMLDnnButtonElement extends Components.DnnButton, HTMLStencilElement {}
-  const HTMLDnnButtonElement: {
+  var HTMLDnnButtonElement: {
     prototype: HTMLDnnButtonElement;
     new (): HTMLDnnButtonElement;
   };
 
   interface HTMLDnnChevronElement extends Components.DnnChevron, HTMLStencilElement {}
-  const HTMLDnnChevronElement: {
+  var HTMLDnnChevronElement: {
     prototype: HTMLDnnChevronElement;
     new (): HTMLDnnChevronElement;
   };
 
   interface HTMLDnnCollapsibleElement extends Components.DnnCollapsible, HTMLStencilElement {}
-  const HTMLDnnCollapsibleElement: {
+  var HTMLDnnCollapsibleElement: {
     prototype: HTMLDnnCollapsibleElement;
     new (): HTMLDnnCollapsibleElement;
   };
 
   interface HTMLDnnModalElement extends Components.DnnModal, HTMLStencilElement {}
-  const HTMLDnnModalElement: {
+  var HTMLDnnModalElement: {
     prototype: HTMLDnnModalElement;
     new (): HTMLDnnModalElement;
   };
 
   interface HTMLDnnSearchboxElement extends Components.DnnSearchbox, HTMLStencilElement {}
-  const HTMLDnnSearchboxElement: {
+  var HTMLDnnSearchboxElement: {
     prototype: HTMLDnnSearchboxElement;
     new (): HTMLDnnSearchboxElement;
   };
@@ -229,6 +233,10 @@ declare namespace LocalJSX {
     'showCloseButton'?: boolean;
   }
   interface DnnSearchbox {
+    /**
+    * Debounces the queryChanged by 500ms.
+    */
+    'debounced'?: boolean;
     /**
     * Fires up each time the search query changes. The data passed is the new query.
     */

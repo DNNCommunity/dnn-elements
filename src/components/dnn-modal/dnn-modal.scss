@@ -26,6 +26,7 @@
       max-height: 80%;
       border-radius: var(--dnn-controls-radius, 5px);
       box-shadow: 10px 10px 20px 0 rgba(0,0,0,0.5);
+      display: block;
       .close{
         position: absolute;
         background-color:white;
@@ -55,6 +56,7 @@
       .modal{
         transform: scale(1);
         box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.5);
+        display: block;
       }
     }
   }

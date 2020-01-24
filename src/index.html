@@ -158,7 +158,32 @@
     <h2>dnn-searchbox</h2>
     <dnn-searchbox></dnn-searchbox>
     <br /> <br />
+
     <dnn-searchbox placeholder="With a placeholder..."></dnn-searchbox>
+    <br /><br />
+
+    <div style="display:flex;justify-content: space-between;">
+      <dnn-searchbox id="not-debounced" debounced="false" placeholder="Not debounced..." style="width: 48%;"></dnn-searchbox>
+      <span style="width: 48%;"></span>
+    </div>
+    <br /><br />
+
+    <div style="display:flex;justify-content: space-between;">
+      <dnn-searchbox id="debounced" placeholder="Debounced..." style="width: 48%;"></dnn-searchbox>
+      <span style="width: 48%;"></span>
+    </div>
+
+    <script type="text/javascript">
+      const notDebounced = document.querySelector('dnn-searchbox#not-debounced');
+      notDebounced.addEventListener('queryChanged', e => {
+        notDebounced.parentElement.querySelector('span').innerText = e.detail;
+      });
+
+      const debounced = document.querySelector('dnn-searchbox#debounced');
+      debounced.addEventListener('queryChanged', e => {
+        debounced.parentElement.querySelector('span').innerText = e.detail;
+      });
+    </script>
   </section>
 
 </body>
