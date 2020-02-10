@@ -7,7 +7,9 @@
 
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
-
+import {
+  ColorInfo,
+} from './utilities/colorInfo';
 
 export namespace Components {
   interface DnnButton {
@@ -68,7 +70,12 @@ export namespace Components {
     */
     'transitionDuration'?: number;
   }
-  interface DnnColorPicker {}
+  interface DnnColorPicker {
+    /**
+    * Sets the initial color, must be a valid 8 character hexadecimal string without the # sign
+    */
+    'color': string;
+  }
   interface DnnModal {
     /**
     * Pass false to remove the backdrop click auto-dismiss feature.
@@ -222,7 +229,17 @@ declare namespace LocalJSX {
     */
     'transitionDuration'?: number;
   }
-  interface DnnColorPicker {}
+  interface DnnColorPicker {
+    /**
+    * Sets the initial color, must be a valid 8 character hexadecimal string without the # sign
+    */
+    'color'?: string;
+    /**
+    * Fires up when the color is changed
+    * @see ../../utilities/colorInfo.ts
+    */
+    'onColorChanged'?: (event: CustomEvent<ColorInfo>) => void;
+  }
   interface DnnModal {
     /**
     * Pass false to remove the backdrop click auto-dismiss feature.

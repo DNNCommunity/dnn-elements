@@ -69,6 +69,21 @@ export class ColorInfo{
         this.setHSL(this.red, this.green, value);
     }
 
+    /** gets or sets the hex color value, expresses as 6 hexadecimal characters.
+     * @returns hex representation of the color
+     */
+    get hex() {
+        var r = this.getHex(this.red);
+        var g = this.getHex(this.green);
+        var b = this.getHex(this.blue);
+        return r + g + b;
+    }
+    set hex(value: string){
+        this.red = parseInt(value.substr(0,2));
+        this.green = parseInt(value.substr(2,2));
+        this.blue = parseInt(value.substr(4,2));
+    }
+
     /** gets white or black color that is a good oposite to the current color
      * @returns - "000000" or "FFFFFF"
      */
@@ -148,5 +163,13 @@ export class ColorInfo{
         this._hue = h;
         this._saturation = s;
         this._lightness = l;
+    }
+
+    private getHex(value: number){
+        var hex = value.toString(16);
+        if (hex.length < 2){
+            hex = "0" + hex;
+        }
+        return hex;
     }
 } 

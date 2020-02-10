@@ -190,7 +190,14 @@
   <!-- dnn-searchbox -->
   <section>
     <h2>dnn-color-picker</h2>
-    <dnn-color-picker></dnn-color-picker>
+    <dnn-color-picker color="884422"></dnn-color-picker>
+
+    <script type="text/javascript">
+      const picker = document.querySelector('dnn-color-picker');
+      picker.addEventListener('colorChanged', function(e){
+        console.log(e.detail);
+      });
+    </script>
   </section>
 </body>
 </html>

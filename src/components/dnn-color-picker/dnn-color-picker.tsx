@@ -3,8 +3,9 @@
  * @license MIT 
  */
 
-import { Component, h, State, Element } from "@stencil/core";
+import { Component, h, State, Element, Prop, EventEmitter, Event, Watch } from "@stencil/core";
 import { ColorInfo } from '../../utilities/colorInfo';
+import { Debounce } from "../../utilities/debounce";
 
 /** Color Picker for Dnn */
 @Component({
@@ -16,20 +17,39 @@ export class DnnColorPicker {
 
     @Element() el: HTMLDnnColorPickerElement;
 
-    private saturationLightnessBox?: HTMLDivElement;
-    private hueRange?: HTMLDivElement;
-
-    @State() color: ColorInfo;
+    /** Sets the initial color, must be a valid 8 character hexadecimal string without the # sign */
+    @Prop() color: string = "FFFFFF";
+    
+    @State() currentColor: ColorInfo;
     @State() rgbDisplay: string = "flex";
     @State() hslDisplay: string = "none";
     @State() hexDisplay: string = "none";
 
+    /** Fires up when the color is changed 
+     * @see ../../utilities/colorInfo.ts
+    */
+    @Event() colorChanged: EventEmitter<ColorInfo>;
+
+    @Debounce(100)
+    private colorChangedHandler(color: ColorInfo) {
+        this.colorChanged.emit(color);
+    }
+
+    @Watch("currentColor")
+    handeCurrentColorChanged(newValue: ColorInfo){
+        this.colorChangedHandler(newValue);
+    }
+    
+    private saturationLightnessBox?: HTMLDivElement;
+    private hueRange?: HTMLDivElement;
+
+
     componentWillLoad() {
-        this.color = new ColorInfo();
+        this.handleHexChange(this.color);
     }
     
     private getHex() {
-       return this.getDoublet(this.color.red) + this.getDoublet(this.color.green) + this.getDoublet(this.color.blue);
+       return this.getDoublet(this.currentColor.red) + this.getDoublet(this.currentColor.green) + this.getDoublet(this.currentColor.blue);
     }
 
     private getDoublet(value: number){
@@ -61,10 +81,10 @@ export class DnnColorPicker {
         y = 1 - (y/rect.height);
 
         const newColor = new ColorInfo();
-        newColor.hue = this.color.hue;
+        newColor.hue = this.currentColor.hue;
         newColor.saturation = x;
         newColor.lightness = y;
-        this.color = newColor;
+        this.currentColor = newColor;
     }
 
     private handleSaturationLightnessMouseUp = () => {
@@ -94,9 +114,9 @@ export class DnnColorPicker {
 
         const newColor = new ColorInfo();
         newColor.hue = x;
-        newColor.saturation = this.color.saturation;
-        newColor.lightness = this.color.lightness;
-        this.color = newColor;
+        newColor.saturation = this.currentColor.saturation;
+        newColor.lightness = this.currentColor.lightness;
+        this.currentColor = newColor;
     }
 
     private handleComponentValueChange = (e, channel) => {
@@ -105,9 +125,9 @@ export class DnnColorPicker {
         const newColor = new ColorInfo();
         if (value < 0) { value = 0; }
         if (value > 255) { value = 255; }
-        let r = this.color.red;
-        let g = this.color.green;
-        let b = this.color.blue;
+        let r = this.currentColor.red;
+        let g = this.currentColor.green;
+        let b = this.currentColor.blue;
         switch (channel) {
             case 'red':
                 r = value;
@@ -124,7 +144,7 @@ export class DnnColorPicker {
         newColor.green = g;
         newColor.red = r;
         newColor.blue = b;
-        this.color = newColor;
+        this.currentColor = newColor;
     }
 
     private handleHSLChange = (e, component) => {        
@@ -132,9 +152,9 @@ export class DnnColorPicker {
         if (isNaN(value)) {return}
         const newColor = new ColorInfo();
         if (value != null) {            
-            let h = this.color.hue;
-            let s = this.color.saturation;
-            let l = this.color.lightness;
+            let h = this.currentColor.hue;
+            let s = this.currentColor.saturation;
+            let l = this.currentColor.lightness;
             switch (component) {
                 case "hue":
                     if (value < 0) { value = 0}
@@ -157,12 +177,11 @@ export class DnnColorPicker {
             newColor.hue = h;
             newColor.saturation = s;
             newColor.lightness = l;
-            this.color = newColor;
+            this.currentColor = newColor;
         }
     }
 
-    private handleHexChange(e){
-        let value: string = e.target.value;
+    private handleHexChange(value: string){
         const newColor = new ColorInfo();
         if (value.match(/^(?:[\da-f]{3}|[\da-f]{6})$/i).length > 0) {
             if (value.length === 3){
@@ -174,11 +193,11 @@ export class DnnColorPicker {
             newColor.blue = parseInt(value.substr(4,2), 16);
         }
         else{
-            newColor.red = this.color.red;
-            newColor.green = this.color.green;
-            newColor.blue = this.color.blue;
+            newColor.red = this.currentColor.red;
+            newColor.green = this.currentColor.green;
+            newColor.blue = this.currentColor.blue;
         }
-        this.color = newColor;
+        this.currentColor = newColor;
     }
 
     private switchColorMode(e) {
@@ -207,9 +226,9 @@ export class DnnColorPicker {
 
     private handleSaturationLightnessKeyDown = (e) => {        
         let newColor = new ColorInfo();
-        newColor.hue = this.color.hue;
-        newColor.saturation = this.color.saturation;
-        newColor.lightness = this.color.lightness;
+        newColor.hue = this.currentColor.hue;
+        newColor.saturation = this.currentColor.saturation;
+        newColor.lightness = this.currentColor.lightness;
 
         let value = 0.01;
         if (e.shiftKey) { value = 0.1 ;}
@@ -229,14 +248,14 @@ export class DnnColorPicker {
             default:
                 break;                
         }
-        this.color = newColor;
+        this.currentColor = newColor;
     }
 
     private handleHueKeyDown = (e) => {
         let newColor = new ColorInfo();
-        newColor.hue = this.color.hue;
-        newColor.saturation = this.color.saturation;
-        newColor.lightness = this.color.lightness;
+        newColor.hue = this.currentColor.hue;
+        newColor.saturation = this.currentColor.saturation;
+        newColor.lightness = this.currentColor.lightness;
 
         let value = 1;
         if (e.shiftKey) { value = 10}
@@ -250,16 +269,16 @@ export class DnnColorPicker {
             default:
                 break;
         }
-        this.color = newColor;
+        this.currentColor = newColor;
     }
 
     render() {
-        const hue = this.color.hue;
-        const saturation = this.color.saturation;
-        const lightness = this.color.lightness;
-        const red = this.color.red;
-        const green = this.color.green;
-        const blue = this.color.blue;
+        const hue = this.currentColor.hue;
+        const saturation = this.currentColor.saturation;
+        const lightness = this.currentColor.lightness;
+        const red = this.currentColor.red;
+        const green = this.currentColor.green;
+        const blue = this.currentColor.blue;
 
         return (
             <div class="dnn-color-picker">
@@ -273,7 +292,7 @@ export class DnnColorPicker {
                             role="slider"
                             aria-valuemin="0"
                             aria-valuemax="100"
-                            aria-valuetext={`Saturation: ${Math.round(this.color.saturation*100)}%, Lightness: ${Math.round(this.color.lightness*100)}%`}
+                            aria-valuetext={`Saturation: ${Math.round(this.currentColor.saturation*100)}%, Lightness: ${Math.round(this.currentColor.lightness*100)}%`}
                             style={{
                                 left: Math.round(saturation * 100)  + "%",
                                 bottom: Math.round(lightness * 100)  + "%"
@@ -356,7 +375,7 @@ export class DnnColorPicker {
                             <div class="hex-input">
                                 <input type="text" aria-label="Hexadecimal value"
                                     value={this.getHex()}
-                                    onChange={(e) => this.handleHexChange(e)}
+                                    onChange={e => this.handleHexChange((e.target as HTMLInputElement).value)}
                                 />
                                 <button class="copy" aria-label="copy value">
                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="copy" class="svg-inline--fa fa-copy fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z"></path></svg>
