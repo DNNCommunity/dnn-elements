@@ -11,6 +11,7 @@
 | ------------- | ------------- | ------------------------------------ | --------- | ------- |
 | `debounced`   | `debounced`   | Debounces the queryChanged by 500ms. | `boolean` | `true`  |
 | `placeholder` | `placeholder` | Sets the field placeholder text.     | `string`  | `""`    |
+| `query`       | `query`       | Sets the query                       | `string`  | `""`    |
 
 
 ## Events
