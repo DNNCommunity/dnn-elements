@@ -1,4 +1,4 @@
-import { Component, Host, h, State, Event, EventEmitter, Watch, Prop } from '@stencil/core';
+import { Component, Host, h, Event, EventEmitter, Watch, Prop } from '@stencil/core';
 import { Debounce } from '../../utilities/debounce';
 
 @Component({
@@ -18,7 +18,8 @@ export class DnnSearchbox {
    */
   @Prop() debounced: boolean = true;
 
-  @State() query: string = "";
+  /** Sets the query */
+  @Prop({mutable: true}) query: string = "";
 
   /**
    * Fires up each time the search query changes.

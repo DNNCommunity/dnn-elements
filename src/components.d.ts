@@ -99,6 +99,10 @@ export namespace Components {
     * Sets the field placeholder text.
     */
     'placeholder'?: string;
+    /**
+    * Sets the query
+    */
+    'query': string;
   }
 }
 
@@ -245,6 +249,10 @@ declare namespace LocalJSX {
     * Sets the field placeholder text.
     */
     'placeholder'?: string;
+    /**
+    * Sets the query
+    */
+    'query'?: string;
   }
 
   interface IntrinsicElements {
