@@ -68,6 +68,7 @@ export namespace Components {
     */
     'transitionDuration'?: number;
   }
+  interface DnnColorPicker {}
   interface DnnModal {
     /**
     * Pass false to remove the backdrop click auto-dismiss feature.
@@ -123,6 +124,12 @@ declare global {
     new (): HTMLDnnCollapsibleElement;
   };
 
+  interface HTMLDnnColorPickerElement extends Components.DnnColorPicker, HTMLStencilElement {}
+  var HTMLDnnColorPickerElement: {
+    prototype: HTMLDnnColorPickerElement;
+    new (): HTMLDnnColorPickerElement;
+  };
+
   interface HTMLDnnModalElement extends Components.DnnModal, HTMLStencilElement {}
   var HTMLDnnModalElement: {
     prototype: HTMLDnnModalElement;
@@ -138,6 +145,7 @@ declare global {
     'dnn-button': HTMLDnnButtonElement;
     'dnn-chevron': HTMLDnnChevronElement;
     'dnn-collapsible': HTMLDnnCollapsibleElement;
+    'dnn-color-picker': HTMLDnnColorPickerElement;
     'dnn-modal': HTMLDnnModalElement;
     'dnn-searchbox': HTMLDnnSearchboxElement;
   }
@@ -214,6 +222,7 @@ declare namespace LocalJSX {
     */
     'transitionDuration'?: number;
   }
+  interface DnnColorPicker {}
   interface DnnModal {
     /**
     * Pass false to remove the backdrop click auto-dismiss feature.
@@ -251,6 +260,7 @@ declare namespace LocalJSX {
     'dnn-button': DnnButton;
     'dnn-chevron': DnnChevron;
     'dnn-collapsible': DnnCollapsible;
+    'dnn-color-picker': DnnColorPicker;
     'dnn-modal': DnnModal;
     'dnn-searchbox': DnnSearchbox;
   }
@@ -265,6 +275,7 @@ declare module "@stencil/core" {
       'dnn-button': LocalJSX.DnnButton & JSXBase.HTMLAttributes<HTMLDnnButtonElement>;
       'dnn-chevron': LocalJSX.DnnChevron & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
       'dnn-collapsible': LocalJSX.DnnCollapsible & JSXBase.HTMLAttributes<HTMLDnnCollapsibleElement>;
+      'dnn-color-picker': LocalJSX.DnnColorPicker & JSXBase.HTMLAttributes<HTMLDnnColorPickerElement>;
       'dnn-modal': LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
       'dnn-searchbox': LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
     }
