@@ -72,9 +72,14 @@ export namespace Components {
   }
   interface DnnColorPicker {
     /**
-    * Sets the initial color, must be a valid 8 character hexadecimal string without the # sign
+    * Sets the initial color, must be a valid 8 character hexadecimal string without the # sign.
     */
     'color': string;
+    /**
+    * Sets the width-height ratio of the color picker saturation-lightness box.
+    * @example 100% renders a perfect square
+    */
+    'colorBoxHeight': string;
   }
   interface DnnModal {
     /**
@@ -235,11 +240,16 @@ declare namespace LocalJSX {
   }
   interface DnnColorPicker {
     /**
-    * Sets the initial color, must be a valid 8 character hexadecimal string without the # sign
+    * Sets the initial color, must be a valid 8 character hexadecimal string without the # sign.
     */
     'color'?: string;
     /**
-    * Fires up when the color is changed
+    * Sets the width-height ratio of the color picker saturation-lightness box.
+    * @example 100% renders a perfect square
+    */
+    'colorBoxHeight'?: string;
+    /**
+    * Fires up when the color is changed and emits a ColorInfo object
     * @see ../../utilities/colorInfo.ts
     */
     'onColorChanged'?: (event: CustomEvent<ColorInfo>) => void;
