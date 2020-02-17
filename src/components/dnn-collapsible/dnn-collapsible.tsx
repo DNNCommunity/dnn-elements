@@ -44,9 +44,7 @@ export class DnnCollapsible {
     return (
       <Host>
         <div id="container">
-          {(this.expanded || this.animating) &&
-              <slot></slot>
-          }
+            <slot></slot>
         </div>
       </Host>
     );
