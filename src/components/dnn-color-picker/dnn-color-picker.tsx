@@ -17,15 +17,20 @@ export class DnnColorPicker {
 
     @Element() el: HTMLDnnColorPickerElement;
 
-    /** Sets the initial color, must be a valid 8 character hexadecimal string without the # sign */
+    /** Sets the initial color, must be a valid 8 character hexadecimal string without the # sign. */
     @Prop() color: string = "FFFFFF";
+
+    /** Sets the width-height ratio of the color picker saturation-lightness box.
+     * @example 100% renders a perfect square
+     */
+    @Prop() colorBoxHeight: string = "50%";
     
     @State() currentColor: ColorInfo;
     @State() rgbDisplay: string = "flex";
     @State() hslDisplay: string = "none";
     @State() hexDisplay: string = "none";
 
-    /** Fires up when the color is changed 
+    /** Fires up when the color is changed and emits a ColorInfo object
      * @see ../../utilities/colorInfo.ts
     */
     @Event() colorChanged: EventEmitter<ColorInfo>;
@@ -47,9 +52,17 @@ export class DnnColorPicker {
     componentWillLoad() {
         this.handleHexChange(this.color);
     }
+
+    componentDidLoad() {
+        (this.el as unknown as HTMLElement).style.setProperty("--color-box-height", this.colorBoxHeight.toString());
+    }
     
     private getHex() {
        return this.getDoublet(this.currentColor.red) + this.getDoublet(this.currentColor.green) + this.getDoublet(this.currentColor.blue);
+    }
+
+    private getContrast() {
+        return this.currentColor.contrastColor;
     }
 
     private getDoublet(value: number){
@@ -301,7 +314,11 @@ export class DnnColorPicker {
                         />
                     </div>
                     <div class="dnn-color-bar">
-                        <div class="dnn-color-result" style={{backgroundColor: '#' + this.getHex()}}></div>
+                        <div class="dnn-color-result" style={{
+                            backgroundColor: '#' + this.getHex(),
+                            boxShadow: "0 0 2px 1px " + "#" + this.getContrast()
+                        }} 
+                        />
                         <div class="dnn-color-hue"
                             ref={(element) => this.hueRange = element as HTMLDivElement}
                             onMouseDown={this.handleHueMouseDown.bind(this)}
