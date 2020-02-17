@@ -414,10 +414,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.7.0.tgz#b417deda18cf8400f278733499ad5547ed1abec4"
   integrity sha512-GnZbirvmqZUzMgkFn70c74OQpTTUcCzlhQliTzYjQMqg+hVKcDnxdL19Ne3UdYzdMA/+W3eb646FWn/ZaT1NfQ==
 
-"@types/puppeteer@1.19.0":
-  version "1.19.0"
-  resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-1.19.0.tgz#59f0050bae019cee7c3af2bb840a25892a3078b6"
-  integrity sha512-Db9LWOuTm2bR/qgPE7PQCmnsCQ6flHdULuIDWTks8YdQ/SGHKg5WGWG54gl0734NDKCTF5MbqAp2qWuvBiyQ3Q==
+"@types/puppeteer@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-2.0.0.tgz#82c04f93367e2d3396e371a71be1167332148838"
+  integrity sha512-QPHXIcaPcijMbvizoM7PRL97Rm+aM8J2DmgTz2tt79b15PqbyeaCppYonvPLHQ/Q5ea92BUHDpv4bsqtiTy8kQ==
   dependencies:
     "@types/node" "*"
 
