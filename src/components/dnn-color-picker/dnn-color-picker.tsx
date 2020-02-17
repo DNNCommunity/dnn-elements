@@ -54,11 +54,15 @@ export class DnnColorPicker {
     }
 
     componentDidLoad() {
-        this.el.style.setProperty("--color-box-height", this.colorBoxHeight.toString());
+        (this.el as unknown as HTMLElement).style.setProperty("--color-box-height", this.colorBoxHeight.toString());
     }
     
     private getHex() {
        return this.getDoublet(this.currentColor.red) + this.getDoublet(this.currentColor.green) + this.getDoublet(this.currentColor.blue);
+    }
+
+    private getContrast() {
+        return this.currentColor.contrastColor;
     }
 
     private getDoublet(value: number){
@@ -310,7 +314,11 @@ export class DnnColorPicker {
                         />
                     </div>
                     <div class="dnn-color-bar">
-                        <div class="dnn-color-result" style={{backgroundColor: '#' + this.getHex()}}></div>
+                        <div class="dnn-color-result" style={{
+                            backgroundColor: '#' + this.getHex(),
+                            boxShadow: "0 0 2px 1px " + "#" + this.getContrast()
+                        }} 
+                        />
                         <div class="dnn-color-hue"
                             ref={(element) => this.hueRange = element as HTMLDivElement}
                             onMouseDown={this.handleHueMouseDown.bind(this)}
