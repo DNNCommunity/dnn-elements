@@ -349,9 +349,9 @@
     type-detect "4.0.8"
 
 "@stencil/core@^1.3.3":
-  version "1.8.8"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-1.8.8.tgz#268d54eee63acea80450bf80b85ee454de468c0a"
-  integrity sha512-ATru3WAQxWsc+Z2ji5l0wc28yyirgRB25AmZTLSnWeRUn388AkY2tn2Dderz+c7Rnsd9kpAdln6tsv0/KuQLkQ==
+  version "1.8.9"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-1.8.9.tgz#a71d8d8d57cf43c7f5df67427a50ad93fd3aa85d"
+  integrity sha512-XRw+4B6+T4/+hXQeKAuYH7YTCU6dfptGNY5FpgYPnJPLOdyu6AQ7oph7HIFQoQlXkJfWuAVoCpZM69vHjB9d5g==
   dependencies:
     typescript "3.7.5"
 
