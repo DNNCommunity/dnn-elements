@@ -349,11 +349,11 @@
     type-detect "4.0.8"
 
 "@stencil/core@^1.3.3":
-  version "1.8.8"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-1.8.8.tgz#268d54eee63acea80450bf80b85ee454de468c0a"
-  integrity sha512-ATru3WAQxWsc+Z2ji5l0wc28yyirgRB25AmZTLSnWeRUn388AkY2tn2Dderz+c7Rnsd9kpAdln6tsv0/KuQLkQ==
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-1.10.1.tgz#a2ae3712b0dbfaa1718b8cc4a33dd3dc639b84b2"
+  integrity sha512-GKmCme53w3R9isNA7ll7MrcaXi8ztQxqgue2TQoRxYW1KzqdcIoTubWKTQa1Jn+6kTmn79hH+ckoAibasFEFgw==
   dependencies:
-    typescript "3.7.5"
+    typescript "3.8.3"
 
 "@stencil/eslint-plugin@^0.2.1":
   version "0.2.1"
@@ -3970,10 +3970,10 @@ typescript-debounce-decorator@^0.0.17:
   resolved "https://registry.yarnpkg.com/typescript-debounce-decorator/-/typescript-debounce-decorator-0.0.17.tgz#92f971e23de2f0ca3c3100419d59337b5e455575"
   integrity sha512-W798VrXGMIV/ATm5OjEWbYX2quaOcBLYmNeVJOvccwen52KGRMsymj32mty29vq2l60PWYBmYchsV9hrNI6x4w==
 
-typescript@3.7.5:
-  version "3.7.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.5.tgz#0692e21f65fd4108b9330238aac11dd2e177a1ae"
-  integrity sha512-/P5lkRXkWHNAbcJIiHPfRoKqyd7bsyCma1hZNUGfn20qm64T6ZBlrzprymeu918H+mB/0rIg2gGK/BXkhhYgBw==
+typescript@3.8.3:
+  version "3.8.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
+  integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
 
 union-value@^1.0.0:
   version "1.0.1"
