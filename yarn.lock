@@ -363,10 +363,10 @@
     eslint-utils "^1.0.0"
     tsutils "^3.0.0"
 
-"@stencil/sass@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-1.1.1.tgz#866e146557b2dba213ca5455b07d49a17d918a52"
-  integrity sha512-Nny3JiFkpQa0RdXWCa4pzhKQYnHuDNzC9c4w35FcaZHXBVuZ1UHSHc7wI7By9SS1auYcySqpPOBVzgoCqXcYVQ==
+"@stencil/sass@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-1.2.0.tgz#01b75f97f3f0383748ea0c7868f42ccf86fbb365"
+  integrity sha512-PmXNb3guXKUxgTgRM5pSK4fIT+f5xF4FwthaPK7Rbe69EsFhcubZGORnRxj6o4meEYG53In8tWH7BrIYKSEyiA==
 
 "@types/babel__core@^7.1.0":
   version "7.1.3"
