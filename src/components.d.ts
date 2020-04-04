@@ -69,6 +69,10 @@ export namespace Components {
     * Defines the transition time in ms, defaults to 300ms
     */
     'transitionDuration'?: number;
+    /**
+    * Updates the component height, use to update after a slot content changes.
+    */
+    'updateSize': () => Promise<void>;
   }
   interface DnnColorPicker {
     /**
@@ -246,6 +250,10 @@ declare namespace LocalJSX {
     * Defines if the panel is expanded or not.
     */
     'expanded'?: boolean;
+    /**
+    * Fires whenever the collapsible height has changed
+    */
+    'onDnnCollapsibleHeightChanged'?: (event: CustomEvent<void>) => void;
     /**
     * Defines the transition time in ms, defaults to 300ms
     */
