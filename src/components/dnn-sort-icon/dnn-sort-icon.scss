@@ -1,0 +1,36 @@
+:host {
+  /**
+  * @prop --color: Normal Color of the inactive sort icon.
+  * @prop --color-sorted: Color of the sorted sort icon.
+  * @prop --color-hover: Color of the icons when hovered.
+  */
+  display: inline-block;
+}
+
+button {
+  outline: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  outline: none;
+  display: inline-block;
+  line-height: 1em;
+  position: relative;
+  top: 0.25em;
+  svg{
+    height: 1.5em;
+    width: auto;
+    fill: var(--color, #888);
+  }
+  &.active{
+    svg{
+      fill: var(--color-sorted, var(--dnn-color-primary, rgb(2,139,255)));
+    }
+  }
+  &:hover, &:focus{
+    svg{
+      fill: var(--color-hover, var(--dnn-color-primary-light, #36a1ff));
+    }
+  }
+}

@@ -200,5 +200,27 @@
       });
     </script>
   </section>
+
+  <!-- dnn sort icon -->
+  <section>
+    <h2>dnn-sort-icon</h2>
+    Sort 1 <dnn-sort-icon id="dnn-sort-1"></dnn-sort-icon>
+    Sort 2 <dnn-sort-icon id="dnn-sort-2"></dnn-sort-icon>
+    Sort 3 <dnn-sort-icon id="dnn-sort-3"></dnn-sort-icon>
+
+    <script type="text/javascript">
+      const dnnSorts = document.querySelectorAll('dnn-sort-icon');
+      dnnSorts.forEach(el => {
+        el.addEventListener('sortChanged', e => {
+          const id = e.target.id;
+          dnnSorts.forEach(si => {
+            if (si.id !== id){
+              si.sortDirection = "none";
+            }
+          })
+        });
+      });
+    </script>
+  </section>
 </body>
 </html>
