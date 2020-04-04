@@ -1,8 +1,8 @@
-import { Component, Host, h, Prop, Element, Watch, State } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Watch, State, Method, Event, EventEmitter, Listen } from '@stencil/core';
 
 @Component({
-  tag: 'dnn-collapsible',
-  styleUrl: 'dnn-collapsible.scss',
+  tag: "dnn-collapsible",
+  styleUrl: "dnn-collapsible.scss",
   shadow: true
 })
 export class DnnCollapsible {
@@ -17,13 +17,13 @@ export class DnnCollapsible {
 
   @State() animating: boolean = false;
 
-  @Watch('expanded')
+  @Watch("expanded")
   handleExpandedChanged(newValue: boolean){
     this.animating = true;
     setTimeout(() => {
-      const container = this.el.shadowRoot.querySelector('#container') as HTMLDivElement;
+      const container = this.el.shadowRoot.querySelector("#container") as HTMLDivElement;
       if (newValue){
-        container.style.height = container.scrollHeight + 'px';
+        container.style.height = container.scrollHeight + "px";
       }
       else{
         container.style.height = "0px";
@@ -32,7 +32,26 @@ export class DnnCollapsible {
     
     setTimeout(() => {
       this.animating = false;
+      this.dnnCollapsibleHeightChanged.emit();
     }, this.transitionDuration);
+  }
+
+  /** Updates the component height, use to update after a slot content changes. */
+  @Method()
+  async updateSize() {
+    if (this.expanded){
+      const container = this.el.shadowRoot.querySelector("#container") as HTMLDivElement;
+      container.style.height = "auto";
+      container.style.height = container.scrollHeight + "px";
+    }
+  }
+
+  /** Fires whenever the collapsible height has changed */
+  @Event() dnnCollapsibleHeightChanged: EventEmitter<void>;
+
+  @Listen('dnnCollapsibleHeightChanged')
+  handleOtherCollapsibleHeightChanged(){
+    this.updateSize();
   }
 
   componentDidLoad(){
