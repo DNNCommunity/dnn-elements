@@ -142,6 +142,26 @@
             <p>
               Fatback boudin doner, frankfurter buffalo meatball sirloin. Pork loin pastrami rump short loin venison. Venison pastrami beef bresaola. Leberkas hamburger short ribs burgdoggen short loin cow shankle meatloaf andouille.
             </p>
+            <div class="collapse-row">
+              <div class="collapse-title">
+                <dnn-chevron id="dnn-sub-chevron"></dnn-chevron>
+                <strong>Collapsible children</strong>
+              </div>
+              <dnn-collapsible id="dnn-collapsible-nested">
+                <div style="padding: 15px;">
+                  <h2>Sub-details</h2>
+                  <p>
+                    Spicy jalapeno bacon ipsum dolor amet bresaola kielbasa doner ham hock biltong, swine shoulder leberkas cupim. Sausage capicola buffalo, tongue jerky frankfurter biltong pork swine landjaeger. Porchetta alcatra burgdoggen beef ribs short ribs corned beef, biltong flank bresaola kielbasa. Ham hock beef kielbasa, cupim cow beef ribs doner. T-bone cow shoulder chuck pastrami. Alcatra pig filet mignon shank. Pancetta shankle meatloaf sausage meatball cupim.
+                  </p>
+                  <p>
+                    Capicola short ribs boudin chicken andouille cow. Short loin bresaola buffalo short ribs meatball tongue. Buffalo tri-tip short ribs corned beef. Pork belly turducken picanha bresaola, sausage ham cupim. Ribeye venison shoulder t-bone filet mignon rump, pork belly meatloaf turkey frankfurter spare ribs ham hamburger cupim. Tri-tip pastrami ham hock corned beef. Frankfurter shankle cow tail venison.
+                  </p>
+                  <p>
+                    Fatback boudin doner, frankfurter buffalo meatball sirloin. Pork loin pastrami rump short loin venison. Venison pastrami beef bresaola. Leberkas hamburger short ribs burgdoggen short loin cow shankle meatloaf andouille.
+                  </p>
+                </div>
+              </dnn-collapsible>
+            </div>
           </div>
         </dnn-collapsible>
       </div>
@@ -150,6 +170,10 @@
         document.querySelector('#dnn-chevron1').addEventListener('changed', e => {
           document.querySelector('#dnn-collapsible1').expanded = e.detail;
         });
+
+        document.querySelector("#dnn-sub-chevron").addEventListener('changed', e => {
+          document.querySelector("#dnn-collapsible-nested").expanded = e.detail;
+        })
       </script>
     </section>
 
@@ -197,6 +221,28 @@
       const picker = document.querySelector('dnn-color-picker');
       picker.addEventListener('colorChanged', function(e){
         console.log(e.detail);
+      });
+    </script>
+  </section>
+
+  <!-- dnn sort icon -->
+  <section>
+    <h2>dnn-sort-icon</h2>
+    Sort 1 <dnn-sort-icon id="dnn-sort-1"></dnn-sort-icon>
+    Sort 2 <dnn-sort-icon id="dnn-sort-2"></dnn-sort-icon>
+    Sort 3 <dnn-sort-icon id="dnn-sort-3"></dnn-sort-icon>
+
+    <script type="text/javascript">
+      const dnnSorts = document.querySelectorAll('dnn-sort-icon');
+      dnnSorts.forEach(el => {
+        el.addEventListener('sortChanged', e => {
+          const id = e.target.id;
+          dnnSorts.forEach(si => {
+            if (si.id !== id){
+              si.sortDirection = "none";
+            }
+          })
+        });
       });
     </script>
   </section>

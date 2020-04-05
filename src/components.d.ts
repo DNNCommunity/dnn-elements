@@ -69,6 +69,10 @@ export namespace Components {
     * Defines the transition time in ms, defaults to 300ms
     */
     'transitionDuration'?: number;
+    /**
+    * Updates the component height, use to update after a slot content changes.
+    */
+    'updateSize': () => Promise<void>;
   }
   interface DnnColorPicker {
     /**
@@ -117,6 +121,12 @@ export namespace Components {
     */
     'query': string;
   }
+  interface DnnSortIcon {
+    /**
+    * Defines the current sort direction
+    */
+    'sortDirection': "asc" | "desc" | "none";
+  }
 }
 
 declare global {
@@ -157,6 +167,12 @@ declare global {
     prototype: HTMLDnnSearchboxElement;
     new (): HTMLDnnSearchboxElement;
   };
+
+  interface HTMLDnnSortIconElement extends Components.DnnSortIcon, HTMLStencilElement {}
+  var HTMLDnnSortIconElement: {
+    prototype: HTMLDnnSortIconElement;
+    new (): HTMLDnnSortIconElement;
+  };
   interface HTMLElementTagNameMap {
     'dnn-button': HTMLDnnButtonElement;
     'dnn-chevron': HTMLDnnChevronElement;
@@ -164,6 +180,7 @@ declare global {
     'dnn-color-picker': HTMLDnnColorPickerElement;
     'dnn-modal': HTMLDnnModalElement;
     'dnn-searchbox': HTMLDnnSearchboxElement;
+    'dnn-sort-icon': HTMLDnnSortIconElement;
   }
 }
 
@@ -234,6 +251,10 @@ declare namespace LocalJSX {
     */
     'expanded'?: boolean;
     /**
+    * Fires whenever the collapsible height has changed
+    */
+    'onDnnCollapsibleHeightChanged'?: (event: CustomEvent<void>) => void;
+    /**
     * Defines the transition time in ms, defaults to 300ms
     */
     'transitionDuration'?: number;
@@ -290,6 +311,16 @@ declare namespace LocalJSX {
     */
     'query'?: string;
   }
+  interface DnnSortIcon {
+    /**
+    * Emitted when the sort is changed.
+    */
+    'onSortChanged'?: (event: CustomEvent<"asc"|"desc"|"none">) => void;
+    /**
+    * Defines the current sort direction
+    */
+    'sortDirection'?: "asc" | "desc" | "none";
+  }
 
   interface IntrinsicElements {
     'dnn-button': DnnButton;
@@ -298,6 +329,7 @@ declare namespace LocalJSX {
     'dnn-color-picker': DnnColorPicker;
     'dnn-modal': DnnModal;
     'dnn-searchbox': DnnSearchbox;
+    'dnn-sort-icon': DnnSortIcon;
   }
 }
 
@@ -313,6 +345,7 @@ declare module "@stencil/core" {
       'dnn-color-picker': LocalJSX.DnnColorPicker & JSXBase.HTMLAttributes<HTMLDnnColorPickerElement>;
       'dnn-modal': LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
       'dnn-searchbox': LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
+      'dnn-sort-icon': LocalJSX.DnnSortIcon & JSXBase.HTMLAttributes<HTMLDnnSortIconElement>;
     }
   }
 }
