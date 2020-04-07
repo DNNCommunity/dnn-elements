@@ -173,7 +173,7 @@
 
         document.querySelector("#dnn-sub-chevron").addEventListener('changed', e => {
           document.querySelector("#dnn-collapsible-nested").expanded = e.detail;
-        })
+        });
       </script>
     </section>
 
@@ -241,7 +241,25 @@
             if (si.id !== id){
               si.sortDirection = "none";
             }
-          })
+          });
+        });
+      });
+    </script>
+  </section>
+
+  <!-- dnn-toggle -->
+  <section>
+    <h2>dnn-toggle</h2>
+    <label>Unchecked toggle: </label><dnn-toggle></dnn-toggle>&nbsp;&nbsp;
+    <label>Checked toggle: </label><dnn-toggle checked></dnn-toggle>&nbsp;&nbsp;
+    <label>Disabled Unchecked: </label><dnn-toggle disabled></dnn-toggle>&nbsp;&nbsp;
+    <label>Disabled Checked: </label><dnn-toggle disabled checked></dnn-toggle>
+
+    <script type="text/javascript">
+      const dnnToggles = document.querySelectorAll('dnn-toggle');
+      dnnToggles.forEach(dnnToggle => {
+        dnnToggle.addEventListener('checkChanged', e => {
+          console.log(e.detail);
         });
       });
     </script>
