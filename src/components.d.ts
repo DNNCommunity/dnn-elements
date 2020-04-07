@@ -10,6 +10,9 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
   ColorInfo,
 } from './utilities/colorInfo';
+import {
+  DnnToggleChangeEventDetail,
+} from './components/dnn-toggle/toggle-interface';
 
 export namespace Components {
   interface DnnButton {
@@ -127,6 +130,16 @@ export namespace Components {
     */
     'sortDirection': "asc" | "desc" | "none";
   }
+  interface DnnToggle {
+    /**
+    * If 'true' the toggle is checked (on).
+    */
+    'checked': boolean;
+    /**
+    * If 'true' the toggle is not be interacted with.
+    */
+    'disabled': boolean;
+  }
 }
 
 declare global {
@@ -173,6 +186,12 @@ declare global {
     prototype: HTMLDnnSortIconElement;
     new (): HTMLDnnSortIconElement;
   };
+
+  interface HTMLDnnToggleElement extends Components.DnnToggle, HTMLStencilElement {}
+  var HTMLDnnToggleElement: {
+    prototype: HTMLDnnToggleElement;
+    new (): HTMLDnnToggleElement;
+  };
   interface HTMLElementTagNameMap {
     'dnn-button': HTMLDnnButtonElement;
     'dnn-chevron': HTMLDnnChevronElement;
@@ -181,6 +200,7 @@ declare global {
     'dnn-modal': HTMLDnnModalElement;
     'dnn-searchbox': HTMLDnnSearchboxElement;
     'dnn-sort-icon': HTMLDnnSortIconElement;
+    'dnn-toggle': HTMLDnnToggleElement;
   }
 }
 
@@ -321,6 +341,20 @@ declare namespace LocalJSX {
     */
     'sortDirection'?: "asc" | "desc" | "none";
   }
+  interface DnnToggle {
+    /**
+    * If 'true' the toggle is checked (on).
+    */
+    'checked'?: boolean;
+    /**
+    * If 'true' the toggle is not be interacted with.
+    */
+    'disabled'?: boolean;
+    /**
+    * Fires when the toggle changed
+    */
+    'onCheckChanged'?: (event: CustomEvent<DnnToggleChangeEventDetail>) => void;
+  }
 
   interface IntrinsicElements {
     'dnn-button': DnnButton;
@@ -330,6 +364,7 @@ declare namespace LocalJSX {
     'dnn-modal': DnnModal;
     'dnn-searchbox': DnnSearchbox;
     'dnn-sort-icon': DnnSortIcon;
+    'dnn-toggle': DnnToggle;
   }
 }
 
@@ -346,6 +381,7 @@ declare module "@stencil/core" {
       'dnn-modal': LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
       'dnn-searchbox': LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
       'dnn-sort-icon': LocalJSX.DnnSortIcon & JSXBase.HTMLAttributes<HTMLDnnSortIconElement>;
+      'dnn-toggle': LocalJSX.DnnToggle & JSXBase.HTMLAttributes<HTMLDnnToggleElement>;
     }
   }
 }
