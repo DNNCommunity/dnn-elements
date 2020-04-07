@@ -38,12 +38,12 @@
 
 ### Used by
 
- - [dnn-button]()
+ - [dnn-button](.)
 
 ### Depends on
 
 - [dnn-modal](../dnn-modal)
-- [dnn-button]()
+- [dnn-button](.)
 
 ### Graph
 ```mermaid
