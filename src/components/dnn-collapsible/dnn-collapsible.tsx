@@ -1,4 +1,5 @@
 import { Component, Host, h, Prop, Element, Watch, State, Method, Event, EventEmitter, Listen } from '@stencil/core';
+import { Debounce } from '../../utilities/debounce';
 
 @Component({
   tag: "dnn-collapsible",
@@ -37,12 +38,23 @@ export class DnnCollapsible {
   }
 
   /** Updates the component height, use to update after a slot content changes. */
+  @Debounce()
   @Method()
   async updateSize() {
+    this.updateComponentSize();
+  }
+
+  private updateComponentSize(){
     if (this.expanded){
-      const container = this.el.shadowRoot.querySelector("#container") as HTMLDivElement;
-      container.style.height = "auto";
-      container.style.height = container.scrollHeight + "px";
+      this.animating = true;
+      setTimeout(() => {
+        const container = this.el.shadowRoot.querySelector("#container") as HTMLDivElement;
+        let newHeight = 0;
+        container.querySelector('slot').assignedElements().forEach(node => {
+          newHeight += node.scrollHeight;
+        });
+        container.style.height = newHeight + "px";
+      }, 0);
     }
   }
 
@@ -51,13 +63,38 @@ export class DnnCollapsible {
 
   @Listen('dnnCollapsibleHeightChanged')
   handleOtherCollapsibleHeightChanged(){
-    this.updateSize();
+    this.updateComponentSize();
+  }
+
+  private mutationObserver: MutationObserver;
+  /**
+   * Creates an instance of dnn-collapsible
+   */
+  constructor() {
+    this.mutationObserver = new MutationObserver(this.handleMutation);
+  }
+
+  private handleMutation(mutationList){
+    mutationList.forEach(mutation => {
+      mutation.target.closest('dnn-collapsible').updateSize();
+    });
   }
 
   componentDidLoad(){
     const container = this.el.shadowRoot.querySelector('#container') as HTMLDivElement;
     container.style.transitionDuration = this.transitionDuration + 'ms';
+
+    // Monitor for content changes and update own height
+    this.mutationObserver.observe(this.el, {attributes: true, characterData: true, childList: true, subtree: true});
   }
+
+  // This warning is disabled due to https://github.com/ionic-team/stencil-eslint/pull/6
+  // Should be removed when that PR get's merged
+  /*eslint-disable @stencil/own-methods-must-be-private */
+  componentDidUnload(){
+    
+  }
+  /*eslint-enable @stencil/own-methods-must-be-private */
 
   render() {
     return (
