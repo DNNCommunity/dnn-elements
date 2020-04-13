@@ -54,7 +54,7 @@ export class DnnCollapsible {
           newHeight += node.scrollHeight;
         });
         container.style.height = newHeight + "px";
-      }, 0);
+      }, this.transitionDuration);
     }
   }
 
@@ -63,20 +63,24 @@ export class DnnCollapsible {
 
   @Listen('dnnCollapsibleHeightChanged')
   handleOtherCollapsibleHeightChanged(){
-    this.updateComponentSize();
+    setTimeout(() => {
+      this.updateComponentSize();
+    }, this.transitionDuration);
   }
 
   private mutationObserver: MutationObserver;
-  /**
-   * Creates an instance of dnn-collapsible
-   */
-  constructor() {
-    this.mutationObserver = new MutationObserver(this.handleMutation);
-  }
 
   private handleMutation(mutationList){
     mutationList.forEach(mutation => {
-      mutation.target.closest('dnn-collapsible').updateSize();
+      setTimeout(() => {
+        mutation.target.closest('dnn-collapsible').updateSize();
+      }, this.transitionDuration);
+    });
+  }
+
+  componentWillLoad() {
+    this.mutationObserver = new MutationObserver((mutationList) => {
+      this.handleMutation(mutationList);
     });
   }
 
@@ -85,14 +89,22 @@ export class DnnCollapsible {
     container.style.transitionDuration = this.transitionDuration + 'ms';
 
     // Monitor for content changes and update own height
-    this.mutationObserver.observe(this.el, {attributes: true, characterData: true, childList: true, subtree: true});
+    const childNodes = [this.el];
+    childNodes.forEach(element => {
+      this.mutationObserver.observe(element, {attributes: true, characterData: true, childList: true, subtree: true});
+    });
+
+    const slot = this.el.shadowRoot.querySelector('slot');
+    slot.addEventListener("slotchange", () => {
+      this.updateSize();
+    });
   }
 
   // This warning is disabled due to https://github.com/ionic-team/stencil-eslint/pull/6
   // Should be removed when that PR get's merged
   /*eslint-disable @stencil/own-methods-must-be-private */
   componentDidUnload(){
-    
+    this.mutationObserver.disconnect();
   }
   /*eslint-enable @stencil/own-methods-must-be-private */
 
