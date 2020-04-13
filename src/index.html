@@ -131,7 +131,7 @@
           <strong>Collapsible Panel</strong>
         </div>
         <dnn-collapsible id="dnn-collapsible1" transition-duration="1000">
-          <div style="padding: 15px;">
+          <div id="collapsible-slot-content" style="padding: 15px;">
             <h2>Details</h2>
             <p>
               Spicy jalapeno bacon ipsum dolor amet bresaola kielbasa doner ham hock biltong, swine shoulder leberkas cupim. Sausage capicola buffalo, tongue jerky frankfurter biltong pork swine landjaeger. Porchetta alcatra burgdoggen beef ribs short ribs corned beef, biltong flank bresaola kielbasa. Ham hock beef kielbasa, cupim cow beef ribs doner. T-bone cow shoulder chuck pastrami. Alcatra pig filet mignon shank. Pancetta shankle meatloaf sausage meatball cupim.
@@ -164,16 +164,44 @@
             </div>
           </div>
         </dnn-collapsible>
+        <template id="test-paragraph">
+          <p id="testP">
+            This paragraph is here to test the behaviour of the dnn-collapsible when it's content dynamically changes.<br />
+            It appears and disapears every 10 seconds.
+          </p>
+        </template>
       </div>
   
       <script type="text/javascript">
-        document.querySelector('#dnn-chevron1').addEventListener('changed', e => {
-          document.querySelector('#dnn-collapsible1').expanded = e.detail;
+        const chevronOne = document.querySelector('#dnn-chevron1')
+        const collapsibleOne = document.querySelector('#dnn-collapsible1');
+        const subChevron = document.querySelector('#dnn-sub-chevron')
+        const nestedCollapsible = document.querySelector('#dnn-collapsible-nested');
+
+        // Expands the related collapsible when the chevron gets clicked.
+        chevronOne.addEventListener('changed', e => {
+          collapsibleOne.expanded = e.detail;
         });
 
-        document.querySelector("#dnn-sub-chevron").addEventListener('changed', e => {
-          document.querySelector("#dnn-collapsible-nested").expanded = e.detail;
+        // Expands the related collapsible when the chevron gets clicked.
+        subChevron.addEventListener('changed', e => {
+          nestedCollapsible.expanded = e.detail;
         });
+
+        // Testing dynamically added/removed content to collapsible
+        setInterval(() => {
+          const template = document.querySelector('#test-paragraph');
+          const content = template.content;
+          const slot = document.querySelector('#collapsible-slot-content')
+          
+          const testParagraph = slot.parentNode.querySelector('#testP');
+          if (testParagraph){
+            testParagraph.remove();
+          }
+          else{
+            slot.appendChild(content.cloneNode(true));
+          }
+        }, 10000);
       </script>
     </section>
 

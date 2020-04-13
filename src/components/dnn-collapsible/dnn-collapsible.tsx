@@ -1,4 +1,5 @@
 import { Component, Host, h, Prop, Element, Watch, State, Method, Event, EventEmitter, Listen } from '@stencil/core';
+import { Debounce } from '../../utilities/debounce';
 
 @Component({
   tag: "dnn-collapsible",
@@ -37,12 +38,23 @@ export class DnnCollapsible {
   }
 
   /** Updates the component height, use to update after a slot content changes. */
+  @Debounce()
   @Method()
   async updateSize() {
+    this.updateComponentSize();
+  }
+
+  private updateComponentSize(){
     if (this.expanded){
-      const container = this.el.shadowRoot.querySelector("#container") as HTMLDivElement;
-      container.style.height = "auto";
-      container.style.height = container.scrollHeight + "px";
+      this.animating = true;
+      setTimeout(() => {
+        const container = this.el.shadowRoot.querySelector("#container") as HTMLDivElement;
+        let newHeight = 0;
+        container.querySelector('slot').assignedElements().forEach(node => {
+          newHeight += node.scrollHeight;
+        });
+        container.style.height = newHeight + "px";
+      }, this.transitionDuration);
     }
   }
 
@@ -51,13 +63,50 @@ export class DnnCollapsible {
 
   @Listen('dnnCollapsibleHeightChanged')
   handleOtherCollapsibleHeightChanged(){
-    this.updateSize();
+    setTimeout(() => {
+      this.updateComponentSize();
+    }, this.transitionDuration);
+  }
+
+  private mutationObserver: MutationObserver;
+
+  private handleMutation(mutationList){
+    mutationList.forEach(mutation => {
+      setTimeout(() => {
+        mutation.target.closest('dnn-collapsible').updateSize();
+      }, this.transitionDuration);
+    });
+  }
+
+  componentWillLoad() {
+    this.mutationObserver = new MutationObserver((mutationList) => {
+      this.handleMutation(mutationList);
+    });
   }
 
   componentDidLoad(){
     const container = this.el.shadowRoot.querySelector('#container') as HTMLDivElement;
     container.style.transitionDuration = this.transitionDuration + 'ms';
+
+    // Monitor for content changes and update own height
+    const childNodes = [this.el];
+    childNodes.forEach(element => {
+      this.mutationObserver.observe(element, {attributes: true, characterData: true, childList: true, subtree: true});
+    });
+
+    const slot = this.el.shadowRoot.querySelector('slot');
+    slot.addEventListener("slotchange", () => {
+      this.updateSize();
+    });
   }
+
+  // This warning is disabled due to https://github.com/ionic-team/stencil-eslint/pull/6
+  // Should be removed when that PR get's merged
+  /*eslint-disable @stencil/own-methods-must-be-private */
+  componentDidUnload(){
+    this.mutationObserver.disconnect();
+  }
+  /*eslint-enable @stencil/own-methods-must-be-private */
 
   render() {
     return (
