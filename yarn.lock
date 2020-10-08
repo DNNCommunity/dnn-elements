@@ -4162,10 +4162,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript-debounce-decorator@^0.0.17:
-  version "0.0.17"
-  resolved "https://registry.yarnpkg.com/typescript-debounce-decorator/-/typescript-debounce-decorator-0.0.17.tgz#92f971e23de2f0ca3c3100419d59337b5e455575"
-  integrity sha512-W798VrXGMIV/ATm5OjEWbYX2quaOcBLYmNeVJOvccwen52KGRMsymj32mty29vq2l60PWYBmYchsV9hrNI6x4w==
+typescript-debounce-decorator@^0.0.18:
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/typescript-debounce-decorator/-/typescript-debounce-decorator-0.0.18.tgz#5edda67e18952bb52a64a622ec319e3e323cd5b7"
+  integrity sha512-AaCIL9z/hHkD+x63xrjjPpRGCfYhrwtfP0E5liwnopmvCrXrb7ozcKCalnh82w9c9OM8tZqRslCwOHsKBvw1tw==
 
 typescript@3.8.3:
   version "3.8.3"
