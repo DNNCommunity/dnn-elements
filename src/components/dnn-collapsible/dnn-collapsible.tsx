@@ -100,10 +100,7 @@ export class DnnCollapsible {
     });
   }
 
-  // This warning is disabled due to https://github.com/ionic-team/stencil-eslint/pull/6
-  // Should be removed when that PR get's merged
-  /*eslint-disable @stencil/own-methods-must-be-private */
-  componentDidUnload(){
+  disconnectedCallback(){
     this.mutationObserver.disconnect();
   }
   /*eslint-enable @stencil/own-methods-must-be-private */
