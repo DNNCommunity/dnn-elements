@@ -5,8 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { ColorInfo, } from "./utilities/colorInfo";
-import { DnnToggleChangeEventDetail, } from "./components/dnn-toggle/toggle-interface";
+import { ColorInfo } from "./utilities/colorInfo";
+import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export namespace Components {
     interface DnnButton {
         /**
@@ -36,11 +36,11 @@ export namespace Components {
         /**
           * Optionally sets the button size, small normal or large, defaults to normal
          */
-        "size"?: "small" | "normal" | "large";
+        "size"?: 'small' | 'normal' | 'large';
         /**
           * Optional button style, can be either primary, secondary or tertiary and defaults to primary if not specified
          */
-        "type": "primary" | "secondary" | "tertiary";
+        "type": 'primary' | 'secondary' | 'tertiary';
     }
     interface DnnChevron {
         /**
@@ -231,11 +231,11 @@ declare namespace LocalJSX {
         /**
           * Optionally sets the button size, small normal or large, defaults to normal
          */
-        "size"?: "small" | "normal" | "large";
+        "size"?: 'small' | 'normal' | 'large';
         /**
           * Optional button style, can be either primary, secondary or tertiary and defaults to primary if not specified
          */
-        "type"?: "primary" | "secondary" | "tertiary";
+        "type"?: 'primary' | 'secondary' | 'tertiary';
     }
     interface DnnChevron {
         /**
@@ -325,7 +325,7 @@ declare namespace LocalJSX {
         /**
           * Emitted when the sort is changed.
          */
-        "onSortChanged"?: (event: CustomEvent<"asc" | "desc" | "none">) => void;
+        "onSortChanged"?: (event: CustomEvent<"asc"|"desc"|"none">) => void;
         /**
           * Defines the current sort direction
          */
