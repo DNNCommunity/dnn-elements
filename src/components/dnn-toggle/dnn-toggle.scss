@@ -14,8 +14,6 @@
 }
 
 button {
-    --background-checked: var(--dnn-color-primary, blue);
-
     height: 1.5em;
     width: 2.5em;
     outline: none;
@@ -33,7 +31,7 @@ button {
         box-shadow: 0 0 2px 2px var(--dnn-color-primary);
     }
     &.checked{
-        background-color: var(--background-checked);
+        background-color: var(--background-checked, var(--dnn-color-primary, blue));
         .handle{
             left: calc(1em + 4px);
         }
