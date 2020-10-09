@@ -30,6 +30,10 @@
       border-radius: 15px;
       border: 1px solid grey;
     }
+    .toggle-custom-colors{
+      --background: red;
+      --background-checked: green;
+    }
   </style>
 </head>
 <body>
@@ -282,6 +286,7 @@
     <label>Checked toggle: </label><dnn-toggle checked></dnn-toggle>&nbsp;&nbsp;
     <label>Disabled Unchecked: </label><dnn-toggle disabled></dnn-toggle>&nbsp;&nbsp;
     <label>Disabled Checked: </label><dnn-toggle disabled checked></dnn-toggle>
+    <label>Custom Colors: </label><dnn-toggle class="toggle-custom-colors"></dnn-toggle>
 
     <script type="text/javascript">
       const dnnToggles = document.querySelectorAll('dnn-toggle');
