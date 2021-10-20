@@ -281,7 +281,7 @@ declare namespace LocalJSX {
         "colorBoxHeight"?: string;
         /**
           * Fires up when the color is changed and emits a ColorInfo object
-          * @see ../../utilities/colorInfo.ts
+          * @see .. /../utilities/colorInfo.ts
          */
         "onColorChanged"?: (event: CustomEvent<ColorInfo>) => void;
     }
