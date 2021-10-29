@@ -36,8 +36,8 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj') }}
-      - name: Run './build.cmd Deploy PublishSite'
-        run: ./build.cmd Deploy PublishSite
+      - name: Run './build.cmd Deploy'
+        run: ./build.cmd Deploy
         env:
           GithubToken: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/upload-artifact@v1
