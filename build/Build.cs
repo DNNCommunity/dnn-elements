@@ -247,5 +247,6 @@ class Build : NukeBuild
       Git("commit -m \"Deleted old build\"");
       Git("cherry-pick deploy --strategy-option=theirs");
       Git("push origin HEAD:site");
+      Git("checkout deploy");
     });
 }
