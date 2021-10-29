@@ -234,6 +234,10 @@ class Build : NukeBuild
     {
       Git("config --global user.name 'Daniel Valadas'");
       Git("config --global user.email 'info@danielvaladas.com'");
+      if (IsServerBuild)
+      {
+        Git($"remote set-url origin https://{GithubToken}@github.com/{organizationName}/{repositoryName}.git");
+      }
       Git("add www -f");
       Git("commit --allow-empty -m \"Commit latest build\"");
       Git("reset --hard");
