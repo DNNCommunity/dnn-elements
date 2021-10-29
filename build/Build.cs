@@ -17,6 +17,7 @@ using Octokit;
 using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
+using static Nuke.Common.IO.TextTasks;
 using static Nuke.Common.Tools.Git.GitTasks;
 using static Nuke.Common.Tools.Npm.NpmTasks;
 
@@ -27,12 +28,12 @@ using static Nuke.Common.Tools.Npm.NpmTasks;
   ImportGitHubTokenAs = "GithubToken",
   InvokedTargets = new[] { nameof(Compile) }
   )]
-[GitHubActions(
-    "Deploy",
-    GitHubActionsImage.WindowsLatest,
-    ImportGitHubTokenAs = "GithubToken",
-    OnPushBranches = new[] { "main", "master", "release/*" },
-    InvokedTargets = new[] { nameof(Deploy) })]
+//[GitHubActions(
+//    "Deploy",
+//    GitHubActionsImage.WindowsLatest,
+//    ImportGitHubTokenAs = "GithubToken",
+//    OnPushBranches = new[] { "main", "master", "release/*" },
+//    InvokedTargets = new[] { nameof(Deploy) })]
 [GitHubActions(
   "Publish_Site",
     GitHubActionsImage.WindowsLatest,
@@ -231,29 +232,31 @@ class Build : NukeBuild
     .DependsOn(Compile)
     .Executes(() =>
     {
-      Git("config --global user.name 'Daniel Valadas'");
-      Git("config --global user.email 'info@danielvaladas.com'");
-      Git($"remote set-url origin https://{organizationName}:{GithubToken}@github.com/{organizationName}/{repositoryName}.git");
-      Git("status");
-      Git("add www -f"); // Force adding because it is usually gitignored.
-      Git("status");
-      Git("commit --allow-empty -m \"Commit latest build\""); // We allow an empty commit in case the last change did not affect the site.
-      Git("rm -rf .");
-      Git("clean -dxf");
-      Git("status");
-      Git("branch -D site");
-      Git("checkout -b site origin/site"); // pulling a local copy of the current deployment.
-      Git("status");
-      Git("rm -rf .");
-      Git("clean -dxf");
-      Git("status");
-      Git("checkout deploy -- www"); // pulls only docs from our temporary deploy branch.
-      Git("status");
-      Git("add www"); // stage the docs
-      Git("status");
-      Git("commit --allow-empty -m \"Commit latest build\"");
-      Git("status");
-      Git("push origin site"); // Should push only the change with linear history and a proper diff.
-      Git("checkout deploy");
+      
+
+      //Git("config --global user.name 'Daniel Valadas'");
+      //Git("config --global user.email 'info@danielvaladas.com'");
+      //Git($"remote set-url origin https://{organizationName}:{GithubToken}@github.com/{organizationName}/{repositoryName}.git");
+      //Git("status");
+      //Git("add www -f"); // Force adding because it is usually gitignored.
+      //Git("status");
+      //Git("commit --allow-empty -m \"Commit latest build\""); // We allow an empty commit in case the last change did not affect the site.
+      //Git("rm -rf .");
+      //Git("clean -dxf");
+      //Git("status");
+      //Git("branch -D site");
+      //Git("checkout -b site origin/site"); // pulling a local copy of the current deployment.
+      //Git("status");
+      //Git("rm -rf .");
+      //Git("clean -dxf");
+      //Git("status");
+      //Git("checkout deploy -- www"); // pulls only docs from our temporary deploy branch.
+      //Git("status");
+      //Git("add www"); // stage the docs
+      //Git("status");
+      //Git("commit --allow-empty -m \"Commit latest build\"");
+      //Git("status");
+      //Git("push origin site"); // Should push only the change with linear history and a proper diff.
+      //Git("checkout deploy");
     });
 }
