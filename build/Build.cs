@@ -57,7 +57,7 @@ class Build : NukeBuild
   readonly string GithubToken;
 
   // Project information
-  private const string organizationName = "Eraware";
+  private const string organizationName = "eraware";
   private const string repositoryName = "dnn-elements";
 
   // Nuke features injection
@@ -233,7 +233,7 @@ class Build : NukeBuild
     {
       Git("config --global user.name 'Daniel Valadas'");
       Git("config --global user.email 'info@danielvaladas.com'");
-      Git($"remote set-url origin https://valadas:{GithubToken}@github.com/{organizationName}/{repositoryName}.git");
+      Git($"remote set-url origin https://{GithubToken}@github.com/{organizationName}/{repositoryName}.git");
       Git("status");
       Git("add www -f"); // Force adding because it is usually gitignored.
       Git("status");
