@@ -232,8 +232,11 @@ class Build : NukeBuild
     .DependsOn(Compile)
     .Executes(() =>
     {
-      
-
+      Git("add www -f");
+      Git("commit --allow-empty -m \"Commit latest build\"");
+      Git("reset --hard");
+      Git("checkout site");
+      Git("cherry-pick deploy -- www");
       //Git("config --global user.name 'Daniel Valadas'");
       //Git("config --global user.email 'info@danielvaladas.com'");
       //Git($"remote set-url origin https://{organizationName}:{GithubToken}@github.com/{organizationName}/{repositoryName}.git");
