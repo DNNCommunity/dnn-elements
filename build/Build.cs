@@ -232,6 +232,11 @@ class Build : NukeBuild
     .DependsOn(Compile)
     .Executes(() =>
     {
+      var envs = Environment.GetEnvironmentVariables();
+      foreach(System.Collections.DictionaryEntry env in envs)
+      {
+        Console.WriteLine(env.Key + " : " + env.Value);
+      }
       Git("config --global user.name 'Daniel Valadas'");
       Git("config --global user.email 'info@danielvaladas.com'");
       if (IsServerBuild)
