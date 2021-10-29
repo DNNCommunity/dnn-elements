@@ -21,8 +21,6 @@ using static Nuke.Common.Tools.Npm.NpmTasks;
 [GitHubActions(
   "PR_Validation",
   GitHubActionsImage.WindowsLatest,
-  GitHubActionsImage.MacOsLatest,
-  GitHubActionsImage.UbuntuLatest,
   OnPullRequestBranches = new[] { "main", "master", "develop", "development" },
   ImportGitHubTokenAs = "GithubToken",
   InvokedTargets = new[] { nameof(Compile) }
