@@ -235,7 +235,7 @@ class Build : NukeBuild
       Git("add www -f");
       Git("commit --allow-empty -m \"Commit latest build\"");
       Git("reset --hard");
-      Git("checkout site");
+      Git("checkout -b newsite origin/site");
       Git("rm -r .");
       Git("commit -m \"Deleted old build\"");
       Git("cherry-pick deploy --strategy-option=theirs");
