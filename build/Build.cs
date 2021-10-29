@@ -240,10 +240,10 @@ class Build : NukeBuild
       Git("commit --allow-empty -m \"Commit latest build\""); // We allow an empty commit in case the last change did not affect the site.
       Git("status");
       Git("branch -D site");
-      Git("rm -r .");
+      Git("rm -rf .");
       Git("checkout -b site origin/site"); // pulling a local copy of the current deployment.
       Git("status");
-      Git("rm -r ."); // Delete all files before so we have a diff if something is no longer present in the new build.
+      Git("rm -rf ."); // Delete all files before so we have a diff if something is no longer present in the new build.
       Git("status");
       Git("checkout deploy -- www"); // pulls only docs from our temporary deploy branch.
       Git("status");
