@@ -1,6 +1,6 @@
 {
   "name": "@eraware/dnn-elements",
-  "version": "0.9.1-beta.1",
+  "version": "0.10.0-nuke.1",
   "description": "Stencil Component Starter",
   "repository": "https://github.com/eraware/dnn-elements",
   "main": "dist/index.cjs.js",
@@ -34,8 +34,8 @@
     "@typescript-eslint/parser": "^2.23.0",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.16.0",
-    "jest": "^27.3.1",
-    "jest-cli": "^27.3.1",
+    "jest": "^26.6.3",
+    "jest-cli": "^26.6.3",
     "puppeteer": "^10.0.0",
     "typescript": "^3.4.3",
     "typescript-debounce-decorator": "^0.0.18"
