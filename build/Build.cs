@@ -238,7 +238,7 @@ class Build : NukeBuild
       Git("checkout site");
       Git("rm -r .");
       Git("commit -m \"Deleted old build\"");
-      Git("cherry-pick deploy --strategy-options=theirs");
+      Git("cherry-pick deploy --strategy-option=theirs");
       Git("push origin");
       //Git("config --global user.name 'Daniel Valadas'");
       //Git("config --global user.email 'info@danielvaladas.com'");
