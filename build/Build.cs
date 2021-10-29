@@ -233,7 +233,7 @@ class Build : NukeBuild
       Git("status");
       Git("commit --allow-empty -m \"Commit latest build\""); // We allow an empty commit in case the last change did not affect the site.
       Git("status");
-      Git("checkout -b site origin/site"); // pulling a local copy of the current deployment.
+      Git("checkout origin/site"); // pulling a local copy of the current deployment.
       Git("status");
       Git("rm -r ."); // Delete all files before so we have a diff if something is no longer present in the new build.
       Git("status");
