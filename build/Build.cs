@@ -143,7 +143,7 @@ class Build : NukeBuild
       var version = gitRepository.IsOnMainOrMasterBranch() ? GitVersion.MajorMinorPatch : GitVersion.SemVer;
       GitLogger = (type, output) => Logger.Info(output);
       Git($"tag v{version}");
-      Git($"push --tags");
+      Git($"push origin --tags");
     });
 
   Target GenerateReleaseNotes => _ => _
