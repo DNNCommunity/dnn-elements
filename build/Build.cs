@@ -244,13 +244,14 @@ class Build : NukeBuild
       Git("reset --hard");
       Git("checkout -b newsite origin/site");
       Git("rm -r .");
+      Git("clean -dxf");
       Git("commit -m \"Deleted old build\"");
       Git("cherry-pick deploy --strategy-option=theirs");
       CopyDirectoryRecursively(RootDirectory / "www", RootDirectory, DirectoryExistsPolicy.Merge);
       DeleteDirectory(RootDirectory / "www");
       Git("add *.html");
       Git("add *.json");
-      Git("add build/**/*");
+      Git("add build");
       Git("commit -m \"Move files to root folder\"");
       Git("push origin HEAD:site");
       Git("checkout deploy");
