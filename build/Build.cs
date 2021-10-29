@@ -31,7 +31,7 @@ using static Nuke.Common.Tools.Npm.NpmTasks;
     "Deploy",
     GitHubActionsImage.WindowsLatest,
     ImportGitHubTokenAs = "GithubToken",
-    OnPushBranches = new[] { "main", "master", "develop", "development", "release/*" },
+    OnPushBranches = new[] { "main", "master", "release/*" },
     InvokedTargets = new[] { nameof(Deploy), nameof(PublishSite) },
     ImportSecrets = new[] { "ERAWARE_NPM_PUBLISH_TOKEN" })]
 class Build : NukeBuild
