@@ -1,6 +1,6 @@
 {
   "name": "@eraware/dnn-elements",
-  "version": "0.10.0-nuke.1",
+  "version": "0.10.0-fix-deploy.1",
   "description": "Stencil Component Starter",
   "repository": "https://github.com/eraware/dnn-elements",
   "main": "dist/index.cjs.js",
