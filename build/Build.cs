@@ -248,6 +248,7 @@ class Build : NukeBuild
       Git("cherry-pick deploy --strategy-option=theirs");
       CopyDirectoryRecursively(RootDirectory / "www", RootDirectory, DirectoryExistsPolicy.Merge);
       DeleteDirectory(RootDirectory / "www");
+      Git("add .");
       Git("commit -m \"Move files to root folder\"");
       Git("push origin HEAD:site");
       Git("checkout deploy");
