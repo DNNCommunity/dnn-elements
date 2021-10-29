@@ -232,16 +232,12 @@ class Build : NukeBuild
     .DependsOn(Compile)
     .Executes(() =>
     {
-      var envs = Environment.GetEnvironmentVariables();
-      foreach(System.Collections.DictionaryEntry env in envs)
-      {
-        Console.WriteLine(env.Key + " : " + env.Value);
-      }
+      var actor = Environment.GetEnvironmentVariable("GITHUB_ACTOR");
       Git("config --global user.name 'Daniel Valadas'");
       Git("config --global user.email 'info@danielvaladas.com'");
       if (IsServerBuild)
       {
-        Git($"remote set-url origin https://{GithubToken}@github.com/{organizationName}/{repositoryName}.git");
+        Git($"remote set-url origin https://{actor}:{GithubToken}@github.com/{organizationName}/{repositoryName}.git");
       }
       Git("add www -f");
       Git("commit --allow-empty -m \"Commit latest build\"");
