@@ -246,6 +246,9 @@ class Build : NukeBuild
       Git("rm -r .");
       Git("commit -m \"Deleted old build\"");
       Git("cherry-pick deploy --strategy-option=theirs");
+      CopyDirectoryRecursively(RootDirectory / "www", RootDirectory);
+      DeleteDirectory(RootDirectory / "www");
+      Git("commit -m \"Move files to root folder\"");
       Git("push origin HEAD:site");
       Git("checkout deploy");
     });
