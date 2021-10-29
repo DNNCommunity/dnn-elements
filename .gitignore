@@ -26,5 +26,5 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 .env
 .vs
-build/bin
-build/obj
+_build/bin
+_build/obj
