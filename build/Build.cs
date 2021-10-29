@@ -241,9 +241,9 @@ class Build : NukeBuild
       Git("rm -rf .");
       Git("status");
       Git("branch -D site");
-      Git("rm -rf .");
       Git("checkout -b site origin/site"); // pulling a local copy of the current deployment.
       Git("status");
+      Git("rm -rf .");
       Git("status");
       Git("checkout deploy -- www"); // pulls only docs from our temporary deploy branch.
       Git("status");
