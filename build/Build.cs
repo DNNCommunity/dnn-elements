@@ -32,7 +32,7 @@ using static Nuke.Common.Tools.Npm.NpmTasks;
     GitHubActionsImage.WindowsLatest,
     ImportGitHubTokenAs = "GithubToken",
     OnPushBranches = new[] { "main", "master", "release/*" },
-    InvokedTargets = new[] { nameof(Deploy), nameof(PublishSite) })]
+    InvokedTargets = new[] { nameof(Deploy) })]
 [GitHubActions(
   "Publish_Site",
     GitHubActionsImage.WindowsLatest,
@@ -239,8 +239,8 @@ class Build : NukeBuild
       Git("status");
       Git("commit --allow-empty -m \"Commit latest build\""); // We allow an empty commit in case the last change did not affect the site.
       Git("status");
-      Git("reset --hard");
-      Git("checkout origin/site"); // pulling a local copy of the current deployment.
+      Git("git branch -D site");
+      Git("checkout -b origin/site"); // pulling a local copy of the current deployment.
       Git("status");
       Git("rm -r ."); // Delete all files before so we have a diff if something is no longer present in the new build.
       Git("status");
