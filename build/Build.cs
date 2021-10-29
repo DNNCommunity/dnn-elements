@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Text;
 using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.CI.GitHubActions;
@@ -12,6 +13,7 @@ using Nuke.Common.Tools.Git;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.Npm;
 using Nuke.Common.Utilities.Collections;
+using Octokit;
 using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
@@ -53,13 +55,17 @@ class Build : NukeBuild
   private const string repositoryName = "dnn-elements";
 
   // Nuke features injection
-  [GitVersion] readonly GitVersion Version;
+  [GitVersion] readonly GitVersion GitVersion;
   [GitRepository] readonly GitRepository gitRepository;
 
   // Directories
   AbsolutePath DistDirectory = RootDirectory / "dist";
   AbsolutePath WwwDirectory = RootDirectory / "www";
   AbsolutePath LoaderDirectory = RootDirectory / "loader";
+
+  GitHubClient gitHubClient;
+  string releaseNotes = "";
+  Release release;
 
   Target Clean => _ => _
     .Executes(() =>
@@ -93,7 +99,7 @@ class Build : NukeBuild
         }
       };
       NpmInstall();
-      Npm($"version {Version.FullSemVer} --allow-same-version --git-tag-version false");
+      Npm($"version {GitVersion.SemVer} --allow-same-version --git-tag-version false");
       NpmRun(s => s.SetCommand("build"));
       NpmRun(s => s.SetCommand("test"));
     });
@@ -110,14 +116,109 @@ class Build : NukeBuild
       Git("switch -c deploy");
     });
 
+  Target SetupGitHubClient => _ => _
+    .OnlyWhenDynamic(() => !string.IsNullOrWhiteSpace(GithubToken))
+    .Executes(() =>
+    {
+      if (gitRepository.IsOnMainOrMasterBranch() || gitRepository.IsOnReleaseBranch())
+      {
+        gitHubClient = new GitHubClient(new ProductHeaderValue("Nuke"));
+        var tokenAuth = new Credentials(GithubToken);
+        gitHubClient.Credentials = tokenAuth;
+      }
+    });
+
+  Target TagRelease => _ => _
+    .OnlyWhenDynamic(() => gitRepository.IsOnMainOrMasterBranch() || gitRepository.IsOnReleaseBranch())
+    .OnlyWhenDynamic(() => !string.IsNullOrWhiteSpace(GithubToken))
+    .DependsOn(SetupGitHubClient)
+    .Executes(() =>
+    {
+      var version = gitRepository.IsOnMainOrMasterBranch() ? GitVersion.MajorMinorPatch : GitVersion.SemVer;
+      GitLogger = (type, output) => Logger.Info(output);
+      Git($"tag v{version}");
+      Git($"push --tags");
+    });
+
+  Target GenerateReleaseNotes => _ => _
+    .OnlyWhenDynamic(() => gitRepository.IsOnMainOrMasterBranch() || gitRepository.IsOnReleaseBranch())
+    .OnlyWhenDynamic(() => !string.IsNullOrWhiteSpace(GithubToken))
+    .DependsOn(SetupGitHubClient)
+    .DependsOn(TagRelease)
+    .Executes(() =>
+    {
+      // Get the milestone
+      var milestone = gitHubClient.Issue.Milestone.GetAllForRepository(organizationName, repositoryName).Result.Where(m => m.Title == GitVersion.MajorMinorPatch).FirstOrDefault();
+      if (milestone == null)
+      {
+        Logger.Warn("Milestone not found for this version");
+        releaseNotes = "No release notes for this version.";
+        return;
+      }
+
+      // Get the PRs
+      var prRequest = new PullRequestRequest()
+      {
+        State = ItemStateFilter.All
+      };
+      var pullRequests = gitHubClient.Repository.PullRequest.GetAllForRepository(organizationName, repositoryName, prRequest).Result.Where(p =>
+          p.Milestone?.Title == milestone.Title &&
+          p.Merged == true &&
+          p.Milestone?.Title == GitVersion.MajorMinorPatch);
+
+      // Build release notes
+      var releaseNotesBuilder = new StringBuilder();
+      releaseNotesBuilder.AppendLine($"# {repositoryName} {milestone.Title}")
+          .AppendLine("")
+          .AppendLine($"A total of {pullRequests.Count()} pull requests where merged in this release.").AppendLine();
+
+      foreach (var group in pullRequests.GroupBy(p => p.Labels[0]?.Name, (label, prs) => new { label, prs }))
+      {
+        releaseNotesBuilder.AppendLine($"## {group.label}");
+        foreach (var pr in group.prs)
+        {
+          releaseNotesBuilder.AppendLine($"- #{pr.Number} {pr.Title}. Thanks @{pr.User.Login}");
+        }
+      }
+
+      releaseNotes = releaseNotesBuilder.ToString();
+      using (Logger.Block("Release Notes"))
+      {
+        Logger.Info(releaseNotes);
+      }
+    });
+
+  Target Release => _ => _
+    .OnlyWhenDynamic(() => gitRepository.IsOnMainOrMasterBranch() || gitRepository.IsOnReleaseBranch())
+    .OnlyWhenDynamic(() => !string.IsNullOrWhiteSpace(GithubToken))
+    .DependsOn(SetupGitHubClient)
+    .DependsOn(GenerateReleaseNotes)
+    .DependsOn(TagRelease)
+    .Executes(() =>
+    {
+      var newRelease = new NewRelease(gitRepository.IsOnMainOrMasterBranch() ? $"v{GitVersion.MajorMinorPatch}" : $"v{GitVersion.SemVer}")
+      {
+        Body = releaseNotes,
+        Draft = true,
+        Name = gitRepository.IsOnMainOrMasterBranch() ? $"v{GitVersion.MajorMinorPatch}" : $"v{GitVersion.SemVer}",
+        TargetCommitish = GitVersion.Sha,
+        Prerelease = gitRepository.IsOnReleaseBranch(),
+      };
+      release = gitHubClient.Repository.Release.Create(organizationName, repositoryName, newRelease).Result;
+      Logger.Info($"{release.Name} released !");
+    });
+
   Target Deploy => _ => _
-        .OnlyWhenDynamic(() => gitRepository.ToString() == $"https://github.com/{organizationName}/{repositoryName}")
-        .DependsOn(Compile)
-        .Executes(() => {
-          var npmToken = Environment.GetEnvironmentVariable("ERAWARE_NPM_PUBLISH_TOKEN");
-          NpmRun(s => s.SetCommand($"login --scope=@eraware --registry=https://npmjs.com/:_authToken={npmToken}"));
-          NpmRun(s => s.SetCommand("publish --access public"));
-        });
+    .OnlyWhenDynamic(() => gitRepository.ToString() == $"https://github.com/{organizationName}/{repositoryName}")
+    .DependsOn(Compile)
+    .DependsOn(GenerateReleaseNotes)
+    .DependsOn(TagRelease)
+    .DependsOn(Release)
+    .Executes(() => {
+      var npmToken = Environment.GetEnvironmentVariable("ERAWARE_NPM_PUBLISH_TOKEN");
+      NpmRun(s => s.SetCommand($"login --scope=@eraware --registry=https://npmjs.com/:_authToken={npmToken}"));
+      NpmRun(s => s.SetCommand("publish --access public"));
+    });
 
   Target PublishSite => _ => _
     .DependsOn(CreateDeployBranch)

@@ -79,7 +79,11 @@
               "Compile",
               "CreateDeployBranch",
               "Deploy",
-              "PublishSite"
+              "GenerateReleaseNotes",
+              "PublishSite",
+              "Release",
+              "SetupGitHubClient",
+              "TagRelease"
             ]
           }
         },
@@ -93,7 +97,11 @@
               "Compile",
               "CreateDeployBranch",
               "Deploy",
-              "PublishSite"
+              "GenerateReleaseNotes",
+              "PublishSite",
+              "Release",
+              "SetupGitHubClient",
+              "TagRelease"
             ]
           }
         },
