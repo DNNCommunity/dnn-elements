@@ -236,7 +236,10 @@ class Build : NukeBuild
       Git("commit --allow-empty -m \"Commit latest build\"");
       Git("reset --hard");
       Git("checkout site");
-      Git("cherry-pick deploy");
+      Git("rm -r .");
+      Git("commit -m \"Deleted old build\"");
+      Git("cherry-pick deploy --strategy-options=theirs");
+      Git("push origin");
       //Git("config --global user.name 'Daniel Valadas'");
       //Git("config --global user.email 'info@danielvaladas.com'");
       //Git($"remote set-url origin https://{organizationName}:{GithubToken}@github.com/{organizationName}/{repositoryName}.git");
