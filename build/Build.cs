@@ -32,7 +32,7 @@ using static Nuke.Common.Tools.Npm.NpmTasks;
     GitHubActionsImage.WindowsLatest,
     ImportGitHubTokenAs = "GithubToken",
     OnPushBranches = new[] { "main", "master", "release/*" },
-    InvokedTargets = new[] { nameof(Deploy), nameof(PublishSite) })]
+    InvokedTargets = new[] { nameof(Deploy) })]
 [GitHubActions(
   "Publish_Site",
     GitHubActionsImage.WindowsLatest,
