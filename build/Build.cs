@@ -238,6 +238,7 @@ class Build : NukeBuild
       Git("add www -f"); // Force adding because it is usually gitignored.
       Git("status");
       Git("commit --allow-empty -m \"Commit latest build\""); // We allow an empty commit in case the last change did not affect the site.
+      Git("rm -rf .");
       Git("status");
       Git("branch -D site");
       Git("rm -rf .");
