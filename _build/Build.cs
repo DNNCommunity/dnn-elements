@@ -110,17 +110,9 @@ class Build : NukeBuild
       NpmRun(s => s.SetCommand("build"));
       NpmRun(s => s.SetCommand("test"));
     });
-
-  Target CreateDeployBranch => _ => _
-    .Before(Compile)
+  Target SetupGithubActor => _ => _
     .Executes(() =>
     {
-      // Prevents a bug where git sends ok message to the error output sink
-      GitLogger = (type, output) => Logger.Info(output);
-
-      // Because in CI we are in detached head,
-      // we create a local deploy branch to track our commit.
-      Git("switch -c deploy");
       var actor = Environment.GetEnvironmentVariable("GITHUB_ACTOR");
       Git("config --global user.name 'Daniel Valadas'");
       Git("config --global user.email 'info@danielvaladas.com'");
@@ -129,9 +121,22 @@ class Build : NukeBuild
         Git($"remote set-url origin https://{actor}:{GithubToken}@github.com/{organizationName}/{repositoryName}.git");
       }
     });
+  Target CreateDeployBranch => _ => _
+    .Before(Compile)
+    .DependsOn(SetupGithubActor)
+    .Executes(() =>
+    {
+      // Prevents a bug where git sends ok message to the error output sink
+      GitLogger = (type, output) => Logger.Info(output);
+
+      // Because in CI we are in detached head,
+      // we create a local deploy branch to track our commit.
+      Git("switch -c deploy");
+    });
 
   Target SetupGitHubClient => _ => _
     .OnlyWhenDynamic(() => !string.IsNullOrWhiteSpace(GithubToken))
+    .DependsOn(SetupGithubActor)
     .Executes(() =>
     {
       if (gitRepository.IsOnMainOrMasterBranch() || gitRepository.IsOnReleaseBranch())
