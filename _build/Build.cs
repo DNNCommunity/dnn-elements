@@ -243,9 +243,8 @@ class Build : NukeBuild
       Git("commit --allow-empty -m \"Commit latest build\"");
       Git("reset --hard");
       Git("checkout -b newsite origin/site");
-      //Git("rm -rf .");
-      //Git("clean -dxf");
-      Git("commit -m \"Deleted old build\"");
+      Git("rm -r .");
+      //Git("commit -m \"Deleted old build\"");
       Git("cherry-pick deploy --strategy-option=theirs");
       CopyDirectoryRecursively(RootDirectory / "www", RootDirectory, DirectoryExistsPolicy.Merge);
       DeleteDirectory(RootDirectory / "www");
