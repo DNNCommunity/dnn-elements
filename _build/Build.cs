@@ -33,14 +33,14 @@ using static Nuke.Common.Tools.Npm.NpmTasks;
     GitHubActionsImage.WindowsLatest,
     ImportGitHubTokenAs = "GithubToken",
     OnPushBranches = new[] { "main", "master", "release/*" },
-    InvokedTargets = new[] { nameof(Deploy) })]
+    InvokedTargets = new[] { nameof(Deploy) },
+    ImportSecrets = new[] { "ERAWARE_NPM_PUBLISH_TOKEN" })]
 [GitHubActions(
   "Publish_Site",
     GitHubActionsImage.WindowsLatest,
     ImportGitHubTokenAs = "GithubToken",
     OnPushBranches = new[] { "main", "master", "release/*" },
-    InvokedTargets = new[] { nameof(PublishSite) },
-    ImportSecrets = new[] { "ERAWARE_NPM_PUBLISH_TOKEN" })]
+    InvokedTargets = new[] { nameof(PublishSite) })]
 class Build : NukeBuild
 {
   /// Support plugins are available for:
@@ -234,7 +234,7 @@ class Build : NukeBuild
     .DependsOn(TagRelease)
     .DependsOn(Release)
     .Executes(() => {
-      var npmToken = Environment.GetEnvironmentVariable("ERAWARE_NPM_PUBLISH_TOKEN");
+    var npmToken = Environment.GetEnvironmentVariable("ERAWARE_NPM_PUBLISH_TOKEN");
       Npm($"login --scope=@eraware --registry=https://npmjs.com/:_authToken={npmToken}");
       NpmRun(s => s.SetCommand("publish --access public"));
     });

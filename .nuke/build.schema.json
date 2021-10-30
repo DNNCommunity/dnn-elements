@@ -82,6 +82,7 @@
               "GenerateReleaseNotes",
               "PublishSite",
               "Release",
+              "SetupGithubActor",
               "SetupGitHubClient",
               "TagRelease"
             ]
@@ -100,6 +101,7 @@
               "GenerateReleaseNotes",
               "PublishSite",
               "Release",
+              "SetupGithubActor",
               "SetupGitHubClient",
               "TagRelease"
             ]
