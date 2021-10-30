@@ -259,6 +259,7 @@ class Build : NukeBuild
       Git("add build");
       Git("commit -m \"Move files to root folder\"");
       Git("push origin HEAD:site");
+      Git("reset --hard");
       Git("checkout deploy");
     });
 }
