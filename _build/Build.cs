@@ -236,7 +236,7 @@ class Build : NukeBuild
     .Executes(() => {
     var npmToken = Environment.GetEnvironmentVariable("ERAWARE_NPM_PUBLISH_TOKEN");
       //Npm($"login --scope=@eraware --registry=https://registry.npmjs.org/:_authToken={npmToken}");
-      WriteAllText(RootDirectory / ".npmrc", $"@eraware:registry=https://registry.npmjs.org/:_authToken={npmToken}");
+      WriteAllText(RootDirectory / ".npmrc", $"//registry.npmjs.org/:_authToken={npmToken}");
       Npm("publish --access public");
     });
 
