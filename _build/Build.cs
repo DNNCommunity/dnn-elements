@@ -17,6 +17,7 @@ using Octokit;
 using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
+using static Nuke.Common.IO.TextTasks;
 using static Nuke.Common.Tools.Git.GitTasks;
 using static Nuke.Common.Tools.Npm.NpmTasks;
 
@@ -32,14 +33,14 @@ using static Nuke.Common.Tools.Npm.NpmTasks;
     GitHubActionsImage.WindowsLatest,
     ImportGitHubTokenAs = "GithubToken",
     OnPushBranches = new[] { "main", "master", "release/*" },
-    InvokedTargets = new[] { nameof(Deploy) })]
+    InvokedTargets = new[] { nameof(Deploy) },
+    ImportSecrets = new[] { "ERAWARE_NPM_PUBLISH_TOKEN" })]
 [GitHubActions(
   "Publish_Site",
     GitHubActionsImage.WindowsLatest,
     ImportGitHubTokenAs = "GithubToken",
     OnPushBranches = new[] { "main", "master", "release/*" },
-    InvokedTargets = new[] { nameof(PublishSite) },
-    ImportSecrets = new[] { "ERAWARE_NPM_PUBLISH_TOKEN" })]
+    InvokedTargets = new[] { nameof(PublishSite) })]
 class Build : NukeBuild
 {
   /// Support plugins are available for:
@@ -109,9 +110,20 @@ class Build : NukeBuild
       NpmRun(s => s.SetCommand("build"));
       NpmRun(s => s.SetCommand("test"));
     });
-
+  Target SetupGithubActor => _ => _
+    .Executes(() =>
+    {
+      var actor = Environment.GetEnvironmentVariable("GITHUB_ACTOR");
+      Git("config --global user.name 'Daniel Valadas'");
+      Git("config --global user.email 'info@danielvaladas.com'");
+      if (IsServerBuild)
+      {
+        Git($"remote set-url origin https://{actor}:{GithubToken}@github.com/{organizationName}/{repositoryName}.git");
+      }
+    });
   Target CreateDeployBranch => _ => _
     .Before(Compile)
+    .DependsOn(SetupGithubActor)
     .Executes(() =>
     {
       // Prevents a bug where git sends ok message to the error output sink
@@ -124,6 +136,7 @@ class Build : NukeBuild
 
   Target SetupGitHubClient => _ => _
     .OnlyWhenDynamic(() => !string.IsNullOrWhiteSpace(GithubToken))
+    .DependsOn(SetupGithubActor)
     .Executes(() =>
     {
       if (gitRepository.IsOnMainOrMasterBranch() || gitRepository.IsOnReleaseBranch())
@@ -143,7 +156,7 @@ class Build : NukeBuild
       var version = gitRepository.IsOnMainOrMasterBranch() ? GitVersion.MajorMinorPatch : GitVersion.SemVer;
       GitLogger = (type, output) => Logger.Info(output);
       Git($"tag v{version}");
-      Git($"push --tags");
+      Git($"push origin --tags");
     });
 
   Target GenerateReleaseNotes => _ => _
@@ -221,9 +234,10 @@ class Build : NukeBuild
     .DependsOn(TagRelease)
     .DependsOn(Release)
     .Executes(() => {
-      var npmToken = Environment.GetEnvironmentVariable("ERAWARE_NPM_PUBLISH_TOKEN");
-      NpmRun(s => s.SetCommand($"login --scope=@eraware --registry=https://npmjs.com/:_authToken={npmToken}"));
-      NpmRun(s => s.SetCommand("publish --access public"));
+    var npmToken = Environment.GetEnvironmentVariable("ERAWARE_NPM_PUBLISH_TOKEN");
+      WriteAllText(RootDirectory / ".npmrc", $"//registry.npmjs.org/:_authToken={npmToken}");
+      var tag = gitRepository.IsOnMainOrMasterBranch() ? "latest" : "next";
+      Npm($"publish --access public --tag {tag}");
     });
 
   Target PublishSite => _ => _
@@ -231,26 +245,22 @@ class Build : NukeBuild
     .DependsOn(Compile)
     .Executes(() =>
     {
-      Git("config --global user.name 'Daniel Valadas'");
-      Git("config --global user.email 'info@danielvaladas.com'");
-      Git($"remote set-url origin https://{GithubToken}@github.com/{organizationName}/{repositoryName}.git");
-      Git("status");
-      Git("add www -f"); // Force adding because it is usually gitignored.
-      Git("status");
-      Git("commit --allow-empty -m \"Commit latest build\""); // We allow an empty commit in case the last change did not affect the site.
-      Git("status");
-      Git("branch -D site");
-      Git("checkout -b origin/site"); // pulling a local copy of the current deployment.
-      Git("status");
-      Git("rm -rf ."); // Delete all files before so we have a diff if something is no longer present in the new build.
-      Git("status");
-      Git("checkout deploy -- www"); // pulls only docs from our temporary deploy branch.
-      Git("status");
-      Git("add www"); // stage the docs
-      Git("status");
+      Git("add www -f");
       Git("commit --allow-empty -m \"Commit latest build\"");
-      Git("status");
-      Git("push origin site"); // Should push only the change with linear history and a proper diff.
+      Git("reset --hard");
+      Git("checkout -b newsite origin/site");
+      Git("rm -r .");
+      Git("commit -m \"Deleted old build\"");
+      Git("cherry-pick deploy --strategy-option=theirs");
+      CopyDirectoryRecursively(RootDirectory / "www", RootDirectory, DirectoryExistsPolicy.Merge);
+      DeleteDirectory(RootDirectory / "www");
+      Git("rm -r www");
+      Git("add ./*.html");
+      Git("add ./*.json");
+      Git("add build");
+      Git("commit -m \"Move files to root folder\"");
+      Git("push origin HEAD:site");
+      Git("reset --hard");
       Git("checkout deploy");
     });
 }

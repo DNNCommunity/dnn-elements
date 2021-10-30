@@ -18,4 +18,8 @@
     <PackageDownload Include="GitVersion.Tool" Version="[5.7.0]" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="..\.github\workflows\Deploy.yml" />
+  </ItemGroup>
+
 </Project>
