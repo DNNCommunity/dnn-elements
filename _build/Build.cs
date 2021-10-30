@@ -235,7 +235,7 @@ class Build : NukeBuild
     .DependsOn(Release)
     .Executes(() => {
       var npmToken = Environment.GetEnvironmentVariable("ERAWARE_NPM_PUBLISH_TOKEN");
-      NpmRun(s => s.SetCommand($"login --scope=@eraware --registry=https://npmjs.com/:_authToken={npmToken}"));
+      Npm($"login --scope=@eraware --registry=https://npmjs.com/:_authToken={npmToken}");
       NpmRun(s => s.SetCommand("publish --access public"));
     });
 
