@@ -237,7 +237,8 @@ class Build : NukeBuild
     var npmToken = Environment.GetEnvironmentVariable("ERAWARE_NPM_PUBLISH_TOKEN");
       //Npm($"login --scope=@eraware --registry=https://registry.npmjs.org/:_authToken={npmToken}");
       WriteAllText(RootDirectory / ".npmrc", $"//registry.npmjs.org/:_authToken={npmToken}");
-      Npm("publish --access public");
+      var tag = gitRepository.IsOnMainOrMasterBranch() ? "latest" : "next";
+      Npm($"publish --access public --tag {tag}");
     });
 
   Target PublishSite => _ => _
