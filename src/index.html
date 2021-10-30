@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <title>Stencil Component Starter</title>
+  <title>DNN custom elements</title>
 
   <script type="module" src="build/dnn.esm.js"></script>
   <script nomodule src="build/dnn.js"></script>
@@ -295,6 +295,17 @@
           console.log(e.detail);
         });
       });
+    </script>
+  </section>
+
+  <!-- dnn-dropzone -->
+  <section>
+    <h2>dnn-dropzone</h2>
+    <p>Allows dropping a file, selecting a file or taking a picture with the device camera.</p>
+    <dnn-dropzone allow-camera-mode id="dnnDropZone" />
+    <script type="text/javascript">
+      const dnnDropZone = document.querySelector("#dnnDropZone");
+      dnnDropZone.addEventListener("filesSelected", e => console.log(e.detail));
     </script>
   </section>
 </body>
