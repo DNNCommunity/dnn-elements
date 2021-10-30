@@ -28,12 +28,12 @@ using static Nuke.Common.Tools.Npm.NpmTasks;
   ImportGitHubTokenAs = "GithubToken",
   InvokedTargets = new[] { nameof(Compile) }
   )]
-//[GitHubActions(
-//    "Deploy",
-//    GitHubActionsImage.WindowsLatest,
-//    ImportGitHubTokenAs = "GithubToken",
-//    OnPushBranches = new[] { "main", "master", "release/*" },
-//    InvokedTargets = new[] { nameof(Deploy) })]
+[GitHubActions(
+    "Deploy",
+    GitHubActionsImage.WindowsLatest,
+    ImportGitHubTokenAs = "GithubToken",
+    OnPushBranches = new[] { "main", "master", "release/*" },
+    InvokedTargets = new[] { nameof(Deploy) })]
 [GitHubActions(
   "Publish_Site",
     GitHubActionsImage.WindowsLatest,
@@ -121,6 +121,13 @@ class Build : NukeBuild
       // Because in CI we are in detached head,
       // we create a local deploy branch to track our commit.
       Git("switch -c deploy");
+      var actor = Environment.GetEnvironmentVariable("GITHUB_ACTOR");
+      Git("config --global user.name 'Daniel Valadas'");
+      Git("config --global user.email 'info@danielvaladas.com'");
+      if (IsServerBuild)
+      {
+        Git($"remote set-url origin https://{actor}:{GithubToken}@github.com/{organizationName}/{repositoryName}.git");
+      }
     });
 
   Target SetupGitHubClient => _ => _
@@ -232,13 +239,6 @@ class Build : NukeBuild
     .DependsOn(Compile)
     .Executes(() =>
     {
-      var actor = Environment.GetEnvironmentVariable("GITHUB_ACTOR");
-      Git("config --global user.name 'Daniel Valadas'");
-      Git("config --global user.email 'info@danielvaladas.com'");
-      if (IsServerBuild)
-      {
-        Git($"remote set-url origin https://{actor}:{GithubToken}@github.com/{organizationName}/{repositoryName}.git");
-      }
       Git("add www -f");
       Git("commit --allow-empty -m \"Commit latest build\"");
       Git("checkout -b newsite origin/site");
