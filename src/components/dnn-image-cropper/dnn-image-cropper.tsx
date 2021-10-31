@@ -116,7 +116,7 @@ export class DnnImageCropper {
     reader.readAsDataURL(file);
   }
 
-  private handleCropMouseDown = (event: MouseEvent) => {
+  private handleCropMouseDown = (event: MouseEvent | TouchEvent) => {
     event.stopPropagation();
     event.preventDefault();
     const element = event.target as HTMLElement;
@@ -126,23 +126,33 @@ export class DnnImageCropper {
     switch (className) {
       case "crop":
         document.addEventListener("mousemove", this.handleCropDrag, false);
+        document.addEventListener("touchmove", this.handleCropMouseDown, false)
         document.addEventListener("mouseup", () => document.removeEventListener("mousemove", this.handleCropDrag));
+        document.addEventListener("touchend", () => document.removeEventListener("touchmove", this.handleCropDrag));
         break;
       case "nw":
         document.addEventListener("mousemove", this.handleNwMouseMove, false);
+        document.addEventListener("touchmove", this.handleNwMouseMove, false)
         document.addEventListener("mouseup", () => document.removeEventListener("mousemove", this.handleNwMouseMove));
+        document.addEventListener("touchend", () => document.removeEventListener("touchmove", this.handleNwMouseMove));
         break;
       case "ne":
         document.addEventListener("mousemove", this.handleNeMouseMove, false);
+        document.addEventListener("touchmove", this.handleNeMouseMove, false)
         document.addEventListener("mouseup", () => document.removeEventListener("mousemove", this.handleNeMouseMove));
+        document.addEventListener("touchend", () => document.removeEventListener("touchmove", this.handleNeMouseMove));
         break
       case "se":
         document.addEventListener("mousemove", this.handleSeMouseMove, false);
+        document.addEventListener("touchmove", this.handleSeMouseMove, false)
         document.addEventListener("mouseup", () => document.removeEventListener("mousemove", this.handleSeMouseMove));
+        document.addEventListener("touchend", () => document.removeEventListener("touchmove", this.handleSeMouseMove));
         break;
       case "sw":
         document.addEventListener("mousemove", this.handleSwMouseMove, false);
+        document.addEventListener("touchmove", this.handleSwMouseMove, false)
         document.addEventListener("mouseup", () => document.removeEventListener("mousemove", this.handleSwMouseMove));
+        document.addEventListener("touchend", () => document.removeEventListener("touchmove", this.handleSwMouseMove));
         break;
       default:
         break;
@@ -370,6 +380,7 @@ export class DnnImageCropper {
               class="crop"
               ref={e => this.crop = e}
               onMouseDown={this.handleCropMouseDown}
+              onTouchStart={this.handleCropMouseDown}
             >
               <div class="nw" />
               <div class="ne" />
