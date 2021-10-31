@@ -25,3 +25,6 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 .env
+.vs
+_build/bin
+_build/obj
