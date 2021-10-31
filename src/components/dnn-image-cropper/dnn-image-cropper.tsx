@@ -46,6 +46,7 @@ export class DnnImageCropper {
   private canvas: HTMLCanvasElement;
   private image: HTMLImageElement;
   private crop: HTMLDivElement;
+  private previousTouch: Touch;
 
   componentDidLoad() {
     this.setView("noPictureView");
@@ -116,33 +117,44 @@ export class DnnImageCropper {
     reader.readAsDataURL(file);
   }
 
-  private handleCropMouseDown = (event: MouseEvent) => {
+  private handleCropMouseDown = (event: MouseEvent | TouchEvent) => {
     event.stopPropagation();
     event.preventDefault();
     const element = event.target as HTMLElement;
     const className = element.classList[0];
 
     document.addEventListener("mouseup", this.handleImageCropFinished, false);
+    document.addEventListener("touchend", this.handleImageCropFinished, false);
     switch (className) {
       case "crop":
         document.addEventListener("mousemove", this.handleCropDrag, false);
+        document.addEventListener("touchmove", this.handleCropDrag, false)
         document.addEventListener("mouseup", () => document.removeEventListener("mousemove", this.handleCropDrag));
+        document.addEventListener("touchend", () => document.removeEventListener("touchmove", this.handleCropDrag));
         break;
       case "nw":
         document.addEventListener("mousemove", this.handleNwMouseMove, false);
+        document.addEventListener("touchmove", this.handleNwMouseMove, false)
         document.addEventListener("mouseup", () => document.removeEventListener("mousemove", this.handleNwMouseMove));
+        document.addEventListener("touchend", () => document.removeEventListener("touchmove", this.handleNwMouseMove));
         break;
       case "ne":
         document.addEventListener("mousemove", this.handleNeMouseMove, false);
+        document.addEventListener("touchmove", this.handleNeMouseMove, false)
         document.addEventListener("mouseup", () => document.removeEventListener("mousemove", this.handleNeMouseMove));
+        document.addEventListener("touchend", () => document.removeEventListener("touchmove", this.handleNeMouseMove));
         break
       case "se":
         document.addEventListener("mousemove", this.handleSeMouseMove, false);
+        document.addEventListener("touchmove", this.handleSeMouseMove, false)
         document.addEventListener("mouseup", () => document.removeEventListener("mousemove", this.handleSeMouseMove));
+        document.addEventListener("touchend", () => document.removeEventListener("touchmove", this.handleSeMouseMove));
         break;
       case "sw":
         document.addEventListener("mousemove", this.handleSwMouseMove, false);
+        document.addEventListener("touchmove", this.handleSwMouseMove, false)
         document.addEventListener("mouseup", () => document.removeEventListener("mousemove", this.handleSwMouseMove));
+        document.addEventListener("touchend", () => document.removeEventListener("touchmove", this.handleSwMouseMove));
         break;
       default:
         break;
@@ -152,6 +164,7 @@ export class DnnImageCropper {
   private handleImageCropFinished = (_ev: MouseEvent) => {
     this.emitImage();
     document.removeEventListener("mouseup", this.handleImageCropFinished);
+    this.previousTouch = undefined;
   }
 
   private emitImage() {
@@ -189,7 +202,7 @@ export class DnnImageCropper {
     return this.canvas.toDataURL("image/jpeg", this.quality);
   }
 
-  private handleNwMouseMove = (event: MouseEvent) => {
+  private handleNwMouseMove = (event: MouseEvent | TouchEvent) => {
     let left = 0;
     let top = 0;
     let newWidth = 0;
@@ -198,17 +211,18 @@ export class DnnImageCropper {
     const wantedRatio = this.width / this.height;
     const cropRect = this.crop.getBoundingClientRect();
     const imageRect = this.image.getBoundingClientRect();
-    
-    if (Math.abs(event.movementX) < Math.abs(event.movementY)){
+    let { movementX, movementY } = this.getMouvementFromEvent(event);
+
+    if (Math.abs(movementX) < Math.abs(movementY)){
       orientation = "vertical";
     }
 
     if (orientation == "horizontal"){
-      newWidth = cropRect.width - event.movementX;
+      newWidth = cropRect.width - movementX;
       newHeight = newWidth / wantedRatio;
     }
     else{
-      newHeight = cropRect.height - event.movementY;
+      newHeight = cropRect.height - movementY;
       newWidth = newHeight * wantedRatio;
     }
 
@@ -229,7 +243,7 @@ export class DnnImageCropper {
     this.crop.style.height = newHeight + "px";
   }
 
-  private handleNeMouseMove = (event: MouseEvent) => {
+  private handleNeMouseMove = (event: MouseEvent | TouchEvent) => {
     let left = 0;
     let top = 0;
     let newWidth = 0;
@@ -238,17 +252,18 @@ export class DnnImageCropper {
     const wantedRatio = this.width / this.height;
     const cropRect = this.crop.getBoundingClientRect();
     const imageRect = this.image.getBoundingClientRect();
+    let { movementX, movementY } = this.getMouvementFromEvent(event);
     
-    if (Math.abs(event.movementX) < Math.abs(event.movementY)){
+    if (Math.abs(movementX) < Math.abs(movementY)){
       orientation = "vertical";
     }
 
     if (orientation == "horizontal"){
-      newWidth = cropRect.width + event.movementX;
+      newWidth = cropRect.width + movementX;
       newHeight = newWidth / wantedRatio;
     }
     else{
-      newHeight = cropRect.height - event.movementY;
+      newHeight = cropRect.height - movementY;
       newWidth = newHeight * wantedRatio;
     }
 
@@ -264,7 +279,7 @@ export class DnnImageCropper {
     this.crop.style.height = newHeight + "px";
   }
 
-  private handleSeMouseMove = (event: MouseEvent) => {
+  private handleSeMouseMove = (event: MouseEvent | TouchEvent) => {
     let left = this.crop.offsetLeft;
     let top = this.crop.offsetTop;
     let newWidth = 0;
@@ -273,17 +288,18 @@ export class DnnImageCropper {
     const wantedRatio = this.width / this.height;
     const cropRect = this.crop.getBoundingClientRect();
     const imageRect = this.image.getBoundingClientRect();
+    let { movementX, movementY } = this.getMouvementFromEvent(event);
     
-    if (Math.abs(event.movementX) < Math.abs(event.movementY)){
+    if (Math.abs(movementX) < Math.abs(movementY)){
       orientation = "vertical";
     }
 
     if (orientation == "horizontal"){
-      newWidth = cropRect.width + event.movementX;
+      newWidth = cropRect.width + movementX;
       newHeight = newWidth / wantedRatio;
     }
     else{
-      newHeight = cropRect.height + event.movementY;
+      newHeight = cropRect.height + movementY;
       newWidth = newHeight * wantedRatio;
     }
 
@@ -296,7 +312,7 @@ export class DnnImageCropper {
     this.crop.style.height = newHeight + "px";
   }
 
-  private handleSwMouseMove = (event: MouseEvent) => {
+  private handleSwMouseMove = (event: MouseEvent | TouchEvent) => {
     let left = 0;
     let top = this.crop.offsetTop;
     let newWidth = 0;
@@ -305,17 +321,18 @@ export class DnnImageCropper {
     const wantedRatio = this.width / this.height;
     const cropRect = this.crop.getBoundingClientRect();
     const imageRect = this.image.getBoundingClientRect();
+    let { movementX, movementY } = this.getMouvementFromEvent(event);
     
-    if (Math.abs(event.movementX) < Math.abs(event.movementY)){
+    if (Math.abs(movementX) < Math.abs(movementY)){
       orientation = "vertical";
     }
 
     if (orientation == "horizontal"){
-      newWidth = cropRect.width - event.movementX;
+      newWidth = cropRect.width - movementX;
       newHeight = newWidth / wantedRatio;
     }
     else{
-      newHeight = cropRect.height + event.movementY;
+      newHeight = cropRect.height + movementY;
       newWidth = newHeight * wantedRatio;
     }
 
@@ -334,9 +351,23 @@ export class DnnImageCropper {
     this.crop.style.height = newHeight + "px";
   }
 
-  private handleCropDrag = (ev: MouseEvent) => {
-    let newLeft = this.crop.offsetLeft + ev.movementX;
-    let newTop = this.crop.offsetTop + ev.movementY;
+  private handleCropDrag = (ev: MouseEvent | TouchEvent) => {
+    let movementX = 0;
+    let movementY = 0;
+    if (ev instanceof MouseEvent){
+      movementX = ev.movementX;
+      movementY = ev.movementY;
+    }
+    if (ev instanceof TouchEvent){
+      const touch = ev.touches[0];
+      if (this.previousTouch != undefined){
+        movementX = touch.pageX - this.previousTouch.pageX;
+        movementY = touch.pageY - this.previousTouch.pageY;
+      }
+      this.previousTouch = touch;
+    }
+    let newLeft = this.crop.offsetLeft + movementX;
+    let newTop = this.crop.offsetTop + movementY;
     var imageRect = this.image.getBoundingClientRect();
     var cropRect = this.crop.getBoundingClientRect();
     if (newLeft < 0){
@@ -355,6 +386,24 @@ export class DnnImageCropper {
     this.crop.style.top = newTop + "px";
   };
   
+  private getMouvementFromEvent(event: MouseEvent | TouchEvent) {
+    let movementX = 0;
+    let movementY = 0;
+    if (event instanceof MouseEvent) {
+      movementX = event.movementX;
+      movementY = event.movementY;
+    }
+    if (event instanceof TouchEvent) {
+      let touch = event.touches[0];
+      if (this.previousTouch != undefined) {
+        movementX = touch.pageX - this.previousTouch.pageX;
+        movementY = touch.pageY - this.previousTouch.pageY;
+      }
+      this.previousTouch = touch;
+    }
+    return { movementX, movementY };
+  }
+
   render() {
     return (
       <Host ref={el => this.host = el}>
@@ -370,6 +419,7 @@ export class DnnImageCropper {
               class="crop"
               ref={e => this.crop = e}
               onMouseDown={this.handleCropMouseDown}
+              onTouchStart={this.handleCropMouseDown}
             >
               <div class="nw" />
               <div class="ne" />
