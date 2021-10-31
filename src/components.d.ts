@@ -81,6 +81,54 @@ export namespace Components {
          */
         "colorBoxHeight": string;
     }
+    interface DnnDropzone {
+        /**
+          * If true, will allow the user to take a snapshot using the device camera. (only works over https).
+         */
+        "allowCameraMode": boolean;
+        /**
+          * A list of allowed file extensions. If not specified, any file is allowed. Ex: ["jpg", "jped", "gif", "png"]
+         */
+        "allowedExtensions": string[];
+        /**
+          * Specifies the jpeg quality for when the device camera is used to generate a picture. Needs to be a number between 0 and 1 and defaults to 0.8
+         */
+        "captureQuality": number;
+        /**
+          * Localization strings
+         */
+        "resx": {
+    dragAndDropFile: string;
+    capture: string;
+    or: string;
+    takePicture: string;
+    uploadFile: string;
+  };
+    }
+    interface DnnImageCropper {
+        /**
+          * Sets the desired final image height.
+         */
+        "height": number;
+        /**
+          * Sets the output quality of the corpped image (number between 0 and 1).
+         */
+        "quality": number;
+        /**
+          * Can be used to customize controls text.
+         */
+        "resx": {
+    capture: string;
+    dragAndDropFile: string;
+    or: string;
+    takePicture: string;
+    uploadFile: string;
+  };
+        /**
+          * Sets the desired final image width.
+         */
+        "width": number;
+    }
     interface DnnModal {
         /**
           * Pass false to remove the backdrop click auto-dismiss feature.
@@ -159,6 +207,18 @@ declare global {
         prototype: HTMLDnnColorPickerElement;
         new (): HTMLDnnColorPickerElement;
     };
+    interface HTMLDnnDropzoneElement extends Components.DnnDropzone, HTMLStencilElement {
+    }
+    var HTMLDnnDropzoneElement: {
+        prototype: HTMLDnnDropzoneElement;
+        new (): HTMLDnnDropzoneElement;
+    };
+    interface HTMLDnnImageCropperElement extends Components.DnnImageCropper, HTMLStencilElement {
+    }
+    var HTMLDnnImageCropperElement: {
+        prototype: HTMLDnnImageCropperElement;
+        new (): HTMLDnnImageCropperElement;
+    };
     interface HTMLDnnModalElement extends Components.DnnModal, HTMLStencilElement {
     }
     var HTMLDnnModalElement: {
@@ -188,6 +248,8 @@ declare global {
         "dnn-chevron": HTMLDnnChevronElement;
         "dnn-collapsible": HTMLDnnCollapsibleElement;
         "dnn-color-picker": HTMLDnnColorPickerElement;
+        "dnn-dropzone": HTMLDnnDropzoneElement;
+        "dnn-image-cropper": HTMLDnnImageCropperElement;
         "dnn-modal": HTMLDnnModalElement;
         "dnn-searchbox": HTMLDnnSearchboxElement;
         "dnn-sort-icon": HTMLDnnSortIconElement;
@@ -285,6 +347,59 @@ declare namespace LocalJSX {
          */
         "onColorChanged"?: (event: CustomEvent<ColorInfo>) => void;
     }
+    interface DnnDropzone {
+        /**
+          * If true, will allow the user to take a snapshot using the device camera. (only works over https).
+         */
+        "allowCameraMode"?: boolean;
+        /**
+          * A list of allowed file extensions. If not specified, any file is allowed. Ex: ["jpg", "jped", "gif", "png"]
+         */
+        "allowedExtensions"?: string[];
+        /**
+          * Specifies the jpeg quality for when the device camera is used to generate a picture. Needs to be a number between 0 and 1 and defaults to 0.8
+         */
+        "captureQuality"?: number;
+        "onFilesSelected"?: (event: CustomEvent<File[]>) => void;
+        /**
+          * Localization strings
+         */
+        "resx"?: {
+    dragAndDropFile: string;
+    capture: string;
+    or: string;
+    takePicture: string;
+    uploadFile: string;
+  };
+    }
+    interface DnnImageCropper {
+        /**
+          * Sets the desired final image height.
+         */
+        "height"?: number;
+        /**
+          * When the image crop changes, emits the dataurl for the new cropped image.
+         */
+        "onImageCropChanged"?: (event: CustomEvent<string>) => void;
+        /**
+          * Sets the output quality of the corpped image (number between 0 and 1).
+         */
+        "quality"?: number;
+        /**
+          * Can be used to customize controls text.
+         */
+        "resx"?: {
+    capture: string;
+    dragAndDropFile: string;
+    or: string;
+    takePicture: string;
+    uploadFile: string;
+  };
+        /**
+          * Sets the desired final image width.
+         */
+        "width"?: number;
+    }
     interface DnnModal {
         /**
           * Pass false to remove the backdrop click auto-dismiss feature.
@@ -350,6 +465,8 @@ declare namespace LocalJSX {
         "dnn-chevron": DnnChevron;
         "dnn-collapsible": DnnCollapsible;
         "dnn-color-picker": DnnColorPicker;
+        "dnn-dropzone": DnnDropzone;
+        "dnn-image-cropper": DnnImageCropper;
         "dnn-modal": DnnModal;
         "dnn-searchbox": DnnSearchbox;
         "dnn-sort-icon": DnnSortIcon;
@@ -364,6 +481,8 @@ declare module "@stencil/core" {
             "dnn-chevron": LocalJSX.DnnChevron & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
             "dnn-collapsible": LocalJSX.DnnCollapsible & JSXBase.HTMLAttributes<HTMLDnnCollapsibleElement>;
             "dnn-color-picker": LocalJSX.DnnColorPicker & JSXBase.HTMLAttributes<HTMLDnnColorPickerElement>;
+            "dnn-dropzone": LocalJSX.DnnDropzone & JSXBase.HTMLAttributes<HTMLDnnDropzoneElement>;
+            "dnn-image-cropper": LocalJSX.DnnImageCropper & JSXBase.HTMLAttributes<HTMLDnnImageCropperElement>;
             "dnn-modal": LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
             "dnn-searchbox": LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
             "dnn-sort-icon": LocalJSX.DnnSortIcon & JSXBase.HTMLAttributes<HTMLDnnSortIconElement>;

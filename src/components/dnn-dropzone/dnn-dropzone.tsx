@@ -153,7 +153,7 @@ export class DnnDropzone {
     canvas.height = this.videoSettings.height;
     context.drawImage(this.videoPreview, 0, 0);
     canvas.toBlob(blob => {
-      var file = new File([blob], "image.jpg");
+      var file = new File([blob], "image.jpeg", {type:"image/jpeg"});
       this.takingPicture = false;
       
       var fileList = [file];
