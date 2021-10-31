@@ -308,5 +308,16 @@
       dnnDropZone.addEventListener("filesSelected", e => console.log(e.detail));
     </script>
   </section>
+
+  <!-- dnn-image-crop -->
+  <section>
+    <h2>dnn-image-cropper</h2>
+    <p>Allows cropping an image in the browser.</p>
+    <dnn-image-cropper id="dnnImageCropper" />
+    <script type="text/javascript">
+      const dnnImageCropper = document.querySelector("#dnnImageCropper");
+      dnnImageCropper.addEventListener("imageCropChanged", e => console.log(e.detail));
+    </script>
+  </section>
 </body>
 </html>
