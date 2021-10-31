@@ -393,13 +393,15 @@ export class DnnImageCropper {
       movementX = event.movementX;
       movementY = event.movementY;
     }
-    if (event instanceof TouchEvent) {
-      let touch = event.touches[0];
-      if (this.previousTouch != undefined) {
-        movementX = touch.pageX - this.previousTouch.pageX;
-        movementY = touch.pageY - this.previousTouch.pageY;
+    if (typeof TouchEvent !== "undefined"){
+      if (event instanceof TouchEvent) {
+        let touch = event.touches[0];
+        if (this.previousTouch != undefined) {
+          movementX = touch.pageX - this.previousTouch.pageX;
+          movementY = touch.pageY - this.previousTouch.pageY;
+        }
+        this.previousTouch = touch;
       }
-      this.previousTouch = touch;
     }
     return { movementX, movementY };
   }
