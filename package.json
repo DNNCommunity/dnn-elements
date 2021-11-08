@@ -1,6 +1,6 @@
 {
   "name": "@eraware/dnn-elements",
-  "version": "0.10.0-beta.1",
+  "version": "0.11.0-licensing.1",
   "description": "Stencil Component Starter",
   "repository": "https://github.com/eraware/dnn-elements",
   "main": "dist/index.cjs.js",
@@ -17,8 +17,10 @@
   ],
   "scripts": {
     "build": "eslint --ext .ts --ext .tsx --ext .js ./src && stencil build --docs",
+    "postbuild": "license-checker --out licenses.txt --direct",
     "start": "stencil build --dev --watch --serve",
     "start.edge": "stencil build --dev --watch --serve --es5",
+    "poststart": "license-checker --out licenses.txt --direct",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
@@ -36,6 +38,7 @@
     "eslint-plugin-react": "^7.16.0",
     "jest": "^26.6.3",
     "jest-cli": "^26.6.3",
+    "license-checker": "^25.0.1",
     "puppeteer": "^10.0.0",
     "typescript": "^3.4.3",
     "typescript-debounce-decorator": "^0.0.18"
