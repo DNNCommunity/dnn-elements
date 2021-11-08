@@ -17,9 +17,9 @@
 
 ## Events
 
-| Event           | Description | Type                  |
-| --------------- | ----------- | --------------------- |
-| `filesSelected` |             | `CustomEvent<File[]>` |
+| Event           | Description                    | Type                  |
+| --------------- | ------------------------------ | --------------------- |
+| `filesSelected` | Fires when file were selected. | `CustomEvent<File[]>` |
 
 
 ## CSS Custom Properties

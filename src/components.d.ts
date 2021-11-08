@@ -360,6 +360,9 @@ declare namespace LocalJSX {
           * Specifies the jpeg quality for when the device camera is used to generate a picture. Needs to be a number between 0 and 1 and defaults to 0.8
          */
         "captureQuality"?: number;
+        /**
+          * Fires when file were selected.
+         */
         "onFilesSelected"?: (event: CustomEvent<File[]>) => void;
         /**
           * Localization strings
