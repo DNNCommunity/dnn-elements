@@ -130,7 +130,8 @@
                 background-color: transparent;
                 border: none;
                 svg {
-                    min-width: 3em;
+                    width: 3em;
+                    height: 3em;
                     pointer-events: none;
                     outline: none;
                 }
