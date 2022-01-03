@@ -151,6 +151,7 @@ class Build : NukeBuild
   Target TagRelease => _ => _
     .OnlyWhenDynamic(() => gitRepository.IsOnMainOrMasterBranch() || gitRepository.IsOnReleaseBranch())
     .OnlyWhenDynamic(() => !string.IsNullOrWhiteSpace(GithubToken))
+    .Before(Compile)
     .DependsOn(SetupGitHubClient)
     .Executes(() =>
     {
