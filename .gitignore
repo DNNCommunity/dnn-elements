@@ -28,3 +28,4 @@ UserInterfaceState.xcuserstate
 .vs
 _build/bin
 _build/obj
+.nuke/temp
