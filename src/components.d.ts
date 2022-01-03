@@ -171,6 +171,22 @@ export namespace Components {
          */
         "sortDirection": "asc" | "desc" | "none";
     }
+    interface DnnTab {
+        /**
+          * Hides the modal
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Shows the tab.
+         */
+        "show": () => Promise<void>;
+        /**
+          * Defines the tab title.
+         */
+        "tabTitle": string;
+    }
+    interface DnnTabs {
+    }
     interface DnnToggle {
         /**
           * If 'true' the toggle is checked (on).
@@ -237,6 +253,18 @@ declare global {
         prototype: HTMLDnnSortIconElement;
         new (): HTMLDnnSortIconElement;
     };
+    interface HTMLDnnTabElement extends Components.DnnTab, HTMLStencilElement {
+    }
+    var HTMLDnnTabElement: {
+        prototype: HTMLDnnTabElement;
+        new (): HTMLDnnTabElement;
+    };
+    interface HTMLDnnTabsElement extends Components.DnnTabs, HTMLStencilElement {
+    }
+    var HTMLDnnTabsElement: {
+        prototype: HTMLDnnTabsElement;
+        new (): HTMLDnnTabsElement;
+    };
     interface HTMLDnnToggleElement extends Components.DnnToggle, HTMLStencilElement {
     }
     var HTMLDnnToggleElement: {
@@ -253,6 +281,8 @@ declare global {
         "dnn-modal": HTMLDnnModalElement;
         "dnn-searchbox": HTMLDnnSearchboxElement;
         "dnn-sort-icon": HTMLDnnSortIconElement;
+        "dnn-tab": HTMLDnnTabElement;
+        "dnn-tabs": HTMLDnnTabsElement;
         "dnn-toggle": HTMLDnnToggleElement;
     }
 }
@@ -449,6 +479,14 @@ declare namespace LocalJSX {
          */
         "sortDirection"?: "asc" | "desc" | "none";
     }
+    interface DnnTab {
+        /**
+          * Defines the tab title.
+         */
+        "tabTitle": string;
+    }
+    interface DnnTabs {
+    }
     interface DnnToggle {
         /**
           * If 'true' the toggle is checked (on).
@@ -473,6 +511,8 @@ declare namespace LocalJSX {
         "dnn-modal": DnnModal;
         "dnn-searchbox": DnnSearchbox;
         "dnn-sort-icon": DnnSortIcon;
+        "dnn-tab": DnnTab;
+        "dnn-tabs": DnnTabs;
         "dnn-toggle": DnnToggle;
     }
 }
@@ -489,6 +529,8 @@ declare module "@stencil/core" {
             "dnn-modal": LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
             "dnn-searchbox": LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
             "dnn-sort-icon": LocalJSX.DnnSortIcon & JSXBase.HTMLAttributes<HTMLDnnSortIconElement>;
+            "dnn-tab": LocalJSX.DnnTab & JSXBase.HTMLAttributes<HTMLDnnTabElement>;
+            "dnn-tabs": LocalJSX.DnnTabs & JSXBase.HTMLAttributes<HTMLDnnTabsElement>;
             "dnn-toggle": LocalJSX.DnnToggle & JSXBase.HTMLAttributes<HTMLDnnToggleElement>;
         }
     }
