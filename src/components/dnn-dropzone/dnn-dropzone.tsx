@@ -1,6 +1,4 @@
 import { Component, Host, h, Prop, State, Event, EventEmitter } from '@stencil/core';
-import uploadIcon from "@material-design-icons/svg/filled/upload.svg";
-import photoCameraIcon from "@material-design-icons/svg/filled/photo_camera.svg";
 
 @Component({
   tag: 'dnn-dropzone',
@@ -186,7 +184,10 @@ export class DnnDropzone {
                 onChange={e => this.handleUploadButton(e.target as HTMLInputElement)}
               >
               </input>
-              <span innerHTML={uploadIcon} />&nbsp;
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><rect fill="none" height="24" width="24"/></g><g><path d="M5,20h14v-2H5V20z M5,10h4v6h6v-6h4l-7-7L5,10z"/></g></svg>
+              </span>
+              &nbsp;
               {this.resx?.uploadFile}
             </label>
             ,
@@ -197,7 +198,7 @@ export class DnnDropzone {
                 <button
                   onClick={() => this.takeSnapshot()}
                 >
-                  <span innerHTML={photoCameraIcon} />&nbsp;
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="3.2"/><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
                   {this.resx?.takePicture}
                 </button>
               ]
@@ -209,7 +210,7 @@ export class DnnDropzone {
             <button
               onClick={() => this.applySnapshot()}
             >
-              <span innerHTML={photoCameraIcon} />              
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="3.2"/><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>&nbsp;
               {this.resx?.capture}
             </button>
           </div>
