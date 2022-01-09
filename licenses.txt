@@ -339,7 +339,7 @@
 │  ├─ repository: https://github.com/facebook/jest
 │  ├─ path: D:\dnn-elements\node_modules\@jest\types
 │  └─ licenseFile: D:\dnn-elements\node_modules\@jest\types\LICENSE
-├─ @material-design-icons/svg@0.10.4
+├─ @material-design-icons/svg@0.10.5
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/marella/material-design-icons
 │  ├─ path: D:\dnn-elements\node_modules\@material-design-icons\svg
