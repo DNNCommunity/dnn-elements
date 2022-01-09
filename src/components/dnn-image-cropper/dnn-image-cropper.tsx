@@ -1,4 +1,5 @@
 import { Component, Host, h, State, Prop, Event, EventEmitter } from '@stencil/core';
+import { CornerType } from './CornerType';
 
 /**
  * Allows cropping an image in-browser with the option to enforce a specific final size.
@@ -203,118 +204,27 @@ export class DnnImageCropper {
   }
 
   private handleNwMouseMove = (event: MouseEvent | TouchEvent) => {
-    let left = 0;
-    let top = 0;
-    let newWidth = 0;
-    let newHeight = 0;
-    let orientation: "horizontal" | "vertical" = "horizontal";
-    const wantedRatio = this.width / this.height;
-    const cropRect = this.crop.getBoundingClientRect();
-    const imageRect = this.image.getBoundingClientRect();
-    let { movementX, movementY } = this.getMouvementFromEvent(event);
-
-    if (Math.abs(movementX) < Math.abs(movementY)){
-      orientation = "vertical";
-    }
-
-    if (orientation == "horizontal"){
-      newWidth = cropRect.width - movementX;
-      newHeight = newWidth / wantedRatio;
-    }
-    else{
-      newHeight = cropRect.height - movementY;
-      newWidth = newHeight * wantedRatio;
-    }
-
-    const leftOffset = cropRect.width - newWidth;
-    left = this.crop.offsetLeft + leftOffset;
-    const topOffset = cropRect.height - newHeight;
-    top = this.crop.offsetTop + topOffset;
-
-    if (left < 0) left = 0;
-    if (left > imageRect.width) left = imageRect.width;
-    if (top < 0) top = 0;
-    if (top > imageRect.height) top = imageRect.height;
-    if (left + newWidth > imageRect.width) newWidth = imageRect.width - left;
-    if (top + newHeight > imageRect.height) newHeight = imageRect.height - top;
-    this.crop.style.left = left + "px";
-    this.crop.style.top = top + "px";
-    this.crop.style.width = newWidth + "px";
-    this.crop.style.height = newHeight + "px";
+    this.handleCornerDrag(event, CornerType.nw);
   }
 
   private handleNeMouseMove = (event: MouseEvent | TouchEvent) => {
-    let left = 0;
-    let top = 0;
-    let newWidth = 0;
-    let newHeight = 0;
-    let orientation: "horizontal" | "vertical" = "horizontal";
-    const wantedRatio = this.width / this.height;
-    const cropRect = this.crop.getBoundingClientRect();
-    const imageRect = this.image.getBoundingClientRect();
-    let { movementX, movementY } = this.getMouvementFromEvent(event);
-    
-    if (Math.abs(movementX) < Math.abs(movementY)){
-      orientation = "vertical";
-    }
-
-    if (orientation == "horizontal"){
-      newWidth = cropRect.width + movementX;
-      newHeight = newWidth / wantedRatio;
-    }
-    else{
-      newHeight = cropRect.height - movementY;
-      newWidth = newHeight * wantedRatio;
-    }
-
-    const topOffset = cropRect.height - newHeight;
-    top = this.crop.offsetTop + topOffset;
-
-    if (top < 0) top = 0;
-    if (top > imageRect.height) top = imageRect.height;
-    if (left + newWidth > imageRect.width) newWidth = imageRect.width - left;
-    if (top + newHeight > imageRect.height) newHeight = imageRect.height - top;
-    this.crop.style.top = top + "px";
-    this.crop.style.width = newWidth + "px";
-    this.crop.style.height = newHeight + "px";
+    this.handleCornerDrag(event, CornerType.ne);
   }
 
   private handleSeMouseMove = (event: MouseEvent | TouchEvent) => {
-    let left = this.crop.offsetLeft;
-    let top = this.crop.offsetTop;
-    let newWidth = 0;
-    let newHeight = 0;
-    let orientation: "horizontal" | "vertical" = "horizontal";
-    const wantedRatio = this.width / this.height;
-    const cropRect = this.crop.getBoundingClientRect();
-    const imageRect = this.image.getBoundingClientRect();
-    let { movementX, movementY } = this.getMouvementFromEvent(event);
-    
-    if (Math.abs(movementX) < Math.abs(movementY)){
-      orientation = "vertical";
-    }
-
-    if (orientation == "horizontal"){
-      newWidth = cropRect.width + movementX;
-      newHeight = newWidth / wantedRatio;
-    }
-    else{
-      newHeight = cropRect.height + movementY;
-      newWidth = newHeight * wantedRatio;
-    }
-
-    if (top < 0) top = 0;
-    if (top > imageRect.height) top = imageRect.height;
-    if (left + newWidth > imageRect.width) newWidth = imageRect.width - left;
-    if (top + newHeight > imageRect.height) newHeight = imageRect.height - top;
-    this.crop.style.top = top + "px";
-    this.crop.style.width = newWidth + "px";
-    this.crop.style.height = newHeight + "px";
+    this.handleCornerDrag(event, CornerType.se);
   }
 
   private handleSwMouseMove = (event: MouseEvent | TouchEvent) => {
-    let left = 0;
-    let top = this.crop.offsetTop;
+    this.handleCornerDrag(event, CornerType.sw);
+  }
+
+  private handleCornerDrag = (event: MouseEvent | TouchEvent, corner: CornerType) => {
+    if (!this.isMouseStillInTarget(event)){
+      return;
+    }
+    
+    let {left, top} = this.getCornerLeftTop(corner);
     let newWidth = 0;
     let newHeight = 0;
     let orientation: "horizontal" | "vertical" = "horizontal";
@@ -322,50 +232,126 @@ export class DnnImageCropper {
     const cropRect = this.crop.getBoundingClientRect();
     const imageRect = this.image.getBoundingClientRect();
     let { movementX, movementY } = this.getMouvementFromEvent(event);
-    
     if (Math.abs(movementX) < Math.abs(movementY)){
       orientation = "vertical";
     }
 
     if (orientation == "horizontal"){
-      newWidth = cropRect.width - movementX;
-      newHeight = newWidth / wantedRatio;
-    }
-    else{
-      newHeight = cropRect.height + movementY;
-      newWidth = newHeight * wantedRatio;
+      switch (corner) {
+        case CornerType.nw:
+        case CornerType.sw:
+          newWidth = cropRect.width - movementX;
+          newHeight = newWidth / wantedRatio;
+          break;
+        case CornerType.ne:
+        case CornerType.se:
+          newWidth = cropRect.width + movementX;
+          newHeight = newWidth / wantedRatio;
+          break;
+        default:
+          break;
+      }
+    } else{
+      switch (corner) {
+        case CornerType.nw:
+        case CornerType.ne:
+          newHeight = cropRect.height - movementY;
+          newWidth = newHeight * wantedRatio;
+          break;
+        case CornerType.se:
+        case CornerType.sw:
+          newHeight = cropRect.height + movementY;
+          newWidth = newHeight * wantedRatio;
+          break;
+        default:
+          break;
+      }
     }
 
-    const leftOffset = cropRect.width - newWidth;
-    left = this.crop.offsetLeft + leftOffset;
+    switch (corner) {
+      case CornerType.ne:
+      case CornerType.nw:
+        const topOffset = cropRect.height - newHeight;
+        top = this.crop.offsetTop + topOffset;
+      default:
+        break;
+    }
 
-    if (left < 0) left = 0;
-    if (left > imageRect.width) left = imageRect.width;
-    if (top < 0) top = 0;
-    if (top > imageRect.height) top = imageRect.height;
-    if (left + newWidth > imageRect.width) newWidth = imageRect.width - left;
-    if (top + newHeight > imageRect.height) newHeight = imageRect.height - top;
-    this.crop.style.left = left + "px";
-    this.crop.style.top = top + "px";
-    this.crop.style.width = newWidth + "px";
-    this.crop.style.height = newHeight + "px";
+    switch (corner) {
+      case CornerType.nw:
+      case CornerType.sw:
+        const leftOffset = cropRect.width - newWidth;
+        left = this.crop.offsetLeft + leftOffset;
+        if (left < 0) left = 0;
+        if (left > imageRect.width) left = imageRect.width;
+        if (top < 0) top = 0;
+        if (top > imageRect.height) top = imageRect.height;
+        if (left + newWidth > imageRect.width) newWidth = imageRect.width - left;
+        if (top + newHeight > imageRect.height) newHeight = imageRect.height - top;
+        break;
+      case CornerType.ne:
+      case CornerType.se:
+        if (top < 0) top = 0;
+        if (top > imageRect.height) top = imageRect.height;
+        if (left + newWidth > imageRect.width) newWidth = imageRect.width - left;
+        if (top + newHeight > imageRect.height) newHeight = imageRect.height - top;
+        break;
+      default:
+        break;
+    }
+
+    if (newWidth / newHeight != wantedRatio){
+      return;
+    }
+
+    switch (corner) {
+      case CornerType.ne:
+        this.crop.style.top = `${top}px`;
+        this.crop.style.width = `${newWidth}px`;
+        this.crop.style.height = `${newHeight}px`;
+        break;
+      case CornerType.nw:
+        this.crop.style.left = `${left}px`;
+        this.crop.style.top = `${top}px`;
+        this.crop.style.width = `${newWidth}px`;
+        this.crop.style.height = `${newHeight}px`;
+        break;
+      case CornerType.se:
+        this.crop.style.width = `${newWidth}px`;
+        this.crop.style.height = `${newHeight}px`;
+        break;
+      case CornerType.sw:
+        this.crop.style.left = `${left}px`;
+        this.crop.style.width = `${newWidth}px`;
+        this.crop.style.height = `${newHeight}px`;
+        break;
+      default:
+        break;
+    }
+  }
+
+  private getCornerLeftTop(corner: CornerType): { left: number; top: number; } {
+    let left = 0;
+    let top = 0;
+    switch (corner) {
+      case CornerType.se:
+        left = this.crop.offsetLeft;
+        top = this.crop.offsetTop;
+        break;
+      case CornerType.sw:
+        top = this.crop.offsetTop;
+        break;
+      default:
+        break;
+    }
+    return {top, left};
   }
 
   private handleCropDrag = (ev: MouseEvent | TouchEvent) => {
-    let movementX = 0;
-    let movementY = 0;
-    if (ev instanceof MouseEvent){
-      movementX = ev.movementX;
-      movementY = ev.movementY;
+    if (!this.isMouseStillInTarget(ev)){
+      return;
     }
-    if (ev instanceof TouchEvent){
-      const touch = ev.touches[0];
-      if (this.previousTouch != undefined){
-        movementX = touch.pageX - this.previousTouch.pageX;
-        movementY = touch.pageY - this.previousTouch.pageY;
-      }
-      this.previousTouch = touch;
-    }
+    let {movementX, movementY} = this.getMouvementFromEvent(ev);
     let newLeft = this.crop.offsetLeft + movementX;
     let newTop = this.crop.offsetTop + movementY;
     var imageRect = this.image.getBoundingClientRect();
@@ -404,6 +390,34 @@ export class DnnImageCropper {
       }
     }
     return { movementX, movementY };
+  }
+
+  private isMouseStillInTarget(event: MouseEvent | TouchEvent) {
+    let mouseX: number;
+    let mouseY: number;
+    const imageRect = this.image.getBoundingClientRect();
+    
+    if (event instanceof MouseEvent){
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+    }
+
+    if (event instanceof TouchEvent){
+      var touch = event.touches[0];
+      mouseX = touch.clientX;
+      mouseY = touch.clientY;
+    }
+    
+    if (
+      mouseX < imageRect.x ||
+      mouseY < imageRect.y ||
+      mouseX > imageRect.left + imageRect.width ||
+      mouseY > imageRect.top + imageRect.height)
+    {
+      return false;
+    }
+
+    return true;
   }
 
   render() {
