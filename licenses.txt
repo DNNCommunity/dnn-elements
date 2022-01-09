@@ -339,11 +339,6 @@
 │  ├─ repository: https://github.com/facebook/jest
 │  ├─ path: D:\dnn-elements\node_modules\@jest\types
 │  └─ licenseFile: D:\dnn-elements\node_modules\@jest\types\LICENSE
-├─ @material-design-icons/svg@0.10.5
-│  ├─ licenses: Apache-2.0
-│  ├─ repository: https://github.com/marella/material-design-icons
-│  ├─ path: D:\dnn-elements\node_modules\@material-design-icons\svg
-│  └─ licenseFile: D:\dnn-elements\node_modules\@material-design-icons\svg\LICENSE
 ├─ @nodelib/fs.scandir@2.1.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/nodelib/nodelib/tree/master/packages/fs/fs.scandir
@@ -3280,12 +3275,6 @@
 │  ├─ url: https://github.com/jonschlinkert
 │  ├─ path: D:\dnn-elements\node_modules\static-extend
 │  └─ licenseFile: D:\dnn-elements\node_modules\static-extend\LICENSE
-├─ stencil-inline-svg@1.1.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/fabriciomendonca/stencil-inline-svg
-│  ├─ publisher: Fabricio Rodrigues
-│  ├─ path: D:\dnn-elements\node_modules\stencil-inline-svg
-│  └─ licenseFile: D:\dnn-elements\node_modules\stencil-inline-svg\LICENSE
 ├─ string-length@4.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/string-length

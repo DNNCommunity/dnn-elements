@@ -6,8 +6,6 @@
 import { Component, h, State, Element, Prop, EventEmitter, Event, Watch } from "@stencil/core";
 import { ColorInfo } from '../../utilities/colorInfo';
 import { Debounce } from "../../utilities/debounce";
-import repeatIcon from "@material-design-icons/svg/filled/repeat.svg";
-import contentCopyIcon from "@material-design-icons/svg/filled/content_copy.svg";
 
 /** Color Picker for Dnn */
 @Component({
@@ -360,10 +358,11 @@ export class DnnColorPicker {
                         <div class="dnn-color-mode-switch">
                             <button
                                 id="rgb-switch"
-                                innerHTML={repeatIcon}
                                 onClick={this.switchColorMode.bind(this)}
                                 aria-label="switch to hexadecimal value entry"
-                            />
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
+                            </button>
                         </div>
                     </div>
                     <div class="dnn-hsl-color-fields" style={{display: this.hslDisplay}}>
@@ -388,10 +387,11 @@ export class DnnColorPicker {
                         <div class="dnn-color-mode-switch">
                             <button
                                 id="hsl-switch"
-                                innerHTML={repeatIcon}
                                 onClick={this.switchColorMode.bind(this)}
                                 aria-label="Switch to red, green, blue entry mode"
-                            />
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
+                            </button>
                         </div>
                     </div>
                     <div class="dnn-hex-color-fields" style={{display: this.hexDisplay}}>
@@ -404,18 +404,20 @@ export class DnnColorPicker {
                                 />
                                 <button
                                     class="copy"
-                                    innerHTML={contentCopyIcon}
                                     aria-label="copy value"
-                                />
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                                </button>
                             </div>
                         </div>
                         <div class="dnn-color-mode-switch">
                             <button
                                 id="hex-switch"
-                                innerHTML={repeatIcon}
                                 onClick={this.switchColorMode.bind(this)}
                                 aria-label="Switch to hue saturation lightness values"
-                            />
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
+                            </button>
                         </div>
                     </div>
                 </div>
