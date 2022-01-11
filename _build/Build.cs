@@ -106,8 +106,8 @@ class Build : NukeBuild
           }
         }
       };
-      NpmInstall();
       Npm($"version {GitVersion.SemVer} --allow-same-version --git-tag-version false");
+      NpmInstall();
       NpmRun(s => s.SetCommand("build"));
       NpmRun(s => s.SetCommand("test"));
     });
@@ -215,6 +215,7 @@ class Build : NukeBuild
     .DependsOn(SetupGitHubClient)
     .DependsOn(GenerateReleaseNotes)
     .DependsOn(TagRelease)
+    .DependsOn(Compile)
     .Executes(() =>
     {
       var newRelease = new NewRelease(gitRepository.IsOnMainOrMasterBranch() ? $"v{GitVersion.MajorMinorPatch}" : $"v{GitVersion.SemVer}")
