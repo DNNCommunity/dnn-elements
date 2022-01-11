@@ -393,6 +393,7 @@ export class DnnImageCropper {
   }
 
   private isMouseStillInTarget(event: MouseEvent | TouchEvent) {
+    var inside = false;
     let mouseX: number;
     let mouseY: number;
     const imageRect = this.image.getBoundingClientRect();
@@ -411,15 +412,28 @@ export class DnnImageCropper {
     }
     
     if (
-      mouseX < imageRect.x ||
-      mouseY < imageRect.y ||
-      mouseX > imageRect.left + imageRect.width ||
-      mouseY > imageRect.top + imageRect.height)
+      mouseX >= imageRect.x &&
+      mouseY >= imageRect.y &&
+      mouseX <= imageRect.left + imageRect.width &&
+      mouseY <= imageRect.top + imageRect.height)
     {
-      return false;
+      inside = true;
     }
 
-    return true;
+    var corners = this.crop.querySelectorAll("div");
+    corners.forEach(corner =>{
+      var cornerRect = corner.getBoundingClientRect();
+      if (
+        mouseX >= cornerRect.x &&
+        mouseY >= cornerRect.y &&
+        mouseX <= cornerRect.left + cornerRect.width &&
+        mouseY <= cornerRect.top + cornerRect.height)
+        {
+          inside = true;
+        }
+    })
+
+    return inside;
   }
 
   render() {
