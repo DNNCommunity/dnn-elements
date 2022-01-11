@@ -44,16 +44,25 @@ Type: `Promise<void>`
 
 
 
+## CSS Custom Properties
+
+| Name          | Description                      |
+| ------------- | -------------------------------- |
+| `--max-width` | The maximum width of the module. |
+
+
 ## Dependencies
 
 ### Used by
 
  - [dnn-button](../dnn-button)
+ - [dnn-image-cropper](../dnn-image-cropper)
 
 ### Graph
 ```mermaid
 graph TD;
   dnn-button --> dnn-modal
+  dnn-image-cropper --> dnn-modal
   style dnn-modal fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
