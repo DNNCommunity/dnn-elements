@@ -18,23 +18,32 @@ export class DnnImageCropper {
   /** Sets the desired final image height. */
   @Prop() height: number = 600;
 
-  /** Can be used to customize controls text. */
+  /** Can be used to customize controls text.
+   * Some values support tokens, see default values for examples.
+  */
   @Prop() resx: {
     capture: string;
     dragAndDropFile: string;
     or: string;
     takePicture: string;
     uploadFile: string;
+    imageTooSmall: string;
+    modalCloseText: string;
   } = {
     capture: "Capture",
     dragAndDropFile: "Drag and drop an image",
     or: "or",
     takePicture: "Take a picture",
     uploadFile: "Upload an image",
+    imageTooSmall: "The image you are attempting to upload does not meet the minimum size requirement of {width} pixels by {height} pixels. Please upload a larger image.",
+    modalCloseText: "Close",
   }
 
   /** Sets the output quality of the corpped image (number between 0 and 1). */
   @Prop() quality: number = 0.8;
+
+  /** When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry. */
+  @Prop() preventUndersized: boolean = false;
 
   /** When the image crop changes, emits the dataurl for the new cropped image. */
   @Event() imageCropChanged: EventEmitter<string>;
@@ -48,6 +57,7 @@ export class DnnImageCropper {
   private image: HTMLImageElement;
   private crop: HTMLDivElement;
   private previousTouch: Touch;
+  private imageTooSmallModal!: HTMLDnnModalElement;
 
   componentDidLoad() {
     this.setView("noPictureView");
@@ -90,11 +100,11 @@ export class DnnImageCropper {
   }
 
   private setImage(){
-    this.image.src = this.canvas.toDataURL();
-    window.requestAnimationFrame(() => {
+    this.image.addEventListener('load', () => {
       this.initCrop();
       this.emitImage();
-    });
+    })
+    this.image.src = this.canvas.toDataURL();
   }
 
   private handleNewFile(file: File): void {
@@ -108,6 +118,10 @@ export class DnnImageCropper {
       img.onload = () => {
         this.canvas.width = img.width;
         this.canvas.height = img.height;
+        if (this.preventUndersized && (img.width < this.width || img.height< this.height)){
+          this.imageTooSmallModal.show();
+          return;
+        }
         var ctx = this.canvas.getContext("2d");
         ctx.drawImage(img,0,0);
         this.setView("hasPictureView");
@@ -304,6 +318,13 @@ export class DnnImageCropper {
       return;
     }
 
+    if (this.preventUndersized){
+      const zoomRatio = this.image.width / this.image.naturalWidth;
+      if (newWidth / zoomRatio < this.width || newHeight / zoomRatio < this.height){
+        return;
+      }
+    }
+
     switch (corner) {
       case CornerType.ne:
         this.crop.style.top = `${top}px`;
@@ -393,6 +414,7 @@ export class DnnImageCropper {
   }
 
   private isMouseStillInTarget(event: MouseEvent | TouchEvent) {
+    var inside = false;
     let mouseX: number;
     let mouseY: number;
     const imageRect = this.image.getBoundingClientRect();
@@ -402,22 +424,37 @@ export class DnnImageCropper {
       mouseY = event.clientY;
     }
 
-    if (event instanceof TouchEvent){
-      var touch = event.touches[0];
-      mouseX = touch.clientX;
-      mouseY = touch.clientY;
+    if (typeof TouchEvent !== "undefined"){
+      if (event instanceof TouchEvent){
+        var touch = event.touches[0];
+        mouseX = touch.clientX;
+        mouseY = touch.clientY;
+      }
     }
     
     if (
-      mouseX < imageRect.x ||
-      mouseY < imageRect.y ||
-      mouseX > imageRect.left + imageRect.width ||
-      mouseY > imageRect.top + imageRect.height)
+      mouseX >= imageRect.x &&
+      mouseY >= imageRect.y &&
+      mouseX <= imageRect.left + imageRect.width &&
+      mouseY <= imageRect.top + imageRect.height)
     {
-      return false;
+      inside = true;
     }
 
-    return true;
+    var corners = this.crop.querySelectorAll("div");
+    corners.forEach(corner =>{
+      var cornerRect = corner.getBoundingClientRect();
+      if (
+        mouseX >= cornerRect.x &&
+        mouseY >= cornerRect.y &&
+        mouseX <= cornerRect.left + cornerRect.width &&
+        mouseY <= cornerRect.top + cornerRect.height)
+        {
+          inside = true;
+        }
+    })
+
+    return inside;
   }
 
   render() {
@@ -461,6 +498,9 @@ export class DnnImageCropper {
               }
             />
         </div>
+        <dnn-modal ref={el => this.imageTooSmallModal = el} close-text={this.resx.modalCloseText}>
+          <p>{this.resx.imageTooSmall.replace("{width}", this.width.toString()).replace("{height}", this.height.toString())}</p>
+        </dnn-modal>
       </Host>
     );
   }
