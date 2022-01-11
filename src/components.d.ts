@@ -111,11 +111,15 @@ export namespace Components {
          */
         "height": number;
         /**
+          * When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry.
+         */
+        "preventUndersized": boolean;
+        /**
           * Sets the output quality of the corpped image (number between 0 and 1).
          */
         "quality": number;
         /**
-          * Can be used to customize controls text.
+          * Can be used to customize controls text. Some values support tokens, see default values for examples.
          */
         "resx": {
     capture: string;
@@ -123,6 +127,8 @@ export namespace Components {
     or: string;
     takePicture: string;
     uploadFile: string;
+    imageTooSmall: string;
+    modalCloseText: string;
   };
         /**
           * Sets the desired final image width.
@@ -415,11 +421,15 @@ declare namespace LocalJSX {
          */
         "onImageCropChanged"?: (event: CustomEvent<string>) => void;
         /**
+          * When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry.
+         */
+        "preventUndersized"?: boolean;
+        /**
           * Sets the output quality of the corpped image (number between 0 and 1).
          */
         "quality"?: number;
         /**
-          * Can be used to customize controls text.
+          * Can be used to customize controls text. Some values support tokens, see default values for examples.
          */
         "resx"?: {
     capture: string;
@@ -427,6 +437,8 @@ declare namespace LocalJSX {
     or: string;
     takePicture: string;
     uploadFile: string;
+    imageTooSmall: string;
+    modalCloseText: string;
   };
         /**
           * Sets the desired final image width.

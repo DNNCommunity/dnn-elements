@@ -1,4 +1,7 @@
 :host {
+  /**
+   * @prop --max-width: The maximum width of the module.
+  */
   display: block;
   .overlay{
     background-color: rgba(0,0,0,0.5);
@@ -16,6 +19,7 @@
     visibility: hidden;
     opacity: 0;
     .modal{
+      max-width: var(--max-width, 1200px);
       background-color: white;
       padding: 30px;
       transform: scale(2);
