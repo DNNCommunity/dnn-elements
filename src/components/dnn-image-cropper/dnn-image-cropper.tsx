@@ -90,11 +90,11 @@ export class DnnImageCropper {
   }
 
   private setImage(){
-    this.image.src = this.canvas.toDataURL();
-    window.requestAnimationFrame(() => {
+    this.image.addEventListener('load', () => {
       this.initCrop();
       this.emitImage();
-    });
+    })
+    this.image.src = this.canvas.toDataURL();
   }
 
   private handleNewFile(file: File): void {
@@ -402,10 +402,12 @@ export class DnnImageCropper {
       mouseY = event.clientY;
     }
 
-    if (event instanceof TouchEvent){
-      var touch = event.touches[0];
-      mouseX = touch.clientX;
-      mouseY = touch.clientY;
+    if (typeof TouchEvent !== "undefined"){
+      if (event instanceof TouchEvent){
+        var touch = event.touches[0];
+        mouseX = touch.clientX;
+        mouseY = touch.clientY;
+      }
     }
     
     if (
