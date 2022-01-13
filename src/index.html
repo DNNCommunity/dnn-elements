@@ -38,6 +38,45 @@
 </head>
 <body>
   <h1>Dnn HTML custom elements</h1>
+
+  <!-- dnn-treeview-item -->
+  <section>
+    <h2>dnn-treeview-item</h2>
+    <dnn-treeview-item>
+      Item 1
+      <dnn-treeview-item slot="children">
+        Item 1A
+        <dnn-treeview-item slot="children">
+          Item 1A1
+        </dnn-treeview-item>
+        <dnn-treeview-item slot="children">
+          Item 1A2
+        </dnn-treeview-item>
+      </dnn-treeview-item>
+      <dnn-treeview-item slot="children">
+        Item 1B
+      </dnn-treeview-item>
+      <dnn-treeview-item slot="children">
+        Item 1C
+      </dnn-treeview-item>
+    </dnn-treeview-item>
+    <dnn-treeview-item>
+      Item 2
+      <dnn-treeview-item slot="children">
+        Item 2A
+      </dnn-treeview-item>
+      <dnn-treeview-item slot="children">
+        Item 2B
+      </dnn-treeview-item>
+      <dnn-treeview-item slot="children">
+        Item 2C
+      </dnn-treeview-item>
+    </dnn-treeview-item>
+    <dnn-treeview-item>
+      Item without children
+    </dnn-treeview-item>
+  </section>
+
   <!-- dnn-button -->
   <section>
     <h2>dnn-button</h2>

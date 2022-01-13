@@ -44,13 +44,6 @@ Type: `Promise<void>`
 
 
 
-## CSS Custom Properties
-
-| Name          | Description                      |
-| ------------- | -------------------------------- |
-| `--max-width` | The maximum width of the module. |
-
-
 ## Dependencies
 
 ### Used by
