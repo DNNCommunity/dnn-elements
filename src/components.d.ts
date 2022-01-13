@@ -42,6 +42,20 @@ export namespace Components {
          */
         "type": 'primary' | 'secondary' | 'tertiary';
     }
+    interface DnnCheckbox {
+        /**
+          * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
+         */
+        "checked": boolean | undefined;
+        /**
+          * Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)
+         */
+        "useIntermediate": boolean;
+        /**
+          * The value for this checkbox (not to be confused with its checked state).
+         */
+        "value": string;
+    }
     interface DnnChevron {
         /**
           * Collapse text for screen readers
@@ -211,6 +225,12 @@ declare global {
         prototype: HTMLDnnButtonElement;
         new (): HTMLDnnButtonElement;
     };
+    interface HTMLDnnCheckboxElement extends Components.DnnCheckbox, HTMLStencilElement {
+    }
+    var HTMLDnnCheckboxElement: {
+        prototype: HTMLDnnCheckboxElement;
+        new (): HTMLDnnCheckboxElement;
+    };
     interface HTMLDnnChevronElement extends Components.DnnChevron, HTMLStencilElement {
     }
     var HTMLDnnChevronElement: {
@@ -279,6 +299,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "dnn-button": HTMLDnnButtonElement;
+        "dnn-checkbox": HTMLDnnCheckboxElement;
         "dnn-chevron": HTMLDnnChevronElement;
         "dnn-collapsible": HTMLDnnCollapsibleElement;
         "dnn-color-picker": HTMLDnnColorPickerElement;
@@ -334,6 +355,24 @@ declare namespace LocalJSX {
           * Optional button style, can be either primary, secondary or tertiary and defaults to primary if not specified
          */
         "type"?: 'primary' | 'secondary' | 'tertiary';
+    }
+    interface DnnCheckbox {
+        /**
+          * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
+         */
+        "checked"?: boolean | undefined;
+        /**
+          * Fires up when the checkbox checked property changes.
+         */
+        "onCheckedchange"?: (event: CustomEvent<boolean | undefined>) => void;
+        /**
+          * Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)
+         */
+        "useIntermediate"?: boolean;
+        /**
+          * The value for this checkbox (not to be confused with its checked state).
+         */
+        "value"?: string;
     }
     interface DnnChevron {
         /**
@@ -515,6 +554,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "dnn-button": DnnButton;
+        "dnn-checkbox": DnnCheckbox;
         "dnn-chevron": DnnChevron;
         "dnn-collapsible": DnnCollapsible;
         "dnn-color-picker": DnnColorPicker;
@@ -533,6 +573,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "dnn-button": LocalJSX.DnnButton & JSXBase.HTMLAttributes<HTMLDnnButtonElement>;
+            "dnn-checkbox": LocalJSX.DnnCheckbox & JSXBase.HTMLAttributes<HTMLDnnCheckboxElement>;
             "dnn-chevron": LocalJSX.DnnChevron & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
             "dnn-collapsible": LocalJSX.DnnCollapsible & JSXBase.HTMLAttributes<HTMLDnnCollapsibleElement>;
             "dnn-color-picker": LocalJSX.DnnColorPicker & JSXBase.HTMLAttributes<HTMLDnnColorPickerElement>;
