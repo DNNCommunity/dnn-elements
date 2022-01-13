@@ -7,7 +7,6 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ColorInfo } from "./utilities/colorInfo";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
-import { ExpandedToggledEvent } from "./components/dnn-treeview-item/dnn-treeview-item";
 export namespace Components {
     interface DnnButton {
         /**
@@ -571,10 +570,6 @@ declare namespace LocalJSX {
           * Defines if the current node is expanded
          */
         "expanded"?: boolean;
-        /**
-          * Fires when a node expanded state has changed.
-         */
-        "onExpandedToggled"?: (event: CustomEvent<ExpandedToggledEvent>) => void;
     }
     interface IntrinsicElements {
         "dnn-button": DnnButton;

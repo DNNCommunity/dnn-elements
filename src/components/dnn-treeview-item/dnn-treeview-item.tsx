@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Event, EventEmitter, Listen } from '@stencil/core';
+import { Component, Host, h, Prop, State, Element } from '@stencil/core';
 
 @Component({
   tag: 'dnn-treeview-item',
@@ -8,23 +8,17 @@ import { Component, Host, h, Prop, State, Event, EventEmitter, Listen } from '@s
 export class DnnTreeviewItem {
   
   private expander!: HTMLDivElement;
-  private childElement!: HTMLDivElement;
+
+  @Element() el!: HTMLDnnTreeviewItemElement;
   
   /** Defines if the current node is expanded  */
   @Prop({mutable: true}) expanded: boolean = false;
 
   @State() hasChildren: boolean = false;
-
-  /** Fires when a node expanded state has changed. */
-  @Event() expandedToggled: EventEmitter<ExpandedToggledEvent>;
-
-  @Listen("expandedToggled")
-  expandedToggledHandler() {
-      this.adjustHeight();
-  }
+  private childrenElement!: HTMLDivElement;
 
   componentDidLoad() {
-    const children = this.childElement.children[0] as HTMLSlotElement;
+    const children = this.childrenElement.children[0] as HTMLSlotElement;
     const count = children.assignedElements().length
     if (count > 0){
       this.hasChildren = true;
@@ -35,34 +29,10 @@ export class DnnTreeviewItem {
     this.expanded = !this.expanded;
     if (this.expanded){
       this.expander.classList.add("expanded");
-      this.adjustHeight();
-      window.requestAnimationFrame(() => {
-        setTimeout(() => {
-          this.expandedToggled.emit({state: "expanded"});
-        }, 300);
-      });
       return;
     }
 
-    this.childElement.style.height = "0px";
     this.expander.classList.remove("expanded");
-    window.requestAnimationFrame(() => this.expandedToggled.emit({state: "collapsed"}));
-  }
-
-  private adjustHeight() {
-    if (this.expanded){
-      this.childElement.style.height = `${this.childElement.scrollHeight}px`;
-      window.requestAnimationFrame(() => {
-        setTimeout(() => {
-          this.childElement.style.height = "auto";
-          this.childElement.style.height = `${this.childElement.scrollHeight}px`;
-        }, 300);
-      });
-      return;
-    }
-
-    
-    //this.childElement.style.height = `${this.childElement.scrollHeight}px`;
   }
 
   render() {
@@ -78,15 +48,18 @@ export class DnnTreeviewItem {
         </div>
         <div class="item">
           <slot></slot>
-          <div class="children" ref={el => this.childElement = el}>
-            <slot name="children"></slot>
+          <dnn-collapsible expanded={this.expanded}>
+            <div ref={el => this.childrenElement = el}>
+              <slot name="children"></slot>
+            </div>
+          </dnn-collapsible>
           </div>
-        </div>
       </Host>
     );
   }
 }
 
 export interface ExpandedToggledEvent{
-  state: "expanded" | "collapsed",
+  state: "expanded" | "collapsed";
+  height: number;
 }
