@@ -80,6 +80,34 @@
     </script>
   </section>
 
+  <!-- dnn-checkbox -->
+  <section>
+    <h2>dnn-checkbox</h2>
+    <div style="display:flex;gap:15px;">
+      <div style="display:flex;flex-direction: column;">
+        <label>Normal Checkboxes</label>
+        <dnn-checkbox>Option 1</dnn-checkbox>
+        <dnn-checkbox>Option 2</dnn-checkbox>
+        <dnn-checkbox>Option 3</dnn-checkbox>
+      </div>
+      <div style="display:flex;flex-direction: column;">
+        <label>Tristate Checkboxes</label>
+        <dnn-checkbox use-intermediate="true" value="checkbox 4">Option 4</dnn-checkbox>
+        <dnn-checkbox use-intermediate="true" value="checkbox 5">Option 5</dnn-checkbox>
+        <dnn-checkbox use-intermediate="true" value="checkbox 6">Option 6</dnn-checkbox>
+      </div>
+    </div>
+    <script type="text/javascript">
+      document.querySelectorAll("dnn-checkbox").forEach(el => el.addEventListener("checkedchange", e => {
+        let name = "a checkbox without a value"
+        if (e.target.value != undefined){
+          name = e.target.value;
+        }
+        console.log(name + " is now " + e.detail);
+      }));
+    </script>
+  </section>
+
   <!-- dnn-modal -->
   <section>
     <h2>dnn-modal</h2>
