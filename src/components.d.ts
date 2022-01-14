@@ -76,7 +76,7 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
-          * Defines the transition time in ms, defaults to 300ms
+          * Defines the transition time in ms, defaults to 100ms
          */
         "transitionDuration"?: number;
         /**
@@ -415,7 +415,7 @@ declare namespace LocalJSX {
          */
         "onDnnCollapsibleHeightChanged"?: (event: CustomEvent<void>) => void;
         /**
-          * Defines the transition time in ms, defaults to 300ms
+          * Defines the transition time in ms, defaults to 100ms
          */
         "transitionDuration"?: number;
     }

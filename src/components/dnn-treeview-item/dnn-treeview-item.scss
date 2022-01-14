@@ -6,7 +6,7 @@
   width: 24px;
   height: 24px;
   button{
-    transition: all 300ms ease-in-out;
+    transition: all 150ms ease-in-out;
     background-color:transparent;
     border: none;
     padding: 0;
@@ -21,7 +21,7 @@
     top: 2px;
     svg{
       :first-child{
-        transition: all 300ms ease-in-out;
+        transition: all 150ms ease-in-out;
         fill: white;
         stroke: black
       }
@@ -40,9 +40,14 @@
   }
 }
 div.item{
+  .item-slot{
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+  }
   div.children{
     overflow: hidden;
     height:0;
-    transition: all 300ms ease-in-out;
+    transition: all 150ms ease-in-out;
   }
 }

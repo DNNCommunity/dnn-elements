@@ -13,8 +13,8 @@ export class DnnCollapsible {
   /** Defines if the panel is expanded or not. */
   @Prop({reflect: true}) expanded: boolean = false;
 
-  /** Defines the transition time in ms, defaults to 300ms */
-  @Prop() transitionDuration?: number = 300;
+  /** Defines the transition time in ms, defaults to 100ms */
+  @Prop() transitionDuration?: number = 150;
 
   @State() animating: boolean = false;
 

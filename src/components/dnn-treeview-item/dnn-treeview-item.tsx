@@ -15,13 +15,22 @@ export class DnnTreeviewItem {
   @Prop({mutable: true}) expanded: boolean = false;
 
   @State() hasChildren: boolean = false;
+  
   private childrenElement!: HTMLDivElement;
+  private collapsible!: HTMLDnnCollapsibleElement;
 
   componentDidLoad() {
     const children = this.childrenElement.children[0] as HTMLSlotElement;
     const count = children.assignedElements().length
     if (count > 0){
       this.hasChildren = true;
+    }
+    if (this.expanded){
+      this.expander.classList.add("expanded");
+      this.collapsible.expanded = false;
+      setTimeout(() => {
+        this.collapsible.expanded = true;
+      }, 300);
     }
   }
 
@@ -47,8 +56,10 @@ export class DnnTreeviewItem {
           }
         </div>
         <div class="item">
-          <slot></slot>
-          <dnn-collapsible expanded={this.expanded}>
+          <div class="item-slot">
+            <slot></slot>
+          </div>
+          <dnn-collapsible ref={el => this.collapsible = el} expanded={this.expanded}>
             <div ref={el => this.childrenElement = el}>
               <slot name="children"></slot>
             </div>
