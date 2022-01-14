@@ -21,6 +21,13 @@
 | `checkedchange` | Fires up when the checkbox checked property changes. | `CustomEvent<boolean>` |
 
 
+## CSS Custom Properties
+
+| Name            | Description                                                                                  |
+| --------------- | -------------------------------------------------------------------------------------------- |
+| `--focus-color` | The color to outline the checkbox when hovered or focused, default to the dnn primary color. |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
