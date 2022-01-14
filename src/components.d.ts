@@ -76,7 +76,7 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
-          * Defines the transition time in ms, defaults to 300ms
+          * Defines the transition time in ms, defaults to 100ms
          */
         "transitionDuration"?: number;
         /**
@@ -217,6 +217,12 @@ export namespace Components {
          */
         "disabled": boolean;
     }
+    interface DnnTreeviewItem {
+        /**
+          * Defines if the current node is expanded
+         */
+        "expanded": boolean;
+    }
 }
 declare global {
     interface HTMLDnnButtonElement extends Components.DnnButton, HTMLStencilElement {
@@ -297,6 +303,12 @@ declare global {
         prototype: HTMLDnnToggleElement;
         new (): HTMLDnnToggleElement;
     };
+    interface HTMLDnnTreeviewItemElement extends Components.DnnTreeviewItem, HTMLStencilElement {
+    }
+    var HTMLDnnTreeviewItemElement: {
+        prototype: HTMLDnnTreeviewItemElement;
+        new (): HTMLDnnTreeviewItemElement;
+    };
     interface HTMLElementTagNameMap {
         "dnn-button": HTMLDnnButtonElement;
         "dnn-checkbox": HTMLDnnCheckboxElement;
@@ -311,6 +323,7 @@ declare global {
         "dnn-tab": HTMLDnnTabElement;
         "dnn-tabs": HTMLDnnTabsElement;
         "dnn-toggle": HTMLDnnToggleElement;
+        "dnn-treeview-item": HTMLDnnTreeviewItemElement;
     }
 }
 declare namespace LocalJSX {
@@ -402,7 +415,7 @@ declare namespace LocalJSX {
          */
         "onDnnCollapsibleHeightChanged"?: (event: CustomEvent<void>) => void;
         /**
-          * Defines the transition time in ms, defaults to 300ms
+          * Defines the transition time in ms, defaults to 100ms
          */
         "transitionDuration"?: number;
     }
@@ -552,6 +565,12 @@ declare namespace LocalJSX {
          */
         "onCheckChanged"?: (event: CustomEvent<DnnToggleChangeEventDetail>) => void;
     }
+    interface DnnTreeviewItem {
+        /**
+          * Defines if the current node is expanded
+         */
+        "expanded"?: boolean;
+    }
     interface IntrinsicElements {
         "dnn-button": DnnButton;
         "dnn-checkbox": DnnCheckbox;
@@ -566,6 +585,7 @@ declare namespace LocalJSX {
         "dnn-tab": DnnTab;
         "dnn-tabs": DnnTabs;
         "dnn-toggle": DnnToggle;
+        "dnn-treeview-item": DnnTreeviewItem;
     }
 }
 export { LocalJSX as JSX };
@@ -585,6 +605,7 @@ declare module "@stencil/core" {
             "dnn-tab": LocalJSX.DnnTab & JSXBase.HTMLAttributes<HTMLDnnTabElement>;
             "dnn-tabs": LocalJSX.DnnTabs & JSXBase.HTMLAttributes<HTMLDnnTabsElement>;
             "dnn-toggle": LocalJSX.DnnToggle & JSXBase.HTMLAttributes<HTMLDnnToggleElement>;
+            "dnn-treeview-item": LocalJSX.DnnTreeviewItem & JSXBase.HTMLAttributes<HTMLDnnTreeviewItemElement>;
         }
     }
 }

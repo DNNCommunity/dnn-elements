@@ -6,6 +6,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
+  margin: 3px;
 }
 button{
   background-color: transparent;
@@ -16,7 +17,7 @@ button{
   display: flex;
   justify-content: center;
   align-items: center;
-  &.undefined{
+  svg.undefined{
     opacity: 0.45;
   }
   &:focus{
