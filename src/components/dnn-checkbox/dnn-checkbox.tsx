@@ -29,20 +29,20 @@ export class DnnCheckbox {
       return;
     }
     if (this.checked === true){
-      this.checked = undefined;
-      this.button.classList.add("undefined");
-      this.emitEvents();
-      return;
-    }
-    if (this.checked === undefined){
       this.checked = false;
       this.button.classList.remove("undefined");
       this.emitEvents();
       return;
     }
-    if (this.checked === false){
+    if (this.checked === undefined){
       this.checked = true;
       this.button.classList.remove("undefined");
+      this.emitEvents();
+      return;
+    }
+    if (this.checked === false){
+      this.checked = undefined;
+      this.button.classList.add("undefined");
       this.emitEvents();
       return;
     }
