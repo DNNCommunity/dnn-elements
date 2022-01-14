@@ -13,15 +13,15 @@ export class DnnCollapsible {
   /** Defines if the panel is expanded or not. */
   @Prop({reflect: true}) expanded: boolean = false;
 
-  /** Defines the transition time in ms, defaults to 300ms */
-  @Prop() transitionDuration?: number = 300;
+  /** Defines the transition time in ms, defaults to 100ms */
+  @Prop() transitionDuration?: number = 150;
 
   @State() animating: boolean = false;
 
   @Watch("expanded")
   handleExpandedChanged(newValue: boolean){
     this.animating = true;
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       const container = this.el.shadowRoot.querySelector("#container") as HTMLDivElement;
       if (newValue){
         container.style.height = container.scrollHeight + "px";
@@ -29,12 +29,12 @@ export class DnnCollapsible {
       else{
         container.style.height = "0px";
       }
-    }, 0);
+    });
     
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       this.animating = false;
       this.dnnCollapsibleHeightChanged.emit();
-    }, this.transitionDuration);
+    });
   }
 
   /** Updates the component height, use to update after a slot content changes. */
@@ -47,14 +47,14 @@ export class DnnCollapsible {
   private updateComponentSize(){
     if (this.expanded){
       this.animating = true;
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         const container = this.el.shadowRoot.querySelector("#container") as HTMLDivElement;
         let newHeight = 0;
         container.querySelector('slot').assignedElements().forEach(node => {
           newHeight += node.scrollHeight;
         });
         container.style.height = newHeight + "px";
-      }, this.transitionDuration);
+      });
     }
   }
 
@@ -72,9 +72,9 @@ export class DnnCollapsible {
 
   private handleMutation(mutationList){
     mutationList.forEach(mutation => {
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         mutation.target.closest('dnn-collapsible').updateSize();
-      }, this.transitionDuration);
+      });
     });
   }
 

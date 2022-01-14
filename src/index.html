@@ -38,6 +38,21 @@
 </head>
 <body>
   <h1>Dnn HTML custom elements</h1>
+  <ul>
+    <li><a href="#dnn-button">dnn-button</a></li>
+    <li><a href="#dnn-checkbox">dnn-checkbox</a></li>
+    <li><a href="#dnn-chevron">dnn-chevron</a></li>
+    <li><a href="#dnn-collapsible">dnn-collapsible</a></li>
+    <li><a href="#dnn-searchbox">dnn-searchbox</a></li>
+    <li><a href="#dnn-color-picker">dnn-color-picker</a></li>
+    <li><a href="#dnn-sort-icon">dnn-sort-icon</a></li>
+    <li><a href="#dnn-toggle">dnn-toggle</a></li>
+    <li><a href="#dnn-image-crop">dnn-image-crop</a></li>
+    <li><a href="#dnn-tabs">dnn-tabs</a></li>
+    <li><a href="#dnn-treeview-item">dnn-treeview-item</a></li>
+    
+  </ul>
+  <a name="dnn-button"></a>
   <!-- dnn-button -->
   <section>
     <h2>dnn-button</h2>
@@ -80,7 +95,39 @@
     </script>
   </section>
 
+  <!-- dnn-checkbox -->
+  <a name="dnn-checkbox"></a>
+  <section id="basic-textboxes">
+    <h2>dnn-checkbox</h2>
+    <div style="display:flex;gap:15px;">
+      <div style="display:flex;flex-direction: column;">
+        <label>Normal Checkboxes</label>
+        <dnn-checkbox>Option 1</dnn-checkbox>
+        <dnn-checkbox>Option 2</dnn-checkbox>
+        <dnn-checkbox>Option 3</dnn-checkbox>
+      </div>
+      <div style="display:flex;flex-direction: column;">
+        <label>Tristate Checkboxes</label>
+        <dnn-checkbox use-intermediate="true" value="checkbox 4">Option 4</dnn-checkbox>
+        <dnn-checkbox use-intermediate="true" value="checkbox 5">Option 5</dnn-checkbox>
+        <dnn-checkbox use-intermediate="true" value="checkbox 6">Option 6</dnn-checkbox>
+      </div>
+    </div>
+    <script type="text/javascript">
+      (function() {
+        document.querySelectorAll("#basic-textboxes dnn-checkbox").forEach(el => el.addEventListener("checkedchange", e => {
+          let name = "a checkbox without a value"
+          if (e.target.value != undefined){
+            name = e.target.value;
+          }
+          console.log(name + " is now " + e.detail);
+        }));
+      })();
+    </script>
+  </section>
+
   <!-- dnn-modal -->
+  <a name="dnn-modal"></a>
   <section>
     <h2>dnn-modal</h2>
     <dnn-modal id="my-modal" backdrop-dismiss="false">I am a modal !</dnn-modal>
@@ -112,6 +159,8 @@
   </section>
 
   <!-- dnn-chevron / dnn-collapsible -->
+  <a name="dnn-chevron"></a>
+  <a name="dnn-collapsible"></a>
   <section>
       <h2>dnn-chevron / dnn-collapsible</h2>
       
@@ -209,6 +258,7 @@
       </script>
     </section>
 
+  <a name="dnn-searchbox"></a>
   <!-- dnn-searchbox -->
   <section>
     <h2>dnn-searchbox</h2>
@@ -243,7 +293,8 @@
   </section>
 
 
-  <!-- dnn-searchbox -->
+  <!-- dnn-color-picker -->
+  <a name="dnn-color-picker"></a>
   <section>
     <h2>dnn-color-picker</h2>
     <dnn-color-picker color="884422"></dnn-color-picker>
@@ -257,6 +308,7 @@
     </script>
   </section>
 
+  <a name="dnn-sort-icon"></a>
   <!-- dnn sort icon -->
   <section>
     <h2>dnn-sort-icon</h2>
@@ -279,6 +331,7 @@
     </script>
   </section>
 
+  <a name="dnn-toggle"></a>
   <!-- dnn-toggle -->
   <section>
     <h2>dnn-toggle</h2>
@@ -300,6 +353,7 @@
     </script>
   </section>
 
+  <a name="dnn-dropzone"></a>
   <!-- dnn-dropzone -->
   <section>
     <h2>dnn-dropzone</h2>
@@ -311,6 +365,7 @@
     </script>
   </section>
 
+  <a name="dnn-image-crop"></a>
   <!-- dnn-image-crop -->
   <section>
     <h2>dnn-image-cropper</h2>
@@ -322,6 +377,7 @@
     </script>
   </section>
 
+  <a name="dnn-tabs"></a>
   <!-- dnn-tabs -->
   <section>
     <h2>dnn-tabs</h2>
@@ -339,6 +395,188 @@
         <p>Gingerbread sesame snaps toffee cake cheesecake gummies cake. Danish cake sweet sweet roll oat cake gummi bears shortbread bear claw. Croissant gummi bears cake danish tart gingerbread tootsie roll carrot cake jelly beans. Liquorice biscuit pastry cake carrot cake marzipan. Brownie gummies halvah chocolate cake donut. Gummi bears cotton candy jujubes macaroon gingerbread.</p>
       </dnn-tab>
     </dnn-tabs>
+  </section>
+
+  <a name="dnn-treeview-item"></a>
+  <!-- dnn-treeview-item -->
+  <section>
+    <h2>dnn-treeview-item</h2>
+    <div style="display: flex;flex-wrap: wrap;">
+      <section>
+        <!-- basic -->
+        <h2>Basic example</h2>
+        <dnn-treeview-item>
+          Item 1
+          <dnn-treeview-item slot="children">
+            Item 1A
+            <dnn-treeview-item slot="children">
+              Item 1A1
+            </dnn-treeview-item>
+            <dnn-treeview-item slot="children">
+              Item 1A2
+            </dnn-treeview-item>
+          </dnn-treeview-item>
+          <dnn-treeview-item slot="children">
+            Item 1B
+          </dnn-treeview-item>
+          <dnn-treeview-item slot="children">
+            Item 1C
+          </dnn-treeview-item>
+        </dnn-treeview-item>
+        <dnn-treeview-item>
+          Item 2
+          <dnn-treeview-item slot="children">
+            Item 2A
+          </dnn-treeview-item>
+          <dnn-treeview-item slot="children">
+            Item 2B
+          </dnn-treeview-item>
+          <dnn-treeview-item slot="children">
+            Item 2C
+          </dnn-treeview-item>
+        </dnn-treeview-item>
+        <dnn-treeview-item>
+          Item without children
+        </dnn-treeview-item>
+      </section>
+      <section>
+        <!-- icons -->
+        <h2>With Icons</h2>
+        <dnn-treeview-item expanded="true">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> Employee 1
+          <dnn-treeview-item slot="children">
+            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><rect fill="none" height="24" width="24"/><path d="M20.41,8.41l-4.83-4.83C15.21,3.21,14.7,3,14.17,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V9.83 C21,9.3,20.79,8.79,20.41,8.41z M7,7h7v2H7V7z M17,17H7v-2h10V17z M17,13H7v-2h10V13z"/></g></svg><span>Sales Report</span>
+          </dnn-treeview-item>
+          <dnn-treeview-item slot="children">
+            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><rect fill="none" height="24" width="24"/><path d="M20.41,8.41l-4.83-4.83C15.21,3.21,14.7,3,14.17,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V9.83 C21,9.3,20.79,8.79,20.41,8.41z M7,7h7v2H7V7z M17,17H7v-2h10V17z M17,13H7v-2h10V13z"/></g></svg><span>Commissions Report</span>
+          </dnn-treeview-item>
+          <dnn-treeview-item slot="children">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"/></svg><span>Pay Slip</span>
+          </dnn-treeview-item>
+        </dnn-treeview-item>
+        <dnn-treeview-item>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> Employee 2
+          <dnn-treeview-item slot="children">
+            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><rect fill="none" height="24" width="24"/><path d="M20.41,8.41l-4.83-4.83C15.21,3.21,14.7,3,14.17,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V9.83 C21,9.3,20.79,8.79,20.41,8.41z M7,7h7v2H7V7z M17,17H7v-2h10V17z M17,13H7v-2h10V13z"/></g></svg><span>Sales Report</span>
+          </dnn-treeview-item>
+          <dnn-treeview-item slot="children">
+            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><rect fill="none" height="24" width="24"/><path d="M20.41,8.41l-4.83-4.83C15.21,3.21,14.7,3,14.17,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V9.83 C21,9.3,20.79,8.79,20.41,8.41z M7,7h7v2H7V7z M17,17H7v-2h10V17z M17,13H7v-2h10V13z"/></g></svg><span>Commissions Report</span>
+          </dnn-treeview-item>
+          <dnn-treeview-item slot="children">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"/></svg><span>Pay Slip</span>
+          </dnn-treeview-item>
+        </dnn-treeview-item>
+      </section>
+      <section id="treeview-recycle-bin-example">
+        <!-- features-wizard -->
+        <h2>Linked checkboxes</h2>
+        <p>Such behaviour could be useful in the recycle bin or some sort of features wizard, etc.</p>
+        <dnn-treeview-item expanded="true">
+          <dnn-checkbox></dnn-checkbox>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg><a href="#">Products</a>
+          <dnn-treeview-item slot="children">
+            <dnn-checkbox></dnn-checkbox>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/></svg>
+            <span>Product List</span>
+          </dnn-treeview-item>
+          <dnn-treeview-item slot="children">
+            <dnn-checkbox></dnn-checkbox>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/></svg>
+            <span>Product Details</span>
+          </dnn-treeview-item>
+        </dnn-treeview-item>
+      </section>
+      <section id="folder-treeview">
+        <h2>Anything else</h2>
+        <p>Because each element is just a slot, you can inject whaterver you need such as a dropdown.</p>
+        <dnn-treeview-item expanded="true">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+          Images
+          <dnn-treeview-item slot="children">
+            <div style="display: flex; width: 200px;">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+              <span>Image1.jpg</span>
+              <select style="margin-left: auto;">
+                <option>Readonly</option>
+                <option>Read/Write</option>
+              </select>
+            </div>
+          </dnn-treeview-item>
+          <dnn-treeview-item slot="children">
+            <div style="display: flex; width: 200px;">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+              <span>Image2.jpg</span>
+              <select style="margin-left: auto;">
+                <option>Readonly</option>
+                <option>Read/Write</option>
+              </select>
+            </div>
+          </dnn-treeview-item>
+          <dnn-treeview-item slot="children">
+            <div style="display: flex; width: 200px;">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+              <span>Image3.jpg</span>
+              <select style="margin-left: auto;">
+                <option>Readonly</option>
+                <option>Read/Write</option>
+              </select>
+            </div>
+          </dnn-treeview-item>
+        </dnn-treeview-item>
+      </section>
+    </div>
+    <script type="text/javascript">
+      (function () {
+        const treeviewRecycleBin = document.querySelector("#treeview-recycle-bin-example");
+        const recycleBinCheckboxes = treeviewRecycleBin.querySelectorAll("dnn-checkbox");
+        recycleBinCheckboxes.forEach(checkbox => {
+          checkbox.addEventListener("checkedchange", e => {
+            const thisCheckbox = e.target;
+            
+            // If we have children, set them all to our value.
+            const node = thisCheckbox.closest("dnn-treeview-item");
+            const children = node.querySelectorAll("dnn-checkbox");
+            children.forEach(child => {
+              child.checked = thisCheckbox.checked;
+              child.useIntermediate = false;
+            })
+
+            // If we have parents, check our siblings and adjust parent as required
+            const parent = thisCheckbox.parentElement.parentElement;
+            const parentCheckbox = parent.querySelector("dnn-checkbox");
+            const same = thisCheckbox == parentCheckbox;
+            if (same){
+              return;
+            }
+            let siblings = parent.querySelectorAll("dnn-checkbox");
+            let trueCount = 0;
+            let falseCount = 0;
+            siblings.forEach(sibling => {
+              if (sibling != parentCheckbox){
+                if (sibling.checked){
+                  trueCount++;
+                }
+                else{
+                  falseCount++;
+                }
+              }
+            });
+            if (trueCount > 0 && falseCount > 0){
+              parentCheckbox.useIntermediate = true;
+              parentCheckbox.checked = undefined;
+              return;
+            }
+            if (trueCount == 0 && falseCount > 0){
+              parentCheckbox.useIntermediate = false;
+              parentCheckbox.checked = false;
+              return;
+            }
+            parentCheckbox.useIntermediate = false;
+            parentCheckbox.checked = true;
+          })
+        });
+      })();
+    </script>
   </section>
 </body>
 </html>

@@ -10,7 +10,7 @@
 | Property             | Attribute             | Description                                          | Type      | Default |
 | -------------------- | --------------------- | ---------------------------------------------------- | --------- | ------- |
 | `expanded`           | `expanded`            | Defines if the panel is expanded or not.             | `boolean` | `false` |
-| `transitionDuration` | `transition-duration` | Defines the transition time in ms, defaults to 300ms | `number`  | `300`   |
+| `transitionDuration` | `transition-duration` | Defines the transition time in ms, defaults to 100ms | `number`  | `150`   |
 
 
 ## Events
@@ -32,6 +32,19 @@ Type: `Promise<void>`
 
 
 
+
+## Dependencies
+
+### Used by
+
+ - [dnn-treeview-item](../dnn-treeview-item)
+
+### Graph
+```mermaid
+graph TD;
+  dnn-treeview-item --> dnn-collapsible
+  style dnn-collapsible fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

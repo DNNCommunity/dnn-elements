@@ -42,6 +42,20 @@ export namespace Components {
          */
         "type": 'primary' | 'secondary' | 'tertiary';
     }
+    interface DnnCheckbox {
+        /**
+          * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
+         */
+        "checked": boolean | undefined;
+        /**
+          * Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)
+         */
+        "useIntermediate": boolean;
+        /**
+          * The value for this checkbox (not to be confused with its checked state).
+         */
+        "value": string;
+    }
     interface DnnChevron {
         /**
           * Collapse text for screen readers
@@ -62,7 +76,7 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
-          * Defines the transition time in ms, defaults to 300ms
+          * Defines the transition time in ms, defaults to 100ms
          */
         "transitionDuration"?: number;
         /**
@@ -203,6 +217,12 @@ export namespace Components {
          */
         "disabled": boolean;
     }
+    interface DnnTreeviewItem {
+        /**
+          * Defines if the current node is expanded
+         */
+        "expanded": boolean;
+    }
 }
 declare global {
     interface HTMLDnnButtonElement extends Components.DnnButton, HTMLStencilElement {
@@ -210,6 +230,12 @@ declare global {
     var HTMLDnnButtonElement: {
         prototype: HTMLDnnButtonElement;
         new (): HTMLDnnButtonElement;
+    };
+    interface HTMLDnnCheckboxElement extends Components.DnnCheckbox, HTMLStencilElement {
+    }
+    var HTMLDnnCheckboxElement: {
+        prototype: HTMLDnnCheckboxElement;
+        new (): HTMLDnnCheckboxElement;
     };
     interface HTMLDnnChevronElement extends Components.DnnChevron, HTMLStencilElement {
     }
@@ -277,8 +303,15 @@ declare global {
         prototype: HTMLDnnToggleElement;
         new (): HTMLDnnToggleElement;
     };
+    interface HTMLDnnTreeviewItemElement extends Components.DnnTreeviewItem, HTMLStencilElement {
+    }
+    var HTMLDnnTreeviewItemElement: {
+        prototype: HTMLDnnTreeviewItemElement;
+        new (): HTMLDnnTreeviewItemElement;
+    };
     interface HTMLElementTagNameMap {
         "dnn-button": HTMLDnnButtonElement;
+        "dnn-checkbox": HTMLDnnCheckboxElement;
         "dnn-chevron": HTMLDnnChevronElement;
         "dnn-collapsible": HTMLDnnCollapsibleElement;
         "dnn-color-picker": HTMLDnnColorPickerElement;
@@ -290,6 +323,7 @@ declare global {
         "dnn-tab": HTMLDnnTabElement;
         "dnn-tabs": HTMLDnnTabsElement;
         "dnn-toggle": HTMLDnnToggleElement;
+        "dnn-treeview-item": HTMLDnnTreeviewItemElement;
     }
 }
 declare namespace LocalJSX {
@@ -335,6 +369,24 @@ declare namespace LocalJSX {
          */
         "type"?: 'primary' | 'secondary' | 'tertiary';
     }
+    interface DnnCheckbox {
+        /**
+          * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
+         */
+        "checked"?: boolean | undefined;
+        /**
+          * Fires up when the checkbox checked property changes.
+         */
+        "onCheckedchange"?: (event: CustomEvent<boolean | undefined>) => void;
+        /**
+          * Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)
+         */
+        "useIntermediate"?: boolean;
+        /**
+          * The value for this checkbox (not to be confused with its checked state).
+         */
+        "value"?: string;
+    }
     interface DnnChevron {
         /**
           * Collapse text for screen readers
@@ -363,7 +415,7 @@ declare namespace LocalJSX {
          */
         "onDnnCollapsibleHeightChanged"?: (event: CustomEvent<void>) => void;
         /**
-          * Defines the transition time in ms, defaults to 300ms
+          * Defines the transition time in ms, defaults to 100ms
          */
         "transitionDuration"?: number;
     }
@@ -513,8 +565,15 @@ declare namespace LocalJSX {
          */
         "onCheckChanged"?: (event: CustomEvent<DnnToggleChangeEventDetail>) => void;
     }
+    interface DnnTreeviewItem {
+        /**
+          * Defines if the current node is expanded
+         */
+        "expanded"?: boolean;
+    }
     interface IntrinsicElements {
         "dnn-button": DnnButton;
+        "dnn-checkbox": DnnCheckbox;
         "dnn-chevron": DnnChevron;
         "dnn-collapsible": DnnCollapsible;
         "dnn-color-picker": DnnColorPicker;
@@ -526,6 +585,7 @@ declare namespace LocalJSX {
         "dnn-tab": DnnTab;
         "dnn-tabs": DnnTabs;
         "dnn-toggle": DnnToggle;
+        "dnn-treeview-item": DnnTreeviewItem;
     }
 }
 export { LocalJSX as JSX };
@@ -533,6 +593,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "dnn-button": LocalJSX.DnnButton & JSXBase.HTMLAttributes<HTMLDnnButtonElement>;
+            "dnn-checkbox": LocalJSX.DnnCheckbox & JSXBase.HTMLAttributes<HTMLDnnCheckboxElement>;
             "dnn-chevron": LocalJSX.DnnChevron & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
             "dnn-collapsible": LocalJSX.DnnCollapsible & JSXBase.HTMLAttributes<HTMLDnnCollapsibleElement>;
             "dnn-color-picker": LocalJSX.DnnColorPicker & JSXBase.HTMLAttributes<HTMLDnnColorPickerElement>;
@@ -544,6 +605,7 @@ declare module "@stencil/core" {
             "dnn-tab": LocalJSX.DnnTab & JSXBase.HTMLAttributes<HTMLDnnTabElement>;
             "dnn-tabs": LocalJSX.DnnTabs & JSXBase.HTMLAttributes<HTMLDnnTabsElement>;
             "dnn-toggle": LocalJSX.DnnToggle & JSXBase.HTMLAttributes<HTMLDnnToggleElement>;
+            "dnn-treeview-item": LocalJSX.DnnTreeviewItem & JSXBase.HTMLAttributes<HTMLDnnTreeviewItemElement>;
         }
     }
 }
