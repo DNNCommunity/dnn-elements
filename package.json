@@ -36,7 +36,7 @@
     "@typescript-eslint/parser": "^4.33.0",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.16.0",
-    "jest": "^27.4.5",
+    "jest": "^27.5.1",
     "jest-cli": "^26.6.3",
     "license-checker": "^25.0.1",
     "puppeteer": "^13.0.1",
