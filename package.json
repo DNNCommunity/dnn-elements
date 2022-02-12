@@ -1,8 +1,8 @@
 {
-  "name": "@eraware/dnn-elements",
-  "version": "0.11.2",
+  "name": "@dnncommunity/dnn-elements",
+  "version": "0.12.1-beta.1",
   "description": "Stencil Component Starter",
-  "repository": "https://github.com/eraware/dnn-elements",
+  "repository": "https://github.com/dnncommunity/dnn-elements",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -27,7 +27,7 @@
     "eslint": "eslint --ext .ts --ext .tsx --ext .js ./src"
   },
   "devDependencies": {
-    "@stencil/core": "^2.9.0",
+    "@stencil/core": "^2.13.0",
     "@stencil/eslint-plugin": "^0.4.0",
     "@stencil/sass": "^1.5.2",
     "@types/jest": "27.4.0",
@@ -36,11 +36,11 @@
     "@typescript-eslint/parser": "^4.33.0",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.16.0",
-    "jest": "^27.4.5",
-    "jest-cli": "^26.6.3",
+    "jest": "^27.5.1",
+    "jest-cli": "^27.5.1",
     "license-checker": "^25.0.1",
-    "puppeteer": "^13.0.1",
-    "typescript": "^4.5.4",
+    "puppeteer": "^13.3.1",
+    "typescript": "^4.5.5",
     "typescript-debounce-decorator": "^0.0.18"
   },
   "license": "MIT",

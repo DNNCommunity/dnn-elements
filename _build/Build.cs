@@ -35,7 +35,7 @@ using static Nuke.Common.Tools.Npm.NpmTasks;
     ImportGitHubTokenAs = "GithubToken",
     OnPushBranches = new[] { "main", "master", "release/*" },
     InvokedTargets = new[] { nameof(Deploy) },
-    ImportSecrets = new[] { "ERAWARE_NPM_PUBLISH_TOKEN" })]
+    ImportSecrets = new[] { "NPM_TOKEN" })]
 [GitHubActions(
   "Publish_Site",
     GitHubActionsImage.WindowsLatest,
@@ -59,7 +59,7 @@ class Build : NukeBuild
   readonly string GithubToken;
 
   // Project information
-  private const string organizationName = "eraware";
+  private const string organizationName = "DNNCommunity";
   private const string repositoryName = "dnn-elements";
 
   // Nuke features injection
@@ -237,7 +237,7 @@ class Build : NukeBuild
     .DependsOn(TagRelease)
     .DependsOn(Release)
     .Executes(() => {
-    var npmToken = Environment.GetEnvironmentVariable("ERAWARE_NPM_PUBLISH_TOKEN");
+    var npmToken = Environment.GetEnvironmentVariable("NPM_TOKEN");
       WriteAllText(RootDirectory / ".npmrc", $"//registry.npmjs.org/:_authToken={npmToken}");
       var tag = gitRepository.IsOnMainOrMasterBranch() ? "latest" : "next";
       Npm($"publish --access public --tag {tag}");

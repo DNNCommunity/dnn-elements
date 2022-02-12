@@ -40,7 +40,7 @@ jobs:
         run: ./build.cmd Deploy
         env:
           GithubToken: ${{ secrets.GITHUB_TOKEN }}
-          ERAWARE_NPM_PUBLISH_TOKEN: ${{ secrets.ERAWARE_NPM_PUBLISH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/upload-artifact@v1
         with:
           name: www
