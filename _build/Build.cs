@@ -59,7 +59,7 @@ class Build : NukeBuild
   readonly string GithubToken;
 
   // Project information
-  private const string organizationName = "dnncommunity";
+  private const string organizationName = "DNNCommunity";
   private const string repositoryName = "dnn-elements";
 
   // Nuke features injection
