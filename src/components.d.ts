@@ -223,6 +223,24 @@ export namespace Components {
          */
         "expanded": boolean;
     }
+    interface DnnVerticalSplitview {
+        /**
+          * Gets the current divider position percentage.
+         */
+        "getSplitWidthPercentage": () => Promise<number>;
+        /**
+          * Sets the width percentage of the divider
+         */
+        "setSplitWidthPercentage": (newWidth: number) => Promise<void>;
+        /**
+          * The percentage position of the splitter in the container.
+         */
+        "splitWidthPercentage": number;
+        /**
+          * The width of the splitter area.
+         */
+        "splitterWidth": number;
+    }
 }
 declare global {
     interface HTMLDnnButtonElement extends Components.DnnButton, HTMLStencilElement {
@@ -309,6 +327,12 @@ declare global {
         prototype: HTMLDnnTreeviewItemElement;
         new (): HTMLDnnTreeviewItemElement;
     };
+    interface HTMLDnnVerticalSplitviewElement extends Components.DnnVerticalSplitview, HTMLStencilElement {
+    }
+    var HTMLDnnVerticalSplitviewElement: {
+        prototype: HTMLDnnVerticalSplitviewElement;
+        new (): HTMLDnnVerticalSplitviewElement;
+    };
     interface HTMLElementTagNameMap {
         "dnn-button": HTMLDnnButtonElement;
         "dnn-checkbox": HTMLDnnCheckboxElement;
@@ -324,6 +348,7 @@ declare global {
         "dnn-tabs": HTMLDnnTabsElement;
         "dnn-toggle": HTMLDnnToggleElement;
         "dnn-treeview-item": HTMLDnnTreeviewItemElement;
+        "dnn-vertical-splitview": HTMLDnnVerticalSplitviewElement;
     }
 }
 declare namespace LocalJSX {
@@ -571,6 +596,20 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
     }
+    interface DnnVerticalSplitview {
+        /**
+          * Fires when the width of the divider changes.
+         */
+        "onWidthChanged"?: (event: CustomEvent<number>) => void;
+        /**
+          * The percentage position of the splitter in the container.
+         */
+        "splitWidthPercentage"?: number;
+        /**
+          * The width of the splitter area.
+         */
+        "splitterWidth"?: number;
+    }
     interface IntrinsicElements {
         "dnn-button": DnnButton;
         "dnn-checkbox": DnnCheckbox;
@@ -586,6 +625,7 @@ declare namespace LocalJSX {
         "dnn-tabs": DnnTabs;
         "dnn-toggle": DnnToggle;
         "dnn-treeview-item": DnnTreeviewItem;
+        "dnn-vertical-splitview": DnnVerticalSplitview;
     }
 }
 export { LocalJSX as JSX };
@@ -606,6 +646,7 @@ declare module "@stencil/core" {
             "dnn-tabs": LocalJSX.DnnTabs & JSXBase.HTMLAttributes<HTMLDnnTabsElement>;
             "dnn-toggle": LocalJSX.DnnToggle & JSXBase.HTMLAttributes<HTMLDnnToggleElement>;
             "dnn-treeview-item": LocalJSX.DnnTreeviewItem & JSXBase.HTMLAttributes<HTMLDnnTreeviewItemElement>;
+            "dnn-vertical-splitview": LocalJSX.DnnVerticalSplitview & JSXBase.HTMLAttributes<HTMLDnnVerticalSplitviewElement>;
         }
     }
 }

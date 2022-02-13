@@ -365,7 +365,7 @@
 │  ├─ publisher: Christian Johansen
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@sinonjs\fake-timers
 │  └─ licenseFile: D:\dnn-elements\dnn-elements\node_modules\@sinonjs\fake-timers\LICENSE
-├─ @stencil/core@2.12.0
+├─ @stencil/core@2.13.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ionic-team/stencil
 │  ├─ publisher: Ionic Team
@@ -962,6 +962,13 @@
 │  ├─ url: https://github.com/jonschlinkert
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\copy-descriptor
 │  └─ licenseFile: D:\dnn-elements\dnn-elements\node_modules\copy-descriptor\LICENSE
+├─ cross-fetch@3.1.5
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/lquixada/cross-fetch
+│  ├─ publisher: Leonardo Quixada
+│  ├─ email: lquixada@gmail.com
+│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\cross-fetch
+│  └─ licenseFile: D:\dnn-elements\dnn-elements\node_modules\cross-fetch\LICENSE
 ├─ cross-spawn@7.0.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/moxystudio/node-cross-spawn
@@ -1076,7 +1083,7 @@
 │  ├─ url: sindresorhus.com
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\detect-newline
 │  └─ licenseFile: D:\dnn-elements\dnn-elements\node_modules\detect-newline\license
-├─ devtools-protocol@0.0.937139
+├─ devtools-protocol@0.0.960912
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/ChromeDevTools/devtools-protocol
 │  ├─ publisher: The Chromium Authors
@@ -1985,7 +1992,7 @@
 │  ├─ repository: https://github.com/facebook/jest
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\jest-changed-files
 │  └─ licenseFile: D:\dnn-elements\dnn-elements\node_modules\jest-changed-files\LICENSE
-├─ jest-circus@27.4.5
+├─ jest-circus@27.5.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\jest-circus
@@ -2122,7 +2129,7 @@
 │  ├─ repository: https://github.com/facebook/jest
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\jest-worker
 │  └─ licenseFile: D:\dnn-elements\dnn-elements\node_modules\jest-worker\LICENSE
-├─ jest@27.4.5
+├─ jest@27.5.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\jest
@@ -2402,7 +2409,7 @@
 │  ├─ repository: https://github.com/electerious/nice-try
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\nice-try
 │  └─ licenseFile: D:\dnn-elements\dnn-elements\node_modules\nice-try\LICENSE
-├─ node-fetch@2.6.5
+├─ node-fetch@2.6.7
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/bitinn/node-fetch
 │  ├─ publisher: David Frank
@@ -2824,7 +2831,7 @@
 │  ├─ url: https://mathiasbynens.be/
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\punycode
 │  └─ licenseFile: D:\dnn-elements\dnn-elements\node_modules\punycode\LICENSE-MIT.txt
-├─ puppeteer@13.0.1
+├─ puppeteer@13.3.1
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/puppeteer/puppeteer
 │  ├─ publisher: The Chromium Authors
@@ -3544,7 +3551,7 @@
 │  ├─ publisher: duxiaofeng-github
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\typescript-debounce-decorator
 │  └─ licenseFile: D:\dnn-elements\dnn-elements\node_modules\typescript-debounce-decorator\LICENSE
-├─ typescript@4.5.4
+├─ typescript@4.5.5
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/Microsoft/TypeScript
 │  ├─ publisher: Microsoft Corp.

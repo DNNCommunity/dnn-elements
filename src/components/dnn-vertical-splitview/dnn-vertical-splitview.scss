@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  align-items: stretch;
+  margin: 0 auto;
+}
+
+button{
+  background-color: transparent;
+  border: none;
+  margin:0;
+  padding:0;
+  cursor: ew-resize;
+}
+
+.pane{
+  height: 100%;
+  overflow-y: auto;
+  &.transition{
+    transition: all 300ms ease-in-out;
+  }
+}
