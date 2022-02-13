@@ -8,7 +8,7 @@
 This is a collection of reusable HTML elements (WebComponents) for Dnn.
 
 # View demo
-A [demo site](https://eraware.github.io/dnn-elements/) is available to play with each component. Open the developer panel in your browser to inspect what various component events do.
+A [demo site](https://DnnCommunity.github.io/dnn-elements/) is available to play with each component. Open the developer panel in your browser to inspect what various component events do.
 
 # Stencil
 
