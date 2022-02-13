@@ -106,7 +106,8 @@ class Build : NukeBuild
           }
         }
       };
-      Npm($"version {GitVersion.SemVer} --allow-same-version --git-tag-version false");
+      var version = gitRepository.IsOnMainOrMasterBranch() ? GitVersion.MajorMinorPatch : GitVersion.SemVer;
+      Npm($"version {version} --allow-same-version --git-tag-version false");
       NpmInstall();
       NpmRun(s => s.SetCommand("build"));
       NpmRun(s => s.SetCommand("test"));
