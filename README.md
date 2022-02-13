@@ -19,6 +19,6 @@ Stencil combines the best concepts of the most popular frontend frameworks into 
 Stencil components are just Web Components, so they work in any major framework or with no framework at all.
 
 ## Using these components
-Run `npm i @eraware/dnn-elements`
+Run `npm i @dnncommunity/dnn-elements`
 
 Usage of each component is documented in the component folder rigth here on github with some code samples too.
