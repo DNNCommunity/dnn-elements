@@ -12,8 +12,10 @@ export class DnnTabs {
     @State() selectedTabTitle: string = "";
 
     componentDidLoad(){
-        this.updateTitles();
-        this.showFirstTab();
+        requestAnimationFrame(() => {
+            this.updateTitles();
+            this.showFirstTab();
+        });
     }
 
     private getTabs() {
