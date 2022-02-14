@@ -54,10 +54,12 @@ export class DnnVerticalSplitview {
   @Element() element : HTMLDnnVerticalSplitviewElement;
   
   componentDidLoad() {
-    const fullWidth = this.element.getBoundingClientRect().width;
-    this.leftWidth = fullWidth * this.splitWidthPercentage / 100;
-    this.rightWidth = fullWidth - this.leftWidth;
-    this.widthChanged.emit(this.splitWidthPercentage);
+    requestAnimationFrame(() => {
+      const fullWidth = this.element.getBoundingClientRect().width;
+      this.leftWidth = fullWidth * this.splitWidthPercentage / 100;
+      this.rightWidth = fullWidth - this.leftWidth;
+      this.widthChanged.emit(this.splitWidthPercentage);
+    });
   }
   
   private previousTouch: Touch;

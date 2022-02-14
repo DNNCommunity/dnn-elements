@@ -20,18 +20,20 @@ export class DnnTreeviewItem {
   private collapsible!: HTMLDnnCollapsibleElement;
 
   componentDidLoad() {
-    const children = this.childrenElement.children[0] as HTMLSlotElement;
-    const count = children.assignedElements().length
-    if (count > 0){
-      this.hasChildren = true;
-    }
-    if (this.expanded){
-      this.expander.classList.add("expanded");
-      this.collapsible.expanded = false;
-      setTimeout(() => {
-        this.collapsible.expanded = true;
-      }, 300);
-    }
+    requestAnimationFrame(() => {
+      const children = this.childrenElement.children[0] as HTMLSlotElement;
+      const count = children.assignedElements().length
+      if (count > 0){
+        this.hasChildren = true;
+      }
+      if (this.expanded){
+        this.expander.classList.add("expanded");
+        this.collapsible.expanded = false;
+        setTimeout(() => {
+          this.collapsible.expanded = true;
+        }, 300);
+      }
+    });
   }
 
   private toggleCollapse(): void {

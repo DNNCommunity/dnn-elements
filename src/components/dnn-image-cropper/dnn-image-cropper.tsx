@@ -61,7 +61,9 @@ export class DnnImageCropper {
   private imageTooSmallModal!: HTMLDnnModalElement;
 
   componentDidLoad() {
-    this.setView("noPictureView");
+    requestAnimationFrame(() => {
+      this.setView("noPictureView");
+    })
   }
 
   private setView(newView: IComponentInterfaces["View"]){
