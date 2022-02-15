@@ -223,6 +223,8 @@ export namespace Components {
          */
         "expanded": boolean;
     }
+    interface DnnVerticalOverflowMenu {
+    }
     interface DnnVerticalSplitview {
         /**
           * Gets the current divider position percentage.
@@ -327,6 +329,12 @@ declare global {
         prototype: HTMLDnnTreeviewItemElement;
         new (): HTMLDnnTreeviewItemElement;
     };
+    interface HTMLDnnVerticalOverflowMenuElement extends Components.DnnVerticalOverflowMenu, HTMLStencilElement {
+    }
+    var HTMLDnnVerticalOverflowMenuElement: {
+        prototype: HTMLDnnVerticalOverflowMenuElement;
+        new (): HTMLDnnVerticalOverflowMenuElement;
+    };
     interface HTMLDnnVerticalSplitviewElement extends Components.DnnVerticalSplitview, HTMLStencilElement {
     }
     var HTMLDnnVerticalSplitviewElement: {
@@ -348,6 +356,7 @@ declare global {
         "dnn-tabs": HTMLDnnTabsElement;
         "dnn-toggle": HTMLDnnToggleElement;
         "dnn-treeview-item": HTMLDnnTreeviewItemElement;
+        "dnn-vertical-overflow-menu": HTMLDnnVerticalOverflowMenuElement;
         "dnn-vertical-splitview": HTMLDnnVerticalSplitviewElement;
     }
 }
@@ -596,6 +605,8 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
     }
+    interface DnnVerticalOverflowMenu {
+    }
     interface DnnVerticalSplitview {
         /**
           * Fires when the width of the divider changes.
@@ -625,6 +636,7 @@ declare namespace LocalJSX {
         "dnn-tabs": DnnTabs;
         "dnn-toggle": DnnToggle;
         "dnn-treeview-item": DnnTreeviewItem;
+        "dnn-vertical-overflow-menu": DnnVerticalOverflowMenu;
         "dnn-vertical-splitview": DnnVerticalSplitview;
     }
 }
@@ -646,6 +658,7 @@ declare module "@stencil/core" {
             "dnn-tabs": LocalJSX.DnnTabs & JSXBase.HTMLAttributes<HTMLDnnTabsElement>;
             "dnn-toggle": LocalJSX.DnnToggle & JSXBase.HTMLAttributes<HTMLDnnToggleElement>;
             "dnn-treeview-item": LocalJSX.DnnTreeviewItem & JSXBase.HTMLAttributes<HTMLDnnTreeviewItemElement>;
+            "dnn-vertical-overflow-menu": LocalJSX.DnnVerticalOverflowMenu & JSXBase.HTMLAttributes<HTMLDnnVerticalOverflowMenuElement>;
             "dnn-vertical-splitview": LocalJSX.DnnVerticalSplitview & JSXBase.HTMLAttributes<HTMLDnnVerticalSplitviewElement>;
         }
     }
