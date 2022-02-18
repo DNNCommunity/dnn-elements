@@ -129,7 +129,6 @@ export class DnnVerticalSplitview {
       <Host>
           <div class="left pane" style={{
             width: `${this.leftWidth}px`,
-            height:"100%",
             }}>
             <slot name="left"></slot>
           </div>
