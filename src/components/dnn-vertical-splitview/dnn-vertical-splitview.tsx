@@ -18,6 +18,8 @@ export class DnnVerticalSplitview {
 
   /** The percentage position of the splitter in the container. */
   @Prop() splitWidthPercentage = 30;
+  
+  private splitter!: HTMLButtonElement;
 
   /** Sets the width percentage of the divider */
   @Method()
@@ -25,6 +27,7 @@ export class DnnVerticalSplitview {
     const panes = this.element.shadowRoot.querySelectorAll(".pane");
     requestAnimationFrame(() => {
       panes.forEach(pane => pane.classList.add("transition"));
+      this.splitter.classList.add("transition");
       requestAnimationFrame(() => {
         const fullWidth = this.element.getBoundingClientRect().width;
         let newLeft = fullWidth * newWidth / 100;
@@ -38,6 +41,7 @@ export class DnnVerticalSplitview {
         this.rightWidth = fullWidth - newLeft;
         setTimeout(() => {
           panes.forEach(pane => pane.classList.remove("transition"));
+          this.splitter.classList.remove("transition");
         }, 300);
       });
     });
@@ -136,7 +140,11 @@ export class DnnVerticalSplitview {
             onMouseDown={e => this.handleMouseDown(e)}
             onTouchStart={e => this.handleMouseDown(e)}
             onKeyDown={e => this.handleKeyDown(e)}
-            style={{minWidth: `${this.splitterWidth.toString()}px`}}
+            ref={el => this.splitter = el}
+            style={{
+              minWidth: `${this.splitterWidth.toString()}px`,
+              left: `${this.leftWidth - 2}px`,
+            }}
           >
             <slot></slot>
           </button>
