@@ -1,6 +1,11 @@
 import { Component, Host, h, Prop, Element, State, Method, Event, EventEmitter } from '@stencil/core';
 import { getMovementFromEvent } from "../../utilities/mouseUtilities";
 
+/**
+ * @slot default - The split divider control you want to use.
+ * @slot left - The content of the left pane.
+ * @slot right - The content of the right pane.
+ */
 @Component({
   tag: 'dnn-vertical-splitview',
   styleUrl: 'dnn-vertical-splitview.scss',
@@ -122,7 +127,7 @@ export class DnnVerticalSplitview {
   render() {
     return (
       <Host>
-          <div class="pane" style={{
+          <div class="left pane" style={{
             width: `${this.leftWidth}px`,
             height:"100%",
             }}>
@@ -137,7 +142,7 @@ export class DnnVerticalSplitview {
             <slot></slot>
           </button>
           <div
-            class="pane"
+            class="right pane"
             style={{
               width: `${this.rightWidth}px`,
             }}>
