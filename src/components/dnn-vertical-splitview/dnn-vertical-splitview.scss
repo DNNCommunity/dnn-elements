@@ -2,6 +2,7 @@
   display: flex;
   align-items: stretch;
   margin: 0 auto;
+  position: relative;
 
   /** @prop --left-pane-background-color:  Allows customizing the left pane background-color */
   --left-pane-background-color: transparent;
@@ -11,12 +12,18 @@
 }
 
 button{
-  background-color: var(--right-pane-background-color);
   border: none;
   margin:0;
   padding:0;
   cursor: ew-resize;
+  position: absolute;
+  height: 100%;
+  background-color: transparent;
+  &.transition{
+    transition: all 300ms ease-in-out;
+  }
 }
+
 
 .pane{
   overflow-y: auto;
