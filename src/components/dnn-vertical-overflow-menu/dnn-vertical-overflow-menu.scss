@@ -17,12 +17,6 @@
   align-items: center;
   background-color: var(--background-color);
   color: var(--text-color);
-  button{
-    cursor: pointer;
-    svg{
-      fill: var(--foreground-color);
-    }
-  }
   .menu{
     margin: 0.5em;
     display: flex;
@@ -31,20 +25,15 @@
     align-items: center;
     white-space: nowrap;
     width: 100%;
-    a{
-      display: flex;
-      align-items: center;
-      color: var(--text-color);
-      text-decoration: none;
-      svg{
-        fill: var(--foreground-color);
-      }
-    }
   }
   .overflow {
     margin-left: auto;
     position: relative;
     button{
+      cursor: pointer;
+      svg{
+        fill: var(--foreground-color);
+      }
       padding: 0;
       margin: 0;
       background-color: transparent;
@@ -59,21 +48,11 @@
       transition: 100ms ease-in-out;
       height: 0;
       overflow: hidden;
-      a{
-        color: var(--text-color);
-        svg{
-          fill: var(--foreground-color);
-        }
-      }
       &.visible{
         padding: 1em;
         gap: 0.5em;
         background-color: var(--background-color);
         box-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-      }
-      > *{
-        display: flex;
-        align-items: center;
       }
     }
   }

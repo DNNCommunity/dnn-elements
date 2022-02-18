@@ -28,5 +28,6 @@ button{
   }
   &.right{
     background-color: var(--right-pane-background-color);
+    flex-grow: 1;
   }
 }
