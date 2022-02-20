@@ -29,10 +29,11 @@ export class DnnTreeviewItem {
     if (expanded) {
       this.expander.classList.add("expanded");
       this.collapsible.expanded = true;
-    } else {
-      this.expander.classList.remove("expanded");
-      this.collapsible.expanded = false;
+      return;
     }
+    
+    this.expander.classList.remove("expanded");
+    this.collapsible.expanded = false;
   }
       
   
