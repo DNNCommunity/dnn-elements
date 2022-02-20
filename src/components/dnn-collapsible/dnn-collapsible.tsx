@@ -46,7 +46,12 @@ export class DnnCollapsible {
       this.updateSize();
     }
     else{
-      this.container.style.maxHeight = "0px";
+      requestAnimationFrame(() => {
+        this.container.style.maxHeight = `${this.container.scrollHeight}px`;
+        requestAnimationFrame(() => {
+          this.container.style.maxHeight = "0px";
+        });
+      });
     }
     setTimeout(() => {
       requestAnimationFrame(() => {
