@@ -49,7 +49,10 @@ export class DnnTreeviewItem {
       }
       if (this.expanded){
         this.expander.classList.add("expanded");
-        this.collapsible.expanded = true;
+        this.collapsible.expanded = false;
+        setTimeout(() => {
+          this.collapsible.expanded = true;
+        }, 300);
       }
     });
   }
