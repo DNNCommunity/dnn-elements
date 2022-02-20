@@ -43,6 +43,7 @@ div.item{
     display: flex;
     align-items: center;
     gap: 0.25em;
+    min-height: 24px;
   }
   div.children{
     overflow: hidden;
