@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Element } from '@stencil/core';
+import { Component, Host, h, Prop, State, Element, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'dnn-treeview-item',
@@ -13,6 +13,12 @@ export class DnnTreeviewItem {
   
   /** Defines if the current node is expanded  */
   @Prop({mutable: true}) expanded: boolean = false;
+
+  /** Fires when the user expands a node. */
+  @Event({bubbles: false}) userExpanded: EventEmitter<void>;
+
+  /** Fires when the user collapses a node. */
+  @Event({bubbles: false}) userCollapsed: EventEmitter<void>;
 
   @State() hasChildren: boolean = false;
   
@@ -40,10 +46,12 @@ export class DnnTreeviewItem {
     this.expanded = !this.expanded;
     if (this.expanded){
       this.expander.classList.add("expanded");
+      this.userExpanded.emit();
       return;
     }
 
     this.expander.classList.remove("expanded");
+    this.userCollapsed.emit();
   }
 
   render() {
@@ -52,7 +60,8 @@ export class DnnTreeviewItem {
         <div class="expander" ref={el => this.expander = el}>
           {this.hasChildren &&
             <button
-              onClick={() => this.toggleCollapse()}>
+              onClick={() => this.toggleCollapse()}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M10 17l5-5-5-5v10z"/><path d="M0 24V0h24v24H0z" fill="none"/></svg>
             </button>
           }

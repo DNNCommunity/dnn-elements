@@ -407,7 +407,7 @@
       <section>
         <!-- basic -->
         <h2>Basic example</h2>
-        <dnn-treeview-item>
+        <dnn-treeview-item id="treeview-root">
           Item 1
           <dnn-treeview-item slot="children">
             Item 1A
@@ -440,6 +440,18 @@
         <dnn-treeview-item>
           Item without children
         </dnn-treeview-item>
+        <script type="text/javascript">
+          const treeviewItems = document.querySelectorAll("#treeview-root, #treeview-root dnn-treeview-item");
+          console.log(treeviewItems)
+          treeviewItems.forEach(treeviewItem => {
+            treeviewItem.addEventListener("userExpanded", e => {
+              console.log(e.target, " was expanded");
+            });
+            treeviewItem.addEventListener("userCollapsed", e => {
+              console.log(e.target, " was collapsed");
+            });
+          })
+        </script>
       </section>
       <section>
         <!-- icons -->
