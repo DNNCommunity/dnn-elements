@@ -604,6 +604,14 @@ declare namespace LocalJSX {
           * Defines if the current node is expanded
          */
         "expanded"?: boolean;
+        /**
+          * Fires when the user collapses a node.
+         */
+        "onUserCollapsed"?: (event: CustomEvent<void>) => void;
+        /**
+          * Fires when the user expands a node.
+         */
+        "onUserExpanded"?: (event: CustomEvent<void>) => void;
     }
     interface DnnVerticalOverflowMenu {
     }
