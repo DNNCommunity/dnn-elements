@@ -18,10 +18,9 @@ export class DnnCollapsible {
   /** Fires whenever the collapsible height has changed */
   @Event({bubbles: true, composed: true}) dnnCollapsibleHeightChanged: EventEmitter<void>;
 
-  @Listen("dnnCollapsibleHeightChanged", {target: "body"})
+  @Listen("dnnCollapsibleHeightChanged")
   handleHeightChanged(){
     requestAnimationFrame(() => {
-      console.log(this.el, "listened");
       this.updateSize();
     })
   }
@@ -33,7 +32,6 @@ export class DnnCollapsible {
   async updateSize() {
     if (this.expanded){
         requestAnimationFrame(() => {
-          console.log(this.el, "is expanded and is now updating its size");
           this.container.style.maxHeight = `${this.container.scrollHeight}px`;
         });
         setTimeout(() => {
@@ -44,7 +42,6 @@ export class DnnCollapsible {
   
   @Watch("expanded")
   handledExpandedChanged(expanded: boolean){
-    console.log(this.el, `expanded prop has changed to ${expanded}`);
     if (expanded){
       this.updateSize();
     }
@@ -53,31 +50,9 @@ export class DnnCollapsible {
     }
     setTimeout(() => {
       requestAnimationFrame(() => {
-        console.log(this.el, "firing the event now");
         this.dnnCollapsibleHeightChanged.emit();
       });
-    }, this.transitionDuration * 3);
-  }
-  
-  private observer = new MutationObserver(() => {
-    console.log(this.el, "observed a mutation and will uptade size.");
-    this.updateSize();
-  });
-  
-  componentDidLoad(){
-    var observerOptions: MutationObserverInit = {
-      attributes: true,
-      characterData: true,
-      childList: true,
-      subtree: true,
-    };
-    this.observer.observe(this.container, observerOptions);
-    const slot = this.container.querySelector("slot");
-    this.observer.observe(slot, observerOptions);
-  }
-
-  disconnectedCallback(){
-    this.observer.disconnect();
+    }, this.transitionDuration);
   }
   
   private container: HTMLDivElement;
