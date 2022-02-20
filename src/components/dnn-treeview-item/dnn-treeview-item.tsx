@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Element, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, h, Prop, State, Element, Event, EventEmitter, Watch } from '@stencil/core';
 
 @Component({
   tag: 'dnn-treeview-item',
@@ -11,8 +11,8 @@ export class DnnTreeviewItem {
 
   @Element() el!: HTMLDnnTreeviewItemElement;
   
-  /** Defines if the current node is expanded  */
-  @Prop({mutable: true}) expanded: boolean = false;
+  /** Defines if the current node is expanded.  */
+  @Prop({mutable: true, reflect: true}) expanded: boolean = false;
 
   /** Fires when the user expands a node. */
   @Event({bubbles: false}) userExpanded: EventEmitter<void>;
@@ -20,24 +20,36 @@ export class DnnTreeviewItem {
   /** Fires when the user collapses a node. */
   @Event({bubbles: false}) userCollapsed: EventEmitter<void>;
 
+  /** Manages state for whether or not item has children. */
   @State() hasChildren: boolean = false;
+
+  /** Watch expanded Prop */
+  @Watch('expanded')
+  watchExpanded(expanded: boolean) {
+    if (expanded) {
+      this.expander.classList.add("expanded");
+      this.collapsible.expanded = true;
+      return;
+    }
+    
+    this.expander.classList.remove("expanded");
+    this.collapsible.expanded = false;
+  }
+      
   
-  private childrenElement!: HTMLDivElement;
+  private childElement!: HTMLDivElement;
   private collapsible!: HTMLDnnCollapsibleElement;
 
   componentDidLoad() {
     requestAnimationFrame(() => {
-      const children = this.childrenElement.children[0] as HTMLSlotElement;
-      const count = children.assignedElements().length
+      const child = this.childElement.children[0] as HTMLSlotElement;
+      const count = child.assignedElements().length
       if (count > 0){
         this.hasChildren = true;
       }
       if (this.expanded){
         this.expander.classList.add("expanded");
-        this.collapsible.expanded = false;
-        setTimeout(() => {
-          this.collapsible.expanded = true;
-        }, 300);
+        this.collapsible.expanded = true;
       }
     });
   }
@@ -71,7 +83,7 @@ export class DnnTreeviewItem {
             <slot></slot>
           </div>
           <dnn-collapsible ref={el => this.collapsible = el} expanded={this.expanded}>
-            <div ref={el => this.childrenElement = el}>
+            <div ref={el => this.childElement = el}>
               <slot name="children"></slot>
             </div>
           </dnn-collapsible>
