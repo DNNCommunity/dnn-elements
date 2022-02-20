@@ -219,7 +219,7 @@ export namespace Components {
     }
     interface DnnTreeviewItem {
         /**
-          * Defines if the current node is expanded
+          * Defines if the current node is expanded.
          */
         "expanded": boolean;
     }
@@ -601,7 +601,7 @@ declare namespace LocalJSX {
     }
     interface DnnTreeviewItem {
         /**
-          * Defines if the current node is expanded
+          * Defines if the current node is expanded.
          */
         "expanded"?: boolean;
         /**
