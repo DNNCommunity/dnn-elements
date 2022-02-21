@@ -1,5 +1,6 @@
 import { Component, Host, h, State, Prop, Event, EventEmitter } from '@stencil/core';
 import { CornerType } from './CornerType';
+import { getMovementFromEvent } from "../../utilities/mouseUtilities";
 
 /**
  * Allows cropping an image in-browser with the option to enforce a specific final size.
@@ -60,7 +61,9 @@ export class DnnImageCropper {
   private imageTooSmallModal!: HTMLDnnModalElement;
 
   componentDidLoad() {
-    this.setView("noPictureView");
+    requestAnimationFrame(() => {
+      this.setView("noPictureView");
+    })
   }
 
   private setView(newView: IComponentInterfaces["View"]){
@@ -245,7 +248,7 @@ export class DnnImageCropper {
     const wantedRatio = this.width / this.height;
     const cropRect = this.crop.getBoundingClientRect();
     const imageRect = this.image.getBoundingClientRect();
-    let { movementX, movementY } = this.getMouvementFromEvent(event);
+    let { movementX, movementY } = getMovementFromEvent(event, this.previousTouch);
     if (Math.abs(movementX) < Math.abs(movementY)){
       orientation = "vertical";
     }
@@ -372,7 +375,7 @@ export class DnnImageCropper {
     if (!this.isMouseStillInTarget(ev)){
       return;
     }
-    let {movementX, movementY} = this.getMouvementFromEvent(ev);
+    let {movementX, movementY} = getMovementFromEvent(ev, this.previousTouch);
     let newLeft = this.crop.offsetLeft + movementX;
     let newTop = this.crop.offsetTop + movementY;
     var imageRect = this.image.getBoundingClientRect();
@@ -392,26 +395,6 @@ export class DnnImageCropper {
     this.crop.style.left = newLeft + "px";
     this.crop.style.top = newTop + "px";
   };
-  
-  private getMouvementFromEvent(event: MouseEvent | TouchEvent) {
-    let movementX = 0;
-    let movementY = 0;
-    if (event instanceof MouseEvent) {
-      movementX = event.movementX;
-      movementY = event.movementY;
-    }
-    if (typeof TouchEvent !== "undefined"){
-      if (event instanceof TouchEvent) {
-        let touch = event.touches[0];
-        if (this.previousTouch != undefined) {
-          movementX = touch.pageX - this.previousTouch.pageX;
-          movementY = touch.pageY - this.previousTouch.pageY;
-        }
-        this.previousTouch = touch;
-      }
-    }
-    return { movementX, movementY };
-  }
 
   private isMouseStillInTarget(event: MouseEvent | TouchEvent) {
     var inside = false;

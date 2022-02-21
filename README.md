@@ -8,7 +8,7 @@
 This is a collection of reusable HTML elements (WebComponents) for Dnn.
 
 # View demo
-A [demo site](https://eraware.github.io/dnn-elements/) is available to play with each component. Open the developer panel in your browser to inspect what various component events do.
+A [demo site](https://DnnCommunity.github.io/dnn-elements/) is available to play with each component. Open the developer panel in your browser to inspect what various component events do.
 
 # Stencil
 
@@ -19,6 +19,6 @@ Stencil combines the best concepts of the most popular frontend frameworks into 
 Stencil components are just Web Components, so they work in any major framework or with no framework at all.
 
 ## Using these components
-Run `npm i @eraware/dnn-elements`
+Run `npm i @dnncommunity/dnn-elements`
 
 Usage of each component is documented in the component folder rigth here on github with some code samples too.

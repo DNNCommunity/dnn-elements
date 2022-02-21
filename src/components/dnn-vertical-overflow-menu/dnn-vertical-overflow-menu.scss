@@ -1,0 +1,59 @@
+:host {
+  display: block;
+
+  /** Defines the menu background color. */
+  --background-color: var(--dnn-color-primary-contrast, white);
+
+  /** A color that contrasts well over the background color. */
+  --foreground-color: var(--dnn-color-primary, blue);
+
+  /** The color of the text. */
+  --text-color: #222;
+}
+
+.menu-container{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  .menu{
+    margin: 0.5em;
+    display: flex;
+    gap: 1em;
+    justify-content: flex-start;
+    align-items: center;
+    white-space: nowrap;
+    width: 100%;
+  }
+  .overflow {
+    margin-left: auto;
+    position: relative;
+    button{
+      cursor: pointer;
+      svg{
+        fill: var(--foreground-color);
+      }
+      padding: 0;
+      margin: 0;
+      background-color: transparent;
+      border: none;
+    }
+    .dropdown{
+      position:absolute;
+      display: flex;
+      flex-direction: column;
+      white-space: nowrap;
+      right: 0;
+      transition: 100ms ease-in-out;
+      height: 0;
+      overflow: hidden;
+      &.visible{
+        padding: 1em;
+        gap: 0.5em;
+        background-color: var(--background-color);
+        box-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+      }
+    }
+  }
+}
