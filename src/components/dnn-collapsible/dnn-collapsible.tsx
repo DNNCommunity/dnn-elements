@@ -1,5 +1,4 @@
-import { Component, Host, h, Prop, Element, Watch, State, Method, Event, EventEmitter, Listen } from '@stencil/core';
-import { Debounce } from '../../utilities/debounce';
+import { Component, Host, h, Prop, Element, Event, EventEmitter, Watch, Listen, Method } from '@stencil/core';
 
 @Component({
   tag: "dnn-collapsible",
@@ -16,99 +15,57 @@ export class DnnCollapsible {
   /** Defines the transition time in ms, defaults to 100ms */
   @Prop() transitionDuration?: number = 150;
 
-  @State() animating: boolean = false;
+  /** Fires whenever the collapsible height has changed */
+  @Event({bubbles: true, composed: true}) dnnCollapsibleHeightChanged: EventEmitter<void>;
 
-  @Watch("expanded")
-  handleExpandedChanged(newValue: boolean){
-    this.animating = true;
+  @Listen("dnnCollapsibleHeightChanged")
+  handleHeightChanged(){
     requestAnimationFrame(() => {
-      const container = this.el.shadowRoot.querySelector("#container") as HTMLDivElement;
-      if (newValue){
-        container.style.height = container.scrollHeight + "px";
-      }
-      else{
-        container.style.height = "0px";
-      }
-    });
-    
-    requestAnimationFrame(() => {
-      this.animating = false;
-      this.dnnCollapsibleHeightChanged.emit();
-    });
+      this.updateSize();
+    })
   }
 
-  /** Updates the component height, use to update after a slot content changes. */
-  @Debounce()
+  /**
+   * Updates the component height, use to update after a slot content changes.
+   */
   @Method()
   async updateSize() {
-    this.updateComponentSize();
-  }
-
-  private updateComponentSize(){
     if (this.expanded){
-      this.animating = true;
-      requestAnimationFrame(() => {
-        const container = this.el.shadowRoot.querySelector("#container") as HTMLDivElement;
-        let newHeight = 0;
-        container.querySelector('slot').assignedElements().forEach(node => {
-          newHeight += node.scrollHeight;
+        requestAnimationFrame(() => {
+          this.container.style.maxHeight = `${this.container.scrollHeight}px`;
         });
-        container.style.height = newHeight + "px";
-      });
+        setTimeout(() => {
+          this.container.style.maxHeight = "none";
+        }, this.transitionDuration);
     }
   }
-
-  /** Fires whenever the collapsible height has changed */
-  @Event() dnnCollapsibleHeightChanged: EventEmitter<void>;
-
-  @Listen('dnnCollapsibleHeightChanged')
-  handleOtherCollapsibleHeightChanged(){
+  
+  @Watch("expanded")
+  handledExpandedChanged(expanded: boolean){
+    if (expanded){
+      this.updateSize();
+    }
+    else{
+      requestAnimationFrame(() => {
+        this.container.style.maxHeight = `${this.container.scrollHeight}px`;
+        requestAnimationFrame(() => {
+          this.container.style.maxHeight = "0px";
+        });
+      });
+    }
     setTimeout(() => {
-      this.updateComponentSize();
+      requestAnimationFrame(() => {
+        this.dnnCollapsibleHeightChanged.emit();
+      });
     }, this.transitionDuration);
   }
-
-  private mutationObserver: MutationObserver;
-
-  private handleMutation(mutationList){
-    mutationList.forEach(mutation => {
-      requestAnimationFrame(() => {
-        mutation.target.closest('dnn-collapsible').updateSize();
-      });
-    });
-  }
-
-  componentWillLoad() {
-    this.mutationObserver = new MutationObserver((mutationList) => {
-      this.handleMutation(mutationList);
-    });
-  }
-
-  componentDidLoad(){
-    const container = this.el.shadowRoot.querySelector('#container') as HTMLDivElement;
-    container.style.transitionDuration = this.transitionDuration + 'ms';
-
-    // Monitor for content changes and update own height
-    const childNodes = [this.el];
-    childNodes.forEach(element => {
-      this.mutationObserver.observe(element, {attributes: true, characterData: true, childList: true, subtree: true});
-    });
-
-    const slot = this.el.shadowRoot.querySelector('slot');
-    slot.addEventListener("slotchange", () => {
-      this.updateSize();
-    });
-  }
-
-  disconnectedCallback(){
-    this.mutationObserver.disconnect();
-  }
-  /*eslint-enable @stencil/own-methods-must-be-private */
+  
+  private container: HTMLDivElement;
 
   render() {
     return (
       <Host>
-        <div id="container">
+        <div id="container" class={this.expanded && "expanded"} ref={el => this.container = el}>
             <slot></slot>
         </div>
       </Host>

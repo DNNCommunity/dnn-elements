@@ -1,6 +1,11 @@
 import { Component, Host, h, Prop, Element, State, Method, Event, EventEmitter } from '@stencil/core';
 import { getMovementFromEvent } from "../../utilities/mouseUtilities";
 
+/**
+ * @slot default - The split divider control you want to use.
+ * @slot left - The content of the left pane.
+ * @slot right - The content of the right pane.
+ */
 @Component({
   tag: 'dnn-vertical-splitview',
   styleUrl: 'dnn-vertical-splitview.scss',
@@ -13,6 +18,8 @@ export class DnnVerticalSplitview {
 
   /** The percentage position of the splitter in the container. */
   @Prop() splitWidthPercentage = 30;
+  
+  private splitter!: HTMLButtonElement;
 
   /** Sets the width percentage of the divider */
   @Method()
@@ -20,6 +27,7 @@ export class DnnVerticalSplitview {
     const panes = this.element.shadowRoot.querySelectorAll(".pane");
     requestAnimationFrame(() => {
       panes.forEach(pane => pane.classList.add("transition"));
+      this.splitter.classList.add("transition");
       requestAnimationFrame(() => {
         const fullWidth = this.element.getBoundingClientRect().width;
         let newLeft = fullWidth * newWidth / 100;
@@ -33,6 +41,7 @@ export class DnnVerticalSplitview {
         this.rightWidth = fullWidth - newLeft;
         setTimeout(() => {
           panes.forEach(pane => pane.classList.remove("transition"));
+          this.splitter.classList.remove("transition");
         }, 300);
       });
     });
@@ -122,9 +131,8 @@ export class DnnVerticalSplitview {
   render() {
     return (
       <Host>
-          <div class="pane" style={{
+          <div class="left pane" style={{
             width: `${this.leftWidth}px`,
-            height:"100%",
             }}>
             <slot name="left"></slot>
           </div>
@@ -132,12 +140,16 @@ export class DnnVerticalSplitview {
             onMouseDown={e => this.handleMouseDown(e)}
             onTouchStart={e => this.handleMouseDown(e)}
             onKeyDown={e => this.handleKeyDown(e)}
-            style={{minWidth: `${this.splitterWidth.toString()}px`}}
+            ref={el => this.splitter = el}
+            style={{
+              minWidth: `${this.splitterWidth.toString()}px`,
+              left: `${this.leftWidth - 2}px`,
+            }}
           >
             <slot></slot>
           </button>
           <div
-            class="pane"
+            class="right pane"
             style={{
               width: `${this.rightWidth}px`,
             }}>

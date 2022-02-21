@@ -20,7 +20,6 @@ export class DnnVerticalOverflowMenu {
 
   componentDidRender() {
     requestAnimationFrame(() => {
-      this.moveAllSlottedItemsIntoMenu();
       this.moveItemsToDropDownIfNecessery();
       this.resizeObserver = new ResizeObserver(entries => {
         for (let entry of entries){
@@ -37,13 +36,8 @@ export class DnnVerticalOverflowMenu {
     });
   }
 
-  private moveAllSlottedItemsIntoMenu(){
-    const menuItems = this.element.shadowRoot.querySelector("slot").assignedElements();
-    menuItems.forEach(menuItem => this.menu.appendChild(menuItem));
-  }
-
   private moveItemsToDropDownIfNecessery(){
-    const menuItems = Array.from(this.menu.children);
+    const menuItems = Array.from(this.menu.querySelector("slot").assignedElements());
     const availableWidth = this.menu.getBoundingClientRect().width;
     let neededWidth = parseFloat(getComputedStyle(this.element).fontSize)*2;
     menuItems.forEach(item => neededWidth += this.getFullWidth(item));
@@ -54,7 +48,7 @@ export class DnnVerticalOverflowMenu {
       if (this.dropdown == undefined){
         return;
       }
-      this.dropdown.prepend(lastItem);
+      lastItem.slot = "dropdown";
       this.moveItemsToDropDownIfNecessery();
     }
   }
@@ -63,17 +57,21 @@ export class DnnVerticalOverflowMenu {
     if (this.dropdown == undefined || !this.dropdown.hasChildNodes()){
       return;
     }
-    const menuItems = Array.from(this.menu.children);
+    const menuItems = Array.from(this.menu.querySelector("slot").assignedElements());
     const availableWidth = this.menu.getBoundingClientRect().width;
     let neededWidth = parseFloat(getComputedStyle(this.element).fontSize)*2;
     neededWidth += (menuItems.length - 1) * parseFloat(getComputedStyle(this.element).fontSize);
     menuItems.forEach(item => neededWidth += this.getFullWidth(item));
-    neededWidth += this.getFullWidth(this.dropdown.children[0]);
+    const firstItem = this.dropdown.querySelector("slot").assignedElements()[0];
+    if (firstItem != undefined){
+      neededWidth += this.getFullWidth(firstItem);
+    }
 
     if (neededWidth < availableWidth){
-      const firstItem = this.dropdown.children[0];
-      this.menu.appendChild(firstItem);
-      if(!this.dropdown.hasChildNodes()){
+      if (firstItem != undefined){
+        firstItem.slot = "";
+      }
+      if(firstItem == undefined){
         this.dropdown.classList.remove("visible");
         this.showDropdownMenu = false;
         this.showDropdownButton = false;
@@ -96,7 +94,7 @@ export class DnnVerticalOverflowMenu {
     if (this.showDropdownMenu){
       this.dropdown.classList.add("visible");
       let contentHeight = 0;
-      const items = Array.from(this.dropdown.children);
+      const items = Array.from(this.dropdown.querySelector("slot").assignedElements());
       items.forEach(item => contentHeight += item.getBoundingClientRect().height);
       var emHeight = parseFloat(getComputedStyle(this.dropdown).fontSize) * 0.5;
       var additionalHeight = emHeight * (this.dropdown.children.length - 1);
@@ -138,7 +136,9 @@ export class DnnVerticalOverflowMenu {
                   onClick={() => this.toggleOverflowMenu()}>
                   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
                 </button>
-                <div class="dropdown" ref={el => this.dropdown = el}></div>
+                <div class="dropdown" ref={el => this.dropdown = el}>
+                  <slot name="dropdown"></slot>
+                </div>
               </div>
             }
           </div>

@@ -185,7 +185,7 @@
           <dnn-chevron id="dnn-chevron1"></dnn-chevron>
           <strong>Collapsible Panel</strong>
         </div>
-        <dnn-collapsible id="dnn-collapsible1" transition-duration="1000">
+        <dnn-collapsible id="dnn-collapsible1" transition-duration="300">
           <div id="collapsible-slot-content" style="padding: 15px;">
             <h2>Details</h2>
             <p>
@@ -256,7 +256,7 @@
           else{
             slot.appendChild(content.cloneNode(true));
           }
-        }, 10000);
+        }, 1000);
       </script>
     </section>
 
@@ -407,7 +407,7 @@
       <section>
         <!-- basic -->
         <h2>Basic example</h2>
-        <dnn-treeview-item>
+        <dnn-treeview-item id="treeview-root">
           Item 1
           <dnn-treeview-item slot="children">
             Item 1A
@@ -440,6 +440,18 @@
         <dnn-treeview-item>
           Item without children
         </dnn-treeview-item>
+        <script type="text/javascript">
+          const treeviewItems = document.querySelectorAll("#treeview-root, #treeview-root dnn-treeview-item");
+          console.log(treeviewItems)
+          treeviewItems.forEach(treeviewItem => {
+            treeviewItem.addEventListener("userExpanded", e => {
+              console.log(e.target, " was expanded");
+            });
+            treeviewItem.addEventListener("userCollapsed", e => {
+              console.log(e.target, " was collapsed");
+            });
+          })
+        </script>
       </section>
       <section>
         <!-- icons -->
@@ -585,11 +597,16 @@
   <a name="dnn-vertical-splitview"></a>
   <section>
     <h2>dnn-vertical-splitview</h2>
-    <dnn-vertical-splitview id="split-view-demo" style="border: 1px solid lightgray; height: 400px;">
+    <dnn-vertical-splitview
+      id="split-view-demo"
+      style="border: 1px solid lightgray; height: 400px; --left-pane-background-color: gray; --right-pane-background-color: lightgray;"
+    >
       <div style="height: 100%;
         display: flex;
         align-items: center;
-        box-shadow: inset 8px 0 8px -8px grey;"
+        box-shadow: inset 8px 0 8px -8px grey;
+        position: absolute;
+        top:0;"
       >
         <button
           id="vertical-splitview-button"
@@ -602,17 +619,17 @@
           background-color: white;
           box-shadow: 2px 2px 4px rgb(0 0 0 / 20%);
           position: relative;
-          left: -8px;"
+          left: -12px;"
         >
           &lt;&gt;
         </button>
       </div>
-      <div slot="left">
-        <p>Laboris velit ullamco reprehenderit incididunt culpa id do voluptate non. Do et officia ad ullamco et. Aliqua dolor nostrud velit ex duis adipisicing sit consectetur ea id nostrud sit labore. Voluptate culpa ut anim pariatur.</p>
-        <p>Officia tempor anim nulla irure elit excepteur velit ea mollit non minim ad duis. Mollit in et sint adipisicing in tempor et fugiat. Laborum id pariatur ut deserunt anim esse ullamco officia dolor labore proident esse. Reprehenderit adipisicing eu irure officia labore sint velit. Anim consequat incididunt tempor excepteur dolor consequat eiusmod dolore adipisicing consectetur. Incididunt aliqua eiusmod sint proident nisi nostrud minim quis mollit tempor.</p>
-        <p>Anim aute duis excepteur ipsum mollit. Ea officia elit amet qui labore reprehenderit pariatur laboris amet exercitation eu et. Ad Lorem aute exercitation amet. Est excepteur occaecat id consequat consequat.</p>
+      <div slot="left" style="padding: 1em;">
+          <p>Laboris velit ullamco reprehenderit incididunt culpa id do voluptate non. Do et officia ad ullamco et. Aliqua dolor nostrud velit ex duis adipisicing sit consectetur ea id nostrud sit labore. Voluptate culpa ut anim pariatur.</p>
+          <p>Officia tempor anim nulla irure elit excepteur velit ea mollit non minim ad duis. Mollit in et sint adipisicing in tempor et fugiat. Laborum id pariatur ut deserunt anim esse ullamco officia dolor labore proident esse. Reprehenderit adipisicing eu irure officia labore sint velit. Anim consequat incididunt tempor excepteur dolor consequat eiusmod dolore adipisicing consectetur. Incididunt aliqua eiusmod sint proident nisi nostrud minim quis mollit tempor.</p>
+          <p>Anim aute duis excepteur ipsum mollit. Ea officia elit amet qui labore reprehenderit pariatur laboris amet exercitation eu et. Ad Lorem aute exercitation amet. Est excepteur occaecat id consequat consequat.</p>
       </div>
-      <div slot="right">
+      <div slot="right" style="padding: 1em;">
         <p>Deserunt occaecat incididunt ipsum consectetur ullamco nulla qui sunt nostrud. Laborum incididunt enim culpa exercitation nisi dolore duis do sit deserunt cillum ullamco. Et incididunt nisi consectetur et cillum proident consectetur dolor cupidatat mollit magna. Ut Lorem incididunt sit consequat culpa mollit do officia. Amet eu proident non enim eu id mollit et occaecat. Ut dolor consectetur Lorem minim Lorem culpa quis nostrud elit reprehenderit labore sint. Officia dolore dolore ullamco tempor cupidatat est amet.</p>
         <p>Consequat cillum ex elit pariatur laborum ullamco qui est nisi tempor ullamco. Dolor proident ipsum cupidatat culpa quis est amet exercitation veniam proident nulla consequat quis anim. Lorem exercitation incididunt aliqua sit nisi.</p>
         <p>Consectetur elit tempor Lorem nostrud non cillum aliquip. Culpa culpa eu est est id deserunt exercitation elit occaecat enim in velit. Reprehenderit nostrud reprehenderit ex cillum pariatur enim. Amet minim elit quis excepteur exercitation eiusmod amet labore. Officia culpa exercitation do eu in ad id qui eiusmod aliqua id ex. Aliqua ullamco fugiat ex magna ex dolore fugiat consectetur mollit consequat consequat nulla et. Ea eu Lorem non officia pariatur nostrud.</p>
@@ -645,11 +662,22 @@
   <section>
     <h2>dnn-vertical-overflow-menu</h2>
 
+    <style type="text/css">
+      dnn-vertical-overflow-menu button{
+        display: flex;
+        align-items: center;
+      }
+      dnn-vertical-overflow-menu a{
+        display: flex;
+        align-items: center;
+      }
+    </style>
+
     <dnn-vertical-overflow-menu>
-      <a href="#">
+      <button>
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 14h-3v3h-2v-3H8v-2h3v-3h2v3h3v2zm-3-7V3.5L18.5 9H13z"/></svg>
         <span>Create a new item</span>
-      </a>
+      </button>
       <a href="#">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
         <span>Copy an item</span>

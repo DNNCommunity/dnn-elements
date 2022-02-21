@@ -219,7 +219,7 @@ export namespace Components {
     }
     interface DnnTreeviewItem {
         /**
-          * Defines if the current node is expanded
+          * Defines if the current node is expanded.
          */
         "expanded": boolean;
     }
@@ -601,9 +601,17 @@ declare namespace LocalJSX {
     }
     interface DnnTreeviewItem {
         /**
-          * Defines if the current node is expanded
+          * Defines if the current node is expanded.
          */
         "expanded"?: boolean;
+        /**
+          * Fires when the user collapses a node.
+         */
+        "onUserCollapsed"?: (event: CustomEvent<void>) => void;
+        /**
+          * Fires when the user expands a node.
+         */
+        "onUserExpanded"?: (event: CustomEvent<void>) => void;
     }
     interface DnnVerticalOverflowMenu {
     }

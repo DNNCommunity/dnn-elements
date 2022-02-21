@@ -102,6 +102,23 @@ Type: `Promise<void>`
 
 
 
+## Slots
+
+| Slot        | Description                                |
+| ----------- | ------------------------------------------ |
+| `"default"` | The split divider control you want to use. |
+| `"left"`    | The content of the left pane.              |
+| `"right"`   | The content of the right pane.             |
+
+
+## CSS Custom Properties
+
+| Name                            | Description                                        |
+| ------------------------------- | -------------------------------------------------- |
+| `--left-pane-background-color`  | Allows customizing the left pane background-color  |
+| `--right-pane-background-color` | Allows customizing the right pane background-color |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

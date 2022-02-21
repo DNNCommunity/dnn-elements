@@ -12,6 +12,14 @@
 | `expanded` | `expanded` | Defines if the current node is expanded | `boolean` | `false` |
 
 
+## Events
+
+| Event           | Description                           | Type                |
+| --------------- | ------------------------------------- | ------------------- |
+| `userCollapsed` | Fires when the user collapses a node. | `CustomEvent<void>` |
+| `userExpanded`  | Fires when the user expands a node.   | `CustomEvent<void>` |
+
+
 ## Dependencies
 
 ### Depends on
