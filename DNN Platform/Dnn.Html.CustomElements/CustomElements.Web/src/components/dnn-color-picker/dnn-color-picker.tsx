@@ -48,6 +48,8 @@ export class DnnColorPicker {
         const green = this.color.green;
         const blue = this.color.blue;
 
+        this.el.style.setProperty('--color-box-height', this.colorBoxHeight.toString());
+
         return (
             <div class="dnn-color-picker">
                 <div class="dnn-color-sliders">

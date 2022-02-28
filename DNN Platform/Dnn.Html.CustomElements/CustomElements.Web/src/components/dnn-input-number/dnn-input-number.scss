@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: var(--dnn-button-radius, 3px);
+    height: 100%;
+    button{
+        background: none;
+        border: none;
+        flex-shrink: 1;
+    }
+    input{
+        border: none;
+        flex-grow: 1;
+        text-align: center;
+        border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+    }
+}

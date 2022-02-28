@@ -9,7 +9,9 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface DnnColorPicker {}
+  interface DnnColorPicker {
+    'colorBoxHeight': string;
+  }
 }
 
 declare global {
@@ -26,7 +28,9 @@ declare global {
 }
 
 declare namespace LocalJSX {
-  interface DnnColorPicker extends JSXBase.HTMLAttributes<HTMLDnnColorPickerElement> {}
+  interface DnnColorPicker extends JSXBase.HTMLAttributes<HTMLDnnColorPickerElement> {
+    'colorBoxHeight'?: string;
+  }
 
   interface IntrinsicElements {
     'dnn-color-picker': DnnColorPicker;
