@@ -30,7 +30,7 @@
     "@stencil/core": "^2.13.0",
     "@stencil/eslint-plugin": "^0.4.0",
     "@stencil/sass": "^1.5.2",
-    "@types/jest": "27.4.0",
+    "@types/jest": "27.4.1",
     "@types/puppeteer": "5.4.4",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
