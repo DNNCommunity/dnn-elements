@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property   | Attribute  | Description                             | Type      | Default |
-| ---------- | ---------- | --------------------------------------- | --------- | ------- |
-| `expanded` | `expanded` | Defines if the current node is expanded | `boolean` | `false` |
+| Property   | Attribute  | Description                              | Type      | Default |
+| ---------- | ---------- | ---------------------------------------- | --------- | ------- |
+| `expanded` | `expanded` | Defines if the current node is expanded. | `boolean` | `false` |
 
 
 ## Events
