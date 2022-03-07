@@ -17,9 +17,11 @@ export class DnnVerticalSplitview {
   @Prop() splitterWidth = 16;
 
   /** The percentage position of the splitter in the container. */
-  @Prop() splitWidthPercentage = 30;
+  @Prop({mutable: true}) splitWidthPercentage = 30;
   
   private splitter!: HTMLButtonElement;
+
+  private resizeObserver: ResizeObserver;
 
   /** Sets the width percentage of the divider */
   @Method()
@@ -64,10 +66,13 @@ export class DnnVerticalSplitview {
   
   componentDidLoad() {
     requestAnimationFrame(() => {
-      const fullWidth = this.element.getBoundingClientRect().width;
-      this.leftWidth = fullWidth * this.splitWidthPercentage / 100;
-      this.rightWidth = fullWidth - this.leftWidth;
-      this.widthChanged.emit(this.splitWidthPercentage);
+      this.resizeObserver = new ResizeObserver(() => {
+        const fullWidth = this.element.getBoundingClientRect().width;
+        this.leftWidth = fullWidth * this.splitWidthPercentage / 100;
+        this.rightWidth = fullWidth - this.leftWidth;
+        this.widthChanged.emit(this.splitWidthPercentage);
+      });
+      this.resizeObserver.observe(this.element);
     });
   }
   
@@ -76,17 +81,20 @@ export class DnnVerticalSplitview {
   private handleMouseDown(event: MouseEvent | TouchEvent) {
     event.preventDefault();
     const handleDrag = (ev: MouseEvent | TouchEvent) => {
-      let {movementX} = getMovementFromEvent(ev, this.previousTouch);
-      let fullWidth = this.element.getBoundingClientRect().width;
-      let newLeft = this.leftWidth + movementX;
-      if (newLeft < 0){
-        newLeft = 0;
-      }
-      if (newLeft > fullWidth){
-        newLeft = fullWidth;
-      }
-      this.leftWidth = newLeft;
-      this.rightWidth = fullWidth - newLeft;
+      requestAnimationFrame(() => {
+        let fullWidth = this.element.getBoundingClientRect().width;
+        let {movementX} = getMovementFromEvent(ev, this.previousTouch);
+        let newLeft = this.leftWidth + movementX;
+        if (newLeft < 0){
+          newLeft = 0;
+        }
+        if (newLeft > fullWidth){
+          newLeft = fullWidth;
+        }
+        this.leftWidth = newLeft;
+        this.rightWidth = fullWidth - newLeft;
+        this.splitWidthPercentage = this.leftWidth / fullWidth * 100;
+      });
     }
     const handleDragFinished = () => {
       document.removeEventListener("mousemove", handleDrag);
@@ -132,7 +140,7 @@ export class DnnVerticalSplitview {
     return (
       <Host>
           <div class="left pane" style={{
-            width: `${this.leftWidth}px`,
+              width: `${this.leftWidth}px`,
             }}>
             <slot name="left"></slot>
           </div>
