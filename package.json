@@ -25,8 +25,9 @@
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "eslint": "eslint --ext .ts --ext .tsx --ext .js ./src",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook.run": "start-storybook -p 6006 -s dist",
+    "storybook": "npm-run-all --parallel build storybook.run",
+    "build-storybook": "build-storybook -c ./.storybook -o ../public"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
@@ -36,21 +37,24 @@
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-links": "^6.4.19",
+    "@storybook/addon-notes": "^5.3.21",
+    "@storybook/addon-viewport": "^6.4.19",
     "@storybook/html": "^6.4.19",
     "@types/jest": "27.4.1",
     "@types/puppeteer": "5.4.5",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "babel-loader": "^8.2.3",
+    "case": "^1.6.3",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.16.0",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
     "license-checker": "^25.0.1",
+    "npm-run-all": "^4.1.5",
     "puppeteer": "^13.3.1",
     "typescript": "^4.5.5",
     "typescript-debounce-decorator": "^0.0.18"
   },
-  "license": "MIT",
-  "dependencies": {}
+  "license": "MIT"
 }
