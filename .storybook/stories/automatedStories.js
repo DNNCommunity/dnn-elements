@@ -200,7 +200,7 @@ function createStencilStory({ Component, notes, states, args = {}, argTypes = {}
   // Clone the "states" array and add the default state first
   states = states && states.length ? states.slice(0) : [];
   states.unshift({
-    title: 'Default state (use Controls below to edit props):',
+    title: 'Default Component State (use Controls to edit props):',
     tag: Component.is,
     props: {},
     children: [{ tag: 'span', innerText: 'Default' }],
