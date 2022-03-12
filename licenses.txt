@@ -918,6 +918,13 @@
 │  ├─ publisher: Nicholas C. Zakas
 │  ├─ path: C:\dev\dnn-elements\node_modules\@humanwhocodes\object-schema
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\@humanwhocodes\object-schema\LICENSE
+├─ @hypnosphi/create-react-context@0.3.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/thejameskyle/create-react-context
+│  ├─ publisher: James Kyle
+│  ├─ email: me@thejameskyle.com
+│  ├─ path: C:\dev\dnn-elements\node_modules\@hypnosphi\create-react-context
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\@hypnosphi\create-react-context\LICENSE
 ├─ @istanbuljs/load-nyc-config@1.1.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/istanbuljs/load-nyc-config
@@ -1075,6 +1082,12 @@
 │  ├─ email: federico.zivolo@gmail.com
 │  ├─ path: C:\dev\dnn-elements\node_modules\@popperjs\core
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\@popperjs\core\LICENSE.md
+├─ @reach/router@1.3.4
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/reach/router
+│  ├─ publisher: Ryan Florence
+│  ├─ path: C:\dev\dnn-elements\node_modules\@reach\router
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\@reach\router\LICENSE
 ├─ @sinonjs/commons@1.8.3
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/sinonjs/commons
@@ -1140,6 +1153,11 @@
 │  ├─ publisher: winkerVSbecks
 │  ├─ path: C:\dev\dnn-elements\node_modules\@storybook\addon-measure
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\@storybook\addon-measure\LICENSE
+├─ @storybook/addon-notes@5.3.21
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/storybookjs/storybook
+│  ├─ path: C:\dev\dnn-elements\node_modules\@storybook\addon-notes
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\@storybook\addon-notes\LICENSE
 ├─ @storybook/addon-outline@6.4.19
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/storybookjs/storybook
@@ -1448,11 +1466,21 @@
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: C:\dev\dnn-elements\node_modules\@types\qs
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\@types\qs\LICENSE
+├─ @types/reach__router@1.3.10
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+│  ├─ path: C:\dev\dnn-elements\node_modules\@types\reach__router
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\@types\reach__router\LICENSE
 ├─ @types/react-syntax-highlighter@11.0.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: C:\dev\dnn-elements\node_modules\@types\react-syntax-highlighter
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\@types\react-syntax-highlighter\LICENSE
+├─ @types/react-textarea-autosize@4.3.6
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+│  ├─ path: C:\dev\dnn-elements\node_modules\@types\react-textarea-autosize
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\@types\react-textarea-autosize\LICENSE
 ├─ @types/react@17.0.40
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -2371,6 +2399,12 @@
 │  ├─ url: sindresorhus.com
 │  ├─ path: C:\dev\dnn-elements\node_modules\camelcase
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\camelcase\license
+├─ can-use-dom@0.1.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/akiran/can-use-dom
+│  ├─ publisher: Kiran Abburi
+│  ├─ path: C:\dev\dnn-elements\node_modules\can-use-dom
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\can-use-dom\LICENSE
 ├─ caniuse-lite@1.0.30001314
 │  ├─ licenses: CC-BY-4.0
 │  ├─ repository: https://github.com/browserslist/caniuse-lite
@@ -2392,6 +2426,14 @@
 │  ├─ publisher: Michael Pratt
 │  ├─ path: C:\dev\dnn-elements\node_modules\case-sensitive-paths-webpack-plugin
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\case-sensitive-paths-webpack-plugin\LICENSE
+├─ case@1.6.3
+│  ├─ licenses: (MIT OR GPL-3.0-or-later)
+│  ├─ repository: https://github.com/nbubna/Case
+│  ├─ publisher: Nathan Bubna
+│  ├─ email: nathan@esha.com
+│  ├─ url: http://www.esha.com/
+│  ├─ path: C:\dev\dnn-elements\node_modules\case
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\case\LICENSE
 ├─ ccount@1.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/wooorm/ccount
@@ -2521,6 +2563,11 @@
 │  ├─ publisher: James Talmage
 │  ├─ path: C:\dev\dnn-elements\node_modules\cli-table3
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\cli-table3\LICENSE
+├─ clipboard@2.0.10
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/zenorocha/clipboard.js
+│  ├─ path: C:\dev\dnn-elements\node_modules\clipboard
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\clipboard\LICENSE
 ├─ cliui@7.0.4
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/yargs/cliui
@@ -2806,6 +2853,13 @@
 │  ├─ repository: https://github.com/crypto-browserify/createHmac
 │  ├─ path: C:\dev\dnn-elements\node_modules\create-hmac
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\create-hmac\LICENSE
+├─ create-react-context@0.3.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/thejameskyle/create-react-context
+│  ├─ publisher: James Kyle
+│  ├─ email: me@thejameskyle.com
+│  ├─ path: C:\dev\dnn-elements\node_modules\create-react-context
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\create-react-context\LICENSE
 ├─ cross-fetch@3.1.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/lquixada/cross-fetch
@@ -2927,6 +2981,14 @@
 │  ├─ url: http://desmondbrand.com
 │  ├─ path: C:\dev\dnn-elements\node_modules\dedent
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\dedent\LICENSE
+├─ deep-equal@1.1.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/substack/node-deep-equal
+│  ├─ publisher: James Halliday
+│  ├─ email: mail@substack.net
+│  ├─ url: http://substack.net
+│  ├─ path: C:\dev\dnn-elements\node_modules\deep-equal
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\deep-equal\LICENSE
 ├─ deep-is@0.1.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/thlorenz/deep-is
@@ -2967,6 +3029,11 @@
 │  ├─ url: http://debuggable.com/
 │  ├─ path: C:\dev\dnn-elements\node_modules\delayed-stream
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\delayed-stream\License
+├─ delegate@3.2.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/zenorocha/delegate
+│  ├─ path: C:\dev\dnn-elements\node_modules\delegate
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\delegate\readme.md
 ├─ delegates@1.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/visionmedia/node-delegates
@@ -3010,6 +3077,12 @@
 │  ├─ url: sindresorhus.com
 │  ├─ path: C:\dev\dnn-elements\node_modules\detect-newline
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\detect-newline\license
+├─ detect-node-es@1.1.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/thekashey/detect-node
+│  ├─ publisher: Ilya Kantor
+│  ├─ path: C:\dev\dnn-elements\node_modules\detect-node-es
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\detect-node-es\LICENSE
 ├─ detect-port@1.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/node-modules/detect-port
@@ -3598,6 +3671,13 @@
 │  ├─ url: @mafintosh
 │  ├─ path: C:\dev\dnn-elements\node_modules\flush-write-stream
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\flush-write-stream\LICENSE
+├─ focus-lock@0.10.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/theKashey/focus-lock
+│  ├─ publisher: theKashey
+│  ├─ email: thekashey@gmail.com
+│  ├─ path: C:\dev\dnn-elements\node_modules\focus-lock
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\focus-lock\LICENSE
 ├─ for-in@1.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/for-in
@@ -3856,11 +3936,23 @@
 │  ├─ url: https://sindresorhus.com
 │  ├─ path: C:\dev\dnn-elements\node_modules\globby
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\globby\license
+├─ good-listener@1.2.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/zenorocha/good-listener
+│  ├─ path: C:\dev\dnn-elements\node_modules\good-listener
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\good-listener\readme.md
 ├─ graceful-fs@4.2.8
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/isaacs/node-graceful-fs
 │  ├─ path: C:\dev\dnn-elements\node_modules\graceful-fs
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\graceful-fs\LICENSE
+├─ gud@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/jamiebuilds/global-unique-id
+│  ├─ publisher: Jamie Kyle
+│  ├─ email: me@thejameskyle.com
+│  ├─ path: C:\dev\dnn-elements\node_modules\gud
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\gud\README.md
 ├─ handlebars@4.7.7
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/wycats/handlebars.js
@@ -4977,6 +5069,14 @@
 │  ├─ email: me@brian-donovan.com
 │  ├─ path: C:\dev\dnn-elements\node_modules\lines-and-columns
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\lines-and-columns\LICENSE
+├─ load-json-file@4.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/sindresorhus/load-json-file
+│  ├─ publisher: Sindre Sorhus
+│  ├─ email: sindresorhus@gmail.com
+│  ├─ url: sindresorhus.com
+│  ├─ path: C:\dev\dnn-elements\node_modules\load-json-file
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\load-json-file\license
 ├─ loader-runner@2.4.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack/loader-runner
@@ -5005,6 +5105,14 @@
 │  ├─ url: http://allyoucanleet.com/
 │  ├─ path: C:\dev\dnn-elements\node_modules\lodash.debounce
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\lodash.debounce\LICENSE
+├─ lodash.memoize@4.1.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/lodash/lodash
+│  ├─ publisher: John-David Dalton
+│  ├─ email: john.david.dalton@gmail.com
+│  ├─ url: http://allyoucanleet.com/
+│  ├─ path: C:\dev\dnn-elements\node_modules\lodash.memoize
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\lodash.memoize\LICENSE
 ├─ lodash.merge@4.6.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/lodash/lodash
@@ -5012,6 +5120,14 @@
 │  ├─ email: john.david.dalton@gmail.com
 │  ├─ path: C:\dev\dnn-elements\node_modules\lodash.merge
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\lodash.merge\LICENSE
+├─ lodash.throttle@4.1.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/lodash/lodash
+│  ├─ publisher: John-David Dalton
+│  ├─ email: john.david.dalton@gmail.com
+│  ├─ url: http://allyoucanleet.com/
+│  ├─ path: C:\dev\dnn-elements\node_modules\lodash.throttle
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\lodash.throttle\LICENSE
 ├─ lodash.truncate@4.4.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/lodash/lodash
@@ -5185,6 +5301,13 @@
 │  ├─ publisher: Tobias Koppers @sokra
 │  ├─ path: C:\dev\dnn-elements\node_modules\memory-fs
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\memory-fs\README.md
+├─ memorystream@0.3.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/JSBizon/node-memorystream
+│  ├─ publisher: Dmitry Nizovtsev
+│  ├─ url: https://github.com/JSBizon
+│  ├─ path: C:\dev\dnn-elements\node_modules\memorystream
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\memorystream\LICENSE
 ├─ merge-descriptors@1.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/component/merge-descriptors
@@ -5487,6 +5610,12 @@
 │  ├─ url: https://izs.me
 │  ├─ path: C:\dev\dnn-elements\node_modules\npm-normalize-package-bin
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\npm-normalize-package-bin\LICENSE
+├─ npm-run-all@4.1.5
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/mysticatea/npm-run-all
+│  ├─ publisher: Toru Nagashima
+│  ├─ path: C:\dev\dnn-elements\node_modules\npm-run-all
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\npm-run-all\LICENSE
 ├─ npm-run-path@4.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/npm-run-path
@@ -5549,6 +5678,12 @@
 │  ├─ url: http://substack.net
 │  ├─ path: C:\dev\dnn-elements\node_modules\object-inspect
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\object-inspect\LICENSE
+├─ object-is@1.1.5
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/es-shims/object-is
+│  ├─ publisher: Jordan Harband
+│  ├─ path: C:\dev\dnn-elements\node_modules\object-is
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\object-is\LICENSE
 ├─ object-keys@1.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ljharb/object-keys
@@ -5924,6 +6059,14 @@
 │  ├─ url: https://github.com/jonschlinkert
 │  ├─ path: C:\dev\dnn-elements\node_modules\picomatch
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\picomatch\LICENSE
+├─ pidtree@0.3.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/simonepri/pidtree
+│  ├─ publisher: Simone Primarosa
+│  ├─ email: simonepri@outlook.com
+│  ├─ url: https://github.com/simonepri
+│  ├─ path: C:\dev\dnn-elements\node_modules\pidtree
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\pidtree\license
 ├─ pify@4.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/pify
@@ -5961,6 +6104,13 @@
 │  ├─ url: https://polished.js.org
 │  ├─ path: C:\dev\dnn-elements\node_modules\polished
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\polished\LICENSE.md
+├─ popper.js@1.16.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/FezVrasta/popper.js
+│  ├─ publisher: Federico Zivolo
+│  ├─ email: federico.zivolo@gmail.com
+│  ├─ path: C:\dev\dnn-elements\node_modules\popper.js
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\popper.js\README.md
 ├─ posix-character-classes@0.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/posix-character-classes
@@ -6256,6 +6406,14 @@
 │  ├─ publisher: Tobias Koppers @sokra
 │  ├─ path: C:\dev\dnn-elements\node_modules\raw-loader
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\raw-loader\LICENSE
+├─ react-clientside-effect@1.2.5
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/thekashey/react-clientside-effect
+│  ├─ publisher: Dan Abramov
+│  ├─ email: dan.abramov@me.com
+│  ├─ url: http://github.com/gaearon
+│  ├─ path: C:\dev\dnn-elements\node_modules\react-clientside-effect
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\react-clientside-effect\LICENSE
 ├─ react-colorful@5.5.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/omgovich/react-colorful
@@ -6287,6 +6445,13 @@
 │  ├─ publisher: Chris Bolin
 │  ├─ path: C:\dev\dnn-elements\node_modules\react-fast-compare
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\react-fast-compare\LICENSE
+├─ react-focus-lock@2.8.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/theKashey/react-focus-lock
+│  ├─ publisher: theKashey
+│  ├─ email: thekashey@gmail.com
+│  ├─ path: C:\dev\dnn-elements\node_modules\react-focus-lock
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\react-focus-lock\LICENSE
 ├─ react-helmet-async@1.2.3
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/staylor/react-helmet-async
@@ -6307,6 +6472,11 @@
 │  ├─ repository: https://github.com/facebook/react
 │  ├─ path: C:\dev\dnn-elements\node_modules\react-is
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\react-is\LICENSE
+├─ react-lifecycles-compat@3.0.4
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/reactjs/react-lifecycles-compat
+│  ├─ path: C:\dev\dnn-elements\node_modules\react-lifecycles-compat
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\react-lifecycles-compat\LICENSE.md
 ├─ react-popper-tooltip@3.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mohsinulhaq/react-popper-tooltip
@@ -6589,6 +6759,13 @@
 │  ├─ url: github.com/floatdrop
 │  ├─ path: C:\dev\dnn-elements\node_modules\require-from-string
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\require-from-string\license
+├─ resize-observer-polyfill@1.5.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/que-etc/resize-observer-polyfill
+│  ├─ publisher: Denis Rul
+│  ├─ email: que.etc@gmail.com
+│  ├─ path: C:\dev\dnn-elements\node_modules\resize-observer-polyfill
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\resize-observer-polyfill\LICENSE
 ├─ resolve-cwd@3.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/resolve-cwd
@@ -6725,6 +6902,11 @@
 │  ├─ url: https://github.com/webpack-contrib
 │  ├─ path: C:\dev\dnn-elements\node_modules\schema-utils
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\schema-utils\LICENSE
+├─ select@1.1.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/zenorocha/select
+│  ├─ path: C:\dev\dnn-elements\node_modules\select
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\select\readme.md
 ├─ semver@6.3.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/npm/node-semver
@@ -6799,6 +6981,13 @@
 │  ├─ url: https://github.com/jonschlinkert
 │  ├─ path: C:\dev\dnn-elements\node_modules\shallow-clone
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\shallow-clone\LICENSE
+├─ shallow-equal@1.2.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/moroshko/shallow-equal
+│  ├─ publisher: Misha Moroshko
+│  ├─ email: michael.moroshko@gmail.com
+│  ├─ path: C:\dev\dnn-elements\node_modules\shallow-equal
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\shallow-equal\LICENSE
 ├─ shallowequal@1.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/dashed/shallowequal
@@ -6823,6 +7012,14 @@
 │  ├─ url: sindresorhus.com
 │  ├─ path: C:\dev\dnn-elements\node_modules\shebang-regex
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\shebang-regex\license
+├─ shell-quote@1.7.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/substack/node-shell-quote
+│  ├─ publisher: James Halliday
+│  ├─ email: mail@substack.net
+│  ├─ url: http://substack.net
+│  ├─ path: C:\dev\dnn-elements\node_modules\shell-quote
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\shell-quote\LICENSE
 ├─ side-channel@1.0.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ljharb/side-channel
@@ -6837,6 +7034,18 @@
 │  ├─ email: ben@npmjs.com
 │  ├─ path: C:\dev\dnn-elements\node_modules\signal-exit
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\signal-exit\LICENSE.txt
+├─ simplebar-react@1.2.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/grsmto/simplebar
+│  ├─ publisher: Adrien Denat
+│  ├─ path: C:\dev\dnn-elements\node_modules\simplebar-react
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\simplebar-react\LICENSE
+├─ simplebar@4.2.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/grsmto/simplebar
+│  ├─ publisher: Adrien Denat from a fork by Jonathan Nicol
+│  ├─ path: C:\dev\dnn-elements\node_modules\simplebar
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\simplebar\LICENSE
 ├─ sisteransi@1.0.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/terkelg/sisteransi
@@ -7331,6 +7540,12 @@
 │  ├─ url: https://convolv.es/
 │  ├─ path: C:\dev\dnn-elements\node_modules\timers-browserify
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\timers-browserify\LICENSE.md
+├─ tiny-emitter@2.1.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/scottcorgan/tiny-emitter
+│  ├─ publisher: Scott Corgan
+│  ├─ path: C:\dev\dnn-elements\node_modules\tiny-emitter
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\tiny-emitter\LICENSE
 ├─ tmpl@1.0.5
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/daaku/nodejs-tmpl
@@ -7491,6 +7706,12 @@
 │  ├─ repository: https://github.com/jshttp/type-is
 │  ├─ path: C:\dev\dnn-elements\node_modules\type-is
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\type-is\LICENSE
+├─ typed-styles@0.0.7
+│  ├─ licenses: MIT
+│  ├─ publisher: lttb
+│  ├─ email: kenzhaev.artur@gmail.com
+│  ├─ path: C:\dev\dnn-elements\node_modules\typed-styles
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\typed-styles\LICENSE
 ├─ typedarray-to-buffer@3.1.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/feross/typedarray-to-buffer
@@ -7697,6 +7918,13 @@
 │  ├─ email: doug@somethingdoug.com
 │  ├─ path: C:\dev\dnn-elements\node_modules\unpipe
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\unpipe\LICENSE
+├─ unquote@1.1.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/lakenen/node-unquote
+│  ├─ publisher: Cameron Lakenen
+│  ├─ email: cameron@lakenen.com
+│  ├─ path: C:\dev\dnn-elements\node_modules\unquote
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\unquote\LICENSE
 ├─ unset-value@1.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/unset-value
@@ -7735,6 +7963,13 @@
 │  ├─ repository: https://github.com/defunctzombie/node-url
 │  ├─ path: C:\dev\dnn-elements\node_modules\url
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\url\LICENSE
+├─ use-callback-ref@1.2.5
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/theKashey/use-callback-ref
+│  ├─ publisher: theKashey
+│  ├─ email: thekashey@gmail.com
+│  ├─ path: C:\dev\dnn-elements\node_modules\use-callback-ref
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\use-callback-ref\README.md
 ├─ use-composed-ref@1.2.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/Andarist/use-composed-ref
@@ -7750,6 +7985,12 @@
 │  ├─ repository: https://github.com/Andarist/use-latest
 │  ├─ path: C:\dev\dnn-elements\node_modules\use-latest
 │  └─ licenseFile: C:\dev\dnn-elements\node_modules\use-latest\README.md
+├─ use-sidecar@1.0.5
+│  ├─ licenses: MIT
+│  ├─ publisher: theKashey
+│  ├─ email: thekashey@gmail.com
+│  ├─ path: C:\dev\dnn-elements\node_modules\use-sidecar
+│  └─ licenseFile: C:\dev\dnn-elements\node_modules\use-sidecar\README.md
 ├─ use@3.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/use
