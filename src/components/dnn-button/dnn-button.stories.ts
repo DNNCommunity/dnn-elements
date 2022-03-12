@@ -1,5 +1,5 @@
 export default {
-    // This creates a 'Components' folder and a 'dnn-element' subfolder
+    // This creates a 'Components' folder and a 'dnn-button' subfolder
     title: 'Compenents/dnn-button',
 };
 
