@@ -62,10 +62,19 @@ export class DnnCollapsible {
   
   private container: HTMLDivElement;
 
+  componentDidLoad() {
+    this.container.style.transition = `max-height ${this.transitionDuration}ms ease-in-out`;
+  }
+
   render() {
     return (
       <Host>
-        <div id="container" class={this.expanded && "expanded"} ref={el => this.container = el}>
+        <div
+          id="container"
+          class={this.expanded && "expanded"}
+          ref={el => this.container = el}
+          style={{transition: `max-height ${this.transitionDuration}ms ease-in-out`}}
+        >
             <slot></slot>
         </div>
       </Host>

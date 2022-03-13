@@ -8,5 +8,5 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-notes/register",
   ],
-  "framework": "@storybook/html"
+  "framework": "@storybook/web-components"
 }

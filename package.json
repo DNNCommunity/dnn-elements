@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "build": "eslint --ext .ts --ext .tsx --ext .js ./src && stencil build --docs",
-    "postbuild": "license-checker --out licenses.txt --direct",
+    "postbuild": "license-checker --out licenses.txt --direct --relativeLicensePath",
     "start": "stencil build --dev --watch --serve",
     "start.edge": "stencil build --dev --watch --serve --es5",
     "poststart": "license-checker --out licenses.txt --direct",
@@ -38,6 +38,7 @@
     "@storybook/addon-links": "^6.4.19",
     "@storybook/addon-notes": "^5.3.21",
     "@storybook/html": "^6.4.19",
+    "@storybook/web-components": "^6.4.19",
     "@types/jest": "27.4.1",
     "@types/puppeteer": "5.4.5",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
@@ -48,6 +49,8 @@
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
     "license-checker": "^25.0.1",
+    "lit-html": "^2.2.0",
+    "npm-run-all": "^4.1.5",
     "puppeteer": "^13.3.1",
     "typescript": "^4.5.5",
     "typescript-debounce-decorator": "^0.0.18"
