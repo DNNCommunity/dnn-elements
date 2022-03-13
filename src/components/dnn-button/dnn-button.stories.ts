@@ -1,6 +1,11 @@
+import readme from './readme.md';
+
 export default {
-    // This creates a 'Components' folder and a 'dnn-button' subfolder
-    title: 'Compenents/dnn-button',
+    title: 'Components/dnn-button',
+    component: 'dnn-button',
+    parameters: {
+        notes:  readme,
+    }
 };
 
 const Template = (args) => `<dnn-button type=${args.type} reversed=${args.reversed} size=${args.size} confirm=${args.confirm} confirmYesText=${args.confirmYesText} confirmNoText=${args.confirmNoText} confirmMessage=${args.confirmMessage} disabled=${args.disabled}>Click Me</dnn-button>`;
