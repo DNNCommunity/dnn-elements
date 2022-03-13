@@ -1116,6 +1116,11 @@
 │  ├─ publisher: Ionic Team
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@stencil\sass
 │  └─ licenseFile: node_modules\@stencil\sass\LICENSE
+├─ @storybook/addon-a11y@6.4.19
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/storybookjs/storybook
+│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@storybook\addon-a11y
+│  └─ licenseFile: node_modules\@storybook\addon-a11y\LICENSE
 ├─ @storybook/addon-actions@6.4.19
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/storybookjs/storybook
@@ -2039,6 +2044,11 @@
 │  ├─ email: andrey@sitnik.ru
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\autoprefixer
 │  └─ licenseFile: node_modules\autoprefixer\LICENSE
+├─ axe-core@4.4.1
+│  ├─ licenses: MPL-2.0
+│  ├─ repository: https://github.com/dequelabs/axe-core
+│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\axe-core
+│  └─ licenseFile: node_modules\axe-core\LICENSE
 ├─ babel-jest@27.5.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
