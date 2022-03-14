@@ -4,9 +4,10 @@ import {
 } from '@storybook/web-components';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
 import {version} from '../package.json';
-
+import customElements from '../custom-elements.json';
 import {defineCustomElements} from '../loader';
 
+setCustomElements(customElements);
 defineCustomElements();
 
 addParameters({

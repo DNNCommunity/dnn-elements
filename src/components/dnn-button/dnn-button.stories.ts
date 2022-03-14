@@ -38,21 +38,24 @@ export default {
         confirmNoText: {
             control: 'text',
         },
+        confirmMessage: {
+            control: 'text',
+        },
         disabled: {
           control: 'boolean',
         },
       },
       args: {
-        type: null,
-        reversed: null,
-        size: null,
-        confirm: null,
-        confirmYesText: null,
-        confirmNoText: null,
-        confirmMessage: null,
+        type: 'primary',
+        reversed: false,
+        size: 'medium',
+        confirm: true,
+        confirmYesText: 'Yes',
+        confirmNoText: 'No',
+        confirmMessage: 'Are you sure?',
         ' ': `Click Me!`,
-        disabled: null,
-      },    
+        disabled: false,
+      },
 } as Meta;
 
 const Template = (args) =>
@@ -62,9 +65,9 @@ const Template = (args) =>
             ?reversed=${ifDefined(args.reversed)}
             size=${ifDefined(args.size)}
             ?confirm=${ifDefined(args.confirm)}
-            confirmYesText=${ifDefined(args.confirmYesText)}
-            confirmNoText=${ifDefined(args.confirmNoText)}
-            ?confirmMessage=${ifDefined(args.confirmMessage)}
+            confirm-yes-text=${ifDefined(args.confirmYesText)}
+            confirm-no-text=${ifDefined(args.confirmNoText)}
+            confirm-message=${ifDefined(args.confirmMessage)}
             ?disabled=${ifDefined(args.disabled)}>
             ${unsafeHTML(args[' '])}
         </dnn-button>
@@ -75,7 +78,7 @@ Default.args = {
     type: 'primary',
     reversed: false,
     size: 'medium',
-    confirm: false,
+    confirm: true,
     confirmYesText: 'Yes',
     confirmNoText: 'No',
     confirmMessage: 'Are you sure?',
