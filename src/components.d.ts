@@ -6,6 +6,10 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ColorInfo } from "./utilities/colorInfo";
+import { IPermissions } from "./components/dnn-permissions-grid/permissions-interface";
+import { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interface";
+import { IRole } from "./components/dnn-permissions-grid/role-interface";
+import { ILocalization } from "./components/dnn-permissions-grid/localisation-interface";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export namespace Components {
     interface DnnButton {
@@ -46,7 +50,7 @@ export namespace Components {
         /**
           * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
          */
-        "checked": boolean | undefined;
+        "checked": "checked" | "unchecked" | "intermediate";
         /**
           * Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)
          */
@@ -171,6 +175,24 @@ export namespace Components {
          */
         "showCloseButton"?: boolean;
     }
+    interface DnnPermissionsGrid {
+        /**
+          * The list of permissions.
+         */
+        "permissions": IPermissions;
+        /**
+          * Optionally allows localizing the component strings.
+         */
+        "resx": ILocalization;
+        /**
+          * The list of role groups.
+         */
+        "roleGroups": IRoleGroup[];
+        /**
+          * The list of possible roles.
+         */
+        "roles": IRole[];
+    }
     interface DnnSearchbox {
         /**
           * Debounces the queryChanged by 500ms.
@@ -293,6 +315,12 @@ declare global {
         prototype: HTMLDnnModalElement;
         new (): HTMLDnnModalElement;
     };
+    interface HTMLDnnPermissionsGridElement extends Components.DnnPermissionsGrid, HTMLStencilElement {
+    }
+    var HTMLDnnPermissionsGridElement: {
+        prototype: HTMLDnnPermissionsGridElement;
+        new (): HTMLDnnPermissionsGridElement;
+    };
     interface HTMLDnnSearchboxElement extends Components.DnnSearchbox, HTMLStencilElement {
     }
     var HTMLDnnSearchboxElement: {
@@ -350,6 +378,7 @@ declare global {
         "dnn-dropzone": HTMLDnnDropzoneElement;
         "dnn-image-cropper": HTMLDnnImageCropperElement;
         "dnn-modal": HTMLDnnModalElement;
+        "dnn-permissions-grid": HTMLDnnPermissionsGridElement;
         "dnn-searchbox": HTMLDnnSearchboxElement;
         "dnn-sort-icon": HTMLDnnSortIconElement;
         "dnn-tab": HTMLDnnTabElement;
@@ -407,11 +436,11 @@ declare namespace LocalJSX {
         /**
           * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
          */
-        "checked"?: boolean | undefined;
+        "checked"?: "checked" | "unchecked" | "intermediate";
         /**
           * Fires up when the checkbox checked property changes.
          */
-        "onCheckedchange"?: (event: CustomEvent<boolean | undefined>) => void;
+        "onCheckedchange"?: (event: CustomEvent<"checked" | "unchecked" | "intermediate">) => void;
         /**
           * Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)
          */
@@ -549,6 +578,24 @@ declare namespace LocalJSX {
          */
         "showCloseButton"?: boolean;
     }
+    interface DnnPermissionsGrid {
+        /**
+          * The list of permissions.
+         */
+        "permissions": IPermissions;
+        /**
+          * Optionally allows localizing the component strings.
+         */
+        "resx"?: ILocalization;
+        /**
+          * The list of role groups.
+         */
+        "roleGroups": IRoleGroup[];
+        /**
+          * The list of possible roles.
+         */
+        "roles": IRole[];
+    }
     interface DnnSearchbox {
         /**
           * Debounces the queryChanged by 500ms.
@@ -638,6 +685,7 @@ declare namespace LocalJSX {
         "dnn-dropzone": DnnDropzone;
         "dnn-image-cropper": DnnImageCropper;
         "dnn-modal": DnnModal;
+        "dnn-permissions-grid": DnnPermissionsGrid;
         "dnn-searchbox": DnnSearchbox;
         "dnn-sort-icon": DnnSortIcon;
         "dnn-tab": DnnTab;
@@ -660,6 +708,7 @@ declare module "@stencil/core" {
             "dnn-dropzone": LocalJSX.DnnDropzone & JSXBase.HTMLAttributes<HTMLDnnDropzoneElement>;
             "dnn-image-cropper": LocalJSX.DnnImageCropper & JSXBase.HTMLAttributes<HTMLDnnImageCropperElement>;
             "dnn-modal": LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
+            "dnn-permissions-grid": LocalJSX.DnnPermissionsGrid & JSXBase.HTMLAttributes<HTMLDnnPermissionsGridElement>;
             "dnn-searchbox": LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
             "dnn-sort-icon": LocalJSX.DnnSortIcon & JSXBase.HTMLAttributes<HTMLDnnSortIconElement>;
             "dnn-tab": LocalJSX.DnnTab & JSXBase.HTMLAttributes<HTMLDnnTabElement>;

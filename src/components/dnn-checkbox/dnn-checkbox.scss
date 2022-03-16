@@ -17,6 +17,12 @@ button{
   display: flex;
   justify-content: center;
   align-items: center;
+  .unchecked, .checked, .intermediate{
+    display: none;
+  }
+  &.checked .checked, &.unchecked .unchecked, &.intermediate .intermediate{
+    display: block;
+  }
   svg.undefined{
     opacity: 0.45;
   }
