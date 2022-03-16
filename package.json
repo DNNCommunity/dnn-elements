@@ -17,6 +17,7 @@
   ],
   "scripts": {
     "build": "eslint --ext .ts --ext .tsx --ext .js ./src && stencil build --docs",
+    "build.watch": "stencil build --watch",
     "postbuild": "license-checker --out licenses.txt --direct --relativeLicensePath",
     "start": "stencil build --dev --watch --serve",
     "start.edge": "stencil build --dev --watch --serve --es5",
@@ -26,6 +27,7 @@
     "generate": "stencil generate",
     "eslint": "eslint --ext .ts --ext .tsx --ext .js ./src",
     "storybook": "start-storybook -p 6006",
+    "storybook.watch": "npm-run-all --parallel build.watch storybook",
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
