@@ -4,8 +4,8 @@ import {create} from '@storybook/theming/create';
 const theme = create({
   base: 'dark',
 
-  colorPrimary: '#f4f5fa',
-  colorSecondary: '#00A7EA',
+  colorPrimary: '#00A7EA',
+  colorSecondary: '#EC3D47',
 
   // UI
   appBg: '#0b1c24',
@@ -25,6 +25,7 @@ const theme = create({
 
   // BRAND
   brandTitle: 'DNN Elements',
+  brandImage: 'https://dnncommunity.org/Portals/0/DNN_White_Logo_lg.png'
 });
 
 addons.setConfig({

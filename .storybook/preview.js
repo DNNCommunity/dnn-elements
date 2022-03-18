@@ -31,15 +31,59 @@ addParameters({
 });
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
-    matchers: {
-      color: /(background|color)$/i,
-      date: /Date$/,
-    },
+    expanded: true,
+    hideNoControlsWarning: true,
   },
   badges: [BADGE.DEFAULT, BADGE.STABLE],
   docs: {
-    inlineStories: true,
-  }
+    source: {
+      state: 'open',
+    },
+  },
+  options: {
+    storySort: (a, b) => a[1].kind === b[1].kind ? 0 : a[1].id.localeCompare(b[1].id, undefined, { numeric: true }),
+  },
+  backgrounds: {
+    default: 'white',
+    values: [
+      { 
+          name: 'white', 
+          value: '#ffffff'
+      },
+      { 
+          name: 'grey', 
+          value: '#f4f5fa' 
+      },
+    ],
+    grid: {
+      disable: true
+    }
+  },
+  viewport: { 
+    viewports: {
+      mobile: {
+        name: 'Mobile',
+        styles: {
+          width: '360px',
+          height: '640px',
+        },
+      },
+      tablet: {
+        name: 'Tablet',
+        styles: {
+          width: '768px',
+          height: '1024px',
+        },
+      },
+      desktop: {
+        name: 'Desktop',
+        styles: {
+          width: '1600px',
+          height: '864px',
+        },
+      },
+    },
+    defaultViewport: 'Desktop',
+  },
 }

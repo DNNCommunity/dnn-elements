@@ -5,7 +5,7 @@ import { Meta } from "@storybook/web-components";
 import readme from './readme.md';
 
 export default {
-    title: 'Forms/Button',
+    title: 'Elements/Button',
     component: 'dnn-button',
     parameters: {
         actions: {
@@ -14,47 +14,36 @@ export default {
         notes:  readme,
     },
     argTypes: {
-        type: {
+        'type': {
           options: ['primary', 'secondary', 'tertiary'],
           control: {
             type: 'select',
           },
         },
-        reversed: {
+        'reversed': {
           control: 'boolean',
         },
-        size: {
+        'size': {
             options: ['small', 'normal', 'large'],
             control: {
                 type: 'select',
             },
         },
-        confirm: {
+        'confirm': {
             control: 'boolean',
         },
-        confirmYesText: {
+        'confirm-yes-text': {
             control: 'text',
         },
-        confirmNoText: {
+        'confirm-no-text': {
             control: 'text',
         },
-        confirmMessage: {
+        'confirm-message': {
             control: 'text',
         },
-        disabled: {
+        'disabled': {
           control: 'boolean',
         },
-      },
-      args: {
-        type: 'primary',
-        reversed: false,
-        size: 'medium',
-        confirm: true,
-        confirmYesText: 'Yes',
-        confirmNoText: 'No',
-        confirmMessage: 'Are you sure?',
-        ' ': `Click Me!`,
-        disabled: false,
       },
 } as Meta;
 
@@ -69,12 +58,12 @@ const Template = (args) =>
             confirm-no-text=${ifDefined(args.confirmNoText)}
             confirm-message=${ifDefined(args.confirmMessage)}
             ?disabled=${ifDefined(args.disabled)}>
-            ${unsafeHTML(args[' '])}
+            ${unsafeHTML(args.slot)}
         </dnn-button>
     `;
 
-export const Default = Template.bind({});
-Default.args = {
+export const Button = Template.bind({});
+Button.args = {
     type: 'primary',
     reversed: false,
     size: 'medium',
@@ -83,4 +72,5 @@ Default.args = {
     confirmNoText: 'No',
     confirmMessage: 'Are you sure?',
     disabled: false,
+    slot: 'Click me!'
 };

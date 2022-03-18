@@ -61,8 +61,7 @@ export class DnnButton {
    * Fires when confirm is true and the user confirms the action.
   */
   @Event({
-    eventName: 'confirmed',
-    bubbles: false,
+    bubbles: true,
     cancelable: true,
     composed: true
   }) confirmed: EventEmitter;
@@ -70,7 +69,7 @@ export class DnnButton {
   /**
    * Fires when confirm is true and the user cancels the action.
    */
-  @Event({bubbles: false}) canceled: EventEmitter;
+  @Event({bubbles: true}) canceled: EventEmitter;
 
   componentDidLoad(){
     this.modal = this.el.shadowRoot.querySelector('dnn-modal');
