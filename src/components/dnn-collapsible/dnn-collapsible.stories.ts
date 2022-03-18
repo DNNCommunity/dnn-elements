@@ -1,9 +1,10 @@
 import { html } from "lit-html";
+import { ifDefined } from 'lit-html/directives/if-defined';
 import { Meta } from "@storybook/web-components";
 import readme from "./readme.md";
 
 export default {
-    title: "Components/Collapsible",
+    title: "Elements/Collapsible",
     parameters: {
         notes: readme,
         actions: {
@@ -14,7 +15,7 @@ export default {
 
 const Template = (args: { expanded: boolean; transitionDuration: number; }) =>
     html`
-        <dnn-collapsible ?expanded=${args.expanded} transition-duration=${args.transitionDuration}>
+        <dnn-collapsible ?expanded=${ifDefined(args.expanded)} transition-duration=${ifDefined(args.transitionDuration)}>
             <div style="border: 1px solid lightgray">
                 <p>This is a test...</p>
             </div>

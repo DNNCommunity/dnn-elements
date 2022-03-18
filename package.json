@@ -17,6 +17,7 @@
   ],
   "scripts": {
     "build": "eslint --ext .ts --ext .tsx --ext .js ./src && stencil build --docs",
+    "build.watch": "stencil build --dev --watch",
     "postbuild": "license-checker --out licenses.txt --direct --relativeLicensePath",
     "start": "stencil build --dev --watch --serve",
     "start.edge": "stencil build --dev --watch --serve --es5",
@@ -25,11 +26,13 @@
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "eslint": "eslint --ext .ts --ext .tsx --ext .js ./src",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -p 6006 -s dist",
+    "storybook.watch": "npm-run-all --parallel build.watch storybook",
+    "build-storybook": "build-storybook -s dist"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
+    "@geometricpanda/storybook-addon-badges": "^0.2.1",
     "@stencil/core": "^2.13.0",
     "@stencil/eslint-plugin": "^0.4.0",
     "@stencil/sass": "^1.5.2",
