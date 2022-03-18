@@ -5,9 +5,16 @@ module.exports = {
   ],
   "addons": [
     "@storybook/addon-links",
-    "@storybook/addon-essentials",
+    {
+      name: '@storybook/addon-essentials',
+      options: {
+        measure: false,
+        outline: false,
+      }
+    },
     "@storybook/addon-notes/register",
     "@storybook/addon-a11y",
+    "@geometricpanda/storybook-addon-badges"
   ],
   "framework": "@storybook/web-components"
 }

@@ -61,8 +61,7 @@ export class DnnButton {
    * Fires when confirm is true and the user confirms the action.
   */
   @Event({
-    eventName: 'confirmed',
-    bubbles: false,
+    bubbles: true,
     cancelable: true,
     composed: true
   }) confirmed: EventEmitter;
@@ -70,19 +69,9 @@ export class DnnButton {
   /**
    * Fires when confirm is true and the user cancels the action.
    */
-  @Event({bubbles: false}) canceled: EventEmitter;
+  @Event({bubbles: true}) canceled: EventEmitter;
 
   componentDidLoad(){
-    this.el.classList.add(this.type);
-    
-    if (this.reversed){
-      this.el.classList.add('reversed');
-    }
-
-    if (this.size !== 'normal'){
-      this.el.classList.add(this.size);
-    }
-
     this.modal = this.el.shadowRoot.querySelector('dnn-modal');
   }
 
@@ -105,9 +94,21 @@ export class DnnButton {
     }
   }
 
+  private getElementClasses(): string | { [className: string]: boolean; } {
+    const classes: string[] = [];
+    classes.push(this.type);
+    if (this.reversed){
+      classes.push('reversed');
+    }
+    if (this.size !== 'normal'){
+      classes.push(this.size);
+    }
+    return classes.join(' ');
+  }
+
   render() {
     return (
-      <Host disabled={this.disabled} style={{'pointer-events': this.disabled ? 'none' : 'all'}}>
+      <Host class={this.getElementClasses()} disabled={this.disabled} style={{'pointer-events': this.disabled ? 'none' : 'all'}}>
         <button class="button" onClick={() => this.handleClick()} disabled={this.disabled}>
           <slot></slot>
         </button>
@@ -128,6 +129,4 @@ export class DnnButton {
       </Host>
     );
   }
-  
-
 }
