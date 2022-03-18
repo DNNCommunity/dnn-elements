@@ -30,7 +30,6 @@ const theme = create({
 
 addons.setConfig({
   theme,
-  panelPosition: 'right',
   sidebar: {
     showRoots: true,
   },
