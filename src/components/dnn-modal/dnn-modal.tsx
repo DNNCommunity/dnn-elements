@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Prop, Event, EventEmitter, Method, State } from '@stencil/core';
+import { Component, Element, Host, h, Prop, Event, EventEmitter, Method } from '@stencil/core';
 
 @Component({
   tag: 'dnn-modal',
@@ -27,7 +27,10 @@ export class DnnModal {
    */
   @Prop() showCloseButton?: boolean = true;
 
-  @State() visible: boolean = false;
+  /**
+   * Reflects the visible state of the modal.
+   */
+  @Prop({mutable: true, reflect: true}) visible: boolean = false;
 
   /**
    * Shows the modal

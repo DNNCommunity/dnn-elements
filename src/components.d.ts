@@ -175,6 +175,10 @@ export namespace Components {
           * Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
          */
         "showCloseButton"?: boolean;
+        /**
+          * Reflects the visible state of the modal.
+         */
+        "visible": boolean;
     }
     interface DnnPermissionsGrid {
         /**
@@ -582,6 +586,10 @@ declare namespace LocalJSX {
           * Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
          */
         "showCloseButton"?: boolean;
+        /**
+          * Reflects the visible state of the modal.
+         */
+        "visible"?: boolean;
     }
     interface DnnPermissionsGrid {
         /**
