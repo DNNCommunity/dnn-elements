@@ -24,9 +24,9 @@ on:
       - 'release/*'
 
 jobs:
-  windows-latest:
-    name: windows-latest
-    runs-on: windows-latest
+  publid-site:
+    name: publish-site
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: Cache .nuke/temp, ~/.nuget/packages
@@ -36,8 +36,8 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj') }}
-      - name: Run './build.cmd PublishSite'
-        run: ./build.cmd PublishSite
+      - name: Run './build.sh PublishSite'
+        run: ./build.sh PublishSite
         env:
           GithubToken: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/upload-artifact@v1
