@@ -125,10 +125,10 @@
             {
               "name": "checked",
               "type": {
-                "text": "boolean"
+                "text": "\"checked\" | \"intermediate\" | \"unchecked\""
               },
               "description": "Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)",
-              "default": "false",
+              "default": "\"unchecked\"",
               "required": false
             },
             {
@@ -154,12 +154,29 @@
             {
               "name": "checkedchange",
               "type": {
-                "text": "boolean"
+                "text": "\"checked\" | \"intermediate\" | \"unchecked\""
               },
               "description": "Fires up when the checkbox checked property changes."
             }
           ],
-          "slots": [],
+          "slots": [
+            {
+              "name": " ",
+              "description": "The label for the checkbox."
+            },
+            {
+              "name": "checked",
+              "description": "Allows overriding the default checked icon."
+            },
+            {
+              "name": "intermediate",
+              "description": "If intermadiate state is used, allows overriding its icon."
+            },
+            {
+              "name": "unchecked",
+              "description": "Allows overriding the unchecked icon."
+            }
+          ],
           "cssProperties": [
             {
               "name": "--focus-color",
@@ -547,6 +564,87 @@
     },
     {
       "kind": "javascript-module",
+      "path": "./src/components/dnn-permissions-grid/dnn-permissions-grid.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-permissions-grid.tsx",
+          "tagName": "dnn-permissions-grid",
+          "description": "",
+          "attributes": [],
+          "members": [
+            {
+              "kind": "field",
+              "name": "foundUsers",
+              "type": {
+                "text": "ISearchedUser[]"
+              },
+              "description": "The list of users to show under the search users field when a search is performed.",
+              "default": "[]",
+              "required": false
+            },
+            {
+              "kind": "field",
+              "name": "permissions",
+              "type": {
+                "text": "IPermissions"
+              },
+              "description": "The list of permissions.",
+              "required": true
+            },
+            {
+              "kind": "field",
+              "name": "resx",
+              "type": {
+                "text": "ILocalization"
+              },
+              "description": "Optionally allows localizing the component strings.",
+              "default": "{\n    Add: \"Add\",\n    AllRoles: \"All Roles\",\n    FilterByGroup: \"Filter By Group\",\n    GlobalRoles: \"Global Roles\",\n    Role: \"Role\",\n    RolePermissions: \"Role Permissions\",\n    SelectRole: \"Select Role\",\n    User: \"User\",\n    UserPermissions: \"User Permissions\",\n  }",
+              "required": false
+            },
+            {
+              "kind": "field",
+              "name": "roleGroups",
+              "type": {
+                "text": "IRoleGroup[]"
+              },
+              "description": "The list of role groups.",
+              "required": true
+            },
+            {
+              "kind": "field",
+              "name": "roles",
+              "type": {
+                "text": "IRole[]"
+              },
+              "description": "The list of possible roles.",
+              "required": true
+            }
+          ],
+          "events": [
+            {
+              "name": "permissionsChanged",
+              "type": {
+                "text": "IPermissions"
+              },
+              "description": "Fires when any permissions have changed, can be used for instance to have linked permissions."
+            },
+            {
+              "name": "userSearchQueryChanged",
+              "type": {
+                "text": "string"
+              },
+              "description": "Fires when searching for users to add to the permissions. Emits the search query."
+            }
+          ],
+          "slots": [],
+          "cssProperties": [],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "./src/components/dnn-searchbox/dnn-searchbox.tsx",
       "declarations": [
         {
@@ -588,7 +686,7 @@
             {
               "name": "queryChanged",
               "type": {
-                "text": "any"
+                "text": "string"
               },
               "description": "Fires up each time the search query changes.\nThe data passed is the new query."
             }

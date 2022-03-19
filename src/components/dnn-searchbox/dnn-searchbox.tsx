@@ -24,7 +24,7 @@ export class DnnSearchbox {
    * Fires up each time the search query changes.
    * The data passed is the new query.
    */
-  @Event() queryChanged: EventEmitter;
+  @Event() queryChanged: EventEmitter<string>;
 
   @Watch('query')
   fireQueryChanged(){
@@ -44,7 +44,6 @@ export class DnnSearchbox {
   private debouncedHandleQueryChanged(){
     this.handleQueryChanged();
   }
-  
 
   render() {
     return (

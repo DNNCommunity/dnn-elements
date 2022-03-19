@@ -10,6 +10,7 @@ import { IPermissions } from "./components/dnn-permissions-grid/permissions-inte
 import { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interface";
 import { IRole } from "./components/dnn-permissions-grid/role-interface";
 import { ILocalization } from "./components/dnn-permissions-grid/localisation-interface";
+import { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export namespace Components {
     interface DnnButton {
@@ -176,6 +177,10 @@ export namespace Components {
         "showCloseButton"?: boolean;
     }
     interface DnnPermissionsGrid {
+        /**
+          * The list of users to show under the search users field when a search is performed.
+         */
+        "foundUsers": ISearchedUser[];
         /**
           * The list of permissions.
          */
@@ -580,6 +585,18 @@ declare namespace LocalJSX {
     }
     interface DnnPermissionsGrid {
         /**
+          * The list of users to show under the search users field when a search is performed.
+         */
+        "foundUsers"?: ISearchedUser[];
+        /**
+          * Fires when any permissions have changed, can be used for instance to have linked permissions.
+         */
+        "onPermissionsChanged"?: (event: CustomEvent<IPermissions>) => void;
+        /**
+          * Fires when searching for users to add to the permissions. Emits the search query.
+         */
+        "onUserSearchQueryChanged"?: (event: CustomEvent<string>) => void;
+        /**
           * The list of permissions.
          */
         "permissions": IPermissions;
@@ -604,7 +621,7 @@ declare namespace LocalJSX {
         /**
           * Fires up each time the search query changes. The data passed is the new query.
          */
-        "onQueryChanged"?: (event: CustomEvent<any>) => void;
+        "onQueryChanged"?: (event: CustomEvent<string>) => void;
         /**
           * Sets the field placeholder text.
          */

@@ -1,8 +1,9 @@
-import { Component, Host, h, Prop, State } from '@stencil/core';
+import { Component, Host, h, Prop, State, Event, EventEmitter, Watch } from '@stencil/core';
 import { ILocalization } from './localisation-interface';
-import { IPermissionDefinition, IPermissions, IRolePermission } from './permissions-interface';
+import { IPermissionDefinition, IPermissions, IRolePermission, IUserPermission } from './permissions-interface';
 import { IRoleGroup } from './role-group-interface';
 import { IRole } from './role-interface';
+import { ISearchedUser } from './searched-user-interface';
 
 @Component({
   tag: 'dnn-permissions-grid',
@@ -27,12 +28,56 @@ export class DnnPermissionsGrid {
     FilterByGroup: "Filter By Group",
     GlobalRoles: "Global Roles",
     Role: "Role",
+    RolePermissions: "Role Permissions",
     SelectRole: "Select Role",
+    User: "User",
+    UserPermissions: "User Permissions",
   }
 
+  /** The list of users to show under the search users field when a search is performed. */
+  @Prop() foundUsers: ISearchedUser[] = [];
+
+  /** Fires when searching for users to add to the permissions. Emits the search query. */
+  @Event() userSearchQueryChanged: EventEmitter<string>;
+  
+  /** Fires when any permissions have changed, can be used for instance to have linked permissions. */
+  @Event() permissionsChanged: EventEmitter<IPermissions>;
+
   @State() selectedRoleGroupId = -1;
+  @State() userQuery: string;
+  @State() pickedUser: ISearchedUser;
+  
+  
+  @Watch("foundUsers")
+  handleFoundUsersChanged(newValue: ISearchedUser[]){
+    if (newValue?.length > 0){
+      setTimeout(() => {
+        this.userCollapsible.expanded = true;
+      }, 100);
+    }
+  }
+  
+  componentWillLoad() {
+    document.addEventListener("click", this.dismissUserResults.bind(this));
+  }
+  
+  disconnectedCallback() {
+    document.removeEventListener("click", this.disconnectedCallback.bind(this));
+  }
   
   private roleDropDown: HTMLSelectElement;
+  private userCollapsible: HTMLDnnCollapsibleElement;
+
+  private dismissUserResults(e: MouseEvent){
+    const dropdownRect = this.roleDropDown.getBoundingClientRect();
+    if (
+      e.pageX > dropdownRect.right ||
+      e.pageX < dropdownRect.left ||
+      e.pageY > dropdownRect.bottom ||
+      e.pageY < dropdownRect.top){
+        this.userCollapsible.expanded = false;
+      }
+  } 
 
   private handleRoleGroupChanged(dropdown: HTMLSelectElement): void {
     const index = dropdown.selectedIndex;
@@ -56,6 +101,26 @@ export class DnnPermissionsGrid {
         }
       ]
     }
+    this.permissionsChanged.emit(this.permissions);
+  }
+
+  private addUser(): void {
+    if (this.pickedUser != undefined){
+      this.permissions = {
+        ...this.permissions,
+        userPermissions: [
+          ...this.permissions.userPermissions,
+          {
+            displayName: this.pickedUser.displayName,
+            permissions: [],
+            userId: this.pickedUser.userId,
+          },
+        ],
+      };
+      this.pickedUser = undefined;
+      this.userQuery = "";
+      this.permissionsChanged.emit(this.permissions);
+    }
   }
 
   private getRoles(){
@@ -74,7 +139,7 @@ export class DnnPermissionsGrid {
     return filteredRoles.filter(role => role.RoleGroupId == this.selectedRoleGroupId);
   }
 
-  private renderCheckBox(rolePermission: IRolePermission, permissionDefinition: IPermissionDefinition) {
+  private renderRoleCheckBox(rolePermission: IRolePermission, permissionDefinition: IPermissionDefinition) {
     const item = rolePermission.permissions.filter(permission => permission.permissionId == permissionDefinition.permissionId)[0];
     if (rolePermission.locked){
       return(
@@ -88,6 +153,27 @@ export class DnnPermissionsGrid {
         use-intermediate
         checked={checked}
         onCheckedchange={e => this.handleRoleChanged(e.detail, rolePermission, permissionDefinition)}
+      >
+        <div slot="intermediate">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+        </div>
+        <div slot="unchecked">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"/></svg>
+        </div>
+        <span>{permissionDefinition.permissionName}</span>
+      </dnn-checkbox>
+    )
+  }
+
+  private renderUserCheckBox(userPermission: IUserPermission, permissionDefinition: IPermissionDefinition) {
+    const item = userPermission.permissions.filter(permission => permission.permissionId == permissionDefinition.permissionId)[0];
+
+    const checked = item == undefined ? "intermediate" : item.allowAccess ? "checked" : "unchecked";
+    return(
+      <dnn-checkbox
+        use-intermediate
+        checked={checked}
+        onCheckedchange={e => this.handleUserChanged(e.detail, userPermission, permissionDefinition)}
       >
         <div slot="intermediate">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
@@ -181,6 +267,91 @@ export class DnnPermissionsGrid {
       default:
         break;
     }
+    this.permissionsChanged.emit(this.permissions);
+  }
+
+  private handleUserChanged(
+    checked: "checked" | "unchecked" | "intermediate",
+    userPermission: IUserPermission,
+    permissionDefinition: IPermissionDefinition
+  ): void {
+    switch (checked) {
+      case "unchecked":
+        this.permissions = {
+          ...this.permissions,
+          userPermissions: [
+            ...this.permissions.userPermissions.map(u => {
+              if (u.userId != userPermission.userId){
+                return u;
+              }
+
+              const newUserPermission = Object.assign({}, u);
+              newUserPermission.permissions = [
+                ...newUserPermission.permissions.filter(p => p.permissionId != permissionDefinition.permissionId),
+                {
+                  allowAccess: false,
+                  fullControl: false,
+                  permissionCode: permissionDefinition.permissionCode,
+                  permissionId: permissionDefinition.permissionId,
+                  permissionKey: permissionDefinition.permissionKey,
+                  permissionName: permissionDefinition.permissionName,
+                  view: false,
+                },
+              ];
+              return newUserPermission;
+            }),
+          ],
+        };
+        break;
+      case "checked":
+        this.permissions = {
+          ...this.permissions,
+          userPermissions: [
+            ...this.permissions.userPermissions.map(u => {
+              if (u.userId != userPermission.userId){
+                return u;
+              }
+
+              const newUserPermission = Object.assign({}, u);
+              newUserPermission.permissions = [
+                ...newUserPermission.permissions.filter(p => p.permissionId != permissionDefinition.permissionId),
+                {
+                  allowAccess: true,
+                  fullControl: false,
+                  permissionCode: permissionDefinition.permissionCode,
+                  permissionId: permissionDefinition.permissionId,
+                  permissionKey: permissionDefinition.permissionKey,
+                  permissionName: permissionDefinition.permissionName,
+                  view: false,
+                },
+              ];
+              return newUserPermission;
+            }),
+          ],
+        };
+        break;
+        case "intermediate":
+        this.permissions = {
+          ...this.permissions,
+          userPermissions: [
+            ...this.permissions.userPermissions.map(u => {
+              if (u.userId != userPermission.userId){
+                return u;
+              }
+
+              const newUserPermission = Object.assign({}, u);
+              newUserPermission.permissions = [
+                ...newUserPermission.permissions.filter(p => p.permissionId != permissionDefinition.permissionId),
+              ];
+              return newUserPermission;
+            }),
+          ],
+        };
+        break;
+      default:
+        break;
+    }
+    this.permissionsChanged.emit(this.permissions);
   }
 
   private removeRole(rolePermission: IRolePermission): void {
@@ -190,9 +361,72 @@ export class DnnPermissionsGrid {
         ...this.permissions.rolePermissions.filter(rp => rp.roleId != rolePermission.roleId),
       ],
     };
+    this.permissionsChanged.emit();
+  }
+
+  private removeUser(userPermission: IUserPermission): void {
+    this.permissions = {
+      ...this.permissions,
+      userPermissions: [
+        ...this.permissions.userPermissions.filter(up => up.userId != userPermission.userId),
+      ]
+    };
+    this.permissionsChanged.emit(this.permissions);
+  }
+
+  private handleQueryChanged(query: string): void {
+    this.userQuery = query;
+    if (query == undefined || query.length == 0){
+      this.userCollapsible.expanded = false;
+      this.pickedUser = undefined;
+      this.foundUsers = [];
+      return;
+    }
+    this.userSearchQueryChanged.emit(query);
+  }
+
+  private handleSearchUserFieldKeyDown(e: KeyboardEvent): void {
+    if (e.key != "ArrowDown"){
+      return;
+    }
+
+    e.preventDefault();
+    const firstButton = this.userCollapsible.querySelector("button");
+    if (firstButton != undefined){
+      firstButton.focus();
+    }
+  }
+
+  private handleSearchedUserKeyDown(e: KeyboardEvent): void {
+    const button = e.target as HTMLButtonElement;
+    
+    switch(e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        const nextButton = button.nextElementSibling as HTMLButtonElement;
+        nextButton?.focus();
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        const previousButton = button.previousElementSibling as HTMLButtonElement;
+        previousButton?.focus();
+      break;
+      default:
+        break;
+    }
+  }
+
+  private handleUserPicked(searchedUser: ISearchedUser): void {
+    this.userQuery = searchedUser.displayName;
+    this.pickedUser = searchedUser;
+  }
+
+  private getFilteredUsers() {
+    return this.foundUsers.filter(fu => !this.permissions.userPermissions.some(up => up.userId == fu.userId))
   }
   
   render() {
+    const filteredRoles = this.getRoles();
     return (
       <Host>
         <div class="add-role-row">
@@ -223,25 +457,29 @@ export class DnnPermissionsGrid {
               )}
             </select>
           </div>
-          <div class="dropdown">
-            <label>{this.resx.SelectRole} :</label>
-            <select ref={el => this.roleDropDown = el}>
-              {this.getRoles().map(role =>
-                <option value={role.RoleId}
-                >
-                  {role.RoleName}
-                </option>
-              )}
-            </select>
-          </div>
-          <dnn-button
-            type="primary"
-            onClick={() => this.addRole()}
-          >
-            {this.resx.Add}
-          </dnn-button>
+            {filteredRoles && filteredRoles.length > 0 && [
+              <div class="dropdown">
+                <label>{this.resx.SelectRole} :</label>
+                <select ref={el => this.roleDropDown = el}>
+                  {this.getRoles().map(role =>
+                    <option value={role.RoleId}
+                    >
+                      {role.RoleName}
+                    </option>
+                  )}
+                </select>
+              </div>,
+              <dnn-button
+              type="primary"
+              onClick={() => this.addRole()}
+              >
+                {this.resx.Add}
+              </dnn-button>
+            ]
+          }
         </div>
         <table class="roles-table">
+          <caption>{this.resx.RolePermissions}</caption>
           <thead>
             <tr>
               <th>{this.resx.Role}</th>
@@ -257,7 +495,7 @@ export class DnnPermissionsGrid {
                 <th>{rolePermission.roleName}</th>
                 {this.permissions.permissionDefinitions.map(permissionDefinition =>
                   <td>
-                    {this.renderCheckBox(rolePermission, permissionDefinition)}
+                    {this.renderRoleCheckBox(rolePermission, permissionDefinition)}
                   </td>
                 )}
                 <td>
@@ -273,6 +511,69 @@ export class DnnPermissionsGrid {
             )}
           </tbody>
         </table>
+        <div class="search-user">
+          <div class="search-control">
+            <dnn-searchbox
+              placeholder={this.resx.User}
+              debounced
+              onQueryChanged={e => this.handleQueryChanged(e.detail)}
+              onKeyDown={e => this.handleSearchUserFieldKeyDown(e)}
+              query={this.userQuery}
+            />
+            <dnn-collapsible ref={el => this.userCollapsible = el}>
+              <div class="dropdown">
+                {this.getFilteredUsers().map(searchedUser =>
+                  <button
+                    onKeyDown={e => this.handleSearchedUserKeyDown(e)}
+                    onClick={() => this.handleUserPicked(searchedUser)}
+                  >
+                    {searchedUser.displayName}
+                  </button>
+                )}
+              </div>
+            </dnn-collapsible>
+          </div>
+          {this.pickedUser &&
+            <dnn-button
+              onClick={() => this.addUser()}
+            >
+              {this.resx.Add}
+            </dnn-button>
+          }
+        </div>
+        {this.permissions.userPermissions && this.permissions.userPermissions.length > 0 &&
+          <table class="users-table">
+            <caption>{this.resx.UserPermissions}</caption>
+            <thead>
+              <tr>
+                <th>{this.resx.User}</th>
+                {this.permissions.permissionDefinitions.map(permissionDefinition =>
+                  <th>{permissionDefinition.permissionName}</th>
+                )}
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.permissions.userPermissions.map(userPermission =>
+                <tr>
+                  <th>{userPermission.displayName}</th>
+                  {this.permissions.permissionDefinitions.map(permissionDefinition =>
+                    <td>
+                      {this.renderUserCheckBox(userPermission, permissionDefinition)}
+                    </td>
+                  )}
+                  <td>
+                    <button
+                      onClick={() => this.removeUser(userPermission)}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M14.59 8L12 10.59 9.41 8 8 9.41 10.59 12 8 14.59 9.41 16 12 13.41 14.59 16 16 14.59 13.41 12 16 9.41 14.59 8zM12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                    </button>
+                </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        }
       </Host>
     );
   }

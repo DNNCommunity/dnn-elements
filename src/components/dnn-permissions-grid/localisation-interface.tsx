@@ -4,5 +4,8 @@ export interface ILocalization{
     FilterByGroup: string;
     GlobalRoles: string;
     Role: string;
+    RolePermissions: string;
     SelectRole: string;
+    User: string;
+    UserPermissions: string;
 };
