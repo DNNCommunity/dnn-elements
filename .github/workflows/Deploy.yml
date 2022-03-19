@@ -24,9 +24,9 @@ on:
       - 'release/*'
 
 jobs:
-  windows-latest:
-    name: windows-latest
-    runs-on: windows-latest
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: Cache .nuke/temp, ~/.nuget/packages
@@ -36,8 +36,8 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj') }}
-      - name: Run './build.cmd Deploy'
-        run: ./build.cmd Deploy
+      - name: Run './build.sh Deploy'
+        run: ./build.sh Deploy
         env:
           GithubToken: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
