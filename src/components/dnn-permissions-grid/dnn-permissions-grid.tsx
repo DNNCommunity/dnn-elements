@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, State, Event, EventEmitter, Watch } from '@stencil/core';
-import { ILocalization } from './localisation-interface';
+import { ILocalization } from './localization-interface';
 import { IPermissionDefinition, IPermissions, IRolePermission, IUserPermission } from './permissions-interface';
 import { IRoleGroup } from './role-group-interface';
 import { IRole } from './role-interface';
