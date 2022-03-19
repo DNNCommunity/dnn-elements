@@ -24,24 +24,28 @@ using static Nuke.Common.Tools.Npm.NpmTasks;
 
 [GitHubActions(
   "PR_Validation",
-  GitHubActionsImage.WindowsLatest,
+  GitHubActionsImage.UbuntuLatest,
+  AutoGenerate = false,
+  ImportSecrets = new[] { nameof(GithubToken) },
   OnPullRequestBranches = new[] { "main", "master", "develop", "development" },
-  ImportGitHubTokenAs = "GithubToken",
   InvokedTargets = new[] { nameof(Compile) }
   )]
 [GitHubActions(
     "Deploy",
-    GitHubActionsImage.WindowsLatest,
-    ImportGitHubTokenAs = "GithubToken",
+    GitHubActionsImage.UbuntuLatest,
+    AutoGenerate = false,
+    ImportSecrets = new[] { nameof(GithubToken), "NPM_TOKEN" },
     OnPushBranches = new[] { "main", "master", "release/*" },
-    InvokedTargets = new[] { nameof(Deploy) },
-    ImportSecrets = new[] { "NPM_TOKEN" })]
+    InvokedTargets = new[] { nameof(Deploy) }
+)]
 [GitHubActions(
   "Publish_Site",
-    GitHubActionsImage.WindowsLatest,
-    ImportGitHubTokenAs = "GithubToken",
+    GitHubActionsImage.UbuntuLatest,
+    AutoGenerate = false,
+    ImportSecrets = new[] { nameof(GithubToken) },
     OnPushBranches = new[] { "main", "master", "release/*" },
-    InvokedTargets = new[] { nameof(PublishSite) })]
+    InvokedTargets = new[] { nameof(PublishSite) }
+  )]
 class Build : NukeBuild
 {
   /// Support plugins are available for:
@@ -92,17 +96,17 @@ class Build : NukeBuild
       {
         if (type == OutputType.Std)
         {
-          Logger.Info(output);
+          Serilog.Log.Information(output);
         }
         if (type == OutputType.Err)
         {
           if (output.StartsWith("npm WARN", StringComparison.OrdinalIgnoreCase))
           {
-            Logger.Warn(output);
+            Serilog.Log.Warning(output);
           }
           else
           {
-            Logger.Error(output);
+            Serilog.Log.Error(output);
           }
         }
       };
@@ -129,7 +133,7 @@ class Build : NukeBuild
     .Executes(() =>
     {
       // Prevents a bug where git sends ok message to the error output sink
-      GitLogger = (type, output) => Logger.Info(output);
+      GitLogger = (type, output) => Serilog.Log.Information(output);
 
       // Because in CI we are in detached head,
       // we create a local deploy branch to track our commit.
@@ -157,7 +161,7 @@ class Build : NukeBuild
     .Executes(() =>
     {
       var version = gitRepository.IsOnMainOrMasterBranch() ? GitVersion.MajorMinorPatch : GitVersion.SemVer;
-      GitLogger = (type, output) => Logger.Info(output);
+      GitLogger = (type, output) => Serilog.Log.Information(output);
       Git($"tag v{version}");
       Git($"push origin --tags");
     });
@@ -173,7 +177,7 @@ class Build : NukeBuild
       var milestone = gitHubClient.Issue.Milestone.GetAllForRepository(organizationName, repositoryName).Result.Where(m => m.Title == GitVersion.MajorMinorPatch).FirstOrDefault();
       if (milestone == null)
       {
-        Logger.Warn("Milestone not found for this version");
+        Serilog.Log.Warning("Milestone not found for this version");
         releaseNotes = "No release notes for this version.";
         return;
       }
@@ -204,10 +208,7 @@ class Build : NukeBuild
       }
 
       releaseNotes = releaseNotesBuilder.ToString();
-      using (Logger.Block("Release Notes"))
-      {
-        Logger.Info(releaseNotes);
-      }
+        Serilog.Log.Information(releaseNotes);
     });
 
   Target Release => _ => _
@@ -228,7 +229,7 @@ class Build : NukeBuild
         Prerelease = gitRepository.IsOnReleaseBranch(),
       };
       release = gitHubClient.Repository.Release.Create(organizationName, repositoryName, newRelease).Result;
-      Logger.Info($"{release.Name} released !");
+      Serilog.Log.Information($"{release.Name} released !");
     });
 
   Target Deploy => _ => _
