@@ -4,6 +4,10 @@
   * @prop --color-sorted: Color of the sorted sort icon.
   * @prop --color-hover: Color of the icons when hovered.
   */
+  --color: #888;
+  --color-sorted: var(--dnn-color-primary, rgb(2,139,255));
+  --color-hover: var(--dnn-color-primary-light, #36a1ff);
+  
   display: inline-block;
 }
 
@@ -21,16 +25,16 @@ button {
   svg{
     height: 1.5em;
     width: auto;
-    fill: var(--color, #888);
+    fill: var(--color);
   }
   &.active{
     svg{
-      fill: var(--color-sorted, var(--dnn-color-primary, rgb(2,139,255)));
+      fill: var(--color-sorted);
     }
   }
   &:hover, &:focus{
     svg{
-      fill: var(--color-hover, var(--dnn-color-primary-light, #36a1ff));
+      fill: var(--color-hover);
     }
   }
 }
