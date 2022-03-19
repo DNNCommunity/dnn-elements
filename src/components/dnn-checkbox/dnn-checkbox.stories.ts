@@ -30,8 +30,8 @@ const Template = (args) =>
     html`
         <dnn-checkbox
             ?checked=${ifDefined(args.checked)}
-            ?useIntermediate=${ifDefined(args.useIntermediate)}
-            value=${ifDefined(args.value)}
+            ?use-intermediate=${ifDefined(args.useIntermediate)}
+            value=${ifDefined(args.value)}>
         </dnn-checkbox>
     `;
 
