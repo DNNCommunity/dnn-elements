@@ -29,7 +29,7 @@ const Template = (args) =>
     html`
         <dnn-chevron
             expandText=${ifDefined(args.expandText)}
-            collapseText=${ifDefined(args.collapseText)}
+            collapse-text=${ifDefined(args.collapseText)}
             ?expanded=${ifDefined(args.expanded)}>
         </dnn-chevron>
     `;
