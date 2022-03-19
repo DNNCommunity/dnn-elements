@@ -1,6 +1,7 @@
 import { html } from "lit-html";
 import { Meta } from "@storybook/web-components";
 import readme from './readme.md';
+import { ifDefined } from "lit-html/directives/if-defined";
 
 export default {
     title: 'Elements/Checkbox',
@@ -28,9 +29,9 @@ export default {
 const Template = (args) =>
     html`
         <dnn-checkbox
-            .checked=${args.checked}
-            .useIntermediate=${args.useIntermediate}
-            .value=${args.value}>
+            checked=${args.checked}
+            ?use-intermediate=${ifDefined(args.useIntermediate)}
+            value=${args.value}>
         </dnn-checkbox>
     `;
 
