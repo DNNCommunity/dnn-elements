@@ -9,7 +9,7 @@ import { ColorInfo } from "./utilities/colorInfo";
 import { IPermissions } from "./components/dnn-permissions-grid/permissions-interface";
 import { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interface";
 import { IRole } from "./components/dnn-permissions-grid/role-interface";
-import { ILocalization } from "./components/dnn-permissions-grid/localisation-interface";
+import { ILocalization } from "./components/dnn-permissions-grid/localization-interface";
 import { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export namespace Components {
