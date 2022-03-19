@@ -55,4 +55,5 @@ Dropzone.args = {
     allowedExtensions: 'jpg,jpeg,png,gif',
     allowCameraMode: false,
     captureQuality: 0.8,
+    resx,
 };
