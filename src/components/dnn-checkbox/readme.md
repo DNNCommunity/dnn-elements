@@ -23,12 +23,12 @@
 
 ## Slots
 
-| Slot             | Description                                                |
-| ---------------- | ---------------------------------------------------------- |
-|                  | The label for the checkbox.                                |
-| `"checked"`      | Allows overriding the default checked icon.                |
-| `"intermediate"` | If intermadiate state is used, allows overriding its icon. |
-| `"unchecked"`    | Allows overriding the unchecked icon.                      |
+| Slot                 | Description                                                |
+| -------------------- | ---------------------------------------------------------- |
+|                      | The label for the checkbox.                                |
+| `"checkedicon"`      | Allows overriding the default checked icon.                |
+| `"intermediateicon"` | If intermadiate state is used, allows overriding its icon. |
+| `"uncheckedicon"`    | Allows overriding the unchecked icon.                      |
 
 
 ## CSS Custom Properties

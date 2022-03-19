@@ -165,15 +165,15 @@
               "description": "The label for the checkbox."
             },
             {
-              "name": "checked",
+              "name": "checkedicon",
               "description": "Allows overriding the default checked icon."
             },
             {
-              "name": "intermediate",
+              "name": "intermediateicon",
               "description": "If intermadiate state is used, allows overriding its icon."
             },
             {
-              "name": "unchecked",
+              "name": "uncheckedicon",
               "description": "Allows overriding the unchecked icon."
             }
           ],
