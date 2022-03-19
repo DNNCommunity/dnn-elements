@@ -816,7 +816,7 @@
 │  ├─ url: https://github.com/lahmatiy
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@discoveryjs\json-ext
 │  └─ licenseFile: node_modules\@discoveryjs\json-ext\LICENSE
-├─ @dnncommunity/dnn-elements@0.12.1-beta.1
+├─ @dnncommunity/dnn-elements@0.15.0-alpha.98
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/dnncommunity/dnn-elements
 │  ├─ path: D:\dnn-elements\dnn-elements
