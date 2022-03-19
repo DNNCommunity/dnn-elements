@@ -7,6 +7,7 @@ import { IRole } from "./role-interface";
 
 export default {
     title: "Elements/Permissions Grid",
+    component: "dnn-permissions-grid",
     parameters: {
         notes: readme,
         actions: {

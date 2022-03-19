@@ -12,6 +12,7 @@
 | `backdropDismiss` | `backdrop-dismiss`  | Pass false to remove the backdrop click auto-dismiss feature.                                                                                                                                                       | `boolean` | `true`          |
 | `closeText`       | `close-text`        | Optionally pass the aria-label text for the close button. Defaults to "Close modal" if not provided.                                                                                                                | `string`  | `"Close modal"` |
 | `showCloseButton` | `show-close-button` | Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content. | `boolean` | `true`          |
+| `visible`         | `visible`           | Reflects the visible state of the modal.                                                                                                                                                                            | `boolean` | `false`         |
 
 
 ## Events
@@ -42,13 +43,6 @@ Shows the modal
 Type: `Promise<void>`
 
 
-
-
-## CSS Custom Properties
-
-| Name          | Description                      |
-| ------------- | -------------------------------- |
-| `--max-width` | The maximum width of the module. |
 
 
 ## Dependencies
