@@ -52,8 +52,213 @@
     <li><a href="#dnn-treeview-item">dnn-treeview-item</a></li>
     <li><a href="#dnn-vertical-splitview">dnn-vertical-splitview</a></li>
     <li><a href="#dnn-vertical-overflow-menu">dnn-vertical-overflow-menu</a></li>
-    
+    <li><a href="#dnn-permissions-grid">dnn-permissions-grid</a></li>
   </ul>
+  <!-- dnn-permissions-grid-->
+  <a name="dnn-permissions-grid"></a>
+  <section>
+    <h2>dnn-permissions-grid</h2>
+    <dnn-permissions-grid></dnn-permissions-grid>
+
+    <script type="text/javascript">
+      (() => {
+        let permissions = {
+          "permissionDefinitions": [
+              {
+                  "permissionId": 8,
+                  "permissionName": "Browse Folder",
+                  "permissionKey": null,
+                  "permissionCode": null,
+                  "fullControl": false,
+                  "view": false,
+                  "allowAccess": false
+              },
+              {
+                  "permissionId": 5,
+                  "permissionName": "View Folder",
+                  "permissionKey": null,
+                  "permissionCode": null,
+                  "fullControl": false,
+                  "view": false,
+                  "allowAccess": false
+              },
+              {
+                  "permissionId": 6,
+                  "permissionName": "Write to Folder",
+                  "permissionKey": null,
+                  "permissionCode": null,
+                  "fullControl": false,
+                  "view": false,
+                  "allowAccess": false
+              }
+          ],
+          "rolePermissions": [
+              {
+                  "roleId": 0,
+                  "roleName": "Administrators",
+                  "permissions": [
+                      {
+                          "permissionId": 8,
+                          "permissionName": "Browse Folder",
+                          "permissionKey": null,
+                          "permissionCode": null,
+                          "fullControl": false,
+                          "view": false,
+                          "allowAccess": true
+                      },
+                      {
+                          "permissionId": 5,
+                          "permissionName": "View Folder",
+                          "permissionKey": null,
+                          "permissionCode": null,
+                          "fullControl": false,
+                          "view": false,
+                          "allowAccess": true
+                      },
+                      {
+                          "permissionId": 6,
+                          "permissionName": "Write to Folder",
+                          "permissionKey": null,
+                          "permissionCode": null,
+                          "fullControl": false,
+                          "view": false,
+                          "allowAccess": true
+                      }
+                  ],
+                  "locked": true,
+                  "default": true
+              },
+              {
+                  "roleId": -1,
+                  "roleName": "All Users",
+                  "permissions": [
+                      {
+                          "permissionId": 8,
+                          "permissionName": "Browse Folder",
+                          "permissionKey": null,
+                          "permissionCode": null,
+                          "fullControl": false,
+                          "view": false,
+                          "allowAccess": true
+                      },
+                      {
+                          "permissionId": 5,
+                          "permissionName": "View Folder",
+                          "permissionKey": null,
+                          "permissionCode": null,
+                          "fullControl": false,
+                          "view": false,
+                          "allowAccess": true
+                      }
+                  ],
+                  "locked": false,
+                  "default": true
+              },
+              {
+                  "roleId": 1,
+                  "roleName": "Registered Users",
+                  "permissions": [],
+                  "locked": false,
+                  "default": true
+              }
+          ],
+          "userPermissions": [
+              {
+                  "userId": 2,
+                  "displayName": "Daniel Valadas",
+                  "permissions": [
+                      {
+                          "permissionId": 8,
+                          "permissionName": "Browse Folder",
+                          "permissionKey": null,
+                          "permissionCode": null,
+                          "fullControl": false,
+                          "view": false,
+                          "allowAccess": true
+                      },
+                      {
+                          "permissionId": 5,
+                          "permissionName": "View Folder",
+                          "permissionKey": null,
+                          "permissionCode": null,
+                          "fullControl": false,
+                          "view": false,
+                          "allowAccess": true
+                      },
+                      {
+                          "permissionId": 6,
+                          "permissionName": "Write to Folder",
+                          "permissionKey": null,
+                          "permissionCode": null,
+                          "fullControl": false,
+                          "view": false,
+                          "allowAccess": true
+                      }
+                  ]
+              }
+          ]
+        };
+        const roleGroups = [
+            {
+                "id": 0,
+                "name": "Test group",
+                "rolesCount": 0,
+                "description": "This is a a test role group"
+            },
+            {
+              "id": 1,
+              "name": "Another test group",
+              "rolesCount": 0,
+              "description": "Another test role."
+            }
+        ];
+        var roles = [
+          {
+            IsSystemRole: true,
+            RoleId: 0,
+            RoleGroupId: -1,
+            RoleName: "Administrators",
+          },
+          {
+            IsSystemRole: true,
+            RoleId: 1,
+            RoleGroupId: -1,
+            RoleName: "Registered Users",
+          },
+          {
+            IsSystemRole: true,
+            RoleId: 5,
+            RoleGroupId: -1,
+            RoleName: "Translator (fr-FR)",
+          },
+          {
+            IsSystemRole: true,
+            RoleId: -3,
+            RoleGroupId: -1,
+            RoleName: "Unauthenticated Users",
+          },
+          {
+            IsSystemRole: false,
+            RoleId: 10,
+            RoleGroupId: 1,
+            RoleName: "Test Role",
+          },
+          {
+            IsSystemRole: false,
+            RoleId: 11,
+            RoleGroupId: 2,
+            RoleName: "Another test role",
+          },
+        ];
+        const grid = document.querySelector("dnn-permissions-grid");
+        grid.permissions = permissions;
+        grid.roleGroups = roleGroups;
+        grid.roles = roles;
+      })();
+    </script>
+  </section>
+
+
   <a name="dnn-button"></a>
   <!-- dnn-button -->
   <section>

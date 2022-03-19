@@ -37,11 +37,13 @@ Type: `Promise<void>`
 
 ### Used by
 
+ - [dnn-permissions-grid](../dnn-permissions-grid)
  - [dnn-treeview-item](../dnn-treeview-item)
 
 ### Graph
 ```mermaid
 graph TD;
+  dnn-permissions-grid --> dnn-collapsible
   dnn-treeview-item --> dnn-collapsible
   style dnn-collapsible fill:#f9f,stroke:#333,stroke-width:4px
 ```
