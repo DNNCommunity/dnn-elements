@@ -1,4 +1,4 @@
-import { ColorInfo } from './ColorInfo';
+import { ColorInfo } from './colorInfo';
 
 describe('Hue changes should not affect saturation and lightness', () => {
   const color = new ColorInfo();
