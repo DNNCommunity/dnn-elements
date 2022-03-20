@@ -1,22 +1,19 @@
 :host {
+  /**
+    * @prop --background-color:  Defines the menu background color
+    * @prop --foreground-color: A color that contrasts with the background color
+    * @prop --text-color: The color of the text
+  */
+
   display: block;
-
-  /** Defines the menu background color. */
-  --background-color: var(--dnn-color-primary-contrast, white);
-
-  /** A color that contrasts well over the background color. */
-  --foreground-color: var(--dnn-color-primary, blue);
-
-  /** The color of the text. */
-  --text-color: #222;
 }
 
 .menu-container{
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: var(--background-color, var(--dnn-color-primary-contrast, white));
+  color: var(--text-color, #222);
   .menu{
     margin: 0.5em;
     display: flex;
@@ -32,12 +29,21 @@
     button{
       cursor: pointer;
       svg{
-        fill: var(--foreground-color);
+        fill: var(--foreground-color, var(--dnn-color-primary, blue));
       }
       padding: 0;
       margin: 0;
       background-color: transparent;
       border: none;
+    }
+    a.dropdown{
+      span{
+        color: var(--text-color, #222);
+        text-decoration: none;
+        &:hover{
+          color: var(--text-color, #222);
+        }
+      }
     }
     .dropdown{
       position:absolute;
@@ -51,7 +57,7 @@
       &.visible{
         padding: 1em;
         gap: 0.5em;
-        background-color: var(--background-color);
+        background-color: var(--background-color, var(--dnn-color-primary-contrast, white));
         box-shadow: 2px 2px 4px rgba(0,0,0,0.7);
       }
     }
