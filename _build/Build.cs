@@ -72,7 +72,7 @@ class Build : NukeBuild
 
   // Directories
   AbsolutePath DistDirectory = RootDirectory / "dist";
-  AbsolutePath WwwDirectory = RootDirectory / "www";
+  AbsolutePath WwwDirectory = RootDirectory / "storybook-static";
   AbsolutePath LoaderDirectory = RootDirectory / "loader";
 
   GitHubClient gitHubClient;
@@ -115,6 +115,7 @@ class Build : NukeBuild
       NpmInstall();
       NpmRun(s => s.SetCommand("build"));
       NpmRun(s => s.SetCommand("test"));
+      NpmRun(s => s.SetCommand("build-storybook"));
     });
   Target SetupGithubActor => _ => _
     .Executes(() =>
@@ -250,16 +251,16 @@ class Build : NukeBuild
     .DependsOn(Compile)
     .Executes(() =>
     {
-      Git("add www -f");
+      Git("add storybook-static -f");
       Git("commit --allow-empty -m \"Commit latest build\"");
       Git("reset --hard");
       Git("checkout -b newsite origin/site");
       Git("rm -r .");
       Git("commit -m \"Deleted old build\"");
       Git("cherry-pick deploy --strategy-option=theirs");
-      CopyDirectoryRecursively(RootDirectory / "www", RootDirectory, DirectoryExistsPolicy.Merge);
-      DeleteDirectory(RootDirectory / "www");
-      Git("rm -r www");
+      CopyDirectoryRecursively(RootDirectory / "storybook-static", RootDirectory, DirectoryExistsPolicy.Merge);
+      DeleteDirectory(RootDirectory / "storybook-static");
+      Git("rm -r storybook-static");
       Git("add ./*.html");
       Git("add ./*.json");
       Git("add build");
