@@ -256,6 +256,7 @@ class Build : NukeBuild
       Git("reset --hard");
       Git("checkout -b newsite origin/site");
       Git("rm -r .");
+      Git("clean -dxf");
       Git("commit -m \"Deleted old build\"");
       Git("cherry-pick deploy --strategy-option=theirs");
       CopyDirectoryRecursively(RootDirectory / "storybook-static", RootDirectory, DirectoryExistsPolicy.Merge);
