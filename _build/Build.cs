@@ -264,6 +264,6 @@ class Build : NukeBuild
       Git("subtree split --prefix storybook-static -b staging");
 
       // Finally we can force-push that local branch to github.
-      Git("push -f upstream staging:site");
+      Git("push -f origin staging:site");
     });
 }
