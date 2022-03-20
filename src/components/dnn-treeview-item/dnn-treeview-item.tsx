@@ -1,5 +1,9 @@
 import { Component, Host, h, Prop, State, Element, Event, EventEmitter, Watch } from '@stencil/core';
 
+/** 
+ * @slot - The content of this node.
+ * @slot children - The content nested under this node.
+*/
 @Component({
   tag: 'dnn-treeview-item',
   styleUrl: 'dnn-treeview-item.scss',
