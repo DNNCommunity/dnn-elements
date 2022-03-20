@@ -261,9 +261,7 @@ class Build : NukeBuild
       CopyDirectoryRecursively(RootDirectory / "storybook-static", RootDirectory, DirectoryExistsPolicy.Merge);
       DeleteDirectory(RootDirectory / "storybook-static");
       Git("rm -r storybook-static");
-      Git("add ./*.html");
-      Git("add ./*.json");
-      Git("add build");
+      Git("add .");
       Git("commit -m \"Move files to root folder\"");
       Git("push origin HEAD:site");
       Git("reset --hard");
