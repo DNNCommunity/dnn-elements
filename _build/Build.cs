@@ -251,30 +251,19 @@ class Build : NukeBuild
     .DependsOn(Compile)
     .Executes(() =>
     {
-      Git("add storybook-static -f");
-      Git("commit --allow-empty -m \"Commit latest build\"");
-      Git("reset --hard");
-      Git("checkout -b newsite origin/site");
-      Git("rm -r .");
-      Git("commit -m \"Deleted old build\"");
-      Git("cherry-pick deploy --strategy-option=theirs");
-      CopyDirectoryRecursively(RootDirectory / "storybook-static", RootDirectory, DirectoryExistsPolicy.Merge);
-      DeleteDirectory(RootDirectory / "storybook-static");
-      Git("rm -r storybook-static");
-      Git("add *.js");
-      Git("add *.txt");
-      Git("add *.map");
-      Git("add *.html");
-      Git("add *.ico");
-      Git("add cjs/*");
-      Git("add collection/*");
-      Git("add dnn/*");
-      Git("add esm/*");
-      Git("add esm-es5/*");
-      Git("add types/*");
-      Git("commit -m \"Move files to root folder\"");
-      Git("push origin HEAD:site");
-      Git("reset --hard");
-      Git("checkout deploy");
+      // First we need to allow storybook-static in the gitignore.
+      var gitIgnore = ReadAllText(RootDirectory / ".gitignore");
+      gitIgnore = gitIgnore.Replace("storybook-static", string.Empty);
+      WriteAllText(RootDirectory / ".gitignore", gitIgnore);
+
+      // For git to be aware of the changes, we need to commit them.
+      Git("add storybook-static");
+      Git("commit -m \"Commit latest documentation.\"");
+
+      // Now we make a new local `site` branch with the subtree of that subfolder only.
+      Git("subtree split --prefix storybook-static -b site");
+
+      // Finally we can force-push that local branch to github.
+      Git("push -f upstream site:site");
     });
 }
