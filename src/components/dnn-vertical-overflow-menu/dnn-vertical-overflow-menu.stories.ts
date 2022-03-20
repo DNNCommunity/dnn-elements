@@ -16,15 +16,15 @@ export default {
         '--foreground-color': {
             control: 'color',
         },
-        '--text-color': {
-            control: 'color',
-        },
     }
 } as Meta;
 
 const Template = (args: {}, context) => 
     html`
 <style type="text/css">
+    dnn-vertical-overflow-menu svg{
+        fill: #3792ED;
+    }
     dnn-vertical-overflow-menu button{
         display: flex;
         align-items: center;
@@ -32,6 +32,8 @@ const Template = (args: {}, context) =>
     dnn-vertical-overflow-menu a{
         display: flex;
         align-items: center;
+        text-decoration: none;
+        color: black;
     }
 </style>
 <dnn-vertical-overflow-menu
