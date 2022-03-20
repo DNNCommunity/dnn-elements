@@ -13,12 +13,6 @@ export default {
         expanded: {
             control: "boolean",
         },
-        onUserCollapsed: {
-            action: "User Collapsed",
-        },
-        onUserExpanded: {
-            action: "User Expanded",
-        },
     },
 } as Meta;
 
