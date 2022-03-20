@@ -260,10 +260,10 @@ class Build : NukeBuild
       Git("add storybook-static");
       Git("commit -m \"Commit latest documentation.\"");
 
-      // Now we make a new local `site` branch with the subtree of that subfolder only.
-      Git("subtree split --prefix storybook-static -b site");
+      // Now we make a new local `staging` branch with the subtree of that subfolder only.
+      Git("subtree split --prefix storybook-static -b staging");
 
       // Finally we can force-push that local branch to github.
-      Git("push -f upstream site:site");
+      Git("push -f upstream staging:site");
     });
 }
