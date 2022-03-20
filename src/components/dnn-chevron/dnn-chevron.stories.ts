@@ -13,10 +13,10 @@ export default {
         notes:  readme,
     },
     argTypes: {
-        'expandText': {
+        'expand-text': {
             control: 'text',
         },
-        'collapseText': {
+        'collapse-text': {
             control: 'text',
         },
         'expanded': {
@@ -28,7 +28,7 @@ export default {
 const Template = (args) =>
     html`
         <dnn-chevron
-            expandText=${ifDefined(args.expandText)}
+            expand-text=${ifDefined(args.expandText)}
             collapse-text=${ifDefined(args.collapseText)}
             ?expanded=${ifDefined(args.expanded)}>
         </dnn-chevron>
