@@ -31,6 +31,13 @@
 | `"uncheckedicon"`    | Allows overriding the unchecked icon.                      |
 
 
+## CSS Custom Properties
+
+| Name            | Description                                                                                  |
+| --------------- | -------------------------------------------------------------------------------------------- |
+| `--focus-color` | The color to outline the checkbox when hovered or focused, default to the dnn primary color. |
+
+
 ## Dependencies
 
 ### Used by

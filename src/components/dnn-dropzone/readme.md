@@ -22,6 +22,15 @@
 | `filesSelected` | Fires when file were selected. | `CustomEvent<File[]>` |
 
 
+## CSS Custom Properties
+
+| Name                      | Description                                          |
+| ------------------------- | ---------------------------------------------------- |
+| `--border-color`          | The color of the border.                             |
+| `--border-radius`         | The radius of the controls borders.                  |
+| `--drop-background-color` | The color of the background when a file is dropping. |
+
+
 ## Dependencies
 
 ### Used by
