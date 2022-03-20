@@ -4,6 +4,7 @@ import readme from "./readme.md";
 
 export default {
     title: "Elements/Searchbox",
+    component: "dnn-searchbox",
     parameters: {
         notes: readme,
         actions: {

@@ -17,17 +17,6 @@
 <!-- Auto Generated Below -->
 
 
-## CSS Custom Properties
-
-| Name                   | Description                                         |
-| ---------------------- | --------------------------------------------------- |
-| `--color-background`   | The color of the inactive tabs.                     |
-| `--color-focus`        | outline color when hovering or pre-selecting a tab. |
-| `--color-text`         | The color of the text for inactive tabs.            |
-| `--color-visible`      | The color of the active tab.                        |
-| `--color-visible-text` | The color of the text for the active tab.           |
-
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
