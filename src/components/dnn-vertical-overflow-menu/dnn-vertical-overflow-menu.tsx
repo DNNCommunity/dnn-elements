@@ -96,9 +96,11 @@ export class DnnVerticalOverflowMenu {
       let contentHeight = 0;
       const items = Array.from(this.dropdown.querySelector("slot").assignedElements());
       items.forEach(item => contentHeight += item.getBoundingClientRect().height);
-      var emHeight = parseFloat(getComputedStyle(this.dropdown).fontSize) * 0.5;
-      var additionalHeight = emHeight * (this.dropdown.children.length - 1);
-      contentHeight += additionalHeight;
+      const emHeight = parseFloat(getComputedStyle(this.dropdown).fontSize);
+      const gapsHeight = emHeight * (this.dropdown.children.length - 1) / 2;
+      contentHeight += gapsHeight;
+      const marginHeight = emHeight * 2;
+      contentHeight += marginHeight;
       this.dropdown.style.height = `${contentHeight}px`;
       const dismissMenu = (e: MouseEvent) => {
         const buttonRect = this.button.getBoundingClientRect();
