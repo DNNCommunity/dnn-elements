@@ -1,14 +1,16 @@
 :host {
-  display: flex;
-  align-items: stretch;
-  margin: 0 auto;
-  position: relative;
+    /**
+      * @prop --left-pane-background-color:  Allows customizing the left pane background-color
+      * @prop --right-pane-background-color: Allows customizing the right pane background-color
+    */
 
-  /** @prop --left-pane-background-color:  Allows customizing the left pane background-color */
-  --left-pane-background-color: transparent;
+    display: flex;
+    align-items: stretch;
+    margin: 0 auto;
+    position: relative;
 
-  /** @prop --right-pane-background-color: Allows customizing the right pane background-color */
-  --right-pane-background-color: transparent;
+    --left-pane-background-color: transparent;
+    --right-pane-background-color: transparent;
 }
 
 button{
