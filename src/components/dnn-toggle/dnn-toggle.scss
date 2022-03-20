@@ -45,7 +45,7 @@ button {
         background-color:white;
         width: 1em;
         height: 1em;
-        border-radius: var(--dnn-controls-radius, 50%);
+        border-radius: var(--handle-border-radius, var(--dnn-controls-radius, 50%));
         position: absolute;
         top: calc(50% - 0.5em);
         left: 2px;
