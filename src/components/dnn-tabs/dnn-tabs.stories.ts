@@ -2,6 +2,7 @@ import { html } from "lit-html";
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { Meta } from "@storybook/web-components";
 import readme from './readme.md';
+import { injectStyles } from "../../../.storybook/utilities";
 
 export default {
     title: 'Elements/Tabs',
@@ -28,33 +29,10 @@ export default {
     }
 } as Meta;
 
-const Template = (args) => {
+const Template = (args: {}, context) => {
  
-    function injectStyles(){
-        const styles = [];
-        if (args['--color-background'] != undefined){
-            styles.push(`--color-background: ${args['--color-background']};`);
-        }
-        if (args['--color-focus'] != undefined){
-            styles.push(`--color-focus: ${args['--color-focus']};`);
-        }
-        if (args['--color-text'] != undefined){
-            styles.push(`--color-text: ${args['--color-text']};`);
-        }
-        if (args['--color-visible'] != undefined){
-            styles.push(`--color-visible: ${args['--color-visible']};`);
-        }
-        if (args['--color-visible-text'] != undefined){
-            styles.push(`--color-visible-text: ${args['--color-visible-text']};`);
-        }
-        if (styles.length > 0){
-            return styles.join(' ');
-        }
-        return undefined;
-    }
-
     return html`
-<dnn-tabs style=${ifDefined(injectStyles())}>
+<dnn-tabs style=${ifDefined(injectStyles(args, context))}>
     <dnn-tab tab-title="Lorem Ipsum">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla hendrerit nisl vel aliquam cursus. Fusce tincidunt vitae mi a malesuada. Praesent eros mi, semper ut orci quis, faucibus viverra felis. Cras non lacus vehicula, fermentum felis id, dictum diam. Proin congue urna est, ac viverra ligula sagittis eu. Proin diam libero, vulputate egestas dui at, molestie dictum dolor. Fusce varius ex vitae massa pulvinar, ut hendrerit enim molestie. Aliquam volutpat facilisis ipsum, nec mollis elit dapibus eu. Donec scelerisque interdum tristique. Aliquam accumsan sem urna, vel posuere dui faucibus et. Mauris quis rutrum massa.</p>
         <p>Curabitur nisl tortor, egestas a lacus eu, consectetur ornare erat. Praesent auctor ante gravida rutrum dictum. Praesent congue in enim sed ornare. In at ultrices mauris. Donec vulputate ante vel lectus ullamcorper varius. Nullam ac dui velit. Quisque porttitor, eros id interdum posuere, turpis nisi convallis ex, quis venenatis massa eros sit amet ex. Donec sem quam, consectetur at consectetur quis, suscipit sit amet ligula. Morbi nec lectus iaculis, dapibus lorem eget, molestie dui. Sed porttitor lacus ut hendrerit vulputate. Cras efficitur nec ligula ut lobortis. Cras aliquam, magna ac condimentum ullamcorper, sapien dolor varius sapien, sed volutpat lorem felis et nulla.</p>
