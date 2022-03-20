@@ -177,7 +177,12 @@
               "description": "Allows overriding the unchecked icon."
             }
           ],
-          "cssProperties": [],
+          "cssProperties": [
+            {
+              "name": "--focus-color",
+              "description": "The color to outline the checkbox when hovered or focused, default to the dnn primary color."
+            }
+          ],
           "cssParts": []
         }
       ]
@@ -393,7 +398,20 @@
             }
           ],
           "slots": [],
-          "cssProperties": [],
+          "cssProperties": [
+            {
+              "name": "--border-color",
+              "description": "The color of the border."
+            },
+            {
+              "name": "--border-radius",
+              "description": "The radius of the controls borders."
+            },
+            {
+              "name": "--drop-background-color",
+              "description": "The color of the background when a file is dropping."
+            }
+          ],
           "cssParts": []
         }
       ]
@@ -543,7 +561,12 @@
             }
           ],
           "slots": [],
-          "cssProperties": [],
+          "cssProperties": [
+            {
+              "name": "--max-width",
+              "description": "The maximum width of the module."
+            }
+          ],
           "cssParts": []
         }
       ]
@@ -714,7 +737,20 @@
             }
           ],
           "slots": [],
-          "cssProperties": [],
+          "cssProperties": [
+            {
+              "name": "--color",
+              "description": "Normal Color of the inactive sort icon."
+            },
+            {
+              "name": "--color-hover",
+              "description": "Color of the icons when hovered."
+            },
+            {
+              "name": "--color-sorted",
+              "description": "Color of the sorted sort icon."
+            }
+          ],
           "cssParts": []
         }
       ]
@@ -772,7 +808,28 @@
           "members": [],
           "events": [],
           "slots": [],
-          "cssProperties": [],
+          "cssProperties": [
+            {
+              "name": "--color-background",
+              "description": "The color of the inactive tabs."
+            },
+            {
+              "name": "--color-focus",
+              "description": "outline color when hovering or pre-selecting a tab."
+            },
+            {
+              "name": "--color-text",
+              "description": "The color of the text for inactive tabs."
+            },
+            {
+              "name": "--color-visible",
+              "description": "The color of the active tab."
+            },
+            {
+              "name": "--color-visible-text",
+              "description": "The color of the text for the active tab."
+            }
+          ],
           "cssParts": []
         }
       ]
@@ -817,7 +874,32 @@
             }
           ],
           "slots": [],
-          "cssProperties": [],
+          "cssProperties": [
+            {
+              "name": "--background",
+              "description": "Background of the toggle."
+            },
+            {
+              "name": "--background-checked",
+              "description": "Background of the toggle when checked."
+            },
+            {
+              "name": "--border-radius",
+              "description": "The radius of the background borders."
+            },
+            {
+              "name": "--handle-background",
+              "description": "Background of the handle."
+            },
+            {
+              "name": "--handle-background-checked",
+              "description": "Background of the handle when checked."
+            },
+            {
+              "name": "--handle-border-radius",
+              "description": "The radius of the handle."
+            }
+          ],
           "cssParts": []
         }
       ]
@@ -949,7 +1031,16 @@
               "description": "The content of the right pane."
             }
           ],
-          "cssProperties": [],
+          "cssProperties": [
+            {
+              "name": "--left-pane-background-color",
+              "description": "Allows customizing the left pane background-color"
+            },
+            {
+              "name": "--right-pane-background-color",
+              "description": "Allows customizing the right pane background-color"
+            }
+          ],
           "cssParts": []
         }
       ]
