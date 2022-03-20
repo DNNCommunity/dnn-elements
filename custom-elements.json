@@ -941,7 +941,16 @@
               "description": "Fires when the user expands a node."
             }
           ],
-          "slots": [],
+          "slots": [
+            {
+              "name": " ",
+              "description": "The content of this node."
+            },
+            {
+              "name": "children",
+              "description": "The content nested under this node."
+            }
+          ],
           "cssProperties": [],
           "cssParts": []
         }
@@ -960,7 +969,16 @@
           "members": [],
           "events": [],
           "slots": [],
-          "cssProperties": [],
+          "cssProperties": [
+            {
+              "name": "--background-color",
+              "description": "Defines the menu background color."
+            },
+            {
+              "name": "--foreground-color",
+              "description": "A color that contrasts with the background color."
+            }
+          ],
           "cssParts": []
         }
       ]
