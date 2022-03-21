@@ -9,17 +9,14 @@ on:
 jobs:
   publish-site:
     name: publish-site
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Cache .nuke/temp, ~/.nuget/packages
-        uses: actions/cache@v2
-        with:
-          path: |
-            .nuke/temp
-            ~/.nuget/packages
-          key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj') }}
-      - name: Run './build.sh PublishSite'
-        run: ./build.sh PublishSite
+      - name: publish-site
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npm run build
+          npm run build-storybook
+          npm run deploy-storybook -- -u "github-actions-bot <support+actions@github.com>"
         env:
-          GithubToken: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{GITHUB_TOKEN}}
