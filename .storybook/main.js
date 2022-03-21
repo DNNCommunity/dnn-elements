@@ -17,5 +17,13 @@ module.exports = {
     "@geometricpanda/storybook-addon-badges"
   ],
   "framework": "@storybook/web-components",
-  staticDirs: ['../dist']
+  staticDirs: ['../dist'],
+  managerHead: (head, { configType }) => {
+    if (configType === "PRODUCTION"){
+      return (`
+        ${head}
+        <base href="/dnn-elements/">
+      `);
+    }
+  }
 }
