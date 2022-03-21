@@ -19,4 +19,4 @@ jobs:
           npm run build-storybook
           npm run deploy-storybook -- -u "github-actions-bot <support+actions@github.com>"
         env:
-          GITHUB_TOKEN: ${{GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
