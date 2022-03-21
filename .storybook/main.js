@@ -18,12 +18,4 @@ module.exports = {
   ],
   "framework": "@storybook/web-components",
   staticDirs: ['../dist'],
-  managerHead: (head, { configType }) => {
-    if (configType === "PRODUCTION"){
-      return (`
-        ${head}
-        <base href="/dnn-elements/">
-      `);
-    }
-  }
 }
