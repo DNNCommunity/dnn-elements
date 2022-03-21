@@ -257,19 +257,6 @@ class Build : NukeBuild
     .DependsOn(Compile)
     .Executes(() =>
     {
-      // First we need to allow storybook-static in the gitignore.
-      var gitIgnore = ReadAllText(RootDirectory / ".gitignore");
-      gitIgnore = gitIgnore.Replace("storybook-static", string.Empty);
-      WriteAllText(RootDirectory / ".gitignore", gitIgnore);
-
-      // For git to be aware of the changes, we need to commit them.
-      Git("add storybook-static");
-      Git("commit -m \"Commit latest documentation.\"");
-
-      // Now we make a new local `staging` branch with the subtree of that subfolder only.
-      Git("subtree split --prefix storybook-static -b staging");
-
-      // Finally we can force-push that local branch to github.
-      Git("push -f origin staging:site");
+      NpmRun(s => s.SetCommand("deploy-storybook"));
     });
 }
