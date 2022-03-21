@@ -114,7 +114,13 @@ class Build : NukeBuild
       Npm($"version {version} --allow-same-version --git-tag-version false");
       NpmInstall();
       NpmRun(s => s.SetCommand("build"));
-      NpmRun(s => s.SetCommand("test"));
+      // Only run tests on PRs.
+      if (!(
+        gitRepository.IsOnDevelopBranch() ||
+        gitRepository.IsOnMainOrMasterBranch() ||
+        gitRepository.IsOnReleaseBranch())){
+          NpmRun(s => s.SetCommand("test"));
+        }
       NpmRun(s => s.SetCommand("build-storybook"));
     });
   Target SetupGithubActor => _ => _
