@@ -14,7 +14,8 @@ jobs:
       - uses: actions/checkout@v1
       - name: publish-site
         run: |
-          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/DNNCommunity/dnn-elements.git
+          npm install
           npm run build
           npm run build-storybook
           npm run deploy-storybook -- -u "github-actions-bot <support+actions@github.com>"
