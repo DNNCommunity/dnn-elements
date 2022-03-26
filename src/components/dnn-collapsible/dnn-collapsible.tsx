@@ -12,7 +12,7 @@ export class DnnCollapsible {
   /** Defines if the panel is expanded or not. */
   @Prop({reflect: true}) expanded: boolean = false;
 
-  /** Defines the transition time in ms, defaults to 100ms */
+  /** Defines the transition time in ms, defaults to 150ms */
   @Prop() transitionDuration?: number = 150;
 
   /** Fires whenever the collapsible height has changed */
@@ -62,10 +62,19 @@ export class DnnCollapsible {
   
   private container: HTMLDivElement;
 
+  componentDidLoad() {
+    this.container.style.transition = `max-height ${this.transitionDuration}ms ease-in-out`;
+  }
+
   render() {
     return (
       <Host>
-        <div id="container" class={this.expanded && "expanded"} ref={el => this.container = el}>
+        <div
+          id="container"
+          class={this.expanded && "expanded"}
+          ref={el => this.container = el}
+          style={{transition: `max-height ${this.transitionDuration}ms ease-in-out`}}
+        >
             <slot></slot>
         </div>
       </Host>

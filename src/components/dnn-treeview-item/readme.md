@@ -20,6 +20,14 @@
 | `userExpanded`  | Fires when the user expands a node.   | `CustomEvent<void>` |
 
 
+## Slots
+
+| Slot         | Description                         |
+| ------------ | ----------------------------------- |
+|              | The content of this node.           |
+| `"children"` | The content nested under this node. |
+
+
 ## Dependencies
 
 ### Depends on

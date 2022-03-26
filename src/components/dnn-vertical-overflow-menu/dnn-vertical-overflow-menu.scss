@@ -1,14 +1,12 @@
 :host {
-  display: block;
-
-  /** Defines the menu background color. */
+  /**
+    * @prop --background-color:  Defines the menu background color.
+    * @prop --foreground-color: A color that contrasts with the background color.
+  */
   --background-color: var(--dnn-color-primary-contrast, white);
+  --foreground-color: var(--dnn-color-primary, #3792ED);
 
-  /** A color that contrasts well over the background color. */
-  --foreground-color: var(--dnn-color-primary, blue);
-
-  /** The color of the text. */
-  --text-color: #222;
+  display: block;
 }
 
 .menu-container{
@@ -16,7 +14,6 @@
   justify-content: flex-start;
   align-items: center;
   background-color: var(--background-color);
-  color: var(--text-color);
   .menu{
     margin: 0.5em;
     display: flex;

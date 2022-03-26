@@ -6,6 +6,11 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ColorInfo } from "./utilities/colorInfo";
+import { IPermissions } from "./components/dnn-permissions-grid/permissions-interface";
+import { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interface";
+import { IRole } from "./components/dnn-permissions-grid/role-interface";
+import { ILocalization } from "./components/dnn-permissions-grid/localization-interface";
+import { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export namespace Components {
     interface DnnButton {
@@ -46,7 +51,7 @@ export namespace Components {
         /**
           * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
          */
-        "checked": boolean | undefined;
+        "checked": "checked" | "unchecked" | "intermediate";
         /**
           * Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)
          */
@@ -76,7 +81,7 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
-          * Defines the transition time in ms, defaults to 100ms
+          * Defines the transition time in ms, defaults to 150ms
          */
         "transitionDuration"?: number;
         /**
@@ -170,6 +175,32 @@ export namespace Components {
           * Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
          */
         "showCloseButton"?: boolean;
+        /**
+          * Reflects the visible state of the modal.
+         */
+        "visible": boolean;
+    }
+    interface DnnPermissionsGrid {
+        /**
+          * The list of users to show under the search users field when a search is performed.
+         */
+        "foundUsers": ISearchedUser[];
+        /**
+          * The list of permissions.
+         */
+        "permissions": IPermissions;
+        /**
+          * Optionally allows localizing the component strings.
+         */
+        "resx": ILocalization;
+        /**
+          * The list of role groups.
+         */
+        "roleGroups": IRoleGroup[];
+        /**
+          * The list of possible roles.
+         */
+        "roles": IRole[];
     }
     interface DnnSearchbox {
         /**
@@ -293,6 +324,12 @@ declare global {
         prototype: HTMLDnnModalElement;
         new (): HTMLDnnModalElement;
     };
+    interface HTMLDnnPermissionsGridElement extends Components.DnnPermissionsGrid, HTMLStencilElement {
+    }
+    var HTMLDnnPermissionsGridElement: {
+        prototype: HTMLDnnPermissionsGridElement;
+        new (): HTMLDnnPermissionsGridElement;
+    };
     interface HTMLDnnSearchboxElement extends Components.DnnSearchbox, HTMLStencilElement {
     }
     var HTMLDnnSearchboxElement: {
@@ -350,6 +387,7 @@ declare global {
         "dnn-dropzone": HTMLDnnDropzoneElement;
         "dnn-image-cropper": HTMLDnnImageCropperElement;
         "dnn-modal": HTMLDnnModalElement;
+        "dnn-permissions-grid": HTMLDnnPermissionsGridElement;
         "dnn-searchbox": HTMLDnnSearchboxElement;
         "dnn-sort-icon": HTMLDnnSortIconElement;
         "dnn-tab": HTMLDnnTabElement;
@@ -407,11 +445,11 @@ declare namespace LocalJSX {
         /**
           * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
          */
-        "checked"?: boolean | undefined;
+        "checked"?: "checked" | "unchecked" | "intermediate";
         /**
           * Fires up when the checkbox checked property changes.
          */
-        "onCheckedchange"?: (event: CustomEvent<boolean | undefined>) => void;
+        "onCheckedchange"?: (event: CustomEvent<"checked" | "unchecked" | "intermediate">) => void;
         /**
           * Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)
          */
@@ -449,7 +487,7 @@ declare namespace LocalJSX {
          */
         "onDnnCollapsibleHeightChanged"?: (event: CustomEvent<void>) => void;
         /**
-          * Defines the transition time in ms, defaults to 100ms
+          * Defines the transition time in ms, defaults to 150ms
          */
         "transitionDuration"?: number;
     }
@@ -548,6 +586,40 @@ declare namespace LocalJSX {
           * Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
          */
         "showCloseButton"?: boolean;
+        /**
+          * Reflects the visible state of the modal.
+         */
+        "visible"?: boolean;
+    }
+    interface DnnPermissionsGrid {
+        /**
+          * The list of users to show under the search users field when a search is performed.
+         */
+        "foundUsers"?: ISearchedUser[];
+        /**
+          * Fires when any permissions have changed, can be used for instance to have linked permissions.
+         */
+        "onPermissionsChanged"?: (event: CustomEvent<IPermissions>) => void;
+        /**
+          * Fires when searching for users to add to the permissions. Emits the search query.
+         */
+        "onUserSearchQueryChanged"?: (event: CustomEvent<string>) => void;
+        /**
+          * The list of permissions.
+         */
+        "permissions": IPermissions;
+        /**
+          * Optionally allows localizing the component strings.
+         */
+        "resx"?: ILocalization;
+        /**
+          * The list of role groups.
+         */
+        "roleGroups": IRoleGroup[];
+        /**
+          * The list of possible roles.
+         */
+        "roles": IRole[];
     }
     interface DnnSearchbox {
         /**
@@ -557,7 +629,7 @@ declare namespace LocalJSX {
         /**
           * Fires up each time the search query changes. The data passed is the new query.
          */
-        "onQueryChanged"?: (event: CustomEvent<any>) => void;
+        "onQueryChanged"?: (event: CustomEvent<string>) => void;
         /**
           * Sets the field placeholder text.
          */
@@ -638,6 +710,7 @@ declare namespace LocalJSX {
         "dnn-dropzone": DnnDropzone;
         "dnn-image-cropper": DnnImageCropper;
         "dnn-modal": DnnModal;
+        "dnn-permissions-grid": DnnPermissionsGrid;
         "dnn-searchbox": DnnSearchbox;
         "dnn-sort-icon": DnnSortIcon;
         "dnn-tab": DnnTab;
@@ -660,6 +733,7 @@ declare module "@stencil/core" {
             "dnn-dropzone": LocalJSX.DnnDropzone & JSXBase.HTMLAttributes<HTMLDnnDropzoneElement>;
             "dnn-image-cropper": LocalJSX.DnnImageCropper & JSXBase.HTMLAttributes<HTMLDnnImageCropperElement>;
             "dnn-modal": LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
+            "dnn-permissions-grid": LocalJSX.DnnPermissionsGrid & JSXBase.HTMLAttributes<HTMLDnnPermissionsGridElement>;
             "dnn-searchbox": LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
             "dnn-sort-icon": LocalJSX.DnnSortIcon & JSXBase.HTMLAttributes<HTMLDnnSortIconElement>;
             "dnn-tab": LocalJSX.DnnTab & JSXBase.HTMLAttributes<HTMLDnnTabElement>;

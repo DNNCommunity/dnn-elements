@@ -1,0 +1,1067 @@
+{
+  "version": "1.0.0",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-button/dnn-button.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-button.tsx",
+          "tagName": "dnn-button",
+          "description": "",
+          "attributes": [
+            {
+              "name": "confirm",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Optionally add a confirmation dialog before firing the action.",
+              "default": "false",
+              "required": false
+            },
+            {
+              "name": "confirm-message",
+              "type": {
+                "text": "string"
+              },
+              "description": "The text of the confirmation message;",
+              "default": "\"Are you sure ?\"",
+              "required": false
+            },
+            {
+              "name": "confirm-no-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "The text of the no button for confirmation.",
+              "default": "\"No\"",
+              "required": false
+            },
+            {
+              "name": "confirm-yes-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "The text of the yes button for confirmation.",
+              "default": "\"Yes\"",
+              "required": false
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Disables the button",
+              "default": "false",
+              "required": false
+            },
+            {
+              "name": "reversed",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Optionally reverses the button style.",
+              "default": "false",
+              "required": false
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "\"large\" | \"normal\" | \"small\""
+              },
+              "description": "Optionally sets the button size, small normal or large, defaults to normal",
+              "default": "'normal'",
+              "required": false
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "\"primary\" | \"secondary\" | \"tertiary\""
+              },
+              "description": "Optional button style,\ncan be either primary, secondary or tertiary and defaults to primary if not specified",
+              "default": "'primary'",
+              "required": false
+            }
+          ],
+          "members": [],
+          "events": [
+            {
+              "name": "canceled",
+              "type": {
+                "text": "any"
+              },
+              "description": "Fires when confirm is true and the user cancels the action."
+            },
+            {
+              "name": "confirmed",
+              "type": {
+                "text": "any"
+              },
+              "description": "Fires when confirm is true and the user confirms the action."
+            }
+          ],
+          "slots": [
+            {
+              "name": "Content of the button",
+              "description": ""
+            }
+          ],
+          "cssProperties": [],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-checkbox/dnn-checkbox.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-checkbox.tsx",
+          "tagName": "dnn-checkbox",
+          "description": "",
+          "attributes": [
+            {
+              "name": "checked",
+              "type": {
+                "text": "\"checked\" | \"intermediate\" | \"unchecked\""
+              },
+              "description": "Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)",
+              "default": "\"unchecked\"",
+              "required": false
+            },
+            {
+              "name": "use-intermediate",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)",
+              "default": "false",
+              "required": false
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "The value for this checkbox (not to be confused with its checked state).",
+              "required": false
+            }
+          ],
+          "members": [],
+          "events": [
+            {
+              "name": "checkedchange",
+              "type": {
+                "text": "\"checked\" | \"intermediate\" | \"unchecked\""
+              },
+              "description": "Fires up when the checkbox checked property changes."
+            }
+          ],
+          "slots": [
+            {
+              "name": " ",
+              "description": "The label for the checkbox."
+            },
+            {
+              "name": "checkedicon",
+              "description": "Allows overriding the default checked icon."
+            },
+            {
+              "name": "intermediateicon",
+              "description": "If intermadiate state is used, allows overriding its icon."
+            },
+            {
+              "name": "uncheckedicon",
+              "description": "Allows overriding the unchecked icon."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--focus-color",
+              "description": "The color to outline the checkbox when hovered or focused, default to the dnn primary color."
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-chevron/dnn-chevron.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-chevron.tsx",
+          "tagName": "dnn-chevron",
+          "description": "",
+          "attributes": [
+            {
+              "name": "collapse-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "Collapse text for screen readers",
+              "default": "\"collapse\"",
+              "required": false
+            },
+            {
+              "name": "expand-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "Expand text for screen readers",
+              "default": "\"expand\"",
+              "required": false
+            },
+            {
+              "name": "expanded",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Is the chevron expanded",
+              "default": "false",
+              "required": false
+            }
+          ],
+          "members": [],
+          "events": [
+            {
+              "name": "changed",
+              "type": {
+                "text": "any"
+              },
+              "description": "Fires up when the expanded status changes"
+            }
+          ],
+          "slots": [],
+          "cssProperties": [],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-collapsible/dnn-collapsible.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-collapsible.tsx",
+          "tagName": "dnn-collapsible",
+          "description": "",
+          "attributes": [
+            {
+              "name": "expanded",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines if the panel is expanded or not.",
+              "default": "false",
+              "required": false
+            },
+            {
+              "name": "transition-duration",
+              "type": {
+                "text": "number"
+              },
+              "description": "Defines the transition time in ms, defaults to 150ms",
+              "default": "150",
+              "required": false
+            }
+          ],
+          "members": [
+            {
+              "kind": "method",
+              "name": "updateSize",
+              "description": "Updates the component height, use to update after a slot content changes.",
+              "signature": "updateSize() => Promise<void>"
+            }
+          ],
+          "events": [
+            {
+              "name": "dnnCollapsibleHeightChanged",
+              "type": {
+                "text": "void"
+              },
+              "description": "Fires whenever the collapsible height has changed"
+            }
+          ],
+          "slots": [],
+          "cssProperties": [],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-color-picker/dnn-color-picker.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-color-picker.tsx",
+          "tagName": "dnn-color-picker",
+          "description": "Color Picker for Dnn",
+          "attributes": [
+            {
+              "name": "color",
+              "type": {
+                "text": "string"
+              },
+              "description": "Sets the initial color, must be a valid 8 character hexadecimal string without the # sign.",
+              "default": "\"FFFFFF\"",
+              "required": false
+            },
+            {
+              "name": "color-box-height",
+              "type": {
+                "text": "string"
+              },
+              "description": "Sets the width-height ratio of the color picker saturation-lightness box.",
+              "default": "\"50%\"",
+              "required": false
+            }
+          ],
+          "members": [],
+          "events": [
+            {
+              "name": "colorChanged",
+              "type": {
+                "text": "ColorInfo"
+              },
+              "description": "Fires up when the color is changed and emits a ColorInfo object"
+            }
+          ],
+          "slots": [],
+          "cssProperties": [],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-dropzone/dnn-dropzone.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-dropzone.tsx",
+          "tagName": "dnn-dropzone",
+          "description": "",
+          "attributes": [
+            {
+              "name": "allow-camera-mode",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, will allow the user to take a snapshot\nusing the device camera. (only works over https).",
+              "default": "false",
+              "required": false
+            },
+            {
+              "name": "capture-quality",
+              "type": {
+                "text": "number"
+              },
+              "description": "Specifies the jpeg quality for when the device\ncamera is used to generate a picture.\nNeeds to be a number between 0 and 1 and defaults to 0.8",
+              "default": "0.8",
+              "required": false
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "allowedExtensions",
+              "type": {
+                "text": "string[]"
+              },
+              "description": "A list of allowed file extensions.\nIf not specified, any file is allowed.\nEx: [\"jpg\", \"jped\", \"gif\", \"png\"]",
+              "required": false
+            },
+            {
+              "kind": "field",
+              "name": "resx",
+              "type": {
+                "text": "{ dragAndDropFile: string; capture: string; or: string; takePicture: string; uploadFile: string; }"
+              },
+              "description": "Localization strings",
+              "default": "{\n    dragAndDropFile: \"Drag and drop a file\",\n    capture: \"Capture\",\n    or: \"or\",\n    takePicture: \"Take a picture\",\n    uploadFile: \"Upload a file\",\n  }",
+              "required": false
+            }
+          ],
+          "events": [
+            {
+              "name": "filesSelected",
+              "type": {
+                "text": "File[]"
+              },
+              "description": "Fires when file were selected."
+            }
+          ],
+          "slots": [],
+          "cssProperties": [
+            {
+              "name": "--border-color",
+              "description": "The color of the border."
+            },
+            {
+              "name": "--border-radius",
+              "description": "The radius of the controls borders."
+            },
+            {
+              "name": "--drop-background-color",
+              "description": "The color of the background when a file is dropping."
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-image-cropper/dnn-image-cropper.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-image-cropper.tsx",
+          "tagName": "dnn-image-cropper",
+          "description": "Allows cropping an image in-browser with the option to enforce a specific final size.\nAll computation happens in the browser and the final image is emmited\nin an event that has a data-url of the image.",
+          "attributes": [
+            {
+              "name": "height",
+              "type": {
+                "text": "number"
+              },
+              "description": "Sets the desired final image height.",
+              "default": "600",
+              "required": false
+            },
+            {
+              "name": "prevent-undersized",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry.",
+              "default": "false",
+              "required": false
+            },
+            {
+              "name": "quality",
+              "type": {
+                "text": "number"
+              },
+              "description": "Sets the output quality of the corpped image (number between 0 and 1).",
+              "default": "0.8",
+              "required": false
+            },
+            {
+              "name": "width",
+              "type": {
+                "text": "number"
+              },
+              "description": "Sets the desired final image width.",
+              "default": "600",
+              "required": false
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "resx",
+              "type": {
+                "text": "{ capture: string; dragAndDropFile: string; or: string; takePicture: string; uploadFile: string; imageTooSmall: string; modalCloseText: string; }"
+              },
+              "description": "Can be used to customize controls text.\nSome values support tokens, see default values for examples.",
+              "default": "{\n    capture: \"Capture\",\n    dragAndDropFile: \"Drag and drop an image\",\n    or: \"or\",\n    takePicture: \"Take a picture\",\n    uploadFile: \"Upload an image\",\n    imageTooSmall: \"The image you are attempting to upload does not meet the minimum size requirement of {width} pixels by {height} pixels. Please upload a larger image.\",\n    modalCloseText: \"Close\",\n  }",
+              "required": false
+            }
+          ],
+          "events": [
+            {
+              "name": "imageCropChanged",
+              "type": {
+                "text": "string"
+              },
+              "description": "When the image crop changes, emits the dataurl for the new cropped image."
+            }
+          ],
+          "slots": [],
+          "cssProperties": [],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-modal/dnn-modal.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-modal.tsx",
+          "tagName": "dnn-modal",
+          "description": "",
+          "attributes": [
+            {
+              "name": "backdrop-dismiss",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Pass false to remove the backdrop click auto-dismiss feature.",
+              "default": "true",
+              "required": false
+            },
+            {
+              "name": "close-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "Optionally pass the aria-label text for the close button.\nDefaults to \"Close modal\" if not provided.",
+              "default": "\"Close modal\"",
+              "required": false
+            },
+            {
+              "name": "show-close-button",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Optionally you can pass false to not show the close button.\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\nor provide your own dismissal logic in the modal content.",
+              "default": "true",
+              "required": false
+            },
+            {
+              "name": "visible",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Reflects the visible state of the modal.",
+              "default": "false",
+              "required": false
+            }
+          ],
+          "members": [
+            {
+              "kind": "method",
+              "name": "hide",
+              "description": "Hides the modal",
+              "signature": "hide() => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "show",
+              "description": "Shows the modal",
+              "signature": "show() => Promise<void>"
+            }
+          ],
+          "events": [
+            {
+              "name": "dismissed",
+              "type": {
+                "text": "any"
+              },
+              "description": "Fires when the modal is dismissed."
+            }
+          ],
+          "slots": [],
+          "cssProperties": [
+            {
+              "name": "--max-width",
+              "description": "The maximum width of the module."
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-permissions-grid/dnn-permissions-grid.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-permissions-grid.tsx",
+          "tagName": "dnn-permissions-grid",
+          "description": "",
+          "attributes": [],
+          "members": [
+            {
+              "kind": "field",
+              "name": "foundUsers",
+              "type": {
+                "text": "ISearchedUser[]"
+              },
+              "description": "The list of users to show under the search users field when a search is performed.",
+              "default": "[]",
+              "required": false
+            },
+            {
+              "kind": "field",
+              "name": "permissions",
+              "type": {
+                "text": "IPermissions"
+              },
+              "description": "The list of permissions.",
+              "required": true
+            },
+            {
+              "kind": "field",
+              "name": "resx",
+              "type": {
+                "text": "ILocalization"
+              },
+              "description": "Optionally allows localizing the component strings.",
+              "default": "{\n    Add: \"Add\",\n    AllRoles: \"All Roles\",\n    FilterByGroup: \"Filter By Group\",\n    GlobalRoles: \"Global Roles\",\n    Role: \"Role\",\n    RolePermissions: \"Role Permissions\",\n    SelectRole: \"Select Role\",\n    User: \"User\",\n    UserPermissions: \"User Permissions\",\n  }",
+              "required": false
+            },
+            {
+              "kind": "field",
+              "name": "roleGroups",
+              "type": {
+                "text": "IRoleGroup[]"
+              },
+              "description": "The list of role groups.",
+              "required": true
+            },
+            {
+              "kind": "field",
+              "name": "roles",
+              "type": {
+                "text": "IRole[]"
+              },
+              "description": "The list of possible roles.",
+              "required": true
+            }
+          ],
+          "events": [
+            {
+              "name": "permissionsChanged",
+              "type": {
+                "text": "IPermissions"
+              },
+              "description": "Fires when any permissions have changed, can be used for instance to have linked permissions."
+            },
+            {
+              "name": "userSearchQueryChanged",
+              "type": {
+                "text": "string"
+              },
+              "description": "Fires when searching for users to add to the permissions. Emits the search query."
+            }
+          ],
+          "slots": [],
+          "cssProperties": [],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-searchbox/dnn-searchbox.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-searchbox.tsx",
+          "tagName": "dnn-searchbox",
+          "description": "",
+          "attributes": [
+            {
+              "name": "debounced",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Debounces the queryChanged by 500ms.",
+              "default": "true",
+              "required": false
+            },
+            {
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "description": "Sets the field placeholder text.",
+              "default": "\"\"",
+              "required": false
+            },
+            {
+              "name": "query",
+              "type": {
+                "text": "string"
+              },
+              "description": "Sets the query",
+              "default": "\"\"",
+              "required": false
+            }
+          ],
+          "members": [],
+          "events": [
+            {
+              "name": "queryChanged",
+              "type": {
+                "text": "string"
+              },
+              "description": "Fires up each time the search query changes.\nThe data passed is the new query."
+            }
+          ],
+          "slots": [],
+          "cssProperties": [],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-sort-icon/dnn-sort-icon.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-sort-icon.tsx",
+          "tagName": "dnn-sort-icon",
+          "description": "",
+          "attributes": [
+            {
+              "name": "sort-direction",
+              "type": {
+                "text": "\"asc\" | \"desc\" | \"none\""
+              },
+              "description": "Defines the current sort direction",
+              "default": "\"none\"",
+              "required": false
+            }
+          ],
+          "members": [],
+          "events": [
+            {
+              "name": "sortChanged",
+              "type": {
+                "text": "\"asc\" | \"desc\" | \"none\""
+              },
+              "description": "Emitted when the sort is changed."
+            }
+          ],
+          "slots": [],
+          "cssProperties": [
+            {
+              "name": "--color",
+              "description": "Normal Color of the inactive sort icon."
+            },
+            {
+              "name": "--color-hover",
+              "description": "Color of the icons when hovered."
+            },
+            {
+              "name": "--color-sorted",
+              "description": "Color of the sorted sort icon."
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-tab/dnn-tab.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-tab.tsx",
+          "tagName": "dnn-tab",
+          "description": "Represents a single tab and must be used inside a dnn-tabs element.",
+          "attributes": [
+            {
+              "name": "tab-title",
+              "type": {
+                "text": "string"
+              },
+              "description": "Defines the tab title.",
+              "required": true
+            }
+          ],
+          "members": [
+            {
+              "kind": "method",
+              "name": "hide",
+              "description": "Hides the modal",
+              "signature": "hide() => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "show",
+              "description": "Shows the tab.",
+              "signature": "show() => Promise<void>"
+            }
+          ],
+          "events": [],
+          "slots": [],
+          "cssProperties": [],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-tabs/dnn-tabs.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-tabs.tsx",
+          "tagName": "dnn-tabs",
+          "description": "`dnn-tabs` is a container for `dnn-tab` and should only contain `dnn-tab` elements for its content.",
+          "attributes": [],
+          "members": [],
+          "events": [],
+          "slots": [],
+          "cssProperties": [
+            {
+              "name": "--color-background",
+              "description": "The color of the inactive tabs."
+            },
+            {
+              "name": "--color-focus",
+              "description": "outline color when hovering or pre-selecting a tab."
+            },
+            {
+              "name": "--color-text",
+              "description": "The color of the text for inactive tabs."
+            },
+            {
+              "name": "--color-visible",
+              "description": "The color of the active tab."
+            },
+            {
+              "name": "--color-visible-text",
+              "description": "The color of the text for the active tab."
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-toggle/dnn-toggle.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-toggle.tsx",
+          "tagName": "dnn-toggle",
+          "description": "",
+          "attributes": [
+            {
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If 'true' the toggle is checked (on).",
+              "default": "false",
+              "required": false
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If 'true' the toggle is not be interacted with.",
+              "default": "false",
+              "required": false
+            }
+          ],
+          "members": [],
+          "events": [
+            {
+              "name": "checkChanged",
+              "type": {
+                "text": "DnnToggleChangeEventDetail"
+              },
+              "description": "Fires when the toggle changed"
+            }
+          ],
+          "slots": [],
+          "cssProperties": [
+            {
+              "name": "--background",
+              "description": "Background of the toggle."
+            },
+            {
+              "name": "--background-checked",
+              "description": "Background of the toggle when checked."
+            },
+            {
+              "name": "--border-radius",
+              "description": "The radius of the background borders."
+            },
+            {
+              "name": "--handle-background",
+              "description": "Background of the handle."
+            },
+            {
+              "name": "--handle-background-checked",
+              "description": "Background of the handle when checked."
+            },
+            {
+              "name": "--handle-border-radius",
+              "description": "The radius of the handle."
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-treeview-item/dnn-treeview-item.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-treeview-item.tsx",
+          "tagName": "dnn-treeview-item",
+          "description": "",
+          "attributes": [
+            {
+              "name": "expanded",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines if the current node is expanded.",
+              "default": "false",
+              "required": false
+            }
+          ],
+          "members": [],
+          "events": [
+            {
+              "name": "userCollapsed",
+              "type": {
+                "text": "void"
+              },
+              "description": "Fires when the user collapses a node."
+            },
+            {
+              "name": "userExpanded",
+              "type": {
+                "text": "void"
+              },
+              "description": "Fires when the user expands a node."
+            }
+          ],
+          "slots": [
+            {
+              "name": " ",
+              "description": "The content of this node."
+            },
+            {
+              "name": "children",
+              "description": "The content nested under this node."
+            }
+          ],
+          "cssProperties": [],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-vertical-overflow-menu/dnn-vertical-overflow-menu.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-vertical-overflow-menu.tsx",
+          "tagName": "dnn-vertical-overflow-menu",
+          "description": "",
+          "attributes": [],
+          "members": [],
+          "events": [],
+          "slots": [],
+          "cssProperties": [
+            {
+              "name": "--background-color",
+              "description": "Defines the menu background color."
+            },
+            {
+              "name": "--foreground-color",
+              "description": "A color that contrasts with the background color."
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-vertical-splitview/dnn-vertical-splitview.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-vertical-splitview.tsx",
+          "tagName": "dnn-vertical-splitview",
+          "description": "This allows splitting a UI into vertical adjustable panels, the splitter itself is not part of this component.\n- The content for the left part should be injected in the `left` slot.\n- The content for the right part should be injected in the `right` slot.\n- The content for the actual splitter should go in the default slot and other UI elements can be injected as long as you handle their behaviour, by default only the drag behavior is implemented in the component.",
+          "attributes": [
+            {
+              "name": "split-width-percentage",
+              "type": {
+                "text": "number"
+              },
+              "description": "The percentage position of the splitter in the container.",
+              "default": "30",
+              "required": false
+            },
+            {
+              "name": "splitter-width",
+              "type": {
+                "text": "number"
+              },
+              "description": "The width of the splitter area.",
+              "default": "16",
+              "required": false
+            }
+          ],
+          "members": [
+            {
+              "kind": "method",
+              "name": "getSplitWidthPercentage",
+              "description": "Gets the current divider position percentage.",
+              "signature": "getSplitWidthPercentage() => Promise<number>"
+            },
+            {
+              "kind": "method",
+              "name": "setSplitWidthPercentage",
+              "description": "Sets the width percentage of the divider",
+              "signature": "setSplitWidthPercentage(newWidth: number) => Promise<void>"
+            }
+          ],
+          "events": [
+            {
+              "name": "widthChanged",
+              "type": {
+                "text": "number"
+              },
+              "description": "Fires when the width of the divider changes."
+            }
+          ],
+          "slots": [
+            {
+              "name": "default",
+              "description": "The split divider control you want to use."
+            },
+            {
+              "name": "left",
+              "description": "The content of the left pane."
+            },
+            {
+              "name": "right",
+              "description": "The content of the right pane."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--left-pane-background-color",
+              "description": "Allows customizing the left pane background-color"
+            },
+            {
+              "name": "--right-pane-background-color",
+              "description": "Allows customizing the right pane background-color"
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 dist/
 www/
+storybook-static/
 loader/
 tools/
 

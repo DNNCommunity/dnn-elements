@@ -10,7 +10,7 @@
 | Property             | Attribute             | Description                                          | Type      | Default |
 | -------------------- | --------------------- | ---------------------------------------------------- | --------- | ------- |
 | `expanded`           | `expanded`            | Defines if the panel is expanded or not.             | `boolean` | `false` |
-| `transitionDuration` | `transition-duration` | Defines the transition time in ms, defaults to 100ms | `number`  | `150`   |
+| `transitionDuration` | `transition-duration` | Defines the transition time in ms, defaults to 150ms | `number`  | `150`   |
 
 
 ## Events
@@ -37,11 +37,13 @@ Type: `Promise<void>`
 
 ### Used by
 
+ - [dnn-permissions-grid](../dnn-permissions-grid)
  - [dnn-treeview-item](../dnn-treeview-item)
 
 ### Graph
 ```mermaid
 graph TD;
+  dnn-permissions-grid --> dnn-collapsible
   dnn-treeview-item --> dnn-collapsible
   style dnn-collapsible fill:#f9f,stroke:#333,stroke-width:4px
 ```
