@@ -32,6 +32,11 @@ export default {
 const Template = (args: {}, context) => {
  
     return html`
+<style type="text/css">
+    dnn-tab p{
+        margin: 1em;
+    }
+</style>
 <dnn-tabs style=${ifDefined(injectStyles(args, context))}>
     <dnn-tab tab-title="Lorem Ipsum">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla hendrerit nisl vel aliquam cursus. Fusce tincidunt vitae mi a malesuada. Praesent eros mi, semper ut orci quis, faucibus viverra felis. Cras non lacus vehicula, fermentum felis id, dictum diam. Proin congue urna est, ac viverra ligula sagittis eu. Proin diam libero, vulputate egestas dui at, molestie dictum dolor. Fusce varius ex vitae massa pulvinar, ut hendrerit enim molestie. Aliquam volutpat facilisis ipsum, nec mollis elit dapibus eu. Donec scelerisque interdum tristique. Aliquam accumsan sem urna, vel posuere dui faucibus et. Mauris quis rutrum massa.</p>
