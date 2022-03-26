@@ -2021,6 +2021,12 @@
 │  ├─ url: https://paulmillr.com/
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\async-each
 │  └─ licenseFile: node_modules\async-each\README.md
+├─ async@2.6.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/caolan/async
+│  ├─ publisher: Caolan McMahon
+│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\async
+│  └─ licenseFile: node_modules\async\LICENSE
 ├─ asynckit@0.4.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/alexindigo/asynckit
@@ -3267,6 +3273,13 @@
 │  ├─ email: fedor@indutny.com
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\elliptic
 │  └─ licenseFile: node_modules\elliptic\README.md
+├─ email-addresses@3.1.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/jackbearheart/email-addresses
+│  ├─ publisher: Jack Bearheart
+│  ├─ email: johnrbowman@fastmail.fm
+│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\email-addresses
+│  └─ licenseFile: node_modules\email-addresses\LICENSE
 ├─ emittery@0.8.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/emittery
@@ -3649,6 +3662,22 @@
 │  ├─ url: https://github.com/philcockfield
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\file-system-cache
 │  └─ licenseFile: node_modules\file-system-cache\LICENSE
+├─ filename-reserved-regex@2.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/sindresorhus/filename-reserved-regex
+│  ├─ publisher: Sindre Sorhus
+│  ├─ email: sindresorhus@gmail.com
+│  ├─ url: sindresorhus.com
+│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\filename-reserved-regex
+│  └─ licenseFile: node_modules\filename-reserved-regex\license
+├─ filenamify@4.3.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/sindresorhus/filenamify
+│  ├─ publisher: Sindre Sorhus
+│  ├─ email: sindresorhus@gmail.com
+│  ├─ url: https://sindresorhus.com
+│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\filenamify
+│  └─ licenseFile: node_modules\filenamify\license
 ├─ fill-range@7.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/fill-range
@@ -3899,6 +3928,13 @@
 │  ├─ url: https://github.com/jonschlinkert
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\get-value
 │  └─ licenseFile: node_modules\get-value\LICENSE
+├─ gh-pages@3.2.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/tschaub/gh-pages
+│  ├─ publisher: Tim Schaub
+│  ├─ url: http://tschaub.net/
+│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\gh-pages
+│  └─ licenseFile: node_modules\gh-pages\LICENSE
 ├─ github-slugger@1.4.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/Flet/github-slugger
@@ -6122,6 +6158,22 @@
 │  ├─ url: sindresorhus.com
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\pify
 │  └─ licenseFile: node_modules\pify\license
+├─ pinkie-promise@2.0.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/floatdrop/pinkie-promise
+│  ├─ publisher: Vsevolod Strukchinsky
+│  ├─ email: floatdrop@gmail.com
+│  ├─ url: github.com/floatdrop
+│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\pinkie-promise
+│  └─ licenseFile: node_modules\pinkie-promise\license
+├─ pinkie@2.0.4
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/floatdrop/pinkie
+│  ├─ publisher: Vsevolod Strukchinsky
+│  ├─ email: floatdrop@gmail.com
+│  ├─ url: github.com/floatdrop
+│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\pinkie
+│  └─ licenseFile: node_modules\pinkie\license
 ├─ pirates@4.0.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/danez/pirates
@@ -7421,6 +7473,14 @@
 │  ├─ url: https://sindresorhus.com
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\strip-json-comments
 │  └─ licenseFile: node_modules\strip-json-comments\license
+├─ strip-outer@1.0.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/sindresorhus/strip-outer
+│  ├─ publisher: Sindre Sorhus
+│  ├─ email: sindresorhus@gmail.com
+│  ├─ url: sindresorhus.com
+│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\strip-outer
+│  └─ licenseFile: node_modules\strip-outer\license
 ├─ style-loader@1.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack-contrib/style-loader
@@ -7677,6 +7737,14 @@
 │  ├─ email: notatestuser@gmail.com
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\treeify
 │  └─ licenseFile: node_modules\treeify\LICENSE
+├─ trim-repeated@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/sindresorhus/trim-repeated
+│  ├─ publisher: Sindre Sorhus
+│  ├─ email: sindresorhus@gmail.com
+│  ├─ url: sindresorhus.com
+│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\trim-repeated
+│  └─ licenseFile: node_modules\trim-repeated\license
 ├─ trim-trailing-lines@1.1.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/wooorm/trim-trailing-lines

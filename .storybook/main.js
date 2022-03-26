@@ -16,5 +16,6 @@ module.exports = {
     "@storybook/addon-a11y",
     "@geometricpanda/storybook-addon-badges"
   ],
-  "framework": "@storybook/web-components"
+  "framework": "@storybook/web-components",
+  staticDirs: ['../dist'],
 }

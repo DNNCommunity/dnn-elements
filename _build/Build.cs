@@ -114,7 +114,13 @@ class Build : NukeBuild
       Npm($"version {version} --allow-same-version --git-tag-version false");
       NpmInstall();
       NpmRun(s => s.SetCommand("build"));
-      NpmRun(s => s.SetCommand("test"));
+      // Only run tests on PRs.
+      if (!(
+        gitRepository.IsOnDevelopBranch() ||
+        gitRepository.IsOnMainOrMasterBranch() ||
+        gitRepository.IsOnReleaseBranch())){
+          NpmRun(s => s.SetCommand("test"));
+        }
       NpmRun(s => s.SetCommand("build-storybook"));
     });
   Target SetupGithubActor => _ => _
@@ -251,22 +257,6 @@ class Build : NukeBuild
     .DependsOn(Compile)
     .Executes(() =>
     {
-      Git("add storybook-static -f");
-      Git("commit --allow-empty -m \"Commit latest build\"");
-      Git("reset --hard");
-      Git("checkout -b newsite origin/site");
-      Git("rm -r .");
-      Git("commit -m \"Deleted old build\"");
-      Git("cherry-pick deploy --strategy-option=theirs");
-      CopyDirectoryRecursively(RootDirectory / "storybook-static", RootDirectory, DirectoryExistsPolicy.Merge);
-      DeleteDirectory(RootDirectory / "storybook-static");
-      Git("rm -r storybook-static");
-      Git("add ./*.html");
-      Git("add ./*.json");
-      Git("add build");
-      Git("commit -m \"Move files to root folder\"");
-      Git("push origin HEAD:site");
-      Git("reset --hard");
-      Git("checkout deploy");
+      NpmRun(s => s.SetCommand("deploy-storybook"));
     });
 }
