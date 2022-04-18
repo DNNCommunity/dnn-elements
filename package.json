@@ -17,18 +17,19 @@
     "loader/"
   ],
   "scripts": {
-    "build": "eslint --ext .ts --ext .tsx --ext .js ./src && stencil build --docs",
-    "build.watch": "stencil build --dev --watch",
+    "build.workers": "node esbuild.ts",
+    "build": "npm run eslint && npm run build.workers && stencil build --docs",
     "postbuild": "license-checker --out licenses.txt --direct --relativeLicensePath",
-    "start": "stencil build --dev --watch --serve",
-    "start.edge": "stencil build --dev --watch --serve --es5",
+    "watch": "npm run build.workers && stencil build --dev --watch",
+    "start": "npm run build.workers && stencil build --dev --watch --serve",
+    "start.edge": "npm run build.workers && stencil build --dev --watch --serve --es5",
     "poststart": "license-checker --out licenses.txt --direct",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "eslint": "eslint --ext .ts --ext .tsx --ext .js ./src",
     "storybook": "start-storybook -p 6006",
-    "storybook.watch": "npm-run-all --parallel build.watch storybook",
+    "storybook.watch": "npm-run-all --parallel watch storybook",
     "build-storybook": "build-storybook",
     "deploy-storybook": "gh-pages -d storybook-static --branch site"
   },
@@ -50,6 +51,7 @@
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "babel-loader": "^8.2.3",
+    "esbuild": "^0.14.36",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.16.0",
     "gh-pages": "^3.2.3",
@@ -61,6 +63,9 @@
     "puppeteer": "^13.3.1",
     "typescript": "^4.5.5",
     "typescript-debounce-decorator": "^0.0.18"
+  },
+  "dependencies": {
+    "monaco-editor": "^0.33.0"
   },
   "license": "MIT"
 }
