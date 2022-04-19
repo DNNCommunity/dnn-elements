@@ -3,6 +3,7 @@ www/
 storybook-static/
 loader/
 tools/
+workers/
 
 *~
 *.sw[mnpcod]

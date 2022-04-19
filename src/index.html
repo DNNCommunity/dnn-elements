@@ -902,5 +902,52 @@
     </dnn-vertical-overflow-menu>
     <div style="height: 200px;"></div>
   </section>
+
+  <!-- dnn-monaco-editor -->
+  <a name="dnn-monaco-editor"></a>
+  <section>
+    <h2>dnn-monaco-editor</h2>
+
+    <script>
+      self.MonacoEnvironment = {
+        getWorkerUrl: function (_moduleId, label) {
+            if (label === 'json') {
+              return './build/json.worker.js';
+            }
+            if (label === 'css' || label === 'scss' || label === 'less') {
+              return './build/css.worker.js';
+            }
+            if (label === 'html' || label === 'handlebars' || label === 'razor') {
+              return './build/html.worker.js';
+            }
+            if (label === 'typescript' || label === 'javascript') {
+              return './build/ts.worker.js';
+            }
+            return './build/editor.worker.js';
+        }
+      };
+    </script>
+    <dnn-monaco-editor options="">
+      <code>
+export interface Employee{
+  firstName: string;
+  lastName: string;
+  fullName(): string;
+}
+
+let employee: Employee = {
+  firstName : "jane",
+  lastName: "doe",
+  fullName(): string{
+    return this.firstName + " " + this.lastName;
+  }
+}
+
+console.log(employee.firstName);
+console.log(employee.lastName);
+console.log(employee.fullName());
+      </code>
+    </dnn-monaco-editor>
+  </section>
 </body>
 </html>
