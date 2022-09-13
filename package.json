@@ -1,6 +1,6 @@
 {
   "name": "@dnncommunity/dnn-elements",
-  "version": "0.15.0-storybook-build.1",
+  "version": "0.16.0-alpha.3",
   "description": "Stencil Component Starter",
   "repository": "https://github.com/dnncommunity/dnn-elements",
   "homepage": "https://dnncommunity.github.io/dnn-elements",
