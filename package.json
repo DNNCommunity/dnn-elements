@@ -46,7 +46,7 @@
     "@storybook/html": "^6.4.19",
     "@storybook/web-components": "^6.4.19",
     "@types/jest": "^29.0.2",
-    "@types/puppeteer": "5.4.5",
+    "@types/puppeteer": "5.4.6",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "babel-loader": "^8.2.3",
