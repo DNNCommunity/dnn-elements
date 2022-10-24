@@ -957,16 +957,6 @@
 │  ├─ repository: https://github.com/facebook/jest
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@jest\environment
 │  └─ licenseFile: node_modules\@jest\environment\LICENSE
-├─ @jest/expect-utils@29.0.3
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
-│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@jest\expect-utils
-│  └─ licenseFile: node_modules\@jest\expect-utils\LICENSE
-├─ @jest/expect@29.0.3
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
-│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@jest\expect
-│  └─ licenseFile: node_modules\@jest\expect\LICENSE
 ├─ @jest/fake-timers@27.5.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
@@ -982,11 +972,6 @@
 │  ├─ repository: https://github.com/facebook/jest
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@jest\reporters
 │  └─ licenseFile: node_modules\@jest\reporters\LICENSE
-├─ @jest/schemas@29.0.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
-│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@jest\schemas
-│  └─ licenseFile: node_modules\@jest\schemas\LICENSE
 ├─ @jest/source-map@27.5.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
@@ -1115,12 +1100,6 @@
 │  ├─ publisher: Ryan Florence
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@reach\router
 │  └─ licenseFile: node_modules\@reach\router\LICENSE
-├─ @sinclair/typebox@0.24.41
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sinclairzx81/typebox
-│  ├─ publisher: sinclairzx81
-│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@sinclair\typebox
-│  └─ licenseFile: node_modules\@sinclair\typebox\license
 ├─ @sinonjs/commons@1.8.3
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/sinonjs/commons
@@ -1386,7 +1365,7 @@
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@types\istanbul-reports
 │  └─ licenseFile: node_modules\@types\istanbul-reports\LICENSE
-├─ @types/jest@29.0.2
+├─ @types/jest@27.0.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@types\jest
@@ -5056,7 +5035,7 @@
 │  ├─ repository: https://github.com/facebook/jest
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\jest-worker
 │  └─ licenseFile: node_modules\jest-worker\LICENSE
-├─ jest@29.0.3
+├─ jest@27.0.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\jest
