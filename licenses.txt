@@ -6578,7 +6578,7 @@
 │  ├─ publisher: The Chromium Authors
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\puppeteer
 │  └─ licenseFile: node_modules\puppeteer\README.md
-├─ qs@6.11.0
+├─ qs@6.10.3
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/ljharb/qs
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\qs
