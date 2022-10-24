@@ -12,21 +12,21 @@
 │  ├─ url: https://babel.dev/team
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@babel\code-frame
 │  └─ licenseFile: node_modules\@babel\code-frame\LICENSE
-├─ @babel/compat-data@7.19.0
+├─ @babel/compat-data@7.19.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
 │  ├─ url: https://babel.dev/team
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@babel\compat-data
 │  └─ licenseFile: node_modules\@babel\compat-data\LICENSE
-├─ @babel/core@7.19.0
+├─ @babel/core@7.19.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
 │  ├─ url: https://babel.dev/team
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@babel\core
 │  └─ licenseFile: node_modules\@babel\core\LICENSE
-├─ @babel/generator@7.19.0
+├─ @babel/generator@7.19.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -47,7 +47,7 @@
 │  ├─ url: https://babel.dev/team
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@babel\helper-builder-binary-assignment-operator-visitor
 │  └─ licenseFile: node_modules\@babel\helper-builder-binary-assignment-operator-visitor\LICENSE
-├─ @babel/helper-compilation-targets@7.19.0
+├─ @babel/helper-compilation-targets@7.19.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -115,7 +115,7 @@
 │  ├─ url: https://babel.dev/team
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@babel\helper-module-imports
 │  └─ licenseFile: node_modules\@babel\helper-module-imports\LICENSE
-├─ @babel/helper-module-transforms@7.19.0
+├─ @babel/helper-module-transforms@7.19.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -150,7 +150,7 @@
 │  ├─ url: https://babel.dev/team
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@babel\helper-replace-supers
 │  └─ licenseFile: node_modules\@babel\helper-replace-supers\LICENSE
-├─ @babel/helper-simple-access@7.18.6
+├─ @babel/helper-simple-access@7.19.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -171,14 +171,14 @@
 │  ├─ url: https://babel.dev/team
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@babel\helper-split-export-declaration
 │  └─ licenseFile: node_modules\@babel\helper-split-export-declaration\LICENSE
-├─ @babel/helper-string-parser@7.18.10
+├─ @babel/helper-string-parser@7.19.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
 │  ├─ url: https://babel.dev/team
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@babel\helper-string-parser
 │  └─ licenseFile: node_modules\@babel\helper-string-parser\LICENSE
-├─ @babel/helper-validator-identifier@7.18.6
+├─ @babel/helper-validator-identifier@7.19.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -199,7 +199,7 @@
 │  ├─ url: https://babel.dev/team
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@babel\helper-wrap-function
 │  └─ licenseFile: node_modules\@babel\helper-wrap-function\LICENSE
-├─ @babel/helpers@7.19.0
+├─ @babel/helpers@7.19.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -213,7 +213,7 @@
 │  ├─ url: https://babel.dev/team
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@babel\highlight
 │  └─ licenseFile: node_modules\@babel\highlight\LICENSE
-├─ @babel/parser@7.19.0
+├─ @babel/parser@7.19.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -773,14 +773,14 @@
 │  ├─ url: https://babel.dev/team
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@babel\template
 │  └─ licenseFile: node_modules\@babel\template\LICENSE
-├─ @babel/traverse@7.19.0
+├─ @babel/traverse@7.19.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
 │  ├─ url: https://babel.dev/team
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@babel\traverse
 │  └─ licenseFile: node_modules\@babel\traverse\LICENSE
-├─ @babel/types@7.19.0
+├─ @babel/types@7.19.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -1435,7 +1435,7 @@
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@types\prop-types
 │  └─ licenseFile: node_modules\@types\prop-types\LICENSE
-├─ @types/puppeteer@5.4.6
+├─ @types/puppeteer@5.4.7
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@types\puppeteer
@@ -1520,7 +1520,7 @@
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@types\yargs
 │  └─ licenseFile: node_modules\@types\yargs\LICENSE
-├─ @types/yauzl@2.9.2
+├─ @types/yauzl@2.10.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\@types\yauzl
@@ -2041,7 +2041,7 @@
 │  ├─ repository: https://github.com/facebook/jest
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\babel-jest
 │  └─ licenseFile: node_modules\babel-jest\LICENSE
-├─ babel-loader@8.2.3
+├─ babel-loader@8.2.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel-loader
 │  ├─ publisher: Luis Couto
@@ -2315,7 +2315,7 @@
 │  ├─ email: devongovett@gmail.com
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\browserify-zlib
 │  └─ licenseFile: node_modules\browserify-zlib\LICENSE
-├─ browserslist@4.20.2
+├─ browserslist@4.21.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/browserslist/browserslist
 │  ├─ publisher: Andrey Sitnik
@@ -2455,7 +2455,7 @@
 │  ├─ publisher: Kiran Abburi
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\can-use-dom
 │  └─ licenseFile: node_modules\can-use-dom\LICENSE
-├─ caniuse-lite@1.0.30001317
+├─ caniuse-lite@1.0.30001423
 │  ├─ licenses: CC-BY-4.0
 │  ├─ repository: https://github.com/browserslist/caniuse-lite
 │  ├─ publisher: Ben Briggs
@@ -3151,7 +3151,7 @@
 │  ├─ repository: https://github.com/node-modules/detect-port
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\detect-port
 │  └─ licenseFile: node_modules\detect-port\LICENSE
-├─ devtools-protocol@0.0.1036444
+├─ devtools-protocol@0.0.1045489
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/ChromeDevTools/devtools-protocol
 │  ├─ publisher: The Chromium Authors
@@ -3278,7 +3278,7 @@
 │  ├─ url: http://jongleberry.com
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\ee-first
 │  └─ licenseFile: node_modules\ee-first\LICENSE
-├─ electron-to-chromium@1.4.88
+├─ electron-to-chromium@1.4.284
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/kilian/electron-to-chromium
 │  ├─ publisher: Kilian Valkhof
@@ -3448,14 +3448,14 @@
 │  ├─ repository: https://github.com/estools/escodegen
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\escodegen
 │  └─ licenseFile: node_modules\escodegen\LICENSE.BSD
-├─ eslint-plugin-react@7.31.8
+├─ eslint-plugin-react@7.31.10
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jsx-eslint/eslint-plugin-react
 │  ├─ publisher: Yannick Croissant
 │  ├─ email: yannick.croissant+npm@gmail.com
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\eslint-plugin-react
 │  └─ licenseFile: node_modules\eslint-plugin-react\LICENSE
-├─ eslint-plugin-storybook@0.6.4
+├─ eslint-plugin-storybook@0.6.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/storybookjs/eslint-plugin-storybook
 │  ├─ publisher: yannbf@gmail.com
@@ -5192,7 +5192,7 @@
 │  ├─ email: brian@donovans.cc
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\lines-and-columns
 │  └─ licenseFile: node_modules\lines-and-columns\LICENSE
-├─ lit-html@2.3.1
+├─ lit-html@2.4.0
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/lit/lit
 │  ├─ publisher: Google LLC
@@ -5703,7 +5703,7 @@
 │  ├─ publisher: Tobias Koppers @sokra
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\node-libs-browser
 │  └─ licenseFile: node_modules\node-libs-browser\LICENSE
-├─ node-releases@2.0.2
+├─ node-releases@2.0.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/chicoxyzzy/node-releases
 │  ├─ publisher: Sergey Rubanov
@@ -6481,12 +6481,18 @@
 │  ├─ url: https://mathiasbynens.be/
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\punycode
 │  └─ licenseFile: node_modules\punycode\LICENSE-MIT.txt
-├─ puppeteer@18.0.5
+├─ puppeteer-core@19.1.0
 │  ├─ licenses: Apache-2.0
-│  ├─ repository: https://github.com/puppeteer/puppeteer
+│  ├─ repository: https://github.com/puppeteer/puppeteer/tree/main/packages/puppeteer-core
+│  ├─ publisher: The Chromium Authors
+│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\puppeteer-core
+│  └─ licenseFile: node_modules\puppeteer-core\README.md
+├─ puppeteer@19.1.0
+│  ├─ licenses: Apache-2.0
+│  ├─ repository: https://github.com/puppeteer/puppeteer/tree/main/packages/puppeteer
 │  ├─ publisher: The Chromium Authors
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\puppeteer
-│  └─ licenseFile: node_modules\puppeteer\LICENSE
+│  └─ licenseFile: node_modules\puppeteer\README.md
 ├─ qs@6.10.3
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/ljharb/qs
@@ -7871,7 +7877,7 @@
 │  ├─ publisher: duxiaofeng-github
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\typescript-debounce-decorator
 │  └─ licenseFile: node_modules\typescript-debounce-decorator\LICENSE
-├─ typescript@4.6.2
+├─ typescript@4.8.4
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/Microsoft/TypeScript
 │  ├─ publisher: Microsoft Corp.
@@ -8084,6 +8090,13 @@
 │  ├─ email: agelos.pikoulas@gmail.com
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\upath
 │  └─ licenseFile: node_modules\upath\LICENSE
+├─ update-browserslist-db@1.0.10
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/browserslist/update-db
+│  ├─ publisher: Andrey Sitnik
+│  ├─ email: andrey@sitnik.ru
+│  ├─ path: D:\dnn-elements\dnn-elements\node_modules\update-browserslist-db
+│  └─ licenseFile: node_modules\update-browserslist-db\LICENSE
 ├─ uri-js@4.4.1
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/garycourt/uri-js
@@ -8446,7 +8459,7 @@
 │  ├─ url: http://re-becca.org
 │  ├─ path: D:\dnn-elements\dnn-elements\node_modules\write-file-atomic
 │  └─ licenseFile: node_modules\write-file-atomic\LICENSE
-├─ ws@8.8.1
+├─ ws@8.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/websockets/ws
 │  ├─ publisher: Einar Otto Stangvik

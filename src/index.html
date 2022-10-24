@@ -43,6 +43,7 @@
     <li><a href="#dnn-checkbox">dnn-checkbox</a></li>
     <li><a href="#dnn-chevron">dnn-chevron</a></li>
     <li><a href="#dnn-collapsible">dnn-collapsible</a></li>
+    <li><a href="#dnn-modal">dnn-modal</a></li>
     <li><a href="#dnn-searchbox">dnn-searchbox</a></li>
     <li><a href="#dnn-color-picker">dnn-color-picker</a></li>
     <li><a href="#dnn-sort-icon">dnn-sort-icon</a></li>
@@ -362,6 +363,44 @@
       function showModal3(){
         document.querySelector('#my-modal3').show();
       }
+    </script>
+
+    <hr />
+
+    <dnn-button id="modal-basic-button">Basic modal</dnn-button>
+    <dnn-button id="modal-large-content-button">Large content modal</dnn-button>
+    <dnn-button id="modal-high-content-button">High content modal</dnn-button>
+    <dnn-modal id="modal-basic">
+      <h2>This is a normal modal.</h2>
+    </dnn-modal>
+    <dnn-modal id="modal-large-content">
+      <p>This modal has some content larger than the modal can contain.</p>
+      <img src="https://picsum.photos/3000/200" />
+    </dnn-modal>
+    <dnn-modal id="modal-high-content">
+      <p>This modal has some content higher than the modal can contain.</p>
+      <img src="https://picsum.photos/200/3000" />
+    </dnn-modal>
+
+    <script type="text/javascript">
+      const modalBasicButton = document.querySelector('#modal-basic-button');
+      const modalBasic = document.querySelector('#modal-basic');
+      const modalLargeContentButton = document.querySelector('#modal-large-content-button');
+      const modalLargeContent = document.querySelector('#modal-large-content');
+      const modalHighContentButton = document.querySelector('#modal-high-content-button');
+      const modalHighContent = document.querySelector('#modal-high-content');
+
+      modalBasicButton.addEventListener('click', () => {
+        modalBasic.show();
+      });
+
+      modalLargeContentButton.addEventListener('click', () => {
+        modalLargeContent.show();
+      });
+
+      modalHighContentButton.addEventListener('click', () => {
+        modalHighContent.show();
+      });
     </script>
   </section>
 
