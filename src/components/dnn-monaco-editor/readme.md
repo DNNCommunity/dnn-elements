@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property  | Attribute | Description                    | Type                  | Default     |
-| --------- | --------- | ------------------------------ | --------------------- | ----------- |
-| `options` | --        | Sets the monaco editor options | `MonacoEditorOptions` | `undefined` |
+| Property  | Attribute | Description                                         | Type                                   | Default     |
+| --------- | --------- | --------------------------------------------------- | -------------------------------------- | ----------- |
+| `options` | --        | Sets the monaco editor options, see monaco options. | `IStandaloneEditorConstructionOptions` | `undefined` |
 
 
 ## Events
@@ -21,9 +21,9 @@
 
 ## Methods
 
-### `save() => Promise<string | undefined>`
+### `getValue() => Promise<string>`
 
-Save editor code
+Get value of the current model attached to this editor.
 
 #### Returns
 
