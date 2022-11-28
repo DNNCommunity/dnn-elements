@@ -2,6 +2,11 @@ import {Component, ComponentInterface, Element, Event, EventEmitter, h, Host, Me
 import * as monaco from 'monaco-editor';
 import { editor } from 'monaco-editor';
 import {escapeCode, unescapeCode} from './utils/code.utils';
+import { workerPath as  jsonWorkerPath } from '../../../workers/json.worker.js?worker';
+import { workerPath as cssWorkerPath } from '../../../workers/css.worker.js?worker';
+import { workerPath as htmlWorkerPath } from '../../../workers/html.worker.js?worker';
+import { workerPath as tsWorkerPath } from '../../../workers/ts.worker.js?worker';
+import { workerPath as editorWorkerPath } from '../../../workers/editor.worker.js?worker';
 
 @Component({
   tag: 'dnn-monaco-editor',
@@ -36,6 +41,26 @@ export class MonacoEditor implements ComponentInterface {
     wordWrapColumn: 80,
     wrappingIndent: "indent",
   };
+
+  connectedCallback() {
+    (self as any).MonacoEnvironment = {
+      getWorkerUrl: function (_moduleId, label) {
+          if (label === 'json') {
+            return jsonWorkerPath;
+          }
+          if (label === 'css' || label === 'scss' || label === 'less') {
+            return cssWorkerPath;
+          }
+          if (label === 'html' || label === 'handlebars' || label === 'razor') {
+            return htmlWorkerPath;
+          }
+          if (label === 'typescript' || label === 'javascript') {
+            return tsWorkerPath;
+          }
+          return editorWorkerPath;
+      }
+    };
+  }
 
   componentDidLoad() {
     const slottedCode: HTMLElement = this.el.querySelector(':scope > *:first-of-type');
