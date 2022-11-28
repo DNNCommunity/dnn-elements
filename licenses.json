@@ -7,7 +7,7 @@
         "path": "node_modules\\@babel\\core",
         "licenseFile": "node_modules\\@babel\\core\\LICENSE"
     },
-    "@dnncommunity/dnn-elements@0.16.0-alpha.3": {
+    "@dnncommunity/dnn-elements@0.16.0-dnn-monaco-editor.1": {
         "licenses": "MIT",
         "repository": "https://github.com/dnncommunity/dnn-elements",
         "path": "",
@@ -113,12 +113,6 @@
         "email": "hello@luiscouto.pt",
         "path": "node_modules\\babel-loader",
         "licenseFile": "node_modules\\babel-loader\\LICENSE"
-    },
-    "esbuild@0.14.54": {
-        "licenses": "MIT",
-        "repository": "https://github.com/evanw/esbuild",
-        "path": "node_modules\\esbuild",
-        "licenseFile": "node_modules\\esbuild\\LICENSE.md"
     },
     "eslint-plugin-react@7.31.10": {
         "licenses": "MIT",

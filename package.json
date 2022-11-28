@@ -1,6 +1,6 @@
 {
   "name": "@dnncommunity/dnn-elements",
-  "version": "0.16.0-alpha.3",
+  "version": "0.16.0-dnn-monaco-editor.1",
   "description": "Stencil Component Starter",
   "repository": "https://github.com/dnncommunity/dnn-elements",
   "homepage": "https://dnncommunity.github.io/dnn-elements",
@@ -17,12 +17,11 @@
     "loader/"
   ],
   "scripts": {
-    "build.workers": "node esbuild.ts",
-    "build": "npm run eslint && npm run build.workers && stencil build --docs",
+    "build": "npm run eslint && stencil build --docs",
     "postbuild": "license-checker-rseidelsohn --out licenses.json --json --direct --relativeLicensePath --relativeModulePath",
-    "watch": "npm run build.workers && stencil build --dev --watch",
-    "start": "npm run build.workers && stencil build --dev --watch --serve",
-    "start.edge": "npm run build.workers && stencil build --dev --watch --serve --es5",
+    "watch": "stencil build --dev --watch",
+    "start": "stencil build --dev --watch --serve",
+    "start.edge": "stencil build --dev --watch --serve --es5",
     "poststart": "license-checker-rseidelsohn --out licenses.json --json --direct --relativeLicensePath --relativeModulePath",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
@@ -51,7 +50,6 @@
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "babel-loader": "^8.2.3",
-    "esbuild": "^0.14.36",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-storybook": "^0.6.7",
