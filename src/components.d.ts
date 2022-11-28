@@ -326,6 +326,10 @@ export interface DnnModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnModalElement;
 }
+export interface DnnMonacoEditorCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnMonacoEditorElement;
+}
 export interface DnnPermissionsGridCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnPermissionsGridElement;
@@ -677,7 +681,7 @@ declare namespace LocalJSX {
         /**
           * Event to indicate editor has loaded
          */
-        "onEditorDidLoad"?: (event: CustomEvent<void>) => void;
+        "onEditorDidLoad"?: (event: DnnMonacoEditorCustomEvent<void>) => void;
         /**
           * Sets the monaco editor options, see monaco options.
          */
