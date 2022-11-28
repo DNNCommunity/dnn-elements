@@ -90,9 +90,6 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'dist',
-      copy: [
-        { src: '../workers', dest: '.' },
-      ],
       esmLoaderPath: '../loader'
     },
     {
@@ -104,9 +101,6 @@ export const config: Config = {
     },
     {
       type: 'www',
-      copy: [
-        { src: '../workers', dest: 'build' },
-      ],
       serviceWorker: null // disable service workers
     }
   ],
