@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ColorInfo } from "./utilities/colorInfo";
-import { MonacoEditorOptions } from "./components/dnn-monaco-editor/types/options";
+import { editor } from "monaco-editor";
 import { IPermissions } from "./components/dnn-permissions-grid/permissions-interface";
 import { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interface";
 import { IRole } from "./components/dnn-permissions-grid/role-interface";
@@ -183,13 +183,13 @@ export namespace Components {
     }
     interface DnnMonacoEditor {
         /**
-          * Sets the monaco editor options
+          * Get value of the current model attached to this editor.
          */
-        "options": MonacoEditorOptions;
+        "getValue": () => Promise<string>;
         /**
-          * Save editor code
+          * Sets the monaco editor options, see monaco options.
          */
-        "save": () => Promise<string | undefined>;
+        "options": editor.IStandaloneEditorConstructionOptions;
         /**
           * Set focus to editor
          */
@@ -679,9 +679,9 @@ declare namespace LocalJSX {
          */
         "onEditorDidLoad"?: (event: CustomEvent<void>) => void;
         /**
-          * Sets the monaco editor options
+          * Sets the monaco editor options, see monaco options.
          */
-        "options"?: MonacoEditorOptions;
+        "options"?: editor.IStandaloneEditorConstructionOptions;
     }
     interface DnnPermissionsGrid {
         /**

@@ -1,6 +1,6 @@
 import {Component, ComponentInterface, Element, Event, EventEmitter, h, Host, Method, Prop, Watch} from '@stencil/core';
 import * as monaco from 'monaco-editor';
-import {MonacoEditorOptions} from './types/options';
+import { editor } from 'monaco-editor';
 import {escapeCode, unescapeCode} from './utils/code.utils';
 
 @Component({
@@ -11,13 +11,13 @@ import {escapeCode, unescapeCode} from './utils/code.utils';
 export class MonacoEditor implements ComponentInterface {
   @Element() private el: HTMLDnnMonacoEditorElement;
 
-  /** Sets the monaco editor options */
-  @Prop() options: MonacoEditorOptions;
+  /** Sets the monaco editor options, see monaco options. */
+  @Prop() options: editor.IStandaloneEditorConstructionOptions;
 
   /** Event to indicate editor has loaded */
   @Event() editorDidLoad: EventEmitter<void>;
 
-  private editor?: monaco.editor.IStandaloneCodeEditor;
+  private editor: monaco.editor.IStandaloneCodeEditor;
 
   private div!: HTMLDivElement;
 
@@ -53,7 +53,7 @@ export class MonacoEditor implements ComponentInterface {
   }
 
   private dispose(): Promise<void> {
-    if (!this.editor) {
+    if (this.editor === null || this.editor === undefined) {
       return Promise.resolve();
     }
 
@@ -83,10 +83,10 @@ export class MonacoEditor implements ComponentInterface {
     monaco.editor.setModelLanguage(this.editor?.getModel(), languageId);
   }
 
-  /** Save editor code */
+  /** Get value of the current model attached to this editor. */
   @Method()
-  async save(): Promise<string | undefined> {
-    return escapeCode(this.editor?.getValue());
+  async getValue(){
+    return Promise.resolve(escapeCode(this.editor?.getValue()));
   }
 
   private mergeOptions(): monaco.editor.IStandaloneEditorConstructionOptions {
