@@ -294,6 +294,62 @@ export namespace Components {
         "splitterWidth": number;
     }
 }
+export interface DnnButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnButtonElement;
+}
+export interface DnnCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnCheckboxElement;
+}
+export interface DnnChevronCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnChevronElement;
+}
+export interface DnnCollapsibleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnCollapsibleElement;
+}
+export interface DnnColorPickerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnColorPickerElement;
+}
+export interface DnnDropzoneCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnDropzoneElement;
+}
+export interface DnnImageCropperCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnImageCropperElement;
+}
+export interface DnnModalCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnModalElement;
+}
+export interface DnnPermissionsGridCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnPermissionsGridElement;
+}
+export interface DnnSearchboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnSearchboxElement;
+}
+export interface DnnSortIconCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnSortIconElement;
+}
+export interface DnnToggleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnToggleElement;
+}
+export interface DnnTreeviewItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnTreeviewItemElement;
+}
+export interface DnnVerticalSplitviewCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnVerticalSplitviewElement;
+}
 declare global {
     interface HTMLDnnButtonElement extends Components.DnnButton, HTMLStencilElement {
     }
@@ -449,11 +505,11 @@ declare namespace LocalJSX {
         /**
           * Fires when confirm is true and the user cancels the action.
          */
-        "onCanceled"?: (event: CustomEvent<any>) => void;
+        "onCanceled"?: (event: DnnButtonCustomEvent<any>) => void;
         /**
           * Fires when confirm is true and the user confirms the action.
          */
-        "onConfirmed"?: (event: CustomEvent<any>) => void;
+        "onConfirmed"?: (event: DnnButtonCustomEvent<any>) => void;
         /**
           * Optionally reverses the button style.
          */
@@ -475,7 +531,7 @@ declare namespace LocalJSX {
         /**
           * Fires up when the checkbox checked property changes.
          */
-        "onCheckedchange"?: (event: CustomEvent<"checked" | "unchecked" | "intermediate">) => void;
+        "onCheckedchange"?: (event: DnnCheckboxCustomEvent<"checked" | "unchecked" | "intermediate">) => void;
         /**
           * Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)
          */
@@ -501,7 +557,7 @@ declare namespace LocalJSX {
         /**
           * Fires up when the expanded status changes
          */
-        "onChanged"?: (event: CustomEvent<any>) => void;
+        "onChanged"?: (event: DnnChevronCustomEvent<any>) => void;
     }
     interface DnnCollapsible {
         /**
@@ -511,7 +567,7 @@ declare namespace LocalJSX {
         /**
           * Fires whenever the collapsible height has changed
          */
-        "onDnnCollapsibleHeightChanged"?: (event: CustomEvent<void>) => void;
+        "onDnnCollapsibleHeightChanged"?: (event: DnnCollapsibleCustomEvent<void>) => void;
         /**
           * Defines the transition time in ms, defaults to 150ms
          */
@@ -531,7 +587,7 @@ declare namespace LocalJSX {
           * Fires up when the color is changed and emits a ColorInfo object
           * @see .. /../utilities/colorInfo.ts
          */
-        "onColorChanged"?: (event: CustomEvent<ColorInfo>) => void;
+        "onColorChanged"?: (event: DnnColorPickerCustomEvent<ColorInfo>) => void;
     }
     interface DnnDropzone {
         /**
@@ -549,7 +605,7 @@ declare namespace LocalJSX {
         /**
           * Fires when file were selected.
          */
-        "onFilesSelected"?: (event: CustomEvent<File[]>) => void;
+        "onFilesSelected"?: (event: DnnDropzoneCustomEvent<File[]>) => void;
         /**
           * Localization strings
          */
@@ -569,7 +625,7 @@ declare namespace LocalJSX {
         /**
           * When the image crop changes, emits the dataurl for the new cropped image.
          */
-        "onImageCropChanged"?: (event: CustomEvent<string>) => void;
+        "onImageCropChanged"?: (event: DnnImageCropperCustomEvent<string>) => void;
         /**
           * When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry.
          */
@@ -607,7 +663,7 @@ declare namespace LocalJSX {
         /**
           * Fires when the modal is dismissed.
          */
-        "onDismissed"?: (event: CustomEvent<any>) => void;
+        "onDismissed"?: (event: DnnModalCustomEvent<any>) => void;
         /**
           * Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
          */
@@ -635,11 +691,11 @@ declare namespace LocalJSX {
         /**
           * Fires when any permissions have changed, can be used for instance to have linked permissions.
          */
-        "onPermissionsChanged"?: (event: CustomEvent<IPermissions>) => void;
+        "onPermissionsChanged"?: (event: DnnPermissionsGridCustomEvent<IPermissions>) => void;
         /**
           * Fires when searching for users to add to the permissions. Emits the search query.
          */
-        "onUserSearchQueryChanged"?: (event: CustomEvent<string>) => void;
+        "onUserSearchQueryChanged"?: (event: DnnPermissionsGridCustomEvent<string>) => void;
         /**
           * The list of permissions.
          */
@@ -665,7 +721,7 @@ declare namespace LocalJSX {
         /**
           * Fires up each time the search query changes. The data passed is the new query.
          */
-        "onQueryChanged"?: (event: CustomEvent<string>) => void;
+        "onQueryChanged"?: (event: DnnSearchboxCustomEvent<string>) => void;
         /**
           * Sets the field placeholder text.
          */
@@ -679,7 +735,7 @@ declare namespace LocalJSX {
         /**
           * Emitted when the sort is changed.
          */
-        "onSortChanged"?: (event: CustomEvent<"asc"|"desc"|"none">) => void;
+        "onSortChanged"?: (event: DnnSortIconCustomEvent<"asc"|"desc"|"none">) => void;
         /**
           * Defines the current sort direction
          */
@@ -705,7 +761,7 @@ declare namespace LocalJSX {
         /**
           * Fires when the toggle changed
          */
-        "onCheckChanged"?: (event: CustomEvent<DnnToggleChangeEventDetail>) => void;
+        "onCheckChanged"?: (event: DnnToggleCustomEvent<DnnToggleChangeEventDetail>) => void;
     }
     interface DnnTreeviewItem {
         /**
@@ -715,11 +771,11 @@ declare namespace LocalJSX {
         /**
           * Fires when the user collapses a node.
          */
-        "onUserCollapsed"?: (event: CustomEvent<void>) => void;
+        "onUserCollapsed"?: (event: DnnTreeviewItemCustomEvent<void>) => void;
         /**
           * Fires when the user expands a node.
          */
-        "onUserExpanded"?: (event: CustomEvent<void>) => void;
+        "onUserExpanded"?: (event: DnnTreeviewItemCustomEvent<void>) => void;
     }
     interface DnnVerticalOverflowMenu {
     }
@@ -727,7 +783,7 @@ declare namespace LocalJSX {
         /**
           * Fires when the width of the divider changes.
          */
-        "onWidthChanged"?: (event: CustomEvent<number>) => void;
+        "onWidthChanged"?: (event: DnnVerticalSplitviewCustomEvent<number>) => void;
         /**
           * The percentage position of the splitter in the container.
          */
