@@ -64,7 +64,7 @@
     "typescript-debounce-decorator": "^0.0.18"
   },
   "dependencies": {
-    "monaco-editor": "^0.33.0"
+    "monaco-editor": "^0.34.1"
   },
   "license": "MIT"
 }
