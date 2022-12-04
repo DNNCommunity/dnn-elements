@@ -5,6 +5,10 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+Color Picker for Dnn
+
 ## Properties
 
 | Property         | Attribute          | Description                                                                                | Type     | Default    |

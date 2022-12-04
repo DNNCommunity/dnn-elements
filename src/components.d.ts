@@ -195,6 +195,11 @@ export namespace Components {
          */
         "setFocus": () => Promise<void>;
         /**
+          * Sets a new editor value.
+          * @param newValue The new value to set.
+         */
+        "setValue": (newValue: string) => Promise<void>;
+        /**
           * Update code language editor
          */
         "updateLanguage": (languageId: string) => Promise<void>;
