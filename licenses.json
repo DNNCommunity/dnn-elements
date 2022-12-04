@@ -20,7 +20,7 @@
         "path": "node_modules\\@geometricpanda\\storybook-addon-badges",
         "licenseFile": "node_modules\\@geometricpanda\\storybook-addon-badges\\LICENCE.md"
     },
-    "@stencil/core@2.18.1": {
+    "@stencil/core@2.19.3": {
         "licenses": "MIT",
         "repository": "https://github.com/ionic-team/stencil",
         "publisher": "Ionic Team",
@@ -172,7 +172,7 @@
         "path": "node_modules\\lit-html",
         "licenseFile": "node_modules\\lit-html\\LICENSE"
     },
-    "monaco-editor@0.33.0": {
+    "monaco-editor@0.34.1": {
         "licenses": "MIT",
         "repository": "https://github.com/microsoft/monaco-editor",
         "publisher": "Microsoft Corporation",

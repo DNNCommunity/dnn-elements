@@ -1,4 +1,4 @@
-import {Component, ComponentInterface, Element, Event, EventEmitter, h, Host, Method, Prop, Watch} from '@stencil/core';
+import {Component, ComponentInterface, Element, Event, EventEmitter, getAssetPath, h, Host, Method, Prop, Watch} from '@stencil/core';
 import * as monaco from 'monaco-editor';
 import { editor } from 'monaco-editor';
 import {escapeCode, unescapeCode} from './utils/code.utils';
@@ -60,6 +60,12 @@ export class MonacoEditor implements ComponentInterface {
           return editorWorkerPath;
       }
     };
+
+    const editorGlobalCssPath = getAssetPath("/monaco-editor/editor/editor.main.css");
+    const link = document.createElement("link");
+    link.href = editorGlobalCssPath;
+    link.rel = "stylesheet";
+    document.head.appendChild(link);
   }
 
   componentDidLoad() {
@@ -112,6 +118,15 @@ export class MonacoEditor implements ComponentInterface {
   @Method()
   async getValue(){
     return Promise.resolve(escapeCode(this.editor?.getValue()));
+  }
+
+  /**
+   * Sets a new editor value.
+   * @param newValue The new value to set.
+   */
+  @Method()
+  async setValue(newValue: string){
+    this.editor?.setValue(unescapeCode(newValue));
   }
 
   private mergeOptions(): monaco.editor.IStandaloneEditorConstructionOptions {

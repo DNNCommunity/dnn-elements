@@ -17,6 +17,10 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+Represents a single tab and must be used inside a dnn-tabs element.
+
 ## Properties
 
 | Property                | Attribute   | Description            | Type     | Default     |
