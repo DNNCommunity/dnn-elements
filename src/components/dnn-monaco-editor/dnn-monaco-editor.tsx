@@ -62,10 +62,13 @@ export class MonacoEditor implements ComponentInterface {
     };
 
     const editorGlobalCssPath = getAssetPath("/monaco-editor/editor/editor.main.css");
-    const link = document.createElement("link");
-    link.href = editorGlobalCssPath;
-    link.rel = "stylesheet";
-    document.head.appendChild(link);
+    const existing = document.querySelector(`link[href="${editorGlobalCssPath}"]`);
+    if (existing === null) {
+      const link = document.createElement("link");
+      link.href = editorGlobalCssPath;
+      link.rel = "stylesheet";
+      document.head.appendChild(link);
+    }
   }
 
   componentDidLoad() {
