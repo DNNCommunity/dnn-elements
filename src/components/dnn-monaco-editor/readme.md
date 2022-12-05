@@ -41,6 +41,16 @@ Type: `Promise<void>`
 
 
 
+### `setValue(newValue: string) => Promise<void>`
+
+Sets a new editor value.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `updateLanguage(languageId: string) => Promise<void>`
 
 Update code language editor
