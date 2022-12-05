@@ -1,12 +1,12 @@
-import {Component, ComponentInterface, Element, Event, EventEmitter, getAssetPath, h, Host, Method, Prop, Watch} from '@stencil/core';
+import {Component, ComponentInterface, Element, Event, EventEmitter, h, Host, Method, Prop, Watch} from '@stencil/core';
 import * as monaco from 'monaco-editor';
 import { editor } from 'monaco-editor';
 import {escapeCode, unescapeCode} from './utils/code.utils';
-import { workerPath as  jsonWorkerPath } from 'monaco-editor/esm/vs/language/json/json.worker.js?worker';
-import { workerPath as cssWorkerPath } from 'monaco-editor/esm/vs/language/css/css.worker.js?worker';
-import { workerPath as htmlWorkerPath } from 'monaco-editor/esm/vs/language/html/html.worker.js?worker';
-import { workerPath as tsWorkerPath } from 'monaco-editor/esm/vs/language/typescript/ts.worker.js?worker';
-import { workerPath as editorWorkerPath } from 'monaco-editor/esm/vs/editor/editor.worker.js?worker';
+import { worker as jsonWorker } from 'monaco-editor/esm/vs/language/json/json.worker.js?worker';
+import { worker as cssWorker } from 'monaco-editor/esm/vs/language/css/css.worker.js?worker';
+import { worker as htmlWorker } from 'monaco-editor/esm/vs/language/html/html.worker.js?worker';
+import { worker as tsWorker } from 'monaco-editor/esm/vs/language/typescript/ts.worker.js?worker';
+import { worker as editorWorker } from 'monaco-editor/esm/vs/editor/editor.worker.js?worker';
 
 @Component({
   tag: 'dnn-monaco-editor',
@@ -23,13 +23,15 @@ export class MonacoEditor implements ComponentInterface {
   @Event() editorDidLoad: EventEmitter<void>;
 
   private editor: monaco.editor.IStandaloneCodeEditor;
-
-  private div!: HTMLDivElement;
+  private article!: HTMLElement;
+  private aria!: HTMLDivElement;
 
   private readonly defaultOptions: monaco.editor.IStandaloneEditorConstructionOptions = {
     automaticLayout: true,
     language: 'typescript',
     lineNumbers: "on",
+    fixedOverflowWidgets: true,
+    useShadowDOM: true,
     minimap: {
       enabled: true
     },
@@ -44,37 +46,35 @@ export class MonacoEditor implements ComponentInterface {
 
   connectedCallback() {
     (self as any).MonacoEnvironment = {
-      getWorkerUrl: function (_moduleId, label) {
+      getWorker: function (_moduleId, label) {
           if (label === 'json') {
-            return jsonWorkerPath;
+            return jsonWorker;
           }
           if (label === 'css' || label === 'scss' || label === 'less') {
-            return cssWorkerPath;
+            return cssWorker;
           }
           if (label === 'html' || label === 'handlebars' || label === 'razor') {
-            return htmlWorkerPath;
+            return htmlWorker;
           }
           if (label === 'typescript' || label === 'javascript') {
-            return tsWorkerPath;
+            return tsWorker;
           }
-          return editorWorkerPath;
+          return editorWorker;
       }
     };
 
-    const editorGlobalCssPath = getAssetPath("/monaco-editor/editor/editor.main.css");
-    const existing = document.querySelector(`link[href="${editorGlobalCssPath}"]`);
-    if (existing === null) {
-      const link = document.createElement("link");
-      link.href = editorGlobalCssPath;
-      link.rel = "stylesheet";
-      document.head.appendChild(link);
-    }
+    let path = import.meta.url.substring(0, import.meta.url.lastIndexOf('/'));
+    path = `${path}/assets/monaco-editor/codicon.ttf`;
+
+    const style = document.createElement('style');
+    style.innerText = `@font-face { font-family: 'codicon'; src: url('${path}') format('truetype');}`;
+    document.head.appendChild(style);
   }
 
   componentDidLoad() {
     const slottedCode: HTMLElement = this.el.querySelector(':scope > *:first-of-type');
 
-    this.editor = monaco.editor.create(this.div, {
+    this.editor = monaco.editor.create(this.article, {
       value: unescapeCode(slottedCode?.innerHTML.trim() || ''),
       ...this.mergeOptions()
     });
@@ -135,6 +135,7 @@ export class MonacoEditor implements ComponentInterface {
   private mergeOptions(): monaco.editor.IStandaloneEditorConstructionOptions {
     return {
       ...this.defaultOptions,
+      ariaContainerElement: this.aria,
       ...(this.options || {})
     };
   }
@@ -142,7 +143,8 @@ export class MonacoEditor implements ComponentInterface {
   render() {
     return (
       <Host>
-        <article ref={(el) => (this.div = el as HTMLDivElement)}></article>
+          <article ref={el => this.article = el}></article>
+          <div style={{display: 'none'}} ref={el => this.aria = el}></div>
       </Host>
     );
   }

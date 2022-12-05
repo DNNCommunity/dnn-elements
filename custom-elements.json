@@ -605,6 +605,12 @@
             },
             {
               "kind": "method",
+              "name": "setValue",
+              "description": "Sets a new editor value.",
+              "signature": "setValue(newValue: string) => Promise<void>"
+            },
+            {
+              "kind": "method",
               "name": "updateLanguage",
               "description": "Update code language editor",
               "signature": "updateLanguage(languageId: string) => Promise<void>"
