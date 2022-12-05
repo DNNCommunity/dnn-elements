@@ -2,7 +2,7 @@ import {Component, ComponentInterface, Element, Event, EventEmitter, h, Host, Me
 import * as monaco from 'monaco-editor';
 import { editor } from 'monaco-editor';
 import {escapeCode, unescapeCode} from './utils/code.utils';
-import { worker as  jsonWorker } from 'monaco-editor/esm/vs/language/json/json.worker.js?worker';
+import { worker as jsonWorker } from 'monaco-editor/esm/vs/language/json/json.worker.js?worker';
 import { worker as cssWorker } from 'monaco-editor/esm/vs/language/css/css.worker.js?worker';
 import { worker as htmlWorker } from 'monaco-editor/esm/vs/language/html/html.worker.js?worker';
 import { worker as tsWorker } from 'monaco-editor/esm/vs/language/typescript/ts.worker.js?worker';
