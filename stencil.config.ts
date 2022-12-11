@@ -90,7 +90,13 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'dist',
-      esmLoaderPath: '../loader'
+      esmLoaderPath: '../loader',
+      copy: [
+        {
+          src: '../node_modules/monaco-editor/min/vs/base/browser/ui/codicons/codicon/codicon.ttf',
+          dest: 'assets/monaco-editor/codicon.ttf',
+        },
+      ],
     },
     {
       type: 'docs-readme'
@@ -101,7 +107,13 @@ export const config: Config = {
     },
     {
       type: 'www',
-      serviceWorker: null // disable service workers
+      serviceWorker: null, // disable service workers
+      copy: [
+        {
+          src: '../node_modules/monaco-editor/min/vs/base/browser/ui/codicons/codicon/codicon.ttf',
+          dest: 'build/assets/monaco-editor/codicon.ttf',
+        },
+      ],
     }
   ],
   plugins: [

@@ -1,5 +1,5 @@
 {
-    "@babel/core@7.19.6": {
+    "@babel/core@7.17.8": {
         "licenses": "MIT",
         "repository": "https://github.com/babel/babel",
         "publisher": "The Babel Team",
@@ -20,7 +20,7 @@
         "path": "node_modules\\@geometricpanda\\storybook-addon-badges",
         "licenseFile": "node_modules\\@geometricpanda\\storybook-addon-badges\\LICENCE.md"
     },
-    "@stencil/core@2.18.1": {
+    "@stencil/core@2.19.3": {
         "licenses": "MIT",
         "repository": "https://github.com/ionic-team/stencil",
         "publisher": "Ionic Team",
@@ -82,7 +82,7 @@
         "path": "node_modules\\@storybook\\web-components",
         "licenseFile": "node_modules\\@storybook\\web-components\\LICENSE"
     },
-    "@types/jest@27.0.3": {
+    "@types/jest@27.4.1": {
         "licenses": "MIT",
         "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
         "path": "node_modules\\@types\\jest",
@@ -106,7 +106,7 @@
         "path": "node_modules\\@typescript-eslint\\parser",
         "licenseFile": "node_modules\\@typescript-eslint\\parser\\LICENSE"
     },
-    "babel-loader@8.2.5": {
+    "babel-loader@8.2.3": {
         "licenses": "MIT",
         "repository": "https://github.com/babel/babel-loader",
         "publisher": "Luis Couto",
@@ -114,9 +114,9 @@
         "path": "node_modules\\babel-loader",
         "licenseFile": "node_modules\\babel-loader\\LICENSE"
     },
-    "eslint-plugin-react@7.31.10": {
+    "eslint-plugin-react@7.29.4": {
         "licenses": "MIT",
-        "repository": "https://github.com/jsx-eslint/eslint-plugin-react",
+        "repository": "https://github.com/yannickcr/eslint-plugin-react",
         "publisher": "Yannick Croissant",
         "email": "yannick.croissant+npm@gmail.com",
         "path": "node_modules\\eslint-plugin-react",
@@ -151,7 +151,7 @@
         "path": "node_modules\\jest-cli",
         "licenseFile": "node_modules\\jest-cli\\LICENSE"
     },
-    "jest@27.0.3": {
+    "jest@27.5.1": {
         "licenses": "MIT",
         "repository": "https://github.com/facebook/jest",
         "path": "node_modules\\jest",
@@ -186,7 +186,7 @@
         "path": "node_modules\\npm-run-all",
         "licenseFile": "node_modules\\npm-run-all\\LICENSE"
     },
-    "puppeteer@19.1.0": {
+    "puppeteer@19.3.0": {
         "licenses": "Apache-2.0",
         "repository": "https://github.com/puppeteer/puppeteer.git#main",
         "publisher": "The Chromium Authors",
@@ -200,7 +200,7 @@
         "path": "node_modules\\typescript-debounce-decorator",
         "licenseFile": "node_modules\\typescript-debounce-decorator\\LICENSE"
     },
-    "typescript@4.8.4": {
+    "typescript@4.6.2": {
         "licenses": "Apache-2.0",
         "repository": "https://github.com/Microsoft/TypeScript",
         "publisher": "Microsoft Corp.",
