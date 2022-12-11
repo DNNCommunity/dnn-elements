@@ -13,7 +13,7 @@ import { worker as editorWorker } from 'monaco-editor/esm/vs/editor/editor.worke
   styleUrl: 'dnn-monaco-editor.scss',
   shadow: true
 })
-export class MonacoEditor implements ComponentInterface {
+export class DnnMonacoEditor implements ComponentInterface {
   @Element() private el: HTMLDnnMonacoEditorElement;
 
   /** Sets the monaco editor options, see monaco options. */
