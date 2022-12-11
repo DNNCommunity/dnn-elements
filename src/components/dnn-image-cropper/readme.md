@@ -5,6 +5,12 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+Allows cropping an image in-browser with the option to enforce a specific final size.
+All computation happens in the browser and the final image is emmited
+in an event that has a data-url of the image.
+
 ## Properties
 
 | Property            | Attribute            | Description                                                                                                                                 | Type                                                                                                                                                | Default                                                                                                                                                                                                                                                                                                                                                                     |

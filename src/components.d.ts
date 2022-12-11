@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ColorInfo } from "./utilities/colorInfo";
+import { editor } from "monaco-editor";
 import { IPermissions } from "./components/dnn-permissions-grid/permissions-interface";
 import { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interface";
 import { IRole } from "./components/dnn-permissions-grid/role-interface";
@@ -180,6 +181,33 @@ export namespace Components {
          */
         "visible": boolean;
     }
+    interface DnnMonacoEditor {
+        /**
+          * Get value of the current model attached to this editor.
+         */
+        "getValue": () => Promise<string>;
+        /**
+          * If set to true, then it is the responsibility of the consumer to have codicon.ttf in their distribution (e.g., ./assets/monaco-editor/codicon.ttf).
+         */
+        "loadFontFromLocal": boolean;
+        /**
+          * Sets the monaco editor options, see monaco options.
+         */
+        "options": editor.IStandaloneEditorConstructionOptions;
+        /**
+          * Set focus to editor
+         */
+        "setFocus": () => Promise<void>;
+        /**
+          * Sets a new editor value.
+          * @param newValue The new value to set.
+         */
+        "setValue": (newValue: string) => Promise<void>;
+        /**
+          * Update code language editor
+         */
+        "updateLanguage": (languageId: string) => Promise<void>;
+    }
     interface DnnPermissionsGrid {
         /**
           * The list of users to show under the search users field when a search is performed.
@@ -307,6 +335,10 @@ export interface DnnModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnModalElement;
 }
+export interface DnnMonacoEditorCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnMonacoEditorElement;
+}
 export interface DnnPermissionsGridCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnPermissionsGridElement;
@@ -380,6 +412,12 @@ declare global {
         prototype: HTMLDnnModalElement;
         new (): HTMLDnnModalElement;
     };
+    interface HTMLDnnMonacoEditorElement extends Components.DnnMonacoEditor, HTMLStencilElement {
+    }
+    var HTMLDnnMonacoEditorElement: {
+        prototype: HTMLDnnMonacoEditorElement;
+        new (): HTMLDnnMonacoEditorElement;
+    };
     interface HTMLDnnPermissionsGridElement extends Components.DnnPermissionsGrid, HTMLStencilElement {
     }
     var HTMLDnnPermissionsGridElement: {
@@ -443,6 +481,7 @@ declare global {
         "dnn-dropzone": HTMLDnnDropzoneElement;
         "dnn-image-cropper": HTMLDnnImageCropperElement;
         "dnn-modal": HTMLDnnModalElement;
+        "dnn-monaco-editor": HTMLDnnMonacoEditorElement;
         "dnn-permissions-grid": HTMLDnnPermissionsGridElement;
         "dnn-searchbox": HTMLDnnSearchboxElement;
         "dnn-sort-icon": HTMLDnnSortIconElement;
@@ -647,6 +686,20 @@ declare namespace LocalJSX {
          */
         "visible"?: boolean;
     }
+    interface DnnMonacoEditor {
+        /**
+          * If set to true, then it is the responsibility of the consumer to have codicon.ttf in their distribution (e.g., ./assets/monaco-editor/codicon.ttf).
+         */
+        "loadFontFromLocal"?: boolean;
+        /**
+          * Event to indicate editor has loaded
+         */
+        "onEditorDidLoad"?: (event: DnnMonacoEditorCustomEvent<void>) => void;
+        /**
+          * Sets the monaco editor options, see monaco options.
+         */
+        "options"?: editor.IStandaloneEditorConstructionOptions;
+    }
     interface DnnPermissionsGrid {
         /**
           * The list of users to show under the search users field when a search is performed.
@@ -766,6 +819,7 @@ declare namespace LocalJSX {
         "dnn-dropzone": DnnDropzone;
         "dnn-image-cropper": DnnImageCropper;
         "dnn-modal": DnnModal;
+        "dnn-monaco-editor": DnnMonacoEditor;
         "dnn-permissions-grid": DnnPermissionsGrid;
         "dnn-searchbox": DnnSearchbox;
         "dnn-sort-icon": DnnSortIcon;
@@ -789,6 +843,7 @@ declare module "@stencil/core" {
             "dnn-dropzone": LocalJSX.DnnDropzone & JSXBase.HTMLAttributes<HTMLDnnDropzoneElement>;
             "dnn-image-cropper": LocalJSX.DnnImageCropper & JSXBase.HTMLAttributes<HTMLDnnImageCropperElement>;
             "dnn-modal": LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
+            "dnn-monaco-editor": LocalJSX.DnnMonacoEditor & JSXBase.HTMLAttributes<HTMLDnnMonacoEditorElement>;
             "dnn-permissions-grid": LocalJSX.DnnPermissionsGrid & JSXBase.HTMLAttributes<HTMLDnnPermissionsGridElement>;
             "dnn-searchbox": LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
             "dnn-sort-icon": LocalJSX.DnnSortIcon & JSXBase.HTMLAttributes<HTMLDnnSortIconElement>;

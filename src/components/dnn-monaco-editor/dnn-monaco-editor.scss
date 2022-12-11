@@ -1,0 +1,19 @@
+@import '~monaco-editor/dev/vs/editor/editor.main.css';
+
+:host {
+    /**
+    * @prop --monaco-editor-width: width of the editor, default is 100%
+    * @prop --monaco-editor-height: height of the editor, default is 50vh
+    */
+    --monaco-editor-width: 100%;
+    --monaco-editor-height: 50vh;
+}
+
+article {
+  width: var(--monaco-editor-width);
+  height: var(--monaco-editor-height);
+}
+
+::slotted(*) {
+  display: none;
+}

@@ -941,5 +941,32 @@
     </dnn-vertical-overflow-menu>
     <div style="height: 200px;"></div>
   </section>
+
+  <!-- dnn-monaco-editor -->
+  <a name="dnn-monaco-editor"></a>
+  <section>
+    <h2>dnn-monaco-editor</h2>
+    <dnn-monaco-editor>
+      <code>
+export interface Employee{
+  firstName: string;
+  lastName: string;
+  fullName(): string;
+}
+
+let employee: Employee = {
+  firstName : "jane",
+  lastName: "doe",
+  fullName(): string{
+    return this.firstName + " " + this.lastName;
+  }
+}
+
+console.log(employee.firstName);
+console.log(employee.lastName);
+console.log(employee.fullName());
+      </code>
+    </dnn-monaco-editor>
+  </section>
 </body>
 </html>
