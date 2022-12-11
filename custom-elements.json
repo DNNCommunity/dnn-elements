@@ -580,7 +580,17 @@
           "name": "dnn-monaco-editor.tsx",
           "tagName": "dnn-monaco-editor",
           "description": "",
-          "attributes": [],
+          "attributes": [
+            {
+              "name": "load-font-from-local",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If set to true, then it is the responsibility of the consumer to have codicon.ttf in their distribution (e.g., ./assets/monaco-editor/codicon.ttf).",
+              "default": "false",
+              "required": false
+            }
+          ],
           "members": [
             {
               "kind": "field",

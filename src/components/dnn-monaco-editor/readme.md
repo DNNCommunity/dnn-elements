@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property  | Attribute | Description                                         | Type                                   | Default     |
-| --------- | --------- | --------------------------------------------------- | -------------------------------------- | ----------- |
-| `options` | --        | Sets the monaco editor options, see monaco options. | `IStandaloneEditorConstructionOptions` | `undefined` |
+| Property            | Attribute              | Description                                                                                                                                         | Type                                   | Default     |
+| ------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- | ----------- |
+| `loadFontFromLocal` | `load-font-from-local` | If set to true, then it is the responsibility of the consumer to have codicon.ttf in their distribution (e.g., ./assets/monaco-editor/codicon.ttf). | `boolean`                              | `false`     |
+| `options`           | --                     | Sets the monaco editor options, see monaco options.                                                                                                 | `IStandaloneEditorConstructionOptions` | `undefined` |
 
 
 ## Events

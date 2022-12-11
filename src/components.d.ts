@@ -187,6 +187,10 @@ export namespace Components {
          */
         "getValue": () => Promise<string>;
         /**
+          * If set to true, then it is the responsibility of the consumer to have codicon.ttf in their distribution (e.g., ./assets/monaco-editor/codicon.ttf).
+         */
+        "loadFontFromLocal": boolean;
+        /**
           * Sets the monaco editor options, see monaco options.
          */
         "options": editor.IStandaloneEditorConstructionOptions;
@@ -683,6 +687,10 @@ declare namespace LocalJSX {
         "visible"?: boolean;
     }
     interface DnnMonacoEditor {
+        /**
+          * If set to true, then it is the responsibility of the consumer to have codicon.ttf in their distribution (e.g., ./assets/monaco-editor/codicon.ttf).
+         */
+        "loadFontFromLocal"?: boolean;
         /**
           * Event to indicate editor has loaded
          */

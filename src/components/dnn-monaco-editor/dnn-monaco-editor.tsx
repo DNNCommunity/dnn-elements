@@ -19,6 +19,11 @@ export class DnnMonacoEditor implements ComponentInterface {
   /** Sets the monaco editor options, see monaco options. */
   @Prop() options: editor.IStandaloneEditorConstructionOptions;
 
+  /** Sets whether or not the codicon font is loaded from local. */
+  /** Default is false and the font will be loaded from https://unpkg.com/browse/@dnncommunity/dnn-elements@0.16.0-beta.4/dist/dnn/assets/monaco-editor/codicon.ttf */
+  /** If set to true, then it is the responsibility of the consumer to have codicon.ttf in their distribution (e.g., ./assets/monaco-editor/codicon.ttf). */
+  @Prop() loadFontFromLocal: boolean = false;
+
   /** Event to indicate editor has loaded */
   @Event() editorDidLoad: EventEmitter<void>;
 
@@ -63,8 +68,11 @@ export class DnnMonacoEditor implements ComponentInterface {
       }
     };
 
-    let path = import.meta.url.substring(0, import.meta.url.lastIndexOf('/'));
-    path = `${path}/assets/monaco-editor/codicon.ttf`;
+    let path = 'https://unpkg.com/monaco-editor@0.34.1/min/vs/base/browser/ui/codicons/codicon/codicon.ttf';
+    if (this.loadFontFromLocal) {
+      path = import.meta.url.substring(0, import.meta.url.lastIndexOf('/'));
+      path = `${path}/assets/monaco-editor/codicon.ttf`;
+    }
 
     const style = document.createElement('style');
     style.innerText = `@font-face { font-family: 'codicon'; src: url('${path}') format('truetype');}`;
