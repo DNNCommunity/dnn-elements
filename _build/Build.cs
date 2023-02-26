@@ -248,7 +248,8 @@ class Build : NukeBuild
     .DependsOn(TagRelease)
     .DependsOn(Release)
     .Executes(() => {
-    var npmToken = Environment.GetEnvironmentVariable("NPM_TOKEN");
+      Environment.SetEnvironmentVariable("NODE_OPTIONS", "--openssl-legacy-provider");
+      var npmToken = Environment.GetEnvironmentVariable("NPM_TOKEN");
       WriteAllText(RootDirectory / ".npmrc", $"//registry.npmjs.org/:_authToken={npmToken}");
       var tag = gitRepository.IsOnMainOrMasterBranch() ? "latest" : "next";
       Npm($"publish --access public --tag {tag}");
@@ -259,6 +260,7 @@ class Build : NukeBuild
     .DependsOn(Compile)
     .Executes(() =>
     {
+      Environment.SetEnvironmentVariable("NODE_OPTIONS", "--openssl-legacy-provider");
       NpmRun(s => s.SetCommand("deploy-storybook"));
     });
 }
