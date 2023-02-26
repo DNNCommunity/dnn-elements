@@ -111,6 +111,7 @@ class Build : NukeBuild
         }
       };
       var version = gitRepository.IsOnMainOrMasterBranch() ? GitVersion.MajorMinorPatch : GitVersion.SemVer;
+      Environment.SetEnvironmentVariable("NODE_OPTIONS", "--openssl-legacy-provider");
       Npm($"version {version} --allow-same-version --git-tag-version false");
       NpmInstall();
       NpmRun(s => s.SetCommand("build"));
