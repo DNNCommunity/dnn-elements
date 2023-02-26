@@ -122,6 +122,7 @@ class Build : NukeBuild
           NpmRun(s => s.SetCommand("test"));
         }
       NpmRun(s => s.SetCommand("build-storybook"));
+      CopyDirectoryRecursively(DistDirectory, WwwDirectory, DirectoryExistsPolicy.Merge, FileExistsPolicy.Overwrite);
     });
   Target SetupGithubActor => _ => _
     .Executes(() =>

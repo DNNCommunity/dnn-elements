@@ -1,5 +1,5 @@
 {
-    "@babel/core@7.17.8": {
+    "@babel/core@7.19.6": {
         "licenses": "MIT",
         "repository": "https://github.com/babel/babel",
         "publisher": "The Babel Team",
@@ -7,7 +7,7 @@
         "path": "node_modules\\@babel\\core",
         "licenseFile": "node_modules\\@babel\\core\\LICENSE"
     },
-    "@dnncommunity/dnn-elements@0.16.0-dnn-monaco-editor.1": {
+    "@dnncommunity/dnn-elements@0.16.0-storybook.1": {
         "licenses": "MIT",
         "repository": "https://github.com/dnncommunity/dnn-elements",
         "path": "",
@@ -46,19 +46,19 @@
         "path": "node_modules\\@storybook\\addon-a11y",
         "licenseFile": "node_modules\\@storybook\\addon-a11y\\LICENSE"
     },
-    "@storybook/addon-actions@6.5.13": {
+    "@storybook/addon-actions@6.5.16": {
         "licenses": "MIT",
         "repository": "https://github.com/storybookjs/storybook",
         "path": "node_modules\\@storybook\\addon-actions",
         "licenseFile": "node_modules\\@storybook\\addon-actions\\LICENSE"
     },
-    "@storybook/addon-essentials@6.5.13": {
+    "@storybook/addon-essentials@6.5.16": {
         "licenses": "MIT",
         "repository": "https://github.com/storybookjs/storybook",
         "path": "node_modules\\@storybook\\addon-essentials",
         "licenseFile": "node_modules\\@storybook\\addon-essentials\\LICENSE"
     },
-    "@storybook/addon-links@6.5.13": {
+    "@storybook/addon-links@6.5.16": {
         "licenses": "MIT",
         "repository": "https://github.com/storybookjs/storybook",
         "path": "node_modules\\@storybook\\addon-links",
@@ -70,19 +70,31 @@
         "path": "node_modules\\@storybook\\addon-notes",
         "licenseFile": "node_modules\\@storybook\\addon-notes\\LICENSE"
     },
+    "@storybook/builder-webpack4@6.5.16": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\builder-webpack4",
+        "licenseFile": "node_modules\\@storybook\\builder-webpack4\\LICENSE"
+    },
     "@storybook/html@6.5.13": {
         "licenses": "MIT",
         "repository": "https://github.com/storybookjs/storybook",
         "path": "node_modules\\@storybook\\html",
         "licenseFile": "node_modules\\@storybook\\html\\LICENSE"
     },
-    "@storybook/web-components@6.5.13": {
+    "@storybook/manager-webpack4@6.5.16": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\manager-webpack4",
+        "licenseFile": "node_modules\\@storybook\\manager-webpack4\\LICENSE"
+    },
+    "@storybook/web-components@6.5.16": {
         "licenses": "MIT",
         "repository": "https://github.com/storybookjs/storybook",
         "path": "node_modules\\@storybook\\web-components",
         "licenseFile": "node_modules\\@storybook\\web-components\\LICENSE"
     },
-    "@types/jest@27.4.1": {
+    "@types/jest@27.0.3": {
         "licenses": "MIT",
         "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
         "path": "node_modules\\@types\\jest",
@@ -106,7 +118,7 @@
         "path": "node_modules\\@typescript-eslint\\parser",
         "licenseFile": "node_modules\\@typescript-eslint\\parser\\LICENSE"
     },
-    "babel-loader@8.2.3": {
+    "babel-loader@8.2.5": {
         "licenses": "MIT",
         "repository": "https://github.com/babel/babel-loader",
         "publisher": "Luis Couto",
@@ -114,9 +126,9 @@
         "path": "node_modules\\babel-loader",
         "licenseFile": "node_modules\\babel-loader\\LICENSE"
     },
-    "eslint-plugin-react@7.29.4": {
+    "eslint-plugin-react@7.31.10": {
         "licenses": "MIT",
-        "repository": "https://github.com/yannickcr/eslint-plugin-react",
+        "repository": "https://github.com/jsx-eslint/eslint-plugin-react",
         "publisher": "Yannick Croissant",
         "email": "yannick.croissant+npm@gmail.com",
         "path": "node_modules\\eslint-plugin-react",
@@ -151,7 +163,7 @@
         "path": "node_modules\\jest-cli",
         "licenseFile": "node_modules\\jest-cli\\LICENSE"
     },
-    "jest@27.5.1": {
+    "jest@27.0.3": {
         "licenses": "MIT",
         "repository": "https://github.com/facebook/jest",
         "path": "node_modules\\jest",
@@ -165,14 +177,14 @@
         "path": "node_modules\\license-checker-rseidelsohn",
         "licenseFile": "node_modules\\license-checker-rseidelsohn\\LICENSE"
     },
-    "lit-html@2.4.0": {
+    "lit-html@2.6.1": {
         "licenses": "BSD-3-Clause",
         "repository": "https://github.com/lit/lit",
         "publisher": "Google LLC",
         "path": "node_modules\\lit-html",
         "licenseFile": "node_modules\\lit-html\\LICENSE"
     },
-    "monaco-editor@0.33.0": {
+    "monaco-editor@0.34.1": {
         "licenses": "MIT",
         "repository": "https://github.com/microsoft/monaco-editor",
         "publisher": "Microsoft Corporation",
@@ -186,7 +198,7 @@
         "path": "node_modules\\npm-run-all",
         "licenseFile": "node_modules\\npm-run-all\\LICENSE"
     },
-    "puppeteer@19.3.0": {
+    "puppeteer@19.1.0": {
         "licenses": "Apache-2.0",
         "repository": "https://github.com/puppeteer/puppeteer.git#main",
         "publisher": "The Chromium Authors",
@@ -200,7 +212,7 @@
         "path": "node_modules\\typescript-debounce-decorator",
         "licenseFile": "node_modules\\typescript-debounce-decorator\\LICENSE"
     },
-    "typescript@4.6.2": {
+    "typescript@4.8.4": {
         "licenses": "Apache-2.0",
         "repository": "https://github.com/Microsoft/TypeScript",
         "publisher": "Microsoft Corp.",
