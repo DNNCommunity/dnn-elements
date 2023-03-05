@@ -135,7 +135,7 @@ class Build : NukeBuild
       Git($"config --global user.email '{actor}@github.com'");
       if (IsServerBuild)
       {
-        Git($"remote set-url origin https://{actor}:{GithubToken}@github.com/{gitRepository.GetGitHubOwner()}/{gitRepository.GetGitHubName}.git");
+        Git($"remote set-url origin https://{actor}:{GithubToken}@github.com/{gitRepository.GetGitHubOwner()}/{gitRepository.GetGitHubName()}.git");
       }
     });
   Target CreateDeployBranch => _ => _
