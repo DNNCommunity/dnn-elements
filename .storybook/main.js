@@ -8,5 +8,5 @@ module.exports = {
     "@storybook/addon-essentials"
   ],
   "framework": "@storybook/web-components",
-  "staticDirs": [{ from: './assets', to: '/assets'}]
+  "staticDirs": [{ from: './assets', to: '/assets'}, { from: '../dist/dnn', to: '/dnn'}]
 }
