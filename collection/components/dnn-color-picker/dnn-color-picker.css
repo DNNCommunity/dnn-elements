@@ -1,0 +1,225 @@
+.dnn-color-picker {
+  padding: 15px;
+  max-width: 400px;
+}
+.dnn-color-picker .dnn-color-sliders {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+.dnn-color-picker .dnn-color-sliders .dnn-color-s-b {
+  border: 1px solid #ccc;
+  padding-bottom: var(--color-box-height, 50%);
+  position: relative;
+  background-color: red;
+}
+.dnn-color-picker .dnn-color-sliders .dnn-color-s-b:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(to right, white, red);
+  mix-blend-mode: saturation;
+}
+.dnn-color-picker .dnn-color-sliders .dnn-color-s-b:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: linear-gradient(to bottom, white, black);
+  mix-blend-mode: luminosity;
+}
+.dnn-color-picker .dnn-color-sliders .dnn-color-s-b button {
+  position: absolute;
+  bottom: calc(50% - 4px);
+  left: calc(50% - 4px);
+  width: 8px;
+  height: 8px;
+  z-index: 3;
+  display: block;
+  background: none;
+  border: none;
+  margin-left: -4px;
+  margin-bottom: -4px;
+  padding: 7px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+.dnn-color-picker .dnn-color-sliders .dnn-color-s-b button:before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  border-radius: 50%;
+}
+.dnn-color-picker .dnn-color-sliders .dnn-color-s-b button:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #ccc;
+}
+.dnn-color-picker .dnn-color-sliders .dnn-color-bar {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+.dnn-color-picker .dnn-color-sliders .dnn-color-bar .dnn-color-result {
+  flex-direction: column;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: red;
+}
+.dnn-color-picker .dnn-color-sliders .dnn-color-bar .dnn-color-hue {
+  flex: auto;
+  margin-left: 10px;
+  height: 16px;
+  border: 1px solid #ccc;
+  position: relative;
+  background: linear-gradient(to right, #f00 0, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 84%, #f00 100%);
+}
+.dnn-color-picker .dnn-color-sliders .dnn-color-bar .dnn-color-hue button {
+  width: 10px;
+  height: 20px;
+  position: absolute;
+  top: -2px;
+  left: calc(50% - 4px);
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  padding-left: -8px;
+}
+.dnn-color-picker .dnn-color-sliders .dnn-color-bar .dnn-color-hue button:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0px;
+  border-radius: 3px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+.dnn-color-picker .dnn-color-fields {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.dnn-color-picker .dnn-color-fields .dnn-color-mode-switch {
+  display: flex;
+  align-items: flex-end;
+  padding: 0.5em;
+}
+.dnn-color-picker .dnn-color-fields .dnn-color-mode-switch button {
+  background-color: transparent;
+  border: none;
+}
+.dnn-color-picker .dnn-color-fields .dnn-color-mode-switch button svg {
+  width: 3em;
+  height: 3em;
+  pointer-events: none;
+  outline: none;
+}
+.dnn-color-picker .dnn-color-fields .dnn-rgb-color-fields {
+  display: flex;
+  justify-content: space-evenly;
+}
+.dnn-color-picker .dnn-color-fields .dnn-rgb-color-fields .dnn-rgb-color-field {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  text-align: center;
+  padding: 0.5em;
+}
+.dnn-color-picker .dnn-color-fields .dnn-rgb-color-fields .dnn-rgb-color-field label {
+  padding-bottom: 0.25em;
+}
+.dnn-color-picker .dnn-color-fields .dnn-rgb-color-fields .dnn-rgb-color-field input {
+  border-radius: var(--dnn-button-radius, 3px);
+  border: 1px solid #ccc;
+  padding: 0.5em;
+  padding-left: 1.3em;
+  text-align: center;
+}
+.dnn-color-picker .dnn-color-fields .dnn-rgb-color-fields .dnn-rgb-color-field input.red {
+  border-color: red;
+}
+.dnn-color-picker .dnn-color-fields .dnn-rgb-color-fields .dnn-rgb-color-field input.green {
+  border-color: green;
+}
+.dnn-color-picker .dnn-color-fields .dnn-rgb-color-fields .dnn-rgb-color-field input.blue {
+  border-color: blue;
+}
+.dnn-color-picker .dnn-color-fields .dnn-hsl-color-fields {
+  display: flex;
+  justify-content: space-evenly;
+}
+.dnn-color-picker .dnn-color-fields .dnn-hsl-color-fields .dnn-hsl-color-field {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  text-align: center;
+  padding: 0.5em;
+}
+.dnn-color-picker .dnn-color-fields .dnn-hsl-color-fields .dnn-hsl-color-field label {
+  padding-bottom: 0.25em;
+}
+.dnn-color-picker .dnn-color-fields .dnn-hsl-color-fields .dnn-hsl-color-field input {
+  border-radius: var(--dnn-button-radius, 3px);
+  border: 1px solid #ccc;
+  padding: 0.5em;
+  padding-left: 1.3em;
+  text-align: center;
+}
+.dnn-color-picker .dnn-color-fields .dnn-hex-color-fields {
+  display: flex;
+  justify-content: space-evenly;
+}
+.dnn-color-picker .dnn-color-fields .dnn-hex-color-fields .dnn-hex-color-field {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  text-align: center;
+  padding: 0.5em;
+}
+.dnn-color-picker .dnn-color-fields .dnn-hex-color-fields .dnn-hex-color-field label {
+  padding-bottom: 0.25em;
+}
+.dnn-color-picker .dnn-color-fields .dnn-hex-color-fields .dnn-hex-color-field .hex-input {
+  position: relative;
+  border-radius: var(--dnn-button-radius, 3px);
+  border: 1px solid #ccc;
+  padding: 0.323em;
+  text-align: center;
+}
+.dnn-color-picker .dnn-color-fields .dnn-hex-color-fields .dnn-hex-color-field .hex-input input {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.dnn-color-picker .dnn-color-fields .dnn-hex-color-fields .dnn-hex-color-field .hex-input button {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 1em;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.dnn-color-picker .dnn-color-fields .dnn-hex-color-fields .dnn-hex-color-field .hex-input button svg {
+  min-width: 1em;
+}

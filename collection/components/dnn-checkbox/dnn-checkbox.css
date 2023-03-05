@@ -1,0 +1,33 @@
+:host {
+  /**
+  * @prop --focus-color: The color to outline the checkbox when hovered or focused, default to the dnn primary color.
+  */
+  --focus-color: var(--dnn-color-primary, #3792ED);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 3px;
+}
+
+button {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button .unchecked, button .checked, button .intermediate {
+  display: none;
+}
+button.checked .checked, button.unchecked .unchecked, button.intermediate .intermediate {
+  display: block;
+}
+button svg.undefined {
+  opacity: 0.45;
+}
+button:focus {
+  box-shadow: 0 0 2px 2px var(--focus-color);
+}

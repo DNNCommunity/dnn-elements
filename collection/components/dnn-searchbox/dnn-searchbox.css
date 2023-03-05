@@ -1,0 +1,48 @@
+:host {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  --background-color: transparent;
+  --color: #333;
+  --border-size: 1px;
+  --border-color: grey;
+  --border-active-color: black;
+  --border-radius: var(--dnn-controls-radius, 5px);
+  --padding: var(--dnn-controls-padding, 5px);
+  --focus-color: var(--dnn-color-primary, blue);
+}
+:host input {
+  width: 100%;
+  border: var(--border-size) solid var(--border-color);
+  outline: none;
+  border-radius: var(--border-radius);
+  padding: var(--padding);
+  padding-right: 32px;
+  transition: all 300ms ease-in-out;
+}
+:host input:focus, :host input:hover {
+  outline: none;
+  box-shadow: 0 0 2px 2px var(--focus-color);
+}
+:host svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  transform: scale(0.7);
+  fill: var(--color);
+  outline: var(--color);
+  color: var(--color);
+  transition: all 300ms ease-in-out;
+}
+:host button {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+:host button:focus svg, :host button:hover svg {
+  fill: var(--focus-color);
+  outline: var(--focus-color);
+  color: var(--focus-color);
+}

@@ -1,0 +1,2 @@
+function Debounce(n){if(n===void 0){n=500}return function(e,u,o){var r=o.value;var t=null;o.value=function(){var e=this;var u=[];for(var o=0;o<arguments.length;o++){u[o]=arguments[o]}clearTimeout(t);return new Promise((function(o){t=setTimeout((function(){o(r.apply(e,u))}),n)}))}}}export{Debounce as D};
+//# sourceMappingURL=debounce-06f55268.js.map

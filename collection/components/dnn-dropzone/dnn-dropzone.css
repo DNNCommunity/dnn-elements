@@ -1,0 +1,62 @@
+:host {
+  /** 
+  * @prop --border-color: The color of the border.
+  * @prop --border-radius: The radius of the controls borders.
+  * @prop --drop-background-color: The color of the background when a file is dropping.
+  */
+  --border-color: var(--dnn-color-tertiary-contrast, lightgray);
+  --border-radius: var(--dnn-controls-radius, 5px);
+  --drop-background-color: var(--dnn-color-tertiary, lightblue);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+  border: 2px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  transition: all 300ms ease-in-out;
+}
+
+:host(.dropping) {
+  background-color: var(--drop-background-color);
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0px;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+button:hover {
+  cursor: pointer;
+}
+button svg {
+  margin-right: 0.5rem;
+}
+
+label.upload-file {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+label.upload-file input {
+  display: none;
+}
+
+.video-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.video-preview button {
+  margin: 1rem;
+}

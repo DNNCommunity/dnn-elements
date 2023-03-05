@@ -1,0 +1,52 @@
+:host {
+  /**
+   * @prop --background: Background of the toggle.
+   * @prop --background-checked: Background of the toggle when checked.
+   * @prop --handle-background:  Background of the handle.
+   * @prop --handle-background-checked:  Background of the handle when checked.
+   * @prop --border-radius: The radius of the background borders.
+   * @prop --handle-border-radius: The radius of the handle.
+  */
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+}
+
+button {
+  height: 1.5em;
+  width: 2.5em;
+  outline: none;
+  background-color: var(--background, #888);
+  border: 0;
+  border-radius: var(--border-radius, var(--dnn-controls-radius, 0.75em));
+  padding: 0.1em;
+  position: relative;
+  margin: 0;
+  transition: background-color 300ms ease-in-out;
+  position: relative;
+  cursor: pointer;
+}
+button:hover, button:focus {
+  box-shadow: 0 0 2px 2px var(--dnn-color-primary);
+}
+button.checked {
+  background-color: var(--background-checked, var(--dnn-color-primary, blue));
+}
+button.checked .handle {
+  left: calc(1em + 4px);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+button .handle {
+  transition: all 300ms ease-in-out;
+  background-color: white;
+  width: 1em;
+  height: 1em;
+  border-radius: var(--handle-border-radius, var(--dnn-controls-radius, 50%));
+  position: absolute;
+  top: calc(50% - 0.5em);
+  left: 2px;
+}

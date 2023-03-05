@@ -1,0 +1,39 @@
+:host {
+  /**
+    * @prop --left-pane-background-color:  Allows customizing the left pane background-color
+    * @prop --right-pane-background-color: Allows customizing the right pane background-color
+  */
+  display: flex;
+  align-items: stretch;
+  margin: 0 auto;
+  position: relative;
+  --left-pane-background-color: transparent;
+  --right-pane-background-color: transparent;
+}
+
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: ew-resize;
+  position: absolute;
+  height: 100%;
+  background-color: transparent;
+}
+button.transition {
+  transition: all 300ms ease-in-out;
+}
+
+.pane {
+  overflow-y: auto;
+}
+.pane.transition {
+  transition: all 300ms ease-in-out;
+}
+.pane.left {
+  background-color: var(--left-pane-background-color);
+}
+.pane.right {
+  background-color: var(--right-pane-background-color);
+  flex-grow: 1;
+}

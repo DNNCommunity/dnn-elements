@@ -1,0 +1,30 @@
+:host {
+  display: inline-block;
+}
+
+button {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  min-width: 15px;
+  min-height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  outline: none;
+}
+
+svg {
+  height: 2em;
+  width: 2em;
+  transition: all 300ms ease-in-out;
+}
+
+button:focus svg, button:hover svg {
+  color: var(--dnn-color-primary);
+}
+
+:host([expanded]) svg {
+  transform: rotate(90deg);
+}
