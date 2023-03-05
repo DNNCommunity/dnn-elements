@@ -7,7 +7,7 @@
         "path": "node_modules\\@babel\\core",
         "licenseFile": "node_modules\\@babel\\core\\LICENSE"
     },
-    "@dnncommunity/dnn-elements@0.16.0-storybook.1": {
+    "@dnncommunity/dnn-elements@0.16.1-beta.1": {
         "licenses": "MIT",
         "repository": "https://github.com/dnncommunity/dnn-elements",
         "path": "",

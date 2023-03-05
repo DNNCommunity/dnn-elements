@@ -25,7 +25,7 @@ const theme = create({
 
   // BRAND
   brandTitle: 'DNN Elements',
-  brandImage: 'https://dnncommunity.org/Portals/0/DNN_White_Logo_lg.png'
+  brandImage: '/assets/DNNLogo.svg'
 });
 
 addons.setConfig({
