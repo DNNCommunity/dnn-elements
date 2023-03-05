@@ -11,6 +11,7 @@ using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
 using Nuke.Common.Tools.Git;
+using Nuke.Common.Tools.GitHub;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.Npm;
 using Nuke.Common.Utilities.Collections;
@@ -20,6 +21,7 @@ using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.IO.TextTasks;
 using static Nuke.Common.Tools.Git.GitTasks;
+using static Nuke.Common.Tools.GitHub.GitHubTasks;
 using static Nuke.Common.Tools.Npm.NpmTasks;
 
 [GitHubActions(
@@ -129,11 +131,11 @@ class Build : NukeBuild
     .Executes(() =>
     {
       var actor = Environment.GetEnvironmentVariable("GITHUB_ACTOR");
-      Git("config --global user.name 'Daniel Valadas'");
-      Git("config --global user.email 'info@danielvaladas.com'");
+      Git($"config --global user.name '{actor}'");
+      Git($"config --global user.email '{actor}@github.com'");
       if (IsServerBuild)
       {
-        Git($"remote set-url origin https://{actor}:{GithubToken}@github.com/{organizationName}/{repositoryName}.git");
+        Git($"remote set-url origin https://{actor}:{GithubToken}@github.com/{gitRepository.GetGitHubOwner()}/{gitRepository.GetGitHubName}.git");
       }
     });
   Target CreateDeployBranch => _ => _
