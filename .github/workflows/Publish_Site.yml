@@ -18,6 +18,7 @@ jobs:
           npm install
           npm run build
           npm run build-storybook
-          npm run deploy-storybook -- -u "github-actions-bot <support+actions@github.com>"
+          npm run --openssl-legacy-provider deploy-storybook -- -u "github-actions-bot <support+actions@github.com>"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_OPTIONS: --openssl-legacy-provider
