@@ -1,24 +1,9 @@
 {
-    "@babel/core@7.19.6": {
-        "licenses": "MIT",
-        "repository": "https://github.com/babel/babel",
-        "publisher": "The Babel Team",
-        "url": "https://babel.dev/team",
-        "path": "node_modules\\@babel\\core",
-        "licenseFile": "node_modules\\@babel\\core\\LICENSE"
-    },
     "@dnncommunity/dnn-elements@0.16.0-storybook.1": {
         "licenses": "MIT",
         "repository": "https://github.com/dnncommunity/dnn-elements",
         "path": "",
         "licenseFile": "LICENSE"
-    },
-    "@geometricpanda/storybook-addon-badges@0.2.2": {
-        "licenses": "MIT",
-        "repository": "https://github.com/geometricpanda/geometricpanda.git#main",
-        "publisher": "geometricpanda",
-        "path": "node_modules\\@geometricpanda\\storybook-addon-badges",
-        "licenseFile": "node_modules\\@geometricpanda\\storybook-addon-badges\\LICENCE.md"
     },
     "@stencil/core@2.19.3": {
         "licenses": "MIT",
@@ -39,60 +24,6 @@
         "publisher": "Ionic Team",
         "path": "node_modules\\@stencil\\sass",
         "licenseFile": "node_modules\\@stencil\\sass\\LICENSE"
-    },
-    "@storybook/addon-a11y@6.5.13": {
-        "licenses": "MIT",
-        "repository": "https://github.com/storybookjs/storybook",
-        "path": "node_modules\\@storybook\\addon-a11y",
-        "licenseFile": "node_modules\\@storybook\\addon-a11y\\LICENSE"
-    },
-    "@storybook/addon-actions@6.5.16": {
-        "licenses": "MIT",
-        "repository": "https://github.com/storybookjs/storybook",
-        "path": "node_modules\\@storybook\\addon-actions",
-        "licenseFile": "node_modules\\@storybook\\addon-actions\\LICENSE"
-    },
-    "@storybook/addon-essentials@6.5.16": {
-        "licenses": "MIT",
-        "repository": "https://github.com/storybookjs/storybook",
-        "path": "node_modules\\@storybook\\addon-essentials",
-        "licenseFile": "node_modules\\@storybook\\addon-essentials\\LICENSE"
-    },
-    "@storybook/addon-links@6.5.16": {
-        "licenses": "MIT",
-        "repository": "https://github.com/storybookjs/storybook",
-        "path": "node_modules\\@storybook\\addon-links",
-        "licenseFile": "node_modules\\@storybook\\addon-links\\LICENSE"
-    },
-    "@storybook/addon-notes@5.3.21": {
-        "licenses": "MIT",
-        "repository": "https://github.com/storybookjs/storybook",
-        "path": "node_modules\\@storybook\\addon-notes",
-        "licenseFile": "node_modules\\@storybook\\addon-notes\\LICENSE"
-    },
-    "@storybook/builder-webpack4@6.5.16": {
-        "licenses": "MIT",
-        "repository": "https://github.com/storybookjs/storybook",
-        "path": "node_modules\\@storybook\\builder-webpack4",
-        "licenseFile": "node_modules\\@storybook\\builder-webpack4\\LICENSE"
-    },
-    "@storybook/html@6.5.13": {
-        "licenses": "MIT",
-        "repository": "https://github.com/storybookjs/storybook",
-        "path": "node_modules\\@storybook\\html",
-        "licenseFile": "node_modules\\@storybook\\html\\LICENSE"
-    },
-    "@storybook/manager-webpack4@6.5.16": {
-        "licenses": "MIT",
-        "repository": "https://github.com/storybookjs/storybook",
-        "path": "node_modules\\@storybook\\manager-webpack4",
-        "licenseFile": "node_modules\\@storybook\\manager-webpack4\\LICENSE"
-    },
-    "@storybook/web-components@6.5.16": {
-        "licenses": "MIT",
-        "repository": "https://github.com/storybookjs/storybook",
-        "path": "node_modules\\@storybook\\web-components",
-        "licenseFile": "node_modules\\@storybook\\web-components\\LICENSE"
     },
     "@types/jest@27.0.3": {
         "licenses": "MIT",
@@ -118,14 +49,6 @@
         "path": "node_modules\\@typescript-eslint\\parser",
         "licenseFile": "node_modules\\@typescript-eslint\\parser\\LICENSE"
     },
-    "babel-loader@8.2.5": {
-        "licenses": "MIT",
-        "repository": "https://github.com/babel/babel-loader",
-        "publisher": "Luis Couto",
-        "email": "hello@luiscouto.pt",
-        "path": "node_modules\\babel-loader",
-        "licenseFile": "node_modules\\babel-loader\\LICENSE"
-    },
     "eslint-plugin-react@7.31.10": {
         "licenses": "MIT",
         "repository": "https://github.com/jsx-eslint/eslint-plugin-react",
@@ -133,13 +56,6 @@
         "email": "yannick.croissant+npm@gmail.com",
         "path": "node_modules\\eslint-plugin-react",
         "licenseFile": "node_modules\\eslint-plugin-react\\LICENSE"
-    },
-    "eslint-plugin-storybook@0.6.7": {
-        "licenses": "MIT",
-        "repository": "https://github.com/storybookjs/eslint-plugin-storybook",
-        "publisher": "yannbf@gmail.com",
-        "path": "node_modules\\eslint-plugin-storybook",
-        "licenseFile": "node_modules\\eslint-plugin-storybook\\LICENSE"
     },
     "eslint@7.32.0": {
         "licenses": "MIT",

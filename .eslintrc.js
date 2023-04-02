@@ -6,7 +6,6 @@ module.exports = {
     },
     "extends": [
       "plugin:@stencil/recommended",
-      "plugin:storybook/recommended",
     ],
     "rules": {
       "react/jsx-no-bind": "off",
