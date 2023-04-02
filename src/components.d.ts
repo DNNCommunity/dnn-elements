@@ -13,6 +13,14 @@ import { IRole } from "./components/dnn-permissions-grid/role-interface";
 import { ILocalization } from "./components/dnn-permissions-grid/localization-interface";
 import { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
+export { ColorInfo } from "./utilities/colorInfo";
+export { editor } from "monaco-editor";
+export { IPermissions } from "./components/dnn-permissions-grid/permissions-interface";
+export { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interface";
+export { IRole } from "./components/dnn-permissions-grid/role-interface";
+export { ILocalization } from "./components/dnn-permissions-grid/localization-interface";
+export { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
+export { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export namespace Components {
     interface DnnButton {
         /**
@@ -90,6 +98,9 @@ export namespace Components {
          */
         "updateSize": () => Promise<void>;
     }
+    /**
+     * Color Picker for Dnn
+     */
     interface DnnColorPicker {
         /**
           * Sets the initial color, must be a valid 8 character hexadecimal string without the # sign.
@@ -125,6 +136,11 @@ export namespace Components {
     uploadFile: string;
   };
     }
+    /**
+     * Allows cropping an image in-browser with the option to enforce a specific final size.
+     * All computation happens in the browser and the final image is emmited
+     * in an event that has a data-url of the image.
+     */
     interface DnnImageCropper {
         /**
           * Sets the desired final image height.
@@ -250,6 +266,9 @@ export namespace Components {
          */
         "sortDirection": "asc" | "desc" | "none";
     }
+    /**
+     * Represents a single tab and must be used inside a dnn-tabs element.
+     */
     interface DnnTab {
         /**
           * Hides the modal
@@ -388,6 +407,9 @@ declare global {
         prototype: HTMLDnnCollapsibleElement;
         new (): HTMLDnnCollapsibleElement;
     };
+    /**
+     * Color Picker for Dnn
+     */
     interface HTMLDnnColorPickerElement extends Components.DnnColorPicker, HTMLStencilElement {
     }
     var HTMLDnnColorPickerElement: {
@@ -400,6 +422,11 @@ declare global {
         prototype: HTMLDnnDropzoneElement;
         new (): HTMLDnnDropzoneElement;
     };
+    /**
+     * Allows cropping an image in-browser with the option to enforce a specific final size.
+     * All computation happens in the browser and the final image is emmited
+     * in an event that has a data-url of the image.
+     */
     interface HTMLDnnImageCropperElement extends Components.DnnImageCropper, HTMLStencilElement {
     }
     var HTMLDnnImageCropperElement: {
@@ -436,6 +463,9 @@ declare global {
         prototype: HTMLDnnSortIconElement;
         new (): HTMLDnnSortIconElement;
     };
+    /**
+     * Represents a single tab and must be used inside a dnn-tabs element.
+     */
     interface HTMLDnnTabElement extends Components.DnnTab, HTMLStencilElement {
     }
     var HTMLDnnTabElement: {
@@ -586,6 +616,9 @@ declare namespace LocalJSX {
          */
         "transitionDuration"?: number;
     }
+    /**
+     * Color Picker for Dnn
+     */
     interface DnnColorPicker {
         /**
           * Sets the initial color, must be a valid 8 character hexadecimal string without the # sign.
@@ -630,6 +663,11 @@ declare namespace LocalJSX {
     uploadFile: string;
   };
     }
+    /**
+     * Allows cropping an image in-browser with the option to enforce a specific final size.
+     * All computation happens in the browser and the final image is emmited
+     * in an event that has a data-url of the image.
+     */
     interface DnnImageCropper {
         /**
           * Sets the desired final image height.
@@ -758,6 +796,9 @@ declare namespace LocalJSX {
          */
         "sortDirection"?: "asc" | "desc" | "none";
     }
+    /**
+     * Represents a single tab and must be used inside a dnn-tabs element.
+     */
     interface DnnTab {
         /**
           * Defines the tab title.
@@ -839,14 +880,25 @@ declare module "@stencil/core" {
             "dnn-checkbox": LocalJSX.DnnCheckbox & JSXBase.HTMLAttributes<HTMLDnnCheckboxElement>;
             "dnn-chevron": LocalJSX.DnnChevron & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
             "dnn-collapsible": LocalJSX.DnnCollapsible & JSXBase.HTMLAttributes<HTMLDnnCollapsibleElement>;
+            /**
+             * Color Picker for Dnn
+             */
             "dnn-color-picker": LocalJSX.DnnColorPicker & JSXBase.HTMLAttributes<HTMLDnnColorPickerElement>;
             "dnn-dropzone": LocalJSX.DnnDropzone & JSXBase.HTMLAttributes<HTMLDnnDropzoneElement>;
+            /**
+             * Allows cropping an image in-browser with the option to enforce a specific final size.
+             * All computation happens in the browser and the final image is emmited
+             * in an event that has a data-url of the image.
+             */
             "dnn-image-cropper": LocalJSX.DnnImageCropper & JSXBase.HTMLAttributes<HTMLDnnImageCropperElement>;
             "dnn-modal": LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
             "dnn-monaco-editor": LocalJSX.DnnMonacoEditor & JSXBase.HTMLAttributes<HTMLDnnMonacoEditorElement>;
             "dnn-permissions-grid": LocalJSX.DnnPermissionsGrid & JSXBase.HTMLAttributes<HTMLDnnPermissionsGridElement>;
             "dnn-searchbox": LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
             "dnn-sort-icon": LocalJSX.DnnSortIcon & JSXBase.HTMLAttributes<HTMLDnnSortIconElement>;
+            /**
+             * Represents a single tab and must be used inside a dnn-tabs element.
+             */
             "dnn-tab": LocalJSX.DnnTab & JSXBase.HTMLAttributes<HTMLDnnTabElement>;
             "dnn-tabs": LocalJSX.DnnTabs & JSXBase.HTMLAttributes<HTMLDnnTabsElement>;
             "dnn-toggle": LocalJSX.DnnToggle & JSXBase.HTMLAttributes<HTMLDnnToggleElement>;
