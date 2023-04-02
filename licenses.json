@@ -5,7 +5,7 @@
         "path": "",
         "licenseFile": "LICENSE"
     },
-    "@stencil/core@2.22.3": {
+    "@stencil/core@3.1.0": {
         "licenses": "MIT",
         "repository": "https://github.com/ionic-team/stencil",
         "publisher": "Ionic Team",
@@ -65,7 +65,7 @@
         "path": "node_modules\\eslint",
         "licenseFile": "node_modules\\eslint\\LICENSE"
     },
-    "gh-pages@4.0.0": {
+    "gh-pages@5.0.0": {
         "licenses": "MIT",
         "repository": "https://github.com/tschaub/gh-pages",
         "publisher": "Tim Schaub",
