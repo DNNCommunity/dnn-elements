@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "directories": {
     "lib": "lib"
   },
@@ -22,7 +22,9 @@
   },
   "scripts": {
     "build": "npm run tsc",
-    "tsc": "tsc -p ."
+    "tsc": "tsc -p .",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "bugs": {
     "url": "https://github.com/valadas/dnn-elements/issues"
@@ -31,9 +33,21 @@
     "@dnncommunity/dnn-elements": "*"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.21.4",
+    "@storybook/addon-essentials": "^7.0.0",
+    "@storybook/addon-interactions": "^7.0.0",
+    "@storybook/addon-links": "^7.0.0",
+    "@storybook/blocks": "^7.0.0",
+    "@storybook/react": "^7.0.0",
+    "@storybook/react-webpack5": "^7.0.0",
+    "@storybook/testing-library": "^0.0.14-next.2",
     "@types/react": "^18.0.31",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "storybook": "^7.0.0",
     "typescript": "^5.0.3"
   }
 }
