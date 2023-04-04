@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { defineCustomElements, DnnButton } from "@dnncommunity/dnn-elements-react/lib";
+import { defineCustomElements, DnnButton } from "@dnncommunity/dnn-elements-react";
 import React from "react";
 
-alert("DnnButton.stories.tsx");
 defineCustomElements();
 
 const meta: Meta<typeof DnnButton> = {
