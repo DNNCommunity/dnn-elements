@@ -1,0 +1,364 @@
+{
+  "version": 1.1,
+  "tags": [
+    {
+      "name": "dnn-button",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "confirm",
+          "description": "Optionally add a confirmation dialog before firing the action."
+        },
+        {
+          "name": "confirm-message",
+          "description": "The text of the confirmation message;"
+        },
+        {
+          "name": "confirm-no-text",
+          "description": "The text of the no button for confirmation."
+        },
+        {
+          "name": "confirm-yes-text",
+          "description": "The text of the yes button for confirmation."
+        },
+        {
+          "name": "disabled",
+          "description": "Disables the button"
+        },
+        {
+          "name": "reversed",
+          "description": "Optionally reverses the button style."
+        },
+        {
+          "name": "size",
+          "description": "Optionally sets the button size, small normal or large, defaults to normal",
+          "values": [
+            {
+              "name": "large"
+            },
+            {
+              "name": "normal"
+            },
+            {
+              "name": "small"
+            }
+          ]
+        },
+        {
+          "name": "type",
+          "description": "Optional button style,\ncan be either primary, secondary or tertiary and defaults to primary if not specified",
+          "values": [
+            {
+              "name": "primary"
+            },
+            {
+              "name": "secondary"
+            },
+            {
+              "name": "tertiary"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "dnn-checkbox",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "checked",
+          "description": "Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)",
+          "values": [
+            {
+              "name": "checked"
+            },
+            {
+              "name": "intermediate"
+            },
+            {
+              "name": "unchecked"
+            }
+          ]
+        },
+        {
+          "name": "use-intermediate",
+          "description": "Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)"
+        },
+        {
+          "name": "value",
+          "description": "The value for this checkbox (not to be confused with its checked state)."
+        }
+      ]
+    },
+    {
+      "name": "dnn-chevron",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "collapse-text",
+          "description": "Collapse text for screen readers"
+        },
+        {
+          "name": "expand-text",
+          "description": "Expand text for screen readers"
+        },
+        {
+          "name": "expanded",
+          "description": "Is the chevron expanded"
+        }
+      ]
+    },
+    {
+      "name": "dnn-collapsible",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "expanded",
+          "description": "Defines if the panel is expanded or not."
+        },
+        {
+          "name": "transition-duration",
+          "description": "Defines the transition time in ms, defaults to 150ms"
+        }
+      ]
+    },
+    {
+      "name": "dnn-color-picker",
+      "description": {
+        "kind": "markdown",
+        "value": "Color Picker for Dnn"
+      },
+      "attributes": [
+        {
+          "name": "color",
+          "description": "Sets the initial color, must be a valid 8 character hexadecimal string without the # sign."
+        },
+        {
+          "name": "color-box-height",
+          "description": "Sets the width-height ratio of the color picker saturation-lightness box."
+        }
+      ]
+    },
+    {
+      "name": "dnn-dropzone",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "allow-camera-mode",
+          "description": "If true, will allow the user to take a snapshot\nusing the device camera. (only works over https)."
+        },
+        {
+          "name": "capture-quality",
+          "description": "Specifies the jpeg quality for when the device\ncamera is used to generate a picture.\nNeeds to be a number between 0 and 1 and defaults to 0.8"
+        }
+      ]
+    },
+    {
+      "name": "dnn-image-cropper",
+      "description": {
+        "kind": "markdown",
+        "value": "Allows cropping an image in-browser with the option to enforce a specific final size.\nAll computation happens in the browser and the final image is emmited\nin an event that has a data-url of the image."
+      },
+      "attributes": [
+        {
+          "name": "height",
+          "description": "Sets the desired final image height."
+        },
+        {
+          "name": "prevent-undersized",
+          "description": "When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry."
+        },
+        {
+          "name": "quality",
+          "description": "Sets the output quality of the corpped image (number between 0 and 1)."
+        },
+        {
+          "name": "width",
+          "description": "Sets the desired final image width."
+        }
+      ]
+    },
+    {
+      "name": "dnn-modal",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "backdrop-dismiss",
+          "description": "Pass false to remove the backdrop click auto-dismiss feature."
+        },
+        {
+          "name": "close-text",
+          "description": "Optionally pass the aria-label text for the close button.\nDefaults to \"Close modal\" if not provided."
+        },
+        {
+          "name": "show-close-button",
+          "description": "Optionally you can pass false to not show the close button.\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\nor provide your own dismissal logic in the modal content."
+        },
+        {
+          "name": "visible",
+          "description": "Reflects the visible state of the modal."
+        }
+      ]
+    },
+    {
+      "name": "dnn-monaco-editor",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "load-font-from-local",
+          "description": "If set to true, then it is the responsibility of the consumer to have codicon.ttf in their distribution (e.g., ./assets/monaco-editor/codicon.ttf)."
+        }
+      ]
+    },
+    {
+      "name": "dnn-permissions-grid",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "dnn-searchbox",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "debounced",
+          "description": "Debounces the queryChanged by 500ms."
+        },
+        {
+          "name": "placeholder",
+          "description": "Sets the field placeholder text."
+        },
+        {
+          "name": "query",
+          "description": "Sets the query"
+        }
+      ]
+    },
+    {
+      "name": "dnn-sort-icon",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "sort-direction",
+          "description": "Defines the current sort direction",
+          "values": [
+            {
+              "name": "asc"
+            },
+            {
+              "name": "desc"
+            },
+            {
+              "name": "none"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "dnn-tab",
+      "description": {
+        "kind": "markdown",
+        "value": "Represents a single tab and must be used inside a dnn-tabs element."
+      },
+      "attributes": [
+        {
+          "name": "tab-title",
+          "description": "Defines the tab title."
+        }
+      ]
+    },
+    {
+      "name": "dnn-tabs",
+      "description": {
+        "kind": "markdown",
+        "value": "`dnn-tabs` is a container for `dnn-tab` and should only contain `dnn-tab` elements for its content."
+      },
+      "attributes": []
+    },
+    {
+      "name": "dnn-toggle",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "checked",
+          "description": "If 'true' the toggle is checked (on)."
+        },
+        {
+          "name": "disabled",
+          "description": "If 'true' the toggle is not be interacted with."
+        }
+      ]
+    },
+    {
+      "name": "dnn-treeview-item",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "expanded",
+          "description": "Defines if the current node is expanded."
+        }
+      ]
+    },
+    {
+      "name": "dnn-vertical-overflow-menu",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "dnn-vertical-splitview",
+      "description": {
+        "kind": "markdown",
+        "value": "This allows splitting a UI into vertical adjustable panels, the splitter itself is not part of this component.\n- The content for the left part should be injected in the `left` slot.\n- The content for the right part should be injected in the `right` slot.\n- The content for the actual splitter should go in the default slot and other UI elements can be injected as long as you handle their behaviour, by default only the drag behavior is implemented in the component."
+      },
+      "attributes": [
+        {
+          "name": "split-width-percentage",
+          "description": "The percentage position of the splitter in the container."
+        },
+        {
+          "name": "splitter-width",
+          "description": "The width of the splitter area."
+        }
+      ]
+    }
+  ]
+}
