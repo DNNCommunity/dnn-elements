@@ -10,8 +10,8 @@ const config: StorybookConfig = {
         outline: false,
       }
     },
-    "@storybook/addon-a11y",
-    "@storybook/addon-docs"],
+    "@storybook/addon-a11y"
+  ],
   framework: {
     name: "@storybook/react-webpack5",
     options: {}
