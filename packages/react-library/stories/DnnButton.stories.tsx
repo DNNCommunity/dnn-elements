@@ -7,15 +7,6 @@ defineCustomElements();
 const meta: Meta<typeof DnnButton> = {
     title: "DnnButton",
     component: DnnButton,
-};
-
-export default meta;
-type Story = StoryObj<typeof DnnButton>;
-
-export const Primary: Story = {
-    render: ({ ...args }) => (
-        <DnnButton {...args}>Click Me</DnnButton>
-    ),
     argTypes: {
         type: {
             options: ["primary", "secondary", "tertiary"],
@@ -59,4 +50,75 @@ export const Primary: Story = {
             action: "canceled",
         },
     },
+};
+
+export default meta;
+type Story = StoryObj<typeof DnnButton>;
+
+export const Primary: Story = {
+    args: {
+        type: "primary",
+        reversed: false,
+        size: "normal",
+        confirm: false,
+        disabled: false,
+    },
+    render: ({ ...args }) => (
+        <DnnButton {...args}>Click Me</DnnButton>
+    ),
+};
+
+export const Secondary: Story = {
+    args: {
+        type: "secondary",
+        reversed: false,
+        size: "normal",
+        confirm: false,
+        disabled: false,
+    },
+    render: ({ ...args }) => (
+        <DnnButton {...args}>Click Me</DnnButton>
+    ),
+};
+
+export const Confirm: Story = {
+    args: {
+        type: "secondary",
+        reversed: false,
+        size: "normal",
+        confirm: true,
+        confirmMessage: "Are you sure?",
+        confirmYesText: "Yes",
+        confirmNoText: "No",
+        disabled: false,
+    },
+    render: ({ ...args }) => (
+        <DnnButton {...args}>Click Me</DnnButton>
+    ),
+};
+
+export const Reversed: Story = {
+    args: {
+        type: "primary",
+        reversed: true,
+        size: "normal",
+        confirm: false,
+        disabled: false,
+    },
+    render: ({ ...args }) => (
+        <DnnButton {...args}>Click Me</DnnButton>
+    ),
+};
+
+export const Disabled: Story = {
+    args: {
+        type: "primary",
+        reversed: false,
+        size: "normal",
+        confirm: false,
+        disabled: true,
+    },
+    render: ({ ...args }) => (
+        <DnnButton {...args}>Click Me</DnnButton>
+    ),
 };
