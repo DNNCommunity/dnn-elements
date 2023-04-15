@@ -1,55 +1,18 @@
 {
-  "name": "@dnncommunity/dnn-elements",
-  "version": "0.16.1-nuke-6-3-0.1",
-  "description": "Stencil Component Starter",
-  "repository": "https://github.com/dnncommunity/dnn-elements",
-  "homepage": "https://dnncommunity.github.io/dnn-elements",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
-  "es2015": "dist/esm/index.mjs",
-  "es2017": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
-  "collection": "dist/collection/collection-manifest.json",
-  "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/dnn/dnn.js",
-  "files": [
-    "dist/",
-    "loader/"
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "samples/*"
   ],
   "scripts": {
-    "build": "npm run eslint && stencil build --docs",
-    "postbuild": "license-checker-rseidelsohn --out licenses.json --json --direct --relativeLicensePath --relativeModulePath",
-    "watch": "stencil build --dev --watch",
-    "start": "stencil build --dev --watch --serve",
-    "start.edge": "stencil build --dev --watch --serve --es5",
-    "poststart": "license-checker-rseidelsohn --out licenses.json --json --direct --relativeLicensePath --relativeModulePath",
-    "test": "stencil test --spec --e2e",
-    "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate",
-    "eslint": "eslint --ext .ts --ext .tsx --ext .js ./src"
+    "build": "npx lerna run build",
+    "test": "npx lerna run test"
   },
   "devDependencies": {
-    "@stencil/core": "3.1.0",
-    "@stencil/eslint-plugin": "^0.4.0",
-    "@stencil/sass": "^3.0.0",
-    "@types/jest": "^27.0.3",
-    "@types/puppeteer": "5.4.7",
-    "@typescript-eslint/eslint-plugin": "^4.33.0",
-    "@typescript-eslint/parser": "^4.33.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-react": "^7.16.0",
-    "gh-pages": "^5.0.0",
-    "jest": "^27.0.3",
-    "jest-cli": "^27.5.1",
-    "license-checker-rseidelsohn": "^3.1.0",
-    "lit-html": "^2.6.1",
-    "npm-run-all": "^4.1.5",
-    "puppeteer": "^19.1.0",
-    "typescript": "4.9.5",
-    "typescript-debounce-decorator": "^0.0.18"
+    "@types/node": "^18.15.11",
+    "lerna": "^6.6.1",
+    "typescript": "^5.0.3"
   },
-  "dependencies": {
-    "monaco-editor": "^0.34.1"
-  },
-  "license": "MIT"
+  "version": "1.2.3"
 }

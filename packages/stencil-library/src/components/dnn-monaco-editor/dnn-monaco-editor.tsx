@@ -1,12 +1,12 @@
 import {Component, ComponentInterface, Element, Event, EventEmitter, h, Host, Method, Prop, Watch} from '@stencil/core';
-import * as monaco from 'monaco-editor';
-import { editor } from 'monaco-editor';
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import {escapeCode, unescapeCode} from './utils/code.utils';
 import { worker as jsonWorker } from 'monaco-editor/esm/vs/language/json/json.worker.js?worker';
 import { worker as cssWorker } from 'monaco-editor/esm/vs/language/css/css.worker.js?worker';
 import { worker as htmlWorker } from 'monaco-editor/esm/vs/language/html/html.worker.js?worker';
 import { worker as tsWorker } from 'monaco-editor/esm/vs/language/typescript/ts.worker.js?worker';
 import { worker as editorWorker } from 'monaco-editor/esm/vs/editor/editor.worker.js?worker';
+import { MonacoEditorOptions } from './types/options';
 
 @Component({
   tag: 'dnn-monaco-editor',
@@ -17,7 +17,7 @@ export class DnnMonacoEditor implements ComponentInterface {
   @Element() private el: HTMLDnnMonacoEditorElement;
 
   /** Sets the monaco editor options, see monaco options. */
-  @Prop() options: editor.IStandaloneEditorConstructionOptions;
+  @Prop() options: MonacoEditorOptions;
 
   /** Sets whether or not the codicon font is loaded from local. */
   /** Default is false and the font will be loaded from https://unpkg.com/browse/@dnncommunity/dnn-elements@0.16.0-beta.4/dist/dnn/assets/monaco-editor/codicon.ttf */
