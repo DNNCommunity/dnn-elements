@@ -1,7 +1,10 @@
 import type { Preview } from "@storybook/web-components";
 import { defineCustomElements } from "@dnncommunity/dnn-elements/loader";
+import { setCustomElementsManifest } from "@storybook/web-components";
+import customElements from "../custom-elements.json";
 
 defineCustomElements();
+setCustomElementsManifest(customElements);
 
 const preview: Preview = {
   parameters: {
