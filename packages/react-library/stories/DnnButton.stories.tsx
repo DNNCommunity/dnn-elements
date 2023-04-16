@@ -7,6 +7,7 @@ defineCustomElements();
 const meta: Meta<typeof DnnButton> = {
     title: "DnnButton",
     component: DnnButton,
+    tags: ["autodocs"],
     argTypes: {
         type: {
             options: ["primary", "secondary", "tertiary"],
@@ -50,10 +51,10 @@ const meta: Meta<typeof DnnButton> = {
             action: "canceled",
         },
     },
-};
+} satisfies Meta<typeof DnnButton>;
 
 export default meta;
-type Story = StoryObj<typeof DnnButton>;
+type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
     args: {
