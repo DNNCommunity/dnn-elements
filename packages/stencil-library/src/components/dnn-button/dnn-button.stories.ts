@@ -2,13 +2,12 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { ifDefined } from 'lit-html/directives/if-defined.js';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import { actions } from '@storybook/addon-actions';
 
 const meta: Meta = {
   title: 'DnnButton',
   component: 'dnn-button',
   tags: ['autodocs'],
-  parameters: {
-  },
   argTypes: {
     'type': {
       options: ['primary', 'secondary', 'tertiary'],
@@ -44,6 +43,8 @@ const meta: Meta = {
 };
 export default meta;
 
+const eventsFromNames = actions('onClick', 'onConfirmed', 'onCanceled')
+
 const Template = (args) =>
     html`
         <dnn-button
@@ -54,7 +55,11 @@ const Template = (args) =>
             confirm-yes-text=${ifDefined(args.confirmYesText)}
             confirm-no-text=${ifDefined(args.confirmNoText)}
             confirm-message=${ifDefined(args.confirmMessage)}
-            ?disabled=${args.disabled}>
+            ?disabled=${args.disabled}
+            @click=${e => eventsFromNames.onClick(e)}
+            @confirmed=${e => eventsFromNames.onConfirmed(e)}
+            @canceled=${e => eventsFromNames.onCanceled(e)}
+          >
             ${unsafeHTML(args.slot)}
         </dnn-button>
     `;
