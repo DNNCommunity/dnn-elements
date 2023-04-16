@@ -2,8 +2,8 @@
   "name": "root",
   "private": true,
   "workspaces": [
-    "packages/*",
-    "samples/*"
+    "packages/stencil-library",
+    "packages/react-library"
   ],
   "scripts": {
     "build": "npx lerna run build",
