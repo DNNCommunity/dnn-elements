@@ -8,6 +8,7 @@ module.exports = {
   "ignorePatterns":[
     "node_modules/*",
     "src/stories/**/*",
+    "src/**/*.stories.tsx",
   ],
   "rules": {
     "react/jsx-no-bind": "off",

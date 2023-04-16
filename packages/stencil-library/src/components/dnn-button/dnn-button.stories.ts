@@ -5,7 +5,7 @@ import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 import { actions } from '@storybook/addon-actions';
 
 const meta: Meta = {
-  title: 'DnnButton',
+  title: 'Button',
   component: 'dnn-button',
   tags: ['autodocs'],
   argTypes: {
