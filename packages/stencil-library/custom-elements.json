@@ -596,7 +596,7 @@
               "kind": "field",
               "name": "options",
               "type": {
-                "text": "IStandaloneEditorConstructionOptions"
+                "text": "MonacoEditorOptions"
               },
               "description": "Sets the monaco editor options, see monaco options.",
               "required": false
