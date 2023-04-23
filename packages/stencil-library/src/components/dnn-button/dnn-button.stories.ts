@@ -9,34 +9,34 @@ const meta: Meta = {
   component: 'dnn-button',
   tags: ['autodocs'],
   argTypes: {
-    'type': {
+    type: {
       options: ['primary', 'secondary', 'tertiary'],
       control: {
         type: 'select',
       },
     },
-    'reversed': {
+    reversed: {
       control: 'boolean',
     },
-    'size': {
+    size: {
         options: ['small', 'normal', 'large'],
         control: {
             type: 'select',
         },
     },
-    'confirm': {
+    confirm: {
         control: 'boolean',
     },
-    'confirm-yes-text': {
+    confirmYesText: {
         control: 'text',
     },
-    'confirm-no-text': {
+    confirmNoText: {
         control: 'text',
     },
-    'confirm-message': {
+    confirmMessage: {
         control: 'text',
     },
-    'disabled': {
+    disabled: {
       control: 'boolean',
     },
   },
@@ -64,11 +64,15 @@ const Template = (args) =>
         </dnn-button>
     `;
 
+
 type Story = StoryObj;
 
 export const Primary : Story = Template.bind({});
 Primary.args = {
-    slot: 'Click me!'
+  slot: 'Click me!',
+  reversed: false,
+  confirm: false,
+  disabled: false,
 };
 
 export const Secondary : Story = Template.bind({});
@@ -107,7 +111,7 @@ Confirm.args = {
   confirm: true,
   confirmYesText: "Oh Yeah",
   confirmNoText: "No Way",
-  confirmMessage: "Are you sure to be sure?",
+  confirmMessage: "Are you sure that you're sure that you're sure?",
 };
 
 export const Disabled : Story = Template.bind({});
