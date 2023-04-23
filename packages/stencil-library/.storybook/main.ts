@@ -10,6 +10,7 @@ const config: StorybookConfig = {
     name: "@storybook/web-components-webpack5",
     options: {},
   },
+  staticDirs: [{ from: './assets', to: '/assets'}],
   docs: {
     autodocs: "tag",
   },
