@@ -3,11 +3,19 @@ import { html } from 'lit';
 import { ifDefined } from 'lit-html/directives/if-defined.js';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 import { actions } from '@storybook/addon-actions';
+import readme from "./readme.md";
 
 const meta: Meta = {
   title: 'Button',
   component: 'dnn-button',
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: readme,
+      }
+    }
+  },
   argTypes: {
     type: {
       options: ['primary', 'secondary', 'tertiary'],

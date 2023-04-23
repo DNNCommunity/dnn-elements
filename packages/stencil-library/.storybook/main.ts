@@ -5,6 +5,15 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-actions",
+    {
+      name: "@storybook/addon-docs",
+      options: {
+        configureJSX: true,
+        babelOptions: {},
+        sourceLoaderOptions: null,
+        transcludeMarkdown: true,
+      },
+    },
   ],
   framework: {
     name: "@storybook/web-components-webpack5",
