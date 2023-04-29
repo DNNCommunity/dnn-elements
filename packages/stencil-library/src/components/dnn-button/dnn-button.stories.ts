@@ -6,7 +6,7 @@ import { actions } from '@storybook/addon-actions';
 import readme from "./readme.md";
 
 const meta: Meta = {
-  title: 'Button',
+  title: 'Elements/Button',
   component: 'dnn-button',
   tags: ['autodocs'],
   parameters: {
@@ -51,7 +51,7 @@ const meta: Meta = {
 };
 export default meta;
 
-const eventsFromNames = actions('onClick', 'onConfirmed', 'onCanceled')
+const eventsFromNames = actions('onClick', 'onConfirmed', 'onCanceled');
 
 const Template = (args) =>
     html`
