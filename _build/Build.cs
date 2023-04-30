@@ -114,7 +114,7 @@ class Build : NukeBuild
         }
       };
       var version = gitRepository.IsOnMainOrMasterBranch() ? GitVersion.MajorMinorPatch : GitVersion.SemVer;
-      Npm($"version {version} --allow-same-version --git-tag-version false --workspaces");
+      Npm($"version {version} --allow-same-version --git-tag-version false --workspaces", RootDirectory);
       NpmInstall();
       NpmRun(s => s.SetCommand("build"));
       // Only run tests on PRs.
@@ -122,7 +122,9 @@ class Build : NukeBuild
         gitRepository.IsOnDevelopBranch() ||
         gitRepository.IsOnMainOrMasterBranch() ||
         gitRepository.IsOnReleaseBranch())){
-          NpmRun(s => s.SetCommand("test"));
+          NpmRun(s => s
+            .SetCommand("test")
+            .SetProcessWorkingDirectory(StencilDirectory));
         }
       // NpmRun(s => s.SetCommand("build-storybook"));
       // CopyDirectoryRecursively(DistDirectory, WwwDirectory, DirectoryExistsPolicy.Merge, FileExistsPolicy.Overwrite);
