@@ -92,7 +92,6 @@ class Build : NukeBuild
 
   Target Compile => _ => _
     .DependsOn(Clean)
-    .Produces(WwwDirectory / "*")
     .Executes(() =>
     {
       NpmLogger = (type, output) =>
