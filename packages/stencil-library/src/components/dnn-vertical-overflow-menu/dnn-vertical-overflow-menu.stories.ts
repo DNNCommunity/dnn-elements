@@ -5,6 +5,7 @@ import readme from "./readme.md";
 const meta: Meta = {
     title: 'Elements/Vertical Overflow Menu',
     component: 'dnn-vertical-overflow-menu',
+    tags: ['autodocs'],
     parameters: {
         docs: {
             description: {

@@ -274,6 +274,9 @@ export namespace Components {
          */
         "expanded": boolean;
     }
+    /**
+     * A component that shows a vertical list of items as they fit. When they don't all fit, it puts the ones that don't fit into a dropdown menu.
+     */
     interface DnnVerticalOverflowMenu {
     }
     interface DnnVerticalSplitview {
@@ -459,6 +462,9 @@ declare global {
         prototype: HTMLDnnTreeviewItemElement;
         new (): HTMLDnnTreeviewItemElement;
     };
+    /**
+     * A component that shows a vertical list of items as they fit. When they don't all fit, it puts the ones that don't fit into a dropdown menu.
+     */
     interface HTMLDnnVerticalOverflowMenuElement extends Components.DnnVerticalOverflowMenu, HTMLStencilElement {
     }
     var HTMLDnnVerticalOverflowMenuElement: {
@@ -792,6 +798,9 @@ declare namespace LocalJSX {
          */
         "onUserExpanded"?: (event: DnnTreeviewItemCustomEvent<void>) => void;
     }
+    /**
+     * A component that shows a vertical list of items as they fit. When they don't all fit, it puts the ones that don't fit into a dropdown menu.
+     */
     interface DnnVerticalOverflowMenu {
     }
     interface DnnVerticalSplitview {
@@ -860,6 +869,9 @@ declare module "@stencil/core" {
             "dnn-tabs": LocalJSX.DnnTabs & JSXBase.HTMLAttributes<HTMLDnnTabsElement>;
             "dnn-toggle": LocalJSX.DnnToggle & JSXBase.HTMLAttributes<HTMLDnnToggleElement>;
             "dnn-treeview-item": LocalJSX.DnnTreeviewItem & JSXBase.HTMLAttributes<HTMLDnnTreeviewItemElement>;
+            /**
+             * A component that shows a vertical list of items as they fit. When they don't all fit, it puts the ones that don't fit into a dropdown menu.
+             */
             "dnn-vertical-overflow-menu": LocalJSX.DnnVerticalOverflowMenu & JSXBase.HTMLAttributes<HTMLDnnVerticalOverflowMenuElement>;
             "dnn-vertical-splitview": LocalJSX.DnnVerticalSplitview & JSXBase.HTMLAttributes<HTMLDnnVerticalSplitviewElement>;
         }

@@ -334,7 +334,7 @@
       "name": "dnn-vertical-overflow-menu",
       "description": {
         "kind": "markdown",
-        "value": ""
+        "value": "A component that shows a vertical list of items as they fit. When they don't all fit, it puts the ones that don't fit into a dropdown menu."
       },
       "attributes": []
     },

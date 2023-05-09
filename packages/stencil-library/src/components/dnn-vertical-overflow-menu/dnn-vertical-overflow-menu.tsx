@@ -1,5 +1,9 @@
 import { Component, Element, Host, h, State } from '@stencil/core';
 
+/**
+ * A component that shows a vertical list of items as they fit. When they don't all fit, it puts the ones that don't fit into a dropdown menu.
+ * @slot() - The items to show in the menu. 
+ */
 @Component({
   tag: 'dnn-vertical-overflow-menu',
   styleUrl: 'dnn-vertical-overflow-menu.scss',
