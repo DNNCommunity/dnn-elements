@@ -94,8 +94,8 @@ export const config: Config = {
       esmLoaderPath: '../loader',
       copy: [
         {
-          src: '../../../node_modules/monaco-editor/min/vs/base/browser/ui/codicons/codicon/codicon.ttf',
-          dest: 'assets/monaco-editor/codicon.ttf',
+          src: '../../../node_modules/monaco-editor/min/vs/',
+          dest: 'assets/monaco-editor/',
         },
       ],
     },
@@ -115,8 +115,8 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
       copy: [
         {
-          src: '../../../node_modules/monaco-editor/min/vs/base/browser/ui/codicons/codicon/codicon.ttf',
-          dest: 'build/assets/monaco-editor/codicon.ttf',
+          src: '../../../node_modules/monaco-editor/min/vs/',
+          dest: 'build/assets/monaco-editor/',
         },
       ],
     },

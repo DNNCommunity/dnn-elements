@@ -224,12 +224,7 @@
         "kind": "markdown",
         "value": ""
       },
-      "attributes": [
-        {
-          "name": "load-font-from-local",
-          "description": "If set to true, then it is the responsibility of the consumer to have codicon.ttf in their distribution (e.g., ./assets/monaco-editor/codicon.ttf)."
-        }
-      ]
+      "attributes": []
     },
     {
       "name": "dnn-permissions-grid",

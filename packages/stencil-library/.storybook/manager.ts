@@ -29,6 +29,7 @@ const theme = create({
 });
 
 addons.setConfig({
+  enableShortcuts: false,
   theme,
   sidebar: {
     showRoots: true,

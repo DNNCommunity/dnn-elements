@@ -6,7 +6,6 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ColorInfo } from "./utilities/colorInfo";
-import { MonacoEditorOptions } from "./components/dnn-monaco-editor/types/options";
 import { IPermissions } from "./components/dnn-permissions-grid/permissions-interface";
 import { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interface";
 import { IRole } from "./components/dnn-permissions-grid/role-interface";
@@ -14,7 +13,6 @@ import { ILocalization } from "./components/dnn-permissions-grid/localization-in
 import { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export { ColorInfo } from "./utilities/colorInfo";
-export { MonacoEditorOptions } from "./components/dnn-monaco-editor/types/options";
 export { IPermissions } from "./components/dnn-permissions-grid/permissions-interface";
 export { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interface";
 export { IRole } from "./components/dnn-permissions-grid/role-interface";
@@ -198,31 +196,6 @@ export namespace Components {
         "visible": boolean;
     }
     interface DnnMonacoEditor {
-        /**
-          * Get value of the current model attached to this editor.
-         */
-        "getValue": () => Promise<string>;
-        /**
-          * If set to true, then it is the responsibility of the consumer to have codicon.ttf in their distribution (e.g., ./assets/monaco-editor/codicon.ttf).
-         */
-        "loadFontFromLocal": boolean;
-        /**
-          * Sets the monaco editor options, see monaco options.
-         */
-        "options": MonacoEditorOptions;
-        /**
-          * Set focus to editor
-         */
-        "setFocus": () => Promise<void>;
-        /**
-          * Sets a new editor value.
-          * @param newValue The new value to set.
-         */
-        "setValue": (newValue: string) => Promise<void>;
-        /**
-          * Update code language editor
-         */
-        "updateLanguage": (languageId: string) => Promise<void>;
     }
     interface DnnPermissionsGrid {
         /**
@@ -353,10 +326,6 @@ export interface DnnImageCropperCustomEvent<T> extends CustomEvent<T> {
 export interface DnnModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnModalElement;
-}
-export interface DnnMonacoEditorCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLDnnMonacoEditorElement;
 }
 export interface DnnPermissionsGridCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -725,18 +694,6 @@ declare namespace LocalJSX {
         "visible"?: boolean;
     }
     interface DnnMonacoEditor {
-        /**
-          * If set to true, then it is the responsibility of the consumer to have codicon.ttf in their distribution (e.g., ./assets/monaco-editor/codicon.ttf).
-         */
-        "loadFontFromLocal"?: boolean;
-        /**
-          * Event to indicate editor has loaded
-         */
-        "onEditorDidLoad"?: (event: DnnMonacoEditorCustomEvent<void>) => void;
-        /**
-          * Sets the monaco editor options, see monaco options.
-         */
-        "options"?: MonacoEditorOptions;
     }
     interface DnnPermissionsGrid {
         /**

@@ -9,11 +9,7 @@
     --monaco-editor-height: 50vh;
 }
 
-article {
+.editor-container {
   width: var(--monaco-editor-width);
   height: var(--monaco-editor-height);
-}
-
-::slotted(*) {
-  display: none;
 }
