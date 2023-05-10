@@ -73,9 +73,8 @@ class Build : NukeBuild
   // Directories
   AbsolutePath PackagesDirectory => RootDirectory / "packages";
   AbsolutePath StencilDirectory => PackagesDirectory / "stencil-library";
-  AbsolutePath ReactDirectory => PackagesDirectory / "react-library";
   AbsolutePath DistDirectory => StencilDirectory / "dist";
-  AbsolutePath WwwDirectory => RootDirectory / "storybook-static";
+  AbsolutePath WwwDirectory => StencilDirectory / "storybook-static";
   AbsolutePath LoaderDirectory => StencilDirectory / "loader";
 
   GitHubClient gitHubClient;
@@ -125,8 +124,9 @@ class Build : NukeBuild
             .SetCommand("test")
             .SetProcessWorkingDirectory(StencilDirectory));
         }
-      // NpmRun(s => s.SetCommand("build-storybook"));
-      // CopyDirectoryRecursively(DistDirectory, WwwDirectory, DirectoryExistsPolicy.Merge, FileExistsPolicy.Overwrite);
+      NpmRun(s => s
+        .SetProcessWorkingDirectory(StencilDirectory)
+        .SetCommand("build-storybook"));
     });
   Target SetupGithubActor => _ => _
     .Executes(() =>
@@ -262,6 +262,8 @@ class Build : NukeBuild
     .DependsOn(Compile)
     .Executes(() =>
     {
-      NpmRun(s => s.SetCommand("deploy-storybook"));
+      NpmRun(s => s
+        .SetProcessWorkingDirectory(StencilDirectory)
+        .SetCommand("deploy-storybook"));
     });
 }
