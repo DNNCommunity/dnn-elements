@@ -22,9 +22,7 @@
   },
   "scripts": {
     "build": "npm run tsc",
-    "tsc": "tsc -p .",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "tsc": "tsc -p ."
   },
   "bugs": {
     "url": "https://github.com/valadas/dnn-elements/issues"
