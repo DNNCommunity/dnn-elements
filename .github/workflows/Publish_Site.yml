@@ -15,5 +15,8 @@ jobs:
       - name: publish-site
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/DNNCommunity/dnn-elements.git
+          - name: Run './build.sh Deploy'
+      - name: Run './build.sh Publish'
+        run: ./build.sh PublishSite
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GithubToken: ${{ secrets.GITHUB_TOKEN }}
