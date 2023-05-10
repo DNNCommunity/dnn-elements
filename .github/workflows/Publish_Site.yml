@@ -15,9 +15,5 @@ jobs:
       - name: publish-site
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/DNNCommunity/dnn-elements.git
-          npm install
-          npm run build
-          npm run build-storybook
-          npm run deploy-storybook -- -u "github-actions-bot <support+actions@github.com>"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
