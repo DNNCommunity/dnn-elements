@@ -41,7 +41,3 @@ jobs:
         env:
           GithubToken: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - uses: actions/upload-artifact@v1
-        with:
-          name: www
-          path: www

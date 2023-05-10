@@ -1,0 +1,20 @@
+{
+    "@dnncommunity/dnn-elements@0.17.0-framework-integrations.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/dnncommunity/dnn-elements",
+        "path": ""
+    },
+    "@stencil/eslint-plugin@0.4.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/ionic-team/stencil-eslint",
+        "path": "node_modules\\@stencil\\eslint-plugin",
+        "licenseFile": "node_modules\\@stencil\\eslint-plugin\\LICENSE.md"
+    },
+    "typescript@4.9.5": {
+        "licenses": "Apache-2.0",
+        "repository": "https://github.com/Microsoft/TypeScript",
+        "publisher": "Microsoft Corp.",
+        "path": "node_modules\\typescript",
+        "licenseFile": "node_modules\\typescript\\LICENSE.txt"
+    }
+}

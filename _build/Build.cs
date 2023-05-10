@@ -71,9 +71,12 @@ class Build : NukeBuild
   [GitRepository] readonly GitRepository gitRepository;
 
   // Directories
-  AbsolutePath DistDirectory = RootDirectory / "dist";
-  AbsolutePath WwwDirectory = RootDirectory / "storybook-static";
-  AbsolutePath LoaderDirectory = RootDirectory / "loader";
+  AbsolutePath PackagesDirectory => RootDirectory / "packages";
+  AbsolutePath StencilDirectory => PackagesDirectory / "stencil-library";
+  AbsolutePath ReactDirectory => PackagesDirectory / "react-library";
+  AbsolutePath DistDirectory => StencilDirectory / "dist";
+  AbsolutePath WwwDirectory => RootDirectory / "storybook-static";
+  AbsolutePath LoaderDirectory => StencilDirectory / "loader";
 
   GitHubClient gitHubClient;
   string releaseNotes = "";
@@ -89,7 +92,6 @@ class Build : NukeBuild
 
   Target Compile => _ => _
     .DependsOn(Clean)
-    .Produces(WwwDirectory / "*")
     .Executes(() =>
     {
       NpmLogger = (type, output) =>
@@ -111,7 +113,7 @@ class Build : NukeBuild
         }
       };
       var version = gitRepository.IsOnMainOrMasterBranch() ? GitVersion.MajorMinorPatch : GitVersion.SemVer;
-      Npm($"version {version} --allow-same-version --git-tag-version false");
+      Npm($"version {version} --allow-same-version --git-tag-version false --workspaces", RootDirectory);
       NpmInstall();
       NpmRun(s => s.SetCommand("build"));
       // Only run tests on PRs.
@@ -119,10 +121,12 @@ class Build : NukeBuild
         gitRepository.IsOnDevelopBranch() ||
         gitRepository.IsOnMainOrMasterBranch() ||
         gitRepository.IsOnReleaseBranch())){
-          NpmRun(s => s.SetCommand("test"));
+          NpmRun(s => s
+            .SetCommand("test")
+            .SetProcessWorkingDirectory(StencilDirectory));
         }
       // NpmRun(s => s.SetCommand("build-storybook"));
-      CopyDirectoryRecursively(DistDirectory, WwwDirectory, DirectoryExistsPolicy.Merge, FileExistsPolicy.Overwrite);
+      // CopyDirectoryRecursively(DistDirectory, WwwDirectory, DirectoryExistsPolicy.Merge, FileExistsPolicy.Overwrite);
     });
   Target SetupGithubActor => _ => _
     .Executes(() =>
@@ -250,7 +254,7 @@ class Build : NukeBuild
     var npmToken = Environment.GetEnvironmentVariable("NPM_TOKEN");
       WriteAllText(RootDirectory / ".npmrc", $"//registry.npmjs.org/:_authToken={npmToken}");
       var tag = gitRepository.IsOnMainOrMasterBranch() ? "latest" : "next";
-      Npm($"publish --access public --tag {tag}");
+      Npm($"publish --access public --tag {tag} --workspaces");
     });
 
   Target PublishSite => _ => _
