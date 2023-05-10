@@ -1,70 +1,18 @@
 {
-  "name": "@dnncommunity/dnn-elements",
-  "version": "0.16.0-dnn-monaco-editor.1",
-  "description": "Stencil Component Starter",
-  "repository": "https://github.com/dnncommunity/dnn-elements",
-  "homepage": "https://dnncommunity.github.io/dnn-elements",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
-  "es2015": "dist/esm/index.mjs",
-  "es2017": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
-  "collection": "dist/collection/collection-manifest.json",
-  "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/dnn/dnn.js",
-  "files": [
-    "dist/",
-    "loader/"
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/stencil-library",
+    "packages/react-library"
   ],
   "scripts": {
-    "build": "npm run eslint && stencil build --docs",
-    "postbuild": "license-checker-rseidelsohn --out licenses.json --json --direct --relativeLicensePath --relativeModulePath",
-    "watch": "stencil build --dev --watch",
-    "start": "stencil build --dev --watch --serve",
-    "start.edge": "stencil build --dev --watch --serve --es5",
-    "poststart": "license-checker-rseidelsohn --out licenses.json --json --direct --relativeLicensePath --relativeModulePath",
-    "test": "stencil test --spec --e2e",
-    "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate",
-    "eslint": "eslint --ext .ts --ext .tsx --ext .js ./src",
-    "storybook": "start-storybook -p 6006",
-    "storybook.watch": "npm-run-all --parallel watch storybook",
-    "build-storybook": "build-storybook",
-    "deploy-storybook": "gh-pages -d storybook-static --branch site"
+    "build": "npx lerna run build",
+    "test": "npx lerna run test"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.5",
-    "@geometricpanda/storybook-addon-badges": "^0.2.2",
-    "@stencil/core": "^2.18.1",
-    "@stencil/eslint-plugin": "^0.4.0",
-    "@stencil/sass": "^2.0.0",
-    "@storybook/addon-a11y": "^6.5.13",
-    "@storybook/addon-actions": "^6.5.13",
-    "@storybook/addon-essentials": "^6.5.13",
-    "@storybook/addon-links": "^6.5.13",
-    "@storybook/addon-notes": "^5.3.21",
-    "@storybook/html": "^6.5.13",
-    "@storybook/web-components": "^6.5.13",
-    "@types/jest": "^27.0.3",
-    "@types/puppeteer": "5.4.7",
-    "@typescript-eslint/eslint-plugin": "^4.33.0",
-    "@typescript-eslint/parser": "^4.33.0",
-    "babel-loader": "^8.2.3",
-    "eslint": "^7.32.0",
-    "eslint-plugin-react": "^7.16.0",
-    "eslint-plugin-storybook": "^0.6.7",
-    "gh-pages": "^4.0.0",
-    "jest": "^27.0.3",
-    "jest-cli": "^27.5.1",
-    "license-checker-rseidelsohn": "^3.1.0",
-    "lit-html": "^2.3.1",
-    "npm-run-all": "^4.1.5",
-    "puppeteer": "^19.1.0",
-    "typescript": "^4.5.5",
-    "typescript-debounce-decorator": "^0.0.18"
+    "@types/node": "^18.15.11",
+    "lerna": "^6.6.1",
+    "typescript": "^5.0.3"
   },
-  "dependencies": {
-    "monaco-editor": "^0.34.1"
-  },
-  "license": "MIT"
+  "version": "1.2.3"
 }

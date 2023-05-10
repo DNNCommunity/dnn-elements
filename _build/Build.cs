@@ -11,6 +11,7 @@ using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
 using Nuke.Common.Tools.Git;
+using Nuke.Common.Tools.GitHub;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.Npm;
 using Nuke.Common.Utilities.Collections;
@@ -20,6 +21,7 @@ using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.IO.TextTasks;
 using static Nuke.Common.Tools.Git.GitTasks;
+using static Nuke.Common.Tools.GitHub.GitHubTasks;
 using static Nuke.Common.Tools.Npm.NpmTasks;
 
 [GitHubActions(
@@ -71,9 +73,11 @@ class Build : NukeBuild
   [GitRepository] readonly GitRepository gitRepository;
 
   // Directories
-  AbsolutePath DistDirectory = RootDirectory / "dist";
-  AbsolutePath WwwDirectory = RootDirectory / "storybook-static";
-  AbsolutePath LoaderDirectory = RootDirectory / "loader";
+  AbsolutePath PackagesDirectory => RootDirectory / "packages";
+  AbsolutePath StencilDirectory => PackagesDirectory / "stencil-library";
+  AbsolutePath DistDirectory => StencilDirectory / "dist";
+  AbsolutePath WwwDirectory => StencilDirectory / "storybook-static";
+  AbsolutePath LoaderDirectory => StencilDirectory / "loader";
 
   GitHubClient gitHubClient;
   string releaseNotes = "";
@@ -89,7 +93,6 @@ class Build : NukeBuild
 
   Target Compile => _ => _
     .DependsOn(Clean)
-    .Produces(WwwDirectory / "*")
     .Executes(() =>
     {
       NpmLogger = (type, output) =>
@@ -111,7 +114,7 @@ class Build : NukeBuild
         }
       };
       var version = gitRepository.IsOnMainOrMasterBranch() ? GitVersion.MajorMinorPatch : GitVersion.SemVer;
-      Npm($"version {version} --allow-same-version --git-tag-version false");
+      Npm($"version {version} --allow-same-version --git-tag-version false --workspaces", RootDirectory);
       NpmInstall();
       NpmRun(s => s.SetCommand("build"));
       // Only run tests on PRs.
@@ -119,19 +122,23 @@ class Build : NukeBuild
         gitRepository.IsOnDevelopBranch() ||
         gitRepository.IsOnMainOrMasterBranch() ||
         gitRepository.IsOnReleaseBranch())){
-          NpmRun(s => s.SetCommand("test"));
+          NpmRun(s => s
+            .SetCommand("test")
+            .SetProcessWorkingDirectory(StencilDirectory));
         }
-      NpmRun(s => s.SetCommand("build-storybook"));
+      NpmRun(s => s
+        .SetProcessWorkingDirectory(StencilDirectory)
+        .SetCommand("build-storybook"));
     });
   Target SetupGithubActor => _ => _
     .Executes(() =>
     {
       var actor = Environment.GetEnvironmentVariable("GITHUB_ACTOR");
-      Git("config --global user.name 'Daniel Valadas'");
-      Git("config --global user.email 'info@danielvaladas.com'");
+      Git($"config --global user.name '{actor}'");
+      Git($"config --global user.email '{actor}@github.com'");
       if (IsServerBuild)
       {
-        Git($"remote set-url origin https://{actor}:{GithubToken}@github.com/{organizationName}/{repositoryName}.git");
+        Git($"remote set-url origin https://{actor}:{GithubToken}@github.com/{gitRepository.GetGitHubOwner()}/{gitRepository.GetGitHubName()}.git");
       }
     });
   Target CreateDeployBranch => _ => _
@@ -249,7 +256,7 @@ class Build : NukeBuild
     var npmToken = Environment.GetEnvironmentVariable("NPM_TOKEN");
       WriteAllText(RootDirectory / ".npmrc", $"//registry.npmjs.org/:_authToken={npmToken}");
       var tag = gitRepository.IsOnMainOrMasterBranch() ? "latest" : "next";
-      Npm($"publish --access public --tag {tag}");
+      Npm($"publish --access public --tag {tag} --workspaces");
     });
 
   Target PublishSite => _ => _
@@ -257,6 +264,8 @@ class Build : NukeBuild
     .DependsOn(Compile)
     .Executes(() =>
     {
-      NpmRun(s => s.SetCommand("deploy-storybook"));
+      NpmRun(s => s
+        .SetProcessWorkingDirectory(StencilDirectory)
+        .SetCommand("deploy-storybook"));
     });
 }

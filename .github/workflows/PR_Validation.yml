@@ -41,7 +41,3 @@ jobs:
         run: ./build.sh Compile
         env:
           GithubToken: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/upload-artifact@v1
-        with:
-          name: www
-          path: www
