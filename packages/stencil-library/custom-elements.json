@@ -581,8 +581,50 @@
           "tagName": "dnn-monaco-editor",
           "description": "",
           "attributes": [],
-          "members": [],
-          "events": [],
+          "members": [
+            {
+              "kind": "field",
+              "name": "options",
+              "type": {
+                "text": "IStandaloneEditorConstructionOptions"
+              },
+              "description": "Sets the monaco editor options.",
+              "required": false
+            },
+            {
+              "kind": "method",
+              "name": "getValue",
+              "description": "Get value of the current model attached to this editor.",
+              "signature": "getValue() => Promise<string>"
+            },
+            {
+              "kind": "method",
+              "name": "setFocus",
+              "description": "Set focus to editor",
+              "signature": "setFocus() => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "setValue",
+              "description": "Sets a new editor value.",
+              "signature": "setValue(newValue: string) => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "updateLanguage",
+              "description": "Update code language editor",
+              "signature": "updateLanguage(languageId: string) => Promise<void>"
+            }
+          ],
+          "events": [
+            {
+              "name": "editorDidLoad",
+              "type": {
+                "text": "void"
+              },
+              "description": "Event to indicate editor has loaded"
+            }
+          ],
           "slots": [],
           "cssProperties": [
             {

@@ -1,5 +1,6 @@
-import {Component, Element, h, Host} from '@stencil/core';
-import { unescapeCode } from './utils/code.utils';
+import {Component, Element, Event, EventEmitter, h, Host, Method, Prop, Watch} from '@stencil/core';
+import { escapeCode, unescapeCode } from './utils/code.utils';
+import { editor } from 'monaco-editor/esm/vs/editor/editor.api';
 import { worker as jsonWorker } from 'monaco-editor/esm/vs/language/json/json.worker.js?worker';
 import { worker as cssWorker } from 'monaco-editor/esm/vs/language/css/css.worker.js?worker';
 import { worker as htmlWorker } from 'monaco-editor/esm/vs/language/html/html.worker.js?worker';
@@ -16,8 +17,72 @@ declare const monaco: any;
 export class DnnMonacoEditor {
   
   @Element() el: HTMLDnnMonacoEditorElement;
+
+  /** Sets the monaco editor options. */
+  @Prop() options: editor.IStandaloneEditorConstructionOptions;
+
+  /** Event to indicate editor has loaded */
+  @Event() editorDidLoad: EventEmitter<void>;
+
+  /** Watch editor option changes */
+  @Watch('options')
+  onOptionsChange() {
+    this.editor?.updateOptions(this.mergeOptions());
+  }
+
+  /** Set focus to editor */
+  @Method()
+  async setFocus() {
+    this.editor?.focus();
+  }
+
+  /** Update code language editor */
+  @Method()
+  async updateLanguage(languageId: string) {
+    monaco.editor.setModelLanguage(this.editor?.getModel(), languageId);
+  }
+
+  /** Get value of the current model attached to this editor. */
+  @Method()
+  async getValue(){
+    return Promise.resolve(escapeCode(this.editor?.getValue()));
+  }
+
+  /**
+   * Sets a new editor value.
+   * @param newValue The new value to set.
+   */
+  @Method()
+  async setValue(newValue: string){
+    this.editor?.setValue(unescapeCode(newValue));
+  }
+
+  private mergeOptions(): editor.IStandaloneEditorConstructionOptions {
+    return {
+      ...this.defaultOptions,
+      ...(this.options || {})
+    };
+  }
   
-  private editor: any;
+  private editor: editor.IStandaloneCodeEditor;
+
+  private readonly defaultOptions: editor.IStandaloneEditorConstructionOptions = {
+    automaticLayout: true,
+    language: 'typescript',
+    lineNumbers: "on",
+    fixedOverflowWidgets: true,
+    useShadowDOM: true,
+    minimap: {
+      enabled: true
+    },
+    readOnly: false,
+    roundedSelection: false,
+    scrollBeyondLastLine: false,
+    theme: 'vs-dark',
+    wordWrap: 'wordWrapColumn',
+    wordWrapColumn: 80,
+    wrappingIndent: "indent",
+  };
 
   async componentWillLoad() {
     await this.loadMonacoEditor();
@@ -25,11 +90,6 @@ export class DnnMonacoEditor {
 
   componentDidLoad() {
     this.initializeEditor();
-  }
-
-  // Remove this
-  disconnectedCallback() {
-    alert(this.editor);
   }
 
   private getSlottetCode(){
@@ -90,8 +150,7 @@ export class DnnMonacoEditor {
 
       this.editor = (window as any).monaco.editor.create(container as HTMLElement, {
         value: this.getSlottetCode(),
-        language: 'typescript',
-        theme: 'vs-dark',
+        ...this.mergeOptions(),
       });
     }
   }
