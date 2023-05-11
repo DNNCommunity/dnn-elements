@@ -121,8 +121,8 @@ export class DnnButton {
                   justifyContent: 'flex-end'
                 }
               }>
+                <dnn-button type='primary' reversed style={{margin: '5px'}} onClick={() => this.handleCancel()}>{this.confirmNoText}</dnn-button>
                 <dnn-button type='primary' style={{margin: '5px'}} onClick={() => this.handleConfirm()}>{this.confirmYesText}</dnn-button>
-                <dnn-button type='secondary' style={{margin: '5px'}} onClick={() => this.handleCancel()}>{this.confirmNoText}</dnn-button>
               </div>
             </dnn-modal>
           }
