@@ -16,35 +16,97 @@ const meta: Meta = {
             }
         }
     },
-    argTypes: {},
-} 
+    argTypes: {
+        language: {
+            options: [
+                "bat",
+                "c",
+                "coffeescript",
+                "cpp",
+                "csharp",
+                "css",
+                "dockerfile",
+                "fsharp",
+                "go",
+                "handlebars",
+                "html",
+                "ini",
+                "java",
+                "javascript",
+                "json",
+                "less",
+                "lua",
+                "markdown",
+                "msdax",
+                "objective-c",
+                "php",
+                "plaintext",
+                "postiats",
+                "powershell",
+                "pug",
+                "python",
+                "r",
+                "razor",
+                "ruby",
+                "sb",
+                "scss",
+                "sol",
+                "sql",
+                "swift",
+                "typescript",
+                "vb",
+                "xml",
+                "yaml",
+            ],
+            control: {
+                type: "select",
+            },
+        },
+        value: {
+            control: "text",
+        },
+    },
+};
 
 export default meta;
 
-const eventsFromNames = actions();
+const eventsFromNames = actions("onContentChanged");
 
-const Template = () =>
+const Template = (args) =>
     html`
-<dnn-monaco-editor>
-    <code>
-export interface Employee{
-  firstName: string;
-  lastName: string;
-  fullName(): string;
-}
-let employee: Employee = {
-  firstName : "jane",
-  lastName: "doe",
-  fullName(): string{
-    return this.firstName + " " + this.lastName;
-  }
-}
-console.log(employee.firstName);
-console.log(employee.lastName);
-console.log(employee.fullName());
-    </code>
-</dnn-monaco-editor>
+    <dnn-monaco-editor
+        language=${args.language}
+        value=${args.value}
+        @contentChanged=${eventsFromNames.onContentChanged}
+    />
     `;
 
-export const MonacoEditor = Template.bind({});
-MonacoEditor.args = {};
+export const HTML = Template.bind({});
+HTML.args = {
+    language: "html",
+    value: '<h1>Hello World</h1>\n<div class="card">\n    <p>Some text</p>\n</div>\n',
+};
+
+export const Typescript = Template.bind({});
+Typescript.args = {
+    language: "typescript",
+    value:
+`/** Defines basic info about a person. */
+interface Person {
+
+    /** The person's first name. */
+    firstName: string;
+
+    /** The person's last name. */
+    lastName: string;
+}
+
+/** Greets a person. */
+const greeter = (person: Person) =>
+{
+    return "Hello, " + person.firstName + " " + person.lastName;
+}
+
+export default greeter;
+`
+};

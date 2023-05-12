@@ -7,59 +7,17 @@
 
 ## Properties
 
-| Property  | Attribute | Description                     | Type                                   | Default     |
-| --------- | --------- | ------------------------------- | -------------------------------------- | ----------- |
-| `options` | --        | Sets the monaco editor options. | `IStandaloneEditorConstructionOptions` | `undefined` |
+| Property   | Attribute  | Description                           | Type                                                                                                                                                                                                                                                                                                                                                                                                                                    | Default     |
+| ---------- | ---------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `language` | `language` | Defines the language for the editor.  | `"json" \| "html" \| "ruby" \| "r" \| "c" \| "plaintext" \| "bat" \| "coffeescript" \| "cpp" \| "csharp" \| "dockerfile" \| "fsharp" \| "go" \| "handlebars" \| "ini" \| "pug" \| "java" \| "lua" \| "markdown" \| "msdax" \| "objective-c" \| "postiats" \| "php" \| "powershell" \| "python" \| "razor" \| "swift" \| "sql" \| "vb" \| "xml" \| "less" \| "scss" \| "css" \| "yaml" \| "sol" \| "sb" \| "typescript" \| "javascript"` | `"html"`    |
+| `value`    | `value`    | Sets the code contained in the editor | `string`                                                                                                                                                                                                                                                                                                                                                                                                                                | `undefined` |
 
 
 ## Events
 
-| Event           | Description                         | Type                |
-| --------------- | ----------------------------------- | ------------------- |
-| `editorDidLoad` | Event to indicate editor has loaded | `CustomEvent<void>` |
-
-
-## Methods
-
-### `getValue() => Promise<string>`
-
-Get value of the current model attached to this editor.
-
-#### Returns
-
-Type: `Promise<string>`
-
-
-
-### `setFocus() => Promise<void>`
-
-Set focus to editor
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-### `setValue(newValue: string) => Promise<void>`
-
-Sets a new editor value.
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-### `updateLanguage(languageId: string) => Promise<void>`
-
-Update code language editor
-
-#### Returns
-
-Type: `Promise<void>`
-
-
+| Event            | Description                                            | Type                  |
+| ---------------- | ------------------------------------------------------ | --------------------- |
+| `contentChanged` | Emits the new value of the content when it is changed. | `CustomEvent<string>` |
 
 
 ## CSS Custom Properties
