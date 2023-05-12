@@ -15,14 +15,17 @@ using Nuke.Common.Tools.GitHub;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.Npm;
 using Nuke.Common.Utilities.Collections;
+using Nuke.Common.Utilities;
 using Octokit;
 using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.IO.TextTasks;
+using static Nuke.Common.IO.SerializationTasks;
 using static Nuke.Common.Tools.Git.GitTasks;
 using static Nuke.Common.Tools.GitHub.GitHubTasks;
 using static Nuke.Common.Tools.Npm.NpmTasks;
+using Newtonsoft.Json.Linq;
 
 [GitHubActions(
   "PR_Validation",
@@ -83,6 +86,8 @@ class Build : NukeBuild
   string releaseNotes = "";
   Release release;
 
+  bool ShouldUpdateWildcardDependencies => IsServerBuild && (gitRepository.IsOnMainOrMasterBranch() || gitRepository.IsOnReleaseBranch());
+
   Target Clean => _ => _
     .Executes(() =>
     {
@@ -115,6 +120,28 @@ class Build : NukeBuild
       };
       var version = gitRepository.IsOnMainOrMasterBranch() ? GitVersion.MajorMinorPatch : GitVersion.SemVer;
       Npm($"version {version} --allow-same-version --git-tag-version false --workspaces", RootDirectory);
+      
+      // Update package.json dependencies to use the current version, but only in CI.
+      if (ShouldUpdateWildcardDependencies)
+      {
+        var packageJsons = GlobFiles(RootDirectory, "packages/**/package.json")
+        .Where(p => !p.Contains("node_modules"));
+        foreach (var packageJson in packageJsons)
+        {
+          var json = ReadAllText(packageJson);
+          var content = SerializationTasks.JsonDeserialize(json);
+          JObject dependencies = (JObject)content["dependencies"];
+          if (dependencies != null){
+            foreach (var dependency in dependencies){
+              if ((string)dependency.Value == "*"){
+                dependencies[dependency.Key] = version;
+                WriteAllText(packageJson, content.ToString());
+              }
+            }
+          }
+        }
+      }
+
       NpmInstall();
       NpmRun(s => s.SetCommand("build"));
       // Only run tests on PRs.
