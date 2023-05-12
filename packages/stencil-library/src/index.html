@@ -946,27 +946,14 @@
   <a name="dnn-monaco-editor"></a>
   <section>
     <h2>dnn-monaco-editor</h2>
-    <dnn-monaco-editor>
-      <code>
-export interface Employee{
-  firstName: string;
-  lastName: string;
-  fullName(): string;
-}
-
-let employee: Employee = {
-  firstName : "jane",
-  lastName: "doe",
-  fullName(): string{
-    return this.firstName + " " + this.lastName;
-  }
-}
-
-console.log(employee.firstName);
-console.log(employee.lastName);
-console.log(employee.fullName());
-      </code>
-    </dnn-monaco-editor>
+    <dnn-monaco-editor
+      id="monaco-editor-demo"
+      language="html"
+    />
+    <script type="text/javascript">
+      const editor = document.getElementById('monaco-editor-demo');
+      editor.value = '<h1>Hello, world!</h1>';
+    </script>
   </section>
 </body>
 </html>

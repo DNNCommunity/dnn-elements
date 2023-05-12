@@ -92,12 +92,6 @@ export const config: Config = {
     {
       type: 'dist',
       esmLoaderPath: '../loader',
-      copy: [
-        {
-          src: '../../../node_modules/monaco-editor/min/vs/',
-          dest: 'assets/monaco-editor/',
-        },
-      ],
     },
     {
       type: 'docs-readme'
@@ -113,12 +107,6 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null, // disable service workers
-      copy: [
-        {
-          src: '../../../node_modules/monaco-editor/min/vs/',
-          dest: 'build/assets/monaco-editor/',
-        },
-      ],
     },
     reactOutputTarget({
       componentCorePackage: '@dnncommunity/dnn-elements',
