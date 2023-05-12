@@ -224,7 +224,132 @@
         "kind": "markdown",
         "value": ""
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "language",
+          "description": "Defines the language for the editor.",
+          "values": [
+            {
+              "name": "json"
+            },
+            {
+              "name": "html"
+            },
+            {
+              "name": "ruby"
+            },
+            {
+              "name": "r"
+            },
+            {
+              "name": "c"
+            },
+            {
+              "name": "plaintext"
+            },
+            {
+              "name": "bat"
+            },
+            {
+              "name": "coffeescript"
+            },
+            {
+              "name": "cpp"
+            },
+            {
+              "name": "csharp"
+            },
+            {
+              "name": "dockerfile"
+            },
+            {
+              "name": "fsharp"
+            },
+            {
+              "name": "go"
+            },
+            {
+              "name": "handlebars"
+            },
+            {
+              "name": "ini"
+            },
+            {
+              "name": "pug"
+            },
+            {
+              "name": "java"
+            },
+            {
+              "name": "lua"
+            },
+            {
+              "name": "markdown"
+            },
+            {
+              "name": "msdax"
+            },
+            {
+              "name": "objective-c"
+            },
+            {
+              "name": "postiats"
+            },
+            {
+              "name": "php"
+            },
+            {
+              "name": "powershell"
+            },
+            {
+              "name": "python"
+            },
+            {
+              "name": "razor"
+            },
+            {
+              "name": "swift"
+            },
+            {
+              "name": "sql"
+            },
+            {
+              "name": "vb"
+            },
+            {
+              "name": "xml"
+            },
+            {
+              "name": "less"
+            },
+            {
+              "name": "scss"
+            },
+            {
+              "name": "css"
+            },
+            {
+              "name": "yaml"
+            },
+            {
+              "name": "sol"
+            },
+            {
+              "name": "sb"
+            },
+            {
+              "name": "typescript"
+            },
+            {
+              "name": "javascript"
+            }
+          ]
+        },
+        {
+          "name": "value",
+          "description": "Sets the code contained in the editor"
+        }
+      ]
     },
     {
       "name": "dnn-permissions-grid",

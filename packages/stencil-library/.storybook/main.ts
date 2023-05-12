@@ -1,5 +1,4 @@
 import type { StorybookConfig } from "@storybook/web-components-webpack5";
-import CopyWebpackPlugin from "copy-webpack-plugin";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -25,19 +24,6 @@ const config: StorybookConfig = {
   staticDirs: [{ from: './assets', to: '/assets'}],
   docs: {
     autodocs: "tag",
-  },
-  webpackFinal(config, options) {
-      config.plugins?.push(
-        new CopyWebpackPlugin({
-          patterns: [
-            {
-              from: "dist",
-              to: "assets/components",
-            }
-          ]
-        })
-      );
-      return config;
   },
 };
 export default config;

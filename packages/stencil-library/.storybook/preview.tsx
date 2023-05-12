@@ -1,9 +1,11 @@
 import type { Preview } from "@storybook/web-components";
 import { setCustomElementsManifest } from "@storybook/web-components";
+import { defineCustomElements } from "@dnncommunity/dnn-elements/loader";
 import customElements from "../custom-elements.json";
 import { Title, Subtitle, Description, Primary, Controls, Stories } from '@storybook/blocks';
 import React from "react";
 
+defineCustomElements();
 setCustomElementsManifest(customElements);
 
 export const parameters = {

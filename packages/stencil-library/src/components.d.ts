@@ -6,7 +6,6 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ColorInfo } from "./utilities/colorInfo";
-import { editor } from "monaco-editor/esm/vs/editor/editor.api";
 import { IPermissions } from "./components/dnn-permissions-grid/permissions-interface";
 import { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interface";
 import { IRole } from "./components/dnn-permissions-grid/role-interface";
@@ -14,7 +13,6 @@ import { ILocalization } from "./components/dnn-permissions-grid/localization-in
 import { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export { ColorInfo } from "./utilities/colorInfo";
-export { editor } from "monaco-editor/esm/vs/editor/editor.api";
 export { IPermissions } from "./components/dnn-permissions-grid/permissions-interface";
 export { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interface";
 export { IRole } from "./components/dnn-permissions-grid/role-interface";
@@ -199,26 +197,13 @@ export namespace Components {
     }
     interface DnnMonacoEditor {
         /**
-          * Get value of the current model attached to this editor.
+          * Defines the language for the editor.
          */
-        "getValue": () => Promise<string>;
+        "language": "plaintext" | "bat" | "coffeescript" | "c" | "cpp" | "csharp" | "dockerfile" | "fsharp" | "go" | "handlebars" | "html" | "ini" | "pug" | "java" | "lua" | "markdown" | "msdax" | "objective-c" | "postiats" | "php" | "powershell" | "python" | "r" | "razor" | "ruby" | "swift" | "sql" | "vb" | "xml" | "less" | "scss" | "css" | "yaml" | "sol" | "sb" | "json" | "typescript" | "javascript";
         /**
-          * Sets the monaco editor options.
+          * Sets the code contained in the editor
          */
-        "options": editor.IStandaloneEditorConstructionOptions;
-        /**
-          * Set focus to editor
-         */
-        "setFocus": () => Promise<void>;
-        /**
-          * Sets a new editor value.
-          * @param newValue The new value to set.
-         */
-        "setValue": (newValue: string) => Promise<void>;
-        /**
-          * Update code language editor
-         */
-        "updateLanguage": (languageId: string) => Promise<void>;
+        "value": string;
     }
     interface DnnPermissionsGrid {
         /**
@@ -728,13 +713,17 @@ declare namespace LocalJSX {
     }
     interface DnnMonacoEditor {
         /**
-          * Event to indicate editor has loaded
+          * Defines the language for the editor.
          */
-        "onEditorDidLoad"?: (event: DnnMonacoEditorCustomEvent<void>) => void;
+        "language"?: "plaintext" | "bat" | "coffeescript" | "c" | "cpp" | "csharp" | "dockerfile" | "fsharp" | "go" | "handlebars" | "html" | "ini" | "pug" | "java" | "lua" | "markdown" | "msdax" | "objective-c" | "postiats" | "php" | "powershell" | "python" | "r" | "razor" | "ruby" | "swift" | "sql" | "vb" | "xml" | "less" | "scss" | "css" | "yaml" | "sol" | "sb" | "json" | "typescript" | "javascript";
         /**
-          * Sets the monaco editor options.
+          * Emits the new value of the content when it is changed.
          */
-        "options"?: editor.IStandaloneEditorConstructionOptions;
+        "onContentChanged"?: (event: DnnMonacoEditorCustomEvent<string>) => void;
+        /**
+          * Sets the code contained in the editor
+         */
+        "value"?: string;
     }
     interface DnnPermissionsGrid {
         /**

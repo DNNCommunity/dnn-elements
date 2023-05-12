@@ -580,49 +580,33 @@
           "name": "dnn-monaco-editor.tsx",
           "tagName": "dnn-monaco-editor",
           "description": "",
-          "attributes": [],
-          "members": [
+          "attributes": [
             {
-              "kind": "field",
-              "name": "options",
+              "name": "language",
               "type": {
-                "text": "IStandaloneEditorConstructionOptions"
+                "text": "\"json\" | \"html\" | \"ruby\" | \"r\" | \"c\" | \"plaintext\" | \"bat\" | \"coffeescript\" | \"cpp\" | \"csharp\" | \"dockerfile\" | \"fsharp\" | \"go\" | \"handlebars\" | \"ini\" | \"pug\" | \"java\" | \"lua\" | \"markdown\" | \"msdax\" | \"objective-c\" | \"postiats\" | \"php\" | \"powershell\" | \"python\" | \"razor\" | \"swift\" | \"sql\" | \"vb\" | \"xml\" | \"less\" | \"scss\" | \"css\" | \"yaml\" | \"sol\" | \"sb\" | \"typescript\" | \"javascript\""
               },
-              "description": "Sets the monaco editor options.",
+              "description": "Defines the language for the editor.",
+              "default": "\"html\"",
               "required": false
             },
             {
-              "kind": "method",
-              "name": "getValue",
-              "description": "Get value of the current model attached to this editor.",
-              "signature": "getValue() => Promise<string>"
-            },
-            {
-              "kind": "method",
-              "name": "setFocus",
-              "description": "Set focus to editor",
-              "signature": "setFocus() => Promise<void>"
-            },
-            {
-              "kind": "method",
-              "name": "setValue",
-              "description": "Sets a new editor value.",
-              "signature": "setValue(newValue: string) => Promise<void>"
-            },
-            {
-              "kind": "method",
-              "name": "updateLanguage",
-              "description": "Update code language editor",
-              "signature": "updateLanguage(languageId: string) => Promise<void>"
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "Sets the code contained in the editor",
+              "required": false
             }
           ],
+          "members": [],
           "events": [
             {
-              "name": "editorDidLoad",
+              "name": "contentChanged",
               "type": {
-                "text": "void"
+                "text": "string"
               },
-              "description": "Event to indicate editor has loaded"
+              "description": "Emits the new value of the content when it is changed."
             }
           ],
           "slots": [],
