@@ -1,4 +1,0 @@
-/** Reusable DNN UI component to pick a color
- * @copyright Copyright (c) .NET Foundation. All rights reserved.
- * @license MIT
- */

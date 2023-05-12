@@ -1,1 +1,0 @@
-function Debounce(debounceTime=500){return function(_target,_key,descriptor){let originalMethod=descriptor.value,timer=null;descriptor.value=function(...args){return clearTimeout(timer),new Promise((resolve=>{timer=setTimeout((()=>{resolve(originalMethod.apply(this,args))}),debounceTime)}))}}}export{Debounce as D};

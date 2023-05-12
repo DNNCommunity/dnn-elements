@@ -1,1 +1,0 @@
-{"version":3,"file":"role-interface.js","sourceRoot":"","sources":["../../../src/components/dnn-permissions-grid/role-interface.ts"],"names":[],"mappings":"","sourcesContent":["export interface IRole{\r\n    IsSystemRole: boolean;\r\n    RoleGroupId: number;\r\n    RoleId: number;\r\n    RoleName: string;\r\n}"]}

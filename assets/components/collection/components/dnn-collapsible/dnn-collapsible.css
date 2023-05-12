@@ -1,9 +1,0 @@
-:host {
-  display: block;
-}
-
-#container {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 300ms ease-in-out;
-}

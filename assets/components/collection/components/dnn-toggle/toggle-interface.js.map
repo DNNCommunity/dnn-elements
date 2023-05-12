@@ -1,1 +1,0 @@
-{"version":3,"file":"toggle-interface.js","sourceRoot":"","sources":["../../../src/components/dnn-toggle/toggle-interface.ts"],"names":[],"mappings":"","sourcesContent":["export interface DnnToggleChangeEventDetail {\r\n    checked: boolean;\r\n}"]}

@@ -1,1 +1,0 @@
-{"version":3,"file":"searched-user-interface.js","sourceRoot":"","sources":["../../../src/components/dnn-permissions-grid/searched-user-interface.ts"],"names":[],"mappings":"","sourcesContent":["export interface ISearchedUser{\r\n    userId: number;\r\n    displayName: string;\r\n}"]}

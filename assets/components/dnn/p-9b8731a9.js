@@ -1,1 +1,0 @@
-function t(t=500){return function(e,n,u){let i=u.value,o=null;u.value=function(...e){return clearTimeout(o),new Promise((n=>{o=setTimeout((()=>{n(i.apply(this,e))}),t)}))}}}export{t as D};

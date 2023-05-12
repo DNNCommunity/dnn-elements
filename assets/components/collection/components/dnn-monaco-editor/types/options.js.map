@@ -1,1 +1,0 @@
-{"version":3,"file":"options.js","sourceRoot":"","sources":["../../../../src/components/dnn-monaco-editor/types/options.ts"],"names":[],"mappings":"","sourcesContent":["import * as monaco from \"monaco-editor/esm/vs/editor/editor.api\";\r\n\r\nexport interface MonacoEditorOptions extends Partial<monaco.editor.IStandaloneEditorConstructionOptions>\r\n{}"]}
