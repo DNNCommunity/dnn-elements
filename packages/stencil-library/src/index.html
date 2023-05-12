@@ -946,7 +946,14 @@
   <a name="dnn-monaco-editor"></a>
   <section>
     <h2>dnn-monaco-editor</h2>
-    <dnn-monaco-editor id="monaco-editor-demo"/>
+    <dnn-monaco-editor
+      id="monaco-editor-demo"
+      language="html"
+    />
+    <script type="text/javascript">
+      const editor = document.getElementById('monaco-editor-demo');
+      editor.value = '<h1>Hello, world!</h1>';
+    </script>
   </section>
 </body>
 </html>
