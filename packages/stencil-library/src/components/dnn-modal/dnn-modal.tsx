@@ -21,6 +21,11 @@ export class DnnModal {
   @Prop() closeText?: string = "Close modal";
 
   /**
+   * If set to true, the modal becomes resizable.
+   */
+  @Prop() resizable?: boolean = false;
+
+  /**
    * Optionally you can pass false to not show the close button.
    * If you decide to do so, you should either not also prevent dismissal by clicking the backdrop
    * or provide your own dismissal logic in the modal content.
@@ -124,7 +129,7 @@ export class DnnModal {
           class={this.visible ? 'overlay visible' : 'overlay'}
           onClick={e => this.handleBackdropClick(e)}
         >
-          <div class="modal" ref={el=>this.modal = el}>
+          <div class="modal" ref={el=>this.modal = el}> 
             {this.showCloseButton &&
               <button
                 class="close"
@@ -137,7 +142,7 @@ export class DnnModal {
             <div class="content">
               <slot></slot>
             </div>
-            <div class='se' ref={el=>this.seDrag = el}></div>
+            { this.resizable && <div class='se' ref={el=>this.seDrag = el}></div>}
           </div>
         </div>
       </Host>

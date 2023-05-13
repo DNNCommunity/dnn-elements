@@ -40,7 +40,7 @@ export class DnnImageCropper {
     modalCloseText: "Close",
   }
 
-  /** Sets the output quality of the corpped image (number between 0 and 1). */
+  /** Sets the output quality of the cropped image (number between 0 and 1). */
   @Prop() quality: number = 0.8;
 
   /** When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry. */
