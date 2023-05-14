@@ -21,6 +21,11 @@ export class DnnModal {
   @Prop() closeText?: string = "Close modal";
 
   /**
+   * If set to true, the modal becomes resizable.
+   */
+  @Prop() resizable?: boolean = false;
+
+  /**
    * Optionally you can pass false to not show the close button.
    * If you decide to do so, you should either not also prevent dismissal by clicking the backdrop
    * or provide your own dismissal logic in the modal content.
@@ -31,39 +36,91 @@ export class DnnModal {
    * Reflects the visible state of the modal.
    */
   @Prop({mutable: true, reflect: true}) visible: boolean = false;
-
+  
   /**
    * Shows the modal
-   */
-  @Method()
-  async show() {
-    this.visible = true;
+  */
+ @Method()
+ async show() {
+   this.visible = true;
   }
-
+  
   /**
    * Hides the modal
-   */
-  @Method()
-  async hide() {
-    this.visible = false;
+  */
+ @Method()
+ async hide() {
+   this.visible = false;
   }
-
+  
   /**
    * Fires when the modal is dismissed.
-   */
-  @Event() dismissed!: EventEmitter;
+  */
+ @Event() dismissed!: EventEmitter;
+ 
+ componentDidLoad() {
+   this.seDrag.addEventListener("mousedown", this.handleResizeMouseDown);
+   addEventListener("mouseup", this.handleResizeMouseUp);
+  }
 
+  
+  disconnectedCallback() {
+    this.seDrag.removeEventListener("mousedown", this.handleResizeMouseDown);
+    removeEventListener("mouseup", this.handleResizeMouseUp);
+  }
+  
+  
+  
+  private modal: HTMLDivElement;
+  private seDrag: HTMLDivElement;
+  private mouseX: number;
+  private mouseY: number;
+  private w: number;
+  private h: number;
+  northDrag: HTMLDivElement;
   private handleDismiss(){
     this.visible = false;
     this.dismissed.emit();
   }
 
+  // FOR BACKDROP CLICK
   private handleBackdropClick(e: MouseEvent): void {
     const element = (e.target as HTMLElement);
     if (element.id === "backdrop" && this.backdropDismiss){
       this.handleDismiss();
     }
   }
+
+
+  // FOR RESIZING
+  private handleResizeMouseMove = (ev:MouseEvent ) => {
+    
+    // deviding by two because the modal is centered. 
+    const dx = (ev.clientX - this.mouseX) * 2;
+    const dy = (ev.clientY - this.mouseY) * 2;
+
+    this.modal.style.width = `${this.w + dx}px`;
+    this.modal.style.height = `${this.h + dy}px`;
+  }
+
+
+  private handleResizeMouseDown = (ev: MouseEvent) => {
+    addEventListener("mousemove", this.handleResizeMouseMove)
+    this.mouseX = ev.clientX;
+    this.mouseY = ev.clientY;
+
+    const modalStyles = getComputedStyle(this.modal);
+    
+    this.w = parseInt(modalStyles.width, 10);
+    this.h = parseInt(modalStyles.height, 10);
+  
+  }
+
+  private handleResizeMouseUp = () => {
+    removeEventListener("mousemove", this.handleResizeMouseMove)
+  }
+  
+  
 
   render() {
     return (
@@ -72,7 +129,7 @@ export class DnnModal {
           class={this.visible ? 'overlay visible' : 'overlay'}
           onClick={e => this.handleBackdropClick(e)}
         >
-          <div class="modal">
+          <div class="modal" ref={el=>this.modal = el}> 
             {this.showCloseButton &&
               <button
                 class="close"
@@ -85,9 +142,12 @@ export class DnnModal {
             <div class="content">
               <slot></slot>
             </div>
+            { this.resizable && <div class='se' ref={el=>this.seDrag = el}></div>}
           </div>
         </div>
       </Host>
     );
   }
 }
+
+
