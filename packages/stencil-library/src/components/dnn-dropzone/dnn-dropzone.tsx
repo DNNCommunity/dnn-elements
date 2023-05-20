@@ -1,4 +1,5 @@
 import { Component, Host, h, Prop, State, Event, EventEmitter } from '@stencil/core';
+import { getReadableFileSizeString } from '../../utilities/stringUtilities';
 
 @Component({
   tag: 'dnn-dropzone',
@@ -8,17 +9,21 @@ import { Component, Host, h, Prop, State, Event, EventEmitter } from '@stencil/c
 export class DnnDropzone {
   /** Localization strings */
   @Prop() resx:{
-    dragAndDropFile: string;
-    capture: string;
-    or: string;
-    takePicture: string;
-    uploadFile: string;
+    dragAndDropFile?: string;
+    capture?: string;
+    or?: string;
+    takePicture?: string;
+    uploadFile?: string;
+    uploadSizeTooLarge?: string;
+    fileSizeLimit?: string;
   } = {
     dragAndDropFile: "Drag and drop a file",
     capture: "Capture",
     or: "or",
     takePicture: "Take a picture",
     uploadFile: "Upload a file",
+    uploadSizeTooLarge: "The file you tried to upload is too large.",
+    fileSizeLimit: "The maximum size is",
   }
 
   /** A list of allowed file extensions.
@@ -40,13 +45,21 @@ export class DnnDropzone {
    */
   @Prop() captureQuality: number = 0.8;
 
+  /**
+   * Max file size in bytes.
+   */
+  @Prop() maxFileSize?: number;
+
   /** Fires when file were selected. */
   @Event() filesSelected: EventEmitter<File[]>;
   
   @State() canTakeSnapshots: boolean = false;
 
   @State() takingPicture: boolean = false;
+
+  @State() fileTooLarge: boolean;
   
+
   private dropzone: HTMLElement;
   private fileInput: HTMLInputElement;
   private videoPreview: HTMLVideoElement;
@@ -89,8 +102,25 @@ export class DnnDropzone {
     return fileList;
   }
 
+  private isAnyFileLargerThanAllowed (files:File[]) : boolean {
+    if (!this.maxFileSize) {
+      return false;
+    } 
+
+    if ( files.some(file => file.size > this.maxFileSize )) {
+      return true;
+    }
+
+    return false;
+  }
+
   private handleUploadButton(element: HTMLInputElement): void {
     let files = this.getFilesFromFileList(element.files);
+    
+    if (this.isAnyFileLargerThanAllowed(files)) {
+      this.fileTooLarge = true;
+      return;
+    } else { this.fileTooLarge = false; }
 
     this.filesSelected.emit(files);
   }
@@ -213,6 +243,15 @@ export class DnnDropzone {
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="3.2"/><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>&nbsp;
               {this.resx?.capture}
             </button>
+          </div>
+        }
+        { this.fileTooLarge && 
+          <div class='error'>
+              <p>
+                {this.resx.uploadSizeTooLarge}
+                <br/>
+                {this.resx.fileSizeLimit + " " + getReadableFileSizeString(this.maxFileSize) } 
+              </p>
           </div>
         }
       </Host>

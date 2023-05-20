@@ -124,14 +124,20 @@ export namespace Components {
          */
         "captureQuality": number;
         /**
+          * Max file size in bytes.
+         */
+        "maxFileSize"?: number;
+        /**
           * Localization strings
          */
         "resx": {
-    dragAndDropFile: string;
-    capture: string;
-    or: string;
-    takePicture: string;
-    uploadFile: string;
+    dragAndDropFile?: string;
+    capture?: string;
+    or?: string;
+    takePicture?: string;
+    uploadFile?: string;
+    uploadSizeTooLarge?: string;
+    fileSizeLimit?: string;
   };
     }
     /**
@@ -149,7 +155,7 @@ export namespace Components {
          */
         "preventUndersized": boolean;
         /**
-          * Sets the output quality of the corpped image (number between 0 and 1).
+          * Sets the output quality of the cropped image (number between 0 and 1).
          */
         "quality": number;
         /**
@@ -182,6 +188,10 @@ export namespace Components {
           * Hides the modal
          */
         "hide": () => Promise<void>;
+        /**
+          * If set to true, the modal becomes resizable.
+         */
+        "resizable"?: boolean;
         /**
           * Shows the modal
          */
@@ -636,6 +646,10 @@ declare namespace LocalJSX {
          */
         "captureQuality"?: number;
         /**
+          * Max file size in bytes.
+         */
+        "maxFileSize"?: number;
+        /**
           * Fires when file were selected.
          */
         "onFilesSelected"?: (event: DnnDropzoneCustomEvent<File[]>) => void;
@@ -643,11 +657,13 @@ declare namespace LocalJSX {
           * Localization strings
          */
         "resx"?: {
-    dragAndDropFile: string;
-    capture: string;
-    or: string;
-    takePicture: string;
-    uploadFile: string;
+    dragAndDropFile?: string;
+    capture?: string;
+    or?: string;
+    takePicture?: string;
+    uploadFile?: string;
+    uploadSizeTooLarge?: string;
+    fileSizeLimit?: string;
   };
     }
     /**
@@ -669,7 +685,7 @@ declare namespace LocalJSX {
          */
         "preventUndersized"?: boolean;
         /**
-          * Sets the output quality of the corpped image (number between 0 and 1).
+          * Sets the output quality of the cropped image (number between 0 and 1).
          */
         "quality"?: number;
         /**
@@ -702,6 +718,10 @@ declare namespace LocalJSX {
           * Fires when the modal is dismissed.
          */
         "onDismissed"?: (event: DnnModalCustomEvent<any>) => void;
+        /**
+          * If set to true, the modal becomes resizable.
+         */
+        "resizable"?: boolean;
         /**
           * Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
          */
