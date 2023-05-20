@@ -149,7 +149,7 @@ export namespace Components {
          */
         "preventUndersized": boolean;
         /**
-          * Sets the output quality of the corpped image (number between 0 and 1).
+          * Sets the output quality of the cropped image (number between 0 and 1).
          */
         "quality": number;
         /**
@@ -182,6 +182,10 @@ export namespace Components {
           * Hides the modal
          */
         "hide": () => Promise<void>;
+        /**
+          * If set to true, the modal becomes resizable.
+         */
+        "resizable"?: boolean;
         /**
           * Shows the modal
          */
@@ -669,7 +673,7 @@ declare namespace LocalJSX {
          */
         "preventUndersized"?: boolean;
         /**
-          * Sets the output quality of the corpped image (number between 0 and 1).
+          * Sets the output quality of the cropped image (number between 0 and 1).
          */
         "quality"?: number;
         /**
@@ -702,6 +706,10 @@ declare namespace LocalJSX {
           * Fires when the modal is dismissed.
          */
         "onDismissed"?: (event: DnnModalCustomEvent<any>) => void;
+        /**
+          * If set to true, the modal becomes resizable.
+         */
+        "resizable"?: boolean;
         /**
           * Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
          */
