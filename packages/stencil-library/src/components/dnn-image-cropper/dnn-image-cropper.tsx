@@ -477,6 +477,8 @@ export class DnnImageCropper {
                   or: this.resx.or,
                   takePicture: this.resx.takePicture,
                   uploadFile: this.resx.uploadFile,
+                  uploadSizeTooLarge: "The file you tried to upload is too large.",
+                  fileSizeLimit: "The maximum size is",
                 }
               }
             />

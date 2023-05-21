@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ColorInfo } from "./utilities/colorInfo";
+import { DropzoneResx } from "./components/dnn-dropzone/types";
 import { IPermissions } from "./components/dnn-permissions-grid/permissions-interface";
 import { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interface";
 import { IRole } from "./components/dnn-permissions-grid/role-interface";
@@ -13,6 +14,7 @@ import { ILocalization } from "./components/dnn-permissions-grid/localization-in
 import { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export { ColorInfo } from "./utilities/colorInfo";
+export { DropzoneResx } from "./components/dnn-dropzone/types";
 export { IPermissions } from "./components/dnn-permissions-grid/permissions-interface";
 export { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interface";
 export { IRole } from "./components/dnn-permissions-grid/role-interface";
@@ -124,15 +126,13 @@ export namespace Components {
          */
         "captureQuality": number;
         /**
+          * Max file size in bytes.
+         */
+        "maxFileSize"?: number;
+        /**
           * Localization strings
          */
-        "resx": {
-    dragAndDropFile: string;
-    capture: string;
-    or: string;
-    takePicture: string;
-    uploadFile: string;
-  };
+        "resx": DropzoneResx;
     }
     /**
      * Allows cropping an image in-browser with the option to enforce a specific final size.
@@ -640,19 +640,17 @@ declare namespace LocalJSX {
          */
         "captureQuality"?: number;
         /**
+          * Max file size in bytes.
+         */
+        "maxFileSize"?: number;
+        /**
           * Fires when file were selected.
          */
         "onFilesSelected"?: (event: DnnDropzoneCustomEvent<File[]>) => void;
         /**
           * Localization strings
          */
-        "resx"?: {
-    dragAndDropFile: string;
-    capture: string;
-    or: string;
-    takePicture: string;
-    uploadFile: string;
-  };
+        "resx"?: DropzoneResx;
     }
     /**
      * Allows cropping an image in-browser with the option to enforce a specific final size.
