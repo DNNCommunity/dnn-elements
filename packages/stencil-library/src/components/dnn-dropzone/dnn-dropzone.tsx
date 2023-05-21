@@ -1,5 +1,6 @@
 import { Component, Host, h, Prop, State, Event, EventEmitter } from '@stencil/core';
 import { getReadableFileSizeString } from '../../utilities/stringUtilities';
+import { DropzoneResx } from './types';
 
 @Component({
   tag: 'dnn-dropzone',
@@ -8,23 +9,7 @@ import { getReadableFileSizeString } from '../../utilities/stringUtilities';
 })
 export class DnnDropzone {
   /** Localization strings */
-  @Prop() resx:{
-    dragAndDropFile?: string;
-    capture?: string;
-    or?: string;
-    takePicture?: string;
-    uploadFile?: string;
-    uploadSizeTooLarge?: string;
-    fileSizeLimit?: string;
-  } = {
-    dragAndDropFile: "Drag and drop a file",
-    capture: "Capture",
-    or: "or",
-    takePicture: "Take a picture",
-    uploadFile: "Upload a file",
-    uploadSizeTooLarge: "The file you tried to upload is too large.",
-    fileSizeLimit: "The maximum size is",
-  }
+  @Prop({mutable:true}) resx:DropzoneResx;
 
   /** A list of allowed file extensions.
    * If not specified, any file is allowed.
@@ -64,7 +49,20 @@ export class DnnDropzone {
   private fileInput: HTMLInputElement;
   private videoPreview: HTMLVideoElement;
   private videoSettings!: MediaTrackSettings;
+  private defaultResx: DropzoneResx = {
+    dragAndDropFile: "Drag and drop a file",
+    capture: "Capture",
+    or: "or",
+    takePicture: "Take a picture",
+    uploadFile: "Upload a file",
+    uploadSizeTooLarge: "The file you tried to upload is too large.",
+    fileSizeLimit: "The maximum size is",
+  }
 
+  componentWillLoad() {
+    debugger;
+    this.resx = {...this.defaultResx, ...this.resx}
+  }
 
   componentDidLoad() {
     if (this.allowCameraMode){

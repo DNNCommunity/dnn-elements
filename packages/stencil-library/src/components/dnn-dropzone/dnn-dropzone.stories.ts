@@ -22,12 +22,14 @@ const meta: Meta = {
         },
         allowCameraMode: {
             control: 'boolean',
-        }
-        ,
+        },
         captureQuality: {
             options: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
             control: 'number',
-         }
+        },
+        maxFileSize: {
+            control: 'number',
+        }
     }
 }
 export default meta;
@@ -40,6 +42,7 @@ const resx:{
     or: string;
     takePicture: string;
     uploadFile: string;
+
 } = {
     dragAndDropFile: "Drag and drop a file",
     capture: "Capture",
@@ -51,10 +54,11 @@ const resx:{
 const Template = (args) =>
     html`
         <dnn-dropzone
-            .resx=${args.resx}
+            resx=${args.resx}
             allowed-extensions=${ifDefined(args.allowedExtensions)}
             ?allow-camera-mode=${ifDefined(args.allCameraMode)}
-            capture-quality=${ifDefined(args.captureQuality)}>
+            capture-quality=${ifDefined(args.captureQuality)}
+            max-file-size=${ifDefined(args.maxFileSize)}>
         </dnn-dropzone>
     `;
 
