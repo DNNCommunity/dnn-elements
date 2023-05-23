@@ -103,13 +103,17 @@ export class DnnButton {
     if (this.size !== 'normal'){
       classes.push(this.size);
     }
+    if (this.disabled) {
+      classes.push('disabled');
+    } 
     return classes.join(' ');
   }
 
+
   render() {
     return (
-      <Host class={this.getElementClasses()} disabled={this.disabled} style={{'pointer-events': this.disabled ? 'none' : 'all'}}>
-        <button class="button" onClick={() => this.handleClick()} disabled={this.disabled}>
+      <Host class={this.getElementClasses()} >
+        <button class="button" onClick={() => this.handleClick()} disabled={this.disabled} >
           <slot></slot>
         </button>
         {this.confirm &&
@@ -121,8 +125,8 @@ export class DnnButton {
                   justifyContent: 'flex-end'
                 }
               }>
+                <dnn-button type='primary' reversed style={{margin: '5px'}} onClick={() => this.handleCancel()}>{this.confirmNoText}</dnn-button>
                 <dnn-button type='primary' style={{margin: '5px'}} onClick={() => this.handleConfirm()}>{this.confirmYesText}</dnn-button>
-                <dnn-button type='secondary' style={{margin: '5px'}} onClick={() => this.handleCancel()}>{this.confirmNoText}</dnn-button>
               </div>
             </dnn-modal>
           }
