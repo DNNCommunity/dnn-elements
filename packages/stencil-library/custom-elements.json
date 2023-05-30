@@ -389,10 +389,9 @@
               "kind": "field",
               "name": "resx",
               "type": {
-                "text": "{ dragAndDropFile?: string; capture?: string; or?: string; takePicture?: string; uploadFile?: string; uploadSizeTooLarge?: string; fileSizeLimit?: string; }"
+                "text": "DropzoneResx"
               },
               "description": "Localization strings",
-              "default": "{\r\n    dragAndDropFile: \"Drag and drop a file\",\r\n    capture: \"Capture\",\r\n    or: \"or\",\r\n    takePicture: \"Take a picture\",\r\n    uploadFile: \"Upload a file\",\r\n    uploadSizeTooLarge: \"The file you tried to upload is too large.\",\r\n    fileSizeLimit: \"The maximum size is\",\r\n  }",
               "required": false
             }
           ],
