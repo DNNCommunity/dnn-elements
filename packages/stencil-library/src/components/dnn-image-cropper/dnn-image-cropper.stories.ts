@@ -78,9 +78,7 @@ const Template = (args) =>
             <button id="confirmCrop" style=${"margin:10px;"} @click=${() => {  
                 (document.querySelector("#cropper") as HTMLDivElement ).style.display = "none";
                 (document.querySelector("#confirmCrop") as HTMLButtonElement ).style.display = "none";
-                                
                 (document.querySelector("#PostConfirmCrop") as HTMLDivElement ).style.display = "flex";
-
                 (document.querySelector("#displayImg") as HTMLImageElement ).src = image;
                 (document.querySelector("#link") as HTMLAnchorElement ).href = image;
             }}>Confirm crop</button>
