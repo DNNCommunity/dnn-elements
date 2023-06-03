@@ -38,6 +38,9 @@ const meta: Meta = {
 export default meta;
 
 const eventsFromNames = actions('imageCropChanged', );
+let image:string = "";
+let imageShowing:boolean = false;
+
 
 const resx:{
     capture: string;
@@ -59,15 +62,40 @@ const resx:{
 
 const Template = (args) =>
     html`
-        <dnn-image-cropper
+        <dnn-image-cropper id="cropper"
             .resx=${args.resx}
             width=${ifDefined(args.width)}
             height=${ifDefined(args.height)}
             allowed-extensions=${ifDefined(args.allowedExtensions)}
             quality=${ifDefined(args.captureQuality)}
-            ?prevent-undersized=${ifDefined(args.preventUndersized)}>
+            ?prevent-undersized=${ifDefined(args.preventUndersized)}
+            @imageCropChanged = ${ (e)=> { 
+                image = e.detail 
+            }}>
         </dnn-image-cropper>
-    `;
+        <div style = ${"display:grid; place-items:center"}>
+
+            <button id="confirmCrop" style=${"margin:10px;"} @click=${() => {  
+                (document.querySelector("#cropper") as HTMLDivElement ).style.display = "none";
+                (document.querySelector("#confirmCrop") as HTMLButtonElement ).style.display = "none";
+                (document.querySelector("#PostConfirmCrop") as HTMLDivElement ).style.display = "flex";
+                (document.querySelector("#displayImg") as HTMLImageElement ).src = image;
+                (document.querySelector("#link") as HTMLAnchorElement ).href = image;
+            }}>Confirm crop</button>
+            
+            
+        </div>
+        <!-- displayed after clicking Confirm Crop -->
+        <div style=${"display:none; flex-direction:column;align-items: center; "} id="PostConfirmCrop">
+            <img id="displayImg" style="margin:10px;" /> 
+            <button style=${"margin:10px;"} @click=${()=> {
+                window.location.reload();
+            }}            
+            >Change</button>         
+            <a style=${"margin:10px;"} download="fakeImage.jpeg" id="link" >download</a>
+        </div>
+    `
+    ;
 
 type Story = StoryObj;
 
