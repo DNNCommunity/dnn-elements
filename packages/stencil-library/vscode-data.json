@@ -198,6 +198,119 @@
       ]
     },
     {
+      "name": "dnn-input",
+      "description": {
+        "kind": "markdown",
+        "value": "A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features."
+      },
+      "attributes": [
+        {
+          "name": "allow-show-password",
+          "description": "If true, enables users to switch between a password and a text field (to view their password)."
+        },
+        {
+          "name": "autocomplete",
+          "description": "Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete."
+        },
+        {
+          "name": "disable-validity-reporting",
+          "description": "If true, the browser default validation message will be hidden."
+        },
+        {
+          "name": "disabled",
+          "description": "Defines whether the field is disabled."
+        },
+        {
+          "name": "help-text",
+          "description": "Defines the help label displayed under the field."
+        },
+        {
+          "name": "label",
+          "description": "The label for this input."
+        },
+        {
+          "name": "max",
+          "description": "Defines the maximum allowed value."
+        },
+        {
+          "name": "maxlength",
+          "description": "Defines the maximum amount of charaters."
+        },
+        {
+          "name": "min",
+          "description": "Defines the minimum allowed value."
+        },
+        {
+          "name": "minlength",
+          "description": "Defines the minimum amount of charaters."
+        },
+        {
+          "name": "multiple",
+          "description": "If true, allows multiple emails to be entered separated by commas."
+        },
+        {
+          "name": "name",
+          "description": "The name for this input, if not provided a random name will be assigned."
+        },
+        {
+          "name": "pattern",
+          "description": "Valid for text, search, url, tel, email, and password, the pattern attribute defines a regular expression that the input's value must match in order for the value to pass constraint validation."
+        },
+        {
+          "name": "readonly",
+          "description": "Defines wheter the defined value is readonly."
+        },
+        {
+          "name": "required",
+          "description": "Defines whether the field requires having a value."
+        },
+        {
+          "name": "step",
+          "description": "Defines the possible steps for numbers and dates/times. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#step"
+        },
+        {
+          "name": "type",
+          "description": "The input type, supports most of html standard input type, see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types.",
+          "values": [
+            {
+              "name": "date"
+            },
+            {
+              "name": "datetime-local"
+            },
+            {
+              "name": "email"
+            },
+            {
+              "name": "number"
+            },
+            {
+              "name": "password"
+            },
+            {
+              "name": "search"
+            },
+            {
+              "name": "tel"
+            },
+            {
+              "name": "text"
+            },
+            {
+              "name": "time"
+            },
+            {
+              "name": "url"
+            }
+          ]
+        },
+        {
+          "name": "value",
+          "description": "The value of the input."
+        }
+      ]
+    },
+    {
       "name": "dnn-modal",
       "description": {
         "kind": "markdown",
