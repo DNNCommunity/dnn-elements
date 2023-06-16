@@ -171,7 +171,14 @@ export namespace Components {
          */
         "width": number;
     }
+    /**
+     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     */
     interface DnnInput {
+        /**
+          * If true, enables users to switch between a password and a text field (to view their password).
+         */
+        "allowShowPassword": boolean;
         /**
           * Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.
          */
@@ -511,6 +518,9 @@ declare global {
         prototype: HTMLDnnImageCropperElement;
         new (): HTMLDnnImageCropperElement;
     };
+    /**
+     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     */
     interface HTMLDnnInputElement extends Components.DnnInput, HTMLStencilElement {
     }
     var HTMLDnnInputElement: {
@@ -790,7 +800,14 @@ declare namespace LocalJSX {
          */
         "width"?: number;
     }
+    /**
+     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     */
     interface DnnInput {
+        /**
+          * If true, enables users to switch between a password and a text field (to view their password).
+         */
+        "allowShowPassword"?: boolean;
         /**
           * Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.
          */
@@ -1057,6 +1074,9 @@ declare module "@stencil/core" {
              * in an event that has a data-url of the image.
              */
             "dnn-image-cropper": LocalJSX.DnnImageCropper & JSXBase.HTMLAttributes<HTMLDnnImageCropperElement>;
+            /**
+             * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+             */
             "dnn-input": LocalJSX.DnnInput & JSXBase.HTMLAttributes<HTMLDnnInputElement>;
             "dnn-modal": LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
             "dnn-monaco-editor": LocalJSX.DnnMonacoEditor & JSXBase.HTMLAttributes<HTMLDnnMonacoEditorElement>;
