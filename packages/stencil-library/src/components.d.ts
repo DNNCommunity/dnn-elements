@@ -177,6 +177,14 @@ export namespace Components {
          */
         "autocomplete": string;
         /**
+          * Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+         */
+        "checkValidity": () => Promise<ValidityState>;
+        /**
+          * If true, the browser default validation message will be hidden.
+         */
+        "disableValidityReporting": boolean;
+        /**
           * Defines whether the field is disabled.
          */
         "disabled": boolean;
@@ -224,6 +232,7 @@ export namespace Components {
           * Defines whether the field requires having a value.
          */
         "required": boolean;
+        "setCustomValidity": (message: string) => Promise<void>;
         /**
           * Defines the possible steps for numbers and dates/times. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#step
          */
@@ -414,6 +423,10 @@ export interface DnnDropzoneCustomEvent<T> extends CustomEvent<T> {
 export interface DnnImageCropperCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnImageCropperElement;
+}
+export interface DnnInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnInputElement;
 }
 export interface DnnModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -783,6 +796,10 @@ declare namespace LocalJSX {
          */
         "autocomplete"?: string;
         /**
+          * If true, the browser default validation message will be hidden.
+         */
+        "disableValidityReporting"?: boolean;
+        /**
           * Defines whether the field is disabled.
          */
         "disabled"?: boolean;
@@ -818,6 +835,14 @@ declare namespace LocalJSX {
           * The name for this input, if not provided a random name will be assigned.
          */
         "name"?: string;
+        /**
+          * Fires when the value has changed and the user exits the input.
+         */
+        "onValueChange"?: (event: DnnInputCustomEvent<number | string | string[]>) => void;
+        /**
+          * Fires when the using is inputing data (on keystrokes).
+         */
+        "onValueInput"?: (event: DnnInputCustomEvent<number | string | string[]>) => void;
         /**
           * Valid for text, search, url, tel, email, and password, the pattern attribute defines a regular expression that the input's value must match in order for the value to pass constraint validation.
          */

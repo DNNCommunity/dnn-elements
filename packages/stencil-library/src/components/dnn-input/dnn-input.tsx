@@ -1,4 +1,4 @@
-import { Component, Host, Prop, State, h } from '@stencil/core';
+import { Component, Host, Prop, State, h, Method, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'dnn-input',
@@ -14,7 +14,7 @@ export class DnnInput {
   @Prop() label: string;
 
   /** The name for this input, if not provided a random name will be assigned. */
-  @Prop() name: string;
+  @Prop({mutable: true}) name: string;
 
   /** The value of the input. */
   @Prop({mutable: true, reflect:true}) value: number | string | string[];
@@ -55,10 +55,32 @@ export class DnnInput {
   /** Defines the possible steps for numbers and dates/times. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#step */
   @Prop() step: string | number;
 
+  /** If true, the browser default validation message will be hidden. */
+  @Prop() disableValidityReporting: boolean;
+
+  /** Fires when the value has changed and the user exits the input. */
+  @Event() valueChange: EventEmitter<number | string | string[]>;
+
+  /** Fires when the using is inputing data (on keystrokes). */
+  @Event() valueInput: EventEmitter<number | string | string[]>;
+  
+  /** Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState */
+  @Method()
+  async checkValidity(): Promise<ValidityState> {
+    return this.inputField.validity;
+  }
+
+  @Method()
+  async setCustomValidity(message: string): Promise<void> {
+    this.customValidityMessage = message;
+    return this.inputField.setCustomValidity(message);
+  }
+  
   @State() focused = false;
   @State() valid = true;
+  @State() customValidityMessage: string;
   
-  private input!: HTMLInputElement;
+  private inputField!: HTMLInputElement;
 
   componentWillLoad() {
     if (this.name === undefined)
@@ -88,24 +110,50 @@ export class DnnInput {
       classes.push("disabled");
     }
 
+    if (!this.valid){
+      classes.push("invalid");
+    }
+
     return classes.join(" ");
   }
 
+  private handleInput(value: string): void {
+    this.value = value;
+    var valid = this.inputField.checkValidity();
+    this.valid = valid;
+    this.valueInput.emit(this.value);
+  }
+
+  private handleInvalid(): void {
+    this.valid = false;
+    if (this.customValidityMessage == undefined){
+      this.customValidityMessage = this.inputField.validationMessage;
+    }
+  }
+
+  private handleChange() {
+    if (!this.disableValidityReporting) {
+      this.inputField.reportValidity();
+    }
+    this.valueChange.emit(this.value);
+  }
 
   render() {
     return (
       <Host>
         <div
           class={this.getContainerClasses()}
-          onClick={() => this.input.focus()}
+          onClick={() => this.inputField.focus()}
         >
           <div class="inner-container">
-            <label htmlFor={this.name}>
-              {`${this.label}${this.required ? " *" : ""}`}
-            </label>
+            {this.label &&
+              <label htmlFor={this.name}>
+                {`${this.label}${this.required ? " *" : ""}`}
+              </label>
+            }
             <slot name="prefix"></slot>
             <input
-              ref={el => this.input = el}
+              ref={el => this.inputField = el}
               name={this.name}
               type={this.type}
               aria-label={this.label}
@@ -121,16 +169,24 @@ export class DnnInput {
               readonly={this.readonly}
               step={this.step}
               value={this.value}
-              onBlur={() => this.focused=false}
+              onBlur={() => this.focused = false}
               onFocus={() => this.focused=true}
-              onInput={e => this.value = (e.target as HTMLInputElement).value}
+              onInput={e => this.handleInput((e.target as HTMLInputElement).value)}
+              onInvalid={() => this.handleInvalid()}
+              onChange={() => this.handleChange()}
             />
             <slot name="suffix"></slot>
           </div>
         </div>
-        <div class="help-text">{this.helpText}</div>
+        {!this.valid && this.customValidityMessage &&
+          <div class="error-message">
+            {this.customValidityMessage}
+          </div>
+        }
+        {this.valid &&
+          <div class="help-text">{this.helpText}</div>
+        }
       </Host>
     );
   }
-
 }

@@ -4,6 +4,7 @@
   --foreground: var(--dnn-color-foreground, #000);
   --background: var(--dnn-color-background, #fff);
   --focus-color: var(--dnn-color-primary, #3792ED);
+  --danger-color: var(--dnn-color-danger, #900);
   --control-radius: var(--dnn-controls-radius, 3px);
   --input-text-align: left;
 }
@@ -42,6 +43,10 @@
   &.focused{
     border: 1px solid var(--focus-color);
     box-shadow: 0 0 0 1px var(--focus-color);
+    &.invalid{
+      border: 1px solid var(--danger-color);
+      box-shadow: 0 0 0 1px var(--danger-color);
+    }
     label{
       opacity: 1;
       left: 0.5rem;
@@ -64,13 +69,21 @@
   &.disabled{
     opacity: 0.5;
   }
+  &.invalid{
+    border-color: var(--danger-color);
+  }
 }
 
-.help-text{
+.help-text, .error-message{
   font-style: italic;
   opacity: 0.7;
   font-size: 0.8rem;
   margin: 0.25rem;
+}
+.error-message{
+  color: var(--danger-color);
+  font-style: normal;
+  font-weight: bold;
 }
 .prefix, .suffix{
   font-size: 0.8rem;
