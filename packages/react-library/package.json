@@ -1,6 +1,6 @@
 {
   "name": "@dnncommunity/dnn-elements-react",
-  "version": "0.17.1-beta.2",
+  "version": "0.18.0-alpha.61",
   "description": "Dnn themed custom elements with react wrappers.",
   "homepage": "https://github.com/valadas/dnn-elements",
   "license": "MIT",
