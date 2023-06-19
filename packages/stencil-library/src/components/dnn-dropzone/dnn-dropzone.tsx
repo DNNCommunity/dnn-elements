@@ -60,7 +60,6 @@ export class DnnDropzone {
   }
 
   componentWillLoad() {
-    debugger;
     this.resx = {...this.defaultResx, ...this.resx}
   }
 

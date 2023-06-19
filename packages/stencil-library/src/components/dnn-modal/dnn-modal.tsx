@@ -59,7 +59,7 @@ export class DnnModal {
  @Event() dismissed!: EventEmitter;
  
  componentDidLoad() {
-   this.seDrag.addEventListener("mousedown", this.handleResizeMouseDown);
+   this.seDrag?.addEventListener("mousedown", this.handleResizeMouseDown);
    addEventListener("mouseup", this.handleResizeMouseUp);
   }
 
