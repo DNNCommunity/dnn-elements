@@ -502,6 +502,43 @@
       ]
     },
     {
+      "name": "dnn-select",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "disable-validity-reporting",
+          "description": "If true, the browser default validation message will be hidden."
+        },
+        {
+          "name": "disabled",
+          "description": "Defines whether the field is disabled."
+        },
+        {
+          "name": "help-text",
+          "description": "Defines the help label displayed under the field."
+        },
+        {
+          "name": "label",
+          "description": "The label for this input."
+        },
+        {
+          "name": "name",
+          "description": "The name for this input, if not provided a random name will be assigned."
+        },
+        {
+          "name": "required",
+          "description": "Defines whether the field requires having a value."
+        },
+        {
+          "name": "value",
+          "description": "The value of the input."
+        }
+      ]
+    },
+    {
       "name": "dnn-sort-icon",
       "description": {
         "kind": "markdown",
