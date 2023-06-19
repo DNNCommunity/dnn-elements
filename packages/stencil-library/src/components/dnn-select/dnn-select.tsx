@@ -43,7 +43,7 @@ export class DnnSelect {
   componentWillLoad() {
     if (this.name === undefined)
     {
-      this.name = `dnn-input-${Math.floor(Math.random() * 1000000)}`;
+      this.name = `dnn-select-${Math.floor(Math.random() * 1000000)}`;
     }
   }
 
