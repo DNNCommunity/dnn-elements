@@ -34,6 +34,18 @@
 | `"Content of the button"` |             |
 
 
+## CSS Custom Properties
+
+| Name                 | Description                         |
+| -------------------- | ----------------------------------- |
+| `--background-color` | The background color of the button. |
+| `--border-color`     | The border color of the button.     |
+| `--border-radius`    | The border radius of the button.    |
+| `--border-size`      | The border size of the button.      |
+| `--color`            | The text color of the button.       |
+| `--padding`          | The padding of the button.          |
+
+
 ## Dependencies
 
 ### Used by
