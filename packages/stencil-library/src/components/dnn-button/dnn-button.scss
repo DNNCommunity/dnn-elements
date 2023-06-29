@@ -35,6 +35,19 @@
   --focus-color: var(--color);
 }
 
+:host(.danger){
+  --background-color: var(--dnn-color-danger, rgb(228, 0, 0));
+  --color: var(--dnn-color-danger-contrast,white);
+  --focus-color: var(--background-color);
+}
+
+:host(.danger.reversed){
+  --background-color: var(--dnn-color-danger-contrast, white);
+  --color: var(--dnn-color-danger, rgb(228, 0, 0));
+  --border-color: var(--dnn-color-danger, rgb(228, 0, 0));
+  --focus-color: var(--color);
+}
+
 :host(.tertiary){
   --background-color: var(--dnn-color-tertiary, yellow);
   --color: var(--dnn-color-tertiary-contrast, black);
