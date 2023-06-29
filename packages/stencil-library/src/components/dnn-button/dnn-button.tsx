@@ -12,9 +12,9 @@ export class DnnButton {
 
   /**
    * Optional button style,
-   * can be either primary, secondary or tertiary and defaults to primary if not specified
+   * can be either primary, secondary or tertiary or danger and defaults to primary if not specified
    */
-  @Prop() type: 'primary' | 'secondary' | 'tertiary' = 'primary';
+  @Prop() type: 'primary' | 'danger' | 'secondary' | 'tertiary' = 'primary';
 
   /**
    * Optionally reverses the button style.

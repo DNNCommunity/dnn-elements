@@ -18,7 +18,7 @@ const meta: Meta = {
   },
   argTypes: {
     type: {
-      options: ['primary', 'secondary', 'tertiary'],
+      options: ['primary', 'danger', 'secondary', 'tertiary'],
       control: {
         type: 'select',
       },
@@ -93,6 +93,12 @@ export const Tertiary : Story = Template.bind({});
 Tertiary.args = {
   ...Primary.args,
   type: 'tertiary',
+};
+
+export const Danger : Story = Template.bind({});
+Danger.args = {
+  ...Primary.args,
+  type: 'danger',
 };
 
 export const Reversed : Story = Template.bind({});

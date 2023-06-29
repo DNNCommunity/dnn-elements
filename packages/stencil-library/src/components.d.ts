@@ -52,9 +52,9 @@ export namespace Components {
          */
         "size"?: 'small' | 'normal' | 'large';
         /**
-          * Optional button style, can be either primary, secondary or tertiary and defaults to primary if not specified
+          * Optional button style, can be either primary, secondary or tertiary or danger and defaults to primary if not specified
          */
-        "type": 'primary' | 'secondary' | 'tertiary';
+        "type": 'primary' | 'danger' | 'secondary' | 'tertiary';
     }
     interface DnnCheckbox {
         /**
@@ -690,9 +690,9 @@ declare namespace LocalJSX {
          */
         "size"?: 'small' | 'normal' | 'large';
         /**
-          * Optional button style, can be either primary, secondary or tertiary and defaults to primary if not specified
+          * Optional button style, can be either primary, secondary or tertiary or danger and defaults to primary if not specified
          */
-        "type"?: 'primary' | 'secondary' | 'tertiary';
+        "type"?: 'primary' | 'danger' | 'secondary' | 'tertiary';
     }
     interface DnnCheckbox {
         /**
