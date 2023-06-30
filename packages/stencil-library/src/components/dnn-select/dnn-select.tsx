@@ -41,6 +41,7 @@ export class DnnSelect {
   private select: HTMLSelectElement;
 
   componentWillLoad() {
+    this.aplySlottedItemsToSelect();
     if (this.name === undefined)
     {
       this.name = `dnn-select-${Math.floor(Math.random() * 1000000)}`;
@@ -48,6 +49,10 @@ export class DnnSelect {
   }
 
   componentDidLoad() {
+    this.aplySlottedItemsToSelect();
+  }
+
+  private aplySlottedItemsToSelect () {
     const slottedItems = this.slot.assignedElements();
     slottedItems.forEach((item) => {
       if (item.nodeName === "OPTION") {
@@ -55,6 +60,7 @@ export class DnnSelect {
         this.select.appendChild(optionElement);
       }
     });
+
   }
 
   private getContainerClasses() {
