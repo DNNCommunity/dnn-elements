@@ -49,7 +49,7 @@ export class DnnSelect {
   }
 
   componentDidLoad() {
-    this.aplySlottedItemsToSelect();
+    this.applySlottedItemsToSelect();
   }
 
   private applySlottedItemsToSelect () {
