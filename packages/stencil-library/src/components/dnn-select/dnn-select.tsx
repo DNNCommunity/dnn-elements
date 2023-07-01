@@ -52,7 +52,7 @@ export class DnnSelect {
     this.aplySlottedItemsToSelect();
   }
 
-  private aplySlottedItemsToSelect () {
+  private applySlottedItemsToSelect () {
     const slottedItems = this.slot.assignedElements();
     slottedItems.forEach((item) => {
       if (item.nodeName === "OPTION") {
