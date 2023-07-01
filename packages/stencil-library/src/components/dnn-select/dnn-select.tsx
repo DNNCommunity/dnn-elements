@@ -41,7 +41,7 @@ export class DnnSelect {
   private select: HTMLSelectElement;
 
   componentWillLoad() {
-    this.aplySlottedItemsToSelect();
+    this.applySlottedItemsToSelect();
     if (this.name === undefined)
     {
       this.name = `dnn-select-${Math.floor(Math.random() * 1000000)}`;
