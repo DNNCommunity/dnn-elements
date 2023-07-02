@@ -55,6 +55,7 @@
     background-color: var(--background);
     color: transparent;
     text-align: var(--input-text-align);
+    width: 100%;
   }
   &.focused{
     border: 1px solid var(--focus-color);
