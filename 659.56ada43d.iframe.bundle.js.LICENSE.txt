@@ -1,0 +1,10 @@
+/** Color utility class with hsl and rgb converters
+ * based on math at https://en.wikipedia.org/wiki/HSL_and_HSV
+ * @copyright Copyright (c) .NET Foundation. All rights reserved.
+ * @license MIT
+ */
+
+/** Reusable DNN UI component to pick a color
+ * @copyright Copyright (c) .NET Foundation. All rights reserved.
+ * @license MIT
+ */
