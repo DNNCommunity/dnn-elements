@@ -13,14 +13,52 @@
         --dnn-color-primary-light: #6CB6F3;
         --dnn-color-primary-dark: #0D569E;
         --dnn-color-primary-contrast: #FFF;
+
         --dnn-color-secondary:#CCC;
         --dnn-color-secondary-light: #EEE;
         --dnn-color-secondary-dark: #AAA;
         --dnn-color-secondary-contrast: #222;
+        
         --dnn-color-tertiary: #EAEAEA;
         --dnn-color-tertiary-light: #F2F2F2;
         --dnn-color-tertiary-dark: #D8D8D8;
         --dnn-color-tertiary-contrast: #333;
+        
+        --dnn-color-neutral: #b2b2b2;
+        --dnn-color-neutral-light: #e5e5e5;
+        --dnn-color-neutral-dark: #999999;
+        --dnn-color-neutral-contrast: #000000;
+
+        --dnn-color-background: #FFF;
+        --dnn-color-background-light: #FFF;
+        --dnn-color-background-dark: #ccc;
+        --dnn-color-background-contrast: #000;
+        
+        --dnn-color-foreground: #000;
+        --dnn-color-foreground-light: #333;
+        --dnn-color-foreground-dark: #000;
+        --dnn-color-foreground-contrast: #FFF;
+        
+        --dnn-color-info: #17a2b8;
+        --dnn-color-info-light: #23b8cf;
+        --dnn-color-info-dark: #00889e;
+        --dnn-color-info-contrast: #FFFFFF;
+        
+        --dnn-color-success: #28a745;
+        --dnn-color-success-light: #49c25d;
+        --dnn-color-success-dark: #00902f;
+        --dnn-color-success-contrast: #FFFFFF;
+
+        --dnn-color-warning: #ffc107;
+        --dnn-color-warning-light: #ffd42e;
+        --dnn-color-warning-dark: #e9ad00;
+        --dnn-color-warning-contrast: #FFFFFF;
+
+        --dnn-color-danger: #dc3545;
+        --dnn-color-danger-light: #f14954;
+        --dnn-color-danger-dark: #c51535;
+        --dnn-color-danger-contrast: #FFFFFF;
+
         --dnn-controls-radius: 5px;
         --dnn-controls-padding: 5px;
       }
@@ -43,18 +81,80 @@
     <li><a href="#dnn-checkbox">dnn-checkbox</a></li>
     <li><a href="#dnn-chevron">dnn-chevron</a></li>
     <li><a href="#dnn-collapsible">dnn-collapsible</a></li>
+    <li><a href="#dnn-input">dnn-input</a></li>
     <li><a href="#dnn-modal">dnn-modal</a></li>
     <li><a href="#dnn-searchbox">dnn-searchbox</a></li>
     <li><a href="#dnn-color-picker">dnn-color-picker</a></li>
     <li><a href="#dnn-sort-icon">dnn-sort-icon</a></li>
     <li><a href="#dnn-toggle">dnn-toggle</a></li>
     <li><a href="#dnn-image-crop">dnn-image-crop</a></li>
+    <li><a href="#dnn-select">dnn-select</a></li>
     <li><a href="#dnn-tabs">dnn-tabs</a></li>
     <li><a href="#dnn-treeview-item">dnn-treeview-item</a></li>
     <li><a href="#dnn-vertical-splitview">dnn-vertical-splitview</a></li>
     <li><a href="#dnn-vertical-overflow-menu">dnn-vertical-overflow-menu</a></li>
     <li><a href="#dnn-permissions-grid">dnn-permissions-grid</a></li>
   </ul>
+  <!-- dnn-select -->
+  <section>
+    <h2>dnn-select</h2>
+    <div style="display: flex; flex-wrap: wrap;gap:1em;">
+      <dnn-select name="pets" required label="Pet" help-text="Choose a pet.">
+        <option value="">--Please choose an option--</option>
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+        <option value="hamster">Hamster</option>
+        <option value="parrot">Parrot</option>
+        <option value="spider">Spider</option>
+        <option value="goldfish">Goldfish</option>
+    </dnn-select>
+    </div>
+  </section>
+  <!-- dnn-input -->
+  <a name="dnn-input"></a>
+  <section>
+    <h2>dnn-input</h2>
+    <div style="display: flex; flex-wrap: wrap;gap:1em;">
+      <dnn-input></dnn-input>
+      <dnn-input label="text"></dnn-input>
+      <dnn-input label="date" type="Date" help-text="What is your birthdate?"></dnn-input>
+      <dnn-input label="Datetime and Time" type="datetime-local"></dnn-input>
+      <dnn-input label="Email" type="email"></dnn-input>
+      <dnn-input label="Integer" type="number"></dnn-input>
+      <dnn-input label="Decimal" type="number" step="any"></dnn-input>
+      <dnn-input label="Password" type="password" allow-show-password></dnn-input>
+      <dnn-input label="Telephone" type="tel"></dnn-input>
+      <dnn-input label="Time" type="time"></dnn-input>
+      <dnn-input label="URL" type="url"></dnn-input>
+      <dnn-input label="Search" type="search"></dnn-input>
+      <dnn-input label="Amount" help-text="How much it costs?" type="number" step="0.01">
+          <span slot="prefix">$</span>
+      </dnn-input>
+      <dnn-input type="number" label="Grade" help-text="What is your grade?" min="0" max="100" style="--input-text-align: right;">
+        <span slot="suffix">/100</span>
+      </dnn-input>
+      <dnn-input label="Disabled" disabled value="Hello World!"></dnn-input>
+      <dnn-input label="Required text" required></dnn-input>
+      <dnn-input label="Min and Max number" type="number" min="0" max="10" help-text="Must be a value between 0 and 10."></dnn-input>
+      <dnn-input label="Min and Max characters" type="text" minlength="5" maxlength="10" help-text="Must be a value between 5 and 10 characters."></dnn-input>
+      <dnn-input label="Pattern match" type="text" pattern="[A-Za-z]{3}" help-text="Must be 3 letters."></dnn-input>
+      <dnn-input label="Readonly" readonly value="Can't touch this!"></dnn-input>
+      <dnn-input label="Only one decimal" type="number" step="0.1"></dnn-input>
+
+      <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", () => {
+          let inputs = document.querySelectorAll('dnn-input');
+          inputs.forEach((item) => {
+            item.addEventListener('valueChange', (e) => {
+              item.checkValidity()
+              .then(validity => console.log(validity));
+            });
+          });
+        });
+      </script>
+
+    </div>
+  </section>
   <!-- dnn-permissions-grid-->
   <a name="dnn-permissions-grid"></a>
   <section>
@@ -268,9 +368,11 @@
     <dnn-button onclick="alert('clicked')" type="primary">Primary</dnn-button>
     <dnn-button onclick="alert('clicked')" type="secondary">Secondary</dnn-button>
     <dnn-button onclick="alert('clicked')" type="tertiary">Tertiary</dnn-button>
+    <dnn-button onclick="alert('clicked')" type="danger">Danger</dnn-button>
     <dnn-button onclick="alert('clicked')" type="primary" reversed="reversed">Primary reversed</dnn-button>
     <dnn-button onclick="alert('clicked')" type="secondary" reversed>Secondary reversed</dnn-button>
     <dnn-button onclick="alert('clicked')" type="tertiary" reversed>Tertiary reversed</dnn-button>
+    <dnn-button onclick="alert('clicked')" type="danger" reversed>Danger reversed</dnn-button>
     <dnn-button onclick="alert('clicked')" disabled={true}>Disabled</dnn-button>
     <dnn-button onclick="alert('clicked')" size="small">Small</dnn-button>
     <dnn-button onclick="alert('clicked')" size="large">Large</dnn-button>
@@ -686,7 +788,6 @@
         </dnn-treeview-item>
         <script type="text/javascript">
           const treeviewItems = document.querySelectorAll("#treeview-root, #treeview-root dnn-treeview-item");
-          console.log(treeviewItems)
           treeviewItems.forEach(treeviewItem => {
             treeviewItem.addEventListener("userExpanded", e => {
               console.log(e.target, " was expanded");

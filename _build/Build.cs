@@ -91,9 +91,9 @@ class Build : NukeBuild
   Target Clean => _ => _
     .Executes(() =>
     {
-      EnsureCleanDirectory(DistDirectory);
-      EnsureCleanDirectory(WwwDirectory);
-      EnsureCleanDirectory(LoaderDirectory);
+      DistDirectory.CreateOrCleanDirectory();
+      WwwDirectory.CreateOrCleanDirectory();
+      LoaderDirectory.CreateOrCleanDirectory();
     });
 
   Target Compile => _ => _
@@ -124,18 +124,18 @@ class Build : NukeBuild
       // Update package.json dependencies to use the current version, but only in CI.
       if (ShouldUpdateWildcardDependencies)
       {
-        var packageJsons = GlobFiles(RootDirectory, "packages/**/package.json")
+        var packageJsons = RootDirectory.GlobFiles("packages/**/package.json")
         .Where(p => !p.Contains("node_modules"));
         foreach (var packageJson in packageJsons)
         {
-          var json = ReadAllText(packageJson);
-          var content = SerializationTasks.JsonDeserialize(json);
+          var json = packageJson.ReadAllText();
+          var content = json.GetJson();
           JObject dependencies = (JObject)content["dependencies"];
           if (dependencies != null){
             foreach (var dependency in dependencies){
               if ((string)dependency.Value == "*"){
                 dependencies[dependency.Key] = version;
-                WriteAllText(packageJson, content.ToString());
+                packageJson.WriteAllText(content.ToString());
               }
             }
           }
@@ -281,7 +281,8 @@ class Build : NukeBuild
     .DependsOn(Release)
     .Executes(() => {
     var npmToken = Environment.GetEnvironmentVariable("NPM_TOKEN");
-      WriteAllText(RootDirectory / ".npmrc", $"//registry.npmjs.org/:_authToken={npmToken}");
+      var npmrcFile = RootDirectory / ".npmrc";
+      npmrcFile.WriteAllText($"//registry.npmjs.org/:_authToken={npmToken}");
       var tag = gitRepository.IsOnMainOrMasterBranch() ? "latest" : "next";
       Npm($"publish --access public --tag {tag} --workspaces");
     });

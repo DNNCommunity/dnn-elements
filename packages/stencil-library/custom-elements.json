@@ -77,9 +77,9 @@
             {
               "name": "type",
               "type": {
-                "text": "\"primary\" | \"secondary\" | \"tertiary\""
+                "text": "\"danger\" | \"primary\" | \"secondary\" | \"tertiary\""
               },
-              "description": "Optional button style,\r\ncan be either primary, secondary or tertiary and defaults to primary if not specified",
+              "description": "Optional button style,\ncan be either primary, secondary or tertiary or danger and defaults to primary if not specified",
               "default": "'primary'",
               "required": false
             }
@@ -107,7 +107,32 @@
               "description": ""
             }
           ],
-          "cssProperties": [],
+          "cssProperties": [
+            {
+              "name": "--background-color",
+              "description": "The background color of the button."
+            },
+            {
+              "name": "--border-color",
+              "description": "The border color of the button."
+            },
+            {
+              "name": "--border-radius",
+              "description": "The border radius of the button."
+            },
+            {
+              "name": "--border-size",
+              "description": "The border size of the button."
+            },
+            {
+              "name": "--color",
+              "description": "The text color of the button."
+            },
+            {
+              "name": "--padding",
+              "description": "The padding of the button."
+            }
+          ],
           "cssParts": []
         }
       ]
@@ -353,7 +378,7 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "If true, will allow the user to take a snapshot\r\nusing the device camera. (only works over https).",
+              "description": "If true, will allow the user to take a snapshot\nusing the device camera. (only works over https).",
               "default": "false",
               "required": false
             },
@@ -362,7 +387,7 @@
               "type": {
                 "text": "number"
               },
-              "description": "Specifies the jpeg quality for when the device\r\ncamera is used to generate a picture.\r\nNeeds to be a number between 0 and 1 and defaults to 0.8",
+              "description": "Specifies the jpeg quality for when the device\ncamera is used to generate a picture.\nNeeds to be a number between 0 and 1 and defaults to 0.8",
               "default": "0.8",
               "required": false
             },
@@ -382,17 +407,16 @@
               "type": {
                 "text": "string[]"
               },
-              "description": "A list of allowed file extensions.\r\nIf not specified, any file is allowed.\r\nEx: [\"jpg\", \"jped\", \"gif\", \"png\"]",
+              "description": "A list of allowed file extensions.\nIf not specified, any file is allowed.\nEx: [\"jpg\", \"jped\", \"gif\", \"png\"]",
               "required": false
             },
             {
               "kind": "field",
               "name": "resx",
               "type": {
-                "text": "{ dragAndDropFile?: string; capture?: string; or?: string; takePicture?: string; uploadFile?: string; uploadSizeTooLarge?: string; fileSizeLimit?: string; }"
+                "text": "DropzoneResx"
               },
               "description": "Localization strings",
-              "default": "{\r\n    dragAndDropFile: \"Drag and drop a file\",\r\n    capture: \"Capture\",\r\n    or: \"or\",\r\n    takePicture: \"Take a picture\",\r\n    uploadFile: \"Upload a file\",\r\n    uploadSizeTooLarge: \"The file you tried to upload is too large.\",\r\n    fileSizeLimit: \"The maximum size is\",\r\n  }",
               "required": false
             }
           ],
@@ -432,7 +456,7 @@
           "kind": "class",
           "name": "dnn-image-cropper.tsx",
           "tagName": "dnn-image-cropper",
-          "description": "Allows cropping an image in-browser with the option to enforce a specific final size.\r\nAll computation happens in the browser and the final image is emmited\r\nin an event that has a data-url of the image.",
+          "description": "Allows cropping an image in-browser with the option to enforce a specific final size.\nAll computation happens in the browser and the final image is emmited\nin an event that has a data-url of the image.",
           "attributes": [
             {
               "name": "height",
@@ -478,8 +502,8 @@
               "type": {
                 "text": "{ capture: string; dragAndDropFile: string; or: string; takePicture: string; uploadFile: string; imageTooSmall: string; modalCloseText: string; }"
               },
-              "description": "Can be used to customize controls text.\r\nSome values support tokens, see default values for examples.",
-              "default": "{\r\n    capture: \"Capture\",\r\n    dragAndDropFile: \"Drag and drop an image\",\r\n    or: \"or\",\r\n    takePicture: \"Take a picture\",\r\n    uploadFile: \"Upload an image\",\r\n    imageTooSmall: \"The image you are attempting to upload does not meet the minimum size requirement of {width} pixels by {height} pixels. Please upload a larger image.\",\r\n    modalCloseText: \"Close\",\r\n  }",
+              "description": "Can be used to customize controls text.\nSome values support tokens, see default values for examples.",
+              "default": "{\n    capture: \"Capture\",\n    dragAndDropFile: \"Drag and drop an image\",\n    or: \"or\",\n    takePicture: \"Take a picture\",\n    uploadFile: \"Upload an image\",\n    imageTooSmall: \"The image you are attempting to upload does not meet the minimum size requirement of {width} pixels by {height} pixels. Please upload a larger image.\",\n    modalCloseText: \"Close\",\n  }",
               "required": false
             }
           ],
@@ -494,6 +518,233 @@
           ],
           "slots": [],
           "cssProperties": [],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-input/dnn-input.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-input.tsx",
+          "tagName": "dnn-input",
+          "description": "A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.",
+          "attributes": [
+            {
+              "name": "allow-show-password",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, enables users to switch between a password and a text field (to view their password).",
+              "required": false
+            },
+            {
+              "name": "autocomplete",
+              "type": {
+                "text": "string"
+              },
+              "description": "Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.",
+              "default": "\"off\"",
+              "required": false
+            },
+            {
+              "name": "disable-validity-reporting",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, the browser default validation message will be hidden.",
+              "required": false
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines whether the field is disabled.",
+              "required": false
+            },
+            {
+              "name": "help-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "Defines the help label displayed under the field.",
+              "required": false
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "The label for this input.",
+              "required": false
+            },
+            {
+              "name": "max",
+              "type": {
+                "text": "number | string"
+              },
+              "description": "Defines the maximum allowed value.",
+              "required": false
+            },
+            {
+              "name": "maxlength",
+              "type": {
+                "text": "number"
+              },
+              "description": "Defines the maximum amount of charaters.",
+              "required": false
+            },
+            {
+              "name": "min",
+              "type": {
+                "text": "number | string"
+              },
+              "description": "Defines the minimum allowed value.",
+              "required": false
+            },
+            {
+              "name": "minlength",
+              "type": {
+                "text": "number"
+              },
+              "description": "Defines the minimum amount of charaters.",
+              "required": false
+            },
+            {
+              "name": "multiple",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, allows multiple emails to be entered separated by commas.",
+              "required": false
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name for this input, if not provided a random name will be assigned.",
+              "required": false
+            },
+            {
+              "name": "pattern",
+              "type": {
+                "text": "string"
+              },
+              "description": "Valid for text, search, url, tel, email, and password, the pattern attribute defines a regular expression that the input's value must match in order for the value to pass constraint validation.",
+              "required": false
+            },
+            {
+              "name": "readonly",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines wheter the defined value is readonly.",
+              "required": false
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines whether the field requires having a value.",
+              "required": false
+            },
+            {
+              "name": "step",
+              "type": {
+                "text": "number | string"
+              },
+              "description": "Defines the possible steps for numbers and dates/times. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#step",
+              "required": false
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "\"date\" | \"datetime-local\" | \"email\" | \"number\" | \"password\" | \"search\" | \"tel\" | \"text\" | \"time\" | \"url\""
+              },
+              "description": "The input type, supports most of html standard input type, see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types.",
+              "default": "\"text\"",
+              "required": false
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "number | string | string[]"
+              },
+              "description": "The value of the input.",
+              "required": false
+            }
+          ],
+          "members": [
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "description": "Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState",
+              "signature": "checkValidity() => Promise<ValidityState>"
+            },
+            {
+              "kind": "method",
+              "name": "setCustomValidity",
+              "description": "",
+              "signature": "setCustomValidity(message: string) => Promise<void>"
+            }
+          ],
+          "events": [
+            {
+              "name": "valueChange",
+              "type": {
+                "text": "number | string | string[]"
+              },
+              "description": "Fires when the value has changed and the user exits the input."
+            },
+            {
+              "name": "valueInput",
+              "type": {
+                "text": "number | string | string[]"
+              },
+              "description": "Fires when the using is inputing data (on keystrokes)."
+            }
+          ],
+          "slots": [
+            {
+              "name": "prefix",
+              "description": "Can be used to inject content before the input field."
+            },
+            {
+              "name": "suffix",
+              "description": "Can be used to inject content after the input field."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--background",
+              "description": "Defines the background color."
+            },
+            {
+              "name": "--control-radius",
+              "description": "Defines the radius for the control corners."
+            },
+            {
+              "name": "--danger-color",
+              "description": "Defines the danger color used for invalid data."
+            },
+            {
+              "name": "--focus-color",
+              "description": "Defines the color when the component is focused."
+            },
+            {
+              "name": "--foreground",
+              "description": "Defines the foreground color."
+            },
+            {
+              "name": "--input-text-align",
+              "description": "Allows customizing the text alignment of the input text."
+            }
+          ],
           "cssParts": []
         }
       ]
@@ -522,7 +773,7 @@
               "type": {
                 "text": "string"
               },
-              "description": "Optionally pass the aria-label text for the close button.\r\nDefaults to \"Close modal\" if not provided.",
+              "description": "Optionally pass the aria-label text for the close button.\nDefaults to \"Close modal\" if not provided.",
               "default": "\"Close modal\"",
               "required": false
             },
@@ -540,7 +791,7 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "Optionally you can pass false to not show the close button.\r\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\r\nor provide your own dismissal logic in the modal content.",
+              "description": "Optionally you can pass false to not show the close button.\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\nor provide your own dismissal logic in the modal content.",
               "default": "true",
               "required": false
             },
@@ -678,7 +929,7 @@
                 "text": "ILocalization"
               },
               "description": "Optionally allows localizing the component strings.",
-              "default": "{\r\n    Add: \"Add\",\r\n    AllRoles: \"All Roles\",\r\n    FilterByGroup: \"Filter By Group\",\r\n    GlobalRoles: \"Global Roles\",\r\n    Role: \"Role\",\r\n    RolePermissions: \"Role Permissions\",\r\n    SelectRole: \"Select Role\",\r\n    User: \"User\",\r\n    UserPermissions: \"User Permissions\",\r\n  }",
+              "default": "{\n    Add: \"Add\",\n    AllRoles: \"All Roles\",\n    FilterByGroup: \"Filter By Group\",\n    GlobalRoles: \"Global Roles\",\n    Role: \"Role\",\n    RolePermissions: \"Role Permissions\",\n    SelectRole: \"Select Role\",\n    User: \"User\",\n    UserPermissions: \"User Permissions\",\n  }",
               "required": false
             },
             {
@@ -767,11 +1018,119 @@
               "type": {
                 "text": "string"
               },
-              "description": "Fires up each time the search query changes.\r\nThe data passed is the new query."
+              "description": "Fires up each time the search query changes.\nThe data passed is the new query."
             }
           ],
           "slots": [],
           "cssProperties": [],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "./src/components/dnn-select/dnn-select.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-select.tsx",
+          "tagName": "dnn-select",
+          "description": "",
+          "attributes": [
+            {
+              "name": "disable-validity-reporting",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, the browser default validation message will be hidden.",
+              "required": false
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines whether the field is disabled.",
+              "required": false
+            },
+            {
+              "name": "help-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "Defines the help label displayed under the field.",
+              "required": false
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "The label for this input.",
+              "required": false
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name for this input, if not provided a random name will be assigned.",
+              "required": false
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines whether the field requires having a value.",
+              "required": false
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "The value of the input.",
+              "required": false
+            }
+          ],
+          "members": [],
+          "events": [
+            {
+              "name": "valueChange",
+              "type": {
+                "text": "string"
+              },
+              "description": "Fires when the value has changed and the user exits the input."
+            }
+          ],
+          "slots": [],
+          "cssProperties": [
+            {
+              "name": "--background",
+              "description": "Defines the background color."
+            },
+            {
+              "name": "--control-radius",
+              "description": "Defines the radius for the control corners."
+            },
+            {
+              "name": "--danger-color",
+              "description": "Defines the danger color used for invalid data."
+            },
+            {
+              "name": "--focus-color",
+              "description": "Defines the color when the component is focused."
+            },
+            {
+              "name": "--foreground",
+              "description": "Defines the foreground color."
+            },
+            {
+              "name": "--input-text-align",
+              "description": "Allows customizing the text alignment of the input text."
+            }
+          ],
           "cssParts": []
         }
       ]
@@ -1066,7 +1425,7 @@
           "kind": "class",
           "name": "dnn-vertical-splitview.tsx",
           "tagName": "dnn-vertical-splitview",
-          "description": "This allows splitting a UI into vertical adjustable panels, the splitter itself is not part of this component.\r\n- The content for the left part should be injected in the `left` slot.\r\n- The content for the right part should be injected in the `right` slot.\r\n- The content for the actual splitter should go in the default slot and other UI elements can be injected as long as you handle their behaviour, by default only the drag behavior is implemented in the component.",
+          "description": "This allows splitting a UI into vertical adjustable panels, the splitter itself is not part of this component.\n- The content for the left part should be injected in the `left` slot.\n- The content for the right part should be injected in the `right` slot.\n- The content for the actual splitter should go in the default slot and other UI elements can be injected as long as you handle their behaviour, by default only the drag behavior is implemented in the component.",
           "attributes": [
             {
               "name": "split-width-percentage",

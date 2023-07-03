@@ -52,9 +52,9 @@ export namespace Components {
          */
         "size"?: 'small' | 'normal' | 'large';
         /**
-          * Optional button style, can be either primary, secondary or tertiary and defaults to primary if not specified
+          * Optional button style, can be either primary, secondary or tertiary or danger and defaults to primary if not specified
          */
-        "type": 'primary' | 'secondary' | 'tertiary';
+        "type": 'primary' | 'danger' | 'secondary' | 'tertiary';
     }
     interface DnnCheckbox {
         /**
@@ -169,6 +169,88 @@ export namespace Components {
          */
         "width": number;
     }
+    /**
+     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     */
+    interface DnnInput {
+        /**
+          * If true, enables users to switch between a password and a text field (to view their password).
+         */
+        "allowShowPassword": boolean;
+        /**
+          * Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.
+         */
+        "autocomplete": string;
+        /**
+          * Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+         */
+        "checkValidity": () => Promise<ValidityState>;
+        /**
+          * If true, the browser default validation message will be hidden.
+         */
+        "disableValidityReporting": boolean;
+        /**
+          * Defines whether the field is disabled.
+         */
+        "disabled": boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText": string;
+        /**
+          * The label for this input.
+         */
+        "label": string;
+        /**
+          * Defines the maximum allowed value.
+         */
+        "max": number | string;
+        /**
+          * Defines the maximum amount of charaters.
+         */
+        "maxlength": number;
+        /**
+          * Defines the minimum allowed value.
+         */
+        "min": number | string;
+        /**
+          * Defines the minimum amount of charaters.
+         */
+        "minlength": number;
+        /**
+          * If true, allows multiple emails to be entered separated by commas.
+         */
+        "multiple": boolean;
+        /**
+          * The name for this input, if not provided a random name will be assigned.
+         */
+        "name": string;
+        /**
+          * Valid for text, search, url, tel, email, and password, the pattern attribute defines a regular expression that the input's value must match in order for the value to pass constraint validation.
+         */
+        "pattern": string;
+        /**
+          * Defines wheter the defined value is readonly.
+         */
+        "readonly": boolean;
+        /**
+          * Defines whether the field requires having a value.
+         */
+        "required": boolean;
+        "setCustomValidity": (message: string) => Promise<void>;
+        /**
+          * Defines the possible steps for numbers and dates/times. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#step
+         */
+        "step": string | number;
+        /**
+          * The input type, supports most of html standard input type, see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types.
+         */
+        "type": "date" | "datetime-local" | "email" | "number" | "password" | "tel" | "text" | "time" | "url" | "search";
+        /**
+          * The value of the input.
+         */
+        "value": number | string | string[];
+    }
     interface DnnModal {
         /**
           * Pass false to remove the backdrop click auto-dismiss feature.
@@ -244,6 +326,36 @@ export namespace Components {
           * Sets the query
          */
         "query": string;
+    }
+    interface DnnSelect {
+        /**
+          * If true, the browser default validation message will be hidden.
+         */
+        "disableValidityReporting": boolean;
+        /**
+          * Defines whether the field is disabled.
+         */
+        "disabled": boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText": string;
+        /**
+          * The label for this input.
+         */
+        "label": string;
+        /**
+          * The name for this input, if not provided a random name will be assigned.
+         */
+        "name": string;
+        /**
+          * Defines whether the field requires having a value.
+         */
+        "required": boolean;
+        /**
+          * The value of the input.
+         */
+        "value": string;
     }
     interface DnnSortIcon {
         /**
@@ -338,6 +450,10 @@ export interface DnnImageCropperCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnImageCropperElement;
 }
+export interface DnnInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnInputElement;
+}
 export interface DnnModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnModalElement;
@@ -353,6 +469,10 @@ export interface DnnPermissionsGridCustomEvent<T> extends CustomEvent<T> {
 export interface DnnSearchboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnSearchboxElement;
+}
+export interface DnnSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnSelectElement;
 }
 export interface DnnSortIconCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -421,6 +541,15 @@ declare global {
         prototype: HTMLDnnImageCropperElement;
         new (): HTMLDnnImageCropperElement;
     };
+    /**
+     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     */
+    interface HTMLDnnInputElement extends Components.DnnInput, HTMLStencilElement {
+    }
+    var HTMLDnnInputElement: {
+        prototype: HTMLDnnInputElement;
+        new (): HTMLDnnInputElement;
+    };
     interface HTMLDnnModalElement extends Components.DnnModal, HTMLStencilElement {
     }
     var HTMLDnnModalElement: {
@@ -444,6 +573,12 @@ declare global {
     var HTMLDnnSearchboxElement: {
         prototype: HTMLDnnSearchboxElement;
         new (): HTMLDnnSearchboxElement;
+    };
+    interface HTMLDnnSelectElement extends Components.DnnSelect, HTMLStencilElement {
+    }
+    var HTMLDnnSelectElement: {
+        prototype: HTMLDnnSelectElement;
+        new (): HTMLDnnSelectElement;
     };
     interface HTMLDnnSortIconElement extends Components.DnnSortIcon, HTMLStencilElement {
     }
@@ -501,10 +636,12 @@ declare global {
         "dnn-color-picker": HTMLDnnColorPickerElement;
         "dnn-dropzone": HTMLDnnDropzoneElement;
         "dnn-image-cropper": HTMLDnnImageCropperElement;
+        "dnn-input": HTMLDnnInputElement;
         "dnn-modal": HTMLDnnModalElement;
         "dnn-monaco-editor": HTMLDnnMonacoEditorElement;
         "dnn-permissions-grid": HTMLDnnPermissionsGridElement;
         "dnn-searchbox": HTMLDnnSearchboxElement;
+        "dnn-select": HTMLDnnSelectElement;
         "dnn-sort-icon": HTMLDnnSortIconElement;
         "dnn-tab": HTMLDnnTabElement;
         "dnn-tabs": HTMLDnnTabsElement;
@@ -553,9 +690,9 @@ declare namespace LocalJSX {
          */
         "size"?: 'small' | 'normal' | 'large';
         /**
-          * Optional button style, can be either primary, secondary or tertiary and defaults to primary if not specified
+          * Optional button style, can be either primary, secondary or tertiary or danger and defaults to primary if not specified
          */
-        "type"?: 'primary' | 'secondary' | 'tertiary';
+        "type"?: 'primary' | 'danger' | 'secondary' | 'tertiary';
     }
     interface DnnCheckbox {
         /**
@@ -691,6 +828,91 @@ declare namespace LocalJSX {
          */
         "width"?: number;
     }
+    /**
+     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     */
+    interface DnnInput {
+        /**
+          * If true, enables users to switch between a password and a text field (to view their password).
+         */
+        "allowShowPassword"?: boolean;
+        /**
+          * Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.
+         */
+        "autocomplete"?: string;
+        /**
+          * If true, the browser default validation message will be hidden.
+         */
+        "disableValidityReporting"?: boolean;
+        /**
+          * Defines whether the field is disabled.
+         */
+        "disabled"?: boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText"?: string;
+        /**
+          * The label for this input.
+         */
+        "label"?: string;
+        /**
+          * Defines the maximum allowed value.
+         */
+        "max"?: number | string;
+        /**
+          * Defines the maximum amount of charaters.
+         */
+        "maxlength"?: number;
+        /**
+          * Defines the minimum allowed value.
+         */
+        "min"?: number | string;
+        /**
+          * Defines the minimum amount of charaters.
+         */
+        "minlength"?: number;
+        /**
+          * If true, allows multiple emails to be entered separated by commas.
+         */
+        "multiple"?: boolean;
+        /**
+          * The name for this input, if not provided a random name will be assigned.
+         */
+        "name"?: string;
+        /**
+          * Fires when the value has changed and the user exits the input.
+         */
+        "onValueChange"?: (event: DnnInputCustomEvent<number | string | string[]>) => void;
+        /**
+          * Fires when the using is inputing data (on keystrokes).
+         */
+        "onValueInput"?: (event: DnnInputCustomEvent<number | string | string[]>) => void;
+        /**
+          * Valid for text, search, url, tel, email, and password, the pattern attribute defines a regular expression that the input's value must match in order for the value to pass constraint validation.
+         */
+        "pattern"?: string;
+        /**
+          * Defines wheter the defined value is readonly.
+         */
+        "readonly"?: boolean;
+        /**
+          * Defines whether the field requires having a value.
+         */
+        "required"?: boolean;
+        /**
+          * Defines the possible steps for numbers and dates/times. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#step
+         */
+        "step"?: string | number;
+        /**
+          * The input type, supports most of html standard input type, see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types.
+         */
+        "type"?: "date" | "datetime-local" | "email" | "number" | "password" | "tel" | "text" | "time" | "url" | "search";
+        /**
+          * The value of the input.
+         */
+        "value"?: number | string | string[];
+    }
     interface DnnModal {
         /**
           * Pass false to remove the backdrop click auto-dismiss feature.
@@ -779,6 +1001,40 @@ declare namespace LocalJSX {
          */
         "query"?: string;
     }
+    interface DnnSelect {
+        /**
+          * If true, the browser default validation message will be hidden.
+         */
+        "disableValidityReporting"?: boolean;
+        /**
+          * Defines whether the field is disabled.
+         */
+        "disabled"?: boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText"?: string;
+        /**
+          * The label for this input.
+         */
+        "label"?: string;
+        /**
+          * The name for this input, if not provided a random name will be assigned.
+         */
+        "name"?: string;
+        /**
+          * Fires when the value has changed and the user exits the input.
+         */
+        "onValueChange"?: (event: DnnSelectCustomEvent<string>) => void;
+        /**
+          * Defines whether the field requires having a value.
+         */
+        "required"?: boolean;
+        /**
+          * The value of the input.
+         */
+        "value"?: string;
+    }
     interface DnnSortIcon {
         /**
           * Emitted when the sort is changed.
@@ -855,10 +1111,12 @@ declare namespace LocalJSX {
         "dnn-color-picker": DnnColorPicker;
         "dnn-dropzone": DnnDropzone;
         "dnn-image-cropper": DnnImageCropper;
+        "dnn-input": DnnInput;
         "dnn-modal": DnnModal;
         "dnn-monaco-editor": DnnMonacoEditor;
         "dnn-permissions-grid": DnnPermissionsGrid;
         "dnn-searchbox": DnnSearchbox;
+        "dnn-select": DnnSelect;
         "dnn-sort-icon": DnnSortIcon;
         "dnn-tab": DnnTab;
         "dnn-tabs": DnnTabs;
@@ -887,10 +1145,15 @@ declare module "@stencil/core" {
              * in an event that has a data-url of the image.
              */
             "dnn-image-cropper": LocalJSX.DnnImageCropper & JSXBase.HTMLAttributes<HTMLDnnImageCropperElement>;
+            /**
+             * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+             */
+            "dnn-input": LocalJSX.DnnInput & JSXBase.HTMLAttributes<HTMLDnnInputElement>;
             "dnn-modal": LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
             "dnn-monaco-editor": LocalJSX.DnnMonacoEditor & JSXBase.HTMLAttributes<HTMLDnnMonacoEditorElement>;
             "dnn-permissions-grid": LocalJSX.DnnPermissionsGrid & JSXBase.HTMLAttributes<HTMLDnnPermissionsGridElement>;
             "dnn-searchbox": LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
+            "dnn-select": LocalJSX.DnnSelect & JSXBase.HTMLAttributes<HTMLDnnSelectElement>;
             "dnn-sort-icon": LocalJSX.DnnSortIcon & JSXBase.HTMLAttributes<HTMLDnnSortIconElement>;
             /**
              * Represents a single tab and must be used inside a dnn-tabs element.
