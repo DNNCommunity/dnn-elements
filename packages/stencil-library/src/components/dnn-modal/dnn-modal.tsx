@@ -65,7 +65,7 @@ export class DnnModal {
 
   
   disconnectedCallback() {
-    this.seDrag.removeEventListener("mousedown", this.handleResizeMouseDown);
+    this.seDrag?.removeEventListener("mousedown", this.handleResizeMouseDown);
     removeEventListener("mouseup", this.handleResizeMouseUp);
   }
   
