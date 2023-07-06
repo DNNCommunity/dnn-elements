@@ -77,9 +77,9 @@
             {
               "name": "type",
               "type": {
-                "text": "\"primary\" | \"secondary\" | \"tertiary\""
+                "text": "\"danger\" | \"primary\" | \"secondary\" | \"tertiary\""
               },
-              "description": "Optional button style,\ncan be either primary, secondary or tertiary and defaults to primary if not specified",
+              "description": "Optional button style,\ncan be either primary, secondary or tertiary or danger and defaults to primary if not specified",
               "default": "'primary'",
               "required": false
             }
@@ -107,7 +107,32 @@
               "description": ""
             }
           ],
-          "cssProperties": [],
+          "cssProperties": [
+            {
+              "name": "--background-color",
+              "description": "The background color of the button."
+            },
+            {
+              "name": "--border-color",
+              "description": "The border color of the button."
+            },
+            {
+              "name": "--border-radius",
+              "description": "The border radius of the button."
+            },
+            {
+              "name": "--border-size",
+              "description": "The border size of the button."
+            },
+            {
+              "name": "--color",
+              "description": "The text color of the button."
+            },
+            {
+              "name": "--padding",
+              "description": "The padding of the button."
+            }
+          ],
           "cssParts": []
         }
       ]
