@@ -327,6 +327,36 @@ export namespace Components {
          */
         "query": string;
     }
+    interface DnnSelect {
+        /**
+          * If true, the browser default validation message will be hidden.
+         */
+        "disableValidityReporting": boolean;
+        /**
+          * Defines whether the field is disabled.
+         */
+        "disabled": boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText": string;
+        /**
+          * The label for this input.
+         */
+        "label": string;
+        /**
+          * The name for this input, if not provided a random name will be assigned.
+         */
+        "name": string;
+        /**
+          * Defines whether the field requires having a value.
+         */
+        "required": boolean;
+        /**
+          * The value of the input.
+         */
+        "value": string;
+    }
     interface DnnSortIcon {
         /**
           * Defines the current sort direction
@@ -440,6 +470,10 @@ export interface DnnSearchboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnSearchboxElement;
 }
+export interface DnnSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnSelectElement;
+}
 export interface DnnSortIconCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnSortIconElement;
@@ -540,6 +574,12 @@ declare global {
         prototype: HTMLDnnSearchboxElement;
         new (): HTMLDnnSearchboxElement;
     };
+    interface HTMLDnnSelectElement extends Components.DnnSelect, HTMLStencilElement {
+    }
+    var HTMLDnnSelectElement: {
+        prototype: HTMLDnnSelectElement;
+        new (): HTMLDnnSelectElement;
+    };
     interface HTMLDnnSortIconElement extends Components.DnnSortIcon, HTMLStencilElement {
     }
     var HTMLDnnSortIconElement: {
@@ -601,6 +641,7 @@ declare global {
         "dnn-monaco-editor": HTMLDnnMonacoEditorElement;
         "dnn-permissions-grid": HTMLDnnPermissionsGridElement;
         "dnn-searchbox": HTMLDnnSearchboxElement;
+        "dnn-select": HTMLDnnSelectElement;
         "dnn-sort-icon": HTMLDnnSortIconElement;
         "dnn-tab": HTMLDnnTabElement;
         "dnn-tabs": HTMLDnnTabsElement;
@@ -960,6 +1001,40 @@ declare namespace LocalJSX {
          */
         "query"?: string;
     }
+    interface DnnSelect {
+        /**
+          * If true, the browser default validation message will be hidden.
+         */
+        "disableValidityReporting"?: boolean;
+        /**
+          * Defines whether the field is disabled.
+         */
+        "disabled"?: boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText"?: string;
+        /**
+          * The label for this input.
+         */
+        "label"?: string;
+        /**
+          * The name for this input, if not provided a random name will be assigned.
+         */
+        "name"?: string;
+        /**
+          * Fires when the value has changed and the user exits the input.
+         */
+        "onValueChange"?: (event: DnnSelectCustomEvent<string>) => void;
+        /**
+          * Defines whether the field requires having a value.
+         */
+        "required"?: boolean;
+        /**
+          * The value of the input.
+         */
+        "value"?: string;
+    }
     interface DnnSortIcon {
         /**
           * Emitted when the sort is changed.
@@ -1041,6 +1116,7 @@ declare namespace LocalJSX {
         "dnn-monaco-editor": DnnMonacoEditor;
         "dnn-permissions-grid": DnnPermissionsGrid;
         "dnn-searchbox": DnnSearchbox;
+        "dnn-select": DnnSelect;
         "dnn-sort-icon": DnnSortIcon;
         "dnn-tab": DnnTab;
         "dnn-tabs": DnnTabs;
@@ -1077,6 +1153,7 @@ declare module "@stencil/core" {
             "dnn-monaco-editor": LocalJSX.DnnMonacoEditor & JSXBase.HTMLAttributes<HTMLDnnMonacoEditorElement>;
             "dnn-permissions-grid": LocalJSX.DnnPermissionsGrid & JSXBase.HTMLAttributes<HTMLDnnPermissionsGridElement>;
             "dnn-searchbox": LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
+            "dnn-select": LocalJSX.DnnSelect & JSXBase.HTMLAttributes<HTMLDnnSelectElement>;
             "dnn-sort-icon": LocalJSX.DnnSortIcon & JSXBase.HTMLAttributes<HTMLDnnSortIconElement>;
             /**
              * Represents a single tab and must be used inside a dnn-tabs element.

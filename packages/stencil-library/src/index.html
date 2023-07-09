@@ -56,12 +56,28 @@
     <li><a href="#dnn-sort-icon">dnn-sort-icon</a></li>
     <li><a href="#dnn-toggle">dnn-toggle</a></li>
     <li><a href="#dnn-image-crop">dnn-image-crop</a></li>
+    <li><a href="#dnn-select">dnn-select</a></li>
     <li><a href="#dnn-tabs">dnn-tabs</a></li>
     <li><a href="#dnn-treeview-item">dnn-treeview-item</a></li>
     <li><a href="#dnn-vertical-splitview">dnn-vertical-splitview</a></li>
     <li><a href="#dnn-vertical-overflow-menu">dnn-vertical-overflow-menu</a></li>
     <li><a href="#dnn-permissions-grid">dnn-permissions-grid</a></li>
   </ul>
+  <!-- dnn-select -->
+  <section>
+    <h2>dnn-select</h2>
+    <div style="display: flex; flex-wrap: wrap;gap:1em;">
+      <dnn-select name="pets" required label="Pet" help-text="Choose a pet.">
+        <option value="">--Please choose an option--</option>
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+        <option value="hamster">Hamster</option>
+        <option value="parrot">Parrot</option>
+        <option value="spider">Spider</option>
+        <option value="goldfish">Goldfish</option>
+    </dnn-select>
+    </div>
+  </section>
   <!-- dnn-input -->
   <a name="dnn-input"></a>
   <section>
@@ -96,7 +112,6 @@
       <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", () => {
           let inputs = document.querySelectorAll('dnn-input');
-          console.log(inputs);
           inputs.forEach((item) => {
             item.addEventListener('valueChange', (e) => {
               item.checkValidity()
