@@ -3,7 +3,7 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-button/dnn-button.tsx",
+      "path": "src/components/dnn-button/dnn-button.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -114,7 +114,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-checkbox/dnn-checkbox.tsx",
+      "path": "src/components/dnn-checkbox/dnn-checkbox.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -189,7 +189,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-chevron/dnn-chevron.tsx",
+      "path": "src/components/dnn-chevron/dnn-chevron.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -243,7 +243,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-collapsible/dnn-collapsible.tsx",
+      "path": "src/components/dnn-collapsible/dnn-collapsible.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -295,7 +295,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-color-picker/dnn-color-picker.tsx",
+      "path": "src/components/dnn-color-picker/dnn-color-picker.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -340,7 +340,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-dropzone/dnn-dropzone.tsx",
+      "path": "src/components/dnn-dropzone/dnn-dropzone.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -425,7 +425,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-image-cropper/dnn-image-cropper.tsx",
+      "path": "src/components/dnn-image-cropper/dnn-image-cropper.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -499,7 +499,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-input/dnn-input.tsx",
+      "path": "src/components/dnn-input/dnn-input.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -726,7 +726,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-modal/dnn-modal.tsx",
+      "path": "src/components/dnn-modal/dnn-modal.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -816,7 +816,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-monaco-editor/dnn-monaco-editor.tsx",
+      "path": "src/components/dnn-monaco-editor/dnn-monaco-editor.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -869,7 +869,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-permissions-grid/dnn-permissions-grid.tsx",
+      "path": "src/components/dnn-permissions-grid/dnn-permissions-grid.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -950,7 +950,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-searchbox/dnn-searchbox.tsx",
+      "path": "src/components/dnn-searchbox/dnn-searchbox.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -1004,7 +1004,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-sort-icon/dnn-sort-icon.tsx",
+      "path": "src/components/dnn-sort-icon/dnn-sort-icon.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -1053,7 +1053,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-tab/dnn-tab.tsx",
+      "path": "src/components/dnn-tab/dnn-tab.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -1093,7 +1093,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-tabs/dnn-tabs.tsx",
+      "path": "src/components/dnn-tabs/dnn-tabs.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -1132,7 +1132,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-toggle/dnn-toggle.tsx",
+      "path": "src/components/dnn-toggle/dnn-toggle.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -1202,7 +1202,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-treeview-item/dnn-treeview-item.tsx",
+      "path": "src/components/dnn-treeview-item/dnn-treeview-item.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -1254,7 +1254,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-vertical-overflow-menu/dnn-vertical-overflow-menu.tsx",
+      "path": "src/components/dnn-vertical-overflow-menu/dnn-vertical-overflow-menu.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -1286,7 +1286,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-vertical-splitview/dnn-vertical-splitview.tsx",
+      "path": "src/components/dnn-vertical-splitview/dnn-vertical-splitview.tsx",
       "declarations": [
         {
           "kind": "class",
