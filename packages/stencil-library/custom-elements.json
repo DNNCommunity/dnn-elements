@@ -1004,6 +1004,114 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/dnn-select/dnn-select.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-select.tsx",
+          "tagName": "dnn-select",
+          "description": "",
+          "attributes": [
+            {
+              "name": "disable-validity-reporting",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, the browser default validation message will be hidden.",
+              "required": false
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines whether the field is disabled.",
+              "required": false
+            },
+            {
+              "name": "help-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "Defines the help label displayed under the field.",
+              "required": false
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "The label for this input.",
+              "required": false
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name for this input, if not provided a random name will be assigned.",
+              "required": false
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines whether the field requires having a value.",
+              "required": false
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "The value of the input.",
+              "required": false
+            }
+          ],
+          "members": [],
+          "events": [
+            {
+              "name": "valueChange",
+              "type": {
+                "text": "string"
+              },
+              "description": "Fires when the value has changed and the user exits the input."
+            }
+          ],
+          "slots": [],
+          "cssProperties": [
+            {
+              "name": "--background",
+              "description": "Defines the background color."
+            },
+            {
+              "name": "--control-radius",
+              "description": "Defines the radius for the control corners."
+            },
+            {
+              "name": "--danger-color",
+              "description": "Defines the danger color used for invalid data."
+            },
+            {
+              "name": "--focus-color",
+              "description": "Defines the color when the component is focused."
+            },
+            {
+              "name": "--foreground",
+              "description": "Defines the foreground color."
+            },
+            {
+              "name": "--input-text-align",
+              "description": "Allows customizing the text alignment of the input text."
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/dnn-sort-icon/dnn-sort-icon.tsx",
       "declarations": [
         {
