@@ -1,4 +1,4 @@
-import { Component, Host, h, State, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, h, State, Prop, Event, EventEmitter, Method } from '@stencil/core';
 import { CornerType } from './CornerType';
 import { getMovementFromEvent } from "../../utilities/mouseUtilities";
 
@@ -48,6 +48,12 @@ export class DnnImageCropper {
 
   /** When the image crop changes, emits the dataurl for the new cropped image. */
   @Event() imageCropChanged: EventEmitter<string>;
+
+  /** Clears the current image and crop (resets the component). */
+  @Method()
+  public async clear(){
+    this.setView("noPictureView");
+  }
 
   @State() view: IComponentInterfaces["View"];
 

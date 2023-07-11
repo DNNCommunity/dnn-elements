@@ -464,7 +464,6 @@
                 "text": "number"
               },
               "description": "Sets the desired final image height.",
-              "default": "600",
               "required": false
             },
             {
@@ -491,7 +490,6 @@
                 "text": "number"
               },
               "description": "Sets the desired final image width.",
-              "default": "600",
               "required": false
             }
           ],
@@ -503,8 +501,14 @@
                 "text": "{ capture: string; dragAndDropFile: string; or: string; takePicture: string; uploadFile: string; imageTooSmall: string; modalCloseText: string; }"
               },
               "description": "Can be used to customize controls text.\nSome values support tokens, see default values for examples.",
-              "default": "{\n    capture: \"Capture\",\n    dragAndDropFile: \"Drag and drop an image\",\n    or: \"or\",\n    takePicture: \"Take a picture\",\n    uploadFile: \"Upload an image\",\n    imageTooSmall: \"The image you are attempting to upload does not meet the minimum size requirement of {width} pixels by {height} pixels. Please upload a larger image.\",\n    modalCloseText: \"Close\",\n  }",
+              "default": "{\n      capture: \"Capture\",\n      dragAndDropFile: \"Drag and drop an image\",\n      or: \"or\",\n      takePicture: \"Take a picture\",\n      uploadFile: \"Upload an image\",\n      imageTooSmall: \"The image you are attempting to upload does not meet the minimum size requirement of {width} pixels by {height} pixels. Please upload a larger image.\",\n      modalCloseText: \"Close\",\n    }",
               "required": false
+            },
+            {
+              "kind": "method",
+              "name": "clear",
+              "description": "Clears the current image and crop (resets the component).",
+              "signature": "clear() => Promise<void>"
             }
           ],
           "events": [
