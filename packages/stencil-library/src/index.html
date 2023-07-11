@@ -718,7 +718,9 @@
   <section>
     <h2>dnn-image-cropper</h2>
     <p>Allows cropping an image in the browser.</p>
-    <dnn-image-cropper id="dnnImageCropper" prevent-undersized />
+    <div style="max-width: 500px;">
+      <dnn-image-cropper id="dnnImageCropper" width="600" height="400" prevent-undersized />
+    </div>
     <script type="text/javascript">
       const dnnImageCropper = document.querySelector("#dnnImageCropper");
       dnnImageCropper.addEventListener("imageCropChanged", e => console.log(e.detail));

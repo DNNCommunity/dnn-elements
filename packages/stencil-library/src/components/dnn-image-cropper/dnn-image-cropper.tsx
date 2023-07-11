@@ -14,10 +14,10 @@ import { getMovementFromEvent } from "../../utilities/mouseUtilities";
 })
 export class DnnImageCropper {
   /** Sets the desired final image width. */
-  @Prop() width: number = 600;
+  @Prop() width: number;
 
   /** Sets the desired final image height. */
-  @Prop() height: number = 600;
+  @Prop() height: number;
 
   /** Can be used to customize controls text.
    * Some values support tokens, see default values for examples.
@@ -31,14 +31,14 @@ export class DnnImageCropper {
     imageTooSmall: string;
     modalCloseText: string;
   } = {
-    capture: "Capture",
-    dragAndDropFile: "Drag and drop an image",
-    or: "or",
-    takePicture: "Take a picture",
-    uploadFile: "Upload an image",
-    imageTooSmall: "The image you are attempting to upload does not meet the minimum size requirement of {width} pixels by {height} pixels. Please upload a larger image.",
-    modalCloseText: "Close",
-  }
+      capture: "Capture",
+      dragAndDropFile: "Drag and drop an image",
+      or: "or",
+      takePicture: "Take a picture",
+      uploadFile: "Upload an image",
+      imageTooSmall: "The image you are attempting to upload does not meet the minimum size requirement of {width} pixels by {height} pixels. Please upload a larger image.",
+      modalCloseText: "Close",
+    }
 
   /** Sets the output quality of the cropped image (number between 0 and 1). */
   @Prop() quality: number = 0.8;
@@ -50,7 +50,7 @@ export class DnnImageCropper {
   @Event() imageCropChanged: EventEmitter<string>;
 
   @State() view: IComponentInterfaces["View"];
-  
+
   private host: HTMLElement;
   private hasPictureView: HTMLDivElement;
   private noPictureView: HTMLDivElement;
@@ -66,7 +66,7 @@ export class DnnImageCropper {
     })
   }
 
-  private setView(newView: IComponentInterfaces["View"]){
+  private setView(newView: IComponentInterfaces["View"]) {
     const views = this.host.shadowRoot.querySelectorAll(".view");
     views.forEach(v =>
       v.classList.remove("visible"));
@@ -83,26 +83,26 @@ export class DnnImageCropper {
     this.view = newView;
   }
 
-  private initCrop(){
+  private initCrop() {
     var wantedRatio = this.width / this.height;
     var imageRect = this.image.getBoundingClientRect();
     var imageRatio = imageRect.width / imageRect.height;
-    
-    if (wantedRatio > imageRatio){
-        var wantedHeight = imageRect.width / wantedRatio;
-        var diff = imageRect.height - wantedHeight;
-        this.crop.style.top = Math.round(diff/2).toString() + "px";
-        this.crop.style.height = Math.round(wantedHeight).toString() + "px";
+
+    if (wantedRatio > imageRatio) {
+      var wantedHeight = imageRect.width / wantedRatio;
+      var diff = imageRect.height - wantedHeight;
+      this.crop.style.top = Math.round(diff / 2).toString() + "px";
+      this.crop.style.height = Math.round(wantedHeight).toString() + "px";
     }
-    else{
+    else {
       var wantedWidth = imageRect.height * wantedRatio;
       var diff = imageRect.width - wantedWidth;
-        this.crop.style.left = Math.round(diff/2).toString() + "px";
-        this.crop.style.width = Math.round(wantedWidth).toString() + "px";
+      this.crop.style.left = Math.round(diff / 2).toString() + "px";
+      this.crop.style.width = Math.round(wantedWidth).toString() + "px";
     }
   }
 
-  private setImage(){
+  private setImage() {
     this.image.addEventListener('load', () => {
       this.initCrop();
       this.emitImage();
@@ -111,29 +111,63 @@ export class DnnImageCropper {
   }
 
   private handleNewFile(file: File): void {
-    if (file.type.split('/')[0] != "image"){
+    if (file.type.split('/')[0] != "image") {
       return;
     }
-    
+
     var reader = new FileReader();
     reader.onload = readerLoadEvent => {
       var img = new Image();
       img.onload = () => {
         this.canvas.width = img.width;
         this.canvas.height = img.height;
-        if (this.preventUndersized && (img.width < this.width || img.height< this.height)){
+        if (this.preventUndersized && (img.width < this.width || img.height < this.height)) {
           this.imageTooSmallModal.show();
           return;
         }
         var ctx = this.canvas.getContext("2d");
-        ctx.drawImage(img,0,0);
+        ctx.drawImage(img, 0, 0);
         this.setView("hasPictureView");
         this.setImage();
+        requestAnimationFrame(() => {
+          this.initializeCropBox();
+        })
       }
       img.src = readerLoadEvent.target.result.toString();
     }
     reader.readAsDataURL(file);
   }
+
+  private initializeCropBox = () => {
+    const imageRect = this.image.getBoundingClientRect();
+    const wantedRatio = this.width / this.height;
+  
+    // Calculate initial dimensions of the crop box.
+    let newWidth: number, newHeight: number;
+  
+    // Determine if the width or the height is the limiting dimension.
+    if (imageRect.width / imageRect.height > wantedRatio) {
+      // Image is wider than the wanted ratio, so height is the limiting factor.
+      newHeight = imageRect.height;
+      newWidth = newHeight * wantedRatio;
+    } else {
+      // Image is taller than the wanted ratio, so width is the limiting factor.
+      newWidth = imageRect.width;
+      newHeight = newWidth / wantedRatio;
+    }
+  
+    // Calculate initial position of the crop box.
+    const newTop = (imageRect.height - newHeight) / 2;
+    const newLeft = (imageRect.width - newWidth) / 2;
+  
+    // Apply initial dimensions and position.
+    this.crop.style.top = `${Math.round(newTop)}px`;
+    this.crop.style.left = `${Math.round(newLeft)}px`;
+    this.crop.style.width = `${Math.round(newWidth)}px`;
+    this.crop.style.height = `${Math.round(newHeight)}px`;
+  };
+  
+  
 
   private handleCropMouseDown = (event: MouseEvent | TouchEvent) => {
     event.stopPropagation();
@@ -206,7 +240,7 @@ export class DnnImageCropper {
     if (height > this.image.naturalHeight)
       height = this.image.naturalHeight;
 
-    var dataUrl = this.generateCroppedImage(x, y, width, height, this.width, this.height);
+    var dataUrl = this.generateCroppedImage(x, y, width, height, this.width ?? width, this.height ?? height);
     this.imageCropChanged.emit(dataUrl);
   }
 
@@ -237,88 +271,103 @@ export class DnnImageCropper {
   }
 
   private handleCornerDrag = (event: MouseEvent | TouchEvent, corner: CornerType) => {
-    if (!this.isMouseStillInTarget(event)){
-      return;
-    }
-    
-    let {left, top} = this.getCornerLeftTop(corner);
-    let newWidth = 0;
-    let newHeight = 0;
-    let orientation: "horizontal" | "vertical" = "horizontal";
     const wantedRatio = this.width / this.height;
     const cropRect = this.crop.getBoundingClientRect();
     const imageRect = this.image.getBoundingClientRect();
+
     let { movementX, movementY } = getMovementFromEvent(event, this.previousTouch);
-    if (Math.abs(movementX) < Math.abs(movementY)){
-      orientation = "vertical";
-    }
 
-    if (orientation == "horizontal"){
-      switch (corner) {
-        case CornerType.nw:
-        case CornerType.sw:
-          newWidth = cropRect.width - movementX;
-          newHeight = newWidth / wantedRatio;
-          break;
-        case CornerType.ne:
-        case CornerType.se:
-          newWidth = cropRect.width + movementX;
-          newHeight = newWidth / wantedRatio;
-          break;
-        default:
-          break;
-      }
-    } else{
-      switch (corner) {
-        case CornerType.nw:
-        case CornerType.ne:
-          newHeight = cropRect.height - movementY;
-          newWidth = newHeight * wantedRatio;
-          break;
-        case CornerType.se:
-        case CornerType.sw:
-          newHeight = cropRect.height + movementY;
-          newWidth = newHeight * wantedRatio;
-          break;
-        default:
-          break;
-      }
-    }
-
-    switch (corner) {
-      case CornerType.ne:
-      case CornerType.nw:
-        const topOffset = cropRect.height - newHeight;
-        top = this.crop.offsetTop + topOffset;
-      default:
-        break;
-    }
+    let newWidth: number, newHeight: number;
 
     switch (corner) {
       case CornerType.nw:
-      case CornerType.sw:
-        const leftOffset = cropRect.width - newWidth;
-        left = this.crop.offsetLeft + leftOffset;
-        if (left < 0) left = 0;
-        if (left > imageRect.width) left = imageRect.width;
-        if (top < 0) top = 0;
-        if (top > imageRect.height) top = imageRect.height;
-        if (left + newWidth > imageRect.width) newWidth = imageRect.width - left;
-        if (top + newHeight > imageRect.height) newHeight = imageRect.height - top;
+        newWidth = cropRect.width - movementX;
+        newHeight = cropRect.height - movementY;
         break;
       case CornerType.ne:
+        newWidth = cropRect.width + movementX;
+        newHeight = cropRect.height - movementY;
+        break;
       case CornerType.se:
-        if (top < 0) top = 0;
-        if (top > imageRect.height) top = imageRect.height;
-        if (left + newWidth > imageRect.width) newWidth = imageRect.width - left;
-        if (top + newHeight > imageRect.height) newHeight = imageRect.height - top;
+        newWidth = cropRect.width + movementX;
+        newHeight = cropRect.height + movementY;
         break;
-      default:
+      case CornerType.sw:
+        newWidth = cropRect.width - movementX;
+        newHeight = cropRect.height + movementY;
+    }
+
+    let newTop: number, newLeft: number;
+    if (wantedRatio) {
+      switch (corner) {
+        case CornerType.nw:
+          newHeight = newWidth / wantedRatio;
+          newTop = cropRect.bottom - newHeight;
+          break;
+        case CornerType.se:
+          newWidth = newHeight * wantedRatio;
+          break;
+        case CornerType.ne:
+          newHeight = newWidth / wantedRatio;
+          newTop = cropRect.bottom - newHeight;
+          break;
+        case CornerType.sw:
+          newWidth = newHeight * wantedRatio;
+          newLeft = cropRect.right - newWidth;
+          break;
+      }
+    }
+
+    switch (corner) {
+      case CornerType.nw:
+        newTop = this.crop.offsetTop + (cropRect.height - newHeight);
+        newLeft = this.crop.offsetLeft + (cropRect.width - newWidth);
+        break;
+      case CornerType.ne:
+        newTop = this.crop.offsetTop + (cropRect.height - newHeight);
+        newLeft = this.crop.offsetLeft;
+        break;
+      case CornerType.se:
+        newTop = this.crop.offsetTop;
+        newLeft = this.crop.offsetLeft;
+        break;
+      case CornerType.sw:
+        newTop = this.crop.offsetTop;
+        newLeft = this.crop.offsetLeft + (cropRect.width - newWidth);
         break;
     }
 
-    if (newWidth / newHeight != wantedRatio){
-      return;
+    if (newLeft < 0) {
+      newWidth += newLeft;
+      newLeft = 0;
+    }
+    
+    if (newTop < 0) {
+      newHeight += newTop;
+      newTop = 0;
+    }
+    
+    if (newLeft + newWidth > imageRect.width) {
+      newWidth = imageRect.width - newLeft;
+    }
+    
+    if (newTop + newHeight > imageRect.height) {
+      newHeight = imageRect.height - newTop;
+    }
+
+    // After the boundary checks, recalculate the width and height based on the ratio
+    if (wantedRatio) {
+      switch (corner) {
+        case CornerType.se:
+        case CornerType.sw:
+          newWidth = newHeight * wantedRatio;
+          if (newLeft + newWidth > imageRect.width) {
+              newWidth = imageRect.width - newLeft;
+              // Recalculate the height after adjusting the width
+              newHeight = newWidth / wantedRatio;
+          }
+          break;
+      }
     }
 
     if (this.preventUndersized){
@@ -328,68 +377,31 @@ export class DnnImageCropper {
       }
     }
 
-    switch (corner) {
-      case CornerType.ne:
-        this.crop.style.top = `${top}px`;
-        this.crop.style.width = `${newWidth}px`;
-        this.crop.style.height = `${newHeight}px`;
-        break;
-      case CornerType.nw:
-        this.crop.style.left = `${left}px`;
-        this.crop.style.top = `${top}px`;
-        this.crop.style.width = `${newWidth}px`;
-        this.crop.style.height = `${newHeight}px`;
-        break;
-      case CornerType.se:
-        this.crop.style.width = `${newWidth}px`;
-        this.crop.style.height = `${newHeight}px`;
-        break;
-      case CornerType.sw:
-        this.crop.style.left = `${left}px`;
-        this.crop.style.width = `${newWidth}px`;
-        this.crop.style.height = `${newHeight}px`;
-        break;
-      default:
-        break;
-    }
-  }
-
-  private getCornerLeftTop(corner: CornerType): { left: number; top: number; } {
-    let left = 0;
-    let top = 0;
-    switch (corner) {
-      case CornerType.se:
-        left = this.crop.offsetLeft;
-        top = this.crop.offsetTop;
-        break;
-      case CornerType.sw:
-        top = this.crop.offsetTop;
-        break;
-      default:
-        break;
-    }
-    return {top, left};
+    this.crop.style.top = `${newTop}px`;
+    this.crop.style.left = `${newLeft}px`;
+    this.crop.style.width = `${newWidth}px`;
+    this.crop.style.height = `${newHeight}px`;
   }
 
   private handleCropDrag = (ev: MouseEvent | TouchEvent) => {
-    if (!this.isMouseStillInTarget(ev)){
+    if (!this.isMouseStillInTarget(ev)) {
       return;
     }
-    let {movementX, movementY} = getMovementFromEvent(ev, this.previousTouch);
+    let { movementX, movementY } = getMovementFromEvent(ev, this.previousTouch);
     let newLeft = this.crop.offsetLeft + movementX;
     let newTop = this.crop.offsetTop + movementY;
     var imageRect = this.image.getBoundingClientRect();
     var cropRect = this.crop.getBoundingClientRect();
-    if (newLeft < 0){
+    if (newLeft < 0) {
       newLeft = 0;
     }
-    if (newTop < 0){
+    if (newTop < 0) {
       newTop = 0;
     }
-    if (newLeft + cropRect.width > imageRect.width){
+    if (newLeft + cropRect.width > imageRect.width) {
       newLeft = this.crop.offsetLeft;
     }
-    if (newTop + cropRect.height > imageRect.height){
+    if (newTop + cropRect.height > imageRect.height) {
       newTop = this.crop.offsetTop;
     }
     this.crop.style.left = newLeft + "px";
@@ -401,40 +413,38 @@ export class DnnImageCropper {
     let mouseX: number;
     let mouseY: number;
     const imageRect = this.image.getBoundingClientRect();
-    
-    if (event instanceof MouseEvent){
+
+    if (event instanceof MouseEvent) {
       mouseX = event.clientX;
       mouseY = event.clientY;
     }
 
-    if (typeof TouchEvent !== "undefined"){
-      if (event instanceof TouchEvent){
+    if (typeof TouchEvent !== "undefined") {
+      if (event instanceof TouchEvent) {
         var touch = event.touches[0];
         mouseX = touch.clientX;
         mouseY = touch.clientY;
       }
     }
-    
+
     if (
       mouseX >= imageRect.x &&
       mouseY >= imageRect.y &&
       mouseX <= imageRect.left + imageRect.width &&
-      mouseY <= imageRect.top + imageRect.height)
-    {
+      mouseY <= imageRect.top + imageRect.height) {
       inside = true;
     }
 
     var corners = this.crop.querySelectorAll("div");
-    corners.forEach(corner =>{
+    corners.forEach(corner => {
       var cornerRect = corner.getBoundingClientRect();
       if (
         mouseX >= cornerRect.x &&
         mouseY >= cornerRect.y &&
         mouseX <= cornerRect.left + cornerRect.width &&
-        mouseY <= cornerRect.top + cornerRect.height)
-        {
-          inside = true;
-        }
+        mouseY <= cornerRect.top + cornerRect.height) {
+        inside = true;
+      }
     })
 
     return inside;
@@ -467,31 +477,30 @@ export class DnnImageCropper {
         <div
           class="view"
           ref={el => this.noPictureView = el}>
-            <dnn-dropzone
-              allowCameraMode
-              onFilesSelected={e => this.handleNewFile(e.detail[0])}
-              resx={
-                {
-                  capture: this.resx.capture,
-                  dragAndDropFile: this.resx.dragAndDropFile,
-                  or: this.resx.or,
-                  takePicture: this.resx.takePicture,
-                  uploadFile: this.resx.uploadFile,
-                  uploadSizeTooLarge: "The file you tried to upload is too large.",
-                  fileSizeLimit: "The maximum size is",
-                }
+          <dnn-dropzone
+            allowCameraMode
+            onFilesSelected={e => this.handleNewFile(e.detail[0])}
+            resx={
+              {
+                capture: this.resx.capture,
+                dragAndDropFile: this.resx.dragAndDropFile,
+                or: this.resx.or,
+                takePicture: this.resx.takePicture,
+                uploadFile: this.resx.uploadFile,
+                uploadSizeTooLarge: "The file you tried to upload is too large.",
+                fileSizeLimit: "The maximum size is",
               }
-            />
+            }
+          />
         </div>
         <dnn-modal ref={el => this.imageTooSmallModal = el} close-text={this.resx.modalCloseText}>
-          <p>{this.resx.imageTooSmall.replace("{width}", this.width.toString()).replace("{height}", this.height.toString())}</p>
+          <p>{this.resx.imageTooSmall.replace("{width}", this.width?.toString()).replace("{height}", this.height?.toString())}</p>
         </dnn-modal>
       </Host>
     );
   }
 }
 
-interface IComponentInterfaces
-{
+interface IComponentInterfaces {
   View: "noPictureView" | "takingPictureView" | "hasPictureView" | "hasCroppedPictureView";
 }
