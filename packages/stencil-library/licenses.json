@@ -4,6 +4,13 @@
         "repository": "https://github.com/dnncommunity/dnn-elements",
         "path": ""
     },
+    "@stencil/core@4.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/ionic-team/stencil",
+        "publisher": "Ionic Team",
+        "path": "node_modules\\@stencil\\core",
+        "licenseFile": "node_modules\\@stencil\\core\\LICENSE.md"
+    },
     "@stencil/eslint-plugin@0.4.0": {
         "licenses": "MIT",
         "repository": "https://github.com/ionic-team/stencil-eslint",

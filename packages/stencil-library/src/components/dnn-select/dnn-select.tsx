@@ -39,13 +39,23 @@ export class DnnSelect {
 
   private slot: HTMLSlotElement;
   private select: HTMLSelectElement;
+  private observer: MutationObserver;
 
   componentWillLoad() {
-    this.applySlottedItemsToSelect();
     if (this.name === undefined)
     {
       this.name = `dnn-select-${Math.floor(Math.random() * 1000000)}`;
     }
+    this.observer = new MutationObserver((mutations) => {
+      for (let mutation of mutations) {
+        if (mutation.type === 'childList') {
+          this.applySlottedItemsToSelect();
+        }
+      }
+    });
+
+    const config = { attributes: true, childList: true, subtree: true };
+    this.observer.observe(this.el, config);
   }
 
   componentDidLoad() {
@@ -53,8 +63,8 @@ export class DnnSelect {
   }
 
   private applySlottedItemsToSelect () {
-    const slottedItems = this.slot.assignedElements();
-    slottedItems.forEach((item) => {
+    const slottedItems = this.slot?.assignedElements();
+    slottedItems?.forEach((item) => {
       if (item.nodeName === "OPTION") {
         const optionElement = item as HTMLOptionElement;
         this.select.appendChild(optionElement);

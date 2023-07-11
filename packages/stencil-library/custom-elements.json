@@ -3,7 +3,7 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-button/dnn-button.tsx",
+      "path": "src/components/dnn-button/dnn-button.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -139,7 +139,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-checkbox/dnn-checkbox.tsx",
+      "path": "src/components/dnn-checkbox/dnn-checkbox.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -214,7 +214,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-chevron/dnn-chevron.tsx",
+      "path": "src/components/dnn-chevron/dnn-chevron.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -268,7 +268,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-collapsible/dnn-collapsible.tsx",
+      "path": "src/components/dnn-collapsible/dnn-collapsible.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -320,7 +320,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-color-picker/dnn-color-picker.tsx",
+      "path": "src/components/dnn-color-picker/dnn-color-picker.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -365,7 +365,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-dropzone/dnn-dropzone.tsx",
+      "path": "src/components/dnn-dropzone/dnn-dropzone.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -450,7 +450,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-image-cropper/dnn-image-cropper.tsx",
+      "path": "src/components/dnn-image-cropper/dnn-image-cropper.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -464,7 +464,6 @@
                 "text": "number"
               },
               "description": "Sets the desired final image height.",
-              "default": "600",
               "required": false
             },
             {
@@ -491,7 +490,6 @@
                 "text": "number"
               },
               "description": "Sets the desired final image width.",
-              "default": "600",
               "required": false
             }
           ],
@@ -503,8 +501,14 @@
                 "text": "{ capture: string; dragAndDropFile: string; or: string; takePicture: string; uploadFile: string; imageTooSmall: string; modalCloseText: string; }"
               },
               "description": "Can be used to customize controls text.\nSome values support tokens, see default values for examples.",
-              "default": "{\n    capture: \"Capture\",\n    dragAndDropFile: \"Drag and drop an image\",\n    or: \"or\",\n    takePicture: \"Take a picture\",\n    uploadFile: \"Upload an image\",\n    imageTooSmall: \"The image you are attempting to upload does not meet the minimum size requirement of {width} pixels by {height} pixels. Please upload a larger image.\",\n    modalCloseText: \"Close\",\n  }",
+              "default": "{\n      capture: \"Capture\",\n      dragAndDropFile: \"Drag and drop an image\",\n      or: \"or\",\n      takePicture: \"Take a picture\",\n      uploadFile: \"Upload an image\",\n      imageTooSmall: \"The image you are attempting to upload does not meet the minimum size requirement of {width} pixels by {height} pixels. Please upload a larger image.\",\n      modalCloseText: \"Close\",\n    }",
               "required": false
+            },
+            {
+              "kind": "method",
+              "name": "clear",
+              "description": "Clears the current image and crop (resets the component).",
+              "signature": "clear() => Promise<void>"
             }
           ],
           "events": [
@@ -524,7 +528,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-input/dnn-input.tsx",
+      "path": "src/components/dnn-input/dnn-input.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -751,7 +755,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-modal/dnn-modal.tsx",
+      "path": "src/components/dnn-modal/dnn-modal.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -841,7 +845,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-monaco-editor/dnn-monaco-editor.tsx",
+      "path": "src/components/dnn-monaco-editor/dnn-monaco-editor.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -894,7 +898,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-permissions-grid/dnn-permissions-grid.tsx",
+      "path": "src/components/dnn-permissions-grid/dnn-permissions-grid.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -975,7 +979,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-searchbox/dnn-searchbox.tsx",
+      "path": "src/components/dnn-searchbox/dnn-searchbox.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -1029,7 +1033,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-select/dnn-select.tsx",
+      "path": "src/components/dnn-select/dnn-select.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -1137,7 +1141,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-sort-icon/dnn-sort-icon.tsx",
+      "path": "src/components/dnn-sort-icon/dnn-sort-icon.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -1186,7 +1190,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-tab/dnn-tab.tsx",
+      "path": "src/components/dnn-tab/dnn-tab.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -1226,7 +1230,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-tabs/dnn-tabs.tsx",
+      "path": "src/components/dnn-tabs/dnn-tabs.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -1265,7 +1269,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-toggle/dnn-toggle.tsx",
+      "path": "src/components/dnn-toggle/dnn-toggle.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -1335,7 +1339,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-treeview-item/dnn-treeview-item.tsx",
+      "path": "src/components/dnn-treeview-item/dnn-treeview-item.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -1387,7 +1391,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-vertical-overflow-menu/dnn-vertical-overflow-menu.tsx",
+      "path": "src/components/dnn-vertical-overflow-menu/dnn-vertical-overflow-menu.tsx",
       "declarations": [
         {
           "kind": "class",
@@ -1419,7 +1423,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "./src/components/dnn-vertical-splitview/dnn-vertical-splitview.tsx",
+      "path": "src/components/dnn-vertical-splitview/dnn-vertical-splitview.tsx",
       "declarations": [
         {
           "kind": "class",
