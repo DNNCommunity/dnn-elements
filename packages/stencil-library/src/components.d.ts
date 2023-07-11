@@ -141,6 +141,10 @@ export namespace Components {
      */
     interface DnnImageCropper {
         /**
+          * Clears the current image and crop (resets the component).
+         */
+        "clear": () => Promise<void>;
+        /**
           * Sets the desired final image height.
          */
         "height": number;
