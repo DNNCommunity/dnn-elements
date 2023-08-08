@@ -14,26 +14,29 @@
     --color-focus: var(--dnn-color-primary, #3792ed);
   }
 
-  .tabTitles{
-      display: flex;
-      background-color: var(--color-background);
-      color: var(--color-text);
-      button{
-          padding: 0.5rem 1rem;
-          border: 0;
-          margin: 0;
-          background-color: transparent;
-          &.visible{
-              background-color: var(--color-visible);
-              color: var(--color-bisible-text);
-          }
-          &:focus, &:hover{
+.tabTitles{
+    display: flex;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    button {
+        cursor: pointer; 
+        padding: 0.5rem 1rem;
+        border: 0;
+        margin: 0;
+        background-color: transparent;
+        
+        &.visible {
+            background-color: var(--color-visible);
+            color: var(--color-bisible-text);
+        }
+            
+        &:focus, &:hover {
             outline: none;
             box-shadow: 0 0 2px 2px var(--color-focus);
-          }
-      }
-  }
+        }
+    }
+}
 
-  .currentTab{
-      border: 1px solid var(--color-background);
-  }
+.currentTab{
+    border: 1px solid var(--color-background);
+}
