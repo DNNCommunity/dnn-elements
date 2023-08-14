@@ -48,6 +48,7 @@
     white-space: nowrap;
     max-width: 100%;
     border-radius: var(--control-radius);
+    font-size: 1rem;
   }
   input{
     border: none;
@@ -119,7 +120,7 @@ button.show-password{
   margin: 0;
   padding: 0;
   svg{
-    height: 1em;
+    height: 1rem;
     width: auto;
     fill: var(--foreground);
     transform: scale(1.5);
