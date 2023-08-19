@@ -324,6 +324,10 @@ export namespace Components {
           * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
          */
         "options": Config;
+        /**
+          * Sets the value of the content of the editor.
+         */
+        "value": string;
     }
     interface DnnSearchbox {
         /**
@@ -477,6 +481,10 @@ export interface DnnMonacoEditorCustomEvent<T> extends CustomEvent<T> {
 export interface DnnPermissionsGridCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnPermissionsGridElement;
+}
+export interface DnnRichtextCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnRichtextElement;
 }
 export interface DnnSearchboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1004,9 +1012,21 @@ declare namespace LocalJSX {
     }
     interface DnnRichtext {
         /**
+          * Fires when the value changed.
+         */
+        "onValueChange"?: (event: DnnRichtextCustomEvent<string>) => void;
+        /**
+          * Fires during value input.
+         */
+        "onValueInput"?: (event: DnnRichtextCustomEvent<string>) => void;
+        /**
           * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
          */
         "options"?: Config;
+        /**
+          * Sets the value of the content of the editor.
+         */
+        "value"?: string;
     }
     interface DnnSearchbox {
         /**

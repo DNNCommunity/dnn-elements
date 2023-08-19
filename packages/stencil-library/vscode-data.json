@@ -354,19 +354,10 @@
           "description": "Defines the language for the editor.",
           "values": [
             {
-              "name": "json"
-            },
-            {
               "name": "html"
             },
             {
               "name": "ruby"
-            },
-            {
-              "name": "r"
-            },
-            {
-              "name": "c"
             },
             {
               "name": "plaintext"
@@ -376,6 +367,9 @@
             },
             {
               "name": "coffeescript"
+            },
+            {
+              "name": "c"
             },
             {
               "name": "cpp"
@@ -429,6 +423,9 @@
               "name": "python"
             },
             {
+              "name": "r"
+            },
+            {
               "name": "razor"
             },
             {
@@ -462,6 +459,9 @@
               "name": "sb"
             },
             {
+              "name": "json"
+            },
+            {
               "name": "typescript"
             },
             {
@@ -482,6 +482,19 @@
         "value": ""
       },
       "attributes": []
+    },
+    {
+      "name": "dnn-richtext",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "value",
+          "description": "Sets the value of the content of the editor."
+        }
+      ]
     },
     {
       "name": "dnn-searchbox",
