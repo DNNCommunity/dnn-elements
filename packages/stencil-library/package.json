@@ -57,7 +57,7 @@
     "jest": "^27.0.3",
     "jest-cli": "^27.5.1",
     "license-checker-rseidelsohn": "^3.1.0",
-    "jodit": "^3.8.6",
+    "jodit": "^3.24.9",
     "lit": "^2.7.2",
     "npm-run-all": "^4.1.5",
     "puppeteer": "^20.7.4",
