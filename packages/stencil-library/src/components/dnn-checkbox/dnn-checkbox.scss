@@ -9,6 +9,7 @@
   margin: 3px;
 }
 button{
+  cursor: pointer; 
   background-color: transparent;
   border: 0;
   padding: 0;
@@ -25,8 +26,12 @@ button{
   }
   svg.undefined{
     opacity: 0.45;
+    cursor: default;
   }
   &:focus{
     box-shadow: 0 0 2px 2px var(--focus-color);
   }
+}
+label {
+  cursor: pointer; 
 }

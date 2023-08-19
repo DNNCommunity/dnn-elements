@@ -23,10 +23,10 @@
 .container{
   border: 1px solid var(--foreground, #000);
   border-radius: var(--control-radius, 3px);
-  padding: 0.75em;
+  padding: 0.75rem;
   display: flex;
   justify-content: space-between;
-  gap: 0.1em;
+  gap: 0.1rem;
   position: relative;
   background-color: var(--background);
   .inner-container{
@@ -48,6 +48,7 @@
     white-space: nowrap;
     max-width: 100%;
     border-radius: var(--control-radius);
+    font-size: 1rem;
   }
   select{
     border: none;
@@ -55,6 +56,7 @@
     background-color: var(--background);
     text-align: var(--input-text-align);
     width: 100%;
+    cursor: pointer; 
   }
   label{
     opacity: 1;

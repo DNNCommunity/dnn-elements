@@ -486,6 +486,7 @@ export class DnnImageCropper {
           <dnn-dropzone
             allowCameraMode
             onFilesSelected={e => this.handleNewFile(e.detail[0])}
+            allowedExtensions={['jpg', 'jpeg', 'gif', 'png', 'svg', 'webp', 'bmp' ]}
             resx={
               {
                 capture: this.resx.capture,
