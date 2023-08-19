@@ -12,6 +12,7 @@ import { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interfa
 import { IRole } from "./components/dnn-permissions-grid/role-interface";
 import { ILocalization } from "./components/dnn-permissions-grid/localization-interface";
 import { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
+import { Config } from "jodit/types/config";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export { ColorInfo } from "./utilities/colorInfo";
 export { DropzoneResx } from "./components/dnn-dropzone/types";
@@ -20,6 +21,7 @@ export { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interfa
 export { IRole } from "./components/dnn-permissions-grid/role-interface";
 export { ILocalization } from "./components/dnn-permissions-grid/localization-interface";
 export { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
+export { Config } from "jodit/types/config";
 export { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export namespace Components {
     interface DnnButton {
@@ -317,6 +319,12 @@ export namespace Components {
          */
         "roles": IRole[];
     }
+    interface DnnRichtext {
+        /**
+          * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
+         */
+        "options": Config;
+    }
     interface DnnSearchbox {
         /**
           * Debounces the queryChanged by 500ms.
@@ -572,6 +580,12 @@ declare global {
         prototype: HTMLDnnPermissionsGridElement;
         new (): HTMLDnnPermissionsGridElement;
     };
+    interface HTMLDnnRichtextElement extends Components.DnnRichtext, HTMLStencilElement {
+    }
+    var HTMLDnnRichtextElement: {
+        prototype: HTMLDnnRichtextElement;
+        new (): HTMLDnnRichtextElement;
+    };
     interface HTMLDnnSearchboxElement extends Components.DnnSearchbox, HTMLStencilElement {
     }
     var HTMLDnnSearchboxElement: {
@@ -644,6 +658,7 @@ declare global {
         "dnn-modal": HTMLDnnModalElement;
         "dnn-monaco-editor": HTMLDnnMonacoEditorElement;
         "dnn-permissions-grid": HTMLDnnPermissionsGridElement;
+        "dnn-richtext": HTMLDnnRichtextElement;
         "dnn-searchbox": HTMLDnnSearchboxElement;
         "dnn-select": HTMLDnnSelectElement;
         "dnn-sort-icon": HTMLDnnSortIconElement;
@@ -987,6 +1002,12 @@ declare namespace LocalJSX {
          */
         "roles": IRole[];
     }
+    interface DnnRichtext {
+        /**
+          * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
+         */
+        "options"?: Config;
+    }
     interface DnnSearchbox {
         /**
           * Debounces the queryChanged by 500ms.
@@ -1119,6 +1140,7 @@ declare namespace LocalJSX {
         "dnn-modal": DnnModal;
         "dnn-monaco-editor": DnnMonacoEditor;
         "dnn-permissions-grid": DnnPermissionsGrid;
+        "dnn-richtext": DnnRichtext;
         "dnn-searchbox": DnnSearchbox;
         "dnn-select": DnnSelect;
         "dnn-sort-icon": DnnSortIcon;
@@ -1156,6 +1178,7 @@ declare module "@stencil/core" {
             "dnn-modal": LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
             "dnn-monaco-editor": LocalJSX.DnnMonacoEditor & JSXBase.HTMLAttributes<HTMLDnnMonacoEditorElement>;
             "dnn-permissions-grid": LocalJSX.DnnPermissionsGrid & JSXBase.HTMLAttributes<HTMLDnnPermissionsGridElement>;
+            "dnn-richtext": LocalJSX.DnnRichtext & JSXBase.HTMLAttributes<HTMLDnnRichtextElement>;
             "dnn-searchbox": LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
             "dnn-select": LocalJSX.DnnSelect & JSXBase.HTMLAttributes<HTMLDnnSelectElement>;
             "dnn-sort-icon": LocalJSX.DnnSortIcon & JSXBase.HTMLAttributes<HTMLDnnSortIconElement>;
