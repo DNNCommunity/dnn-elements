@@ -1,0 +1,62 @@
+:host {
+  /** @prop --min-width: The minimum width of the progress bar. */
+  --min-width: 160px;
+
+  /** @prop --height: The height of the progress bar. */
+  --height: 2rem;
+
+  /** @prop --background-color: The background color of the progress bar. */
+  --background-color: var(--dnn-color-neutral-light, #eee);
+
+  /** @prop --value-background-color: The value background color of the progress bar. */
+  --value-background-color: var(--dnn-color-primary, green);
+
+  /** @prop --gradient-color-start: The gradient start color of the progress bar. */
+  --gradient-color-start: var(--dnn-color-primary, #09c);
+
+  /** @prop --gradient-color-end: The gradient end color of the progress bar. */
+  --gradient-color-end: var(--dnn-color-primary-light, #f44);
+
+  /** @prop --gradient-direction: The gradient direction of the progress bar. */
+  --gradient-direction: left;
+
+  /** @prop --border-radius: The border radius of the progress bar. */
+  --border-radius: var(--dnn-controls-radius, 5px);
+
+  display: inline-block;
+
+  progress {
+    height: var(--height);
+    min-width: var(--min-width);
+    width: 100%;
+  }
+
+  progress[value] {
+    /* Reset the default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  progress[value]::-webkit-progress-bar {
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  }
+
+  progress[value]::-webkit-progress-value {
+    border-radius: var(--border-radius);
+    background-color: var(--value-background-color);
+    background-size: calc(var(--height) * 1.75) var(--height), 100% 100%, 100% 100%;
+  }
+
+  progress[value].use-gradient::-webkit-progress-value {
+    background-image:
+      -webkit-linear-gradient(-45deg,
+        transparent 33%, rgba(255, 255, 255, .2) 33%,
+        rgba(255, 255, 255, .2) 66%, transparent 66%),
+      -webkit-linear-gradient(var(--gradient-direction), var(--gradient-color-start), var(--gradient-color-end));
+
+    border-radius: var(--border-radius);
+    background-size: calc(var(--height) * 1.75) var(--height), 100% 100%, 100% 100%;
+  }
+}

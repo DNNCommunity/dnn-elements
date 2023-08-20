@@ -78,6 +78,7 @@
   <h1>Dnn HTML custom elements</h1>
   <ul>
     <li><a href="#dnn-button">dnn-button</a></li>
+    <li><a href="#dnn-progress-bar">dnn-progress-bar</a></li>
     <li><a href="#dnn-checkbox">dnn-checkbox</a></li>
     <li><a href="#dnn-chevron">dnn-chevron</a></li>
     <li><a href="#dnn-collapsible">dnn-collapsible</a></li>
@@ -95,6 +96,25 @@
     <li><a href="#dnn-vertical-overflow-menu">dnn-vertical-overflow-menu</a></li>
     <li><a href="#dnn-permissions-grid">dnn-permissions-grid</a></li>
   </ul>
+
+  <!-- dnn-progress-bar -->
+  <a name="dnn-progress-bar"></a>
+  <section>
+    <h2>dnn-progress-bar</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 1em;">
+      <dnn-progress-bar max="100" value="40"></dnn-progress-bar>
+      <dnn-progress-bar max="100" value="90" use-gradient="true"></dnn-progress-bar>
+      <dnn-progress-bar class="styled-progress-bar" max="100" value="90" use-gradient="true"></dnn-progress-bar>
+    </div>
+    <style>
+      dnn-progress-bar.styled-progress-bar {
+        --border-radius: 0px;
+        --gradient-color-start: var(--dnn-color-primary);
+        --gradient-color-end: var(--dnn-color-success-light);
+      }
+    </style>
+  </section>
+  
   <!-- dnn-select -->
   <section>
     <h2>dnn-select</h2>

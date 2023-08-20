@@ -317,6 +317,20 @@ export namespace Components {
          */
         "roles": IRole[];
     }
+    interface DnnProgressBar {
+        /**
+          * Sets the max value for the progress bar.
+         */
+        "max": number;
+        /**
+          * Determines if gradient colors will be used for progress bar.
+         */
+        "useGradient": boolean;
+        /**
+          * Sets to current value for the progress bar.
+         */
+        "value": number;
+    }
     interface DnnSearchbox {
         /**
           * Debounces the queryChanged by 500ms.
@@ -572,6 +586,12 @@ declare global {
         prototype: HTMLDnnPermissionsGridElement;
         new (): HTMLDnnPermissionsGridElement;
     };
+    interface HTMLDnnProgressBarElement extends Components.DnnProgressBar, HTMLStencilElement {
+    }
+    var HTMLDnnProgressBarElement: {
+        prototype: HTMLDnnProgressBarElement;
+        new (): HTMLDnnProgressBarElement;
+    };
     interface HTMLDnnSearchboxElement extends Components.DnnSearchbox, HTMLStencilElement {
     }
     var HTMLDnnSearchboxElement: {
@@ -644,6 +664,7 @@ declare global {
         "dnn-modal": HTMLDnnModalElement;
         "dnn-monaco-editor": HTMLDnnMonacoEditorElement;
         "dnn-permissions-grid": HTMLDnnPermissionsGridElement;
+        "dnn-progress-bar": HTMLDnnProgressBarElement;
         "dnn-searchbox": HTMLDnnSearchboxElement;
         "dnn-select": HTMLDnnSelectElement;
         "dnn-sort-icon": HTMLDnnSortIconElement;
@@ -987,6 +1008,20 @@ declare namespace LocalJSX {
          */
         "roles": IRole[];
     }
+    interface DnnProgressBar {
+        /**
+          * Sets the max value for the progress bar.
+         */
+        "max"?: number;
+        /**
+          * Determines if gradient colors will be used for progress bar.
+         */
+        "useGradient"?: boolean;
+        /**
+          * Sets to current value for the progress bar.
+         */
+        "value"?: number;
+    }
     interface DnnSearchbox {
         /**
           * Debounces the queryChanged by 500ms.
@@ -1119,6 +1154,7 @@ declare namespace LocalJSX {
         "dnn-modal": DnnModal;
         "dnn-monaco-editor": DnnMonacoEditor;
         "dnn-permissions-grid": DnnPermissionsGrid;
+        "dnn-progress-bar": DnnProgressBar;
         "dnn-searchbox": DnnSearchbox;
         "dnn-select": DnnSelect;
         "dnn-sort-icon": DnnSortIcon;
@@ -1156,6 +1192,7 @@ declare module "@stencil/core" {
             "dnn-modal": LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
             "dnn-monaco-editor": LocalJSX.DnnMonacoEditor & JSXBase.HTMLAttributes<HTMLDnnMonacoEditorElement>;
             "dnn-permissions-grid": LocalJSX.DnnPermissionsGrid & JSXBase.HTMLAttributes<HTMLDnnPermissionsGridElement>;
+            "dnn-progress-bar": LocalJSX.DnnProgressBar & JSXBase.HTMLAttributes<HTMLDnnProgressBarElement>;
             "dnn-searchbox": LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
             "dnn-select": LocalJSX.DnnSelect & JSXBase.HTMLAttributes<HTMLDnnSelectElement>;
             "dnn-sort-icon": LocalJSX.DnnSortIcon & JSXBase.HTMLAttributes<HTMLDnnSortIconElement>;

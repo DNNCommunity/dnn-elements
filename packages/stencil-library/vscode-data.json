@@ -49,7 +49,7 @@
         },
         {
           "name": "type",
-          "description": "Optional button style,\ncan be either primary, secondary or tertiary or danger and defaults to primary if not specified",
+          "description": "Optional button style,\r\ncan be either primary, secondary or tertiary or danger and defaults to primary if not specified",
           "values": [
             {
               "name": "danger"
@@ -163,11 +163,11 @@
       "attributes": [
         {
           "name": "allow-camera-mode",
-          "description": "If true, will allow the user to take a snapshot\nusing the device camera. (only works over https)."
+          "description": "If true, will allow the user to take a snapshot\r\nusing the device camera. (only works over https)."
         },
         {
           "name": "capture-quality",
-          "description": "Specifies the jpeg quality for when the device\ncamera is used to generate a picture.\nNeeds to be a number between 0 and 1 and defaults to 0.8"
+          "description": "Specifies the jpeg quality for when the device\r\ncamera is used to generate a picture.\r\nNeeds to be a number between 0 and 1 and defaults to 0.8"
         },
         {
           "name": "max-file-size",
@@ -179,7 +179,7 @@
       "name": "dnn-image-cropper",
       "description": {
         "kind": "markdown",
-        "value": "Allows cropping an image in-browser with the option to enforce a specific final size.\nAll computation happens in the browser and the final image is emmited\nin an event that has a data-url of the image."
+        "value": "Allows cropping an image in-browser with the option to enforce a specific final size.\r\nAll computation happens in the browser and the final image is emmited\r\nin an event that has a data-url of the image."
       },
       "attributes": [
         {
@@ -326,7 +326,7 @@
         },
         {
           "name": "close-text",
-          "description": "Optionally pass the aria-label text for the close button.\nDefaults to \"Close modal\" if not provided."
+          "description": "Optionally pass the aria-label text for the close button.\r\nDefaults to \"Close modal\" if not provided."
         },
         {
           "name": "resizable",
@@ -334,7 +334,7 @@
         },
         {
           "name": "show-close-button",
-          "description": "Optionally you can pass false to not show the close button.\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\nor provide your own dismissal logic in the modal content."
+          "description": "Optionally you can pass false to not show the close button.\r\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\r\nor provide your own dismissal logic in the modal content."
         },
         {
           "name": "visible",
@@ -484,6 +484,27 @@
       "attributes": []
     },
     {
+      "name": "dnn-progress-bar",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "max",
+          "description": "Sets the max value for the progress bar."
+        },
+        {
+          "name": "use-gradient",
+          "description": "Determines if gradient colors will be used for progress bar."
+        },
+        {
+          "name": "value",
+          "description": "Sets to current value for the progress bar."
+        }
+      ]
+    },
+    {
       "name": "dnn-searchbox",
       "description": {
         "kind": "markdown",
@@ -628,7 +649,7 @@
       "name": "dnn-vertical-splitview",
       "description": {
         "kind": "markdown",
-        "value": "This allows splitting a UI into vertical adjustable panels, the splitter itself is not part of this component.\n- The content for the left part should be injected in the `left` slot.\n- The content for the right part should be injected in the `right` slot.\n- The content for the actual splitter should go in the default slot and other UI elements can be injected as long as you handle their behaviour, by default only the drag behavior is implemented in the component."
+        "value": "This allows splitting a UI into vertical adjustable panels, the splitter itself is not part of this component.\r\n- The content for the left part should be injected in the `left` slot.\r\n- The content for the right part should be injected in the `right` slot.\r\n- The content for the actual splitter should go in the default slot and other UI elements can be injected as long as you handle their behaviour, by default only the drag behavior is implemented in the component."
       },
       "attributes": [
         {
