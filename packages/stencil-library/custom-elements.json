@@ -1051,6 +1051,12 @@
               "description": "The value background color of the progress bar."
             }
           ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/dnn-richtext/dnn-richtext.tsx",
       "declarations": [
         {

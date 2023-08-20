@@ -485,7 +485,6 @@
     },
     {
       "name": "dnn-progress-bar",
-      "name": "dnn-richtext",
       "description": {
         "kind": "markdown",
         "value": ""
@@ -502,6 +501,17 @@
         {
           "name": "value",
           "description": "Sets to current value for the progress bar."
+        }
+      ]
+    },
+    {
+      "name": "dnn-richtext",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
           "name": "value",
           "description": "Sets the value of the content of the editor."
         }

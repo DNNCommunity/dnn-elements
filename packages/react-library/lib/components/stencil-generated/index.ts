@@ -18,6 +18,7 @@ export const DnnInput = /*@__PURE__*/createReactComponent<JSX.DnnInput, HTMLDnnI
 export const DnnModal = /*@__PURE__*/createReactComponent<JSX.DnnModal, HTMLDnnModalElement>('dnn-modal');
 export const DnnMonacoEditor = /*@__PURE__*/createReactComponent<JSX.DnnMonacoEditor, HTMLDnnMonacoEditorElement>('dnn-monaco-editor');
 export const DnnPermissionsGrid = /*@__PURE__*/createReactComponent<JSX.DnnPermissionsGrid, HTMLDnnPermissionsGridElement>('dnn-permissions-grid');
+export const DnnProgressBar = /*@__PURE__*/createReactComponent<JSX.DnnProgressBar, HTMLDnnProgressBarElement>('dnn-progress-bar');
 export const DnnRichtext = /*@__PURE__*/createReactComponent<JSX.DnnRichtext, HTMLDnnRichtextElement>('dnn-richtext');
 export const DnnSearchbox = /*@__PURE__*/createReactComponent<JSX.DnnSearchbox, HTMLDnnSearchboxElement>('dnn-searchbox');
 export const DnnSelect = /*@__PURE__*/createReactComponent<JSX.DnnSelect, HTMLDnnSelectElement>('dnn-select');

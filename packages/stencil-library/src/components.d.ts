@@ -607,7 +607,7 @@ declare global {
     var HTMLDnnProgressBarElement: {
         prototype: HTMLDnnProgressBarElement;
         new (): HTMLDnnProgressBarElement;
-    }
+    };
     interface HTMLDnnRichtextElement extends Components.DnnRichtext, HTMLStencilElement {
     }
     var HTMLDnnRichtextElement: {
