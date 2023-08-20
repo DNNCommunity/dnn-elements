@@ -856,7 +856,7 @@
             {
               "name": "language",
               "type": {
-                "text": "\"json\" | \"html\" | \"ruby\" | \"r\" | \"c\" | \"plaintext\" | \"bat\" | \"coffeescript\" | \"cpp\" | \"csharp\" | \"dockerfile\" | \"fsharp\" | \"go\" | \"handlebars\" | \"ini\" | \"pug\" | \"java\" | \"lua\" | \"markdown\" | \"msdax\" | \"objective-c\" | \"postiats\" | \"php\" | \"powershell\" | \"python\" | \"razor\" | \"swift\" | \"sql\" | \"vb\" | \"xml\" | \"less\" | \"scss\" | \"css\" | \"yaml\" | \"sol\" | \"sb\" | \"typescript\" | \"javascript\""
+                "text": "\"html\" | \"ruby\" | \"plaintext\" | \"bat\" | \"coffeescript\" | \"c\" | \"cpp\" | \"csharp\" | \"dockerfile\" | \"fsharp\" | \"go\" | \"handlebars\" | \"ini\" | \"pug\" | \"java\" | \"lua\" | \"markdown\" | \"msdax\" | \"objective-c\" | \"postiats\" | \"php\" | \"powershell\" | \"python\" | \"r\" | \"razor\" | \"swift\" | \"sql\" | \"vb\" | \"xml\" | \"less\" | \"scss\" | \"css\" | \"yaml\" | \"sol\" | \"sb\" | \"json\" | \"typescript\" | \"javascript\""
               },
               "description": "Defines the language for the editor.",
               "default": "\"html\"",
@@ -1051,6 +1051,52 @@
               "description": "The value background color of the progress bar."
             }
           ],
+      "path": "src/components/dnn-richtext/dnn-richtext.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-richtext.tsx",
+          "tagName": "dnn-richtext",
+          "description": "",
+          "attributes": [
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "Sets the value of the content of the editor.",
+              "required": false
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "options",
+              "type": {
+                "text": "Config"
+              },
+              "description": "Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html",
+              "required": false
+            }
+          ],
+          "events": [
+            {
+              "name": "valueChange",
+              "type": {
+                "text": "string"
+              },
+              "description": "Fires when the value changed."
+            },
+            {
+              "name": "valueInput",
+              "type": {
+                "text": "string"
+              },
+              "description": "Fires during value input."
+            }
+          ],
+          "slots": [],
+          "cssProperties": [],
           "cssParts": []
         }
       ]

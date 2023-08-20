@@ -12,6 +12,7 @@ import { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interfa
 import { IRole } from "./components/dnn-permissions-grid/role-interface";
 import { ILocalization } from "./components/dnn-permissions-grid/localization-interface";
 import { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
+import { Config } from "jodit/types/config";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export { ColorInfo } from "./utilities/colorInfo";
 export { DropzoneResx } from "./components/dnn-dropzone/types";
@@ -20,6 +21,7 @@ export { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interfa
 export { IRole } from "./components/dnn-permissions-grid/role-interface";
 export { ILocalization } from "./components/dnn-permissions-grid/localization-interface";
 export { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
+export { Config } from "jodit/types/config";
 export { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export namespace Components {
     interface DnnButton {
@@ -330,6 +332,15 @@ export namespace Components {
           * Sets to current value for the progress bar.
          */
         "value": number;
+    interface DnnRichtext {
+        /**
+          * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
+         */
+        "options": Config;
+        /**
+          * Sets the value of the content of the editor.
+         */
+        "value": string;
     }
     interface DnnSearchbox {
         /**
@@ -484,6 +495,10 @@ export interface DnnPermissionsGridCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnPermissionsGridElement;
 }
+export interface DnnRichtextCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnRichtextElement;
+}
 export interface DnnSearchboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnSearchboxElement;
@@ -591,6 +606,11 @@ declare global {
     var HTMLDnnProgressBarElement: {
         prototype: HTMLDnnProgressBarElement;
         new (): HTMLDnnProgressBarElement;
+    interface HTMLDnnRichtextElement extends Components.DnnRichtext, HTMLStencilElement {
+    }
+    var HTMLDnnRichtextElement: {
+        prototype: HTMLDnnRichtextElement;
+        new (): HTMLDnnRichtextElement;
     };
     interface HTMLDnnSearchboxElement extends Components.DnnSearchbox, HTMLStencilElement {
     }
@@ -665,6 +685,7 @@ declare global {
         "dnn-monaco-editor": HTMLDnnMonacoEditorElement;
         "dnn-permissions-grid": HTMLDnnPermissionsGridElement;
         "dnn-progress-bar": HTMLDnnProgressBarElement;
+        "dnn-richtext": HTMLDnnRichtextElement;
         "dnn-searchbox": HTMLDnnSearchboxElement;
         "dnn-select": HTMLDnnSelectElement;
         "dnn-sort-icon": HTMLDnnSortIconElement;
@@ -1021,6 +1042,23 @@ declare namespace LocalJSX {
           * Sets to current value for the progress bar.
          */
         "value"?: number;
+    interface DnnRichtext {
+        /**
+          * Fires when the value changed.
+         */
+        "onValueChange"?: (event: DnnRichtextCustomEvent<string>) => void;
+        /**
+          * Fires during value input.
+         */
+        "onValueInput"?: (event: DnnRichtextCustomEvent<string>) => void;
+        /**
+          * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
+         */
+        "options"?: Config;
+        /**
+          * Sets the value of the content of the editor.
+         */
+        "value"?: string;
     }
     interface DnnSearchbox {
         /**
@@ -1155,6 +1193,7 @@ declare namespace LocalJSX {
         "dnn-monaco-editor": DnnMonacoEditor;
         "dnn-permissions-grid": DnnPermissionsGrid;
         "dnn-progress-bar": DnnProgressBar;
+        "dnn-richtext": DnnRichtext;
         "dnn-searchbox": DnnSearchbox;
         "dnn-select": DnnSelect;
         "dnn-sort-icon": DnnSortIcon;
@@ -1193,6 +1232,7 @@ declare module "@stencil/core" {
             "dnn-monaco-editor": LocalJSX.DnnMonacoEditor & JSXBase.HTMLAttributes<HTMLDnnMonacoEditorElement>;
             "dnn-permissions-grid": LocalJSX.DnnPermissionsGrid & JSXBase.HTMLAttributes<HTMLDnnPermissionsGridElement>;
             "dnn-progress-bar": LocalJSX.DnnProgressBar & JSXBase.HTMLAttributes<HTMLDnnProgressBarElement>;
+            "dnn-richtext": LocalJSX.DnnRichtext & JSXBase.HTMLAttributes<HTMLDnnRichtextElement>;
             "dnn-searchbox": LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
             "dnn-select": LocalJSX.DnnSelect & JSXBase.HTMLAttributes<HTMLDnnSelectElement>;
             "dnn-sort-icon": LocalJSX.DnnSortIcon & JSXBase.HTMLAttributes<HTMLDnnSortIconElement>;
