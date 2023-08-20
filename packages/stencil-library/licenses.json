@@ -17,6 +17,15 @@
         "path": "node_modules\\@stencil\\eslint-plugin",
         "licenseFile": "node_modules\\@stencil\\eslint-plugin\\LICENSE.md"
     },
+    "jodit@3.24.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/xdan/jodit",
+        "publisher": "Chupurnov",
+        "email": "chupurnov@gmail.com",
+        "url": "https://xdsoft.net/",
+        "path": "node_modules\\jodit",
+        "licenseFile": "node_modules\\jodit\\LICENSE.txt"
+    },
     "typescript@4.9.5": {
         "licenses": "Apache-2.0",
         "repository": "https://github.com/Microsoft/TypeScript",
