@@ -319,6 +319,20 @@ export namespace Components {
          */
         "roles": IRole[];
     }
+    interface DnnProgressBar {
+        /**
+          * Sets the max value for the progress bar.
+         */
+        "max": number;
+        /**
+          * Determines if gradient colors will be used for progress bar.
+         */
+        "useGradient": boolean;
+        /**
+          * Sets to current value for the progress bar.
+         */
+        "value": number;
+    }
     interface DnnRichtext {
         /**
           * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
@@ -588,6 +602,12 @@ declare global {
         prototype: HTMLDnnPermissionsGridElement;
         new (): HTMLDnnPermissionsGridElement;
     };
+    interface HTMLDnnProgressBarElement extends Components.DnnProgressBar, HTMLStencilElement {
+    }
+    var HTMLDnnProgressBarElement: {
+        prototype: HTMLDnnProgressBarElement;
+        new (): HTMLDnnProgressBarElement;
+    };
     interface HTMLDnnRichtextElement extends Components.DnnRichtext, HTMLStencilElement {
     }
     var HTMLDnnRichtextElement: {
@@ -666,6 +686,7 @@ declare global {
         "dnn-modal": HTMLDnnModalElement;
         "dnn-monaco-editor": HTMLDnnMonacoEditorElement;
         "dnn-permissions-grid": HTMLDnnPermissionsGridElement;
+        "dnn-progress-bar": HTMLDnnProgressBarElement;
         "dnn-richtext": HTMLDnnRichtextElement;
         "dnn-searchbox": HTMLDnnSearchboxElement;
         "dnn-select": HTMLDnnSelectElement;
@@ -1010,6 +1031,20 @@ declare namespace LocalJSX {
          */
         "roles": IRole[];
     }
+    interface DnnProgressBar {
+        /**
+          * Sets the max value for the progress bar.
+         */
+        "max"?: number;
+        /**
+          * Determines if gradient colors will be used for progress bar.
+         */
+        "useGradient"?: boolean;
+        /**
+          * Sets to current value for the progress bar.
+         */
+        "value"?: number;
+    }
     interface DnnRichtext {
         /**
           * Fires when the value changed.
@@ -1160,6 +1195,7 @@ declare namespace LocalJSX {
         "dnn-modal": DnnModal;
         "dnn-monaco-editor": DnnMonacoEditor;
         "dnn-permissions-grid": DnnPermissionsGrid;
+        "dnn-progress-bar": DnnProgressBar;
         "dnn-richtext": DnnRichtext;
         "dnn-searchbox": DnnSearchbox;
         "dnn-select": DnnSelect;
@@ -1198,6 +1234,7 @@ declare module "@stencil/core" {
             "dnn-modal": LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
             "dnn-monaco-editor": LocalJSX.DnnMonacoEditor & JSXBase.HTMLAttributes<HTMLDnnMonacoEditorElement>;
             "dnn-permissions-grid": LocalJSX.DnnPermissionsGrid & JSXBase.HTMLAttributes<HTMLDnnPermissionsGridElement>;
+            "dnn-progress-bar": LocalJSX.DnnProgressBar & JSXBase.HTMLAttributes<HTMLDnnProgressBarElement>;
             "dnn-richtext": LocalJSX.DnnRichtext & JSXBase.HTMLAttributes<HTMLDnnRichtextElement>;
             "dnn-searchbox": LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
             "dnn-select": LocalJSX.DnnSelect & JSXBase.HTMLAttributes<HTMLDnnSelectElement>;
