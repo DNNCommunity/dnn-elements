@@ -12,3 +12,14 @@ export function getReadableFileSizeString (fileSizeInBytes: number) : string {
 
     return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i]
 };
+
+/** Takes an html encoded string and converts it to actual decoded html. */
+export function decodeHtml(html: string) : string {
+  if (!html){
+    return '';
+  }
+
+  const txt = document.createElement('textarea')
+  txt.innerHTML = html
+  return txt.value
+}
