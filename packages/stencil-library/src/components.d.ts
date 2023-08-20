@@ -332,6 +332,7 @@ export namespace Components {
           * Sets to current value for the progress bar.
          */
         "value": number;
+    }
     interface DnnRichtext {
         /**
           * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
@@ -606,6 +607,7 @@ declare global {
     var HTMLDnnProgressBarElement: {
         prototype: HTMLDnnProgressBarElement;
         new (): HTMLDnnProgressBarElement;
+    }
     interface HTMLDnnRichtextElement extends Components.DnnRichtext, HTMLStencilElement {
     }
     var HTMLDnnRichtextElement: {
@@ -1042,6 +1044,7 @@ declare namespace LocalJSX {
           * Sets to current value for the progress bar.
          */
         "value"?: number;
+    }
     interface DnnRichtext {
         /**
           * Fires when the value changed.
