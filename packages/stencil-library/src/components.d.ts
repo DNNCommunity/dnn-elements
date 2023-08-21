@@ -12,7 +12,7 @@ import { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interfa
 import { IRole } from "./components/dnn-permissions-grid/role-interface";
 import { ILocalization } from "./components/dnn-permissions-grid/localization-interface";
 import { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
-import { Config } from "jodit/types/config";
+import { DnnRichtextConfig } from "./components/dnn-richtext/dnn-richtext-config";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export { ColorInfo } from "./utilities/colorInfo";
 export { DropzoneResx } from "./components/dnn-dropzone/types";
@@ -21,7 +21,7 @@ export { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interfa
 export { IRole } from "./components/dnn-permissions-grid/role-interface";
 export { ILocalization } from "./components/dnn-permissions-grid/localization-interface";
 export { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
-export { Config } from "jodit/types/config";
+export { DnnRichtextConfig } from "./components/dnn-richtext/dnn-richtext-config";
 export { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export namespace Components {
     interface DnnButton {
@@ -337,7 +337,7 @@ export namespace Components {
         /**
           * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
          */
-        "options": Config;
+        "options": DnnRichtextConfig;
         /**
           * Sets the value of the content of the editor.
          */
@@ -1057,7 +1057,7 @@ declare namespace LocalJSX {
         /**
           * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
          */
-        "options"?: Config;
+        "options"?: DnnRichtextConfig;
         /**
           * Sets the value of the content of the editor.
          */
