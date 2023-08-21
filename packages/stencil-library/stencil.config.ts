@@ -3,6 +3,7 @@ import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 import { reactOutputTarget } from '@stencil/react-output-target';
 import { JsonDocs } from '@stencil/core/internal';
+import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 async function generateCustomElementsJson(docsData: JsonDocs) {
   const jsonData = {
@@ -116,5 +117,10 @@ export const config: Config = {
   plugins: [
     sass(),
   ],
+  rollupPlugins: {
+    after: [
+      nodePolyfills(),
+    ]
+  },
   sourceMap: true,
 };
