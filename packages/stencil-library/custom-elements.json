@@ -1079,7 +1079,7 @@
               "kind": "field",
               "name": "options",
               "type": {
-                "text": "DnnRichtextConfig"
+                "text": "Config"
               },
               "description": "Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html",
               "required": false

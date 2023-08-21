@@ -1,6 +1,5 @@
 import { Component, Host, h, Prop, Event, EventEmitter, Watch } from '@stencil/core';
 import { Jodit } from "jodit";
-import { DnnRichtextConfig } from "./dnn-richtext-config";
 import { decodeHtml } from '../../utilities/stringUtilities';
 
 @Component({
@@ -10,10 +9,10 @@ import { decodeHtml } from '../../utilities/stringUtilities';
 })
 export class DnnRichtext {
   /** Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html */
-  @Prop() options: DnnRichtextConfig;
+  @Prop() options: typeof Jodit.defaultOptions;
   private textArea: HTMLTextAreaElement;
   private editor: Jodit;
-  private dnnDefaultOptions: DnnRichtextConfig = {
+  private dnnDefaultOptions: typeof Jodit.defaultOptions = {
     ...Jodit.defaultOptions,
     useSplitMode: true,
   }

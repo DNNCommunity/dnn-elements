@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property  | Attribute | Description                                                                                    | Type                | Default     |
-| --------- | --------- | ---------------------------------------------------------------------------------------------- | ------------------- | ----------- |
-| `options` | --        | Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html | `DnnRichtextConfig` | `undefined` |
-| `value`   | `value`   | Sets the value of the content of the editor.                                                   | `string`            | `undefined` |
+| Property  | Attribute | Description                                                                                    | Type     | Default     |
+| --------- | --------- | ---------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `options` | --        | Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html | `Config` | `undefined` |
+| `value`   | `value`   | Sets the value of the content of the editor.                                                   | `string` | `undefined` |
 
 
 ## Events
