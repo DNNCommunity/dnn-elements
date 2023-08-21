@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop, Event, EventEmitter, Watch } from '@stencil/core';
 import { Jodit } from "jodit";
-import { Config } from "jodit/types/config";
+import type { Config } from "jodit/types/config";
 import { decodeHtml } from '../../utilities/stringUtilities';
 
 @Component({
