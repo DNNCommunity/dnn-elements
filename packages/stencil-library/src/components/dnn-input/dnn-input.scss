@@ -23,7 +23,7 @@
 .container{
   border: 1px solid var(--foreground, #000);
   border-radius: var(--control-radius, 3px);
-  padding: 0.75rem;
+  padding: 0.75em;
   display: flex;
   justify-content: space-between;
   gap: 0.1em;
@@ -43,12 +43,12 @@
     transition: all 150ms ease-in-out;
     left: 0;
     top: 0;
-    padding: 0 0.5rem;
+    padding: 0 0.5em;
     background-color: var(--background);
     white-space: nowrap;
     max-width: 100%;
     border-radius: var(--control-radius);
-    font-size: 1rem;
+    font-size: 1em;
   }
   input{
     border: none;
@@ -67,8 +67,8 @@
     }
     label{
       opacity: 1;
-      left: 0.5rem;
-      top: -1.25rem;
+      left: 0.5em;
+      top: -1.25em;
     }
     input{
       color: var(--foreground, #000);
@@ -77,8 +77,8 @@
   &.has-value{
     label{
       opacity: 1;
-      left: 0.5rem;
-      top: -1.25rem;
+      left: 0.5em;
+      top: -1.25em;
     }
     input{
       color: var(--foreground, #000);
@@ -95,8 +95,8 @@
 .help-text, .error-message{
   font-style: italic;
   opacity: 0.7;
-  font-size: 0.8rem;
-  margin: 0.25rem;
+  font-size: 0.8em;
+  margin: 0.25em;
 }
 .error-message{
   color: var(--danger-color);
@@ -104,13 +104,13 @@
   font-weight: bold;
 }
 .prefix, .suffix{
-  font-size: 0.8rem;
+  font-size: 0.8em;
 }
 svg{
   &.error{
     fill: red;
-    width: 1rem;
-    height: 1rem;
+    width: 1em;
+    height: 1em;
     transform: scale(1.5);
   }
 }
@@ -120,7 +120,7 @@ button.show-password{
   margin: 0;
   padding: 0;
   svg{
-    height: 1rem;
+    height: 1em;
     width: auto;
     fill: var(--foreground);
     transform: scale(1.5);
