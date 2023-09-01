@@ -55,7 +55,7 @@
     "eslint-plugin-storybook": "^0.6.11",
     "gh-pages": "^5.0.0",
     "jest": "^27.0.3",
-    "jest-cli": "^27.5.1",
+    "jest-cli": "^29.6.4",
     "license-checker-rseidelsohn": "^4.2.6",
     "jodit": "^3.24.9",
     "lit": "^2.7.2",
