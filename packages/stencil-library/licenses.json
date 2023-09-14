@@ -4,18 +4,27 @@
         "repository": "https://github.com/dnncommunity/dnn-elements",
         "path": ""
     },
-    "@stencil/core@4.0.1": {
-        "licenses": "MIT",
-        "repository": "https://github.com/ionic-team/stencil",
-        "publisher": "Ionic Team",
-        "path": "node_modules\\@stencil\\core",
-        "licenseFile": "node_modules\\@stencil\\core\\LICENSE.md"
-    },
     "@stencil/eslint-plugin@0.4.0": {
         "licenses": "MIT",
         "repository": "https://github.com/ionic-team/stencil-eslint",
         "path": "node_modules\\@stencil\\eslint-plugin",
         "licenseFile": "node_modules\\@stencil\\eslint-plugin\\LICENSE.md"
+    },
+    "eslint@7.32.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/eslint/eslint",
+        "publisher": "Nicholas C. Zakas",
+        "email": "nicholas+npm@nczconsulting.com",
+        "path": "node_modules\\eslint",
+        "licenseFile": "node_modules\\eslint\\LICENSE"
+    },
+    "jodit@3.24.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/xdan/jodit",
+        "publisher": "Chupurnov",
+        "email": "chupurnov@gmail.com",
+        "path": "node_modules\\jodit",
+        "licenseFile": "node_modules\\jodit\\LICENSE.txt"
     },
     "typescript@4.9.5": {
         "licenses": "Apache-2.0",

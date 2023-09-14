@@ -856,7 +856,7 @@
             {
               "name": "language",
               "type": {
-                "text": "\"json\" | \"html\" | \"ruby\" | \"r\" | \"c\" | \"plaintext\" | \"bat\" | \"coffeescript\" | \"cpp\" | \"csharp\" | \"dockerfile\" | \"fsharp\" | \"go\" | \"handlebars\" | \"ini\" | \"pug\" | \"java\" | \"lua\" | \"markdown\" | \"msdax\" | \"objective-c\" | \"postiats\" | \"php\" | \"powershell\" | \"python\" | \"razor\" | \"swift\" | \"sql\" | \"vb\" | \"xml\" | \"less\" | \"scss\" | \"css\" | \"yaml\" | \"sol\" | \"sb\" | \"typescript\" | \"javascript\""
+                "text": "\"html\" | \"ruby\" | \"plaintext\" | \"bat\" | \"coffeescript\" | \"c\" | \"cpp\" | \"csharp\" | \"dockerfile\" | \"fsharp\" | \"go\" | \"handlebars\" | \"ini\" | \"pug\" | \"java\" | \"lua\" | \"markdown\" | \"msdax\" | \"objective-c\" | \"postiats\" | \"php\" | \"powershell\" | \"python\" | \"r\" | \"razor\" | \"swift\" | \"sql\" | \"vb\" | \"xml\" | \"less\" | \"scss\" | \"css\" | \"yaml\" | \"sol\" | \"sb\" | \"json\" | \"typescript\" | \"javascript\""
               },
               "description": "Defines the language for the editor.",
               "default": "\"html\"",
@@ -969,6 +969,136 @@
                 "text": "string"
               },
               "description": "Fires when searching for users to add to the permissions. Emits the search query."
+            }
+          ],
+          "slots": [],
+          "cssProperties": [],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/dnn-progress-bar/dnn-progress-bar.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-progress-bar.tsx",
+          "tagName": "dnn-progress-bar",
+          "description": "",
+          "attributes": [
+            {
+              "name": "max",
+              "type": {
+                "text": "number"
+              },
+              "description": "Sets the max value for the progress bar.",
+              "default": "100",
+              "required": false
+            },
+            {
+              "name": "use-gradient",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Determines if gradient colors will be used for progress bar.",
+              "default": "false",
+              "required": false
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "number"
+              },
+              "description": "Sets to current value for the progress bar.",
+              "required": false
+            }
+          ],
+          "members": [],
+          "events": [],
+          "slots": [],
+          "cssProperties": [
+            {
+              "name": "--background-color",
+              "description": "The background color of the progress bar."
+            },
+            {
+              "name": "--border-radius",
+              "description": "The border radius of the progress bar."
+            },
+            {
+              "name": "--gradient-color-end",
+              "description": "The gradient end color of the progress bar."
+            },
+            {
+              "name": "--gradient-color-start",
+              "description": "The gradient start color of the progress bar."
+            },
+            {
+              "name": "--gradient-direction",
+              "description": "The gradient direction of the progress bar."
+            },
+            {
+              "name": "--height",
+              "description": "The height of the progress bar."
+            },
+            {
+              "name": "--min-width",
+              "description": "The minimum width of the progress bar."
+            },
+            {
+              "name": "--value-background-color",
+              "description": "The value background color of the progress bar."
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/dnn-richtext/dnn-richtext.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-richtext.tsx",
+          "tagName": "dnn-richtext",
+          "description": "",
+          "attributes": [
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "Sets the value of the content of the editor.",
+              "required": false
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "options",
+              "type": {
+                "text": "Config"
+              },
+              "description": "Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html",
+              "required": false
+            }
+          ],
+          "events": [
+            {
+              "name": "valueChange",
+              "type": {
+                "text": "string"
+              },
+              "description": "Fires when the value changed."
+            },
+            {
+              "name": "valueInput",
+              "type": {
+                "text": "string"
+              },
+              "description": "Fires during value input."
             }
           ],
           "slots": [],
