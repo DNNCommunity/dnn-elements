@@ -1,4 +1,4 @@
-import { Component, Host, h, State, Prop, Event, EventEmitter, Method } from '@stencil/core';
+import { Component, Element, Host, h, State, Prop, Event, EventEmitter, Method } from '@stencil/core';
 import { CornerType } from './CornerType';
 import { getMovementFromEvent } from "../../utilities/mouseUtilities";
 
@@ -57,7 +57,8 @@ export class DnnImageCropper {
 
   @State() view: IComponentInterfaces["View"];
 
-  private host: HTMLElement;
+  @Element() host: HTMLDnnImageCropperElement;
+
   private hasPictureView: HTMLDivElement;
   private noPictureView: HTMLDivElement;
   private canvas: HTMLCanvasElement;
@@ -90,6 +91,13 @@ export class DnnImageCropper {
   }
 
   private initCrop() {
+
+    /** Force full size to prevent a Firefox timing issue */
+    this.crop.style.top = "0px";
+    this.crop.style.left = "0px";
+    this.crop.style.width = "100%";
+    this.crop.style.height = "100%";
+
     var wantedRatio = this.width / this.height;
     var imageRect = this.image.getBoundingClientRect();
     var imageRatio = imageRect.width / imageRect.height;
@@ -133,8 +141,12 @@ export class DnnImageCropper {
         }
         var ctx = this.canvas.getContext("2d");
         ctx.drawImage(img, 0, 0);
-        this.setView("hasPictureView");
-        this.setImage();
+        requestAnimationFrame(() => {
+          this.setView("hasPictureView");
+        });
+        requestAnimationFrame(() => {
+          this.setImage();
+        });
         requestAnimationFrame(() => {
           this.initializeCropBox();
         })
@@ -458,7 +470,7 @@ export class DnnImageCropper {
 
   render() {
     return (
-      <Host ref={el => this.host = el}>
+      <Host>
         <canvas ref={el => this.canvas = el} />
         <div
           class="view"
