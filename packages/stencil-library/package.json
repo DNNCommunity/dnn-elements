@@ -46,7 +46,7 @@
     "@timkendrick/monaco-editor": "^0.0.9",
     "@types/jest": "^27.0.3",
     "@types/puppeteer": "5.4.7",
-    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^4.33.0",
     "axe-playwright": "^1.2.3",
     "babel-loader": "^9.1.2",
