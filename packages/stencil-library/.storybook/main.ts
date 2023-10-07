@@ -1,12 +1,13 @@
+import { dirname, join } from "path";
 import type { StorybookConfig } from "@storybook/web-components-webpack5";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-actions",
-    "@storybook/addon-a11y",
+    getAbsolutePath("@storybook/addon-links"),
+    getAbsolutePath("@storybook/addon-essentials"),
+    getAbsolutePath("@storybook/addon-actions"),
+    getAbsolutePath("@storybook/addon-a11y"),
     {
       name: "@storybook/addon-docs",
       options: {
@@ -18,7 +19,7 @@ const config: StorybookConfig = {
     },
   ],
   framework: {
-    name: "@storybook/web-components-webpack5",
+    name: getAbsolutePath("@storybook/web-components-webpack5"),
     options: {},
   },
   staticDirs: [{ from: './assets', to: '/assets'}],
@@ -27,3 +28,7 @@ const config: StorybookConfig = {
   },
 };
 export default config;
+
+function getAbsolutePath(value: string): any {
+  return dirname(require.resolve(join(value, "package.json")));
+}
