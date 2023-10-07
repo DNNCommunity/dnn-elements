@@ -138,6 +138,59 @@
       ]
     },
     {
+      "name": "dnn-color-input",
+      "description": {
+        "kind": "markdown",
+        "value": "A custom input component that allows previewing and changing a color value."
+      },
+      "attributes": [
+        {
+          "name": "color",
+          "description": "Sets the initial color, must be a valid 8 character hexadecimal string without the # sign."
+        },
+        {
+          "name": "contrast-color",
+          "description": "Sets the initial contrast color, must be a valid 8 character hexadecimal string without the # sign."
+        },
+        {
+          "name": "dark-color",
+          "description": "Sets the initial dark color, must be a valid 8 character hexadecimal string without the # sign."
+        },
+        {
+          "name": "disabled",
+          "description": "Disables interacting with the component."
+        },
+        {
+          "name": "help-text",
+          "description": "Defines the help label displayed under the field."
+        },
+        {
+          "name": "label",
+          "description": "The label for this input."
+        },
+        {
+          "name": "light-color",
+          "description": "Sets the initial light color, must be a valid 8 character hexadecimal string without the # sign."
+        },
+        {
+          "name": "name",
+          "description": "The name for this input, if not provided a random name will be assigned."
+        },
+        {
+          "name": "use-contrast-color",
+          "description": "If true, the picker will allow selecting a contast color too."
+        },
+        {
+          "name": "use-dark-color",
+          "description": "If true, the picker will allow selecting a dark color too."
+        },
+        {
+          "name": "use-light-color",
+          "description": "If true, the picker will allow selecting a light color too."
+        }
+      ]
+    },
+    {
       "name": "dnn-color-picker",
       "description": {
         "kind": "markdown",

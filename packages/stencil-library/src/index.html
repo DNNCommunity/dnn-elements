@@ -82,6 +82,7 @@
     <li><a href="#dnn-checkbox">dnn-checkbox</a></li>
     <li><a href="#dnn-chevron">dnn-chevron</a></li>
     <li><a href="#dnn-collapsible">dnn-collapsible</a></li>
+    <il><a href="#dnn-color-input">dnn-color-input</a></il>
     <li><a href="#dnn-input">dnn-input</a></li>
     <li><a href="#dnn-modal">dnn-modal</a></li>
     <li><a href="#dnn-searchbox">dnn-searchbox</a></li>
@@ -97,6 +98,46 @@
     <li><a href="#dnn-permissions-grid">dnn-permissions-grid</a></li>
     <li><a href="#dnn-richtext">dnn-richtext</a></li>
   </ul>
+
+  <!-- dnn-color-input -->
+  <a name="dnn-color-input"></a>
+  <section>
+    <div style="display: flex; flex-wrap: wrap; gap: 1em;">
+      <dnn-input label="Normal input" value="test"></dnn-input>
+      <dnn-color-input
+        label="Color input"
+        color="0000FF"
+      >
+      </dnn-color-input>
+      <dnn-color-input
+        label="With Contrast"
+        color="00FF00"
+        contrast-color="000000"
+        use-contrast-color
+      >
+      </dnn-color-input>
+      <dnn-color-input
+        id="color-input-with-variation"
+        label="With Variations"
+        color="880000"
+        contrast-color="FFFFFF"
+        light-color="AA0000"
+        dark-color="660000"
+        use-contrast-color
+        use-light-color
+        use-dark-color
+      >
+      </dnn-color-input>
+    </div>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", () => {
+        let colorInput = document.querySelector('#color-input-with-variation');
+        colorInput.addEventListener('colorInput', (e) => {
+          console.log(e.detail);
+        });
+      });
+    </script>
+  </section>
 
   <!-- dnn-progress-bar -->
   <a name="dnn-progress-bar"></a>

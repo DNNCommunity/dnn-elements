@@ -58,12 +58,14 @@ Type: `Promise<void>`
 ### Used by
 
  - [dnn-button](../dnn-button)
+ - [dnn-color-input](../dnn-color-input)
  - [dnn-image-cropper](../dnn-image-cropper)
 
 ### Graph
 ```mermaid
 graph TD;
   dnn-button --> dnn-modal
+  dnn-color-input --> dnn-modal
   dnn-image-cropper --> dnn-modal
   style dnn-modal fill:#f9f,stroke:#333,stroke-width:4px
 ```

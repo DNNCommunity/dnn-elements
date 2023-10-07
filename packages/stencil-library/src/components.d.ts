@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { DnnColorInfo } from "./components/dnn-color-input/dnn-color-info";
 import { ColorInfo } from "./utilities/colorInfo";
 import { DropzoneResx } from "./components/dnn-dropzone/types";
 import { IPermissions } from "./components/dnn-permissions-grid/permissions-interface";
@@ -12,7 +13,9 @@ import { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interfa
 import { IRole } from "./components/dnn-permissions-grid/role-interface";
 import { ILocalization } from "./components/dnn-permissions-grid/localization-interface";
 import { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
+import { Config } from "jodit/types/config";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
+export { DnnColorInfo } from "./components/dnn-color-input/dnn-color-info";
 export { ColorInfo } from "./utilities/colorInfo";
 export { DropzoneResx } from "./components/dnn-dropzone/types";
 export { IPermissions } from "./components/dnn-permissions-grid/permissions-interface";
@@ -20,6 +23,7 @@ export { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interfa
 export { IRole } from "./components/dnn-permissions-grid/role-interface";
 export { ILocalization } from "./components/dnn-permissions-grid/localization-interface";
 export { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
+export { Config } from "jodit/types/config";
 export { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export namespace Components {
     interface DnnButton {
@@ -97,6 +101,67 @@ export namespace Components {
           * Updates the component height, use to update after a slot content changes.
          */
         "updateSize": () => Promise<void>;
+    }
+    /**
+     * A custom input component that allows previewing and changing a color value.
+     */
+    interface DnnColorInput {
+        /**
+          * Sets the initial color, must be a valid 8 character hexadecimal string without the # sign.
+         */
+        "color": string;
+        /**
+          * Sets the initial contrast color, must be a valid 8 character hexadecimal string without the # sign.
+         */
+        "contrastColor": string;
+        /**
+          * Sets the initial dark color, must be a valid 8 character hexadecimal string without the # sign.
+         */
+        "darkColor": string;
+        /**
+          * Disables interacting with the component.
+         */
+        "disabled": boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText": string;
+        /**
+          * The label for this input.
+         */
+        "label": string;
+        /**
+          * Sets the initial light color, must be a valid 8 character hexadecimal string without the # sign.
+         */
+        "lightColor": string;
+        /**
+          * Can be used to customize the text language.
+         */
+        "localization": {
+    contrast: string,
+    preview: string,
+    cancel: string,
+    confirm: string,
+    normal: string,
+    light: string,
+    dark: string,
+  };
+        /**
+          * The name for this input, if not provided a random name will be assigned.
+         */
+        "name": string;
+        /**
+          * If true, the picker will allow selecting a contast color too.
+         */
+        "useContrastColor": boolean;
+        /**
+          * If true, the picker will allow selecting a dark color too.
+         */
+        "useDarkColor": boolean;
+        /**
+          * If true, the picker will allow selecting a light color too.
+         */
+        "useLightColor": boolean;
     }
     /**
      * Color Picker for Dnn
@@ -335,7 +400,7 @@ export namespace Components {
         /**
           * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
          */
-        "options": typeof Jodit.defaultOptions;
+        "options": Config;
         /**
           * Sets the value of the content of the editor.
          */
@@ -466,6 +531,10 @@ export interface DnnCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnCollapsibleElement;
 }
+export interface DnnColorInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnColorInputElement;
+}
 export interface DnnColorPickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnColorPickerElement;
@@ -546,6 +615,15 @@ declare global {
     var HTMLDnnCollapsibleElement: {
         prototype: HTMLDnnCollapsibleElement;
         new (): HTMLDnnCollapsibleElement;
+    };
+    /**
+     * A custom input component that allows previewing and changing a color value.
+     */
+    interface HTMLDnnColorInputElement extends Components.DnnColorInput, HTMLStencilElement {
+    }
+    var HTMLDnnColorInputElement: {
+        prototype: HTMLDnnColorInputElement;
+        new (): HTMLDnnColorInputElement;
     };
     /**
      * Color Picker for Dnn
@@ -677,6 +755,7 @@ declare global {
         "dnn-checkbox": HTMLDnnCheckboxElement;
         "dnn-chevron": HTMLDnnChevronElement;
         "dnn-collapsible": HTMLDnnCollapsibleElement;
+        "dnn-color-input": HTMLDnnColorInputElement;
         "dnn-color-picker": HTMLDnnColorPickerElement;
         "dnn-dropzone": HTMLDnnDropzoneElement;
         "dnn-image-cropper": HTMLDnnImageCropperElement;
@@ -789,6 +868,75 @@ declare namespace LocalJSX {
           * Defines the transition time in ms, defaults to 150ms
          */
         "transitionDuration"?: number;
+    }
+    /**
+     * A custom input component that allows previewing and changing a color value.
+     */
+    interface DnnColorInput {
+        /**
+          * Sets the initial color, must be a valid 8 character hexadecimal string without the # sign.
+         */
+        "color"?: string;
+        /**
+          * Sets the initial contrast color, must be a valid 8 character hexadecimal string without the # sign.
+         */
+        "contrastColor"?: string;
+        /**
+          * Sets the initial dark color, must be a valid 8 character hexadecimal string without the # sign.
+         */
+        "darkColor"?: string;
+        /**
+          * Disables interacting with the component.
+         */
+        "disabled"?: boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText"?: string;
+        /**
+          * The label for this input.
+         */
+        "label"?: string;
+        /**
+          * Sets the initial light color, must be a valid 8 character hexadecimal string without the # sign.
+         */
+        "lightColor"?: string;
+        /**
+          * Can be used to customize the text language.
+         */
+        "localization"?: {
+    contrast: string,
+    preview: string,
+    cancel: string,
+    confirm: string,
+    normal: string,
+    light: string,
+    dark: string,
+  };
+        /**
+          * The name for this input, if not provided a random name will be assigned.
+         */
+        "name"?: string;
+        /**
+          * Fires when the color was changed and confirmed.
+         */
+        "onColorChange"?: (event: DnnColorInputCustomEvent<DnnColorInfo>) => void;
+        /**
+          * Fires live as the user is trying color changes inside the modal.
+         */
+        "onColorInput"?: (event: DnnColorInputCustomEvent<DnnColorInfo>) => void;
+        /**
+          * If true, the picker will allow selecting a contast color too.
+         */
+        "useContrastColor"?: boolean;
+        /**
+          * If true, the picker will allow selecting a dark color too.
+         */
+        "useDarkColor"?: boolean;
+        /**
+          * If true, the picker will allow selecting a light color too.
+         */
+        "useLightColor"?: boolean;
     }
     /**
      * Color Picker for Dnn
@@ -1055,7 +1203,7 @@ declare namespace LocalJSX {
         /**
           * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
          */
-        "options"?: typeof Jodit.defaultOptions;
+        "options"?: Config;
         /**
           * Sets the value of the content of the editor.
          */
@@ -1186,6 +1334,7 @@ declare namespace LocalJSX {
         "dnn-checkbox": DnnCheckbox;
         "dnn-chevron": DnnChevron;
         "dnn-collapsible": DnnCollapsible;
+        "dnn-color-input": DnnColorInput;
         "dnn-color-picker": DnnColorPicker;
         "dnn-dropzone": DnnDropzone;
         "dnn-image-cropper": DnnImageCropper;
@@ -1214,6 +1363,10 @@ declare module "@stencil/core" {
             "dnn-checkbox": LocalJSX.DnnCheckbox & JSXBase.HTMLAttributes<HTMLDnnCheckboxElement>;
             "dnn-chevron": LocalJSX.DnnChevron & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
             "dnn-collapsible": LocalJSX.DnnCollapsible & JSXBase.HTMLAttributes<HTMLDnnCollapsibleElement>;
+            /**
+             * A custom input component that allows previewing and changing a color value.
+             */
+            "dnn-color-input": LocalJSX.DnnColorInput & JSXBase.HTMLAttributes<HTMLDnnColorInputElement>;
             /**
              * Color Picker for Dnn
              */
