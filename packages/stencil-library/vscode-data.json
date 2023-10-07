@@ -157,10 +157,6 @@
           "description": "Sets the initial dark color, must be a valid 8 character hexadecimal string without the # sign."
         },
         {
-          "name": "disabled",
-          "description": "Disables interacting with the component."
-        },
-        {
           "name": "help-text",
           "description": "Defines the help label displayed under the field."
         },
@@ -175,6 +171,10 @@
         {
           "name": "name",
           "description": "The name for this input, if not provided a random name will be assigned."
+        },
+        {
+          "name": "readonly",
+          "description": "Disables interacting with the component."
         },
         {
           "name": "use-contrast-color",
