@@ -10,6 +10,12 @@
         "path": "node_modules\\@stencil\\eslint-plugin",
         "licenseFile": "node_modules\\@stencil\\eslint-plugin\\LICENSE.md"
     },
+    "@typescript-eslint/parser@4.33.0": {
+        "licenses": "BSD-2-Clause",
+        "repository": "https://github.com/typescript-eslint/typescript-eslint",
+        "path": "node_modules\\@typescript-eslint\\parser",
+        "licenseFile": "node_modules\\@typescript-eslint\\parser\\LICENSE"
+    },
     "eslint@7.32.0": {
         "licenses": "MIT",
         "repository": "https://github.com/eslint/eslint",

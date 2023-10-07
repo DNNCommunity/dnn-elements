@@ -343,7 +343,7 @@
                 "text": "string"
               },
               "description": "Sets the initial contrast color, must be a valid 8 character hexadecimal string without the # sign.",
-              "default": "\"FFFF00\"",
+              "default": "\"FFFFFF\"",
               "required": false
             },
             {
@@ -353,14 +353,6 @@
               },
               "description": "Sets the initial dark color, must be a valid 8 character hexadecimal string without the # sign.",
               "default": "\"0000044\"",
-              "required": false
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Disables interacting with the component.",
               "required": false
             },
             {
@@ -394,6 +386,14 @@
                 "text": "string"
               },
               "description": "The name for this input, if not provided a random name will be assigned.",
+              "required": false
+            },
+            {
+              "name": "readonly",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Disables interacting with the component.",
               "required": false
             },
             {

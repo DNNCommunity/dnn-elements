@@ -119,10 +119,6 @@ export namespace Components {
          */
         "darkColor": string;
         /**
-          * Disables interacting with the component.
-         */
-        "disabled": boolean;
-        /**
           * Defines the help label displayed under the field.
          */
         "helpText": string;
@@ -150,6 +146,10 @@ export namespace Components {
           * The name for this input, if not provided a random name will be assigned.
          */
         "name": string;
+        /**
+          * Disables interacting with the component.
+         */
+        "readonly": boolean;
         /**
           * If true, the picker will allow selecting a contast color too.
          */
@@ -886,10 +886,6 @@ declare namespace LocalJSX {
          */
         "darkColor"?: string;
         /**
-          * Disables interacting with the component.
-         */
-        "disabled"?: boolean;
-        /**
           * Defines the help label displayed under the field.
          */
         "helpText"?: string;
@@ -925,6 +921,10 @@ declare namespace LocalJSX {
           * Fires live as the user is trying color changes inside the modal.
          */
         "onColorInput"?: (event: DnnColorInputCustomEvent<DnnColorInfo>) => void;
+        /**
+          * Disables interacting with the component.
+         */
+        "readonly"?: boolean;
         /**
           * If true, the picker will allow selecting a contast color too.
          */
