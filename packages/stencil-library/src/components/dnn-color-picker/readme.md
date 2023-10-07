@@ -24,6 +24,19 @@ Color Picker for Dnn
 | `colorChanged` | Fires up when the color is changed and emits a ColorInfo object | `CustomEvent<ColorInfo>` |
 
 
+## Dependencies
+
+### Used by
+
+ - [dnn-color-input](../dnn-color-input)
+
+### Graph
+```mermaid
+graph TD;
+  dnn-color-input --> dnn-color-picker
+  style dnn-color-picker fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

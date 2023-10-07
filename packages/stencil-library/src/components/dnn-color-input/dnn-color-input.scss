@@ -1,0 +1,100 @@
+:host {
+  display: inline-block;
+
+  /** @prop --foreground: Defines the foreground color. */
+  --foreground: var(--dnn-color-foreground, #000);
+
+  /** @prop --background: Defines the background color. */
+  --background: var(--dnn-color-background, #fff);
+
+  /** @prop --focus-color: Defines the color when the component is focused. */
+  --focus-color: var(--dnn-color-primary, #3792ED);
+
+  /** @prop --control-radius: Defines the radius for the control corners. */
+  --control-radius: var(--dnn-controls-radius, 3px);
+ 
+  /** @prop --contast-text-align: Allows customizing the text alignment of the contast indicator text. */
+  --contast-text-align: left;
+}
+
+.container{
+  border: 1px solid var(--foreground, #000);
+  border-radius: var(--control-radius, 3px);
+  padding: 0.75em;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.1em;
+  position: relative;
+  background-color: var(--background);
+  .inner-container{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    background-color: var(--background);
+  }
+  label{
+    display: inline-block;
+    position: absolute;
+    left: 0.5em;
+    top: -1.25em;
+    padding: 0 0.5em;
+    background-color: var(--background);
+    white-space: nowrap;
+    max-width: 100%;
+    border-radius: var(--control-radius);
+    font-size: 1em;
+  }
+  button{
+    margin: 0 0 0 1em;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    width: 1em;
+    height: 1em;
+    svg{
+      fill: var(--dnn-color-primary);
+      transform: scale(1.5);
+    }
+  }
+}
+
+.color-preview{
+  min-height: 1em;
+  min-width: 10em;
+  display: flex;
+  width: 100%;
+  position: relative;
+  >div{
+    flex: 1;
+  }
+  .contrast{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    hr {
+      min-width: 1em;
+      border-width: 0.1em 0 0.1em 0;
+      border-style: solid;
+    }
+  }
+}
+
+h3{
+  text-align: center;
+}
+
+.modal-content{
+  margin: 0.5em;
+}
+
+.controls{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+}
