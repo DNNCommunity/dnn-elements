@@ -320,6 +320,173 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/dnn-color-input/dnn-color-input.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-color-input.tsx",
+          "tagName": "dnn-color-input",
+          "description": "A custom input component that allows previewing and changing a color value.",
+          "attributes": [
+            {
+              "name": "color",
+              "type": {
+                "text": "string"
+              },
+              "description": "Sets the initial color, must be a valid 8 character hexadecimal string without the # sign.",
+              "default": "\"000088\"",
+              "required": false
+            },
+            {
+              "name": "contrast-color",
+              "type": {
+                "text": "string"
+              },
+              "description": "Sets the initial contrast color, must be a valid 8 character hexadecimal string without the # sign.",
+              "default": "\"FFFFFF\"",
+              "required": false
+            },
+            {
+              "name": "dark-color",
+              "type": {
+                "text": "string"
+              },
+              "description": "Sets the initial dark color, must be a valid 8 character hexadecimal string without the # sign.",
+              "default": "\"0000044\"",
+              "required": false
+            },
+            {
+              "name": "help-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "Defines the help label displayed under the field.",
+              "required": false
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "The label for this input.",
+              "required": false
+            },
+            {
+              "name": "light-color",
+              "type": {
+                "text": "string"
+              },
+              "description": "Sets the initial light color, must be a valid 8 character hexadecimal string without the # sign.",
+              "default": "\"00000FF\"",
+              "required": false
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name for this input, if not provided a random name will be assigned.",
+              "required": false
+            },
+            {
+              "name": "readonly",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Disables interacting with the component.",
+              "required": false
+            },
+            {
+              "name": "use-contrast-color",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, the picker will allow selecting a contast color too.",
+              "required": false
+            },
+            {
+              "name": "use-dark-color",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, the picker will allow selecting a dark color too.",
+              "required": false
+            },
+            {
+              "name": "use-light-color",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, the picker will allow selecting a light color too.",
+              "required": false
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "localization",
+              "type": {
+                "text": "{ contrast: string; preview: string; cancel: string; confirm: string; normal: string; light: string; dark: string; }"
+              },
+              "description": "Can be used to customize the text language.",
+              "default": "{\n    contrast: \"Contrast\",\n    preview: \"Preview\",\n    cancel: \"Cancel\",\n    confirm: \"Confirm\",\n    normal: \"Normal\",\n    light: \"Light\",\n    dark: \"Dark\",\n  }",
+              "required": false
+            }
+          ],
+          "events": [
+            {
+              "name": "colorChange",
+              "type": {
+                "text": "DnnColorInfo"
+              },
+              "description": "Fires when the color was changed and confirmed."
+            },
+            {
+              "name": "colorInput",
+              "type": {
+                "text": "DnnColorInfo"
+              },
+              "description": "Fires live as the user is trying color changes inside the modal."
+            }
+          ],
+          "slots": [
+            {
+              "name": "prefix",
+              "description": "Can be used to inject content before the input field."
+            },
+            {
+              "name": "suffix",
+              "description": "Can be used to inject content after the input field."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--background",
+              "description": "Defines the background color."
+            },
+            {
+              "name": "--contast-text-align",
+              "description": "Allows customizing the text alignment of the contast indicator text."
+            },
+            {
+              "name": "--control-radius",
+              "description": "Defines the radius for the control corners."
+            },
+            {
+              "name": "--focus-color",
+              "description": "Defines the color when the component is focused."
+            },
+            {
+              "name": "--foreground",
+              "description": "Defines the foreground color."
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/dnn-color-picker/dnn-color-picker.tsx",
       "declarations": [
         {

@@ -10,14 +10,11 @@
   /** @prop --focus-color: Defines the color when the component is focused. */
   --focus-color: var(--dnn-color-primary, #3792ED);
 
-  /** @prop --danger-color: Defines the danger color used for invalid data. */
-  --danger-color: var(--dnn-color-danger, #900);
-
   /** @prop --control-radius: Defines the radius for the control corners. */
   --control-radius: var(--dnn-controls-radius, 3px);
  
-  /** @prop --input-text-align: Allows customizing the text alignment of the input text. */
-  --input-text-align: left;
+  /** @prop --contast-text-align: Allows customizing the text alignment of the contast indicator text. */
+  --contast-text-align: left;
 }
 
 .container{
@@ -39,10 +36,8 @@
   label{
     display: inline-block;
     position: absolute;
-    opacity: 0.6;
-    transition: all 150ms ease-in-out;
-    left: 0;
-    top: 0;
+    left: 0.5em;
+    top: -1.5em;
     padding: 0 0.5em;
     background-color: var(--background);
     white-space: nowrap;
@@ -50,55 +45,56 @@
     border-radius: var(--control-radius);
     font-size: 1em;
   }
-  select{
+  button{
+    margin: 0 0 0 1em;
+    padding: 0;
     border: none;
-    outline: none;
-    background-color: var(--background);
-    text-align: var(--input-text-align);
-    width: 100%;
-    cursor: pointer; 
-  }
-  label{
-    opacity: 1;
-    left: 0.5em;
-    top: -1.5em;
-  }
-  &.focused{
-    border: 1px solid var(--focus-color);
-    box-shadow: 0 0 0 1px var(--focus-color);
-    &.invalid{
-      border: 1px solid var(--danger-color);
-      box-shadow: 0 0 0 1px var(--danger-color);
+    background-color: transparent;
+    width: 1em;
+    height: 1em;
+    svg{
+      fill: var(--dnn-color-primary);
+      transform: scale(1.5);
     }
-    
-  }
-  &.disabled{
-    opacity: 0.5;
-  }
-  &.invalid{
-    border-color: var(--danger-color);
   }
 }
 
-.help-text, .error-message{
-  font-style: italic;
-  opacity: 0.7;
-  font-size: 0.8em;
-  margin: 0.25em;
-}
-.error-message{
-  color: var(--danger-color);
-  font-style: normal;
-  font-weight: bold;
-}
-.prefix, .suffix{
-  font-size: 0.8em;
-}
-svg{
-  &.error{
-    fill: red;
-    width: 1em;
-    height: 1em;
-    transform: scale(1.5);
+.color-preview{
+  min-height: 1em;
+  min-width: 10em;
+  display: flex;
+  width: 100%;
+  position: relative;
+  >div{
+    flex: 1;
   }
+  .contrast{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    hr {
+      min-width: 1em;
+      border-width: 0.1em 0 0.1em 0;
+      border-style: solid;
+    }
+  }
+}
+
+h3{
+  text-align: center;
+}
+
+.modal-content{
+  margin: 0.5em;
+}
+
+.controls{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
 }

@@ -28,6 +28,19 @@
 | `--color-visible-text` | The color of the text for the active tab.           |
 
 
+## Dependencies
+
+### Used by
+
+ - [dnn-color-input](../dnn-color-input)
+
+### Graph
+```mermaid
+graph TD;
+  dnn-color-input --> dnn-tabs
+  style dnn-tabs fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
