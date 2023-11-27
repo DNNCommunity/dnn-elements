@@ -123,4 +123,7 @@ export const config: Config = {
     ]
   },
   sourceMap: true,
+  testing: {
+    browserHeadless: "new",
+  }
 };
