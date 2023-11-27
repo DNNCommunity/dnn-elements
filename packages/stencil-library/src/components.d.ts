@@ -592,87 +592,223 @@ export interface DnnVerticalSplitviewCustomEvent<T> extends CustomEvent<T> {
     target: HTMLDnnVerticalSplitviewElement;
 }
 declare global {
+    interface HTMLDnnButtonElementEventMap {
+        "confirmed": any;
+        "canceled": any;
+    }
     interface HTMLDnnButtonElement extends Components.DnnButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnButtonElementEventMap>(type: K, listener: (this: HTMLDnnButtonElement, ev: DnnButtonCustomEvent<HTMLDnnButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnButtonElementEventMap>(type: K, listener: (this: HTMLDnnButtonElement, ev: DnnButtonCustomEvent<HTMLDnnButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnButtonElement: {
         prototype: HTMLDnnButtonElement;
         new (): HTMLDnnButtonElement;
     };
+    interface HTMLDnnCheckboxElementEventMap {
+        "checkedchange": "checked" | "unchecked" | "intermediate";
+    }
     interface HTMLDnnCheckboxElement extends Components.DnnCheckbox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnCheckboxElementEventMap>(type: K, listener: (this: HTMLDnnCheckboxElement, ev: DnnCheckboxCustomEvent<HTMLDnnCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnCheckboxElementEventMap>(type: K, listener: (this: HTMLDnnCheckboxElement, ev: DnnCheckboxCustomEvent<HTMLDnnCheckboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnCheckboxElement: {
         prototype: HTMLDnnCheckboxElement;
         new (): HTMLDnnCheckboxElement;
     };
+    interface HTMLDnnChevronElementEventMap {
+        "changed": any;
+    }
     interface HTMLDnnChevronElement extends Components.DnnChevron, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnChevronElementEventMap>(type: K, listener: (this: HTMLDnnChevronElement, ev: DnnChevronCustomEvent<HTMLDnnChevronElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnChevronElementEventMap>(type: K, listener: (this: HTMLDnnChevronElement, ev: DnnChevronCustomEvent<HTMLDnnChevronElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnChevronElement: {
         prototype: HTMLDnnChevronElement;
         new (): HTMLDnnChevronElement;
     };
+    interface HTMLDnnCollapsibleElementEventMap {
+        "dnnCollapsibleHeightChanged": void;
+    }
     interface HTMLDnnCollapsibleElement extends Components.DnnCollapsible, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnCollapsibleElementEventMap>(type: K, listener: (this: HTMLDnnCollapsibleElement, ev: DnnCollapsibleCustomEvent<HTMLDnnCollapsibleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnCollapsibleElementEventMap>(type: K, listener: (this: HTMLDnnCollapsibleElement, ev: DnnCollapsibleCustomEvent<HTMLDnnCollapsibleElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnCollapsibleElement: {
         prototype: HTMLDnnCollapsibleElement;
         new (): HTMLDnnCollapsibleElement;
     };
+    interface HTMLDnnColorInputElementEventMap {
+        "colorChange": DnnColorInfo;
+        "colorInput": DnnColorInfo;
+    }
     /**
      * A custom input component that allows previewing and changing a color value.
      */
     interface HTMLDnnColorInputElement extends Components.DnnColorInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnColorInputElementEventMap>(type: K, listener: (this: HTMLDnnColorInputElement, ev: DnnColorInputCustomEvent<HTMLDnnColorInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnColorInputElementEventMap>(type: K, listener: (this: HTMLDnnColorInputElement, ev: DnnColorInputCustomEvent<HTMLDnnColorInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnColorInputElement: {
         prototype: HTMLDnnColorInputElement;
         new (): HTMLDnnColorInputElement;
     };
+    interface HTMLDnnColorPickerElementEventMap {
+        "colorChanged": ColorInfo;
+    }
     /**
      * Color Picker for Dnn
      */
     interface HTMLDnnColorPickerElement extends Components.DnnColorPicker, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnColorPickerElementEventMap>(type: K, listener: (this: HTMLDnnColorPickerElement, ev: DnnColorPickerCustomEvent<HTMLDnnColorPickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnColorPickerElementEventMap>(type: K, listener: (this: HTMLDnnColorPickerElement, ev: DnnColorPickerCustomEvent<HTMLDnnColorPickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnColorPickerElement: {
         prototype: HTMLDnnColorPickerElement;
         new (): HTMLDnnColorPickerElement;
     };
+    interface HTMLDnnDropzoneElementEventMap {
+        "filesSelected": File[];
+    }
     interface HTMLDnnDropzoneElement extends Components.DnnDropzone, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnDropzoneElementEventMap>(type: K, listener: (this: HTMLDnnDropzoneElement, ev: DnnDropzoneCustomEvent<HTMLDnnDropzoneElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnDropzoneElementEventMap>(type: K, listener: (this: HTMLDnnDropzoneElement, ev: DnnDropzoneCustomEvent<HTMLDnnDropzoneElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnDropzoneElement: {
         prototype: HTMLDnnDropzoneElement;
         new (): HTMLDnnDropzoneElement;
     };
+    interface HTMLDnnImageCropperElementEventMap {
+        "imageCropChanged": string;
+    }
     /**
      * Allows cropping an image in-browser with the option to enforce a specific final size.
      * All computation happens in the browser and the final image is emmited
      * in an event that has a data-url of the image.
      */
     interface HTMLDnnImageCropperElement extends Components.DnnImageCropper, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnImageCropperElementEventMap>(type: K, listener: (this: HTMLDnnImageCropperElement, ev: DnnImageCropperCustomEvent<HTMLDnnImageCropperElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnImageCropperElementEventMap>(type: K, listener: (this: HTMLDnnImageCropperElement, ev: DnnImageCropperCustomEvent<HTMLDnnImageCropperElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnImageCropperElement: {
         prototype: HTMLDnnImageCropperElement;
         new (): HTMLDnnImageCropperElement;
     };
+    interface HTMLDnnInputElementEventMap {
+        "valueChange": number | string | string[];
+        "valueInput": number | string | string[];
+    }
     /**
      * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
      */
     interface HTMLDnnInputElement extends Components.DnnInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnInputElementEventMap>(type: K, listener: (this: HTMLDnnInputElement, ev: DnnInputCustomEvent<HTMLDnnInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnInputElementEventMap>(type: K, listener: (this: HTMLDnnInputElement, ev: DnnInputCustomEvent<HTMLDnnInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnInputElement: {
         prototype: HTMLDnnInputElement;
         new (): HTMLDnnInputElement;
     };
+    interface HTMLDnnModalElementEventMap {
+        "dismissed": any;
+    }
     interface HTMLDnnModalElement extends Components.DnnModal, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnModalElementEventMap>(type: K, listener: (this: HTMLDnnModalElement, ev: DnnModalCustomEvent<HTMLDnnModalElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnModalElementEventMap>(type: K, listener: (this: HTMLDnnModalElement, ev: DnnModalCustomEvent<HTMLDnnModalElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnModalElement: {
         prototype: HTMLDnnModalElement;
         new (): HTMLDnnModalElement;
     };
+    interface HTMLDnnMonacoEditorElementEventMap {
+        "contentChanged": string;
+    }
     interface HTMLDnnMonacoEditorElement extends Components.DnnMonacoEditor, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnMonacoEditorElementEventMap>(type: K, listener: (this: HTMLDnnMonacoEditorElement, ev: DnnMonacoEditorCustomEvent<HTMLDnnMonacoEditorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnMonacoEditorElementEventMap>(type: K, listener: (this: HTMLDnnMonacoEditorElement, ev: DnnMonacoEditorCustomEvent<HTMLDnnMonacoEditorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnMonacoEditorElement: {
         prototype: HTMLDnnMonacoEditorElement;
         new (): HTMLDnnMonacoEditorElement;
     };
+    interface HTMLDnnPermissionsGridElementEventMap {
+        "userSearchQueryChanged": string;
+        "permissionsChanged": IPermissions;
+    }
     interface HTMLDnnPermissionsGridElement extends Components.DnnPermissionsGrid, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnPermissionsGridElementEventMap>(type: K, listener: (this: HTMLDnnPermissionsGridElement, ev: DnnPermissionsGridCustomEvent<HTMLDnnPermissionsGridElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnPermissionsGridElementEventMap>(type: K, listener: (this: HTMLDnnPermissionsGridElement, ev: DnnPermissionsGridCustomEvent<HTMLDnnPermissionsGridElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnPermissionsGridElement: {
         prototype: HTMLDnnPermissionsGridElement;
@@ -684,25 +820,70 @@ declare global {
         prototype: HTMLDnnProgressBarElement;
         new (): HTMLDnnProgressBarElement;
     };
+    interface HTMLDnnRichtextElementEventMap {
+        "valueChange": string;
+        "valueInput": string;
+    }
     interface HTMLDnnRichtextElement extends Components.DnnRichtext, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnRichtextElementEventMap>(type: K, listener: (this: HTMLDnnRichtextElement, ev: DnnRichtextCustomEvent<HTMLDnnRichtextElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnRichtextElementEventMap>(type: K, listener: (this: HTMLDnnRichtextElement, ev: DnnRichtextCustomEvent<HTMLDnnRichtextElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnRichtextElement: {
         prototype: HTMLDnnRichtextElement;
         new (): HTMLDnnRichtextElement;
     };
+    interface HTMLDnnSearchboxElementEventMap {
+        "queryChanged": string;
+    }
     interface HTMLDnnSearchboxElement extends Components.DnnSearchbox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnSearchboxElementEventMap>(type: K, listener: (this: HTMLDnnSearchboxElement, ev: DnnSearchboxCustomEvent<HTMLDnnSearchboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnSearchboxElementEventMap>(type: K, listener: (this: HTMLDnnSearchboxElement, ev: DnnSearchboxCustomEvent<HTMLDnnSearchboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnSearchboxElement: {
         prototype: HTMLDnnSearchboxElement;
         new (): HTMLDnnSearchboxElement;
     };
+    interface HTMLDnnSelectElementEventMap {
+        "valueChange": string;
+    }
     interface HTMLDnnSelectElement extends Components.DnnSelect, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnSelectElementEventMap>(type: K, listener: (this: HTMLDnnSelectElement, ev: DnnSelectCustomEvent<HTMLDnnSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnSelectElementEventMap>(type: K, listener: (this: HTMLDnnSelectElement, ev: DnnSelectCustomEvent<HTMLDnnSelectElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnSelectElement: {
         prototype: HTMLDnnSelectElement;
         new (): HTMLDnnSelectElement;
     };
+    interface HTMLDnnSortIconElementEventMap {
+        "sortChanged": "asc"|"desc"|"none";
+    }
     interface HTMLDnnSortIconElement extends Components.DnnSortIcon, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnSortIconElementEventMap>(type: K, listener: (this: HTMLDnnSortIconElement, ev: DnnSortIconCustomEvent<HTMLDnnSortIconElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnSortIconElementEventMap>(type: K, listener: (this: HTMLDnnSortIconElement, ev: DnnSortIconCustomEvent<HTMLDnnSortIconElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnSortIconElement: {
         prototype: HTMLDnnSortIconElement;
@@ -723,13 +904,36 @@ declare global {
         prototype: HTMLDnnTabsElement;
         new (): HTMLDnnTabsElement;
     };
+    interface HTMLDnnToggleElementEventMap {
+        "checkChanged": DnnToggleChangeEventDetail;
+    }
     interface HTMLDnnToggleElement extends Components.DnnToggle, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnToggleElementEventMap>(type: K, listener: (this: HTMLDnnToggleElement, ev: DnnToggleCustomEvent<HTMLDnnToggleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnToggleElementEventMap>(type: K, listener: (this: HTMLDnnToggleElement, ev: DnnToggleCustomEvent<HTMLDnnToggleElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnToggleElement: {
         prototype: HTMLDnnToggleElement;
         new (): HTMLDnnToggleElement;
     };
+    interface HTMLDnnTreeviewItemElementEventMap {
+        "userExpanded": void;
+        "userCollapsed": void;
+    }
     interface HTMLDnnTreeviewItemElement extends Components.DnnTreeviewItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnTreeviewItemElementEventMap>(type: K, listener: (this: HTMLDnnTreeviewItemElement, ev: DnnTreeviewItemCustomEvent<HTMLDnnTreeviewItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnTreeviewItemElementEventMap>(type: K, listener: (this: HTMLDnnTreeviewItemElement, ev: DnnTreeviewItemCustomEvent<HTMLDnnTreeviewItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnTreeviewItemElement: {
         prototype: HTMLDnnTreeviewItemElement;
@@ -744,7 +948,18 @@ declare global {
         prototype: HTMLDnnVerticalOverflowMenuElement;
         new (): HTMLDnnVerticalOverflowMenuElement;
     };
+    interface HTMLDnnVerticalSplitviewElementEventMap {
+        "widthChanged": number;
+    }
     interface HTMLDnnVerticalSplitviewElement extends Components.DnnVerticalSplitview, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnVerticalSplitviewElementEventMap>(type: K, listener: (this: HTMLDnnVerticalSplitviewElement, ev: DnnVerticalSplitviewCustomEvent<HTMLDnnVerticalSplitviewElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnVerticalSplitviewElementEventMap>(type: K, listener: (this: HTMLDnnVerticalSplitviewElement, ev: DnnVerticalSplitviewCustomEvent<HTMLDnnVerticalSplitviewElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDnnVerticalSplitviewElement: {
         prototype: HTMLDnnVerticalSplitviewElement;
