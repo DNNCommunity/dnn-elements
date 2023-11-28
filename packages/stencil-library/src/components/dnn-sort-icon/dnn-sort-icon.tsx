@@ -7,7 +7,7 @@ import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
 })
 export class DnnSortIcon {
   /** Defines the current sort direction */
-  @Prop() sortDirection: "asc" | "desc" | "none" = "none";
+  @Prop({mutable: true}) sortDirection: "asc" | "desc" | "none" = "none";
 
   /** Emitted when the sort is changed. */
   @Event() sortChanged!: EventEmitter<"asc"|"desc"|"none">;
