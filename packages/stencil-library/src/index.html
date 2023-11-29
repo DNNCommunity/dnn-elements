@@ -776,9 +776,10 @@
   <section>
     <h2>dnn-dropzone</h2>
     <p>Allows dropping a file, selecting a file or taking a picture with the device camera.</p>
-    <dnn-dropzone max-file-size='100000' allow-camera-mode id="dnnDropZone" />
+    <dnn-dropzone max-file-size='10000' allow-camera-mode id="dnnDropZone" />
     <script type="text/javascript">
       const dnnDropZone = document.querySelector("#dnnDropZone");
+      dnnDropZone.allowedExtensions = ["jpg", "png", "gif", "pdf"];
       dnnDropZone.addEventListener("filesSelected", e => console.log(e.detail));
     </script>
   </section>

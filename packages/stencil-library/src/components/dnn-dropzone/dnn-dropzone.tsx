@@ -42,7 +42,9 @@ export class DnnDropzone {
 
   @State() takingPicture: boolean = false;
 
-  @State() fileTooLarge: boolean;
+  @State() fileTooLarge: boolean = false;
+
+  @State() invalidExtension: boolean = false;
   
 
   private dropzone: HTMLElement;
@@ -56,7 +58,9 @@ export class DnnDropzone {
     takePicture: "Take a picture",
     uploadFile: "Upload a file",
     uploadSizeTooLarge: "The file you tried to upload is too large.",
-    fileSizeLimit: "The maximum size is",
+    fileSizeLimit: "The maximum size is {0}",
+    invalidExtension: "The file you tried to upload has an invalid extension.",
+    allowedFileExtensions: "Allowed file extensions: {0}",
   }
 
   componentWillLoad() {
@@ -100,7 +104,7 @@ export class DnnDropzone {
   }
 
   private isAnyFileLargerThanAllowed (files:File[]) : boolean {
-    if (!this.maxFileSize) {
+    if (this.maxFileSize == undefined || this.maxFileSize <= 0) {
       return false;
     } 
 
@@ -112,12 +116,19 @@ export class DnnDropzone {
   }
 
   private handleUploadButton(element: HTMLInputElement): void {
+    this.fileTooLarge = false;
+    this.invalidExtension = false;
     let files = this.getFilesFromFileList(element.files);
     
     if (this.isAnyFileLargerThanAllowed(files)) {
       this.fileTooLarge = true;
       return;
-    } else { this.fileTooLarge = false; }
+    }
+
+    if (this.hasInvalidExtensions(files)){
+      this.invalidExtension = true;
+      return;
+    }
 
     this.filesSelected.emit(files);
   }
@@ -130,7 +141,7 @@ export class DnnDropzone {
     this.dropzone.classList.add("dropping");
   };
 
-  private hasInvalidExtensions(files: FileList): boolean{
+  private hasInvalidExtensions(files: File[]): boolean{
     var hasInvalid = false;
     for (let fileIndex = 0; fileIndex < files.length; fileIndex++) {
       const file = files[fileIndex];
@@ -149,13 +160,22 @@ export class DnnDropzone {
   }
 
   private handleDrop = (dropEvent: DragEvent) => {
+    this.invalidExtension = false;
+    this.fileTooLarge = false;
     dropEvent.stopPropagation();
     dropEvent.preventDefault();
     const files = dropEvent.dataTransfer.files;
 
-    if (this.hasInvalidExtensions(files)){
+    if (this.hasInvalidExtensions(Array.from(files))){
+      this.invalidExtension = true;
       return;
     }
+
+    if (this.isAnyFileLargerThanAllowed(Array.from(files))) {
+      this.fileTooLarge = true;
+      return;
+    }
+
     var fileList = this.getFilesFromFileList(files);
     this.filesSelected.emit(fileList);
   };
@@ -194,8 +214,8 @@ export class DnnDropzone {
       <Host
         ref={e => this.dropzone = e}
         class="dropzone"
-        onDragOver={this.handleDragOver}
-        onDrop={this.handleDrop}
+        onDragOver={e => this.handleDragOver(e)}
+        onDrop={e => this.handleDrop(e)}
         onDragLeave={() => this.dropzone.classList.remove("dropping")}
       >
         {!this.takingPicture &&
@@ -247,8 +267,17 @@ export class DnnDropzone {
               <p>
                 {this.resx.uploadSizeTooLarge}
                 <br/>
-                {this.resx.fileSizeLimit + " " + getReadableFileSizeString(this.maxFileSize) } 
+                {this.resx.fileSizeLimit.replace("{0}", getReadableFileSizeString(this.maxFileSize)) } 
               </p>
+          </div>
+        }
+        { this.invalidExtension &&
+          <div class='error'>
+            <p>
+              {this.resx.invalidExtension}
+              <br/>
+              {this.resx.allowedFileExtensions.replace("{0}", this.allowedExtensions.join(", ")) }
+            </p>
           </div>
         }
       </Host>
