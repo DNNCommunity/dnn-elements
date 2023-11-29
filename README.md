@@ -3,22 +3,35 @@
 ![npm (scoped with tag)](https://img.shields.io/npm/v/@dnncommunity/dnn-elements/latest)
 ![npm (scoped with tag)](https://img.shields.io/npm/v/@dnncommunity/dnn-elements/next)
 
-# Dnn custom HTML elements
+# dnn-elements (HTML Custom Elements)
+This is a collection of reusable HTML custom elements (WebComponents) for Dnn.
 
-This is a collection of reusable HTML elements (WebComponents) for Dnn.
+## DEMO
+A [demo site](https://dnncommunity.github.io/dnn-elements/) is available as a playground for all current components, along with documentation.
 
-# View demo
-A [demo site](https://DnnCommunity.github.io/dnn-elements/) is available to play with each component. Open the developer panel in your browser to inspect what various component events do.
-
-# Stencil
-
+## Stencil
 Stencil is a compiler for building fast web apps using Web Components.
 
 Stencil combines the best concepts of the most popular frontend frameworks into a compile-time rather than run-time tool.  Stencil takes TypeScript, JSX, a tiny virtual DOM layer, efficient one-way data binding, an asynchronous rendering pipeline (similar to React Fiber), and lazy-loading out of the box, and generates 100% standards-based Web Components that run in any browser supporting the Custom Elements v1 spec.
 
 Stencil components are just Web Components, so they work in any major framework or with no framework at all.
 
-## Using these components
-Run `npm i @dnncommunity/dnn-elements`
+## Usage (No Framework)
+### npm
+`npm install @dnncommunity/dnn-elements`
 
-Usage of each component is documented in the component folder rigth here on github with some code samples too.
+### yarn
+`yarn add @dnncommunity/dnn-elements`
+
+## Usage (React)
+### npm
+`npm install @dnncommunity/dnn-elements-react`
+
+### yarn
+`yarn add @dnncommunity/dnn-elements-react`
+
+## Usage (Angular)
+Stay tuned - coming soon.
+
+## Usage (Individual Components)
+Usage of each component is documented within the component folder right here on GitHub, along with some code samples too.
