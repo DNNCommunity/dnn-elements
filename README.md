@@ -18,14 +18,14 @@ Stencil components are just Web Components, so they work in any major framework 
 
 ## Usage (No Framework)
 ### npm
-`npm i @dnncommunity/dnn-elements`
+`npm install @dnncommunity/dnn-elements`
 
 ### yarn
 `yarn add @dnncommunity/dnn-elements`
 
 ## Usage (React)
 ### npm
-`npm i @dnncommunity/dnn-elements-react`
+`npm install @dnncommunity/dnn-elements-react`
 
 ### yarn
 `yarn add @dnncommunity/dnn-elements-react`
