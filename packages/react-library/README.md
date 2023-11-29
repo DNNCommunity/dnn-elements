@@ -1,11 +1,11 @@
 # `dnn-elements-react`
-
-A set of DNN pure WebComponents (custom elements) with wrappers for usage in React.
+This is a collection of pure web components (custom elements) for use within DNN Platform or custom extensions for DNN. These can even be used in projects outside of the DNN purview, though some are unique for the DNN experience. The web components in `dnn-elements-react` are framework specific to React. For framework agnostic web components, you can use `dnn-elements`.
 
 ## Usage
-In your React project run
+### npm
 `npm install @dnncommunity/dnn-elements-react`
-or
+
+### yarn
 `yarn add @dnncommunity/dnn-elements-react`
 
 ```
