@@ -45,7 +45,7 @@
     "@storybook/web-components-webpack5": "^7.5.3",
     "@timkendrick/monaco-editor": "^0.0.9",
     "@types/jest": "^29.5.10",
-    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
     "axe-playwright": "^2.0.1",
     "babel-loader": "^9.1.2",
