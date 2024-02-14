@@ -1,5 +1,6 @@
 node_modules/
-_build/
 .nuke/temp/
 .vs/
 .vscode/
+_build/bin
+_build/obj
