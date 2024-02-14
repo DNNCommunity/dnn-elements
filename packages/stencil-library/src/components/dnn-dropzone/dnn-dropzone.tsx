@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, h, Prop, State, Event, EventEmitter, Watch } from '@stencil/core';
 import { getReadableFileSizeString } from '../../utilities/stringUtilities';
 import { DropzoneResx } from './types';
 
@@ -9,11 +9,11 @@ import { DropzoneResx } from './types';
 })
 export class DnnDropzone {
   /** Localization strings */
-  @Prop({mutable:true}) resx:DropzoneResx;
+  @Prop() resx:DropzoneResx;
 
   /** A list of allowed file extensions.
    * If not specified, any file is allowed.
-   * Ex: ["jpg", "jped", "gif", "png"]
+   * Ex: ["jpg", "jpeg", "gif", "png"]
    */
   @Prop() allowedExtensions: string[];
 
@@ -45,6 +45,8 @@ export class DnnDropzone {
   @State() fileTooLarge: boolean = false;
 
   @State() invalidExtension: boolean = false;
+
+  @State() localResx: DropzoneResx;
   
 
   private dropzone: HTMLElement;
@@ -64,7 +66,7 @@ export class DnnDropzone {
   }
 
   componentWillLoad() {
-    this.resx = {...this.defaultResx, ...this.resx}
+    this.mergeResx();
   }
 
   componentDidLoad() {
@@ -77,6 +79,15 @@ export class DnnDropzone {
       var extensionsList = extensionsWithDots.join(",");
       this.fileInput.accept = extensionsList;
     }
+  }
+
+  @Watch('resx')
+  resxChanged() {
+    this.mergeResx();
+  }
+
+  private mergeResx(): void {
+    this.localResx = {...this.defaultResx, ...this.resx};
   }
 
   private checkIfBrowserCanTakeSnapshots(): Promise<boolean> {
@@ -146,12 +157,13 @@ export class DnnDropzone {
     for (let fileIndex = 0; fileIndex < files.length; fileIndex++) {
       const file = files[fileIndex];
       var regex = /(?:\.([^.]+))?$/;
-      const fileExtension = regex.exec(file.name)[1];
+      const fileExtension = regex.exec(file.name)[1]?.toLowerCase();
       if (fileExtension == undefined){
         hasInvalid = true;
       }
 
-      if (this.allowedExtensions != undefined && !this.allowedExtensions.includes(fileExtension)){
+      var loweredAllowedExtensions = this.allowedExtensions.map(e => e.toLowerCase());
+      if (this.allowedExtensions != undefined && !loweredAllowedExtensions.includes(fileExtension)){
         hasInvalid = true;
       }
 
@@ -208,6 +220,12 @@ export class DnnDropzone {
       this.filesSelected.emit(fileList)
     }, "image/jpeg", this.captureQuality);
   }
+
+  private getInvalidExtensionsMessage() {
+    var message = this.localResx.allowedFileExtensions;
+    var message = message.replace("{0}", this.allowedExtensions.join(", "));
+    return message;
+  }
   
   render() {
     return (
@@ -220,9 +238,9 @@ export class DnnDropzone {
       >
         {!this.takingPicture &&
           [
-            <p>{this.resx?.dragAndDropFile}</p>
+            <p>{this.localResx?.dragAndDropFile}</p>
           ,
-            <p>- {this.resx?.or} -</p>
+            <p>- {this.localResx?.or} -</p>
           ,
             <label class="upload-file">
               <input
@@ -235,18 +253,18 @@ export class DnnDropzone {
                 <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><rect fill="none" height="24" width="24"/></g><g><path d="M5,20h14v-2H5V20z M5,10h4v6h6v-6h4l-7-7L5,10z"/></g></svg>
               </span>
               &nbsp;
-              {this.resx?.uploadFile}
+              {this.localResx?.uploadFile}
             </label>
             ,
             this.canTakeSnapshots &&
               [
-                <p>- {this.resx?.or} -</p>
+                <p>- {this.localResx?.or} -</p>
                 ,
                 <button
                   onClick={() => this.takeSnapshot()}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="3.2"/><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
-                  {this.resx?.takePicture}
+                  {this.localResx?.takePicture}
                 </button>
               ]
           ]
@@ -258,30 +276,29 @@ export class DnnDropzone {
               onClick={() => this.applySnapshot()}
             >
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="3.2"/><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>&nbsp;
-              {this.resx?.capture}
+              {this.localResx?.capture}
             </button>
           </div>
         }
         { this.fileTooLarge && 
           <div class='error'>
               <p>
-                {this.resx.uploadSizeTooLarge}
+                {this.localResx.uploadSizeTooLarge}
                 <br/>
-                {this.resx.fileSizeLimit.replace("{0}", getReadableFileSizeString(this.maxFileSize)) } 
+                {this.localResx.fileSizeLimit.replace("{0}", getReadableFileSizeString(this.maxFileSize)) } 
               </p>
           </div>
         }
         { this.invalidExtension &&
           <div class='error'>
             <p>
-              {this.resx.invalidExtension}
+              {this.localResx.invalidExtension}
               <br/>
-              {this.resx.allowedFileExtensions.replace("{0}", this.allowedExtensions.join(", ")) }
+              {this.getInvalidExtensionsMessage()}
             </p>
           </div>
         }
       </Host>
     );
   }
-
 }

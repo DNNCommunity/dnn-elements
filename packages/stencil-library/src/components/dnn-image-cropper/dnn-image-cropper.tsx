@@ -1,6 +1,7 @@
-import { Component, Element, Host, h, State, Prop, Event, EventEmitter, Method } from '@stencil/core';
+import { Component, Element, Host, h, State, Prop, Event, EventEmitter, Method, Watch } from '@stencil/core';
 import { CornerType } from './CornerType';
 import { getMovementFromEvent } from "../../utilities/mouseUtilities";
+import { ImageCropperResx } from './types';
 
 /**
  * Allows cropping an image in-browser with the option to enforce a specific final size.
@@ -22,23 +23,7 @@ export class DnnImageCropper {
   /** Can be used to customize controls text.
    * Some values support tokens, see default values for examples.
   */
-  @Prop() resx: {
-    capture: string;
-    dragAndDropFile: string;
-    or: string;
-    takePicture: string;
-    uploadFile: string;
-    imageTooSmall: string;
-    modalCloseText: string;
-  } = {
-      capture: "Capture",
-      dragAndDropFile: "Drag and drop an image",
-      or: "or",
-      takePicture: "Take a picture",
-      uploadFile: "Upload an image",
-      imageTooSmall: "The image you are attempting to upload does not meet the minimum size requirement of {width} pixels by {height} pixels. Please upload a larger image.",
-      modalCloseText: "Close",
-    }
+  @Prop() resx: ImageCropperResx;
 
   /** Sets the output quality of the cropped image (number between 0 and 1). */
   @Prop() quality: number = 0.8;
@@ -56,6 +41,7 @@ export class DnnImageCropper {
   }
 
   @State() view: IComponentInterfaces["View"];
+  @State() localResx: ImageCropperResx;
 
   @Element() host: HTMLDnnImageCropperElement;
 
@@ -66,11 +52,33 @@ export class DnnImageCropper {
   private crop: HTMLDivElement;
   private previousTouch: Touch;
   private imageTooSmallModal!: HTMLDnnModalElement;
+  private defaultResx: ImageCropperResx = {
+    capture: "Capture",
+    dragAndDropFile: "Drag and drop an image",
+    or: "or",
+    takePicture: "Take a picture",
+    uploadFile: "Upload an image",
+    imageTooSmall: "The image you are attempting to upload does not meet the minimum size requirement of {width} pixels by {height} pixels. Please upload a larger image.",
+    modalCloseText: "Close",
+  }
+
+  componentWillLoad() {
+    this.mergeResx();
+  }
 
   componentDidLoad() {
     requestAnimationFrame(() => {
       this.setView("noPictureView");
     })
+  }
+
+  @Watch("resx")
+  resxChanged() {
+    this.mergeResx();
+  }
+
+  private mergeResx(): void {
+    this.localResx = {...this.defaultResx, ...this.resx};
   }
 
   private setView(newView: IComponentInterfaces["View"]) {
@@ -316,7 +324,7 @@ export class DnnImageCropper {
     }
 
     let newTop: number, newLeft: number;
-    if (wantedRatio) {
+    if (!isNaN(wantedRatio)) {
       switch (corner) {
         case CornerType.nw:
           newHeight = newWidth / wantedRatio;
@@ -374,7 +382,7 @@ export class DnnImageCropper {
     }
 
     // After the boundary checks, recalculate the width and height based on the ratio
-    if (wantedRatio) {
+    if (!isNaN(wantedRatio)) {
       switch (corner) {
         case CornerType.se:
         case CornerType.sw:
@@ -501,19 +509,19 @@ export class DnnImageCropper {
             allowedExtensions={['jpg', 'jpeg', 'gif', 'png', 'svg', 'webp', 'bmp' ]}
             resx={
               {
-                capture: this.resx.capture,
-                dragAndDropFile: this.resx.dragAndDropFile,
-                or: this.resx.or,
-                takePicture: this.resx.takePicture,
-                uploadFile: this.resx.uploadFile,
+                capture: this.localResx.capture,
+                dragAndDropFile: this.localResx.dragAndDropFile,
+                or: this.localResx.or,
+                takePicture: this.localResx.takePicture,
+                uploadFile: this.localResx.uploadFile,
                 uploadSizeTooLarge: "The file you tried to upload is too large.",
                 fileSizeLimit: "The maximum size is",
               }
             }
           />
         </div>
-        <dnn-modal ref={el => this.imageTooSmallModal = el} close-text={this.resx.modalCloseText}>
-          <p>{this.resx.imageTooSmall.replace("{width}", this.width?.toString()).replace("{height}", this.height?.toString())}</p>
+        <dnn-modal ref={el => this.imageTooSmallModal = el} close-text={this.localResx.modalCloseText}>
+          <p>{this.localResx.imageTooSmall.replace("{width}", this.width?.toString()).replace("{height}", this.height?.toString())}</p>
         </dnn-modal>
       </Host>
     );

@@ -33,7 +33,7 @@
     "deploy-storybook": "gh-pages -d storybook-static --branch site"
   },
   "devDependencies": {
-    "@stencil/core": "4.8.0",
+    "@stencil/core": "4.12.2",
     "@stencil/eslint-plugin": "^0.4.0",
     "@stencil/react-output-target": "^0.5.1",
     "@stencil/sass": "^3.0.4",
@@ -45,9 +45,9 @@
     "@storybook/web-components-webpack5": "^7.5.3",
     "@timkendrick/monaco-editor": "^0.0.9",
     "@types/jest": "^29.5.10",
-    "@typescript-eslint/eslint-plugin": "^6.7.4",
-    "@typescript-eslint/parser": "^6.7.4",
-    "axe-playwright": "^1.2.3",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "@typescript-eslint/parser": "^7.0.1",
+    "axe-playwright": "^2.0.1",
     "babel-loader": "^9.1.2",
     "eslint": "^8.51.0",
     "eslint-plugin-react": "^7.16.0",
