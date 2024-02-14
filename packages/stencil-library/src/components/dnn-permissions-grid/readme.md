@@ -7,13 +7,13 @@
 
 ## Properties
 
-| Property                   | Attribute | Description                                                                        | Type              | Default                                                                                                                                                                                                                                                                        |
-| -------------------------- | --------- | ---------------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `foundUsers`               | --        | The list of users to show under the search users field when a search is performed. | `ISearchedUser[]` | `[]`                                                                                                                                                                                                                                                                           |
-| `permissions` _(required)_ | --        | The list of permissions.                                                           | `IPermissions`    | `undefined`                                                                                                                                                                                                                                                                    |
-| `resx`                     | --        | Optionally allows localizing the component strings.                                | `ILocalization`   | `{     Add: "Add",     AllRoles: "All Roles",     FilterByGroup: "Filter By Group",     GlobalRoles: "Global Roles",     Role: "Role",     RolePermissions: "Role Permissions",     SelectRole: "Select Role",     User: "User",     UserPermissions: "User Permissions",   }` |
-| `roleGroups` _(required)_  | --        | The list of role groups.                                                           | `IRoleGroup[]`    | `undefined`                                                                                                                                                                                                                                                                    |
-| `roles` _(required)_       | --        | The list of possible roles.                                                        | `IRole[]`         | `undefined`                                                                                                                                                                                                                                                                    |
+| Property                   | Attribute | Description                                                                        | Type              | Default     |
+| -------------------------- | --------- | ---------------------------------------------------------------------------------- | ----------------- | ----------- |
+| `foundUsers`               | --        | The list of users to show under the search users field when a search is performed. | `ISearchedUser[]` | `[]`        |
+| `permissions` _(required)_ | --        | The list of permissions.                                                           | `IPermissions`    | `undefined` |
+| `resx`                     | --        | Optionally allows localizing the component strings.                                | `ILocalization`   | `undefined` |
+| `roleGroups` _(required)_  | --        | The list of role groups.                                                           | `IRoleGroup[]`    | `undefined` |
+| `roles` _(required)_       | --        | The list of possible roles.                                                        | `IRole[]`         | `undefined` |
 
 
 ## Events

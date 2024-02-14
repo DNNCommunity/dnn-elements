@@ -574,7 +574,7 @@
               "type": {
                 "text": "string[]"
               },
-              "description": "A list of allowed file extensions.\nIf not specified, any file is allowed.\nEx: [\"jpg\", \"jped\", \"gif\", \"png\"]",
+              "description": "A list of allowed file extensions.\nIf not specified, any file is allowed.\nEx: [\"jpg\", \"jpeg\", \"gif\", \"png\"]",
               "required": false
             },
             {
@@ -665,10 +665,9 @@
               "kind": "field",
               "name": "resx",
               "type": {
-                "text": "{ capture: string; dragAndDropFile: string; or: string; takePicture: string; uploadFile: string; imageTooSmall: string; modalCloseText: string; }"
+                "text": "ImageCropperResx"
               },
               "description": "Can be used to customize controls text.\nSome values support tokens, see default values for examples.",
-              "default": "{\n      capture: \"Capture\",\n      dragAndDropFile: \"Drag and drop an image\",\n      or: \"or\",\n      takePicture: \"Take a picture\",\n      uploadFile: \"Upload an image\",\n      imageTooSmall: \"The image you are attempting to upload does not meet the minimum size requirement of {width} pixels by {height} pixels. Please upload a larger image.\",\n      modalCloseText: \"Close\",\n    }",
               "required": false
             },
             {
@@ -1100,7 +1099,6 @@
                 "text": "ILocalization"
               },
               "description": "Optionally allows localizing the component strings.",
-              "default": "{\n    Add: \"Add\",\n    AllRoles: \"All Roles\",\n    FilterByGroup: \"Filter By Group\",\n    GlobalRoles: \"Global Roles\",\n    Role: \"Role\",\n    RolePermissions: \"Role Permissions\",\n    SelectRole: \"Select Role\",\n    User: \"User\",\n    UserPermissions: \"User Permissions\",\n  }",
               "required": false
             },
             {
