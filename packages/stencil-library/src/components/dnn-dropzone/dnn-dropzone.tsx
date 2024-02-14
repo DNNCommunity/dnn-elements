@@ -157,12 +157,13 @@ export class DnnDropzone {
     for (let fileIndex = 0; fileIndex < files.length; fileIndex++) {
       const file = files[fileIndex];
       var regex = /(?:\.([^.]+))?$/;
-      const fileExtension = regex.exec(file.name)[1];
+      const fileExtension = regex.exec(file.name)[1]?.toLowerCase();
       if (fileExtension == undefined){
         hasInvalid = true;
       }
 
-      if (this.allowedExtensions != undefined && !this.allowedExtensions.includes(fileExtension)){
+      var loweredAllowedExtensions = this.allowedExtensions.map(e => e.toLowerCase());
+      if (this.allowedExtensions != undefined && !loweredAllowedExtensions.includes(fileExtension)){
         hasInvalid = true;
       }
 
