@@ -22,17 +22,7 @@ export class DnnPermissionsGrid {
   @Prop() roles!: IRole[];
 
   /** Optionally allows localizing the component strings. */
-  @Prop() resx: ILocalization = {
-    Add: "Add",
-    AllRoles: "All Roles",
-    FilterByGroup: "Filter By Group",
-    GlobalRoles: "Global Roles",
-    Role: "Role",
-    RolePermissions: "Role Permissions",
-    SelectRole: "Select Role",
-    User: "User",
-    UserPermissions: "User Permissions",
-  }
+  @Prop() resx: ILocalization;
 
   /** The list of users to show under the search users field when a search is performed. */
   @Prop() foundUsers: ISearchedUser[] = [];
@@ -46,6 +36,7 @@ export class DnnPermissionsGrid {
   @State() selectedRoleGroupId = -1;
   @State() userQuery: string;
   @State() pickedUser: ISearchedUser;
+  @State() localResx: ILocalization;
   
   
   @Watch("foundUsers")
@@ -56,9 +47,15 @@ export class DnnPermissionsGrid {
       }, 100);
     }
   }
+
+  @Watch("resx")
+  resxChanged(){
+    this.mergeResx();
+  }
   
   componentWillLoad() {
     document.addEventListener("click", this.dismissUserResults.bind(this));
+    this.mergeResx();
   }
   
   disconnectedCallback() {
@@ -67,6 +64,21 @@ export class DnnPermissionsGrid {
   
   private roleDropDown: HTMLSelectElement;
   private userCollapsible: HTMLDnnCollapsibleElement;
+  private defaultResx: ILocalization = {
+    Add: "Add",
+    AllRoles: "All Roles",
+    FilterByGroup: "Filter By Group",
+    GlobalRoles: "Global Roles",
+    Role: "Role",
+    RolePermissions: "Role Permissions",
+    SelectRole: "Select Role",
+    User: "User",
+    UserPermissions: "User Permissions",
+  };
+
+  private mergeResx(): void {
+    this.localResx = {...this.defaultResx, ...this.resx};
+  }
 
   private dismissUserResults(e: MouseEvent){
     const dropdownRect = this.roleDropDown.getBoundingClientRect();
@@ -431,7 +443,7 @@ export class DnnPermissionsGrid {
       <Host>
         <div class="add-role-row">
           <div class="dropdown">
-            <label>{this.resx.FilterByGroup} :</label>
+            <label>{this.localResx.FilterByGroup} :</label>
             <select
               onChange={e => this.handleRoleGroupChanged(e.target as HTMLSelectElement)}
             >
@@ -439,13 +451,13 @@ export class DnnPermissionsGrid {
                 value={-2}
                 selected={this.selectedRoleGroupId == -2}
               >
-                {this.resx.AllRoles}
+                {this.localResx.AllRoles}
               </option>
               <option
                 value={-1}
                 selected={this.selectedRoleGroupId == -1}
               >
-                {this.resx.GlobalRoles}
+                {this.localResx.GlobalRoles}
               </option>
               {this.roleGroups.map(roleGroup =>
                 <option
@@ -459,7 +471,7 @@ export class DnnPermissionsGrid {
           </div>
             {filteredRoles && filteredRoles.length > 0 && [
               <div class="dropdown">
-                <label>{this.resx.SelectRole} :</label>
+                <label>{this.localResx.SelectRole} :</label>
                 <select ref={el => this.roleDropDown = el}>
                   {this.getRoles().map(role =>
                     <option value={role.RoleId}
@@ -473,16 +485,16 @@ export class DnnPermissionsGrid {
               type="primary"
               onClick={() => this.addRole()}
               >
-                {this.resx.Add}
+                {this.localResx.Add}
               </dnn-button>
             ]
           }
         </div>
         <table class="roles-table">
-          <caption>{this.resx.RolePermissions}</caption>
+          <caption>{this.localResx.RolePermissions}</caption>
           <thead>
             <tr>
-              <th>{this.resx.Role}</th>
+              <th>{this.localResx.Role}</th>
               {this.permissions.permissionDefinitions.map(permissionDefinition =>
                 <th>{permissionDefinition.permissionName}</th>
               )}
@@ -514,7 +526,7 @@ export class DnnPermissionsGrid {
         <div class="search-user">
           <div class="search-control">
             <dnn-searchbox
-              placeholder={this.resx.User}
+              placeholder={this.localResx.User}
               debounced
               onQueryChanged={e => this.handleQueryChanged(e.detail)}
               onKeyDown={e => this.handleSearchUserFieldKeyDown(e)}
@@ -537,16 +549,16 @@ export class DnnPermissionsGrid {
             <dnn-button
               onClick={() => this.addUser()}
             >
-              {this.resx.Add}
+              {this.localResx.Add}
             </dnn-button>
           }
         </div>
         {this.permissions.userPermissions && this.permissions.userPermissions.length > 0 &&
           <table class="users-table">
-            <caption>{this.resx.UserPermissions}</caption>
+            <caption>{this.localResx.UserPermissions}</caption>
             <thead>
               <tr>
-                <th>{this.resx.User}</th>
+                <th>{this.localResx.User}</th>
                 {this.permissions.permissionDefinitions.map(permissionDefinition =>
                   <th>{permissionDefinition.permissionName}</th>
                 )}

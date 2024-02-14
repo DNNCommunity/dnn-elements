@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DnnColorInfo } from "./components/dnn-color-input/dnn-color-info";
 import { ColorInfo } from "./utilities/colorInfo";
 import { DropzoneResx } from "./components/dnn-dropzone/types";
+import { ImageCropperResx } from "./components/dnn-image-cropper/types";
 import { IPermissions } from "./components/dnn-permissions-grid/permissions-interface";
 import { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interface";
 import { IRole } from "./components/dnn-permissions-grid/role-interface";
@@ -18,6 +19,7 @@ import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-inter
 export { DnnColorInfo } from "./components/dnn-color-input/dnn-color-info";
 export { ColorInfo } from "./utilities/colorInfo";
 export { DropzoneResx } from "./components/dnn-dropzone/types";
+export { ImageCropperResx } from "./components/dnn-image-cropper/types";
 export { IPermissions } from "./components/dnn-permissions-grid/permissions-interface";
 export { IRoleGroup } from "./components/dnn-permissions-grid/role-group-interface";
 export { IRole } from "./components/dnn-permissions-grid/role-interface";
@@ -183,7 +185,7 @@ export namespace Components {
          */
         "allowCameraMode": boolean;
         /**
-          * A list of allowed file extensions. If not specified, any file is allowed. Ex: ["jpg", "jped", "gif", "png"]
+          * A list of allowed file extensions. If not specified, any file is allowed. Ex: ["jpg", "jpeg", "gif", "png"]
          */
         "allowedExtensions": string[];
         /**
@@ -224,15 +226,7 @@ export namespace Components {
         /**
           * Can be used to customize controls text. Some values support tokens, see default values for examples.
          */
-        "resx": {
-    capture: string;
-    dragAndDropFile: string;
-    or: string;
-    takePicture: string;
-    uploadFile: string;
-    imageTooSmall: string;
-    modalCloseText: string;
-  };
+        "resx": ImageCropperResx;
         /**
           * Sets the desired final image width.
          */
@@ -1178,7 +1172,7 @@ declare namespace LocalJSX {
          */
         "allowCameraMode"?: boolean;
         /**
-          * A list of allowed file extensions. If not specified, any file is allowed. Ex: ["jpg", "jped", "gif", "png"]
+          * A list of allowed file extensions. If not specified, any file is allowed. Ex: ["jpg", "jpeg", "gif", "png"]
          */
         "allowedExtensions"?: string[];
         /**
@@ -1223,15 +1217,7 @@ declare namespace LocalJSX {
         /**
           * Can be used to customize controls text. Some values support tokens, see default values for examples.
          */
-        "resx"?: {
-    capture: string;
-    dragAndDropFile: string;
-    or: string;
-    takePicture: string;
-    uploadFile: string;
-    imageTooSmall: string;
-    modalCloseText: string;
-  };
+        "resx"?: ImageCropperResx;
         /**
           * Sets the desired final image width.
          */
