@@ -1,24 +1,24 @@
 export interface ImageCropperResx {
     /** The text of the capture button. */
-    capture?: string,
+    capture?: string;
 
     /** The text of the Drag and Drop button. */
-    dragAndDropFile: "Drag and drop an image",
+    dragAndDropFile?: string;
 
     /** The word "or" shown between the controls. */
-    or: "or",
+    or?: string;
 
     /** The text of the button to take a picture. */
-    takePicture: "Take a picture",
+    takePicture?: string;
 
     /** The text of the button to upload an image. */
-    uploadFile: "Upload an image",
+    uploadFile?: string;
 
     /** The text shown when an image is smaller than the minimum size supported.
      * {width} and {height} will be replaced by the minimum width and height. 
      */
-    imageTooSmall: "The image you are attempting to upload does not meet the minimum size requirement of {width} pixels by {height} pixels. Please upload a larger image.",
+    imageTooSmall?: string;
 
     /** The text of the Close button. */
-    modalCloseText: "Close",
+    modalCloseText?: string;
 };
