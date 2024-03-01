@@ -1,6 +1,6 @@
 {
   "name": "@dnncommunity/dnn-elements",
-  "version": "0.18.0-alpha.61",
+  "version": "0.23.3-alpha.7",
   "description": "Dnn themed custom elements.",
   "repository": "https://github.com/dnncommunity/dnn-elements",
   "homepage": "https://dnncommunity.github.io/dnn-elements",
@@ -67,6 +67,6 @@
     "typescript-debounce-decorator": "^0.0.18"
   },
   "dependencies": {
-      "jodit": "^4.0.6"
+    "jodit": "^4.0.6"
   }
 }

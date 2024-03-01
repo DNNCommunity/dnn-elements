@@ -57,6 +57,12 @@ Type: `Promise<ValidityState>`
 
 
 
+#### Parameters
+
+| Name      | Type     | Description |
+| --------- | -------- | ----------- |
+| `message` | `string` |             |
+
 #### Returns
 
 Type: `Promise<void>`

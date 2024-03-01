@@ -95,6 +95,12 @@ Type: `Promise<number>`
 
 Sets the width percentage of the divider
 
+#### Parameters
+
+| Name       | Type     | Description |
+| ---------- | -------- | ----------- |
+| `newWidth` | `number` |             |
+
 #### Returns
 
 Type: `Promise<void>`
