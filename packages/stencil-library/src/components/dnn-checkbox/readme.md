@@ -42,11 +42,13 @@
 
 ### Used by
 
+ - [dnn-example-form](../examples/dnn-example-form)
  - [dnn-permissions-grid](../dnn-permissions-grid)
 
 ### Graph
 ```mermaid
 graph TD;
+  dnn-example-form --> dnn-checkbox
   dnn-permissions-grid --> dnn-checkbox
   style dnn-checkbox fill:#f9f,stroke:#333,stroke-width:4px
 ```

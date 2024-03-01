@@ -32,6 +32,19 @@
 | `--handle-border-radius`      | The radius of the handle.              |
 
 
+## Dependencies
+
+### Used by
+
+ - [dnn-example-form](../examples/dnn-example-form)
+
+### Graph
+```mermaid
+graph TD;
+  dnn-example-form --> dnn-toggle
+  style dnn-toggle fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

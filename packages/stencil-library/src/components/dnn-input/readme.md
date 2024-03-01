@@ -57,6 +57,12 @@ Type: `Promise<ValidityState>`
 
 
 
+#### Parameters
+
+| Name      | Type     | Description |
+| --------- | -------- | ----------- |
+| `message` | `string` |             |
+
 #### Returns
 
 Type: `Promise<void>`
@@ -83,6 +89,19 @@ Type: `Promise<void>`
 | `--foreground`       | Defines the foreground color.                            |
 | `--input-text-align` | Allows customizing the text alignment of the input text. |
 
+
+## Dependencies
+
+### Used by
+
+ - [dnn-example-form](../examples/dnn-example-form)
+
+### Graph
+```mermaid
+graph TD;
+  dnn-example-form --> dnn-input
+  style dnn-input fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

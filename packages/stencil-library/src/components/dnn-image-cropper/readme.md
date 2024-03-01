@@ -44,6 +44,10 @@ Type: `Promise<void>`
 
 ## Dependencies
 
+### Used by
+
+ - [dnn-example-form](../examples/dnn-example-form)
+
 ### Depends on
 
 - [dnn-dropzone](../dnn-dropzone)
@@ -54,6 +58,7 @@ Type: `Promise<void>`
 graph TD;
   dnn-image-cropper --> dnn-dropzone
   dnn-image-cropper --> dnn-modal
+  dnn-example-form --> dnn-image-cropper
   style dnn-image-cropper fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

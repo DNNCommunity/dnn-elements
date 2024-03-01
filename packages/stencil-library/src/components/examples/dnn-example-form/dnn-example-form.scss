@@ -1,0 +1,35 @@
+:host {
+  display: block;
+}
+
+fieldset{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    &.vertical{
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+    }
+  }
+}
+
+.controls{
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  *:first-child{
+    margin-left: auto;
+  }
+}

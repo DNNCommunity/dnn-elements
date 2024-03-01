@@ -202,6 +202,11 @@ export namespace Components {
         "resx": DropzoneResx;
     }
     /**
+     * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
+     */
+    interface DnnExampleForm {
+    }
+    /**
      * Allows cropping an image in-browser with the option to enforce a specific final size.
      * All computation happens in the browser and the final image is emmited
      * in an event that has a data-url of the image.
@@ -713,6 +718,15 @@ declare global {
         prototype: HTMLDnnDropzoneElement;
         new (): HTMLDnnDropzoneElement;
     };
+    /**
+     * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
+     */
+    interface HTMLDnnExampleFormElement extends Components.DnnExampleForm, HTMLStencilElement {
+    }
+    var HTMLDnnExampleFormElement: {
+        prototype: HTMLDnnExampleFormElement;
+        new (): HTMLDnnExampleFormElement;
+    };
     interface HTMLDnnImageCropperElementEventMap {
         "imageCropChanged": string;
     }
@@ -967,6 +981,7 @@ declare global {
         "dnn-color-input": HTMLDnnColorInputElement;
         "dnn-color-picker": HTMLDnnColorPickerElement;
         "dnn-dropzone": HTMLDnnDropzoneElement;
+        "dnn-example-form": HTMLDnnExampleFormElement;
         "dnn-image-cropper": HTMLDnnImageCropperElement;
         "dnn-input": HTMLDnnInputElement;
         "dnn-modal": HTMLDnnModalElement;
@@ -1191,6 +1206,11 @@ declare namespace LocalJSX {
           * Localization strings
          */
         "resx"?: DropzoneResx;
+    }
+    /**
+     * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
+     */
+    interface DnnExampleForm {
     }
     /**
      * Allows cropping an image in-browser with the option to enforce a specific final size.
@@ -1538,6 +1558,7 @@ declare namespace LocalJSX {
         "dnn-color-input": DnnColorInput;
         "dnn-color-picker": DnnColorPicker;
         "dnn-dropzone": DnnDropzone;
+        "dnn-example-form": DnnExampleForm;
         "dnn-image-cropper": DnnImageCropper;
         "dnn-input": DnnInput;
         "dnn-modal": DnnModal;
@@ -1573,6 +1594,10 @@ declare module "@stencil/core" {
              */
             "dnn-color-picker": LocalJSX.DnnColorPicker & JSXBase.HTMLAttributes<HTMLDnnColorPickerElement>;
             "dnn-dropzone": LocalJSX.DnnDropzone & JSXBase.HTMLAttributes<HTMLDnnDropzoneElement>;
+            /**
+             * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
+             */
+            "dnn-example-form": LocalJSX.DnnExampleForm & JSXBase.HTMLAttributes<HTMLDnnExampleFormElement>;
             /**
              * Allows cropping an image in-browser with the option to enforce a specific final size.
              * All computation happens in the browser and the final image is emmited

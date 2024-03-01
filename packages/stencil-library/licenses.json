@@ -33,36 +33,6 @@
         "path": "node_modules\\@stencil\\eslint-plugin",
         "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@stencil\\eslint-plugin\\LICENSE.md"
     },
-    "@typescript-eslint/parser@4.33.0": {
-        "licenses": "BSD-2-Clause",
-        "repository": "https://github.com/typescript-eslint/typescript-eslint",
-        "path": "node_modules\\@typescript-eslint\\parser",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@typescript-eslint\\parser\\LICENSE"
-    },
-    "@typescript-eslint/scope-manager@4.33.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/typescript-eslint/typescript-eslint",
-        "path": "node_modules\\@typescript-eslint\\scope-manager",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@typescript-eslint\\scope-manager\\LICENSE"
-    },
-    "@typescript-eslint/types@4.33.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/typescript-eslint/typescript-eslint",
-        "path": "node_modules\\@typescript-eslint\\types",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@typescript-eslint\\types\\LICENSE"
-    },
-    "@typescript-eslint/typescript-estree@4.33.0": {
-        "licenses": "BSD-2-Clause",
-        "repository": "https://github.com/typescript-eslint/typescript-eslint",
-        "path": "node_modules\\@typescript-eslint\\typescript-estree",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@typescript-eslint\\typescript-estree\\LICENSE"
-    },
-    "@typescript-eslint/visitor-keys@4.33.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/typescript-eslint/typescript-eslint",
-        "path": "node_modules\\@typescript-eslint\\visitor-keys",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@typescript-eslint\\visitor-keys\\LICENSE"
-    },
     "eslint-utils@2.1.0": {
         "licenses": "MIT",
         "repository": "https://github.com/mysticatea/eslint-utils",
@@ -121,13 +91,6 @@
         "publisher": "Klaus Meinhardt",
         "path": "node_modules\\tsutils",
         "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\tsutils\\LICENSE"
-    },
-    "tsutils@3.21.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/ajafff/tsutils",
-        "publisher": "Klaus Meinhardt",
-        "path": "node_modules\\@typescript-eslint\\typescript-estree\\node_modules\\tsutils",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@typescript-eslint\\typescript-estree\\node_modules\\tsutils\\LICENSE"
     },
     "typescript@4.9.5": {
         "licenses": "Apache-2.0",
