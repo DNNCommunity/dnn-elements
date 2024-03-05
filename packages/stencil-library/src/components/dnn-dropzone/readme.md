@@ -36,11 +36,13 @@
 
 ### Used by
 
+ - [dnn-example-form](../examples/dnn-example-form)
  - [dnn-image-cropper](../dnn-image-cropper)
 
 ### Graph
 ```mermaid
 graph TD;
+  dnn-example-form --> dnn-dropzone
   dnn-image-cropper --> dnn-dropzone
   style dnn-dropzone fill:#f9f,stroke:#333,stroke-width:4px
 ```

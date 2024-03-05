@@ -94,6 +94,12 @@ class Build : NukeBuild
       DistDirectory.CreateOrCleanDirectory();
       WwwDirectory.CreateOrCleanDirectory();
       LoaderDirectory.CreateOrCleanDirectory();
+      if (InvokedTargets.Contains(Deploy))
+      {
+        var examplesDirectory = RootDirectory / "packages" / "stencil-library" / "src" / "components" / "examples";
+        Serilog.Log.Information($"Deleting examples in {examplesDirectory}");
+        examplesDirectory.DeleteDirectory();
+      }
     });
 
   Target Compile => _ => _

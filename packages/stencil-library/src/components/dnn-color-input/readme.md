@@ -56,6 +56,10 @@ A custom input component that allows previewing and changing a color value.
 
 ## Dependencies
 
+### Used by
+
+ - [dnn-example-form](../examples/dnn-example-form)
+
 ### Depends on
 
 - [dnn-modal](../dnn-modal)
@@ -74,6 +78,7 @@ graph TD;
   dnn-color-input --> dnn-button
   dnn-button --> dnn-modal
   dnn-button --> dnn-button
+  dnn-example-form --> dnn-color-input
   style dnn-color-input fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

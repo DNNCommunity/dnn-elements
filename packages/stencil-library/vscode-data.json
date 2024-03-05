@@ -229,6 +229,14 @@
       ]
     },
     {
+      "name": "dnn-example-form",
+      "description": {
+        "kind": "markdown",
+        "value": "Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package."
+      },
+      "attributes": []
+    },
+    {
       "name": "dnn-image-cropper",
       "description": {
         "kind": "markdown",

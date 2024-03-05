@@ -37,6 +37,19 @@
 | `--input-text-align` | Allows customizing the text alignment of the input text. |
 
 
+## Dependencies
+
+### Used by
+
+ - [dnn-example-form](../examples/dnn-example-form)
+
+### Graph
+```mermaid
+graph TD;
+  dnn-example-form --> dnn-select
+  style dnn-select fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
