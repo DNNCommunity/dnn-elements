@@ -5,81 +5,11 @@
         "path": "",
         "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\README.md"
     },
-    "@stencil-community/eslint-plugin@0.7.2": {
-        "licenses": "MIT",
-        "repository": "https://github.com/stencil-community/stencil-eslint",
-        "path": "node_modules\\@stencil-community\\eslint-plugin",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@stencil-community\\eslint-plugin\\LICENSE.md"
-    },
-    "@typescript-eslint/eslint-plugin@6.21.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/typescript-eslint/typescript-eslint",
-        "path": "node_modules\\@typescript-eslint\\eslint-plugin",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@typescript-eslint\\eslint-plugin\\LICENSE"
-    },
-    "@typescript-eslint/parser@6.21.0": {
-        "licenses": "BSD-2-Clause",
-        "repository": "https://github.com/typescript-eslint/typescript-eslint",
-        "path": "node_modules\\@typescript-eslint\\parser",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@typescript-eslint\\parser\\LICENSE"
-    },
-    "@typescript-eslint/scope-manager@6.21.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/typescript-eslint/typescript-eslint",
-        "path": "node_modules\\@typescript-eslint\\scope-manager",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@typescript-eslint\\scope-manager\\LICENSE"
-    },
-    "@typescript-eslint/type-utils@6.21.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/typescript-eslint/typescript-eslint",
-        "path": "node_modules\\@typescript-eslint\\type-utils",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@typescript-eslint\\type-utils\\LICENSE"
-    },
-    "@typescript-eslint/types@6.21.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/typescript-eslint/typescript-eslint",
-        "path": "node_modules\\@typescript-eslint\\types",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@typescript-eslint\\types\\LICENSE"
-    },
-    "@typescript-eslint/typescript-estree@6.21.0": {
-        "licenses": "BSD-2-Clause",
-        "repository": "https://github.com/typescript-eslint/typescript-eslint",
-        "path": "node_modules\\@typescript-eslint\\typescript-estree",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@typescript-eslint\\typescript-estree\\LICENSE"
-    },
-    "@typescript-eslint/utils@6.21.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/typescript-eslint/typescript-eslint",
-        "path": "node_modules\\@typescript-eslint\\utils",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@typescript-eslint\\utils\\LICENSE"
-    },
-    "@typescript-eslint/visitor-keys@6.21.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/typescript-eslint/typescript-eslint",
-        "path": "node_modules\\@typescript-eslint\\visitor-keys",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@typescript-eslint\\visitor-keys\\LICENSE"
-    },
-    "brace-expansion@2.0.1": {
-        "licenses": "MIT",
-        "repository": "https://github.com/juliangruber/brace-expansion",
-        "publisher": "Julian Gruber",
-        "email": "mail@juliangruber.com",
-        "path": "node_modules\\brace-expansion",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\brace-expansion\\LICENSE"
-    },
-    "eslint-visitor-keys@3.4.3": {
+    "typescript@5.2.2": {
         "licenses": "Apache-2.0",
-        "repository": "https://github.com/eslint/eslint-visitor-keys",
-        "publisher": "Toru Nagashima",
-        "path": "node_modules\\eslint-visitor-keys",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\eslint-visitor-keys\\LICENSE"
-    },
-    "minimatch@9.0.3": {
-        "licenses": "ISC",
-        "repository": "https://github.com/isaacs/minimatch",
-        "publisher": "Isaac Z. Schlueter",
-        "email": "i@izs.me",
-        "path": "node_modules\\minimatch",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\minimatch\\LICENSE"
+        "repository": "https://github.com/Microsoft/TypeScript",
+        "publisher": "Microsoft Corp.",
+        "path": "node_modules\\typescript",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\typescript\\LICENSE.txt"
     }
 }
