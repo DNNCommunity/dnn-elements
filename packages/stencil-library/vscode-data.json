@@ -29,6 +29,21 @@
           "description": "Disables the button"
         },
         {
+          "name": "form-button-type",
+          "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.",
+          "values": [
+            {
+              "name": "button"
+            },
+            {
+              "name": "reset"
+            },
+            {
+              "name": "submit"
+            }
+          ]
+        },
+        {
           "name": "reversed",
           "description": "Optionally reverses the button style."
         },
@@ -88,6 +103,10 @@
               "name": "unchecked"
             }
           ]
+        },
+        {
+          "name": "name",
+          "description": "The name to show in the formData (if using forms)."
         },
         {
           "name": "use-intermediate",
@@ -170,7 +189,7 @@
         },
         {
           "name": "name",
-          "description": "The name for this input, if not provided a random name will be assigned."
+          "description": "The name for this input if forms are used."
         },
         {
           "name": "readonly",
@@ -225,6 +244,10 @@
         {
           "name": "max-file-size",
           "description": "Max file size in bytes."
+        },
+        {
+          "name": "name",
+          "description": "The name of the field when used in a form."
         }
       ]
     },
@@ -246,6 +269,10 @@
         {
           "name": "height",
           "description": "Sets the desired final image height."
+        },
+        {
+          "name": "name",
+          "description": "The name of the control when used in a form."
         },
         {
           "name": "prevent-undersized",
@@ -314,7 +341,7 @@
         },
         {
           "name": "name",
-          "description": "The name for this input, if not provided a random name will be assigned."
+          "description": "The name for this input when used in forms."
         },
         {
           "name": "pattern",
@@ -531,6 +558,10 @@
           ]
         },
         {
+          "name": "name",
+          "description": "The name of the control to use for forms."
+        },
+        {
           "name": "value",
           "description": "Sets the code contained in the editor"
         }
@@ -624,7 +655,7 @@
         },
         {
           "name": "name",
-          "description": "The name for this input, if not provided a random name will be assigned."
+          "description": "The name for this input, if used in forms."
         },
         {
           "name": "required",
@@ -695,6 +726,14 @@
         {
           "name": "disabled",
           "description": "If 'true' the toggle is not be interacted with."
+        },
+        {
+          "name": "name",
+          "description": "The field name to use in forms."
+        },
+        {
+          "name": "value",
+          "description": "The value to post when used in forms."
         }
       ]
     },

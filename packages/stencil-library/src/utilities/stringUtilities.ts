@@ -23,3 +23,19 @@ export function decodeHtml(html: string) : string {
   txt.innerHTML = html
   return txt.value
 }
+
+export function generateRandomId(length: number = 16){
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  const charactersLength = characters.length;
+  const array = new Uint8Array(length);
+  
+  window.crypto.getRandomValues(array);
+
+  for (let i = 0; i < length; i++) {
+    const randomValue = array[i];
+    result += characters.charAt(randomValue % charactersLength);
+  }
+
+  return result;
+}

@@ -7,10 +7,12 @@
 
 ## Properties
 
-| Property   | Attribute  | Description                                     | Type      | Default |
-| ---------- | ---------- | ----------------------------------------------- | --------- | ------- |
-| `checked`  | `checked`  | If 'true' the toggle is checked (on).           | `boolean` | `false` |
-| `disabled` | `disabled` | If 'true' the toggle is not be interacted with. | `boolean` | `false` |
+| Property   | Attribute  | Description                                     | Type      | Default     |
+| ---------- | ---------- | ----------------------------------------------- | --------- | ----------- |
+| `checked`  | `checked`  | If 'true' the toggle is checked (on).           | `boolean` | `false`     |
+| `disabled` | `disabled` | If 'true' the toggle is not be interacted with. | `boolean` | `false`     |
+| `name`     | `name`     | The field name to use in forms.                 | `string`  | `undefined` |
+| `value`    | `value`    | The value to post when used in forms.           | `string`  | `"on"`      |
 
 
 ## Events

@@ -10,8 +10,9 @@
 | Property          | Attribute          | Description                                                                                                       | Type                                         | Default       |
 | ----------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | ------------- |
 | `checked`         | `checked`          | Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)            | `"checked" \| "intermediate" \| "unchecked"` | `"unchecked"` |
+| `name`            | `name`             | The name to show in the formData (if using forms).                                                                | `string`                                     | `undefined`   |
 | `useIntermediate` | `use-intermediate` | Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state) | `boolean`                                    | `false`       |
-| `value`           | `value`            | The value for this checkbox (not to be confused with its checked state).                                          | `string`                                     | `undefined`   |
+| `value`           | `value`            | The value for this checkbox (not to be confused with its checked state).                                          | `string`                                     | `"on"`        |
 
 
 ## Events
