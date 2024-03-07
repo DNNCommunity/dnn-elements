@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Event, EventEmitter, Watch } from '@stencil/core';
+import { Component, Host, h, Prop, State, Event, EventEmitter, Watch, AttachInternals } from '@stencil/core';
 import { getReadableFileSizeString } from '../../utilities/stringUtilities';
 import { DropzoneResx } from './types';
 
@@ -6,6 +6,7 @@ import { DropzoneResx } from './types';
   tag: 'dnn-dropzone',
   styleUrl: 'dnn-dropzone.scss',
   shadow: true,
+  formAssociated: true,
 })
 export class DnnDropzone {
   /** Localization strings */
@@ -35,6 +36,9 @@ export class DnnDropzone {
    */
   @Prop() maxFileSize?: number;
 
+  /** The name of the field when used in a form. */
+  @Prop() name: string;
+
   /** Fires when file were selected. */
   @Event() filesSelected: EventEmitter<File[]>;
   
@@ -47,7 +51,8 @@ export class DnnDropzone {
   @State() invalidExtension: boolean = false;
 
   @State() localResx: DropzoneResx;
-  
+
+  @AttachInternals() internals: ElementInternals;
 
   private dropzone: HTMLElement;
   private fileInput: HTMLInputElement;
@@ -84,6 +89,12 @@ export class DnnDropzone {
   @Watch('resx')
   resxChanged() {
     this.mergeResx();
+  }
+
+  formResetCallback() {
+    this.internals.setValidity({});
+    this.fileInput.value = "";
+    this.internals.setFormValue("");
   }
 
   private mergeResx(): void {
@@ -142,6 +153,13 @@ export class DnnDropzone {
     }
 
     this.filesSelected.emit(files);
+    if (this.name){
+      var data = new FormData();
+      files.forEach(file => {
+        data.append(this.name, file);
+      });
+      this.internals.setFormValue(data);
+    }
   }
 
   private handleDragOver = (event: DragEvent) => 
@@ -162,8 +180,8 @@ export class DnnDropzone {
         hasInvalid = true;
       }
 
-      var loweredAllowedExtensions = this.allowedExtensions.map(e => e.toLowerCase());
-      if (this.allowedExtensions != undefined && !loweredAllowedExtensions.includes(fileExtension)){
+      var loweredAllowedExtensions = this.allowedExtensions?.map(e => e.toLowerCase());
+      if (this.allowedExtensions != undefined && !loweredAllowedExtensions?.includes(fileExtension)){
         hasInvalid = true;
       }
 

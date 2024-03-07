@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Prop, State, Event, EventEmitter } from '@stencil/core';
+import { Component, Element, Host, h, Prop, State, Event, EventEmitter, AttachInternals } from '@stencil/core';
 
 /**
  * @slot Content of the button
@@ -6,7 +6,8 @@ import { Component, Element, Host, h, Prop, State, Event, EventEmitter } from '@
 @Component({
   tag: 'dnn-button',
   styleUrl: 'dnn-button.scss',
-  shadow: true
+  shadow: true,
+  formAssociated: true,
 })
 export class DnnButton {
 
@@ -15,6 +16,14 @@ export class DnnButton {
    * can be either primary, secondary or tertiary or danger and defaults to primary if not specified
    */
   @Prop() type: 'primary' | 'danger' | 'secondary' | 'tertiary' = 'primary';
+
+  /**
+   * Optional button type,
+   * can be either submit, reset or button and defaults to button if not specified.
+   * Warning: DNN wraps the whole page in a form, only use this if you are handling
+   * form submission manually.
+   */
+  @Prop() formButtonType: 'submit' | 'reset' | 'button' = 'button';
 
   /**
    * Optionally reverses the button style.
@@ -55,6 +64,8 @@ export class DnnButton {
 
   @Element() el!: HTMLDnnButtonElement;
 
+  @AttachInternals() internals: ElementInternals;
+
   private modal!: HTMLDnnModalElement;
 
   /** 
@@ -91,6 +102,31 @@ export class DnnButton {
     if (this.confirm && !this.modalVisible){
       this.modal.show();
       this.modalVisible = true;
+    }
+
+    if (this.formButtonType === 'submit')
+    {
+      var form = this.internals.form;
+      if (form){
+        var submitButton = document.createElement('button');
+        submitButton.type = 'submit';
+        submitButton.style.display = 'none';
+        form.appendChild(submitButton);
+        submitButton.click();
+        form.removeChild(submitButton);
+      }
+    }
+    if (this.formButtonType === 'reset')
+    {
+      var form = this.internals.form;
+      if (form){
+        var resetButton = document.createElement('button');
+        resetButton.type = 'reset';
+        resetButton.style.display = 'none';
+        form.appendChild(resetButton);
+        resetButton.click();
+        form.removeChild(resetButton);
+      }
     }
   }
 

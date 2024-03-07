@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, State, Prop, Event, EventEmitter, Method, Watch } from '@stencil/core';
+import { Component, Element, Host, h, State, Prop, Event, EventEmitter, Method, Watch, AttachInternals } from '@stencil/core';
 import { CornerType } from './CornerType';
 import { getMovementFromEvent } from "../../utilities/mouseUtilities";
 import { ImageCropperResx } from './types';
@@ -12,6 +12,7 @@ import { ImageCropperResx } from './types';
   tag: 'dnn-image-cropper',
   styleUrl: 'dnn-image-cropper.scss',
   shadow: true,
+  formAssociated: true,
 })
 export class DnnImageCropper {
   /** Sets the desired final image width. */
@@ -31,6 +32,9 @@ export class DnnImageCropper {
   /** When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry. */
   @Prop() preventUndersized: boolean = false;
 
+  /** The name of the control when used in a form. */
+  @Prop() name: string;
+
   /** When the image crop changes, emits the dataurl for the new cropped image. */
   @Event() imageCropChanged: EventEmitter<string>;
 
@@ -44,6 +48,8 @@ export class DnnImageCropper {
   @State() localResx: ImageCropperResx;
 
   @Element() host: HTMLDnnImageCropperElement;
+
+  @AttachInternals() internals: ElementInternals;
 
   private hasPictureView: HTMLDivElement;
   private noPictureView: HTMLDivElement;
@@ -75,6 +81,12 @@ export class DnnImageCropper {
   @Watch("resx")
   resxChanged() {
     this.mergeResx();
+  }
+
+  formResetCallback(){
+    this.clear();
+    this.internals.setValidity({});
+    this.internals.setFormValue("");
   }
 
   private mergeResx(): void {
@@ -192,8 +204,6 @@ export class DnnImageCropper {
     this.crop.style.width = `${Math.round(newWidth)}px`;
     this.crop.style.height = `${Math.round(newHeight)}px`;
   };
-  
-  
 
   private handleCropMouseDown = (event: MouseEvent | TouchEvent) => {
     event.stopPropagation();
@@ -268,6 +278,11 @@ export class DnnImageCropper {
 
     var dataUrl = this.generateCroppedImage(x, y, width, height, this.width ?? width, this.height ?? height);
     this.imageCropChanged.emit(dataUrl);
+    if (this.name) {
+      var data = new FormData();
+      data.append(this.name, dataUrl);
+      this.internals.setFormValue(data);
+    }
   }
 
   private generateCroppedImage(x: number, y: number, width: number, height: number, desiredWidth: number, desiredHeight: number) {

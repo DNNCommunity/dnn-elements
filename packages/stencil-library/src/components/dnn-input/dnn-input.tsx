@@ -1,4 +1,5 @@
-import { Component, Host, Prop, State, h, Method, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, Prop, State, h, Method, Event, EventEmitter, AttachInternals } from '@stencil/core';
+import { generateRandomId } from '../../utilities/stringUtilities';
 
 /** A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
  * @slot prefix - Can be used to inject content before the input field.
@@ -8,6 +9,7 @@ import { Component, Host, Prop, State, h, Method, Event, EventEmitter } from '@s
   tag: 'dnn-input',
   styleUrl: 'dnn-input.scss',
   shadow: true,
+  formAssociated: true,
 })
 export class DnnInput {
 
@@ -17,7 +19,7 @@ export class DnnInput {
   /** The label for this input. */
   @Prop() label: string;
 
-  /** The name for this input, if not provided a random name will be assigned. */
+  /** The name for this input when used in forms. */
   @Prop({mutable: true}) name: string;
 
   /** The value of the input. */
@@ -86,14 +88,22 @@ export class DnnInput {
   @State() focused = false;
   @State() valid = true;
   @State() customValidityMessage: string;
+
+  @AttachInternals() internals: ElementInternals;
   
   private inputField!: HTMLInputElement;
+  private labelId: string;
 
   componentWillLoad() {
-    if (this.name === undefined)
-    {
-      this.name = `dnn-input-${Math.floor(Math.random() * 1000000)}`;
-    }
+    this.labelId = generateRandomId();
+  }
+
+  formResetCallback() {
+    this.inputField.setCustomValidity("");
+    this.valid = true;
+    this.value = "";
+    this.internals.setValidity({});
+    this.internals.setFormValue("");
   }
 
   private getContainerClasses() {
@@ -143,6 +153,11 @@ export class DnnInput {
       this.inputField.reportValidity();
     }
     this.valueChange.emit(this.value);
+    if (this.name){
+      var data = new FormData();
+      data.append(this.name, this.value.toString());
+      this.internals.setFormValue(data);
+    }
   }
 
   private switchPasswordVisibility(){
@@ -167,7 +182,7 @@ export class DnnInput {
         >
           <div class="inner-container">
             {this.label &&
-              <label htmlFor={this.name}>
+              <label id={this.labelId}>
                 {`${this.label}${this.required ? " *" : ""}`}
               </label>
             }
@@ -194,6 +209,7 @@ export class DnnInput {
               onInput={e => this.handleInput((e.target as HTMLInputElement).value)}
               onInvalid={() => this.handleInvalid()}
               onChange={() => this.handleChange()}
+              aria-labelledby={this.labelId}
             />
             <slot name="suffix"></slot>
             {!this.valid &&

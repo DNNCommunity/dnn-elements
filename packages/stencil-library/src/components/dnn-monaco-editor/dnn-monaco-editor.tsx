@@ -1,10 +1,11 @@
-import {Component, Event, EventEmitter, h, Host, Prop, Watch } from '@stencil/core';
+import {Component, Event, EventEmitter, h, Host, Prop, Watch, AttachInternals } from '@stencil/core';
 import * as monaco from "@timkendrick/monaco-editor";
 
 @Component({
   tag: 'dnn-monaco-editor',
   styleUrl: 'dnn-monaco-editor.scss',
   scoped: true,
+  formAssociated: true,
 })
 export class DnnMonacoEditor {
   private editorContainer: HTMLDivElement;
@@ -20,7 +21,7 @@ export class DnnMonacoEditor {
   }
 
   /** Sets the code contained in the editor */
-  @Prop({mutable: true}) value: string;
+  @Prop({mutable: true}) value: string = "";
   @Watch('value')
   valueChanged(newValue: string, oldValue: string) {
     if (newValue != oldValue) {
@@ -28,10 +29,16 @@ export class DnnMonacoEditor {
     }
   }
 
+  /** The name of the control to use for forms. */
+  @Prop()name: string;
+
   /** Emits the new value of the content when it is changed. */
   @Event() contentChanged: EventEmitter<string>;
+
+  @AttachInternals() internals: ElementInternals;
   
   componentDidLoad(){
+    this.originalValue = this.value;
     this.editor = monaco.editor.create(this.editorContainer, {
       value: this.value,
       language: this.language,
@@ -41,8 +48,20 @@ export class DnnMonacoEditor {
     this.editor.onDidChangeModelContent(() => {
       this.value = this.editor.getValue();
       this.contentChanged.emit(this.value);
+      if (this.name){
+        var data = new FormData();
+        data.append(this.name, this.value);
+        this.internals.setFormValue(data);
+      }
     });
   }
+
+  formResetCallback() {
+    this.internals.setValidity({});
+    this.value = this.originalValue;
+  }
+
+  private originalValue: string;
 
   render() {
     return (

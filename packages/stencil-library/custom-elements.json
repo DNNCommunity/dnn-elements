@@ -57,6 +57,15 @@
               "required": false
             },
             {
+              "name": "form-button-type",
+              "type": {
+                "text": "\"button\" | \"reset\" | \"submit\""
+              },
+              "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.",
+              "default": "'button'",
+              "required": false
+            },
+            {
               "name": "reversed",
               "type": {
                 "text": "boolean"
@@ -157,6 +166,14 @@
               "required": false
             },
             {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name to show in the formData (if using forms).",
+              "required": false
+            },
+            {
               "name": "use-intermediate",
               "type": {
                 "text": "boolean"
@@ -171,6 +188,7 @@
                 "text": "string"
               },
               "description": "The value for this checkbox (not to be confused with its checked state).",
+              "default": "\"on\"",
               "required": false
             }
           ],
@@ -385,7 +403,7 @@
               "type": {
                 "text": "string"
               },
-              "description": "The name for this input, if not provided a random name will be assigned.",
+              "description": "The name for this input if forms are used.",
               "required": false
             },
             {
@@ -565,6 +583,14 @@
               },
               "description": "Max file size in bytes.",
               "required": false
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name of the field when used in a form.",
+              "required": false
             }
           ],
           "members": [
@@ -649,6 +675,14 @@
                 "text": "number"
               },
               "description": "Sets the desired final image height.",
+              "required": false
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name of the control when used in a form.",
               "required": false
             },
             {
@@ -814,7 +848,7 @@
               "type": {
                 "text": "string"
               },
-              "description": "The name for this input, if not provided a random name will be assigned.",
+              "description": "The name for this input when used in forms.",
               "required": false
             },
             {
@@ -1047,11 +1081,20 @@
               "required": false
             },
             {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name of the control to use for forms.",
+              "required": false
+            },
+            {
               "name": "value",
               "type": {
                 "text": "string"
               },
               "description": "Sets the code contained in the editor",
+              "default": "\"\"",
               "required": false
             }
           ],
@@ -1391,7 +1434,7 @@
               "type": {
                 "text": "string"
               },
-              "description": "The name for this input, if not provided a random name will be assigned.",
+              "description": "The name for this input, if used in forms.",
               "required": false
             },
             {
@@ -1606,6 +1649,23 @@
               },
               "description": "If 'true' the toggle is not be interacted with.",
               "default": "false",
+              "required": false
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The field name to use in forms.",
+              "required": false
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "The value to post when used in forms.",
+              "default": "\"on\"",
               "required": false
             }
           ],

@@ -1,5 +1,6 @@
-import { Component, Host, Prop, State, h, Event, EventEmitter, Watch } from '@stencil/core';
+import { Component, Host, Prop, State, h, Event, EventEmitter, Watch, AttachInternals } from '@stencil/core';
 import { DnnColorInfo } from './dnn-color-info';
+import { generateRandomId } from "../../utilities/stringUtilities";
 
 
 /** A custom input component that allows previewing and changing a color value.
@@ -10,6 +11,7 @@ import { DnnColorInfo } from './dnn-color-info';
   tag: 'dnn-color-input',
   styleUrl: 'dnn-color-input.scss',
   shadow: true,
+  formAssociated: true,
 })
 export class DnnColorInput {
 
@@ -50,8 +52,8 @@ export class DnnColorInput {
     dark: "Dark",
   };
 
-  /** The name for this input, if not provided a random name will be assigned. */
-  @Prop({mutable: true}) name: string;
+  /** The name for this input if forms are used. */
+  @Prop() name: string;
 
   /** Defines the help label displayed under the field. */
   @Prop() helpText: string;
@@ -73,26 +75,49 @@ export class DnnColorInput {
   
   @State() currentColor: DnnColorInfo;
 
+  @AttachInternals() internals: ElementInternals;
+
   @Watch("currentColor")
   currentColorChanged(oldValue: DnnColorInfo, newValue: DnnColorInfo){
     if (oldValue != newValue)
     {
       this.colorInput.emit(newValue);
+      this.setFormValue();
     }
   }
   
+  componentWillLoad() {
+    this.labelId = generateRandomId();
+    this.currentColor = {
+      color: this.color,
+      contrastColor: this.contrastColor,
+      lightColor: this.lightColor,
+      darkColor: this.darkColor
+    };
+    this.originalColor = this.currentColor;
+  }
+
+  componentDidLoad() {
+    this.setFormValue();
+  }
+
+  formResetCallback() {
+    this.internals.setValidity({});
+    this.color = this.originalColor.color;
+    this.contrastColor = this.originalColor.contrastColor;
+    this.lightColor = this.originalColor.lightColor;
+    this.darkColor = this.originalColor.darkColor;
+    this.currentColor = this.originalColor;
+  }
+  
   private colorModal: HTMLDnnModalElement;
+  private originalColor: DnnColorInfo;
   
   private hasMultipleColors = () => {
     return this.useContrastColor || this.useLightColor || this.useDarkColor;
   }
 
-  componentWillLoad() {
-    if (this.name === undefined)
-    {
-      this.name = `dnn-color-input-${Math.floor(Math.random() * 1000000)}`;
-    }
-  }
+  private labelId: string;
 
   private getContainerClasses() {
     const classes: string[] = ["container"];
@@ -115,13 +140,21 @@ export class DnnColorInput {
     this.colorModal.show();
   }
 
-  saveColor(): void {
+  private saveColor(): void {
     this.color = this.currentColor.color;
     this.contrastColor = this.currentColor.contrastColor;
     this.lightColor = this.currentColor.lightColor;
     this.darkColor = this.currentColor.darkColor;
     this.colorModal.hide();
     this.colorChange.emit(this.currentColor);
+  }
+
+  private setFormValue(){
+    if (this.name){
+      var formData = new FormData();
+      formData.append(this.name, JSON.stringify(this.currentColor));
+      this.internals.setFormValue(formData);
+    }
   }
 
   render() {
@@ -131,7 +164,7 @@ export class DnnColorInput {
           class={this.getContainerClasses()}
         >
           <div class="inner-container">
-            <label htmlFor={this.name}>
+            <label id={this.labelId}>
               {this.label}
             </label>
             <slot name="prefix"></slot>
@@ -156,6 +189,7 @@ export class DnnColorInput {
             </div>
             {!this.readonly &&
               <button
+                aria-labelledby={this.labelId}
                 onClick={() => this.showPicker()}
               >
                 <svg

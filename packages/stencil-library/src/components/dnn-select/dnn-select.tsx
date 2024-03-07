@@ -1,17 +1,19 @@
-import { Component, Element, Host, Prop, h, State, Event, EventEmitter } from '@stencil/core';
+import { Component, Element, Host, Prop, h, State, Event, EventEmitter, AttachInternals } from '@stencil/core';
+import { generateRandomId } from '../../utilities/stringUtilities';
 
 @Component({
   tag: 'dnn-select',
   styleUrl: 'dnn-select.scss',
   shadow: true,
+  formAssociated: true,
 })
 export class DnnSelect {
 
   /** The label for this input. */
   @Prop() label: string;
 
-  /** The name for this input, if not provided a random name will be assigned. */
-  @Prop({mutable: true}) name: string;
+  /** The name for this input, if used in forms. */
+  @Prop() name: string;
 
   /** Defines whether the field requires having a value. */
   @Prop() required: boolean;
@@ -37,15 +39,17 @@ export class DnnSelect {
   /** Fires when the value has changed and the user exits the input. */
   @Event() valueChange: EventEmitter<string>;
 
+  @AttachInternals() internals: ElementInternals;
+
   private slot: HTMLSlotElement;
   private select: HTMLSelectElement;
   private observer: MutationObserver;
+  private labelId: string;
+  private originalValue: string;
 
   componentWillLoad() {
-    if (this.name === undefined)
-    {
-      this.name = `dnn-select-${Math.floor(Math.random() * 1000000)}`;
-    }
+    this.originalValue = this.value;
+    this.labelId = generateRandomId();
     this.observer = new MutationObserver((mutations) => {
       for (let mutation of mutations) {
         if (mutation.type === 'childList') {
@@ -57,9 +61,17 @@ export class DnnSelect {
     const config = { attributes: true, childList: true, subtree: true };
     this.observer.observe(this.el, config);
   }
-
+  
   componentDidLoad() {
     this.applySlottedItemsToSelect();
+    this.setFormValue();
+  }
+
+  formResetCallback() {
+    this.internals.setValidity({});
+    this.value = this.originalValue;
+    this.internals.setFormValue("");
+    this.select.selectedIndex = -1;
   }
 
   private applySlottedItemsToSelect () {
@@ -70,7 +82,14 @@ export class DnnSelect {
         this.select.appendChild(optionElement);
       }
     });
+  }
 
+  private setFormValue(){
+    if (this.name){
+      var data = new FormData();
+      data.append(this.name, this.value);
+      this.internals.setFormValue(data);
+    }
   }
 
   private getContainerClasses() {
@@ -99,6 +118,7 @@ export class DnnSelect {
       this.select.reportValidity();
     }
     this.valueChange.emit(this.value);
+    this.setFormValue();
   }
 
   private handleInvalid(): void {
@@ -117,7 +137,7 @@ export class DnnSelect {
         >
           <div class="inner-container">
             {this.label &&
-              <label htmlFor={this.name}>
+              <label id={this.labelId}>
                 {`${this.label}${this.required ? " *" : ""}`}
               </label>
             }
@@ -129,6 +149,7 @@ export class DnnSelect {
               onInvalid={() => this.handleInvalid()}
               required={this.required}
               disabled={this.disabled}
+              aria-labelledby={this.labelId}
             >
               <slot ref={el => this.slot = (el as HTMLSlotElement)}></slot>
             </select>

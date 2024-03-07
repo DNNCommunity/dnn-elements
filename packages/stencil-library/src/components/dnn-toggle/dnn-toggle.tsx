@@ -1,11 +1,12 @@
-import { Component, h, Element, Prop, Event, EventEmitter, Watch, Host } from "@stencil/core";
+import { Component, h, Element, Prop, Event, EventEmitter, Watch, Host, AttachInternals } from "@stencil/core";
 import { DnnToggleChangeEventDetail } from "./toggle-interface";
 
 
 @Component({
     tag: "dnn-toggle",
     styleUrl: "dnn-toggle.scss",
-    shadow: true
+    shadow: true,
+    formAssociated: true,
 })
 export class DnnToggle {
 
@@ -17,12 +18,46 @@ export class DnnToggle {
     /** If 'true' the toggle is not be interacted with. */
     @Prop() disabled = false;
 
+    /** The field name to use in forms. */
+    @Prop() name: string;
+
+    /** The value to post when used in forms. */
+    @Prop() value: string = "on";
+
     /** Fires when the toggle changed */
     @Event() checkChanged!: EventEmitter<DnnToggleChangeEventDetail>;
 
+    @AttachInternals() internals: ElementInternals;
+
     @Watch("checked")
-    checkedChanged(isChecked: boolean){
-        this.checkChanged.emit({checked: isChecked});
+    checkedChanged(newValue: boolean){
+        this.checkChanged.emit({checked: newValue});
+        this.setFormValue();
+    }
+
+    componentWillLoad() {
+        this.originalChecked = this.checked;
+        this.setFormValue();
+    }
+
+    private originalChecked: boolean;
+
+    formResetCallback() {
+        this.internals.setValidity({});
+        this.checked = this.originalChecked;
+    }
+
+    private setFormValue(){
+        if (this.name){
+            if (this.checked){
+                var data = new FormData();
+                data.append(this.name, this.value);
+                this.internals.setFormValue(data);
+            }
+            else {
+                this.internals.setFormValue("");
+            }
+        }
     }
 
     render() {

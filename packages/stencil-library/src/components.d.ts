@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { CheckedState } from "./components/dnn-checkbox/types";
 import { DnnColorInfo } from "./components/dnn-color-input/dnn-color-info";
 import { ColorInfo } from "./utilities/colorInfo";
 import { DropzoneResx } from "./components/dnn-dropzone/types";
@@ -16,6 +17,7 @@ import { ILocalization } from "./components/dnn-permissions-grid/localization-in
 import { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
 import { Config } from "jodit/types/config";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
+export { CheckedState } from "./components/dnn-checkbox/types";
 export { DnnColorInfo } from "./components/dnn-color-input/dnn-color-info";
 export { ColorInfo } from "./utilities/colorInfo";
 export { DropzoneResx } from "./components/dnn-dropzone/types";
@@ -50,6 +52,10 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually.
+         */
+        "formButtonType": 'submit' | 'reset' | 'button';
+        /**
           * Optionally reverses the button style.
          */
         "reversed": boolean;
@@ -66,7 +72,11 @@ export namespace Components {
         /**
           * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
          */
-        "checked": "checked" | "unchecked" | "intermediate";
+        "checked": CheckedState;
+        /**
+          * The name to show in the formData (if using forms).
+         */
+        "name": string;
         /**
           * Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)
          */
@@ -145,7 +155,7 @@ export namespace Components {
     dark: string,
   };
         /**
-          * The name for this input, if not provided a random name will be assigned.
+          * The name for this input if forms are used.
          */
         "name": string;
         /**
@@ -197,6 +207,10 @@ export namespace Components {
          */
         "maxFileSize"?: number;
         /**
+          * The name of the field when used in a form.
+         */
+        "name": string;
+        /**
           * Localization strings
          */
         "resx": DropzoneResx;
@@ -220,6 +234,10 @@ export namespace Components {
           * Sets the desired final image height.
          */
         "height": number;
+        /**
+          * The name of the control when used in a form.
+         */
+        "name": string;
         /**
           * When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry.
          */
@@ -290,7 +308,7 @@ export namespace Components {
          */
         "multiple": boolean;
         /**
-          * The name for this input, if not provided a random name will be assigned.
+          * The name for this input when used in forms.
          */
         "name": string;
         /**
@@ -354,6 +372,10 @@ export namespace Components {
           * Defines the language for the editor.
          */
         "language": "plaintext" | "bat" | "coffeescript" | "c" | "cpp" | "csharp" | "dockerfile" | "fsharp" | "go" | "handlebars" | "html" | "ini" | "pug" | "java" | "lua" | "markdown" | "msdax" | "objective-c" | "postiats" | "php" | "powershell" | "python" | "r" | "razor" | "ruby" | "swift" | "sql" | "vb" | "xml" | "less" | "scss" | "css" | "yaml" | "sol" | "sb" | "json" | "typescript" | "javascript";
+        /**
+          * The name of the control to use for forms.
+         */
+        "name": string;
         /**
           * Sets the code contained in the editor
          */
@@ -437,7 +459,7 @@ export namespace Components {
          */
         "label": string;
         /**
-          * The name for this input, if not provided a random name will be assigned.
+          * The name for this input, if used in forms.
          */
         "name": string;
         /**
@@ -483,6 +505,14 @@ export namespace Components {
           * If 'true' the toggle is not be interacted with.
          */
         "disabled": boolean;
+        /**
+          * The field name to use in forms.
+         */
+        "name": string;
+        /**
+          * The value to post when used in forms.
+         */
+        "value": string;
     }
     interface DnnTreeviewItem {
         /**
@@ -1023,6 +1053,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually.
+         */
+        "formButtonType"?: 'submit' | 'reset' | 'button';
+        /**
           * Fires when confirm is true and the user cancels the action.
          */
         "onCanceled"?: (event: DnnButtonCustomEvent<any>) => void;
@@ -1047,7 +1081,11 @@ declare namespace LocalJSX {
         /**
           * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
          */
-        "checked"?: "checked" | "unchecked" | "intermediate";
+        "checked"?: CheckedState;
+        /**
+          * The name to show in the formData (if using forms).
+         */
+        "name"?: string;
         /**
           * Fires up when the checkbox checked property changes.
          */
@@ -1134,7 +1172,7 @@ declare namespace LocalJSX {
     dark: string,
   };
         /**
-          * The name for this input, if not provided a random name will be assigned.
+          * The name for this input if forms are used.
          */
         "name"?: string;
         /**
@@ -1199,6 +1237,10 @@ declare namespace LocalJSX {
          */
         "maxFileSize"?: number;
         /**
+          * The name of the field when used in a form.
+         */
+        "name"?: string;
+        /**
           * Fires when file were selected.
          */
         "onFilesSelected"?: (event: DnnDropzoneCustomEvent<File[]>) => void;
@@ -1222,6 +1264,10 @@ declare namespace LocalJSX {
           * Sets the desired final image height.
          */
         "height"?: number;
+        /**
+          * The name of the control when used in a form.
+         */
+        "name"?: string;
         /**
           * When the image crop changes, emits the dataurl for the new cropped image.
          */
@@ -1292,7 +1338,7 @@ declare namespace LocalJSX {
          */
         "multiple"?: boolean;
         /**
-          * The name for this input, if not provided a random name will be assigned.
+          * The name for this input when used in forms.
          */
         "name"?: string;
         /**
@@ -1359,6 +1405,10 @@ declare namespace LocalJSX {
           * Defines the language for the editor.
          */
         "language"?: "plaintext" | "bat" | "coffeescript" | "c" | "cpp" | "csharp" | "dockerfile" | "fsharp" | "go" | "handlebars" | "html" | "ini" | "pug" | "java" | "lua" | "markdown" | "msdax" | "objective-c" | "postiats" | "php" | "powershell" | "python" | "r" | "razor" | "ruby" | "swift" | "sql" | "vb" | "xml" | "less" | "scss" | "css" | "yaml" | "sol" | "sb" | "json" | "typescript" | "javascript";
+        /**
+          * The name of the control to use for forms.
+         */
+        "name"?: string;
         /**
           * Emits the new value of the content when it is changed.
          */
@@ -1466,7 +1516,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
-          * The name for this input, if not provided a random name will be assigned.
+          * The name for this input, if used in forms.
          */
         "name"?: string;
         /**
@@ -1513,9 +1563,17 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The field name to use in forms.
+         */
+        "name"?: string;
+        /**
           * Fires when the toggle changed
          */
         "onCheckChanged"?: (event: DnnToggleCustomEvent<DnnToggleChangeEventDetail>) => void;
+        /**
+          * The value to post when used in forms.
+         */
+        "value"?: string;
     }
     interface DnnTreeviewItem {
         /**

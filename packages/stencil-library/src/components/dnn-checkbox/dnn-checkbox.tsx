@@ -1,4 +1,5 @@
-import { Component, Element, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, Element, Host, h, Prop, Event, EventEmitter, AttachInternals, Watch } from '@stencil/core';
+import { CheckedState } from './types';
 
 /**
  * @slot - The label for the checkbox.
@@ -10,21 +11,48 @@ import { Component, Element, Host, h, Prop, Event, EventEmitter } from '@stencil
   tag: 'dnn-checkbox',
   styleUrl: 'dnn-checkbox.scss',
   shadow: true,
+  formAssociated: true,
 })
 export class DnnCheckbox {
   @Element() el: HTMLDnnCheckboxElement;
 
   /** Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined) */
-  @Prop({mutable: true}) checked: "checked" | "unchecked" | "intermediate" = "unchecked";
+  @Prop({mutable: true}) checked: CheckedState = "unchecked";
 
   /** Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state) */
   @Prop() useIntermediate: boolean = false;
 
   /** The value for this checkbox (not to be confused with its checked state). */
-  @Prop() value: string;
+  @Prop() value: string = "on";
+
+  /** The name to show in the formData (if using forms). */
+  @Prop() name: string;
 
   /** Fires up when the checkbox checked property changes. */
   @Event() checkedchange: EventEmitter<"checked" | "unchecked" | "intermediate">;
+
+  @AttachInternals() internals: ElementInternals;
+  
+  private originalChecked: CheckedState;
+
+  componentWillLoad() {
+    this.originalChecked = this.checked;
+    this.internals.setFormValue(this.checked);
+  }
+
+  @Watch("checked")
+  handleCheckedChange(newValue: CheckedState, oldValue: CheckedState) {
+    if (newValue !== oldValue && this.checked == "checked") {
+      var data = new FormData();
+      data.append(this.name, this.value);
+      this.internals.setFormValue(data);
+    }
+  }
+
+  formResetCallback() {
+    this.internals.setValidity({});
+    this.checked = this.originalChecked;
+  }
 
   private changeState(): void {
     if (!this.useIntermediate){

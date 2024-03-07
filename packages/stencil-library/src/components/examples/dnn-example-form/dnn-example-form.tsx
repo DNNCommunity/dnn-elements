@@ -4,7 +4,6 @@ import { Component, Host, h } from '@stencil/core';
 @Component({
   tag: 'dnn-example-form',
   styleUrl: 'dnn-example-form.scss',
-  shadow: true,
 })
 export class DnnExampleForm {
 
@@ -13,24 +12,40 @@ export class DnnExampleForm {
       <Host>
         <h2>This is a sample form</h2>
         <p>It includes dnn elements commonly used in forms.</p>
-        <form>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            console.group("Form submitted");
+            console.log(e);
+            console.groupEnd();
+            console.group("Form data");
+            const formData = new FormData(e.target as HTMLFormElement);
+            formData.forEach((value, key) => {
+              console.log(key, value);
+            });
+            console.groupEnd();
+          }}
+        >
           <fieldset>
             <legend>User Information</legend>
             <dnn-input
               label="First Name"
               type="text"
               required
+              name="firstName"
             />
             <dnn-input
               label="Last Name"
               type="text"
               required
+              name="lastName"
             />
             <dnn-input
               label="Email"
               type="email"
               required
               helpText='We will never share your email with anyone else.'
+              name="email"
             />
             <dnn-input
               label="Password"
@@ -39,6 +54,7 @@ export class DnnExampleForm {
               minlength={8}
               allowShowPassword
               helpText='Your password must be at least 8 characters long.'
+              name="password"
             />
             <dnn-input
               label="Confirm Password"
@@ -47,6 +63,7 @@ export class DnnExampleForm {
               minlength={8}
               allowShowPassword
               helpText='Please confirm your password.'
+              name="confirmPassword"
             />
             <dnn-input
               label="Phone"
@@ -54,43 +71,50 @@ export class DnnExampleForm {
               pattern="\d{3}[\-]\d{3}[\-]\d{4}"
               required
               helpText='Please enter your phone number in the format 123-456-7890.'
+              name="phone"
             />
             <dnn-input
               label="Date of Birth"
               type="date"
               required
+              name="dateOfBirth"
             />
             <dnn-input
               label="Date and Time of Birth"
               type="datetime-local"
               helpText="If you have such a good memory... (optional)"
+              name="dateTimeOfBirth"
             />
             <dnn-input
               type="number"
               label="Age"
               min={0}
               max={115}
+              name="age"
             />
             <dnn-input
               label="Notification Time"
               type="time"
               helpText="Optionaly indicate your preferred time for notifications."
+              name="notificationTime"
             />
             <dnn-input
               label="Website"
               type="url"
               helpText="Please enter the URL of your website."
+              name="website"
             />
-            <label>
-              <dnn-checkbox />
-              Remember me
-            </label>
+              <dnn-checkbox name="rememberMe" value="true">
+                Remember me
+              </dnn-checkbox>
             <dnn-color-input
               label="Favorite Color"
+              name="favoriteColor"
             />
             <dnn-select
               label="Gender"
               helpText="Optional"
+              name="gender"
             >
               <option value="">--- Select ---</option>
               <option value="male">Male</option>
@@ -99,20 +123,24 @@ export class DnnExampleForm {
             </dnn-select>
             <label>
               Subscribe to our newsletter
-              <dnn-toggle />
+              <dnn-toggle name="subscribe"/>
             </label>
             <label class="vertical">
               Your Resume
-              <dnn-dropzone />
+              <dnn-dropzone name="resume" />
             </label>
             <label class="vertical">
               Your profile Picture
-              <dnn-image-cropper />
+              <dnn-image-cropper name="profilePic" />
+            </label>
+            <label class="vertical">
+              Some code
+              <dnn-monaco-editor name="code" value="<p>Some html</p>" />
             </label>
           </fieldset>
           <div class="controls">
-            <dnn-button reversed>Cancel</dnn-button>
-            <dnn-button>Submit</dnn-button>
+            <dnn-button reversed formButtonType="reset">Reset</dnn-button>
+            <dnn-button formButtonType="submit">Submit</dnn-button>
           </div>
         </form>
       </Host>
