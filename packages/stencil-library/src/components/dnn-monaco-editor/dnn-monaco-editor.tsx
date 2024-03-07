@@ -30,7 +30,7 @@ export class DnnMonacoEditor {
   }
 
   /** The name of the control to use for forms. */
-  @Prop()name: string;
+  @Prop() name: string;
 
   /** Emits the new value of the content when it is changed. */
   @Event() contentChanged: EventEmitter<string>;
@@ -45,23 +45,30 @@ export class DnnMonacoEditor {
       theme: "vs-dark",
       automaticLayout: true,
     });
+    this.setFormValue();
     this.editor.onDidChangeModelContent(() => {
       this.value = this.editor.getValue();
       this.contentChanged.emit(this.value);
-      if (this.name){
-        var data = new FormData();
-        data.append(this.name, this.value);
-        this.internals.setFormValue(data);
-      }
+      this.setFormValue();
     });
   }
 
+  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
   formResetCallback() {
     this.internals.setValidity({});
     this.value = this.originalValue;
+    this.setFormValue();
   }
 
   private originalValue: string;
+
+  private setFormValue() {
+    if (this.name != undefined){
+      var data = new FormData();
+      data.append(this.name, this.value);
+      this.internals.setFormValue(data);
+    }
+  }
 
   render() {
     return (

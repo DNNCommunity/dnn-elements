@@ -419,6 +419,10 @@ export namespace Components {
     }
     interface DnnRichtext {
         /**
+          * Name of the field when used in a form.
+         */
+        "name": string;
+        /**
           * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
          */
         "options": Config;
@@ -1463,6 +1467,10 @@ declare namespace LocalJSX {
         "value"?: number;
     }
     interface DnnRichtext {
+        /**
+          * Name of the field when used in a form.
+         */
+        "name"?: string;
         /**
           * Fires when the value changed.
          */

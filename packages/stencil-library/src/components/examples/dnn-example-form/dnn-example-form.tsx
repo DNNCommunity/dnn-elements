@@ -137,6 +137,10 @@ export class DnnExampleForm {
               Some code
               <dnn-monaco-editor name="code" value="<p>Some html</p>" />
             </label>
+            <label class="vertical">
+              Biography
+              <dnn-richtext name="biography" value="<p>Some html</p>" />
+            </label>
           </fieldset>
           <div class="controls">
             <dnn-button reversed formButtonType="reset">Reset</dnn-button>

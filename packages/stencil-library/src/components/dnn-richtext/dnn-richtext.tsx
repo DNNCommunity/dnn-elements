@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter, Watch } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, Watch, AttachInternals } from '@stencil/core';
 import { Jodit } from "jodit";
 import type { Config } from "jodit/types/config";
 import { decodeHtml } from '../../utilities/stringUtilities';
@@ -7,6 +7,7 @@ import { decodeHtml } from '../../utilities/stringUtilities';
   tag: 'dnn-richtext',
   styleUrl: 'dnn-richtext.scss',
   shadow: false,
+  formAssociated: true,
 })
 export class DnnRichtext {
   /** Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html */
@@ -20,12 +21,16 @@ export class DnnRichtext {
 
   /** Sets the value of the content of the editor. */
   @Prop() value: string;
+
+  /** Name of the field when used in a form. */
+  @Prop() name: string;
   
   @Watch("value")
   watchValueChanged(newValue: string) {
-    if (this.editor) {
+    if (this.editor !== null && this.editor !== undefined) {
       this.editor.value = decodeHtml(newValue);
     }
+    this.setFormValue();
   }
 
   /** Fires when the value changed. */
@@ -34,6 +39,8 @@ export class DnnRichtext {
   /** Fires during value input. */
   @Event() valueInput: EventEmitter<string>;
 
+  @AttachInternals() internals: ElementInternals;
+
   componentDidLoad(){
     var mergedOptions = {
       ...this.dnnDefaultOptions,
@@ -41,8 +48,27 @@ export class DnnRichtext {
     };
     this.editor = Jodit.make(this.textArea, mergedOptions);
     this.editor.value = decodeHtml(this.value);
-    this.editor.e.on('change', newValue => this.valueChange.emit(newValue));
+    this.setFormValue();
+    this.editor.e.on('change', newValue => {
+      this.valueChange.emit(newValue);
+      this.setFormValue();
+    });
     this.editor.e.on('input', newValue => this.valueInput.emit(newValue));
+  }
+
+  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+  formResetCallback() {
+    this.editor.value = decodeHtml(this.value);
+    this.internals.setValidity({});
+    this.setFormValue();
+  }
+
+  private setFormValue() {
+    if (this.name != undefined && this.name.length > 0){
+      var data = new FormData();
+      data.append(this.name, this.editor.value);
+      this.internals.setFormValue(data);
+    }
   }
 
   render() {
