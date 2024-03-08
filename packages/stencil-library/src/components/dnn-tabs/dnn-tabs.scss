@@ -17,17 +17,17 @@
 .tabTitles{
     display: flex;
     background-color: var(--color-background);
-    color: var(--color-text);
     button {
         cursor: pointer; 
         padding: 0.5rem 1rem;
         border: 0;
         margin: 0;
         background-color: transparent;
+        color: var(--color-text);
         
         &.visible {
             background-color: var(--color-visible);
-            color: var(--color-bisible-text);
+            color: var(--color-visible-text);
         }
             
         &:focus, &:hover {
