@@ -20,7 +20,7 @@ export class DnnInput {
   @Prop() label: string;
 
   /** The name for this input when used in forms. */
-  @Prop({mutable: true}) name: string;
+  @Prop() name: string;
 
   /** The value of the input. */
   @Prop({mutable: true, reflect:true}) value: number | string | string[];
@@ -79,6 +79,7 @@ export class DnnInput {
     return this.inputField.validity;
   }
 
+  /** Can be used to set a custom validity message. */
   @Method()
   async setCustomValidity(message: string): Promise<void> {
     this.customValidityMessage = message;
@@ -98,6 +99,7 @@ export class DnnInput {
     this.labelId = generateRandomId();
   }
 
+  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
   formResetCallback() {
     this.inputField.setCustomValidity("");
     this.valid = true;
@@ -153,7 +155,7 @@ export class DnnInput {
       this.inputField.reportValidity();
     }
     this.valueChange.emit(this.value);
-    if (this.name){
+    if (this.name != undefined){
       var data = new FormData();
       data.append(this.name, this.value.toString());
       this.internals.setFormValue(data);

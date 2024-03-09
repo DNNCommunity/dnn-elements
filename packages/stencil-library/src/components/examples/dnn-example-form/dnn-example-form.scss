@@ -2,27 +2,34 @@
   display: block;
 }
 
-fieldset{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  label{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5rem;
-    &.vertical{
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: stretch;
+dnn-fieldset{
+  >.fields{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    label{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+      &.vertical{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+      }
     }
   }
+}
+
+svg {
+  width: 1em;
+  height: 1em;
 }
 
 .controls{
@@ -32,4 +39,8 @@ fieldset{
   *:first-child{
     margin-left: auto;
   }
+}
+
+.full-form-width{
+  grid-column: 1 / -1;
 }
