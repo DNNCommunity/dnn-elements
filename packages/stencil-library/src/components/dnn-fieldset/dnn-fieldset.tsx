@@ -1,5 +1,9 @@
-import { Component, Host, h, Prop, Method } from '@stencil/core';
+import { Component, Host, h, Prop, Method, State } from '@stencil/core';
 
+/** A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+ * @slot label-prefix - Can be used to inject content before the labe.
+ * @slot label-suffix - Can be used to inject content after the label.
+ */
 @Component({
   tag: 'dnn-fieldset',
   styleUrl: 'dnn-fieldset.scss',
@@ -21,6 +25,9 @@ export class DnnFieldset {
 
   /** If true, the label will float in the container, set false to show it on top. */
   @Prop({mutable: true, reflect: true}) floatLabel: boolean;
+
+  /** Can be used to show some help text about this field. */
+  @Prop() helpText: string;
 
   /** Sets the fieldset to the focused state. */
   @Method()
@@ -46,18 +53,6 @@ export class DnnFieldset {
     this.disabled = false;
   }
 
-  /** Sets the fieldset to an invalid state. */
-  @Method()
-  async setInvalid() {
-    this.invalid = true;
-  }
-
-  /** Sets the fieldset to a valid state. */
-  @Method()
-  async setValid() {
-    this.invalid = false;
-  }
-
   /** Places the label on the top of the container. */
   @Method()
   async pinLabel() {
@@ -69,6 +64,16 @@ export class DnnFieldset {
   async unpinLabel() {
     this.floatLabel = true;
   }
+
+  /** Sets the validity of the field. */
+  @Method()
+  async setValidity(valid: boolean, message?: string) {
+    this.valid = valid;
+    this.customValidityMessage = message;
+  }
+
+  @State() valid: boolean = true;
+  @State() customValidityMessage: string;
 
   private getContainerClasses() {
     const classes: string[] = ["container"];
@@ -108,6 +113,14 @@ export class DnnFieldset {
             <slot></slot>
           </div>
         </div>
+        {!this.valid && this.customValidityMessage &&
+          <div class="error-message">
+            {this.customValidityMessage}
+          </div>
+        }
+        {this.valid &&
+          <div class="help-text">{this.helpText}</div>
+        }
       </Host>
     );
   }

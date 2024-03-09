@@ -13,6 +13,7 @@ Do not use this component in production, it is meant for testing purposes only a
 
 ### Depends on
 
+- [dnn-fieldset](../../dnn-fieldset)
 - [dnn-input](../../dnn-input)
 - [dnn-checkbox](../../dnn-checkbox)
 - [dnn-color-input](../../dnn-color-input)
@@ -21,11 +22,13 @@ Do not use this component in production, it is meant for testing purposes only a
 - [dnn-dropzone](../../dnn-dropzone)
 - [dnn-image-cropper](../../dnn-image-cropper)
 - [dnn-monaco-editor](../../dnn-monaco-editor)
+- [dnn-richtext](../../dnn-richtext)
 - [dnn-button](../../dnn-button)
 
 ### Graph
 ```mermaid
 graph TD;
+  dnn-example-form --> dnn-fieldset
   dnn-example-form --> dnn-input
   dnn-example-form --> dnn-checkbox
   dnn-example-form --> dnn-color-input
@@ -34,6 +37,7 @@ graph TD;
   dnn-example-form --> dnn-dropzone
   dnn-example-form --> dnn-image-cropper
   dnn-example-form --> dnn-monaco-editor
+  dnn-example-form --> dnn-richtext
   dnn-example-form --> dnn-button
   dnn-color-input --> dnn-modal
   dnn-color-input --> dnn-tabs

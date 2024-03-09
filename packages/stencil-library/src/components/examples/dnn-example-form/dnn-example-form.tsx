@@ -15,6 +15,7 @@ export class DnnExampleForm {
           class="full-form-width"
           ref={el => this.fieldset = el}
           label="Sample Form"
+          helpText="This is some help text."
         >
           <div slot="label-prefix">
             <svg xmlns="http://www.w3.org/2000/svg"
@@ -36,11 +37,10 @@ export class DnnExampleForm {
           <button onClick={() => this.fieldset.setBlurred()}>Blur</button>
           <button onClick={() => this.fieldset.disable()}>Disable</button>
           <button onClick={() => this.fieldset.enable()}>Enable</button>
-          <button onClick={() => this.fieldset.setInvalid()}>Set Invalid</button>
-          <button onClick={() => this.fieldset.setValid()}>Set Valid</button>
+          <button onClick={() => this.fieldset.setValidity(false, "Field is not valid!")}>Set Invalid</button>
+          <button onClick={() => this.fieldset.setValidity(true)}>Set Valid</button>
           <button onClick={() => this.fieldset.pinLabel()}>Pin Label</button>
           <button onClick={() => this.fieldset.unpinLabel()}>Unpin Label</button>
-
         </dnn-fieldset>
         <form
           onSubmit={e => {

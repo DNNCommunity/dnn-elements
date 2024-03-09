@@ -220,6 +220,9 @@ export namespace Components {
      */
     interface DnnExampleForm {
     }
+    /**
+     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     */
     interface DnnFieldset {
         /**
           * Sets the fieldset to a disabled state.
@@ -242,6 +245,10 @@ export namespace Components {
          */
         "focused": boolean;
         /**
+          * Can be used to show some help text about this field.
+         */
+        "helpText": string;
+        /**
           * If true, the  fieldset will display as invalid.
          */
         "invalid": boolean;
@@ -262,13 +269,9 @@ export namespace Components {
          */
         "setFocused": () => Promise<void>;
         /**
-          * Sets the fieldset to an invalid state.
+          * Sets the validity of the field.
          */
-        "setInvalid": () => Promise<void>;
-        /**
-          * Sets the fieldset to a valid state.
-         */
-        "setValid": () => Promise<void>;
+        "setValidity": (valid: boolean, message?: string) => Promise<void>;
         /**
           * Places the label in the vertical middle of the container.
          */
@@ -818,6 +821,9 @@ declare global {
         prototype: HTMLDnnExampleFormElement;
         new (): HTMLDnnExampleFormElement;
     };
+    /**
+     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     */
     interface HTMLDnnFieldsetElement extends Components.DnnFieldset, HTMLStencilElement {
     }
     var HTMLDnnFieldsetElement: {
@@ -1322,6 +1328,9 @@ declare namespace LocalJSX {
      */
     interface DnnExampleForm {
     }
+    /**
+     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     */
     interface DnnFieldset {
         /**
           * If true, the fieldset will display as disabled.
@@ -1335,6 +1344,10 @@ declare namespace LocalJSX {
           * If true the fieldset will display as focused.
          */
         "focused"?: boolean;
+        /**
+          * Can be used to show some help text about this field.
+         */
+        "helpText"?: string;
         /**
           * If true, the  fieldset will display as invalid.
          */
@@ -1751,6 +1764,9 @@ declare module "@stencil/core" {
              * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
              */
             "dnn-example-form": LocalJSX.DnnExampleForm & JSXBase.HTMLAttributes<HTMLDnnExampleFormElement>;
+            /**
+             * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+             */
             "dnn-fieldset": LocalJSX.DnnFieldset & JSXBase.HTMLAttributes<HTMLDnnFieldsetElement>;
             /**
              * Allows cropping an image in-browser with the option to enforce a specific final size.

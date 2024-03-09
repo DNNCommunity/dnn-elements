@@ -260,6 +260,39 @@
       "attributes": []
     },
     {
+      "name": "dnn-fieldset",
+      "description": {
+        "kind": "markdown",
+        "value": "A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features."
+      },
+      "attributes": [
+        {
+          "name": "disabled",
+          "description": "If true, the fieldset will display as disabled."
+        },
+        {
+          "name": "float-label",
+          "description": "If true, the label will float in the container, set false to show it on top."
+        },
+        {
+          "name": "focused",
+          "description": "If true the fieldset will display as focused."
+        },
+        {
+          "name": "help-text",
+          "description": "Can be used to show some help text about this field."
+        },
+        {
+          "name": "invalid",
+          "description": "If true, the  fieldset will display as invalid."
+        },
+        {
+          "name": "label",
+          "description": "Sets the text of the fieldset label (caption)."
+        }
+      ]
+    },
+    {
       "name": "dnn-image-cropper",
       "description": {
         "kind": "markdown",
@@ -603,6 +636,10 @@
         "value": ""
       },
       "attributes": [
+        {
+          "name": "name",
+          "description": "Name of the field when used in a form."
+        },
         {
           "name": "value",
           "description": "Sets the value of the content of the editor."

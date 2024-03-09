@@ -55,7 +55,7 @@ Type: `Promise<ValidityState>`
 
 ### `setCustomValidity(message: string) => Promise<void>`
 
-
+Can be used to set a custom validity message.
 
 #### Parameters
 
