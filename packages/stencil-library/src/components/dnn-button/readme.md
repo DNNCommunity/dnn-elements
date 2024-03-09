@@ -5,6 +5,37 @@
 <!-- Auto Generated Below -->
 
 
+## Usage
+
+### HTML
+
+```html
+<dnn-button
+    confirm=""
+    confirm-yes-text="Oh Yeah"
+    confirm-no-text="No Way"
+    confirm-message="Are you sure that you're sure that you're sure?"
+>
+    Click me!
+</dnn-button>
+```
+
+
+### JSX-TSX
+
+```tsx
+<dnn-button 
+    confirm=""
+    confirmYesText="Oh Yeah"
+    confirmNoText="No Way"
+    confirmMessage="Are you sure that you're sure that you're sure?"
+>
+    Click me!
+</dnn-button>
+```
+
+
+
 ## Properties
 
 | Property         | Attribute          | Description                                                                                                                                                                                                   | Type                                                 | Default            |
