@@ -13,6 +13,7 @@ Do not use this component in production, it is meant for testing purposes only a
 
 ### Depends on
 
+- [dnn-fieldset](../../dnn-fieldset)
 - [dnn-input](../../dnn-input)
 - [dnn-checkbox](../../dnn-checkbox)
 - [dnn-color-input](../../dnn-color-input)
@@ -27,6 +28,7 @@ Do not use this component in production, it is meant for testing purposes only a
 ### Graph
 ```mermaid
 graph TD;
+  dnn-example-form --> dnn-fieldset
   dnn-example-form --> dnn-input
   dnn-example-form --> dnn-checkbox
   dnn-example-form --> dnn-color-input

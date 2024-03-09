@@ -15,6 +15,7 @@ export const DnnColorInput = /*@__PURE__*/createReactComponent<JSX.DnnColorInput
 export const DnnColorPicker = /*@__PURE__*/createReactComponent<JSX.DnnColorPicker, HTMLDnnColorPickerElement>('dnn-color-picker');
 export const DnnDropzone = /*@__PURE__*/createReactComponent<JSX.DnnDropzone, HTMLDnnDropzoneElement>('dnn-dropzone');
 export const DnnExampleForm = /*@__PURE__*/createReactComponent<JSX.DnnExampleForm, HTMLDnnExampleFormElement>('dnn-example-form');
+export const DnnFieldset = /*@__PURE__*/createReactComponent<JSX.DnnFieldset, HTMLDnnFieldsetElement>('dnn-fieldset');
 export const DnnImageCropper = /*@__PURE__*/createReactComponent<JSX.DnnImageCropper, HTMLDnnImageCropperElement>('dnn-image-cropper');
 export const DnnInput = /*@__PURE__*/createReactComponent<JSX.DnnInput, HTMLDnnInputElement>('dnn-input');
 export const DnnModal = /*@__PURE__*/createReactComponent<JSX.DnnModal, HTMLDnnModalElement>('dnn-modal');

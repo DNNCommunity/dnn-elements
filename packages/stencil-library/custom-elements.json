@@ -661,6 +661,146 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/dnn-fieldset/dnn-fieldset.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-fieldset.tsx",
+          "tagName": "dnn-fieldset",
+          "description": "A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.",
+          "attributes": [
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, the fieldset will display as disabled.",
+              "required": false
+            },
+            {
+              "name": "float-label",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, the label will float in the container, set false to show it on top.",
+              "required": false
+            },
+            {
+              "name": "focused",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true the fieldset will display as focused.",
+              "required": false
+            },
+            {
+              "name": "help-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "Can be used to show some help text about this field.",
+              "required": false
+            },
+            {
+              "name": "invalid",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, the  fieldset will display as invalid.",
+              "required": false
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "Sets the text of the fieldset label (caption).",
+              "required": false
+            }
+          ],
+          "members": [
+            {
+              "kind": "method",
+              "name": "disable",
+              "description": "Sets the fieldset to a disabled state.",
+              "signature": "disable() => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "enable",
+              "description": "Sets the fieldset to an enabled state.",
+              "signature": "enable() => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "pinLabel",
+              "description": "Places the label on the top of the container.",
+              "signature": "pinLabel() => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "setBlurred",
+              "description": "Unsets the fieldset focused state.",
+              "signature": "setBlurred() => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "setFocused",
+              "description": "Sets the fieldset to the focused state.",
+              "signature": "setFocused() => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "setValidity",
+              "description": "Sets the validity of the field.",
+              "signature": "setValidity(valid: boolean, message?: string) => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "unpinLabel",
+              "description": "Places the label in the vertical middle of the container.",
+              "signature": "unpinLabel() => Promise<void>"
+            }
+          ],
+          "events": [],
+          "slots": [
+            {
+              "name": "label-prefix",
+              "description": "Can be used to inject content before the labe."
+            },
+            {
+              "name": "label-suffix",
+              "description": "Can be used to inject content after the label."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--background",
+              "description": "Defines the background color."
+            },
+            {
+              "name": "--control-radius",
+              "description": "Defines the radius for the control corners."
+            },
+            {
+              "name": "--danger-color",
+              "description": "Defines the danger color used for invalid data."
+            },
+            {
+              "name": "--focus-color",
+              "description": "Defines the color when the component is focused."
+            },
+            {
+              "name": "--foreground",
+              "description": "Defines the foreground color."
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/dnn-image-cropper/dnn-image-cropper.tsx",
       "declarations": [
         {
@@ -911,7 +1051,7 @@
             {
               "kind": "method",
               "name": "setCustomValidity",
-              "description": "",
+              "description": "Can be used to set a custom validity message.",
               "signature": "setCustomValidity(message: string) => Promise<void>"
             }
           ],

@@ -1,0 +1,85 @@
+:host {
+  display: inline-block;
+
+  /** @prop --foreground: Defines the foreground color. */
+  --foreground: var(--dnn-color-foreground, #000);
+
+  /** @prop --background: Defines the background color. */
+  --background: var(--dnn-color-background, #fff);
+
+  /** @prop --focus-color: Defines the color when the component is focused. */
+  --focus-color: var(--dnn-color-primary, #3792ED);
+
+  /** @prop --danger-color: Defines the danger color used for invalid data. */
+  --danger-color: var(--dnn-color-danger, #900);
+
+  /** @prop --control-radius: Defines the radius for the control corners. */
+  --control-radius: var(--dnn-controls-radius, 3px);
+}
+
+.container{
+  border: 1px solid var(--foreground, #000);
+  border-radius: var(--control-radius, 3px);
+  padding: 0.75em;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.1em;
+  position: relative;
+  background-color: var(--background);
+  margin-top: 1em;
+  .inner-container{
+    position: relative;
+    width: 100%;
+    background-color: var(--background);
+  }
+  label{
+    display: inline-flex;
+    position: absolute;
+    opacity: 1;
+    transition: all 150ms ease-in-out;
+    left: 0.5em;
+    top: -1.5em;
+    padding: 0 0.5em;
+    background-color: var(--background);
+    white-space: nowrap;
+    max-width: 100%;
+    border-radius: var(--control-radius);
+    font-size: 1em;
+  }
+  &.focused{
+    border: 1px solid var(--focus-color);
+    box-shadow: 0 0 0 1px var(--focus-color);
+    &.invalid{
+      border: 1px solid var(--danger-color);
+      box-shadow: 0 0 0 1px var(--danger-color);
+    }
+    input{
+      color: var(--foreground, #000);
+    }
+  }
+  &.float-label{
+    label{
+      opacity: 0.6;
+      left: 0;
+      top: calc(50% - 0.5em);
+    }
+  }
+  &.disabled{
+    opacity: 0.5;
+  }
+  &.invalid{
+    border-color: var(--danger-color);
+  }
+}
+
+.help-text, .error-message{
+  font-style: italic;
+  opacity: 0.7;
+  font-size: 0.8em;
+  margin: 0.25em;
+}
+.error-message{
+  color: var(--danger-color);
+  font-style: normal;
+  font-weight: bold;
+}

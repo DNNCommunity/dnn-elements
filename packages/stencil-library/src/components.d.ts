@@ -221,6 +221,63 @@ export namespace Components {
     interface DnnExampleForm {
     }
     /**
+     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     */
+    interface DnnFieldset {
+        /**
+          * Sets the fieldset to a disabled state.
+         */
+        "disable": () => Promise<void>;
+        /**
+          * If true, the fieldset will display as disabled.
+         */
+        "disabled": boolean;
+        /**
+          * Sets the fieldset to an enabled state.
+         */
+        "enable": () => Promise<void>;
+        /**
+          * If true, the label will float in the container, set false to show it on top.
+         */
+        "floatLabel": boolean;
+        /**
+          * If true the fieldset will display as focused.
+         */
+        "focused": boolean;
+        /**
+          * Can be used to show some help text about this field.
+         */
+        "helpText": string;
+        /**
+          * If true, the  fieldset will display as invalid.
+         */
+        "invalid": boolean;
+        /**
+          * Sets the text of the fieldset label (caption).
+         */
+        "label": string;
+        /**
+          * Places the label on the top of the container.
+         */
+        "pinLabel": () => Promise<void>;
+        /**
+          * Unsets the fieldset focused state.
+         */
+        "setBlurred": () => Promise<void>;
+        /**
+          * Sets the fieldset to the focused state.
+         */
+        "setFocused": () => Promise<void>;
+        /**
+          * Sets the validity of the field.
+         */
+        "setValidity": (valid: boolean, message?: string) => Promise<void>;
+        /**
+          * Places the label in the vertical middle of the container.
+         */
+        "unpinLabel": () => Promise<void>;
+    }
+    /**
      * Allows cropping an image in-browser with the option to enforce a specific final size.
      * All computation happens in the browser and the final image is emmited
      * in an event that has a data-url of the image.
@@ -323,6 +380,9 @@ export namespace Components {
           * Defines whether the field requires having a value.
          */
         "required": boolean;
+        /**
+          * Can be used to set a custom validity message.
+         */
         "setCustomValidity": (message: string) => Promise<void>;
         /**
           * Defines the possible steps for numbers and dates/times. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#step
@@ -761,6 +821,15 @@ declare global {
         prototype: HTMLDnnExampleFormElement;
         new (): HTMLDnnExampleFormElement;
     };
+    /**
+     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     */
+    interface HTMLDnnFieldsetElement extends Components.DnnFieldset, HTMLStencilElement {
+    }
+    var HTMLDnnFieldsetElement: {
+        prototype: HTMLDnnFieldsetElement;
+        new (): HTMLDnnFieldsetElement;
+    };
     interface HTMLDnnImageCropperElementEventMap {
         "imageCropChanged": string;
     }
@@ -1016,6 +1085,7 @@ declare global {
         "dnn-color-picker": HTMLDnnColorPickerElement;
         "dnn-dropzone": HTMLDnnDropzoneElement;
         "dnn-example-form": HTMLDnnExampleFormElement;
+        "dnn-fieldset": HTMLDnnFieldsetElement;
         "dnn-image-cropper": HTMLDnnImageCropperElement;
         "dnn-input": HTMLDnnInputElement;
         "dnn-modal": HTMLDnnModalElement;
@@ -1257,6 +1327,35 @@ declare namespace LocalJSX {
      * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
      */
     interface DnnExampleForm {
+    }
+    /**
+     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     */
+    interface DnnFieldset {
+        /**
+          * If true, the fieldset will display as disabled.
+         */
+        "disabled"?: boolean;
+        /**
+          * If true, the label will float in the container, set false to show it on top.
+         */
+        "floatLabel"?: boolean;
+        /**
+          * If true the fieldset will display as focused.
+         */
+        "focused"?: boolean;
+        /**
+          * Can be used to show some help text about this field.
+         */
+        "helpText"?: string;
+        /**
+          * If true, the  fieldset will display as invalid.
+         */
+        "invalid"?: boolean;
+        /**
+          * Sets the text of the fieldset label (caption).
+         */
+        "label"?: string;
     }
     /**
      * Allows cropping an image in-browser with the option to enforce a specific final size.
@@ -1625,6 +1724,7 @@ declare namespace LocalJSX {
         "dnn-color-picker": DnnColorPicker;
         "dnn-dropzone": DnnDropzone;
         "dnn-example-form": DnnExampleForm;
+        "dnn-fieldset": DnnFieldset;
         "dnn-image-cropper": DnnImageCropper;
         "dnn-input": DnnInput;
         "dnn-modal": DnnModal;
@@ -1664,6 +1764,10 @@ declare module "@stencil/core" {
              * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
              */
             "dnn-example-form": LocalJSX.DnnExampleForm & JSXBase.HTMLAttributes<HTMLDnnExampleFormElement>;
+            /**
+             * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+             */
+            "dnn-fieldset": LocalJSX.DnnFieldset & JSXBase.HTMLAttributes<HTMLDnnFieldsetElement>;
             /**
              * Allows cropping an image in-browser with the option to enforce a specific final size.
              * All computation happens in the browser and the final image is emmited
