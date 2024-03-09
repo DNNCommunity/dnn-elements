@@ -2,7 +2,13 @@
 
 `dnn-tabs` is a container for `dnn-tab` and should only contain `dnn-tab` elements for its content.
 
-## Example usage
+<!-- Auto Generated Below -->
+
+
+## Usage
+
+### HTML
+
 ```html
 <dnn-tabs>
     <dnn-tab tab-title="First Tab">
@@ -13,6 +19,9 @@
     </dnn-tab>
 </dnn-tabs>
 ```
+
+
+### JSX-TSX
 
 ```tsx
 <dnn-tabs>
@@ -25,7 +34,6 @@
 </dnn-tabs>
 ```
 
-<!-- Auto Generated Below -->
 
 
 ## CSS Custom Properties
