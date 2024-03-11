@@ -24,13 +24,13 @@ export class DnnSelect {
   /** Defines whether the field is disabled. */
   @Prop() disabled: boolean;
   
-  /** If true, the browser default validation message will be hidden. */
+  /** @deprecated This control has its own validatin reporting, will be removed in v0.25.0 */
   @Prop() disableValidityReporting: boolean;
   
   /** The value of the input. */
   @Prop({mutable: true, reflect:true}) value: string;
   
-  @Element() el: HTMLElement;
+  @Element() el: HTMLDnnSelectElement;
   
   @State() focused: boolean = false;
   @State() valid = true;
@@ -67,6 +67,7 @@ export class DnnSelect {
     this.setFormValue();
   }
 
+  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
   formResetCallback() {
     this.internals.setValidity({});
     this.value = this.originalValue;
@@ -85,38 +86,17 @@ export class DnnSelect {
   }
 
   private setFormValue(){
-    if (this.name){
+    if (this.name != undefined){
       var data = new FormData();
       data.append(this.name, this.value);
       this.internals.setFormValue(data);
     }
   }
 
-  private getContainerClasses() {
-    const classes = ["container"];
-
-    if (this.focused) {
-      classes.push("focused");
-    }
-
-    if (!this.valid){
-      classes.push("invalid");
-    }
-
-    if (this.disabled) {
-      classes.push("disabled");
-    }
-
-    return classes.join(" ");
-  }
-
   private handleChange(value: string) {
     this.value = value;
     var valid = this.select.checkValidity();
     this.valid = valid;
-    if (!this.disableValidityReporting) {
-      this.select.reportValidity();
-    }
     this.valueChange.emit(this.value);
     this.setFormValue();
   }
@@ -131,16 +111,15 @@ export class DnnSelect {
   render() {
     return (
       <Host>
-        <div
-          class={this.getContainerClasses()}
+        <dnn-fieldset
+          invalid={!this.valid}
+          focused={this.focused}
+          label={`${this.label ?? ""}${this.required ? " *" : ""}`}
+          helpText={this.helpText}
+          id={this.labelId}
           onClick={() => !this.focused && this.select.focus()}
         >
           <div class="inner-container">
-            {this.label &&
-              <label id={this.labelId}>
-                {`${this.label}${this.required ? " *" : ""}`}
-              </label>
-            }
             <select
               ref={el => this.select = el}
               onFocus={() => this.focused = true}
@@ -159,15 +138,7 @@ export class DnnSelect {
               </svg>
             }
           </div>
-        </div>
-        {!this.valid && this.customValidityMessage &&
-          <div class="error-message">
-            {this.customValidityMessage}
-          </div>
-        }
-        {this.valid &&
-          <div class="help-text">{this.helpText}</div>
-        }
+        </dnn-fieldset>
       </Host>
     );
   }

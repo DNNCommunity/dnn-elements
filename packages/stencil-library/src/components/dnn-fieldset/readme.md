@@ -124,12 +124,18 @@ Type: `Promise<void>`
 
 ### Used by
 
+ - [dnn-color-input](../dnn-color-input)
  - [dnn-example-form](../examples/dnn-example-form)
+ - [dnn-input](../dnn-input)
+ - [dnn-select](../dnn-select)
 
 ### Graph
 ```mermaid
 graph TD;
+  dnn-color-input --> dnn-fieldset
   dnn-example-form --> dnn-fieldset
+  dnn-input --> dnn-fieldset
+  dnn-select --> dnn-fieldset
   style dnn-fieldset fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

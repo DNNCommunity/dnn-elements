@@ -39,6 +39,8 @@ graph TD;
   dnn-example-form --> dnn-monaco-editor
   dnn-example-form --> dnn-richtext
   dnn-example-form --> dnn-button
+  dnn-input --> dnn-fieldset
+  dnn-color-input --> dnn-fieldset
   dnn-color-input --> dnn-modal
   dnn-color-input --> dnn-tabs
   dnn-color-input --> dnn-tab
@@ -46,6 +48,7 @@ graph TD;
   dnn-color-input --> dnn-button
   dnn-button --> dnn-modal
   dnn-button --> dnn-button
+  dnn-select --> dnn-fieldset
   dnn-image-cropper --> dnn-dropzone
   dnn-image-cropper --> dnn-modal
   style dnn-example-form fill:#f9f,stroke:#333,stroke-width:4px

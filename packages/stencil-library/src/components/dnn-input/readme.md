@@ -15,7 +15,7 @@ A custom input component that wraps the html input element is a mobile friendly 
 | -------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ----------- |
 | `allowShowPassword`        | `allow-show-password`        | If true, enables users to switch between a password and a text field (to view their password).                                                                                                    | `boolean`                                                                                                           | `undefined` |
 | `autocomplete`             | `autocomplete`               | Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.                                                         | `string`                                                                                                            | `"off"`     |
-| `disableValidityReporting` | `disable-validity-reporting` | If true, the browser default validation message will be hidden.                                                                                                                                   | `boolean`                                                                                                           | `undefined` |
+| `disableValidityReporting` | `disable-validity-reporting` | <span style="color:red">**[DEPRECATED]**</span> This control has it's own validation reporting, will be removed in v0.25.0<br/><br/>                                                              | `boolean`                                                                                                           | `undefined` |
 | `disabled`                 | `disabled`                   | Defines whether the field is disabled.                                                                                                                                                            | `boolean`                                                                                                           | `undefined` |
 | `helpText`                 | `help-text`                  | Defines the help label displayed under the field.                                                                                                                                                 | `string`                                                                                                            | `undefined` |
 | `label`                    | `label`                      | The label for this input.                                                                                                                                                                         | `string`                                                                                                            | `undefined` |
@@ -96,9 +96,14 @@ Type: `Promise<void>`
 
  - [dnn-example-form](../examples/dnn-example-form)
 
+### Depends on
+
+- [dnn-fieldset](../dnn-fieldset)
+
 ### Graph
 ```mermaid
 graph TD;
+  dnn-input --> dnn-fieldset
   dnn-example-form --> dnn-input
   style dnn-input fill:#f9f,stroke:#333,stroke-width:4px
 ```
