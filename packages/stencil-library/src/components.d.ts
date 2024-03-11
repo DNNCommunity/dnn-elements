@@ -507,7 +507,7 @@ export namespace Components {
     }
     interface DnnSelect {
         /**
-          * If true, the browser default validation message will be hidden.
+          * @deprecated This control has its own validatin reporting, will be removed in v0.25.0
          */
         "disableValidityReporting": boolean;
         /**
@@ -1607,7 +1607,7 @@ declare namespace LocalJSX {
     }
     interface DnnSelect {
         /**
-          * If true, the browser default validation message will be hidden.
+          * @deprecated This control has its own validatin reporting, will be removed in v0.25.0
          */
         "disableValidityReporting"?: boolean;
         /**

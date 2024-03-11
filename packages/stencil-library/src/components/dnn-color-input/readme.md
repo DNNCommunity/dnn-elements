@@ -62,6 +62,7 @@ A custom input component that allows previewing and changing a color value.
 
 ### Depends on
 
+- [dnn-fieldset](../dnn-fieldset)
 - [dnn-modal](../dnn-modal)
 - [dnn-tabs](../dnn-tabs)
 - [dnn-tab](../dnn-tab)
@@ -71,6 +72,7 @@ A custom input component that allows previewing and changing a color value.
 ### Graph
 ```mermaid
 graph TD;
+  dnn-color-input --> dnn-fieldset
   dnn-color-input --> dnn-modal
   dnn-color-input --> dnn-tabs
   dnn-color-input --> dnn-tab
