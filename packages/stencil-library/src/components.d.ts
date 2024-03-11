@@ -329,7 +329,7 @@ export namespace Components {
          */
         "checkValidity": () => Promise<ValidityState>;
         /**
-          * If true, the browser default validation message will be hidden.
+          * @deprecated This control has it's own validation reporting, will be removed in v0.25.0
          */
         "disableValidityReporting": boolean;
         /**
@@ -1405,7 +1405,7 @@ declare namespace LocalJSX {
          */
         "autocomplete"?: string;
         /**
-          * If true, the browser default validation message will be hidden.
+          * @deprecated This control has it's own validation reporting, will be removed in v0.25.0
          */
         "disableValidityReporting"?: boolean;
         /**

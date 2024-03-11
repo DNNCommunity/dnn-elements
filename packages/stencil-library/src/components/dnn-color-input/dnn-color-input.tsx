@@ -74,6 +74,7 @@ export class DnnColorInput {
   @Event() colorInput: EventEmitter<DnnColorInfo>;
   
   @State() currentColor: DnnColorInfo;
+  @State() focused: boolean;
 
   @AttachInternals() internals: ElementInternals;
 
@@ -101,6 +102,7 @@ export class DnnColorInput {
     this.setFormValue();
   }
 
+  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
   formResetCallback() {
     this.internals.setValidity({});
     this.color = this.originalColor.color;
@@ -118,17 +120,6 @@ export class DnnColorInput {
   }
 
   private labelId: string;
-
-  private getContainerClasses() {
-    const classes: string[] = ["container"];
-
-    if (this.readonly)
-    {
-      classes.push("disabled");
-    }
-
-    return classes.join(" ");
-  }
 
   private showPicker(): void {
     this.currentColor = {
@@ -150,7 +141,7 @@ export class DnnColorInput {
   }
 
   private setFormValue(){
-    if (this.name){
+    if (this.name != undefined){
       var formData = new FormData();
       formData.append(this.name, JSON.stringify(this.currentColor));
       this.internals.setFormValue(formData);
@@ -160,13 +151,13 @@ export class DnnColorInput {
   render() {
     return (
       <Host>
-        <div
-          class={this.getContainerClasses()}
+        <dnn-fieldset
+          label={this.label}
+          id={this.labelId}
+          focused={this.focused}
+          helpText={this.helpText}
         >
           <div class="inner-container">
-            <label id={this.labelId}>
-              {this.label}
-            </label>
             <slot name="prefix"></slot>
             <div class="color-preview">
               {this.useLightColor &&
@@ -191,6 +182,8 @@ export class DnnColorInput {
               <button
                 aria-labelledby={this.labelId}
                 onClick={() => this.showPicker()}
+                onFocus={() => this.focused = true}
+                onBlur={() => this.focused = false}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -202,8 +195,7 @@ export class DnnColorInput {
             }
             <slot name="suffix"></slot>
           </div>
-        </div>
-        <div class="help-text">{this.helpText}</div>
+        </dnn-fieldset>
         <dnn-modal ref={el => this.colorModal = el} backdropDismiss={false}>
           {this.currentColor &&
             <div class="modal-content">

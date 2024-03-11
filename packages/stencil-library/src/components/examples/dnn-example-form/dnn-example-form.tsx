@@ -142,6 +142,7 @@ export class DnnExampleForm {
               <dnn-color-input
                 label="Favorite Color"
                 name="favoriteColor"
+                helpText="If you have any..."
               />
               <dnn-select
                 label="Gender"
