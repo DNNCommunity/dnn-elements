@@ -61,7 +61,7 @@ export class DnnInput {
   /** Defines the possible steps for numbers and dates/times. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#step */
   @Prop() step: string | number;
 
-  /** If true, the browser default validation message will be hidden. */
+  /** @deprecated This control has it's own validation reporting, will be removed in v0.25.0 */
   @Prop() disableValidityReporting: boolean;
 
   /** If true, enables users to switch between a password and a text field (to view their password). */
@@ -108,34 +108,6 @@ export class DnnInput {
     this.internals.setFormValue("");
   }
 
-  private getContainerClasses() {
-    const classes: string[] = ["container"];
-    if (this.focused) {
-      classes.push("focused");
-    }
-
-    if (this.value !== undefined && this.value !== "")
-    {
-      classes.push("has-value");
-    }
-
-    if (this.required)
-    {
-      classes.push("required");
-    }
-
-    if (this.disabled)
-    {
-      classes.push("disabled");
-    }
-
-    if (!this.valid){
-      classes.push("invalid");
-    }
-
-    return classes.join(" ");
-  }
-
   private handleInput(value: string): void {
     this.value = value;
     var valid = this.inputField.checkValidity();
@@ -151,9 +123,6 @@ export class DnnInput {
   }
 
   private handleChange() {
-    if (!this.disableValidityReporting) {
-      this.inputField.reportValidity();
-    }
     this.valueChange.emit(this.value);
     if (this.name != undefined){
       var data = new FormData();
@@ -175,19 +144,35 @@ export class DnnInput {
     }
   }
 
+  private shouldLabelFloat(): boolean {
+    if (this.focused) {
+      return false;
+    }
+
+    if (this.value != undefined && this.value != "") {
+      return false;
+    }
+
+    if (this.type == "date" || this.type == "datetime-local" || this.type == "time") {
+      return false;
+    }
+    
+    return true;
+  }
+
   render() {
     return (
       <Host>
-        <div
-          class={this.getContainerClasses()}
+        <dnn-fieldset
+          invalid={!this.valid}
+          focused={this.focused}
+          label={`${this.label ?? ""}${this.required ? " *" : ""}`}
+          helpText={this.helpText}
+          id={this.labelId}
+          floatLabel={this.shouldLabelFloat()}
           onClick={() => !this.focused && this.inputField.focus()}
         >
           <div class="inner-container">
-            {this.label &&
-              <label id={this.labelId}>
-                {`${this.label}${this.required ? " *" : ""}`}
-              </label>
-            }
             <slot name="prefix"></slot>
             <input
               ref={el => this.inputField = el}
@@ -234,15 +219,7 @@ export class DnnInput {
               </button>
             }
           </div>
-        </div>
-        {!this.valid && this.customValidityMessage &&
-          <div class="error-message">
-            {this.customValidityMessage}
-          </div>
-        }
-        {this.valid &&
-          <div class="help-text">{this.helpText}</div>
-        }
+        </dnn-fieldset>
       </Host>
     );
   }

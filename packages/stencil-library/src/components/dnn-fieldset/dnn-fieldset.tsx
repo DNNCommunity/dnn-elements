@@ -68,11 +68,10 @@ export class DnnFieldset {
   /** Sets the validity of the field. */
   @Method()
   async setValidity(valid: boolean, message?: string) {
-    this.valid = valid;
+    this.invalid = !valid;
     this.customValidityMessage = message;
   }
 
-  @State() valid: boolean = true;
   @State() customValidityMessage: string;
 
   private getContainerClasses() {
@@ -113,12 +112,12 @@ export class DnnFieldset {
             <slot></slot>
           </div>
         </div>
-        {!this.valid && this.customValidityMessage &&
+        {this.invalid && this.customValidityMessage &&
           <div class="error-message">
             {this.customValidityMessage}
           </div>
         }
-        {this.valid &&
+        {!this.invalid &&
           <div class="help-text">{this.helpText}</div>
         }
       </Host>
