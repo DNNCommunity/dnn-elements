@@ -1,4 +1,4 @@
-import { Component, Element, Host, Prop, h, State, Event, EventEmitter, AttachInternals } from '@stencil/core';
+import { Component, Element, Host, Prop, h, State, Event, EventEmitter, AttachInternals, Method } from '@stencil/core';
 import { generateRandomId } from '../../utilities/stringUtilities';
 
 @Component({
@@ -38,15 +38,25 @@ export class DnnSelect {
 
   /** Fires when the value has changed and the user exits the input. */
   @Event() valueChange: EventEmitter<string>;
-
+  
+  /** Reports the element validity.
+   * @param valid - Whether the element is valid or not.
+   * @param message - The message to show when the element is invalid, optional if valid.
+  */
+  @Method()
+  async reportValidity(valid: boolean, message?: string) {
+    return this.fieldset.setValidity(valid, message);
+  }
+  
   @AttachInternals() internals: ElementInternals;
-
+  
   private slot: HTMLSlotElement;
   private select: HTMLSelectElement;
   private observer: MutationObserver;
   private labelId: string;
   private originalValue: string;
-
+  private fieldset: HTMLDnnFieldsetElement;
+  
   componentWillLoad() {
     this.originalValue = this.value;
     this.labelId = generateRandomId();
@@ -99,6 +109,14 @@ export class DnnSelect {
     this.valid = valid;
     this.valueChange.emit(this.value);
     this.setFormValue();
+    if (this.valid){
+      this.internals.setValidity({});
+      this.fieldset.setValidity(true);
+    }
+    else{
+      this.internals.setValidity({customError: true}, this.select.validationMessage);
+      this.fieldset.setValidity(false, this.select.validationMessage);
+    }
   }
 
   private handleInvalid(): void {
@@ -118,6 +136,7 @@ export class DnnSelect {
           helpText={this.helpText}
           id={this.labelId}
           onClick={() => !this.focused && this.select.focus()}
+          ref={el => this.fieldset = el}
         >
           <div class="inner-container">
             <select

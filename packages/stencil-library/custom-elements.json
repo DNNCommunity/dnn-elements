@@ -1602,7 +1602,14 @@
               "required": false
             }
           ],
-          "members": [],
+          "members": [
+            {
+              "kind": "method",
+              "name": "reportValidity",
+              "description": "Reports the element validity.",
+              "signature": "reportValidity(valid: boolean, message?: string) => Promise<void>"
+            }
+          ],
           "events": [
             {
               "name": "valueChange",
