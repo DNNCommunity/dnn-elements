@@ -289,6 +289,30 @@
         {
           "name": "label",
           "description": "Sets the text of the fieldset label (caption)."
+        },
+        {
+          "name": "resizable",
+          "description": "Can be set to specify if the fieldset can be resized by the user.",
+          "values": [
+            {
+              "name": "block"
+            },
+            {
+              "name": "both"
+            },
+            {
+              "name": "horizontal"
+            },
+            {
+              "name": "inline"
+            },
+            {
+              "name": "none"
+            },
+            {
+              "name": "vertical"
+            }
+          ]
         }
       ]
     },
@@ -748,6 +772,79 @@
         "value": "`dnn-tabs` is a container for `dnn-tab` and should only contain `dnn-tab` elements for its content."
       },
       "attributes": []
+    },
+    {
+      "name": "dnn-textarea",
+      "description": {
+        "kind": "markdown",
+        "value": "A custom textarea component."
+      },
+      "attributes": [
+        {
+          "name": "autocomplete",
+          "description": "Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete."
+        },
+        {
+          "name": "disabled",
+          "description": "Defines whether the field is disabled."
+        },
+        {
+          "name": "help-text",
+          "description": "Defines the help label displayed under the field."
+        },
+        {
+          "name": "label",
+          "description": "The label for this input."
+        },
+        {
+          "name": "maxlength",
+          "description": "Defines the maximum amount of charaters."
+        },
+        {
+          "name": "minlength",
+          "description": "Defines the minimum amount of charaters."
+        },
+        {
+          "name": "name",
+          "description": "The name for this input when used in forms."
+        },
+        {
+          "name": "readonly",
+          "description": "Defines wheter the defined value is readonly."
+        },
+        {
+          "name": "required",
+          "description": "Defines whether the field requires having a value."
+        },
+        {
+          "name": "resizable",
+          "description": "Can be set to change how the user can resize the field.",
+          "values": [
+            {
+              "name": "block"
+            },
+            {
+              "name": "both"
+            },
+            {
+              "name": "horizontal"
+            },
+            {
+              "name": "inline"
+            },
+            {
+              "name": "none"
+            },
+            {
+              "name": "vertical"
+            }
+          ]
+        },
+        {
+          "name": "value",
+          "description": "Sets the value of the textarea."
+        }
+      ]
     },
     {
       "name": "dnn-toggle",

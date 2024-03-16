@@ -18,6 +18,7 @@ Do not use this component in production, it is meant for testing purposes only a
 - [dnn-checkbox](../../dnn-checkbox)
 - [dnn-color-input](../../dnn-color-input)
 - [dnn-select](../../dnn-select)
+- [dnn-textarea](../../dnn-textarea)
 - [dnn-toggle](../../dnn-toggle)
 - [dnn-dropzone](../../dnn-dropzone)
 - [dnn-image-cropper](../../dnn-image-cropper)
@@ -33,6 +34,7 @@ graph TD;
   dnn-example-form --> dnn-checkbox
   dnn-example-form --> dnn-color-input
   dnn-example-form --> dnn-select
+  dnn-example-form --> dnn-textarea
   dnn-example-form --> dnn-toggle
   dnn-example-form --> dnn-dropzone
   dnn-example-form --> dnn-image-cropper
@@ -49,6 +51,7 @@ graph TD;
   dnn-button --> dnn-modal
   dnn-button --> dnn-button
   dnn-select --> dnn-fieldset
+  dnn-textarea --> dnn-fieldset
   dnn-image-cropper --> dnn-dropzone
   dnn-image-cropper --> dnn-modal
   style dnn-example-form fill:#f9f,stroke:#333,stroke-width:4px

@@ -169,6 +169,7 @@ export class DnnInput {
           label={`${this.label ?? ""}${this.required ? " *" : ""}`}
           helpText={this.helpText}
           id={this.labelId}
+          disabled={this.disabled}
           floatLabel={this.shouldLabelFloat()}
           onClick={() => !this.focused && this.inputField.focus()}
         >
@@ -178,7 +179,6 @@ export class DnnInput {
               ref={el => this.inputField = el}
               name={this.name}
               type={this.type}
-              aria-label={this.label}
               disabled={this.disabled}
               required={this.required}
               autoComplete={this.autocomplete}

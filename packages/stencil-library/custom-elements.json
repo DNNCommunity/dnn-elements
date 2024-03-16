@@ -716,6 +716,15 @@
               },
               "description": "Sets the text of the fieldset label (caption).",
               "required": false
+            },
+            {
+              "name": "resizable",
+              "type": {
+                "text": "\"block\" | \"both\" | \"horizontal\" | \"inline\" | \"none\" | \"vertical\""
+              },
+              "description": "Can be set to specify if the fieldset can be resized by the user.",
+              "default": "\"none\"",
+              "required": false
             }
           ],
           "members": [
@@ -1765,6 +1774,164 @@
             {
               "name": "--color-visible-text",
               "description": "The color of the text for the active tab."
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/dnn-textarea/dnn-textarea.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-textarea.tsx",
+          "tagName": "dnn-textarea",
+          "description": "A custom textarea component.",
+          "attributes": [
+            {
+              "name": "autocomplete",
+              "type": {
+                "text": "string"
+              },
+              "description": "Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.",
+              "default": "\"off\"",
+              "required": false
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines whether the field is disabled.",
+              "required": false
+            },
+            {
+              "name": "help-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "Defines the help label displayed under the field.",
+              "required": false
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "The label for this input.",
+              "required": false
+            },
+            {
+              "name": "maxlength",
+              "type": {
+                "text": "number"
+              },
+              "description": "Defines the maximum amount of charaters.",
+              "required": false
+            },
+            {
+              "name": "minlength",
+              "type": {
+                "text": "number"
+              },
+              "description": "Defines the minimum amount of charaters.",
+              "required": false
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name for this input when used in forms.",
+              "required": false
+            },
+            {
+              "name": "readonly",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines wheter the defined value is readonly.",
+              "required": false
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines whether the field requires having a value.",
+              "required": false
+            },
+            {
+              "name": "resizable",
+              "type": {
+                "text": "\"block\" | \"both\" | \"horizontal\" | \"inline\" | \"none\" | \"vertical\""
+              },
+              "description": "Can be set to change how the user can resize the field.",
+              "default": "\"block\"",
+              "required": false
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "Sets the value of the textarea.",
+              "required": false
+            }
+          ],
+          "members": [
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "description": "Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState",
+              "signature": "checkValidity() => Promise<ValidityState>"
+            },
+            {
+              "kind": "method",
+              "name": "setCustomValidity",
+              "description": "Can be used to set a custom validity message.",
+              "signature": "setCustomValidity(message: string) => Promise<void>"
+            }
+          ],
+          "events": [
+            {
+              "name": "valueChange",
+              "type": {
+                "text": "string"
+              },
+              "description": "Fires when the value has changed and the user exits the input."
+            },
+            {
+              "name": "valueInput",
+              "type": {
+                "text": "string"
+              },
+              "description": "Fires when the using is inputing data (on keystrokes)."
+            }
+          ],
+          "slots": [],
+          "cssProperties": [
+            {
+              "name": "--background",
+              "description": "Defines the background color."
+            },
+            {
+              "name": "--control-radius",
+              "description": "Defines the radius for the control corners."
+            },
+            {
+              "name": "--danger-color",
+              "description": "Defines the danger color used for invalid data."
+            },
+            {
+              "name": "--focus-color",
+              "description": "Defines the color when the component is focused."
+            },
+            {
+              "name": "--foreground",
+              "description": "Defines the foreground color."
             }
           ],
           "cssParts": []
