@@ -29,6 +29,9 @@ export class DnnFieldset {
   /** Can be used to show some help text about this field. */
   @Prop() helpText: string;
 
+  /** Can be set to specify if the fieldset can be resized by the user. */
+  @Prop() resizable: "none" | "both" | "horizontal" | "vertical" | "block" | "inline" = "none";
+
   /** Sets the fieldset to the focused state. */
   @Method()
   async setFocused() {
@@ -101,15 +104,17 @@ export class DnnFieldset {
     return (
       <Host>
         <div class={this.getContainerClasses()}>
-          <div class="inner-container">
-            {this.label &&
-                <label>
-                  <slot name="label-prefix"></slot>
-                  {this.label}
-                  <slot name="label-suffix"></slot>
-                </label>
-            }
-            <slot></slot>
+          {this.label &&
+            <label>
+              <slot name="label-prefix"></slot>
+              {this.label}
+              <slot name="label-suffix"></slot>
+            </label>
+          }
+          <div class="resizer" style={{resize: this.resizable, overflow: this.resizable == "none" ? "visible" : "auto"}}>
+            <div class="inner-container">
+              <slot></slot>
+            </div>
           </div>
         </div>
         {this.invalid && this.customValidityMessage &&

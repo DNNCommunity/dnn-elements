@@ -27,10 +27,15 @@
   position: relative;
   background-color: var(--fieldset-background);
   margin-top: 1em;
+  .resizer{
+    width: 100%;
+  }
   .inner-container{
     position: relative;
     width: 100%;
     background-color: var(--fieldset-background);
+    max-width: calc(100% - 1em);
+    height: calc(100% - 1em);
   }
   label{
     display: inline-flex;
@@ -45,6 +50,8 @@
     max-width: 100%;
     border-radius: var(--fieldset-control-radius);
     font-size: 1em;
+    margin-top: 1em;
+    z-index: 1;
   }
   &.focused{
     border: 1px solid var(--fieldset-focus-color);
@@ -62,6 +69,7 @@
       opacity: 0.6;
       left: 0;
       top: calc(50% - 0.5em);
+      margin-top:0;
     }
   }
   &.disabled{
