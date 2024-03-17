@@ -25,6 +25,26 @@
 | `valueChange` | Fires when the value has changed and the user exits the input. | `CustomEvent<string>` |
 
 
+## Methods
+
+### `reportValidity(valid: boolean, message?: string) => Promise<void>`
+
+Reports the element validity.
+
+#### Parameters
+
+| Name      | Type      | Description                                                           |
+| --------- | --------- | --------------------------------------------------------------------- |
+| `valid`   | `boolean` | - Whether the element is valid or not.                                |
+| `message` | `string`  | - The message to show when the element is invalid, optional if valid. |
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ## CSS Custom Properties
 
 | Name                 | Description                                              |

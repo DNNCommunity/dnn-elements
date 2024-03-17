@@ -146,8 +146,8 @@ export class DnnExampleForm {
               />
               <dnn-select
                 label="Gender"
-                helpText="Optional"
                 name="gender"
+                required
               >
                 <option value="">--- Select ---</option>
                 <option value="male">Male</option>

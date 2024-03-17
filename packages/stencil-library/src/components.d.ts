@@ -527,6 +527,12 @@ export namespace Components {
          */
         "name": string;
         /**
+          * Reports the element validity.
+          * @param valid - Whether the element is valid or not.
+          * @param message - The message to show when the element is invalid, optional if valid.
+         */
+        "reportValidity": (valid: boolean, message?: string) => Promise<void>;
+        /**
           * Defines whether the field requires having a value.
          */
         "required": boolean;
