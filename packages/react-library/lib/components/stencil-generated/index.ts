@@ -28,6 +28,7 @@ export const DnnSelect = /*@__PURE__*/createReactComponent<JSX.DnnSelect, HTMLDn
 export const DnnSortIcon = /*@__PURE__*/createReactComponent<JSX.DnnSortIcon, HTMLDnnSortIconElement>('dnn-sort-icon');
 export const DnnTab = /*@__PURE__*/createReactComponent<JSX.DnnTab, HTMLDnnTabElement>('dnn-tab');
 export const DnnTabs = /*@__PURE__*/createReactComponent<JSX.DnnTabs, HTMLDnnTabsElement>('dnn-tabs');
+export const DnnTextarea = /*@__PURE__*/createReactComponent<JSX.DnnTextarea, HTMLDnnTextareaElement>('dnn-textarea');
 export const DnnToggle = /*@__PURE__*/createReactComponent<JSX.DnnToggle, HTMLDnnToggleElement>('dnn-toggle');
 export const DnnTreeviewItem = /*@__PURE__*/createReactComponent<JSX.DnnTreeviewItem, HTMLDnnTreeviewItemElement>('dnn-treeview-item');
 export const DnnVerticalOverflowMenu = /*@__PURE__*/createReactComponent<JSX.DnnVerticalOverflowMenu, HTMLDnnVerticalOverflowMenuElement>('dnn-vertical-overflow-menu');

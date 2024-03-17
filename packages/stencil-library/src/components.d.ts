@@ -261,6 +261,10 @@ export namespace Components {
          */
         "pinLabel": () => Promise<void>;
         /**
+          * Can be set to specify if the fieldset can be resized by the user.
+         */
+        "resizable": "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
+        /**
           * Unsets the fieldset focused state.
          */
         "setBlurred": () => Promise<void>;
@@ -566,6 +570,63 @@ export namespace Components {
     }
     interface DnnTabs {
     }
+    /**
+     * A custom textarea component.
+     */
+    interface DnnTextarea {
+        /**
+          * Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.
+         */
+        "autocomplete": string;
+        /**
+          * Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+         */
+        "checkValidity": () => Promise<ValidityState>;
+        /**
+          * Defines whether the field is disabled.
+         */
+        "disabled": boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText": string;
+        /**
+          * The label for this input.
+         */
+        "label": string;
+        /**
+          * Defines the maximum amount of charaters.
+         */
+        "maxlength": number;
+        /**
+          * Defines the minimum amount of charaters.
+         */
+        "minlength": number;
+        /**
+          * The name for this input when used in forms.
+         */
+        "name": string;
+        /**
+          * Defines wheter the defined value is readonly.
+         */
+        "readonly": boolean;
+        /**
+          * Defines whether the field requires having a value.
+         */
+        "required": boolean;
+        /**
+          * Can be set to change how the user can resize the field.
+         */
+        "resizable": "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
+        /**
+          * Can be used to set a custom validity message.
+         */
+        "setCustomValidity": (message: string) => Promise<void>;
+        /**
+          * Sets the value of the textarea.
+         */
+        "value": string;
+    }
     interface DnnToggle {
         /**
           * If 'true' the toggle is checked (on).
@@ -677,6 +738,10 @@ export interface DnnSelectCustomEvent<T> extends CustomEvent<T> {
 export interface DnnSortIconCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnSortIconElement;
+}
+export interface DnnTextareaCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnTextareaElement;
 }
 export interface DnnToggleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1021,6 +1086,27 @@ declare global {
         prototype: HTMLDnnTabsElement;
         new (): HTMLDnnTabsElement;
     };
+    interface HTMLDnnTextareaElementEventMap {
+        "valueInput": string;
+        "valueChange": string;
+    }
+    /**
+     * A custom textarea component.
+     */
+    interface HTMLDnnTextareaElement extends Components.DnnTextarea, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnTextareaElementEventMap>(type: K, listener: (this: HTMLDnnTextareaElement, ev: DnnTextareaCustomEvent<HTMLDnnTextareaElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnTextareaElementEventMap>(type: K, listener: (this: HTMLDnnTextareaElement, ev: DnnTextareaCustomEvent<HTMLDnnTextareaElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDnnTextareaElement: {
+        prototype: HTMLDnnTextareaElement;
+        new (): HTMLDnnTextareaElement;
+    };
     interface HTMLDnnToggleElementEventMap {
         "checkChanged": DnnToggleChangeEventDetail;
     }
@@ -1104,6 +1190,7 @@ declare global {
         "dnn-sort-icon": HTMLDnnSortIconElement;
         "dnn-tab": HTMLDnnTabElement;
         "dnn-tabs": HTMLDnnTabsElement;
+        "dnn-textarea": HTMLDnnTextareaElement;
         "dnn-toggle": HTMLDnnToggleElement;
         "dnn-treeview-item": HTMLDnnTreeviewItemElement;
         "dnn-vertical-overflow-menu": HTMLDnnVerticalOverflowMenuElement;
@@ -1362,6 +1449,10 @@ declare namespace LocalJSX {
           * Sets the text of the fieldset label (caption).
          */
         "label"?: string;
+        /**
+          * Can be set to specify if the fieldset can be resized by the user.
+         */
+        "resizable"?: "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
     }
     /**
      * Allows cropping an image in-browser with the option to enforce a specific final size.
@@ -1666,6 +1757,63 @@ declare namespace LocalJSX {
     }
     interface DnnTabs {
     }
+    /**
+     * A custom textarea component.
+     */
+    interface DnnTextarea {
+        /**
+          * Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.
+         */
+        "autocomplete"?: string;
+        /**
+          * Defines whether the field is disabled.
+         */
+        "disabled"?: boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText"?: string;
+        /**
+          * The label for this input.
+         */
+        "label"?: string;
+        /**
+          * Defines the maximum amount of charaters.
+         */
+        "maxlength"?: number;
+        /**
+          * Defines the minimum amount of charaters.
+         */
+        "minlength"?: number;
+        /**
+          * The name for this input when used in forms.
+         */
+        "name"?: string;
+        /**
+          * Fires when the value has changed and the user exits the input.
+         */
+        "onValueChange"?: (event: DnnTextareaCustomEvent<string>) => void;
+        /**
+          * Fires when the using is inputing data (on keystrokes).
+         */
+        "onValueInput"?: (event: DnnTextareaCustomEvent<string>) => void;
+        /**
+          * Defines wheter the defined value is readonly.
+         */
+        "readonly"?: boolean;
+        /**
+          * Defines whether the field requires having a value.
+         */
+        "required"?: boolean;
+        /**
+          * Can be set to change how the user can resize the field.
+         */
+        "resizable"?: "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
+        /**
+          * Sets the value of the textarea.
+         */
+        "value"?: string;
+    }
     interface DnnToggle {
         /**
           * If 'true' the toggle is checked (on).
@@ -1743,6 +1891,7 @@ declare namespace LocalJSX {
         "dnn-sort-icon": DnnSortIcon;
         "dnn-tab": DnnTab;
         "dnn-tabs": DnnTabs;
+        "dnn-textarea": DnnTextarea;
         "dnn-toggle": DnnToggle;
         "dnn-treeview-item": DnnTreeviewItem;
         "dnn-vertical-overflow-menu": DnnVerticalOverflowMenu;
@@ -1797,6 +1946,10 @@ declare module "@stencil/core" {
              */
             "dnn-tab": LocalJSX.DnnTab & JSXBase.HTMLAttributes<HTMLDnnTabElement>;
             "dnn-tabs": LocalJSX.DnnTabs & JSXBase.HTMLAttributes<HTMLDnnTabsElement>;
+            /**
+             * A custom textarea component.
+             */
+            "dnn-textarea": LocalJSX.DnnTextarea & JSXBase.HTMLAttributes<HTMLDnnTextareaElement>;
             "dnn-toggle": LocalJSX.DnnToggle & JSXBase.HTMLAttributes<HTMLDnnToggleElement>;
             "dnn-treeview-item": LocalJSX.DnnTreeviewItem & JSXBase.HTMLAttributes<HTMLDnnTreeviewItemElement>;
             /**

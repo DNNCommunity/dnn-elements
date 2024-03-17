@@ -154,6 +154,13 @@ export class DnnExampleForm {
                 <option value="female">Female</option>
                 <option value="other">Prefer not to say</option>
               </dnn-select>
+              <dnn-textarea
+                label="Review"
+                name="review"
+                value="This is a review."
+                helpText="Please enter your review."
+                required
+              />
               <label>
                 Subscribe to our newsletter
                 <dnn-toggle name="subscribe"/>

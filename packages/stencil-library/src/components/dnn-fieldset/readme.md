@@ -11,14 +11,15 @@ A custom input component that wraps the html input element is a mobile friendly 
 
 ## Properties
 
-| Property     | Attribute     | Description                                                                  | Type      | Default     |
-| ------------ | ------------- | ---------------------------------------------------------------------------- | --------- | ----------- |
-| `disabled`   | `disabled`    | If true, the fieldset will display as disabled.                              | `boolean` | `undefined` |
-| `floatLabel` | `float-label` | If true, the label will float in the container, set false to show it on top. | `boolean` | `undefined` |
-| `focused`    | `focused`     | If true the fieldset will display as focused.                                | `boolean` | `undefined` |
-| `helpText`   | `help-text`   | Can be used to show some help text about this field.                         | `string`  | `undefined` |
-| `invalid`    | `invalid`     | If true, the  fieldset will display as invalid.                              | `boolean` | `undefined` |
-| `label`      | `label`       | Sets the text of the fieldset label (caption).                               | `string`  | `undefined` |
+| Property     | Attribute     | Description                                                                  | Type                                                                    | Default     |
+| ------------ | ------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------- |
+| `disabled`   | `disabled`    | If true, the fieldset will display as disabled.                              | `boolean`                                                               | `undefined` |
+| `floatLabel` | `float-label` | If true, the label will float in the container, set false to show it on top. | `boolean`                                                               | `undefined` |
+| `focused`    | `focused`     | If true the fieldset will display as focused.                                | `boolean`                                                               | `undefined` |
+| `helpText`   | `help-text`   | Can be used to show some help text about this field.                         | `string`                                                                | `undefined` |
+| `invalid`    | `invalid`     | If true, the  fieldset will display as invalid.                              | `boolean`                                                               | `undefined` |
+| `label`      | `label`       | Sets the text of the fieldset label (caption).                               | `string`                                                                | `undefined` |
+| `resizable`  | `resizable`   | Can be set to specify if the fieldset can be resized by the user.            | `"block" \| "both" \| "horizontal" \| "inline" \| "none" \| "vertical"` | `"none"`    |
 
 
 ## Methods
@@ -128,6 +129,7 @@ Type: `Promise<void>`
  - [dnn-example-form](../examples/dnn-example-form)
  - [dnn-input](../dnn-input)
  - [dnn-select](../dnn-select)
+ - [dnn-textarea](../dnn-textarea)
 
 ### Graph
 ```mermaid
@@ -136,6 +138,7 @@ graph TD;
   dnn-example-form --> dnn-fieldset
   dnn-input --> dnn-fieldset
   dnn-select --> dnn-fieldset
+  dnn-textarea --> dnn-fieldset
   style dnn-fieldset fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
