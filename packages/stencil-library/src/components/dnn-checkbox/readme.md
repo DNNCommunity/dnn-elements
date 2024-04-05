@@ -5,6 +5,33 @@
 <!-- Auto Generated Below -->
 
 
+## Usage
+
+### HTML
+
+```html
+<dnn-checkbox
+    checked="unchecked"
+    name="agree"
+    value="1"
+    use-intermediate="false">
+</dnn-checkbox>
+```
+
+
+### JSX-TSX
+
+```tsx
+<dnn-checkbox
+    checked="unchecked"
+    name="agree"
+    value="1"
+    useIntermediate="false">
+</dnn-checkbox>
+```
+
+
+
 ## Properties
 
 | Property          | Attribute          | Description                                                                                                       | Type                                         | Default       |
