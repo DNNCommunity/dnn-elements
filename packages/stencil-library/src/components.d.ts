@@ -30,6 +30,56 @@ export { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-i
 export { Config } from "jodit/types/config";
 export { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export namespace Components {
+    interface DnnAutocomplete {
+        /**
+          * Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+         */
+        "checkValidity": () => Promise<ValidityState>;
+        /**
+          * Defines whether the field is disabled.
+         */
+        "disabled": boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText": string;
+        /**
+          * Defines the items source for this autocomplete.
+         */
+        "itemsSource": string;
+        /**
+          * The label for this autocomplete.
+         */
+        "label": string;
+        /**
+          * The name for this autocomplete when used in forms.
+         */
+        "name": string;
+        /**
+          * Defines the placeholder for the autocomplete.
+         */
+        "placeholder": string;
+        /**
+          * Defines whether the autocomplete should fetch results from a remote endpoint.
+         */
+        "remote": boolean;
+        /**
+          * Defines whether the field requires having a value.
+         */
+        "required": boolean;
+        /**
+          * Can be used to set a custom validity message.
+         */
+        "setCustomValidity": (message: string) => Promise<void>;
+        /**
+          * Defines the value for this autocomplete
+         */
+        "value": string;
+        /**
+          * Defines the width for this autocomplete
+         */
+        "width": string;
+    }
     interface DnnButton {
         /**
           * Optionally add a confirmation dialog before firing the action.
@@ -675,6 +725,10 @@ export namespace Components {
         "splitterWidth": number;
     }
 }
+export interface DnnAutocompleteCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnAutocompleteElement;
+}
 export interface DnnButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnButtonElement;
@@ -756,6 +810,24 @@ export interface DnnVerticalSplitviewCustomEvent<T> extends CustomEvent<T> {
     target: HTMLDnnVerticalSplitviewElement;
 }
 declare global {
+    interface HTMLDnnAutocompleteElementEventMap {
+        "valueChange": number | string | string[];
+        "valueInput": number | string | string[];
+    }
+    interface HTMLDnnAutocompleteElement extends Components.DnnAutocomplete, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnAutocompleteElementEventMap>(type: K, listener: (this: HTMLDnnAutocompleteElement, ev: DnnAutocompleteCustomEvent<HTMLDnnAutocompleteElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnAutocompleteElementEventMap>(type: K, listener: (this: HTMLDnnAutocompleteElement, ev: DnnAutocompleteCustomEvent<HTMLDnnAutocompleteElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDnnAutocompleteElement: {
+        prototype: HTMLDnnAutocompleteElement;
+        new (): HTMLDnnAutocompleteElement;
+    };
     interface HTMLDnnButtonElementEventMap {
         "confirmed": any;
         "canceled": any;
@@ -1169,6 +1241,7 @@ declare global {
         new (): HTMLDnnVerticalSplitviewElement;
     };
     interface HTMLElementTagNameMap {
+        "dnn-autocomplete": HTMLDnnAutocompleteElement;
         "dnn-button": HTMLDnnButtonElement;
         "dnn-checkbox": HTMLDnnCheckboxElement;
         "dnn-chevron": HTMLDnnChevronElement;
@@ -1198,6 +1271,56 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface DnnAutocomplete {
+        /**
+          * Defines whether the field is disabled.
+         */
+        "disabled"?: boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText"?: string;
+        /**
+          * Defines the items source for this autocomplete.
+         */
+        "itemsSource"?: string;
+        /**
+          * The label for this autocomplete.
+         */
+        "label"?: string;
+        /**
+          * The name for this autocomplete when used in forms.
+         */
+        "name"?: string;
+        /**
+          * Fires when the value has changed and the user exits the input.
+         */
+        "onValueChange"?: (event: DnnAutocompleteCustomEvent<number | string | string[]>) => void;
+        /**
+          * Fires when the using is inputing data (on keystrokes).
+         */
+        "onValueInput"?: (event: DnnAutocompleteCustomEvent<number | string | string[]>) => void;
+        /**
+          * Defines the placeholder for the autocomplete.
+         */
+        "placeholder"?: string;
+        /**
+          * Defines whether the autocomplete should fetch results from a remote endpoint.
+         */
+        "remote"?: boolean;
+        /**
+          * Defines whether the field requires having a value.
+         */
+        "required"?: boolean;
+        /**
+          * Defines the value for this autocomplete
+         */
+        "value"?: string;
+        /**
+          * Defines the width for this autocomplete
+         */
+        "width"?: string;
+    }
     interface DnnButton {
         /**
           * Optionally add a confirmation dialog before firing the action.
@@ -1870,6 +1993,7 @@ declare namespace LocalJSX {
         "splitterWidth"?: number;
     }
     interface IntrinsicElements {
+        "dnn-autocomplete": DnnAutocomplete;
         "dnn-button": DnnButton;
         "dnn-checkbox": DnnCheckbox;
         "dnn-chevron": DnnChevron;
@@ -1902,6 +2026,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "dnn-autocomplete": LocalJSX.DnnAutocomplete & JSXBase.HTMLAttributes<HTMLDnnAutocompleteElement>;
             "dnn-button": LocalJSX.DnnButton & JSXBase.HTMLAttributes<HTMLDnnButtonElement>;
             "dnn-checkbox": LocalJSX.DnnCheckbox & JSXBase.HTMLAttributes<HTMLDnnCheckboxElement>;
             "dnn-chevron": LocalJSX.DnnChevron & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
