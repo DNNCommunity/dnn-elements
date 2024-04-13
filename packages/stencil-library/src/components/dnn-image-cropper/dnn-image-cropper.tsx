@@ -2,6 +2,7 @@ import { Component, Element, Host, h, State, Prop, Event, EventEmitter, Method, 
 import { CornerType } from './CornerType';
 import { getMovementFromEvent } from "../../utilities/mouseUtilities";
 import { ImageCropperResx } from './types';
+import { dataURLtoFile } from '../../utilities/fileUtilities';
 
 /**
  * Allows cropping an image in-browser with the option to enforce a specific final size.
@@ -38,14 +39,20 @@ export class DnnImageCropper {
   /** When the image crop changes, emits the dataurl for the new cropped image. */
   @Event() imageCropChanged: EventEmitter<string>;
 
+  /** Emits both when a file is initially select and when the crop has changed.
+   * Compared to imageCropChanged, this event emits the file itself, which can be useful for uploading the file to a server including its name.
+   */
+  @Event() imageFileCropChanged: EventEmitter<File>;
+  
   /** Clears the current image and crop (resets the component). */
   @Method()
   public async clear(){
     this.setView("noPictureView");
   }
-
+  
   @State() view: IComponentInterfaces["View"];
   @State() localResx: ImageCropperResx;
+  @State() fileName: string;
 
   @Element() host: HTMLDnnImageCropperElement;
 
@@ -83,6 +90,7 @@ export class DnnImageCropper {
     this.mergeResx();
   }
 
+  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
   formResetCallback(){
     this.clear();
     this.internals.setValidity({});
@@ -148,6 +156,8 @@ export class DnnImageCropper {
     if (file.type.split('/')[0] != "image") {
       return;
     }
+
+    this.fileName = file.name;
 
     var reader = new FileReader();
     reader.onload = readerLoadEvent => {
@@ -278,9 +288,11 @@ export class DnnImageCropper {
 
     var dataUrl = this.generateCroppedImage(x, y, width, height, this.width ?? width, this.height ?? height);
     this.imageCropChanged.emit(dataUrl);
-    if (this.name) {
+    var file = dataURLtoFile(dataUrl, this.fileName);
+    this.imageFileCropChanged.emit(file);
+    if (this.name != undefined) {
       var data = new FormData();
-      data.append(this.name, dataUrl);
+      data.append(this.name, file);
       this.internals.setFormValue(data);
     }
   }
