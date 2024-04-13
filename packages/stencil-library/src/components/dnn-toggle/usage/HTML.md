@@ -1,0 +1,9 @@
+```html
+<dnn-toggle
+    checked="true"
+    disabled="false"
+    name="undefined"
+    value="on"
+>
+</dnn-toggle>
+```
