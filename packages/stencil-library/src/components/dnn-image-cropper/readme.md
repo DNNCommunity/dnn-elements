@@ -25,9 +25,10 @@ in an event that has a data-url of the image.
 
 ## Events
 
-| Event              | Description                                                               | Type                  |
-| ------------------ | ------------------------------------------------------------------------- | --------------------- |
-| `imageCropChanged` | When the image crop changes, emits the dataurl for the new cropped image. | `CustomEvent<string>` |
+| Event                  | Description                                                                                                                                                                                                          | Type                  |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| `imageCropChanged`     | When the image crop changes, emits the dataurl for the new cropped image.                                                                                                                                            | `CustomEvent<string>` |
+| `imageFileCropChanged` | Emits both when a file is initially select and when the crop has changed. Compared to imageCropChanged, this event emits the file itself, which can be useful for uploading the file to a server including its name. | `CustomEvent<File>`   |
 
 
 ## Methods
