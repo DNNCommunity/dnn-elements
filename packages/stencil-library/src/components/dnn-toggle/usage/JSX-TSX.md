@@ -2,7 +2,7 @@
 <dnn-toggle
     checked="true"
     disabled="false"
-    name="undefined"
+    name="foo"
     value="on"
 >
 </dnn-toggle>
