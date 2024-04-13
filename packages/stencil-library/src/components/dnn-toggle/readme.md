@@ -13,22 +13,10 @@
 <dnn-toggle
     checked="true"
     disabled="false"
-    name="undefined"
+    name="foo"
     value="on"
 >
 </dnn-toggle>
-```
-
-
-### JSX-TSX
-
-```tsx
-<dnn-toggle
-    checked="true"
-    disabled="false"
-    name="undefined"
-    value="on"
->
 </dnn-toggle>
 ```
 
