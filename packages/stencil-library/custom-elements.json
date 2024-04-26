@@ -61,7 +61,7 @@
               "type": {
                 "text": "\"button\" | \"reset\" | \"submit\""
               },
-              "description": "Optional button type,\r\ncan be either submit, reset or button and defaults to button if not specified.\r\nWarning: DNN wraps the whole page in a form, only use this if you are handling\r\nform submission manually.",
+              "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.",
               "default": "'button'",
               "required": false
             },
@@ -88,7 +88,7 @@
               "type": {
                 "text": "\"danger\" | \"primary\" | \"secondary\" | \"tertiary\""
               },
-              "description": "Optional button style,\r\ncan be either primary, secondary or tertiary or danger and defaults to primary if not specified",
+              "description": "Optional button style,\ncan be either primary, secondary or tertiary or danger and defaults to primary if not specified",
               "default": "'primary'",
               "required": false
             }
@@ -447,7 +447,7 @@
                 "text": "{ contrast: string; preview: string; cancel: string; confirm: string; normal: string; light: string; dark: string; }"
               },
               "description": "Can be used to customize the text language.",
-              "default": "{\r\n    contrast: \"Contrast\",\r\n    preview: \"Preview\",\r\n    cancel: \"Cancel\",\r\n    confirm: \"Confirm\",\r\n    normal: \"Normal\",\r\n    light: \"Light\",\r\n    dark: \"Dark\",\r\n  }",
+              "default": "{\n    contrast: \"Contrast\",\n    preview: \"Preview\",\n    cancel: \"Cancel\",\n    confirm: \"Confirm\",\n    normal: \"Normal\",\n    light: \"Light\",\n    dark: \"Dark\",\n  }",
               "required": false
             }
           ],
@@ -563,7 +563,7 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "If true, will allow the user to take a snapshot\r\nusing the device camera. (only works over https).",
+              "description": "If true, will allow the user to take a snapshot\nusing the device camera. (only works over https).",
               "default": "false",
               "required": false
             },
@@ -572,7 +572,7 @@
               "type": {
                 "text": "number"
               },
-              "description": "Specifies the jpeg quality for when the device\r\ncamera is used to generate a picture.\r\nNeeds to be a number between 0 and 1 and defaults to 0.8",
+              "description": "Specifies the jpeg quality for when the device\ncamera is used to generate a picture.\nNeeds to be a number between 0 and 1 and defaults to 0.8",
               "default": "0.8",
               "required": false
             },
@@ -600,7 +600,7 @@
               "type": {
                 "text": "string[]"
               },
-              "description": "A list of allowed file extensions.\r\nIf not specified, any file is allowed.\r\nEx: [\"jpg\", \"jpeg\", \"gif\", \"png\"]",
+              "description": "A list of allowed file extensions.\nIf not specified, any file is allowed.\nEx: [\"jpg\", \"jpeg\", \"gif\", \"png\"]",
               "required": false
             },
             {
@@ -816,7 +816,7 @@
           "kind": "class",
           "name": "dnn-image-cropper.tsx",
           "tagName": "dnn-image-cropper",
-          "description": "Allows cropping an image in-browser with the option to enforce a specific final size.\r\nAll computation happens in the browser and the final image is emmited\r\nin an event that has a data-url of the image.",
+          "description": "Allows cropping an image in-browser with the option to enforce a specific final size.\nAll computation happens in the browser and the final image is emmited\nin an event that has a data-url of the image.",
           "attributes": [
             {
               "name": "height",
@@ -868,7 +868,7 @@
               "type": {
                 "text": "ImageCropperResx"
               },
-              "description": "Can be used to customize controls text.\r\nSome values support tokens, see default values for examples.",
+              "description": "Can be used to customize controls text.\nSome values support tokens, see default values for examples.",
               "required": false
             },
             {
@@ -891,7 +891,7 @@
               "type": {
                 "text": "File"
               },
-              "description": "Emits both when a file is initially select and when the crop has changed.\r\nCompared to imageCropChanged, this event emits the file itself, which can be useful for uploading the file to a server including its name."
+              "description": "Emits both when a file is initially select and when the crop has changed.\nCompared to imageCropChanged, this event emits the file itself, which can be useful for uploading the file to a server including its name."
             }
           ],
           "slots": [],
@@ -1151,7 +1151,7 @@
               "type": {
                 "text": "string"
               },
-              "description": "Optionally pass the aria-label text for the close button.\r\nDefaults to \"Close modal\" if not provided.",
+              "description": "Optionally pass the aria-label text for the close button.\nDefaults to \"Close modal\" if not provided.",
               "default": "\"Close modal\"",
               "required": false
             },
@@ -1169,7 +1169,7 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "Optionally you can pass false to not show the close button.\r\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\r\nor provide your own dismissal logic in the modal content.",
+              "description": "Optionally you can pass false to not show the close button.\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\nor provide your own dismissal logic in the modal content.",
               "default": "true",
               "required": false
             },
@@ -1542,7 +1542,7 @@
               "type": {
                 "text": "string"
               },
-              "description": "Fires up each time the search query changes.\r\nThe data passed is the new query."
+              "description": "Fires up each time the search query changes.\nThe data passed is the new query."
             }
           ],
           "slots": [],
@@ -2131,7 +2131,7 @@
           "kind": "class",
           "name": "dnn-vertical-splitview.tsx",
           "tagName": "dnn-vertical-splitview",
-          "description": "This allows splitting a UI into vertical adjustable panels, the splitter itself is not part of this component.\r\n- The content for the left part should be injected in the `left` slot.\r\n- The content for the right part should be injected in the `right` slot.\r\n- The content for the actual splitter should go in the default slot and other UI elements can be injected as long as you handle their behaviour, by default only the drag behavior is implemented in the component.",
+          "description": "This allows splitting a UI into vertical adjustable panels, the splitter itself is not part of this component.\n- The content for the left part should be injected in the `left` slot.\n- The content for the right part should be injected in the `right` slot.\n- The content for the actual splitter should go in the default slot and other UI elements can be injected as long as you handle their behaviour, by default only the drag behavior is implemented in the component.",
           "attributes": [
             {
               "name": "split-width-percentage",
