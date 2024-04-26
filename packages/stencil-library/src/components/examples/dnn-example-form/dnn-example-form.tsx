@@ -93,6 +93,13 @@ export class DnnExampleForm {
                 name="email"
               />
               <dnn-input
+                label="Gmail"
+                type="email"
+                helpText="Please enter your Gmail address."
+                name="gmail"
+                pattern=".+@gmail\.com"
+              />
+              <dnn-input
                 label="Password"
                 type="password"
                 required
