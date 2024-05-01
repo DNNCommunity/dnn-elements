@@ -39,7 +39,7 @@
     "@stencil-community/eslint-plugin": "0.7.2",
     "@storybook/addon-a11y": "^7.5.3",
     "@storybook/addon-essentials": "^7.5.3",
-    "@storybook/addon-links": "^7.5.3",
+    "@storybook/addon-links": "^8.0.9",
     "@storybook/blocks": "^7.5.3",
     "@storybook/web-components": "^7.5.3",
     "@storybook/web-components-webpack5": "^7.5.3",
