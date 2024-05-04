@@ -44,10 +44,6 @@ export namespace Components {
          */
         "helpText": string;
         /**
-          * Defines the items source for this autocomplete.
-         */
-        "itemsSource": string;
-        /**
           * The label for this autocomplete.
          */
         "label": string;
@@ -60,9 +56,9 @@ export namespace Components {
          */
         "placeholder": string;
         /**
-          * Defines whether the autocomplete should fetch results from a remote endpoint.
+          * Callback to render suggestions, if not provided, only the label will be rendered.
          */
-        "remote": boolean;
+        "renderSuggestion": (suggestion: DnnAutocompleteSuggestion) => HTMLElement;
         /**
           * Defines whether the field requires having a value.
          */
@@ -72,13 +68,13 @@ export namespace Components {
          */
         "setCustomValidity": (message: string) => Promise<void>;
         /**
+          * Sets the list of suggestions.
+         */
+        "suggestions": DnnAutocompleteSuggestion[];
+        /**
           * Defines the value for this autocomplete
          */
         "value": string;
-        /**
-          * Defines the width for this autocomplete
-         */
-        "width": string;
     }
     interface DnnButton {
         /**
@@ -1281,10 +1277,6 @@ declare namespace LocalJSX {
          */
         "helpText"?: string;
         /**
-          * Defines the items source for this autocomplete.
-         */
-        "itemsSource"?: string;
-        /**
           * The label for this autocomplete.
          */
         "label"?: string;
@@ -1305,21 +1297,21 @@ declare namespace LocalJSX {
          */
         "placeholder"?: string;
         /**
-          * Defines whether the autocomplete should fetch results from a remote endpoint.
+          * Callback to render suggestions, if not provided, only the label will be rendered.
          */
-        "remote"?: boolean;
+        "renderSuggestion"?: (suggestion: DnnAutocompleteSuggestion) => HTMLElement;
         /**
           * Defines whether the field requires having a value.
          */
         "required"?: boolean;
         /**
+          * Sets the list of suggestions.
+         */
+        "suggestions"?: DnnAutocompleteSuggestion[];
+        /**
           * Defines the value for this autocomplete
          */
         "value"?: string;
-        /**
-          * Defines the width for this autocomplete
-         */
-        "width"?: string;
     }
     interface DnnButton {
         /**

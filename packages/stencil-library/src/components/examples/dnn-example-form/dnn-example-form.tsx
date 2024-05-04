@@ -1,4 +1,5 @@
 import { Component, Host, h } from '@stencil/core';
+import DnnAutocompleteSuggestion from '../../dnn-autocomplete/types';
 
 /** Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package. */
 @Component({
@@ -7,6 +8,25 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class DnnExampleForm {
   private fieldset: HTMLDnnFieldsetElement;
+
+  private autocompleteSuggestions: DnnAutocompleteSuggestion[] = [
+    {
+      value: "1",
+      label: "Daniel Valadas - @valadas",
+    },
+    {
+      value: "2",
+      label: "Brian Dukes - @bdukes",
+    },
+    {
+      value: "3",
+      label: "David Poindexter - @david-poindexter",
+    },
+    {
+      value: "4",
+      label: "Mitchel Sellers - @mitchelsellers",
+    }
+  ];
 
   render() {
     return (
@@ -165,6 +185,23 @@ export class DnnExampleForm {
                 Subscribe to our newsletter
                 <dnn-toggle name="subscribe"/>
               </label>
+              <dnn-autocomplete
+                label="User"
+                helpText="Select a user"
+                suggestions={this.autocompleteSuggestions}
+                renderSuggestion={suggestion =>
+                  <div style={{display: "flex", gap: "0.5rem"}}>
+                    <img
+                      style={{width: "3rem", height: "3rem", borderRadius: "50%", padding: "0.25rem"}}
+                      src={`https://avatars.githubusercontent.com/${suggestion.label.split("@").pop()}`} alt={suggestion.label}
+                    />
+                    <div style={{display: "flex", flexDirection:"column", justifyContent: "center"}}>
+                      <span>{suggestion.label.split("-")[0]}</span>
+                      <span>{suggestion.label.split("-").pop().trim()}</span>
+                    </div>
+                  </div>
+                }
+              />
               <label class="vertical">
                 Your Resume
                 <dnn-dropzone name="resume" />
