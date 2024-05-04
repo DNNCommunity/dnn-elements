@@ -180,7 +180,12 @@ export class DnnAutocomplete {
   /** Render the component */
   render() {
     return (
-      <Host>
+      <Host
+        aria-role="combobox"
+        aria-expanded={this.focused}
+        aria-autocomplete="list"
+        aria-active-descendent={this.selectedIndex != undefined ? `suggestion-${this.selectedIndex}` : undefined}
+      >
         <dnn-fieldset
           invalid={!this.valid}
           focused={this.focused}
@@ -212,6 +217,7 @@ export class DnnAutocomplete {
             >
               {this.suggestions.map((suggestion, index) => (
                 <li
+                  id={`suggestion-${index}`}
                   class={this.selectedIndex == index ? "selected" : ""}
                   onClick={e => this.selectItem(e, index)}
                 >
