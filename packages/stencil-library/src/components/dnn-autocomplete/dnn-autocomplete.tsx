@@ -57,6 +57,9 @@ export class DnnAutocomplete {
    */
   @Event() searchQueryChanged: EventEmitter<string>;
 
+  /** Fires when an item is selected. */
+  @Event() itemSelected: EventEmitter<string>;
+
   /** Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState */
   @Method()
   async checkValidity(): Promise<ValidityState> {
@@ -162,6 +165,10 @@ export class DnnAutocomplete {
     }
     this.value = this.suggestions[this.selectedIndex]?.value;
     if (e.key === "Enter") {
+      var selectedItem = this.suggestions[this.selectedIndex];
+      this.value = selectedItem.value;
+      this.inputField.value = selectedItem.label;
+      this.itemSelected.emit(selectedItem.value);
       this.focused = false;
     }
     if (e.key === "Tab"){
@@ -175,17 +182,13 @@ export class DnnAutocomplete {
     this.selectedIndex = index;
     this.value = this.suggestions[this.selectedIndex].value;
     this.focused = false;
+    this.itemSelected.emit(this.suggestions[this.selectedIndex].value)
   }
 
   /** Render the component */
   render() {
     return (
-      <Host
-        aria-role="combobox"
-        aria-expanded={this.focused}
-        aria-autocomplete="list"
-        aria-active-descendent={this.selectedIndex != undefined ? `suggestion-${this.selectedIndex}` : undefined}
-      >
+      <Host>
         <dnn-fieldset
           invalid={!this.valid}
           focused={this.focused}
@@ -200,6 +203,10 @@ export class DnnAutocomplete {
               ref={(el) => this.inputField = el}
               name={this.name}
               type="search"
+              role="combobox"
+              aria-haspopup="listbox"
+              aria-expanded={this.focused.toString()}
+              aria-activedescendant={this.selectedIndex !== undefined ? `option-${this.selectedIndex}` : undefined}
               disabled={this.disabled}
               required={this.required}
               autoComplete="off"
@@ -214,10 +221,13 @@ export class DnnAutocomplete {
             />
             <ul
               class={this.focused ? "show" : ""}
+              role="listbox"
             >
               {this.suggestions.map((suggestion, index) => (
                 <li
-                  id={`suggestion-${index}`}
+                  id={`option-${index}`}
+                  role="option"
+                  aria-selected={this.selectedIndex == index}
                   class={this.selectedIndex == index ? "selected" : ""}
                   onClick={e => this.selectItem(e, index)}
                 >

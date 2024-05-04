@@ -814,6 +814,7 @@ declare global {
         "valueChange": number | string | string[];
         "valueInput": number | string | string[];
         "searchQueryChanged": string;
+        "itemSelected": string;
     }
     interface HTMLDnnAutocompleteElement extends Components.DnnAutocomplete, HTMLStencilElement {
         addEventListener<K extends keyof HTMLDnnAutocompleteElementEventMap>(type: K, listener: (this: HTMLDnnAutocompleteElement, ev: DnnAutocompleteCustomEvent<HTMLDnnAutocompleteElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1289,6 +1290,10 @@ declare namespace LocalJSX {
           * The name for this autocomplete when used in forms.
          */
         "name"?: string;
+        /**
+          * Fires when an item is selected.
+         */
+        "onItemSelected"?: (event: DnnAutocompleteCustomEvent<string>) => void;
         /**
           * Fires when the search query has changed. This is almost like valueInput, but it is debounced and can be used to trigger a search query without overloading API endpoints while typing.
          */
