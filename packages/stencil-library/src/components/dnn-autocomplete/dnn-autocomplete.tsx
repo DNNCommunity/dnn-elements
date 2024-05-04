@@ -220,7 +220,7 @@ export class DnnAutocomplete {
               onKeyDown={e => this.handleKeyDown(e)}
             />
             <ul
-              class={this.focused ? "show" : ""}
+              class={this.focused && this.suggestions.length > 0 ? "show" : ""}
               role="listbox"
             >
               {this.suggestions.map((suggestion, index) => (
