@@ -32,6 +32,10 @@ export { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-inter
 export namespace Components {
     interface DnnAutocomplete {
         /**
+          * Adds suggestions to the list
+         */
+        "addSuggestions": (suggestions: DnnAutocompleteSuggestion[]) => Promise<void>;
+        /**
           * Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
          */
         "checkValidity": () => Promise<ValidityState>;
@@ -809,6 +813,7 @@ declare global {
     interface HTMLDnnAutocompleteElementEventMap {
         "valueChange": number | string | string[];
         "valueInput": number | string | string[];
+        "searchQueryChanged": string;
     }
     interface HTMLDnnAutocompleteElement extends Components.DnnAutocomplete, HTMLStencilElement {
         addEventListener<K extends keyof HTMLDnnAutocompleteElementEventMap>(type: K, listener: (this: HTMLDnnAutocompleteElement, ev: DnnAutocompleteCustomEvent<HTMLDnnAutocompleteElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1284,6 +1289,10 @@ declare namespace LocalJSX {
           * The name for this autocomplete when used in forms.
          */
         "name"?: string;
+        /**
+          * Fires when the search query has changed. This is almost like valueInput, but it is debounced and can be used to trigger a search query without overloading API endpoints while typing.
+         */
+        "onSearchQueryChanged"?: (event: DnnAutocompleteCustomEvent<string>) => void;
         /**
           * Fires when the value has changed and the user exits the input.
          */

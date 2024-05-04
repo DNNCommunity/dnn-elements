@@ -1,5 +1,6 @@
 import { Component, Prop, State, Event, Element, h, Host, EventEmitter, Method, AttachInternals, Listen } from '@stencil/core';
 import DnnAutocompleteSuggestion from './types';
+import { Debounce } from '../../utilities/debounce';
 
 @Component({
   tag: 'dnn-autocomplete',
@@ -49,6 +50,13 @@ export class DnnAutocomplete {
   /** Fires when the using is inputing data (on keystrokes). */
   @Event() valueInput: EventEmitter<number | string | string[]>;
 
+  /** Fires when the search query has changed.
+   * This is almost like valueInput, but it is debounced
+   * and can be used to trigger a search query without overloading
+   * API endpoints while typing.
+   */
+  @Event() searchQueryChanged: EventEmitter<string>;
+
   /** Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState */
   @Method()
   async checkValidity(): Promise<ValidityState> {
@@ -60,6 +68,12 @@ export class DnnAutocomplete {
   async setCustomValidity(message: string): Promise<void> {
     this.customValidityMessage = message;
     return this.inputField.setCustomValidity(message);
+  }
+
+  /** Adds suggestions to the list */
+  @Method()
+  async addSuggestions(suggestions: DnnAutocompleteSuggestion[]): Promise<void> {
+    this.suggestions = [...this.suggestions, ...suggestions];
   }
 
   /** attacth the internals for form validation */
@@ -89,7 +103,14 @@ export class DnnAutocomplete {
   }
 
   private handleInput(e: Event) {
-    // TODO: We need to complete what happens here.
+    const value = (e.target as HTMLInputElement).value;
+    this.valueInput.emit(value);
+    this.handleSearchQueryChanged(value);
+  }
+
+  @Debounce(300)
+  private handleSearchQueryChanged(value: string) {
+    this.searchQueryChanged.emit(value);
   }
 
   private handleInvalid(): void {
@@ -100,6 +121,7 @@ export class DnnAutocomplete {
   }
 
   private handleChange() {
+    // TODO: Here we need to handle an item picked vs free text typed. Maybe also optionally prevent free text. Maybe just an extra itemPicked event...
     this.valueChange.emit(this.value);
     if (this.name != undefined) {
       var data = new FormData();
@@ -138,7 +160,7 @@ export class DnnAutocomplete {
         this.selectedIndex = Math.max(this.selectedIndex - 1, 0);
       }
     }
-    this.value = this.suggestions[this.selectedIndex].value;
+    this.value = this.suggestions[this.selectedIndex]?.value;
     if (e.key === "Enter") {
       this.focused = false;
     }
@@ -167,9 +189,8 @@ export class DnnAutocomplete {
           id={this.labelId}
           disabled={this.disabled}
           floatLabel={this.shouldLabelFloat()}
-          // onClick={() => !this.focused && this.inputField.focus()}
         >
-          <div onClick={() => console.log("inner-container clicked")} class="inner-container" style={this.style}>
+          <div class="inner-container" style={this.style}>
             <input
               ref={(el) => this.inputField = el}
               name={this.name}

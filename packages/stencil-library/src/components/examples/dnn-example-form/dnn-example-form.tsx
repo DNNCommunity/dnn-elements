@@ -1,5 +1,6 @@
 import { Component, Host, h } from '@stencil/core';
 import DnnAutocompleteSuggestion from '../../dnn-autocomplete/types';
+import { justify } from 'jodit/esm/plugins/justify/justify';
 
 /** Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package. */
 @Component({
@@ -8,25 +9,48 @@ import DnnAutocompleteSuggestion from '../../dnn-autocomplete/types';
 })
 export class DnnExampleForm {
   private fieldset: HTMLDnnFieldsetElement;
+  private characterPicker: HTMLDnnAutocompleteElement;
 
   private autocompleteSuggestions: DnnAutocompleteSuggestion[] = [
     {
       value: "1",
-      label: "Daniel Valadas - @valadas",
+      label: "Daniel Valadas : @valadas",
     },
     {
       value: "2",
-      label: "Brian Dukes - @bdukes",
+      label: "Brian Dukes : @bdukes",
     },
     {
       value: "3",
-      label: "David Poindexter - @david-poindexter",
+      label: "David Poindexter : @david-poindexter",
     },
     {
       value: "4",
-      label: "Mitchel Sellers - @mitchelsellers",
+      label: "Mitchel Sellers : @mitchelsellers",
     }
   ];
+
+  private characters = [];
+
+  private searchCharacters = async (search: string, page: number) => {
+    const response = await fetch(`https://rickandmortyapi.com/api/character?name=${encodeURIComponent(search)}&page=${page}`);
+    return await response.json();
+  }
+
+  private characterSuggesionsLastFetchedPage = 0;
+
+  private handleCharacterSearchChanged(search: string) {
+    this.searchCharacters(search, 1)
+    .then(result => {
+      this.characters = result.results;
+      this.characterSuggesionsLastFetchedPage = 1;
+      var suggestions: DnnAutocompleteSuggestion[] = result.results.map(r => ({
+        value: r.id,
+        label: r.name,
+      }));
+      this.characterPicker.suggestions = suggestions;
+    });
+  }
 
   render() {
     return (
@@ -196,11 +220,39 @@ export class DnnExampleForm {
                       src={`https://avatars.githubusercontent.com/${suggestion.label.split("@").pop()}`} alt={suggestion.label}
                     />
                     <div style={{display: "flex", flexDirection:"column", justifyContent: "center"}}>
-                      <span>{suggestion.label.split("-")[0]}</span>
-                      <span>{suggestion.label.split("-").pop().trim()}</span>
+                      <span>{suggestion.label.split(":")[0]}</span>
+                      <span>{suggestion.label.split(":").pop().trim()}</span>
                     </div>
                   </div>
                 }
+              />
+              <dnn-autocomplete
+                ref={el => this.characterPicker = el}
+                label="Favorite Character"
+                helpText="Select your favorite Rick and Morty character"
+                renderSuggestion={suggestion =>{
+                  const character = this.characters.find(r => r.id === suggestion.value);
+                  return <div style={{display: "flex"}}>
+                    <img
+                      style={{width: "5rem", height: "5rem", borderRadius: "50%", padding: "0.25rem"}}
+                      src={character.image}
+                      alt={character.name}
+                    />
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-around",
+                        margin: "0.5em 0"}}>
+                      <strong>{character.name}</strong>
+                      <div>{character.species} / {character.gender} / {character.status} </div>
+                      <div>Location: {character.location.name}</div>
+                      <div>Origin: {character.origin.name}</div>
+                    </div>
+                  </div>
+                }}
+                onSearchQueryChanged={e => {
+                  this.handleCharacterSearchChanged(e.detail as string);
+                }}
               />
               <label class="vertical">
                 Your Resume
@@ -228,5 +280,4 @@ export class DnnExampleForm {
       </Host>
     );
   }
-
 }
