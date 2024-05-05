@@ -92,9 +92,17 @@ export class DnnAutocomplete {
     }
   }
 
+  componentDidRender(){
+    if (this.focused && this.suggestions.length > 0 && !this.positionInitialized){
+      this.adjustDropdownPosition();
+    }
+  }
+
   private inputField!: HTMLInputElement;
+  private suggestionsContainer: HTMLUListElement;
   private labelId: string;
   private style: { [key: string]: string } = {};
+  private positionInitialized = false;
 
   // eslint-disable-next-line @stencil-community/own-methods-must-be-private
   formResetCallback() {
@@ -144,6 +152,40 @@ export class DnnAutocomplete {
     }
 
     return true;
+  }
+
+  private findAverageSuggestionHeight(): number {
+    const suggestionItems = this.suggestionsContainer.querySelectorAll("li");
+    var totalHeight = 0;
+    for (let i = 0; i < suggestionItems.length; i++) {
+      totalHeight += suggestionItems[i].clientHeight;
+    }
+    return totalHeight / suggestionItems.length;
+  }
+
+  private readonly adjustDropdownPosition = () => {
+    var itemHeight = this.findAverageSuggestionHeight();
+    this.positionInitialized = true;
+
+    // If we can fit 3 items below the input and there is still 3em left, we show the dropdown under.
+    // Otherwise, we show it above.
+    var spaceBelow = window.innerHeight - this.inputField.getBoundingClientRect().bottom;
+    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const fitsDown = spaceBelow > 3 * itemHeight + 3 * rem;
+    if (fitsDown) {
+      this.suggestionsContainer.style.top = "1.2rem";
+    }
+    else {
+      this.suggestionsContainer.style.bottom = "1.2rem";
+    }
+
+    // Set the max height to not overflow the screen.
+    if (fitsDown){
+      this.suggestionsContainer.style.maxHeight = `${spaceBelow - 3 * rem}px`;
+    }
+    else {
+      this.suggestionsContainer.style.maxHeight = `${this.inputField.getBoundingClientRect().top - 3 * rem}px`;
+    }
   }
 
   private handleKeyDown(e: KeyboardEvent): void {
@@ -222,6 +264,7 @@ export class DnnAutocomplete {
             <ul
               class={this.focused && this.suggestions.length > 0 ? "show" : ""}
               role="listbox"
+              ref={el => this.suggestionsContainer = el}
             >
               {this.suggestions.map((suggestion, index) => (
                 <li
