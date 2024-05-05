@@ -7,6 +7,7 @@ import type { JSX } from '@dnncommunity/dnn-elements';
 
 
 
+export const DnnAutocomplete = /*@__PURE__*/createReactComponent<JSX.DnnAutocomplete, HTMLDnnAutocompleteElement>('dnn-autocomplete');
 export const DnnButton = /*@__PURE__*/createReactComponent<JSX.DnnButton, HTMLDnnButtonElement>('dnn-button');
 export const DnnCheckbox = /*@__PURE__*/createReactComponent<JSX.DnnCheckbox, HTMLDnnCheckboxElement>('dnn-checkbox');
 export const DnnChevron = /*@__PURE__*/createReactComponent<JSX.DnnChevron, HTMLDnnChevronElement>('dnn-chevron');

@@ -1,11 +1,11 @@
 import { Component, Prop, State, Event, Element, h, Host, EventEmitter, Method, AttachInternals, Listen } from '@stencil/core';
-import DnnAutocompleteSuggestion from './types';
+import { DnnAutocompleteSuggestion, NeedMoreItemsEventArgs } from './types';
 import { Debounce } from '../../utilities/debounce';
 
 @Component({
   tag: 'dnn-autocomplete',
   styleUrl: 'dnn-autocomplete.scss',
-  shadow: false,
+  shadow: true,
   formAssociated: true,
 })
 export class DnnAutocomplete {
@@ -37,10 +37,17 @@ export class DnnAutocomplete {
   /** Callback to render suggestions, if not provided, only the label will be rendered. */
   @Prop() renderSuggestion: (suggestion: DnnAutocompleteSuggestion) => HTMLElement;
 
-  @State() focused = false;
-  @State() valid = true;
-  @State() customValidityMessage: string;
-  @State() selectedIndex: number;
+  /** The total amount of suggestions for the given search query.
+   * This can be used to show virtual scroll and pagination progressive feeding.
+   * The needMoreItems event should be used to request more items.
+   */
+  @Prop() totalSuggestions: number;
+
+  /** How many suggestions to preload in pixels of their height.
+   * This is used to calculate the virtual scroll height and request
+   * more items before they get into view.
+   */
+  @Prop() preloadThresholdPixels: number = 1000;
 
   @Element() element: HTMLDnnAutocompleteElement;
 
@@ -50,13 +57,16 @@ export class DnnAutocomplete {
   /** Fires when the using is inputing data (on keystrokes). */
   @Event() valueInput: EventEmitter<number | string | string[]>;
 
+  /** Fires when the component needs to display more items in the suggestions. */
+  @Event() needMoreItems: EventEmitter<NeedMoreItemsEventArgs>;
+
   /** Fires when the search query has changed.
    * This is almost like valueInput, but it is debounced
    * and can be used to trigger a search query without overloading
    * API endpoints while typing.
    */
   @Event() searchQueryChanged: EventEmitter<string>;
-
+  
   /** Fires when an item is selected. */
   @Event() itemSelected: EventEmitter<string>;
 
@@ -65,7 +75,7 @@ export class DnnAutocomplete {
   async checkValidity(): Promise<ValidityState> {
     return this.inputField.validity;
   }
-
+  
   /** Can be used to set a custom validity message. */
   @Method()
   async setCustomValidity(message: string): Promise<void> {
@@ -73,46 +83,45 @@ export class DnnAutocomplete {
     return this.inputField.setCustomValidity(message);
   }
 
-  /** Adds suggestions to the list */
-  @Method()
-  async addSuggestions(suggestions: DnnAutocompleteSuggestion[]): Promise<void> {
-    this.suggestions = [...this.suggestions, ...suggestions];
-  }
-
+  @State() focused = false;
+  @State() valid = true;
+  @State() customValidityMessage: string;
+  @State() selectedIndex: number;
+  @State() positionInitialized = false;
+  @State() lastScrollTop = 0;
+  
   /** attacth the internals for form validation */
   @AttachInternals() internals: ElementInternals;
-
+  
   /** Listener for mouse down event */
   @Listen("click", { target: "document", capture: false })
   handleOutsideClick(e: MouseEvent) {
     const path = e.composedPath();
     if (!path.includes(this.element))
-    {
-      this.focused = false;
+      {
+        this.focused = false;
+      }
     }
-  }
-
-  componentDidRender(){
-    if (this.focused && this.suggestions.length > 0 && !this.positionInitialized){
-      this.adjustDropdownPosition();
+    
+    componentDidRender(){
+      if (this.focused && this.suggestions.length > 0 && !this.positionInitialized){
+        this.adjustDropdownPosition();
+      }
     }
-  }
 
-  private inputField!: HTMLInputElement;
-  private suggestionsContainer: HTMLUListElement;
-  private labelId: string;
-  private style: { [key: string]: string } = {};
-  private positionInitialized = false;
-
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
-  formResetCallback() {
+    private inputField!: HTMLInputElement;
+    private suggestionsContainer: HTMLUListElement;
+    private labelId: string;
+    
+    // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+    formResetCallback() {
     this.inputField.setCustomValidity("");
     this.valid = true;
     this.value = "";
     this.internals.setValidity({});
     this.internals.setFormValue("");
   }
-
+  
   private handleInput(e: Event) {
     const value = (e.target as HTMLInputElement).value;
     this.valueInput.emit(value);
@@ -132,7 +141,6 @@ export class DnnAutocomplete {
   }
 
   private handleChange() {
-    // TODO: Here we need to handle an item picked vs free text typed. Maybe also optionally prevent free text. Maybe just an extra itemPicked event...
     this.valueChange.emit(this.value);
     if (this.name != undefined) {
       var data = new FormData();
@@ -165,7 +173,9 @@ export class DnnAutocomplete {
 
   private readonly adjustDropdownPosition = () => {
     var itemHeight = this.findAverageSuggestionHeight();
-    this.positionInitialized = true;
+    requestAnimationFrame(() => {
+      this.positionInitialized = true;
+    });
 
     // If we can fit 3 items below the input and there is still 3em left, we show the dropdown under.
     // Otherwise, we show it above.
@@ -186,6 +196,8 @@ export class DnnAutocomplete {
     else {
       this.suggestionsContainer.style.maxHeight = `${this.inputField.getBoundingClientRect().top - 3 * rem}px`;
     }
+
+    this.checkIfMoreItemsNeeded();
   }
 
   private handleKeyDown(e: KeyboardEvent): void {
@@ -227,7 +239,66 @@ export class DnnAutocomplete {
     this.itemSelected.emit(this.suggestions[this.selectedIndex].value)
   }
 
-  /** Render the component */
+  private getVirtualScrollHeight(): number {
+    const itemHeight = this.findAverageSuggestionHeight();
+    const upcomingItems = this.totalSuggestions - this.suggestions.length;
+    return itemHeight * upcomingItems;
+  }
+
+  @Debounce(100)
+  private handleSuggestionsScroll(): void {
+    const container = this.suggestionsContainer;
+    const currentScrollTop = container.scrollTop;
+
+    // Only act if we are scrolling down
+    if (currentScrollTop > this.lastScrollTop) {
+      const loadingDiv = container.querySelector('.loading') as HTMLDivElement;
+
+      if (loadingDiv == undefined) {
+        this.lastScrollTop = currentScrollTop;
+        return;
+      }
+
+      const loadingDivPosition = loadingDiv.offsetTop;
+      const loadingDivHeight = loadingDiv.offsetHeight;
+      const loadingDivBottom = loadingDivPosition + loadingDivHeight;
+
+      // Calculate the visible bottom of the scroll container
+      const visibleBottom = currentScrollTop + container.clientHeight;
+
+      // Prevent scrolling past the loading div by checking if the visible bottom surpasses the loading div's bottom
+      if (visibleBottom > loadingDivBottom) {
+        // Adjust scrollTop so it doesn't scroll past the loading div
+        container.scrollTop = loadingDivBottom - container.clientHeight;
+      }
+
+      // Check if more items are needed based on the position of the loading div
+      this.checkIfMoreItemsNeeded();
+    }
+
+    // Update the last scroll position
+    this.lastScrollTop = currentScrollTop;
+  }
+
+  @Debounce()
+  private checkIfMoreItemsNeeded() {
+    const container = this.suggestionsContainer;
+  
+    const loadingDiv = container.querySelector('.loading') as HTMLDivElement;
+    if (loadingDiv == undefined) return; // Exit if there's no loading div
+  
+    const scrollPosition = container.scrollTop + container.clientHeight;
+    const loadingDivPosition = loadingDiv.offsetTop;
+  
+    // Check if the loading div is within the threshold of becoming visible
+    if (loadingDivPosition - scrollPosition < this.preloadThresholdPixels) {
+      const eventArgs: NeedMoreItemsEventArgs = {
+        searchTerm: this.inputField.value,
+      };
+      this.needMoreItems.emit(eventArgs);
+    }
+  }
+
   render() {
     return (
       <Host>
@@ -240,7 +311,7 @@ export class DnnAutocomplete {
           disabled={this.disabled}
           floatLabel={this.shouldLabelFloat()}
         >
-          <div class="inner-container" style={this.style}>
+          <div class="inner-container">
             <input
               ref={(el) => this.inputField = el}
               name={this.name}
@@ -265,6 +336,7 @@ export class DnnAutocomplete {
               class={this.focused && this.suggestions.length > 0 ? "show" : ""}
               role="listbox"
               ref={el => this.suggestionsContainer = el}
+              onScroll={() => this.handleSuggestionsScroll()}
             >
               {this.suggestions.map((suggestion, index) => (
                 <li
@@ -277,6 +349,14 @@ export class DnnAutocomplete {
                   {this.renderSuggestion != undefined ? this.renderSuggestion(suggestion) : suggestion.label}
                 </li>
               ))}
+              {this.totalSuggestions != undefined && this.totalSuggestions > this.suggestions.length &&
+                <div class="loading">
+                </div>
+              }
+              {this.totalSuggestions != undefined && this.totalSuggestions > this.suggestions.length && this.positionInitialized &&
+                <div style={{height: `${this.getVirtualScrollHeight()}px`}}>
+                </div>
+              }
             </ul>
               <svg
                 class="chevron-down"

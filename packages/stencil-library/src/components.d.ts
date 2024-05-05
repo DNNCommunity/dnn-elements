@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { DnnAutocompleteSuggestion, NeedMoreItemsEventArgs } from "./components/dnn-autocomplete/types";
 import { CheckedState } from "./components/dnn-checkbox/types";
 import { DnnColorInfo } from "./components/dnn-color-input/dnn-color-info";
 import { ColorInfo } from "./utilities/colorInfo";
@@ -17,6 +18,7 @@ import { ILocalization } from "./components/dnn-permissions-grid/localization-in
 import { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
 import { Config } from "jodit/types/config";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
+export { DnnAutocompleteSuggestion, NeedMoreItemsEventArgs } from "./components/dnn-autocomplete/types";
 export { CheckedState } from "./components/dnn-checkbox/types";
 export { DnnColorInfo } from "./components/dnn-color-input/dnn-color-info";
 export { ColorInfo } from "./utilities/colorInfo";
@@ -31,10 +33,6 @@ export { Config } from "jodit/types/config";
 export { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export namespace Components {
     interface DnnAutocomplete {
-        /**
-          * Adds suggestions to the list
-         */
-        "addSuggestions": (suggestions: DnnAutocompleteSuggestion[]) => Promise<void>;
         /**
           * Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
          */
@@ -60,6 +58,10 @@ export namespace Components {
          */
         "placeholder": string;
         /**
+          * How many suggestions to preload in pixels of their height. This is used to calculate the virtual scroll height and request more items before they get into view.
+         */
+        "preloadThresholdPixels": number;
+        /**
           * Callback to render suggestions, if not provided, only the label will be rendered.
          */
         "renderSuggestion": (suggestion: DnnAutocompleteSuggestion) => HTMLElement;
@@ -75,6 +77,10 @@ export namespace Components {
           * Sets the list of suggestions.
          */
         "suggestions": DnnAutocompleteSuggestion[];
+        /**
+          * The total amount of suggestions for the given search query. This can be used to show virtual scroll and pagination progressive feeding. The needMoreItems event should be used to request more items.
+         */
+        "totalSuggestions": number;
         /**
           * Defines the value for this autocomplete
          */
@@ -813,6 +819,7 @@ declare global {
     interface HTMLDnnAutocompleteElementEventMap {
         "valueChange": number | string | string[];
         "valueInput": number | string | string[];
+        "needMoreItems": NeedMoreItemsEventArgs;
         "searchQueryChanged": string;
         "itemSelected": string;
     }
@@ -1295,6 +1302,10 @@ declare namespace LocalJSX {
          */
         "onItemSelected"?: (event: DnnAutocompleteCustomEvent<string>) => void;
         /**
+          * Fires when the component needs to display more items in the suggestions.
+         */
+        "onNeedMoreItems"?: (event: DnnAutocompleteCustomEvent<NeedMoreItemsEventArgs>) => void;
+        /**
           * Fires when the search query has changed. This is almost like valueInput, but it is debounced and can be used to trigger a search query without overloading API endpoints while typing.
          */
         "onSearchQueryChanged"?: (event: DnnAutocompleteCustomEvent<string>) => void;
@@ -1311,6 +1322,10 @@ declare namespace LocalJSX {
          */
         "placeholder"?: string;
         /**
+          * How many suggestions to preload in pixels of their height. This is used to calculate the virtual scroll height and request more items before they get into view.
+         */
+        "preloadThresholdPixels"?: number;
+        /**
           * Callback to render suggestions, if not provided, only the label will be rendered.
          */
         "renderSuggestion"?: (suggestion: DnnAutocompleteSuggestion) => HTMLElement;
@@ -1322,6 +1337,10 @@ declare namespace LocalJSX {
           * Sets the list of suggestions.
          */
         "suggestions"?: DnnAutocompleteSuggestion[];
+        /**
+          * The total amount of suggestions for the given search query. This can be used to show virtual scroll and pagination progressive feeding. The needMoreItems event should be used to request more items.
+         */
+        "totalSuggestions"?: number;
         /**
           * Defines the value for this autocomplete
          */

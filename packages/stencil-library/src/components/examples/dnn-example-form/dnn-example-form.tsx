@@ -1,5 +1,5 @@
 import { Component, Host, h, State } from '@stencil/core';
-import DnnAutocompleteSuggestion from '../../dnn-autocomplete/types';
+import { DnnAutocompleteSuggestion } from '../../dnn-autocomplete/types';
 
 /** Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package. */
 @Component({
@@ -33,29 +33,67 @@ export class DnnExampleForm {
 
 
   private characters = [];
+  private charactersAbortController: AbortController;
+  private lastFetchedPage = 0;
 
   private searchCharacters = async (search: string, page: number) => {
-    const response = await fetch(`https://rickandmortyapi.com/api/character?name=${encodeURIComponent(search)}&page=${page}`);
-    return await response.json();
-  }
 
-  private characterSuggesionsLastFetchedPage = 0;
+    // Abort any ongoing fetch to prevent a race condition.
+    if (this.charactersAbortController != undefined) {
+      this.charactersAbortController.abort();
+    }
+    this.charactersAbortController = new AbortController();
+
+    try{
+      const response = await fetch(
+        `https://rickandmortyapi.com/api/character?name=${encodeURIComponent(search)}&page=${page}`,
+      {
+        signal: this.charactersAbortController.signal,
+      });
+      if (response.ok){
+        return await response.json();
+      }
+    }
+    catch (error) {
+      if (error.name != "AbortError") {
+        // Handle the error unless it is a normal AbortError which we ignore.
+        // eslint-disable-next-line no-console
+        console.error(error);
+      }
+    }
+  }
 
   private handleCharacterSearchChanged(search: string) {
     if (search == undefined || search == "") {
       this.characterPicker.suggestions = [];
+      this.characterPicker.totalSuggestions = 0;
       return;
     }
 
     this.searchCharacters(search, 1)
     .then(result => {
       this.characters = result.results;
-      this.characterSuggesionsLastFetchedPage = 1;
       var suggestions: DnnAutocompleteSuggestion[] = result.results.map(r => ({
         value: r.id,
         label: r.name,
       }));
       this.characterPicker.suggestions = suggestions;
+      this.characterPicker.totalSuggestions = result.info.count;
+      this.lastFetchedPage = 1;
+    });
+  }
+
+  private loadMoreCharacters(searchTerm: string): void {
+    this.lastFetchedPage++;
+    this.searchCharacters(searchTerm, this.lastFetchedPage)
+    .then(result => {
+      this.characters = [...this.characters, ...result.results];
+      var suggestions: DnnAutocompleteSuggestion[] = this.characters.map(r => ({
+        value: r.id,
+        label: r.name,
+      }));
+      this.characterPicker.suggestions = suggestions;
+      this.characterPicker.totalSuggestions = result.info.count;
     });
   }
 
@@ -269,6 +307,7 @@ export class DnnExampleForm {
                 onSearchQueryChanged={e => {
                   this.handleCharacterSearchChanged(e.detail as string);
                 }}
+                onNeedMoreItems={e => this.loadMoreCharacters(e.detail.searchTerm)}
               />
               <label class="vertical">
                 Your Resume
