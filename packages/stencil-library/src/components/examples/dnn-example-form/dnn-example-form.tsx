@@ -1,6 +1,5 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, State } from '@stencil/core';
 import DnnAutocompleteSuggestion from '../../dnn-autocomplete/types';
-import { justify } from 'jodit/esm/plugins/justify/justify';
 
 /** Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package. */
 @Component({
@@ -10,8 +9,10 @@ import { justify } from 'jodit/esm/plugins/justify/justify';
 export class DnnExampleForm {
   private fieldset: HTMLDnnFieldsetElement;
   private characterPicker: HTMLDnnAutocompleteElement;
+  
+  @State() filteredUsers: DnnAutocompleteSuggestion[] = [];
 
-  private autocompleteSuggestions: DnnAutocompleteSuggestion[] = [
+  private users: DnnAutocompleteSuggestion[] = [
     {
       value: "1",
       label: "Daniel Valadas : @valadas",
@@ -30,6 +31,7 @@ export class DnnExampleForm {
     }
   ];
 
+
   private characters = [];
 
   private searchCharacters = async (search: string, page: number) => {
@@ -40,6 +42,11 @@ export class DnnExampleForm {
   private characterSuggesionsLastFetchedPage = 0;
 
   private handleCharacterSearchChanged(search: string) {
+    if (search == undefined || search == "") {
+      this.characterPicker.suggestions = [];
+      return;
+    }
+
     this.searchCharacters(search, 1)
     .then(result => {
       this.characters = result.results;
@@ -212,7 +219,16 @@ export class DnnExampleForm {
               <dnn-autocomplete
                 label="User"
                 helpText="Select a user"
-                suggestions={this.autocompleteSuggestions}
+                suggestions={this.filteredUsers}
+                onSearchQueryChanged={e => {
+                  if (e.detail == undefined || e.detail == "")
+                  {
+                    this.filteredUsers = [];
+                    return;
+                  }
+                  const search = (e.detail as string).toLowerCase();
+                  this.filteredUsers = this.users.filter(u => u.label.toLowerCase().includes(search));
+                }}
                 renderSuggestion={suggestion =>
                   <div style={{display: "flex", gap: "0.5rem"}}>
                     <img
