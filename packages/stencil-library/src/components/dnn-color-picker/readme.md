@@ -9,6 +9,31 @@
 
 Color Picker for Dnn
 
+## Usage
+
+### HTML
+
+```html
+<dnn-color-picker
+    color="FFFFFF"
+    color-box-height="50%"
+>
+</dnn-color-picker>
+```
+
+
+### JSX-TSX
+
+```tsx
+<dnn-color-picker
+    color="FFFFFF"
+    colorBoxHeight="50%"
+>
+</dnn-color-picker>
+```
+
+
+
 ## Properties
 
 | Property         | Attribute          | Description                                                                                | Type     | Default    |
