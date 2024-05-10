@@ -54,10 +54,6 @@ export namespace Components {
          */
         "name": string;
         /**
-          * Defines the placeholder for the autocomplete.
-         */
-        "placeholder": string;
-        /**
           * How many suggestions to preload in pixels of their height. This is used to calculate the virtual scroll height and request more items before they get into view.
          */
         "preloadThresholdPixels": number;
@@ -1317,10 +1313,6 @@ declare namespace LocalJSX {
           * Fires when the using is inputing data (on keystrokes).
          */
         "onValueInput"?: (event: DnnAutocompleteCustomEvent<number | string | string[]>) => void;
-        /**
-          * Defines the placeholder for the autocomplete.
-         */
-        "placeholder"?: string;
         /**
           * How many suggestions to preload in pixels of their height. This is used to calculate the virtual scroll height and request more items before they get into view.
          */

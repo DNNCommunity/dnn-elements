@@ -19,9 +19,6 @@ export class DnnAutocomplete {
   /** Defines the help label displayed under the field. */
   @Prop() helpText: string;
 
-  /** Defines the placeholder for the autocomplete. */
-  @Prop() placeholder: string;
-
   /** Defines the value for this autocomplete */
   @Prop({mutable: true, reflect: true}) value: string;
 
@@ -124,6 +121,8 @@ export class DnnAutocomplete {
   
   private handleInput(e: Event) {
     const value = (e.target as HTMLInputElement).value;
+    var valid = this.inputField.checkValidity();
+    this.valid = valid;
     this.valueInput.emit(value);
     this.handleSearchQueryChanged(value);
   }
@@ -324,7 +323,6 @@ export class DnnAutocomplete {
               required={this.required}
               autoComplete="off"
               value={this.suggestions.length > 0 && this.selectedIndex != undefined ? this.suggestions[this.selectedIndex].label : this.value}
-              placeholder={this.placeholder}
               onFocus={() => this.focused = true}
               onInput={e => this.handleInput(e)}
               onInvalid={() => this.handleInvalid()}
@@ -358,12 +356,13 @@ export class DnnAutocomplete {
                 </div>
               }
             </ul>
-              <svg
-                class="chevron-down"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 -960 960 960">
-                <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
-              </svg>
+            <svg
+              onClick={() => this.focused = !this.focused}
+              class="chevron-down"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 -960 960 960">
+              <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
+            </svg>
           </div>
         </dnn-fieldset>
       </Host>
