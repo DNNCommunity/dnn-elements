@@ -9,7 +9,7 @@
           "kind": "class",
           "name": "dnn-autocomplete.tsx",
           "tagName": "dnn-autocomplete",
-          "description": "",
+          "description": "Building a component that is flexible enough for multiple use cases is not easy. This component externalizes some of its behavior to make it more reusable. To use it effectivelly please read the usage examples carefuly.",
           "attributes": [
             {
               "name": "disabled",
@@ -44,11 +44,12 @@
               "required": false
             },
             {
-              "name": "placeholder",
+              "name": "preload-threshold-pixels",
               "type": {
-                "text": "string"
+                "text": "number"
               },
-              "description": "Defines the placeholder for the autocomplete.",
+              "description": "How many suggestions to preload in pixels of their height.\nThis is used to calculate the virtual scroll height and request\nmore items before they get into view.",
+              "default": "1000",
               "required": false
             },
             {
@@ -98,12 +99,6 @@
             },
             {
               "kind": "method",
-              "name": "addSuggestions",
-              "description": "Adds suggestions to the list",
-              "signature": "addSuggestions(suggestions: DnnAutocompleteSuggestion[]) => Promise<void>"
-            },
-            {
-              "kind": "method",
               "name": "checkValidity",
               "description": "Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState",
               "signature": "checkValidity() => Promise<ValidityState>"
@@ -126,7 +121,7 @@
             {
               "name": "needMoreItems",
               "type": {
-                "text": "void"
+                "text": "NeedMoreItemsEventArgs"
               },
               "description": "Fires when the component needs to display more items in the suggestions."
             },

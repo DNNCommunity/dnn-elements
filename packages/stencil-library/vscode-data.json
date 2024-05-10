@@ -5,7 +5,7 @@
       "name": "dnn-autocomplete",
       "description": {
         "kind": "markdown",
-        "value": ""
+        "value": "Building a component that is flexible enough for multiple use cases is not easy. This component externalizes some of its behavior to make it more reusable. To use it effectivelly please read the usage examples carefuly."
       },
       "attributes": [
         {
@@ -25,8 +25,8 @@
           "description": "The name for this autocomplete when used in forms."
         },
         {
-          "name": "placeholder",
-          "description": "Defines the placeholder for the autocomplete."
+          "name": "preload-threshold-pixels",
+          "description": "How many suggestions to preload in pixels of their height.\nThis is used to calculate the virtual scroll height and request\nmore items before they get into view."
         },
         {
           "name": "required",
