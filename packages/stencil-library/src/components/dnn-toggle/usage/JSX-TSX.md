@@ -1,0 +1,9 @@
+```tsx
+<dnn-toggle
+    checked="true"
+    disabled="false"
+    name="foo"
+    value="on"
+>
+</dnn-toggle>
+```

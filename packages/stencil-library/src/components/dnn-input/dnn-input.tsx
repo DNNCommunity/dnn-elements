@@ -78,21 +78,21 @@ export class DnnInput {
   async checkValidity(): Promise<ValidityState> {
     return this.inputField.validity;
   }
-
+  
   /** Can be used to set a custom validity message. */
   @Method()
   async setCustomValidity(message: string): Promise<void> {
-    this.customValidityMessage = message;
-    return this.inputField.setCustomValidity(message);
+    this.inputField.setCustomValidity(message);
+    this.fieldset.setValidity(false, message);
   }
   
   @State() focused = false;
   @State() valid = true;
-  @State() customValidityMessage: string;
-
+  
   @AttachInternals() internals: ElementInternals;
   
   private inputField!: HTMLInputElement;
+  private fieldset: HTMLDnnFieldsetElement;
   private labelId: string;
 
   componentWillLoad() {
@@ -116,10 +116,7 @@ export class DnnInput {
   }
 
   private handleInvalid(): void {
-    this.valid = false;
-    if (this.customValidityMessage == undefined){
-      this.customValidityMessage = this.inputField.validationMessage;
-    }
+    this.fieldset.setValidity(false, this.inputField.validationMessage);
   }
 
   private handleChange() {
@@ -164,6 +161,7 @@ export class DnnInput {
     return (
       <Host>
         <dnn-fieldset
+          ref={el => this.fieldset = el}
           invalid={!this.valid}
           focused={this.focused}
           label={`${this.label ?? ""}${this.required ? " *" : ""}`}

@@ -5,6 +5,37 @@
 <!-- Auto Generated Below -->
 
 
+## Usage
+
+### HTML
+
+```html
+<dnn-monaco-editor
+    language="html"
+    value="<h1>Hello World</h1>
+        <div class=&quot;card&quot;>
+            <p>Some text</p>
+        </div>"
+>
+</dnn-monaco-editor>
+```
+
+
+### JSX-TSX
+
+```tsx
+<dnn-monaco-editor
+    language="html"
+    value="<h1>Hello World</h1>
+        <div class=&quot;card&quot;>
+            <p>Some text</p>
+        </div>"
+>
+</dnn-monaco-editor>
+```
+
+
+
 ## Properties
 
 | Property   | Attribute  | Description                               | Type                                                                                                                                                                                                                                                                                                                                                                                                                                    | Default     |

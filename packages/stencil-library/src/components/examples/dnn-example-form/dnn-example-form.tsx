@@ -7,6 +7,10 @@ import { DnnAutocompleteSuggestion } from '../../dnn-autocomplete/types';
   styleUrl: 'dnn-example-form.scss',
 })
 export class DnnExampleForm {
+  @State() resume: File;
+  @State() profilePicData: string;
+  @State() profilePicConfirmed = false;
+
   private fieldset: HTMLDnnFieldsetElement;
   private characterPicker: HTMLDnnAutocompleteElement;
   
@@ -97,6 +101,15 @@ export class DnnExampleForm {
     });
   }
 
+  private resumeDropped(detail: File[]): void {
+    var singleFile = detail[0];
+    this.resume = singleFile;
+  }
+
+  private profilePicCropped(imageData: string): void {
+    this.profilePicData = imageData;
+  }
+
   render() {
     return (
       <Host>
@@ -167,6 +180,13 @@ export class DnnExampleForm {
                 required
                 helpText='We will never share your email with anyone else.'
                 name="email"
+              />
+              <dnn-input
+                label="Gmail"
+                type="email"
+                helpText="Please enter your Gmail address."
+                name="gmail"
+                pattern=".+@gmail\.com"
               />
               <dnn-input
                 label="Password"
@@ -309,14 +329,43 @@ export class DnnExampleForm {
                 }}
                 onNeedMoreItems={e => this.loadMoreCharacters(e.detail.searchTerm)}
               />
-              <label class="vertical">
-                Your Resume
-                <dnn-dropzone name="resume" />
-              </label>
-              <label class="vertical">
-                Your profile Picture
-                <dnn-image-cropper name="profilePic" />
-              </label>
+              <dnn-fieldset label="Your Resume">
+                {this.resume === undefined &&
+                  <dnn-dropzone name="resume" onFilesSelected={e => this.resumeDropped(e.detail)} />
+                }
+                {this.resume &&
+                  <p class="filename">
+                    File: {this.resume.name}
+                    <dnn-button type="danger" onClick={() => this.resume = undefined}>Remove</dnn-button>
+                  </p>
+                }
+              </dnn-fieldset>
+              <dnn-fieldset label="Your profile Picture">
+                <div class="profile-pic">
+                  {this.profilePicConfirmed === false &&
+                    <dnn-image-cropper name="profilePic" onImageCropChanged={e => this.profilePicCropped(e.detail)}/>
+                  }
+                  {this.profilePicConfirmed === false && this.profilePicData != undefined &&
+                  <dnn-button onClick={() => this.profilePicConfirmed = true}>Confirm Crop</dnn-button>
+                  }
+                  {this.profilePicConfirmed &&
+                  [
+                    <img src={this.profilePicData} alt="Profile Picture" />
+                    ,
+                    <dnn-button type="danger"
+                      onClick={
+                        () => {
+                          this.profilePicData = undefined;
+                          this.profilePicConfirmed = false;
+                        }
+                      }
+                    >
+                      Remove
+                    </dnn-button>
+                  ]
+                  }
+                </div>
+              </dnn-fieldset>
               <label class="vertical">
                 Some code
                 <dnn-monaco-editor name="code" value="<p>Some html</p>" />

@@ -5,6 +5,35 @@
 <!-- Auto Generated Below -->
 
 
+## Usage
+
+### HTML
+
+```html
+<dnn-toggle
+    checked="true"
+    disabled="false"
+    name="foo"
+    value="on"
+>
+</dnn-toggle>
+```
+
+
+### JSX-TSX
+
+```tsx
+<dnn-toggle
+    checked="true"
+    disabled="false"
+    name="foo"
+    value="on"
+>
+</dnn-toggle>
+```
+
+
+
 ## Properties
 
 | Property   | Attribute  | Description                                     | Type      | Default     |

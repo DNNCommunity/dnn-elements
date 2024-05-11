@@ -44,3 +44,21 @@ svg {
 .full-form-width{
   grid-column: 1 / -1;
 }
+
+.filename{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.profile-pic{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  dnn-button {
+    margin: 0 auto;
+  }
+  img {
+    max-width: 100%;
+  }
+}

@@ -22,10 +22,10 @@ Do not use this component in production, it is meant for testing purposes only a
 - [dnn-toggle](../../dnn-toggle)
 - [dnn-autocomplete](../../dnn-autocomplete)
 - [dnn-dropzone](../../dnn-dropzone)
+- [dnn-button](../../dnn-button)
 - [dnn-image-cropper](../../dnn-image-cropper)
 - [dnn-monaco-editor](../../dnn-monaco-editor)
 - [dnn-richtext](../../dnn-richtext)
-- [dnn-button](../../dnn-button)
 
 ### Graph
 ```mermaid
@@ -39,10 +39,10 @@ graph TD;
   dnn-example-form --> dnn-toggle
   dnn-example-form --> dnn-autocomplete
   dnn-example-form --> dnn-dropzone
+  dnn-example-form --> dnn-button
   dnn-example-form --> dnn-image-cropper
   dnn-example-form --> dnn-monaco-editor
   dnn-example-form --> dnn-richtext
-  dnn-example-form --> dnn-button
   dnn-input --> dnn-fieldset
   dnn-color-input --> dnn-fieldset
   dnn-color-input --> dnn-modal

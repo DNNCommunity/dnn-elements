@@ -1058,6 +1058,13 @@
                 "text": "string"
               },
               "description": "When the image crop changes, emits the dataurl for the new cropped image."
+            },
+            {
+              "name": "imageFileCropChanged",
+              "type": {
+                "text": "File"
+              },
+              "description": "Emits both when a file is initially select and when the crop has changed.\r\nCompared to imageCropChanged, this event emits the file itself, which can be useful for uploading the file to a server including its name."
             }
           ],
           "slots": [],

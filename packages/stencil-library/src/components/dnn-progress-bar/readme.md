@@ -5,6 +5,33 @@
 <!-- Auto Generated Below -->
 
 
+## Usage
+
+### HTML
+
+```html
+<dnn-progress-bar
+    max="100"
+    value="80"
+    use-gradient="false"
+>
+</dnn-progress-bar>
+```
+
+
+### JSX-TSX
+
+```tsx
+<dnn-progress-bar
+    max="100"
+    value="80"
+    useGradient="false"
+>
+</dnn-progress-bar>
+```
+
+
+
 ## Properties
 
 | Property      | Attribute      | Description                                                  | Type      | Default     |

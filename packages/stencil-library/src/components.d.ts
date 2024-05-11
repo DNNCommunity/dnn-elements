@@ -980,6 +980,7 @@ declare global {
     };
     interface HTMLDnnImageCropperElementEventMap {
         "imageCropChanged": string;
+        "imageFileCropChanged": File;
     }
     /**
      * Allows cropping an image in-browser with the option to enforce a specific final size.
@@ -1612,6 +1613,10 @@ declare namespace LocalJSX {
           * When the image crop changes, emits the dataurl for the new cropped image.
          */
         "onImageCropChanged"?: (event: DnnImageCropperCustomEvent<string>) => void;
+        /**
+          * Emits both when a file is initially select and when the crop has changed. Compared to imageCropChanged, this event emits the file itself, which can be useful for uploading the file to a server including its name.
+         */
+        "onImageFileCropChanged"?: (event: DnnImageCropperCustomEvent<File>) => void;
         /**
           * When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry.
          */
