@@ -51,6 +51,7 @@
     font-size: 1em;
     margin-top: 1em;
     z-index: 1;
+    pointer-events: none;
   }
   &.focused{
     border: 1px solid var(--fieldset-focus-color);

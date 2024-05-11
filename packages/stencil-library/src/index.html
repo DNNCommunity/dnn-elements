@@ -77,6 +77,7 @@
 <body>
   <h1>Dnn HTML custom elements</h1>
   <ul>
+    <li><a href="#dnn-autocomplete">dnn-autocomplete</a></li>
     <li><a href="#dnn-button">dnn-button</a></li>
     <li><a href="#dnn-progress-bar">dnn-progress-bar</a></li>
     <li><a href="#dnn-checkbox">dnn-checkbox</a></li>
@@ -99,6 +100,39 @@
     <li><a href="#dnn-richtext">dnn-richtext</a></li>
     <li><a href="#dnn-example-form">dnn-example-form</a></li>
   </ul>
+
+  <!-- dnn-autocomplete -->
+  <a name="dnn-autocomplete"></a>
+  <section>
+    <h2>dnn-autocomplete</h2>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", () => {
+        var values = [
+          {"value": "1", "label": "First"},
+          {"value": "2", "label": "Second"},
+          {"value": "3", "label": "Third"},
+          {"value": "4", "label": "Fourth"},
+          {"value": "5", "label": "Fifth"},
+          {"value": "6", "label": "Sixth"},
+          {"value": "7", "label": "Seventh"},
+          {"value": "8", "label": "Eighth"},
+          {"value": "9", "label": "Ninth"},
+          {"value": "10", "label": "Tenth"},
+        ];
+        let autocomplete = document.querySelector('#autocomplet-example');
+        autocomplete.suggestions = values;
+        autocomplete.addEventListener("valueInput", e => {
+          let value = e.detail;
+          let filteredValues = values.filter(v => v.label.toLowerCase().includes(value.toLowerCase()));
+          autocomplete.suggestions = filteredValues;
+        });
+      });
+    </script>
+    <dnn-autocomplete
+      id="autocomplet-example"
+      width="300px"
+    />
+  </section>
 
   <!-- dnn-color-input -->
   <a name="dnn-color-input"></a>

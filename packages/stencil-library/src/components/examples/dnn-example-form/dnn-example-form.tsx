@@ -1,4 +1,5 @@
 import { Component, Host, h, State } from '@stencil/core';
+import { DnnAutocompleteSuggestion } from '../../dnn-autocomplete/types';
 
 /** Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package. */
 @Component({
@@ -11,6 +12,94 @@ export class DnnExampleForm {
   @State() profilePicConfirmed = false;
 
   private fieldset: HTMLDnnFieldsetElement;
+  private characterPicker: HTMLDnnAutocompleteElement;
+  
+  @State() filteredUsers: DnnAutocompleteSuggestion[] = [];
+
+  private users: DnnAutocompleteSuggestion[] = [
+    {
+      value: "1",
+      label: "Daniel Valadas : @valadas",
+    },
+    {
+      value: "2",
+      label: "Brian Dukes : @bdukes",
+    },
+    {
+      value: "3",
+      label: "David Poindexter : @david-poindexter",
+    },
+    {
+      value: "4",
+      label: "Mitchel Sellers : @mitchelsellers",
+    }
+  ];
+
+
+  private characters = [];
+  private charactersAbortController: AbortController;
+  private lastFetchedPage = 0;
+
+  private searchCharacters = async (search: string, page: number) => {
+
+    // Abort any ongoing fetch to prevent a race condition.
+    if (this.charactersAbortController != undefined) {
+      this.charactersAbortController.abort();
+    }
+    this.charactersAbortController = new AbortController();
+
+    try{
+      const response = await fetch(
+        `https://rickandmortyapi.com/api/character?name=${encodeURIComponent(search)}&page=${page}`,
+      {
+        signal: this.charactersAbortController.signal,
+      });
+      if (response.ok){
+        return await response.json();
+      }
+    }
+    catch (error) {
+      if (error.name != "AbortError") {
+        // Handle the error unless it is a normal AbortError which we ignore.
+        // eslint-disable-next-line no-console
+        console.error(error);
+      }
+    }
+  }
+
+  private handleCharacterSearchChanged(search: string) {
+    if (search == undefined || search == "") {
+      this.characterPicker.suggestions = [];
+      this.characterPicker.totalSuggestions = 0;
+      return;
+    }
+
+    this.searchCharacters(search, 1)
+    .then(result => {
+      this.characters = result.results;
+      var suggestions: DnnAutocompleteSuggestion[] = result.results.map(r => ({
+        value: r.id,
+        label: r.name,
+      }));
+      this.characterPicker.suggestions = suggestions;
+      this.characterPicker.totalSuggestions = result.info.count;
+      this.lastFetchedPage = 1;
+    });
+  }
+
+  private loadMoreCharacters(searchTerm: string): void {
+    this.lastFetchedPage++;
+    this.searchCharacters(searchTerm, this.lastFetchedPage)
+    .then(result => {
+      this.characters = [...this.characters, ...result.results];
+      var suggestions: DnnAutocompleteSuggestion[] = this.characters.map(r => ({
+        value: r.id,
+        label: r.name,
+      }));
+      this.characterPicker.suggestions = suggestions;
+      this.characterPicker.totalSuggestions = result.info.count;
+    });
+  }
 
   private resumeDropped(detail: File[]): void {
     var singleFile = detail[0];
@@ -185,6 +274,61 @@ export class DnnExampleForm {
                 Subscribe to our newsletter
                 <dnn-toggle name="subscribe"/>
               </label>
+              <dnn-autocomplete
+                label="User"
+                helpText="Select a user"
+                suggestions={this.filteredUsers}
+                onSearchQueryChanged={e => {
+                  if (e.detail == undefined || e.detail == "")
+                  {
+                    this.filteredUsers = [];
+                    return;
+                  }
+                  const search = (e.detail as string).toLowerCase();
+                  this.filteredUsers = this.users.filter(u => u.label.toLowerCase().includes(search));
+                }}
+                renderSuggestion={suggestion =>
+                  <div style={{display: "flex", gap: "0.5rem"}}>
+                    <img
+                      style={{width: "3rem", height: "3rem", borderRadius: "50%", padding: "0.25rem"}}
+                      src={`https://avatars.githubusercontent.com/${suggestion.label.split("@").pop()}`} alt={suggestion.label}
+                    />
+                    <div style={{display: "flex", flexDirection:"column", justifyContent: "center"}}>
+                      <span>{suggestion.label.split(":")[0]}</span>
+                      <span>{suggestion.label.split(":").pop().trim()}</span>
+                    </div>
+                  </div>
+                }
+              />
+              <dnn-autocomplete
+                ref={el => this.characterPicker = el}
+                label="Favorite Character"
+                helpText="Select your favorite Rick and Morty character"
+                renderSuggestion={suggestion =>{
+                  const character = this.characters.find(r => r.id === suggestion.value);
+                  return <div style={{display: "flex"}}>
+                    <img
+                      style={{width: "5rem", height: "5rem", borderRadius: "50%", padding: "0.25rem"}}
+                      src={character.image}
+                      alt={character.name}
+                    />
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-around",
+                        margin: "0.5em 0"}}>
+                      <strong>{character.name}</strong>
+                      <div>{character.species} / {character.gender} / {character.status} </div>
+                      <div>Location: {character.location.name}</div>
+                      <div>Origin: {character.origin.name}</div>
+                    </div>
+                  </div>
+                }}
+                onSearchQueryChanged={e => {
+                  this.handleCharacterSearchChanged(e.detail as string);
+                }}
+                onNeedMoreItems={e => this.loadMoreCharacters(e.detail.searchTerm)}
+              />
               <dnn-fieldset label="Your Resume">
                 {this.resume === undefined &&
                   <dnn-dropzone name="resume" onFilesSelected={e => this.resumeDropped(e.detail)} />

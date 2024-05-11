@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { DnnAutocompleteSuggestion, NeedMoreItemsEventArgs } from "./components/dnn-autocomplete/types";
 import { CheckedState } from "./components/dnn-checkbox/types";
 import { DnnColorInfo } from "./components/dnn-color-input/dnn-color-info";
 import { ColorInfo } from "./utilities/colorInfo";
@@ -17,6 +18,7 @@ import { ILocalization } from "./components/dnn-permissions-grid/localization-in
 import { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
 import { Config } from "jodit/types/config";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
+export { DnnAutocompleteSuggestion, NeedMoreItemsEventArgs } from "./components/dnn-autocomplete/types";
 export { CheckedState } from "./components/dnn-checkbox/types";
 export { DnnColorInfo } from "./components/dnn-color-input/dnn-color-info";
 export { ColorInfo } from "./utilities/colorInfo";
@@ -30,6 +32,56 @@ export { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-i
 export { Config } from "jodit/types/config";
 export { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export namespace Components {
+    interface DnnAutocomplete {
+        /**
+          * Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+         */
+        "checkValidity": () => Promise<ValidityState>;
+        /**
+          * Defines whether the field is disabled.
+         */
+        "disabled": boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText": string;
+        /**
+          * The label for this autocomplete.
+         */
+        "label": string;
+        /**
+          * The name for this autocomplete when used in forms.
+         */
+        "name": string;
+        /**
+          * How many suggestions to preload in pixels of their height. This is used to calculate the virtual scroll height and request more items before they get into view.
+         */
+        "preloadThresholdPixels": number;
+        /**
+          * Callback to render suggestions, if not provided, only the label will be rendered.
+         */
+        "renderSuggestion": (suggestion: DnnAutocompleteSuggestion) => HTMLElement;
+        /**
+          * Defines whether the field requires having a value.
+         */
+        "required": boolean;
+        /**
+          * Can be used to set a custom validity message.
+         */
+        "setCustomValidity": (message: string) => Promise<void>;
+        /**
+          * Sets the list of suggestions.
+         */
+        "suggestions": DnnAutocompleteSuggestion[];
+        /**
+          * The total amount of suggestions for the given search query. This can be used to show virtual scroll and pagination progressive feeding. The needMoreItems event should be used to request more items.
+         */
+        "totalSuggestions": number;
+        /**
+          * Defines the value for this autocomplete
+         */
+        "value": string;
+    }
     interface DnnButton {
         /**
           * Optionally add a confirmation dialog before firing the action.
@@ -675,6 +727,10 @@ export namespace Components {
         "splitterWidth": number;
     }
 }
+export interface DnnAutocompleteCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnAutocompleteElement;
+}
 export interface DnnButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnButtonElement;
@@ -756,6 +812,27 @@ export interface DnnVerticalSplitviewCustomEvent<T> extends CustomEvent<T> {
     target: HTMLDnnVerticalSplitviewElement;
 }
 declare global {
+    interface HTMLDnnAutocompleteElementEventMap {
+        "valueChange": number | string | string[];
+        "valueInput": number | string | string[];
+        "needMoreItems": NeedMoreItemsEventArgs;
+        "searchQueryChanged": string;
+        "itemSelected": string;
+    }
+    interface HTMLDnnAutocompleteElement extends Components.DnnAutocomplete, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnAutocompleteElementEventMap>(type: K, listener: (this: HTMLDnnAutocompleteElement, ev: DnnAutocompleteCustomEvent<HTMLDnnAutocompleteElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnAutocompleteElementEventMap>(type: K, listener: (this: HTMLDnnAutocompleteElement, ev: DnnAutocompleteCustomEvent<HTMLDnnAutocompleteElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDnnAutocompleteElement: {
+        prototype: HTMLDnnAutocompleteElement;
+        new (): HTMLDnnAutocompleteElement;
+    };
     interface HTMLDnnButtonElementEventMap {
         "confirmed": any;
         "canceled": any;
@@ -1170,6 +1247,7 @@ declare global {
         new (): HTMLDnnVerticalSplitviewElement;
     };
     interface HTMLElementTagNameMap {
+        "dnn-autocomplete": HTMLDnnAutocompleteElement;
         "dnn-button": HTMLDnnButtonElement;
         "dnn-checkbox": HTMLDnnCheckboxElement;
         "dnn-chevron": HTMLDnnChevronElement;
@@ -1199,6 +1277,68 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface DnnAutocomplete {
+        /**
+          * Defines whether the field is disabled.
+         */
+        "disabled"?: boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText"?: string;
+        /**
+          * The label for this autocomplete.
+         */
+        "label"?: string;
+        /**
+          * The name for this autocomplete when used in forms.
+         */
+        "name"?: string;
+        /**
+          * Fires when an item is selected.
+         */
+        "onItemSelected"?: (event: DnnAutocompleteCustomEvent<string>) => void;
+        /**
+          * Fires when the component needs to display more items in the suggestions.
+         */
+        "onNeedMoreItems"?: (event: DnnAutocompleteCustomEvent<NeedMoreItemsEventArgs>) => void;
+        /**
+          * Fires when the search query has changed. This is almost like valueInput, but it is debounced and can be used to trigger a search query without overloading API endpoints while typing.
+         */
+        "onSearchQueryChanged"?: (event: DnnAutocompleteCustomEvent<string>) => void;
+        /**
+          * Fires when the value has changed and the user exits the input.
+         */
+        "onValueChange"?: (event: DnnAutocompleteCustomEvent<number | string | string[]>) => void;
+        /**
+          * Fires when the using is inputing data (on keystrokes).
+         */
+        "onValueInput"?: (event: DnnAutocompleteCustomEvent<number | string | string[]>) => void;
+        /**
+          * How many suggestions to preload in pixels of their height. This is used to calculate the virtual scroll height and request more items before they get into view.
+         */
+        "preloadThresholdPixels"?: number;
+        /**
+          * Callback to render suggestions, if not provided, only the label will be rendered.
+         */
+        "renderSuggestion"?: (suggestion: DnnAutocompleteSuggestion) => HTMLElement;
+        /**
+          * Defines whether the field requires having a value.
+         */
+        "required"?: boolean;
+        /**
+          * Sets the list of suggestions.
+         */
+        "suggestions"?: DnnAutocompleteSuggestion[];
+        /**
+          * The total amount of suggestions for the given search query. This can be used to show virtual scroll and pagination progressive feeding. The needMoreItems event should be used to request more items.
+         */
+        "totalSuggestions"?: number;
+        /**
+          * Defines the value for this autocomplete
+         */
+        "value"?: string;
+    }
     interface DnnButton {
         /**
           * Optionally add a confirmation dialog before firing the action.
@@ -1875,6 +2015,7 @@ declare namespace LocalJSX {
         "splitterWidth"?: number;
     }
     interface IntrinsicElements {
+        "dnn-autocomplete": DnnAutocomplete;
         "dnn-button": DnnButton;
         "dnn-checkbox": DnnCheckbox;
         "dnn-chevron": DnnChevron;
@@ -1907,6 +2048,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "dnn-autocomplete": LocalJSX.DnnAutocomplete & JSXBase.HTMLAttributes<HTMLDnnAutocompleteElement>;
             "dnn-button": LocalJSX.DnnButton & JSXBase.HTMLAttributes<HTMLDnnButtonElement>;
             "dnn-checkbox": LocalJSX.DnnCheckbox & JSXBase.HTMLAttributes<HTMLDnnCheckboxElement>;
             "dnn-chevron": LocalJSX.DnnChevron & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
