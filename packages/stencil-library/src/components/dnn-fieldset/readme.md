@@ -125,6 +125,7 @@ Type: `Promise<void>`
 
 ### Used by
 
+ - [dnn-autocomplete](../dnn-autocomplete)
  - [dnn-color-input](../dnn-color-input)
  - [dnn-example-form](../examples/dnn-example-form)
  - [dnn-input](../dnn-input)
@@ -134,6 +135,7 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
+  dnn-autocomplete --> dnn-fieldset
   dnn-color-input --> dnn-fieldset
   dnn-example-form --> dnn-fieldset
   dnn-input --> dnn-fieldset
