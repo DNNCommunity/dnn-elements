@@ -42,7 +42,7 @@
     "@storybook/addon-links": "^7.5.3",
     "@storybook/blocks": "^7.5.3",
     "@storybook/web-components": "^7.5.3",
-    "@storybook/web-components-webpack5": "^7.5.3",
+    "@storybook/web-components-webpack5": "^8.1.5",
     "@timkendrick/monaco-editor": "^0.0.9",
     "@types/jest": "^29.5.10",
     "@typescript-eslint/eslint-plugin": "^6.7.2",
