@@ -17,15 +17,15 @@ const config: StorybookConfig = {
         transcludeMarkdown: true,
       },
     },
+    "@storybook/addon-webpack5-compiler-babel",
+    "@chromatic-com/storybook"
   ],
   framework: {
     name: getAbsolutePath("@storybook/web-components-webpack5"),
     options: {},
   },
   staticDirs: [{ from: './assets', to: '/assets'}],
-  docs: {
-    autodocs: "tag",
-  },
+  docs: {},
 };
 export default config;
 
