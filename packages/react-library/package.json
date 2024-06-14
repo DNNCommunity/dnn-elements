@@ -38,7 +38,7 @@
     "@storybook/addon-interactions": "^7.0.5",
     "@storybook/addon-links": "^8.1.9",
     "@storybook/blocks": "^8.1.9",
-    "@storybook/react": "^7.0.5",
+    "@storybook/react": "^8.1.9",
     "@storybook/react-webpack5": "^8.1.9",
     "@storybook/testing-library": "^0.2.1",
     "@types/react": "^18.0.31",
