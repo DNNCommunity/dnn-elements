@@ -5,11 +5,459 @@
         "path": "",
         "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\README.md"
     },
+    "@mdx-js/react@3.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/mdx-js/mdx",
+        "publisher": "John Otander",
+        "email": "johnotander@gmail.com",
+        "path": "node_modules\\@mdx-js\\react",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@mdx-js\\react\\license"
+    },
+    "@storybook/addon-actions@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\addon-actions",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\addon-actions\\README.md"
+    },
+    "@storybook/addon-backgrounds@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "publisher": "jbaxleyiii",
+        "path": "node_modules\\@storybook\\addon-backgrounds",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\addon-backgrounds\\README.md"
+    },
+    "@storybook/addon-controls@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\addon-controls",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\addon-controls\\README.md"
+    },
+    "@storybook/addon-docs@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\addon-docs",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\addon-docs\\README.md"
+    },
+    "@storybook/addon-essentials@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\addon-essentials",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\addon-essentials\\README.md"
+    },
+    "@storybook/addon-highlight@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "publisher": "winkerVSbecks",
+        "path": "node_modules\\@storybook\\addon-highlight",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\addon-highlight\\README.md"
+    },
+    "@storybook/addon-links@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\addon-links",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\addon-links\\README.md"
+    },
+    "@storybook/addon-measure@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "publisher": "winkerVSbecks",
+        "path": "node_modules\\@storybook\\addon-measure",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\addon-measure\\README.md"
+    },
+    "@storybook/addon-outline@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "publisher": "winkerVSbecks",
+        "path": "node_modules\\@storybook\\addon-outline",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\addon-outline\\README.md"
+    },
+    "@storybook/addon-toolbars@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\addon-toolbars",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\addon-toolbars\\README.md"
+    },
+    "@storybook/addon-viewport@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\addon-viewport",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\addon-viewport\\README.md"
+    },
+    "@storybook/blocks@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\blocks",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\blocks\\README.md"
+    },
+    "@storybook/builder-manager@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\builder-manager",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\builder-manager\\README.md"
+    },
+    "@storybook/channels@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\channels",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\channels\\README.md"
+    },
+    "@storybook/cli@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "publisher": "Storybook Team",
+        "path": "node_modules\\@storybook\\cli",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\cli\\README.md"
+    },
+    "@storybook/client-logger@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\client-logger",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\client-logger\\README.md"
+    },
+    "@storybook/codemod@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\codemod",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\codemod\\README.md"
+    },
+    "@storybook/components@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\components",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\components\\README.md"
+    },
+    "@storybook/core-common@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\core-common",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\core-common\\README.md"
+    },
+    "@storybook/core-events@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\core-events"
+    },
+    "@storybook/core-server@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\core-server",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\core-server\\README.md"
+    },
+    "@storybook/csf-plugin@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\csf-plugin",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\csf-plugin\\README.md"
+    },
+    "@storybook/csf-tools@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\csf-tools",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\csf-tools\\README.md"
+    },
+    "@storybook/docs-mdx@3.1.0-next.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/docs-mdx",
+        "publisher": "Michael Shilman",
+        "email": "michael@lab80.co",
+        "path": "node_modules\\@storybook\\docs-mdx",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\docs-mdx\\LICENSE"
+    },
+    "@storybook/docs-tools@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\docs-tools",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\docs-tools\\README.md"
+    },
+    "@storybook/manager-api@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\manager-api"
+    },
+    "@storybook/manager@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\manager",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\manager\\README.md"
+    },
+    "@storybook/node-logger@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\node-logger",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\node-logger\\README.md"
+    },
+    "@storybook/preview-api@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\preview-api",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\preview-api\\README.md"
+    },
+    "@storybook/react-dom-shim@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\react-dom-shim",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\react-dom-shim\\README.md"
+    },
+    "@storybook/router@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\router",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\router\\README.md"
+    },
+    "@storybook/telemetry@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\telemetry",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\telemetry\\README.md"
+    },
+    "@storybook/theming@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\theming",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\theming\\README.md"
+    },
+    "@storybook/types@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\types",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\types\\README.md"
+    },
+    "@types/node@18.19.34": {
+        "licenses": "MIT",
+        "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+        "path": "node_modules\\@types\\node",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@types\\node\\LICENSE"
+    },
+    "ansi-styles@4.3.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/chalk/ansi-styles",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\ansi-styles",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\ansi-styles\\license"
+    },
+    "chalk@4.1.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/chalk/chalk",
+        "path": "node_modules\\chalk",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\chalk\\license"
+    },
+    "commander@6.2.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/tj/commander.js",
+        "publisher": "TJ Holowaychuk",
+        "email": "tj@vision-media.ca",
+        "path": "node_modules\\commander",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\commander\\LICENSE"
+    },
+    "crypto-random-string@4.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/crypto-random-string",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\crypto-random-string",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\crypto-random-string\\license"
+    },
+    "find-up@4.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/find-up",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\read-pkg-up\\node_modules\\find-up",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\read-pkg-up\\node_modules\\find-up\\license"
+    },
+    "globby@14.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/globby",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\globby",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\globby\\license"
+    },
+    "has-flag@4.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/has-flag",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\has-flag",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\has-flag\\license"
+    },
+    "hosted-git-info@2.8.9": {
+        "licenses": "ISC",
+        "repository": "https://github.com/npm/hosted-git-info",
+        "publisher": "Rebecca Turner",
+        "email": "me@re-becca.org",
+        "path": "node_modules\\hosted-git-info",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\hosted-git-info\\LICENSE"
+    },
+    "is-stream@3.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/is-stream",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\is-stream",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\is-stream\\license"
+    },
+    "locate-path@5.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/locate-path",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\locate-path",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\locate-path\\license"
+    },
+    "markdown-to-jsx@7.3.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/probablyup/markdown-to-jsx",
+        "publisher": "Evan Jacobs",
+        "email": "probablyup@gmail.com",
+        "path": "node_modules\\markdown-to-jsx",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\markdown-to-jsx\\LICENSE"
+    },
+    "normalize-package-data@2.5.0": {
+        "licenses": "BSD-2-Clause",
+        "repository": "https://github.com/npm/normalize-package-data",
+        "publisher": "Meryn Stol",
+        "email": "merynstol@gmail.com",
+        "path": "node_modules\\normalize-package-data",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\normalize-package-data\\LICENSE"
+    },
+    "p-limit@2.3.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/p-limit",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\p-limit",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\p-limit\\license"
+    },
+    "p-locate@4.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/p-locate",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\p-locate",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\p-locate\\license"
+    },
+    "path-type@5.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/path-type",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\path-type",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\path-type\\license"
+    },
+    "prettier@3.3.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/prettier/prettier",
+        "publisher": "James Long",
+        "path": "node_modules\\prettier",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\prettier\\LICENSE"
+    },
+    "read-pkg-up@7.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/read-pkg-up",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\read-pkg-up",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\read-pkg-up\\license"
+    },
+    "read-pkg@5.2.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/read-pkg",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\read-pkg",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\read-pkg\\license"
+    },
+    "semver@5.7.2": {
+        "licenses": "ISC",
+        "repository": "https://github.com/npm/node-semver",
+        "publisher": "GitHub Inc.",
+        "path": "node_modules\\normalize-package-data\\node_modules\\semver",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\normalize-package-data\\node_modules\\semver\\LICENSE"
+    },
+    "semver@7.6.2": {
+        "licenses": "ISC",
+        "repository": "https://github.com/npm/node-semver",
+        "publisher": "GitHub Inc.",
+        "path": "node_modules\\semver",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\semver\\LICENSE"
+    },
+    "slash@5.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/slash",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\slash",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\slash\\license"
+    },
+    "storybook@8.1.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\storybook",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\storybook\\README.md"
+    },
+    "supports-color@7.2.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/chalk/supports-color",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\supports-color",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\supports-color\\license"
+    },
+    "temp-dir@3.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/temp-dir",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\temp-dir",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\temp-dir\\license"
+    },
+    "tempy@3.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/tempy",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\tempy",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\tempy\\license"
+    },
+    "type-fest@0.6.0": {
+        "licenses": "(MIT OR CC0-1.0)",
+        "repository": "https://github.com/sindresorhus/type-fest",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\read-pkg\\node_modules\\type-fest",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\read-pkg\\node_modules\\type-fest\\license"
+    },
+    "type-fest@0.8.1": {
+        "licenses": "(MIT OR CC0-1.0)",
+        "repository": "https://github.com/sindresorhus/type-fest",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\read-pkg-up\\node_modules\\type-fest",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\read-pkg-up\\node_modules\\type-fest\\license"
+    },
+    "type-fest@1.4.0": {
+        "licenses": "(MIT OR CC0-1.0)",
+        "repository": "https://github.com/sindresorhus/type-fest",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\crypto-random-string\\node_modules\\type-fest",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\crypto-random-string\\node_modules\\type-fest\\license"
+    },
     "typescript@5.2.2": {
         "licenses": "Apache-2.0",
         "repository": "https://github.com/Microsoft/TypeScript",
         "publisher": "Microsoft Corp.",
         "path": "node_modules\\typescript",
         "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\typescript\\LICENSE.txt"
+    },
+    "unique-string@3.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/unique-string",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\unique-string",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\unique-string\\license"
     }
 }
