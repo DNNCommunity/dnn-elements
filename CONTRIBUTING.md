@@ -64,5 +64,5 @@ always necessary to create a new ticket in the issue tracker.
 ## Submitting Changes
 * [General GitHub documentation](http://help.github.com/)
 * [GitHub pull request documentation](http://help.github.com/send-pull-requests/)
-* Security issues should be initially submitted to the [Security Team](mailto:security@dnnsoftware.com) email and should never be discussed in any public channel
+* Security issues should be initially submitted to the [Security Team](https://github.com/dnnsoftware/Dnn.Platform/security/policy) and should never be discussed in any public channel
 
