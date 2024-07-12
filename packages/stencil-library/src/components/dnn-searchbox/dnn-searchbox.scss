@@ -18,7 +18,7 @@
     padding: var(--padding);
     padding-right: 32px;
     transition: all 300ms ease-in-out;
-    &:focus, &:hover{
+    &:focus-visible, &:hover{
       outline: none;
       box-shadow: 0 0 2px 2px var(--focus-color);
     }
@@ -39,7 +39,7 @@
     border: 0;
     margin: 0;
     padding: 0;
-    &:focus, &:hover{
+    &:focus-visible, &:hover{
       svg{
         fill: var(--focus-color);
       outline: var(--focus-color);

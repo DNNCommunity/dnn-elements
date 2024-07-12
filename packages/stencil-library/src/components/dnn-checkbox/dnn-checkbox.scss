@@ -28,7 +28,7 @@ button{
     opacity: 0.45;
     cursor: default;
   }
-  &:focus{
+  &:focus-visible{
     box-shadow: 0 0 2px 2px var(--focus-color);
   }
 }
