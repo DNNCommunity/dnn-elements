@@ -21,7 +21,7 @@ svg{
 }
 
 // FOCUS
-button:focus, button:hover{
+button:focus-visible, button:hover{
   svg{
     color: var(--dnn-color-primary);
   }
