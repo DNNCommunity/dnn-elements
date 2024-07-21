@@ -3,13 +3,6 @@
         "licenses": "MIT",
         "repository": "https://github.com/dnncommunity/dnn-elements",
         "path": "",
-        "licenseFile": "C:\\dev\\dnn-elements\\packages\\stencil-library\\README.md"
-    },
-    "typescript@5.2.2": {
-        "licenses": "Apache-2.0",
-        "repository": "https://github.com/Microsoft/TypeScript",
-        "publisher": "Microsoft Corp.",
-        "path": "node_modules\\typescript",
-        "licenseFile": "C:\\dev\\dnn-elements\\packages\\stencil-library\\node_modules\\typescript\\LICENSE.txt"
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\README.md"
     }
 }

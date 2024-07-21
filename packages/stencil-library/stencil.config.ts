@@ -89,6 +89,33 @@ async function generateCustomElementsJson(docsData: JsonDocs) {
 
 export const config: Config = {
   namespace: 'dnn',
+  bundles: [
+    { components: ['dnn-autocomplete', 'dnn-fieldset' ]},
+    { components: ['dnn-button', 'dnn-modal']},
+    { components: ['dnn-checkbox']},
+    { components: ['dnn-chevron']},
+    { components: ['dnn-collapsible']},
+    { components: ['dnn-color-input', 'dnn-fieldset', 'dnn-modal', 'dnn-tabs', 'dnn-tab', 'dnn-color-picker', 'dnn-button']},
+    { components: ['dnn-color-picker']},
+    { components: ['dnn-dropzone']},
+    { components: ['dnn-fieldset']},
+    { components: ['dnn-image-cropper', 'dnn-dropzone', 'dnn-modal']},
+    { components: ['dnn-input', 'dnn-fieldset']},
+    { components: ['dnn-modal']},
+    { components: ['dnn-monaco-editor']},
+    { components: ['dnn-permissions-grid', 'dnn-checkbox', 'dnn-button', 'dnn-searchbox', 'dnn-collapsible']},
+    { components: ['dnn-progress-bar']},
+    { components: ['dnn-richtext']},
+    { components: ['dnn-searchbox']},
+    { components: ['dnn-select', 'dnn-fieldset']},
+    { components: ['dnn-sort-icon']},
+    { components: ['dnn-tabs', 'dnn-tab']},
+    { components: ['dnn-textarea', 'dnn-fieldset']},
+    { components: ['dnn-toggle']},
+    { components: ['dnn-treeview-item', 'dnn-collapsible']},
+    { components: ['dnn-vertical-overflow-menu']},
+    { components: ['dnn-vertical-splitview']},
+  ],
   outputTargets: [
     {
       type: 'dist',
@@ -125,5 +152,5 @@ export const config: Config = {
   sourceMap: true,
   testing: {
     browserHeadless: "new",
-  }
+  },
 };
