@@ -80,6 +80,22 @@ export class DnnAutocomplete {
     return this.inputField.setCustomValidity(message);
   }
 
+  /** Focuses the input. */
+  @Method()
+  async focus(): Promise<void> {
+    setTimeout(() => {
+      this.inputField.focus();
+    }, 0);
+  }
+
+  /** Removes focus from the field. */
+  @Method()
+  async blur(): Promise<void> {
+    setTimeout(() => {
+      this.inputField.blur();
+    }, 0);
+  }
+
   @State() focused = false;
   @State() valid = true;
   @State() customValidityMessage: string;
@@ -93,25 +109,25 @@ export class DnnAutocomplete {
   /** Listener for mouse down event */
   @Listen("click", { target: "document", capture: false })
   handleOutsideClick(e: MouseEvent) {
-    const path = e.composedPath();
-    if (!path.includes(this.element))
-      {
-        this.focused = false;
-      }
+  const path = e.composedPath();
+  if (!path.includes(this.element))
+    {
+      this.focused = false;
     }
-    
-    componentDidRender(){
-      if (this.focused && this.suggestions.length > 0 && !this.positionInitialized){
-        this.adjustDropdownPosition();
-      }
+  }
+  
+  componentDidRender(){
+    if (this.focused && this.suggestions.length > 0 && !this.positionInitialized){
+      this.adjustDropdownPosition();
     }
+  }
 
-    private inputField!: HTMLInputElement;
-    private suggestionsContainer: HTMLUListElement;
-    private labelId: string;
-    
-    // eslint-disable-next-line @stencil-community/own-methods-must-be-private
-    formResetCallback() {
+  private inputField!: HTMLInputElement;
+  private suggestionsContainer: HTMLUListElement;
+  private labelId: string;
+  
+  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+  formResetCallback() {
     this.inputField.setCustomValidity("");
     this.valid = true;
     this.value = "";
@@ -324,6 +340,7 @@ export class DnnAutocomplete {
               autoComplete="off"
               value={this.suggestions.length > 0 && this.selectedIndex != undefined ? this.suggestions[this.selectedIndex].label : this.value}
               onFocus={() => this.focused = true}
+              onBlur={() => this.focused = false}
               onInput={e => this.handleInput(e)}
               onInvalid={() => this.handleInvalid()}
               onChange={() => this.handleChange()}

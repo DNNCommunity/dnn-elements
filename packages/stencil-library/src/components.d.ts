@@ -34,6 +34,10 @@ export { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-inter
 export namespace Components {
     interface DnnAutocomplete {
         /**
+          * Removes focus from the field.
+         */
+        "blur": () => Promise<void>;
+        /**
           * Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
          */
         "checkValidity": () => Promise<ValidityState>;
@@ -41,6 +45,10 @@ export namespace Components {
           * Defines whether the field is disabled.
          */
         "disabled": boolean;
+        /**
+          * Focuses the input.
+         */
+        "focus": () => Promise<void>;
         /**
           * Defines the help label displayed under the field.
          */

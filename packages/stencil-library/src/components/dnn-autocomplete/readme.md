@@ -256,6 +256,16 @@ private handleLoadMore(query){
 
 ## Methods
 
+### `blur() => Promise<void>`
+
+Removes focus from the field.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `checkValidity() => Promise<ValidityState>`
 
 Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
@@ -263,6 +273,16 @@ Reports the input validity details. See https://developer.mozilla.org/en-US/docs
 #### Returns
 
 Type: `Promise<ValidityState>`
+
+
+
+### `focus() => Promise<void>`
+
+Focuses the input.
+
+#### Returns
+
+Type: `Promise<void>`
 
 
 
