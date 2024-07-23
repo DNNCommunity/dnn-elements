@@ -60,14 +60,6 @@ export class DnnButton {
    */
   @Prop() disabled: boolean = false;
 
-  @State() modalVisible: boolean = false;
-
-  @Element() el!: HTMLDnnButtonElement;
-
-  @AttachInternals() internals: ElementInternals;
-
-  private modal!: HTMLDnnModalElement;
-
   /** 
    * Fires when confirm is true and the user confirms the action.
   */
@@ -81,6 +73,16 @@ export class DnnButton {
    * Fires when confirm is true and the user cancels the action.
    */
   @Event({bubbles: true}) canceled: EventEmitter;
+
+  @State() focused = false;
+  @State() modalVisible = false;
+
+  @Element() el!: HTMLDnnButtonElement;
+
+  @AttachInternals() internals: ElementInternals;
+
+  private button: HTMLButtonElement;
+  private modal!: HTMLDnnModalElement;
 
   componentDidLoad(){
     this.modal = this.el.shadowRoot.querySelector('dnn-modal');
@@ -148,8 +150,20 @@ export class DnnButton {
 
   render() {
     return (
-      <Host class={this.getElementClasses()} >
-        <button class="button" onClick={() => this.handleClick()} disabled={this.disabled} >
+      <Host
+        class={this.getElementClasses()}
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => this.button.focus()}
+        onBlur={() => this.button.blur()}
+      >
+        <button
+          ref={el => this.button = el}
+          class="button"
+          onClick={() => this.handleClick()}
+          disabled={this.disabled}
+          onFocus={() => this.focused = true}
+          onBlur={() => this.focused = false}
+        >
           <slot></slot>
         </button>
         {this.confirm &&

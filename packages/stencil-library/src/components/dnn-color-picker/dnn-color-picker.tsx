@@ -3,7 +3,7 @@
  * @license MIT 
  */
 
-import { Component, h, State, Element, Prop, EventEmitter, Event, Watch } from "@stencil/core";
+import { Component, h, State, Element, Prop, EventEmitter, Event, Watch, Host } from "@stencil/core";
 import { ColorInfo } from '../../utilities/colorInfo';
 import { Debounce } from "../../utilities/debounce";
 
@@ -29,22 +29,24 @@ export class DnnColorPicker {
     @State() rgbDisplay: string = "flex";
     @State() hslDisplay: string = "none";
     @State() hexDisplay: string = "none";
+    @State() focused = false;
 
     /** Fires up when the color is changed and emits a ColorInfo object
      * @see ../../utilities/colorInfo.ts
     */
     @Event() colorChanged: EventEmitter<ColorInfo>;
-
+    
     @Debounce(100)
     private colorChangedHandler(color: ColorInfo) {
         this.colorChanged.emit(color);
     }
-
+    
     @Watch("currentColor")
     handeCurrentColorChanged(newValue: ColorInfo){
         this.colorChangedHandler(newValue);
     }
     
+    private saturationBrightnessButton: HTMLButtonElement;
     private saturationLightnessBox?: HTMLDivElement;
     private hueRange?: HTMLDivElement;
 
@@ -294,134 +296,144 @@ export class DnnColorPicker {
         const blue = this.currentColor.blue;
 
         return (
-            <div class="dnn-color-picker">
-                <div class="dnn-color-sliders">
-                    <div class="dnn-color-s-b" ref={(element) => this.saturationLightnessBox = element as HTMLDivElement}
-                        style={{backgroundColor: `hsl(${hue},100%,50%)`}}
-                        onMouseDown={this.handleSaturationLightnessMouseDown.bind(this)}
-                    >
-                        <button class="dnn-s-b-picker"
-                            aria-label="Press up or down to adjust lightness, left or right to adjust saturation, hold shift to move by 10%"
-                            role="slider"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            aria-valuetext={`Saturation: ${Math.round(this.currentColor.saturation*100)}%, Lightness: ${Math.round(this.currentColor.lightness*100)}%`}
-                            style={{
-                                left: Math.round(saturation * 100)  + "%",
-                                bottom: Math.round(lightness * 100)  + "%"
-                            }}
-                            onKeyDown={(e) => this.handleSaturationLightnessKeyDown(e)}
-                        />
-                    </div>
-                    <div class="dnn-color-bar">
-                        <div class="dnn-color-result" style={{
-                            backgroundColor: '#' + this.getHex(),
-                            boxShadow: "0 0 2px 1px " + "#" + this.getContrast()
-                        }} 
-                        />
-                        <div class="dnn-color-hue"
-                            ref={(element) => this.hueRange = element as HTMLDivElement}
-                            onMouseDown={this.handleHueMouseDown.bind(this)}
+            <Host
+                tabIndex={this.focused ? -1 : 0}
+                onFocus={() => this.saturationBrightnessButton.focus()}
+                onBlur={() => this.saturationBrightnessButton.blur()}
+            >
+                <div class="dnn-color-picker">
+                    <div class="dnn-color-sliders">
+                        <div class="dnn-color-s-b" ref={(element) => this.saturationLightnessBox = element as HTMLDivElement}
+                            style={{backgroundColor: `hsl(${hue},100%,50%)`}}
+                            onMouseDown={this.handleSaturationLightnessMouseDown.bind(this)}
                         >
-                            <button class="dnn-hue-picker"
-                                aria-label="Press left or right to adjust hue, hold shift to move by 10 degrees"
+                            <button
+                                ref={el => this.saturationBrightnessButton = el}
+                                class="dnn-s-b-picker"
+                                aria-label="Press up or down to adjust lightness, left or right to adjust saturation, hold shift to move by 10%"
                                 role="slider"
                                 aria-valuemin="0"
-                                aria-valuemax="359"
-                                aria-valuenow={Math.round(hue)}
-                                style={{left: (hue/359*100).toString() + "%"}}
-                                onKeyDown={(e) => this.handleHueKeyDown(e)}
+                                aria-valuemax="100"
+                                aria-valuetext={`Saturation: ${Math.round(this.currentColor.saturation*100)}%, Lightness: ${Math.round(this.currentColor.lightness*100)}%`}
+                                style={{
+                                    left: Math.round(saturation * 100)  + "%",
+                                    bottom: Math.round(lightness * 100)  + "%"
+                                }}
+                                onKeyDown={(e) => this.handleSaturationLightnessKeyDown(e)}
+                                onFocus={() => this.focused = true}
+                                onBlur={() => this.focused = false}
                             />
                         </div>
-                    </div>
-                </div>
-                <div class="dnn-color-fields">
-                    <div class="dnn-rgb-color-fields" style={{display: this.rgbDisplay}}>
-                        <div class="dnn-rgb-color-field">
-                            <label>R</label>
-                            <input type="number" min="0" max="255" step="1" class="red" value={red} aria-label="red value"
-                                onChange={(e) => this.handleComponentValueChange(e, 'red')}
+                        <div class="dnn-color-bar">
+                            <div class="dnn-color-result" style={{
+                                backgroundColor: '#' + this.getHex(),
+                                boxShadow: "0 0 2px 1px " + "#" + this.getContrast()
+                            }} 
                             />
-                        </div>
-                        <div class="dnn-rgb-color-field">
-                            <label>G</label>
-                            <input type="number" min="0" max="255" class="green" value={green} aria-label="green value"
-                                onChange={(e) => this.handleComponentValueChange(e, 'green')}
-                            />
-                        </div>
-                        <div class="dnn-rgb-color-field">
-                            <label>B</label>
-                            <input type="number" min="0" max="255" class="blue" value={blue} aria-label="blue value"
-                                onChange={(e) => this.handleComponentValueChange(e, 'blue')}
-                            />
-                        </div>
-                        <div class="dnn-color-mode-switch">
-                            <button
-                                id="rgb-switch"
-                                onClick={this.switchColorMode.bind(this)}
-                                aria-label="switch to hexadecimal value entry"
+                            <div class="dnn-color-hue"
+                                ref={(element) => this.hueRange = element as HTMLDivElement}
+                                onMouseDown={this.handleHueMouseDown.bind(this)}
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="dnn-hsl-color-fields" style={{display: this.hslDisplay}}>
-                        <div class="dnn-hsl-color-field">
-                            <label>H</label>
-                            <input type="number" min="0" max="359" step={1} value={Math.round(hue)} aria-label="Hue"
-                                onChange={(e) => this.handleHSLChange(e, 'hue')}
-                            />
-                        </div>
-                        <div class="dnn-hsl-color-field">
-                            <label>S</label>
-                            <input type="number" min="0" max="100" step={1} value={Math.round(saturation*100)} aria-label="Saturation"
-                                onChange={(e) => this.handleHSLChange(e, 'saturation')}
-                            />
-                        </div>
-                        <div class="dnn-hsl-color-field">
-                            <label>L</label>
-                            <input type="number" min="0" max="100" step={1} value={Math.round(lightness*100)} aria-label="Lightness"
-                                onChange={(e) => this.handleHSLChange(e, 'lightness')}
-                            />
-                        </div>
-                        <div class="dnn-color-mode-switch">
-                            <button
-                                id="hsl-switch"
-                                onClick={this.switchColorMode.bind(this)}
-                                aria-label="Switch to red, green, blue entry mode"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="dnn-hex-color-fields" style={{display: this.hexDisplay}}>
-                        <div class="dnn-hex-color-field">
-                            <label>HEX</label>
-                            <div class="hex-input">
-                                <input type="text" aria-label="Hexadecimal value"
-                                    value={this.getHex()}
-                                    onChange={e => this.handleHexChange((e.target as HTMLInputElement).value)}
+                                <button class="dnn-hue-picker"
+                                    aria-label="Press left or right to adjust hue, hold shift to move by 10 degrees"
+                                    role="slider"
+                                    aria-valuemin="0"
+                                    aria-valuemax="359"
+                                    aria-valuenow={Math.round(hue)}
+                                    style={{left: (hue/359*100).toString() + "%"}}
+                                    onKeyDown={(e) => this.handleHueKeyDown(e)}
                                 />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dnn-color-fields">
+                        <div class="dnn-rgb-color-fields" style={{display: this.rgbDisplay}}>
+                            <div class="dnn-rgb-color-field">
+                                <label>R</label>
+                                <input type="number" min="0" max="255" step="1" class="red" value={red} aria-label="red value"
+                                    onChange={(e) => this.handleComponentValueChange(e, 'red')}
+                                />
+                            </div>
+                            <div class="dnn-rgb-color-field">
+                                <label>G</label>
+                                <input type="number" min="0" max="255" class="green" value={green} aria-label="green value"
+                                    onChange={(e) => this.handleComponentValueChange(e, 'green')}
+                                />
+                            </div>
+                            <div class="dnn-rgb-color-field">
+                                <label>B</label>
+                                <input type="number" min="0" max="255" class="blue" value={blue} aria-label="blue value"
+                                    onChange={(e) => this.handleComponentValueChange(e, 'blue')}
+                                />
+                            </div>
+                            <div class="dnn-color-mode-switch">
                                 <button
-                                    class="copy"
-                                    aria-label="copy value"
+                                    id="rgb-switch"
+                                    onClick={this.switchColorMode.bind(this)}
+                                    aria-label="switch to hexadecimal value entry"
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
                                 </button>
                             </div>
                         </div>
-                        <div class="dnn-color-mode-switch">
-                            <button
-                                id="hex-switch"
-                                onClick={this.switchColorMode.bind(this)}
-                                aria-label="Switch to hue saturation lightness values"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
-                            </button>
+                        <div class="dnn-hsl-color-fields" style={{display: this.hslDisplay}}>
+                            <div class="dnn-hsl-color-field">
+                                <label>H</label>
+                                <input type="number" min="0" max="359" step={1} value={Math.round(hue)} aria-label="Hue"
+                                    onChange={(e) => this.handleHSLChange(e, 'hue')}
+                                />
+                            </div>
+                            <div class="dnn-hsl-color-field">
+                                <label>S</label>
+                                <input type="number" min="0" max="100" step={1} value={Math.round(saturation*100)} aria-label="Saturation"
+                                    onChange={(e) => this.handleHSLChange(e, 'saturation')}
+                                />
+                            </div>
+                            <div class="dnn-hsl-color-field">
+                                <label>L</label>
+                                <input type="number" min="0" max="100" step={1} value={Math.round(lightness*100)} aria-label="Lightness"
+                                    onChange={(e) => this.handleHSLChange(e, 'lightness')}
+                                />
+                            </div>
+                            <div class="dnn-color-mode-switch">
+                                <button
+                                    id="hsl-switch"
+                                    onClick={this.switchColorMode.bind(this)}
+                                    aria-label="Switch to red, green, blue entry mode"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="dnn-hex-color-fields" style={{display: this.hexDisplay}}>
+                            <div class="dnn-hex-color-field">
+                                <label>HEX</label>
+                                <div class="hex-input">
+                                    <input type="text" aria-label="Hexadecimal value"
+                                        value={this.getHex()}
+                                        onChange={e => this.handleHexChange((e.target as HTMLInputElement).value)}
+                                    />
+                                    <button
+                                        class="copy"
+                                        aria-label="copy value"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="dnn-color-mode-switch">
+                                <button
+                                    id="hex-switch"
+                                    onClick={this.switchColorMode.bind(this)}
+                                    aria-label="Switch to hue saturation lightness values"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </Host>
         );
     }
 }

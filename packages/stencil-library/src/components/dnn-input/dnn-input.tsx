@@ -159,7 +159,11 @@ export class DnnInput {
 
   render() {
     return (
-      <Host>
+      <Host
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => this.inputField.focus()}
+        onBlur={() => this.inputField.blur()}
+      >
         <dnn-fieldset
           ref={el => this.fieldset = el}
           invalid={!this.valid}
@@ -170,6 +174,8 @@ export class DnnInput {
           disabled={this.disabled}
           floatLabel={this.shouldLabelFloat()}
           onClick={() => !this.focused && this.inputField.focus()}
+          onFocus={() => this.focused = true}
+          onBlur={() => this.focused = false}
         >
           <div class="inner-container">
             <slot name="prefix"></slot>
@@ -190,7 +196,7 @@ export class DnnInput {
               step={this.step}
               value={this.value}
               onBlur={() => this.focused = false}
-              onFocus={() => this.focused=true}
+              onFocus={() => this.focused = true}
               onInput={e => this.handleInput((e.target as HTMLInputElement).value)}
               onInvalid={() => this.handleInvalid()}
               onChange={() => this.handleChange()}

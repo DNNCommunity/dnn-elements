@@ -119,7 +119,7 @@
           {"value": "9", "label": "Ninth"},
           {"value": "10", "label": "Tenth"},
         ];
-        let autocomplete = document.querySelector('#autocomplet-example');
+        let autocomplete = document.querySelector('#autocomplete-example');
         autocomplete.suggestions = values;
         autocomplete.addEventListener("valueInput", e => {
           let value = e.detail;
@@ -129,14 +129,15 @@
       });
     </script>
     <dnn-autocomplete
-      id="autocomplet-example"
-      width="300px"
-    />
+      id="autocomplete-example"
+      width="300px">
+    </dnn-autocomplete>
   </section>
 
   <!-- dnn-color-input -->
   <a name="dnn-color-input"></a>
   <section>
+    <h2>dnn-color-input</h2>
     <div style="display: flex; flex-wrap: wrap; gap: 1em;">
       <dnn-input label="Normal input" value="test"></dnn-input>
       <dnn-color-input

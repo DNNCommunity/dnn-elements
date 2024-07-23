@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter, Watch, AttachInternals } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, Watch, AttachInternals, State } from '@stencil/core';
 import { Jodit } from "jodit";
 import type { Config } from "jodit/types/config";
 import { decodeHtml } from '../../utilities/stringUtilities';
@@ -32,15 +32,17 @@ export class DnnRichtext {
     }
     this.setFormValue();
   }
-
+  
   /** Fires when the value changed. */
   @Event() valueChange: EventEmitter<string>;
-
+  
   /** Fires during value input. */
   @Event() valueInput: EventEmitter<string>;
-
+  
   @AttachInternals() internals: ElementInternals;
-
+  
+  @State() focused = false;
+  
   componentDidLoad(){
     var mergedOptions = {
       ...this.dnnDefaultOptions,
@@ -54,6 +56,8 @@ export class DnnRichtext {
       this.setFormValue();
     });
     this.editor.e.on('input', newValue => this.valueInput.emit(newValue));
+    this.editor.e.on("focus", () => this.focused = true);
+    this.editor.e.on("blur", () => this.focused = false);
   }
 
   // eslint-disable-next-line @stencil-community/own-methods-must-be-private
@@ -73,8 +77,19 @@ export class DnnRichtext {
 
   render() {
     return (
-      <Host>
-        <textarea ref={el => this.textArea = el}>
+      <Host
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => {
+          this.focused = true;
+          this.editor.focus();
+        }}
+        onBlur={() => this.focused = false}
+      >
+        <textarea
+          ref={el => this.textArea = el}
+          onFocus={() => this.focused = true}
+          onBlur={() => this.focused = false}
+        >
         </textarea>
       </Host>
     );

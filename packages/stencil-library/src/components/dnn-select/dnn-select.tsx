@@ -128,7 +128,11 @@ export class DnnSelect {
 
   render() {
     return (
-      <Host>
+      <Host
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => this.select.focus()}
+        onBlur={() => this.select.blur()}
+      >
         <dnn-fieldset
           invalid={!this.valid}
           focused={this.focused}
