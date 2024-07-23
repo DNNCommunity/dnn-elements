@@ -99,9 +99,21 @@
             },
             {
               "kind": "method",
+              "name": "blur",
+              "description": "Removes focus from the field.",
+              "signature": "blur() => Promise<void>"
+            },
+            {
+              "kind": "method",
               "name": "checkValidity",
               "description": "Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState",
               "signature": "checkValidity() => Promise<ValidityState>"
+            },
+            {
+              "kind": "method",
+              "name": "focus",
+              "description": "Focuses the input.",
+              "signature": "focus() => Promise<void>"
             },
             {
               "kind": "method",
