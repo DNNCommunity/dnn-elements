@@ -53,16 +53,18 @@ export class DnnImageCropper {
   @State() view: IComponentInterfaces["View"];
   @State() localResx: ImageCropperResx;
   @State() fileName: string;
-
+  @State() focused = false;
+  
   @Element() host: HTMLDnnImageCropperElement;
-
+  
   @AttachInternals() internals: ElementInternals;
-
+  
   private hasPictureView: HTMLDivElement;
   private noPictureView: HTMLDivElement;
   private canvas: HTMLCanvasElement;
   private image: HTMLImageElement;
   private crop: HTMLDivElement;
+  private inputField: HTMLDnnDropzoneElement;
   private previousTouch: Touch;
   private imageTooSmallModal!: HTMLDnnModalElement;
   private defaultResx: ImageCropperResx = {
@@ -505,7 +507,11 @@ export class DnnImageCropper {
 
   render() {
     return (
-      <Host>
+      <Host
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => this.inputField.focus()}
+        onBlur={() => this.inputField.blur()}
+      >
         <canvas ref={el => this.canvas = el} />
         <div
           class="view"
@@ -545,6 +551,9 @@ export class DnnImageCropper {
                 fileSizeLimit: "The maximum size is",
               }
             }
+            ref={el => this.inputField = el}
+            onFocus={() => this.focused = true}
+            onBlur={() => this.focused = false}
           />
         </div>
         <dnn-modal ref={el => this.imageTooSmallModal = el} close-text={this.localResx.modalCloseText}>

@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Prop, Event, EventEmitter, AttachInternals, Watch } from '@stencil/core';
+import { Component, Element, Host, h, Prop, Event, EventEmitter, AttachInternals, Watch, State } from '@stencil/core';
 import { CheckedState } from './types';
 
 /**
@@ -31,9 +31,12 @@ export class DnnCheckbox {
   /** Fires up when the checkbox checked property changes. */
   @Event() checkedchange: EventEmitter<"checked" | "unchecked" | "intermediate">;
 
+  @State() focused = false;
+  
   @AttachInternals() internals: ElementInternals;
   
   private originalChecked: CheckedState;
+  private button: HTMLButtonElement;
 
   componentWillLoad() {
     this.originalChecked = this.checked;
@@ -49,6 +52,7 @@ export class DnnCheckbox {
     }
   }
 
+  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
   formResetCallback() {
     this.internals.setValidity({});
     this.checked = this.originalChecked;
@@ -88,8 +92,15 @@ export class DnnCheckbox {
 
   render() {
     return (
-      <Host>
+      <Host
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => this.button.focus()}
+        onBlur={() => this.button.blur()}
+      >
         <button
+          ref={el => this.button = el}
+          onFocus={() => this.focused = true}
+          onBlur={() => this.focused = false}
           class={`icon ${this.checked}`}
           onClick={() => this.changeState()}
         >

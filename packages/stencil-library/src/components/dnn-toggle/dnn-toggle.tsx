@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop, Event, EventEmitter, Watch, Host, AttachInternals } from "@stencil/core";
+import { Component, h, Element, Prop, Event, EventEmitter, Watch, Host, AttachInternals, State } from "@stencil/core";
 import { DnnToggleChangeEventDetail } from "./toggle-interface";
 
 
@@ -13,7 +13,7 @@ export class DnnToggle {
     @Element() element: HTMLDnnToggleElement;
 
     /** If 'true' the toggle is checked (on). */
-    @Prop({mutable: true}) checked = false;
+    @Prop({ mutable: true }) checked = false;
 
     /** If 'true' the toggle is not be interacted with. */
     @Prop() disabled = false;
@@ -28,13 +28,17 @@ export class DnnToggle {
     @Event() checkChanged!: EventEmitter<DnnToggleChangeEventDetail>;
 
     @AttachInternals() internals: ElementInternals;
-
+    
     @Watch("checked")
-    checkedChanged(newValue: boolean){
-        this.checkChanged.emit({checked: newValue});
+    checkedChanged(newValue: boolean) {
+        this.checkChanged.emit({ checked: newValue });
         this.setFormValue();
     }
-
+    
+    @State() focused = false;
+    
+    private button: HTMLButtonElement;
+    
     componentWillLoad() {
         this.originalChecked = this.checked;
         this.setFormValue();
@@ -42,14 +46,15 @@ export class DnnToggle {
 
     private originalChecked: boolean;
 
+    // eslint-disable-next-line @stencil-community/own-methods-must-be-private
     formResetCallback() {
         this.internals.setValidity({});
         this.checked = this.originalChecked;
     }
 
-    private setFormValue(){
-        if (this.name){
-            if (this.checked){
+    private setFormValue() {
+        if (this.name != undefined && this.name.length > 0) {
+            if (this.checked) {
                 var data = new FormData();
                 data.append(this.name, this.value);
                 this.internals.setFormValue(data);
@@ -62,13 +67,22 @@ export class DnnToggle {
 
     render() {
         return (
-            <Host>
-                <button disabled={this.disabled} class={{'checked': this.checked}}
+            <Host
+                tabIndex={this.focused ? -1 : 0}
+                onFocus={() => this.button.focus()}
+                onBlur={() => this.button.blur()}
+            >
+                <button
+                    ref={el => this.button = el}
+                    disabled={this.disabled}
+                    class={{ 'checked': this.checked }}
                     onClick={() => {
                         if (!this.disabled) {
                             this.checked = !this.checked;
                         }
                     }}
+                    onFocus={() => this.focused = true}
+                    onBlur={() => this.focused = false}
                 >
                     <div class="handle"></div>
                 </button>

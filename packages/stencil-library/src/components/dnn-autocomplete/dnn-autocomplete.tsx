@@ -80,22 +80,6 @@ export class DnnAutocomplete {
     return this.inputField.setCustomValidity(message);
   }
 
-  /** Focuses the input. */
-  @Method()
-  async focus(): Promise<void> {
-    setTimeout(() => {
-      this.inputField.focus();
-    }, 0);
-  }
-
-  /** Removes focus from the field. */
-  @Method()
-  async blur(): Promise<void> {
-    setTimeout(() => {
-      this.inputField.blur();
-    }, 0);
-  }
-
   @State() focused = false;
   @State() valid = true;
   @State() customValidityMessage: string;
@@ -316,7 +300,11 @@ export class DnnAutocomplete {
 
   render() {
     return (
-      <Host>
+      <Host
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => this.inputField.focus()}
+        onBlur={() => this.inputField.blur()}
+      >
         <dnn-fieldset
           invalid={!this.valid}
           focused={this.focused}

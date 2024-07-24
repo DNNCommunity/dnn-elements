@@ -37,6 +37,7 @@ export class DnnPermissionsGrid {
   @State() userQuery: string;
   @State() pickedUser: ISearchedUser;
   @State() localResx: ILocalization;
+  @State() focused = false;
   
   
   @Watch("foundUsers")
@@ -47,7 +48,7 @@ export class DnnPermissionsGrid {
       }, 100);
     }
   }
-
+  
   @Watch("resx")
   resxChanged(){
     this.mergeResx();
@@ -64,6 +65,7 @@ export class DnnPermissionsGrid {
   
   private roleDropDown: HTMLSelectElement;
   private userCollapsible: HTMLDnnCollapsibleElement;
+  private rolesDropdown: HTMLSelectElement;
   private defaultResx: ILocalization = {
     Add: "Add",
     AllRoles: "All Roles",
@@ -440,12 +442,19 @@ export class DnnPermissionsGrid {
   render() {
     const filteredRoles = this.getRoles();
     return (
-      <Host>
+      <Host
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => this.rolesDropdown.focus()}
+        onBlur={() => this.rolesDropdown.blur()}
+      >
         <div class="add-role-row">
           <div class="dropdown">
             <label>{this.localResx.FilterByGroup} :</label>
             <select
+              ref={el => this.rolesDropdown = el}
               onChange={e => this.handleRoleGroupChanged(e.target as HTMLSelectElement)}
+              onFocus={() => this.focused = true}
+              onBlur={() => this.focused = false}
             >
               <option
                 value={-2}
