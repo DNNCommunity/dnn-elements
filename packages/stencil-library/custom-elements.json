@@ -1693,11 +1693,20 @@
           "description": "",
           "attributes": [
             {
+              "name": "debounce-time",
+              "type": {
+                "text": "number"
+              },
+              "description": "How many milliseconds to wait before firing the queryChanged event.",
+              "default": "500",
+              "required": false
+            },
+            {
               "name": "debounced",
               "type": {
                 "text": "boolean"
               },
-              "description": "Debounces the queryChanged by 500ms.",
+              "description": "",
               "default": "true",
               "required": false
             },

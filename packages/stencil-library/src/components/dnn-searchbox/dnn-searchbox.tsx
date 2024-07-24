@@ -1,5 +1,4 @@
 import { Component, Host, h, Event, EventEmitter, Watch, Prop } from '@stencil/core';
-import { Debounce } from '../../utilities/debounce';
 @Component({
   tag: 'dnn-searchbox',
   styleUrl: 'dnn-searchbox.scss',
@@ -13,9 +12,15 @@ export class DnnSearchbox {
   @Prop() placeholder?: string = "";
 
   /**
+   * @deprecated Use debounceTime (or debounce-time) instead. Will be removed in v0.25.0
    * Debounces the queryChanged by 500ms.
    */
   @Prop() debounced: boolean = true;
+
+  /**
+   * How many milliseconds to wait before firing the queryChanged event.
+   */
+  @Prop() debounceTime: number = 500;
 
   /** Sets the query */
   @Prop({mutable: true}) query: string = "";
@@ -25,25 +30,16 @@ export class DnnSearchbox {
    * The data passed is the new query.
    */
   @Event() queryChanged: EventEmitter<string>;
-
+  
   @Watch('query')
-  fireQueryChanged(){
-    if (this.debounced){
-      this.debouncedHandleQueryChanged();
-    }
-    else{
-      this.handleQueryChanged();
-    }
+  handleQueryChanged(){
+    clearTimeout(this.debounceTimer);
+    this.debounceTimer = setTimeout(() => {
+      this.queryChanged.emit(this.query);
+    }, this.debounceTime);
   }
   
-  private handleQueryChanged(){
-    this.queryChanged.emit(this.query);
-  }
-
-  @Debounce(500)
-  private debouncedHandleQueryChanged(){
-    this.handleQueryChanged();
-  }
+  private debounceTimer: any = null;
 
   render() {
     return (
