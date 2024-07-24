@@ -15,8 +15,6 @@ export function Debounce(debounceTime: number = 500){
                     resolve(originalMethod.apply(this, args));
                 }, debounceTime);
             })
-
         }
-        
     }
 }

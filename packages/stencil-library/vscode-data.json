@@ -719,8 +719,12 @@
       },
       "attributes": [
         {
+          "name": "debounce-time",
+          "description": "How many milliseconds to wait before firing the queryChanged event."
+        },
+        {
           "name": "debounced",
-          "description": "Debounces the queryChanged by 500ms."
+          "description": ""
         },
         {
           "name": "placeholder",

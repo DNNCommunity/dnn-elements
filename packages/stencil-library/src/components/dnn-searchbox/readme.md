@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property      | Attribute     | Description                          | Type      | Default |
-| ------------- | ------------- | ------------------------------------ | --------- | ------- |
-| `debounced`   | `debounced`   | Debounces the queryChanged by 500ms. | `boolean` | `true`  |
-| `placeholder` | `placeholder` | Sets the field placeholder text.     | `string`  | `""`    |
-| `query`       | `query`       | Sets the query                       | `string`  | `""`    |
+| Property       | Attribute       | Description                                                                                                                                                            | Type      | Default |
+| -------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------- |
+| `debounceTime` | `debounce-time` | How many milliseconds to wait before firing the queryChanged event.                                                                                                    | `number`  | `500`   |
+| `debounced`    | `debounced`     | <span style="color:red">**[DEPRECATED]**</span> Use debounceTime (or debounce-time) instead. Will be removed in v0.25.0 Debounces the queryChanged by 500ms.<br/><br/> | `boolean` | `true`  |
+| `placeholder`  | `placeholder`   | Sets the field placeholder text.                                                                                                                                       | `string`  | `""`    |
+| `query`        | `query`         | Sets the query                                                                                                                                                         | `string`  | `""`    |
 
 
 ## Events

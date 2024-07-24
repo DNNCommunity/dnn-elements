@@ -549,7 +549,11 @@ export namespace Components {
     }
     interface DnnSearchbox {
         /**
-          * Debounces the queryChanged by 500ms.
+          * How many milliseconds to wait before firing the queryChanged event.
+         */
+        "debounceTime": number;
+        /**
+          * @deprecated Use debounceTime (or debounce-time) instead. Will be removed in v0.25.0 Debounces the queryChanged by 500ms.
          */
         "debounced": boolean;
         /**
@@ -1831,7 +1835,11 @@ declare namespace LocalJSX {
     }
     interface DnnSearchbox {
         /**
-          * Debounces the queryChanged by 500ms.
+          * How many milliseconds to wait before firing the queryChanged event.
+         */
+        "debounceTime"?: number;
+        /**
+          * @deprecated Use debounceTime (or debounce-time) instead. Will be removed in v0.25.0 Debounces the queryChanged by 500ms.
          */
         "debounced"?: boolean;
         /**
