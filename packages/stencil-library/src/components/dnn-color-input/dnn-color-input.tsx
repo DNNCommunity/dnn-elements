@@ -86,6 +86,8 @@ export class DnnColorInput {
       this.setFormValue();
     }
   }
+
+  private button: HTMLButtonElement;
   
   componentWillLoad() {
     this.labelId = generateRandomId();
@@ -150,7 +152,11 @@ export class DnnColorInput {
 
   render() {
     return (
-      <Host>
+      <Host
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => this.button.focus()}
+        onBlur={() => this.button.blur()}
+      >
         <dnn-fieldset
           label={this.label}
           id={this.labelId}
@@ -180,6 +186,7 @@ export class DnnColorInput {
             </div>
             {!this.readonly &&
               <button
+                ref={el => this.button = el}
                 aria-labelledby={this.labelId}
                 onClick={() => this.showPicker()}
                 onFocus={() => this.focused = true}

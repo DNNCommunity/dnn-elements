@@ -120,7 +120,11 @@ export class DnnTextarea {
 
   render() {
     return (
-      <Host>
+      <Host
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => this.textarea.focus()}
+        onBlur={() => this.textarea.blur()}
+      >
         <dnn-fieldset
           invalid={!this.valid}
           focused={this.focused}
