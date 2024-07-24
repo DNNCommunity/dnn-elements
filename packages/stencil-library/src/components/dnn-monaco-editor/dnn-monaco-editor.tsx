@@ -73,7 +73,6 @@ export class DnnMonacoEditor {
   private originalValue: string;
 
   private focusElement() {
-    console.log("focusing element");
     var element = this.editorContainer.querySelector("textarea");
     element.focus();
   }
