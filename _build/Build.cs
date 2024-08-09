@@ -30,26 +30,29 @@ using Newtonsoft.Json.Linq;
 [GitHubActions(
   "PR_Validation",
   GitHubActionsImage.UbuntuLatest,
-  AutoGenerate = false,
   ImportSecrets = new[] { nameof(GithubToken) },
   OnPullRequestBranches = new[] { "main", "master", "develop", "development" },
-  InvokedTargets = new[] { nameof(Compile) }
+  InvokedTargets = new[] { nameof(Compile) },
+  FetchDepth = 0,
+  CacheKeyFiles = new string[] {}
   )]
 [GitHubActions(
     "Deploy",
     GitHubActionsImage.UbuntuLatest,
-    AutoGenerate = false,
     ImportSecrets = new[] { nameof(GithubToken), "NPM_TOKEN" },
     OnPushBranches = new[] { "main", "master", "release/*" },
-    InvokedTargets = new[] { nameof(Deploy) }
+    InvokedTargets = new[] { nameof(Deploy) },
+    FetchDepth = 0,
+    CacheKeyFiles = new string[] {}
 )]
 [GitHubActions(
   "Publish_Site",
     GitHubActionsImage.UbuntuLatest,
-    AutoGenerate = false,
     ImportSecrets = new[] { nameof(GithubToken) },
     OnPushBranches = new[] { "main", "master", "release/*" },
-    InvokedTargets = new[] { nameof(PublishSite) }
+    InvokedTargets = new[] { nameof(PublishSite) },
+    FetchDepth = 0,
+    CacheKeyFiles = new string[] {}
   )]
 class Build : NukeBuild
 {

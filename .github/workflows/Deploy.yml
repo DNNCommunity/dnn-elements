@@ -24,20 +24,15 @@ on:
       - 'release/*'
 
 jobs:
-  deploy:
-    name: deploy
+  ubuntu-latest:
+    name: ubuntu-latest
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: Cache .nuke/temp, ~/.nuget/packages
-        uses: actions/cache@v2
+      - uses: actions/checkout@v3
         with:
-          path: |
-            .nuke/temp
-            ~/.nuget/packages
-          key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj') }}
-      - name: Run './build.sh Deploy'
-        run: ./build.sh Deploy
+          fetch-depth: 0
+      - name: 'Run: Deploy'
+        run: ./build.cmd Deploy
         env:
           GithubToken: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

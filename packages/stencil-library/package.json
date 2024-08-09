@@ -1,6 +1,6 @@
 {
   "name": "@dnncommunity/dnn-elements",
-  "version": "0.23.3-alpha.7",
+  "version": "0.24.0-eslint-plugin-syntax.1",
   "description": "Dnn themed custom elements.",
   "repository": "https://github.com/dnncommunity/dnn-elements",
   "homepage": "https://dnncommunity.github.io/dnn-elements",
