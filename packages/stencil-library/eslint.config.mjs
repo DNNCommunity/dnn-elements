@@ -1,12 +1,15 @@
 import { Linter } from 'eslint';
+import typescriptEslintParser from '@typescript-eslint/parser';
 
 /** @type {Linter.Config} */
 const config = {
-    parser: "@typescript-eslint/parser",
-    plugins: ["@typescript-eslint"],
-    parserOptions: {
-        project: "./tsconfig.json",
+    languageOptions: {
+        parser: typescriptEslintParser,
+        parserOptions: {
+            project: "./tsconfig.json",
+        }
     },
+    plugins: ["@typescript-eslint"],
     extends: [
         "plugin:@stencil-community/recommended",
         "plugin:storybook/recommended",
