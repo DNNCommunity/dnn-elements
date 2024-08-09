@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.5.0",
-    "@stencil-community/eslint-plugin": "0.7.2",
+    "@stencil-community/eslint-plugin": "0.8.0",
     "@stencil/core": "4.19.2",
     "@stencil/react-output-target": "^0.5.1",
     "@stencil/sass": "^3.0.4",
