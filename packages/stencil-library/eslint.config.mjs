@@ -1,5 +1,6 @@
 import { Linter } from 'eslint';
 import typescriptEslintParser from '@typescript-eslint/parser';
+import typescriptEslintPlugin from "@typescript-eslint/eslint-plugin";
 
 /** @type {Linter.Config} */
 const config = {
@@ -9,7 +10,9 @@ const config = {
             project: "./tsconfig.json",
         }
     },
-    plugins: ["@typescript-eslint"],
+    plugins: {
+        typescript: typescriptEslintPlugin,
+    },
     extends: [
         "plugin:@stencil-community/recommended",
         "plugin:storybook/recommended",
