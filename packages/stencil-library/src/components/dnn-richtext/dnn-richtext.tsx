@@ -49,7 +49,8 @@ export class DnnRichtext {
     var mergedOptions = {
       ...this.dnnDefaultOptions,
       ...this.options,
-      ShadowRoot: this.host.shadowRoot,
+      globalFullSize: false,
+      shadowRoot: this.host.shadowRoot,
     };
     this.editor = Jodit.make(this.textArea, mergedOptions);
     this.editor.value = decodeHtml(this.value);

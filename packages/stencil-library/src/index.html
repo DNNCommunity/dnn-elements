@@ -698,6 +698,9 @@
         // Testing dynamically added/removed content to collapsible
         setInterval(() => {
           const template = document.querySelector('#test-paragraph');
+          if (template == null){
+            return;
+          }
           const content = template.content;
           const slot = document.querySelector('#collapsible-slot-content')
           
@@ -708,7 +711,7 @@
           else{
             slot.appendChild(content.cloneNode(true));
           }
-        }, 1000);
+        }, 2000);
       </script>
     </section>
 
