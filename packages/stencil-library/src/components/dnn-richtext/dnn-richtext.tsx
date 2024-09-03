@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter, Watch, AttachInternals, State } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, Watch, AttachInternals, State, Element } from '@stencil/core';
 import { Jodit } from "jodit";
 import type { Config } from "jodit/types/config";
 import { decodeHtml } from '../../utilities/stringUtilities';
@@ -6,7 +6,7 @@ import { decodeHtml } from '../../utilities/stringUtilities';
 @Component({
   tag: 'dnn-richtext',
   styleUrl: 'dnn-richtext.scss',
-  shadow: false,
+  shadow: true,
   formAssociated: true,
 })
 export class DnnRichtext {
@@ -24,6 +24,8 @@ export class DnnRichtext {
 
   /** Name of the field when used in a form. */
   @Prop() name: string;
+
+  @Element() host: HTMLDnnRichtextElement;
   
   @Watch("value")
   watchValueChanged(newValue: string) {
@@ -47,17 +49,19 @@ export class DnnRichtext {
     var mergedOptions = {
       ...this.dnnDefaultOptions,
       ...this.options,
+      globalFullSize: false,
+      shadowRoot: this.host.shadowRoot,
     };
     this.editor = Jodit.make(this.textArea, mergedOptions);
     this.editor.value = decodeHtml(this.value);
     this.setFormValue();
-    this.editor.e.on('change', newValue => {
-      this.valueChange.emit(newValue);
+    this.editor.e.on('input', () => this.valueInput.emit(this.editor.value));
+    this.editor.e.on("focus", () => this.focused = true);
+    this.editor.e.on("blur", () => {
+      this.focused = false;
+      this.valueChange.emit(this.editor.value);
       this.setFormValue();
     });
-    this.editor.e.on('input', newValue => this.valueInput.emit(newValue));
-    this.editor.e.on("focus", () => this.focused = true);
-    this.editor.e.on("blur", () => this.focused = false);
   }
 
   // eslint-disable-next-line @stencil-community/own-methods-must-be-private
