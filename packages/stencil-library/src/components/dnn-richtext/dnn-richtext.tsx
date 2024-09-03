@@ -41,8 +41,8 @@ export class DnnRichtext {
     };
     this.editor = Jodit.make(this.textArea, mergedOptions);
     this.editor.value = decodeHtml(this.value);
-    this.editor.e.on('change', newValue => this.valueChange.emit(newValue));
-    this.editor.e.on('input', newValue => this.valueInput.emit(newValue));
+    this.editor.e.on('change', () => this.valueChange.emit(this.editor.value));
+    this.editor.e.on('input', () => this.valueInput.emit(this.editor.value));
   }
 
   render() {
