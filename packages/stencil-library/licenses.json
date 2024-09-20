@@ -4,5 +4,10 @@
         "repository": "https://github.com/dnncommunity/dnn-elements",
         "path": "",
         "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\README.md"
+    },
+    "@storybook/theming@8.3.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "path": "node_modules\\@storybook\\theming"
     }
 }
