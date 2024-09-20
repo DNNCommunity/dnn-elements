@@ -1,6 +1,6 @@
 {
   "name": "@dnncommunity/dnn-elements",
-  "version": "0.24.0-eslint-plugin-syntax.1",
+  "version": "0.24.0-alpha.366",
   "description": "Dnn themed custom elements.",
   "repository": "https://github.com/dnncommunity/dnn-elements",
   "homepage": "https://dnncommunity.github.io/dnn-elements",
@@ -33,7 +33,7 @@
     "deploy-storybook": "gh-pages -d storybook-static --branch site"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^1.5.0",
+    "@chromatic-com/storybook": "^2.0.2",
     "@stencil-community/eslint-plugin": "0.8.0",
     "@stencil/core": "4.21.0",
     "@stencil/react-output-target": "^0.7.1",

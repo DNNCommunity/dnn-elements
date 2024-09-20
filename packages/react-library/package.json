@@ -1,6 +1,6 @@
 {
   "name": "@dnncommunity/dnn-elements-react",
-  "version": "0.24.0-eslint-plugin-syntax.1",
+  "version": "0.24.0-alpha.366",
   "description": "Dnn themed custom elements with react wrappers.",
   "homepage": "https://github.com/valadas/dnn-elements",
   "license": "MIT",
