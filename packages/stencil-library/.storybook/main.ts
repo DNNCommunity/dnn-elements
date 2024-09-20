@@ -17,8 +17,8 @@ const config: StorybookConfig = {
         transcludeMarkdown: true,
       },
     },
-    "@storybook/addon-webpack5-compiler-babel",
-    "@chromatic-com/storybook"
+    getAbsolutePath("@storybook/addon-webpack5-compiler-babel"),
+    getAbsolutePath("@chromatic-com/storybook")
   ],
   framework: {
     name: getAbsolutePath("@storybook/web-components-webpack5"),
