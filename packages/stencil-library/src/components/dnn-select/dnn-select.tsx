@@ -39,13 +39,14 @@ export class DnnSelect {
   /** Fires when the value has changed and the user exits the input. */
   @Event() valueChange: EventEmitter<string>;
   
-  /** Reports the element validity.
-   * @param valid - Whether the element is valid or not.
-   * @param message - The message to show when the element is invalid, optional if valid.
-  */
+  /** Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState */
   @Method()
-  async reportValidity(valid: boolean, message?: string) {
-    return this.fieldset.setValidity(valid, message);
+  async checkValidity() {
+    var validity = this.select.checkValidity();
+    if (!validity) {
+      this.fieldset.setValidity(false, this.select.validationMessage);
+    }
+    return this.select.validity;
   }
   
   @AttachInternals() internals: ElementInternals;

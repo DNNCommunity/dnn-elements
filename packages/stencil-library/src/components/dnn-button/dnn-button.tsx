@@ -13,15 +13,21 @@ export class DnnButton {
 
   /**
    * Optional button style,
-   * can be either primary, secondary or tertiary or danger and defaults to primary if not specified
+   * @deprecated This property will be reused in the next version to represent the type of button like "submit" or "reset". Use the appearance property instead.
    */
   @Prop() type: 'primary' | 'danger' | 'secondary' | 'tertiary' = 'primary';
+
+  /**
+   * Defines the look of the button.
+   */
+  @Prop() appearance: 'primary' | 'danger' | 'secondary' | 'tertiary' = 'primary';
 
   /**
    * Optional button type,
    * can be either submit, reset or button and defaults to button if not specified.
    * Warning: DNN wraps the whole page in a form, only use this if you are handling
    * form submission manually.
+   * Warning: This will be deprecated in the next version and replaced with a new 'type' property.
    */
   @Prop() formButtonType: 'submit' | 'reset' | 'button' = 'button';
 
@@ -104,18 +110,44 @@ export class DnnButton {
     if (this.confirm && !this.modalVisible){
       this.modal.show();
       this.modalVisible = true;
+      return;
     }
 
     if (this.formButtonType === 'submit')
     {
       var form = this.internals.form;
       if (form){
-        var submitButton = document.createElement('button');
-        submitButton.type = 'submit';
-        submitButton.style.display = 'none';
-        form.appendChild(submitButton);
-        submitButton.click();
-        form.removeChild(submitButton);
+        var validity = form.checkValidity();
+        if (validity){
+          const submitButton = document.createElement('button');
+          submitButton.type = 'submit';
+          submitButton.style.display = 'none';
+          form.appendChild(submitButton);
+          submitButton.click();
+          form.removeChild(submitButton);
+        }
+        else
+        {
+          var formControls = form.elements;
+          for (let i = 0; i < formControls.length; i++){
+            var control = formControls[i] as HTMLFormElement;
+            try{
+              if ('checkValidity' in control && typeof control['checkValidity'] === 'function') {
+                control.checkValidity();
+              }
+            }
+            catch(e){
+              console.error(e, control);
+            }
+          }
+          var elementToScrollTo = form.querySelector(':invalid');
+          if (elementToScrollTo){
+            elementToScrollTo.scrollIntoView({behavior: 'smooth', block: 'center'});
+            if ('focus' in elementToScrollTo && typeof elementToScrollTo['focus'] === 'function') {
+              elementToScrollTo.focus();
+            }
+          }
+        }
       }
     }
     if (this.formButtonType === 'reset')
@@ -134,7 +166,7 @@ export class DnnButton {
 
   private getElementClasses(): string | { [className: string]: boolean; } {
     const classes: string[] = [];
-    classes.push(this.type);
+    classes.push(this.appearance);
     if (this.reversed){
       classes.push('reversed');
     }
@@ -146,7 +178,6 @@ export class DnnButton {
     } 
     return classes.join(' ');
   }
-
 
   render() {
     return (
@@ -175,8 +206,8 @@ export class DnnButton {
                   justifyContent: 'flex-end'
                 }
               }>
-                <dnn-button type='primary' reversed style={{margin: '5px'}} onClick={() => this.handleCancel()}>{this.confirmNoText}</dnn-button>
-                <dnn-button type='primary' style={{margin: '5px'}} onClick={() => this.handleConfirm()}>{this.confirmYesText}</dnn-button>
+                <dnn-button appearance='primary' reversed style={{margin: '5px'}} onClick={() => this.handleCancel()}>{this.confirmNoText}</dnn-button>
+                <dnn-button appearance='primary' style={{margin: '5px'}} onClick={() => this.handleConfirm()}>{this.confirmYesText}</dnn-button>
               </div>
             </dnn-modal>
           }

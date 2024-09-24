@@ -50,6 +50,24 @@
       },
       "attributes": [
         {
+          "name": "appearance",
+          "description": "Defines the look of the button.",
+          "values": [
+            {
+              "name": "danger"
+            },
+            {
+              "name": "primary"
+            },
+            {
+              "name": "secondary"
+            },
+            {
+              "name": "tertiary"
+            }
+          ]
+        },
+        {
           "name": "confirm",
           "description": "Optionally add a confirmation dialog before firing the action."
         },
@@ -71,7 +89,7 @@
         },
         {
           "name": "form-button-type",
-          "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.",
+          "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.\nWarning: This will be deprecated in the next version and replaced with a new 'type' property.",
           "values": [
             {
               "name": "button"
@@ -105,7 +123,7 @@
         },
         {
           "name": "type",
-          "description": "Optional button style,\ncan be either primary, secondary or tertiary or danger and defaults to primary if not specified",
+          "description": "Optional button style,",
           "values": [
             {
               "name": "danger"

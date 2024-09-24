@@ -27,20 +27,13 @@
 
 ## Methods
 
-### `reportValidity(valid: boolean, message?: string) => Promise<void>`
+### `checkValidity() => Promise<ValidityState>`
 
-Reports the element validity.
-
-#### Parameters
-
-| Name      | Type      | Description                                                           |
-| --------- | --------- | --------------------------------------------------------------------- |
-| `valid`   | `boolean` | - Whether the element is valid or not.                                |
-| `message` | `string`  | - The message to show when the element is invalid, optional if valid. |
+Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
 
 #### Returns
 
-Type: `Promise<void>`
+Type: `Promise<ValidityState>`
 
 
 

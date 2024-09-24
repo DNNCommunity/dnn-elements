@@ -76,6 +76,10 @@ export class DnnInput {
   /** Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState */
   @Method()
   async checkValidity(): Promise<ValidityState> {
+    var validity = this.inputField.checkValidity();
+    if (!validity) {
+      this.fieldset.setValidity(false, this.inputField.validationMessage);
+    }
     return this.inputField.validity;
   }
   
@@ -99,10 +103,15 @@ export class DnnInput {
     this.labelId = generateRandomId();
   }
 
+  componentDidLoad() {
+    var validity = this.inputField.validity;
+    var validityMessage = validity.valid ? "" : this.inputField.validationMessage;
+    this.internals.setValidity(this.inputField.validity, validityMessage);
+  }
+
   // eslint-disable-next-line @stencil-community/own-methods-must-be-private
   formResetCallback() {
     this.inputField.setCustomValidity("");
-    this.valid = true;
     this.value = "";
     this.internals.setValidity({});
     this.internals.setFormValue("");
@@ -117,6 +126,7 @@ export class DnnInput {
 
   private handleInvalid(): void {
     this.fieldset.setValidity(false, this.inputField.validationMessage);
+    this.internals.setValidity(this.inputField.validity, this.inputField.validationMessage);
   }
 
   private handleChange() {
@@ -155,6 +165,14 @@ export class DnnInput {
     }
     
     return true;
+  }
+
+  handleBlur(): void {
+    this.focused = false
+    var validity = this.inputField.checkValidity();
+    this.valid = validity;
+    this.fieldset.setValidity(validity, this.inputField.validationMessage);
+    this.internals.setValidity(this.inputField.validity, this.inputField.validationMessage);
   }
 
   render() {
@@ -197,7 +215,7 @@ export class DnnInput {
               readonly={this.readonly}
               step={this.step}
               value={this.value}
-              onBlur={() => this.focused = false}
+              onBlur={() => this.handleBlur()}
               onFocus={() => this.focused = true}
               onInput={e => this.handleInput((e.target as HTMLInputElement).value)}
               onInvalid={() => this.handleInvalid()}

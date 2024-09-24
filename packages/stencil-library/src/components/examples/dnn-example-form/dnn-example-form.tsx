@@ -336,7 +336,7 @@ export class DnnExampleForm {
                 {this.resume &&
                   <p class="filename">
                     File: {this.resume.name}
-                    <dnn-button type="danger" onClick={() => this.resume = undefined}>Remove</dnn-button>
+                    <dnn-button appearance="danger" onClick={() => this.resume = undefined}>Remove</dnn-button>
                   </p>
                 }
               </dnn-fieldset>
@@ -352,7 +352,7 @@ export class DnnExampleForm {
                   [
                     <img src={this.profilePicData} alt="Profile Picture" />
                     ,
-                    <dnn-button type="danger"
+                    <dnn-button appearance="danger"
                       onClick={
                         () => {
                           this.profilePicData = undefined;

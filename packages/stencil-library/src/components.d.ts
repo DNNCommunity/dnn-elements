@@ -84,6 +84,10 @@ export namespace Components {
     }
     interface DnnButton {
         /**
+          * Defines the look of the button.
+         */
+        "appearance": 'primary' | 'danger' | 'secondary' | 'tertiary';
+        /**
           * Optionally add a confirmation dialog before firing the action.
          */
         "confirm"?: boolean;
@@ -104,7 +108,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually.
+          * Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually. Warning: This will be deprecated in the next version and replaced with a new 'type' property.
          */
         "formButtonType": 'submit' | 'reset' | 'button';
         /**
@@ -116,7 +120,8 @@ export namespace Components {
          */
         "size"?: 'small' | 'normal' | 'large';
         /**
-          * Optional button style, can be either primary, secondary or tertiary or danger and defaults to primary if not specified
+          * Optional button style,
+          * @deprecated This property will be reused in the next version to represent the type of button like "submit" or "reset". Use the appearance property instead.
          */
         "type": 'primary' | 'danger' | 'secondary' | 'tertiary';
     }
@@ -567,6 +572,10 @@ export namespace Components {
     }
     interface DnnSelect {
         /**
+          * Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+         */
+        "checkValidity": () => Promise<ValidityState>;
+        /**
           * @deprecated This control has its own validatin reporting, will be removed in v0.25.0
          */
         "disableValidityReporting": boolean;
@@ -586,12 +595,6 @@ export namespace Components {
           * The name for this input, if used in forms.
          */
         "name": string;
-        /**
-          * Reports the element validity.
-          * @param valid - Whether the element is valid or not.
-          * @param message - The message to show when the element is invalid, optional if valid.
-         */
-        "reportValidity": (valid: boolean, message?: string) => Promise<void>;
         /**
           * Defines whether the field requires having a value.
          */
@@ -1345,6 +1348,10 @@ declare namespace LocalJSX {
     }
     interface DnnButton {
         /**
+          * Defines the look of the button.
+         */
+        "appearance"?: 'primary' | 'danger' | 'secondary' | 'tertiary';
+        /**
           * Optionally add a confirmation dialog before firing the action.
          */
         "confirm"?: boolean;
@@ -1365,7 +1372,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually.
+          * Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually. Warning: This will be deprecated in the next version and replaced with a new 'type' property.
          */
         "formButtonType"?: 'submit' | 'reset' | 'button';
         /**
@@ -1385,7 +1392,8 @@ declare namespace LocalJSX {
          */
         "size"?: 'small' | 'normal' | 'large';
         /**
-          * Optional button style, can be either primary, secondary or tertiary or danger and defaults to primary if not specified
+          * Optional button style,
+          * @deprecated This property will be reused in the next version to represent the type of button like "submit" or "reset". Use the appearance property instead.
          */
         "type"?: 'primary' | 'danger' | 'secondary' | 'tertiary';
     }
