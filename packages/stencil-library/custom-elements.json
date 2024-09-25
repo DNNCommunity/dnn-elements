@@ -185,6 +185,15 @@
           "description": "",
           "attributes": [
             {
+              "name": "appearance",
+              "type": {
+                "text": "\"danger\" | \"primary\" | \"secondary\" | \"tertiary\""
+              },
+              "description": "Defines the look of the button.",
+              "default": "'primary'",
+              "required": false
+            },
+            {
               "name": "confirm",
               "type": {
                 "text": "boolean"
@@ -234,7 +243,7 @@
               "type": {
                 "text": "\"button\" | \"reset\" | \"submit\""
               },
-              "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.",
+              "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.\nWarning: This will be deprecated in the next version and replaced with a new 'type' property.",
               "default": "'button'",
               "required": false
             },
@@ -261,7 +270,7 @@
               "type": {
                 "text": "\"danger\" | \"primary\" | \"secondary\" | \"tertiary\""
               },
-              "description": "Optional button style,\ncan be either primary, secondary or tertiary or danger and defaults to primary if not specified",
+              "description": "Optional button style,",
               "default": "'primary'",
               "required": false
             }
@@ -1803,9 +1812,9 @@
           "members": [
             {
               "kind": "method",
-              "name": "reportValidity",
-              "description": "Reports the element validity.",
-              "signature": "reportValidity(valid: boolean, message?: string) => Promise<void>"
+              "name": "checkValidity",
+              "description": "Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState",
+              "signature": "checkValidity() => Promise<ValidityState>"
             }
           ],
           "events": [
