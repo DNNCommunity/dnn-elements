@@ -76,8 +76,16 @@ export class DnnAutocomplete {
   /** Can be used to set a custom validity message. */
   @Method()
   async setCustomValidity(message: string): Promise<void> {
-    this.customValidityMessage = message;
-    return this.inputField.setCustomValidity(message);
+    if (message == undefined || message == "") {
+      this.inputField.setCustomValidity("");
+      this.valid = true;
+      this.fieldset.setValidity(true);
+      return;
+    }
+
+    this.inputField.setCustomValidity(message);
+    this.valid = false;
+    this.fieldset.setValidity(false, message);
   }
 
   @State() focused = false;
@@ -109,6 +117,7 @@ export class DnnAutocomplete {
   private inputField!: HTMLInputElement;
   private suggestionsContainer: HTMLUListElement;
   private labelId: string;
+  private fieldset: HTMLDnnFieldsetElement;
   
   // eslint-disable-next-line @stencil-community/own-methods-must-be-private
   formResetCallback() {
@@ -298,6 +307,14 @@ export class DnnAutocomplete {
     }
   }
 
+  handleBlur(): void {
+    this.focused = false
+    var validity = this.inputField.checkValidity();
+    this.valid = validity;
+    this.fieldset.setValidity(validity, this.inputField.validationMessage);
+    this.internals.setValidity(this.inputField.validity, this.inputField.validationMessage);
+  }
+
   render() {
     return (
       <Host
@@ -306,6 +323,7 @@ export class DnnAutocomplete {
         onBlur={() => this.inputField.blur()}
       >
         <dnn-fieldset
+          ref={el => this.fieldset = el}
           invalid={!this.valid}
           focused={this.focused}
           label={`${this.label ?? ""}${this.required ? " *" : ""}`}
@@ -328,7 +346,7 @@ export class DnnAutocomplete {
               autoComplete="off"
               value={this.suggestions.length > 0 && this.selectedIndex != undefined ? this.suggestions[this.selectedIndex].label : this.value}
               onFocus={() => this.focused = true}
-              onBlur={() => this.focused = false}
+              onBlur={() => this.handleBlur()}
               onInput={e => this.handleInput(e)}
               onInvalid={() => this.handleInvalid()}
               onChange={() => this.handleChange()}
