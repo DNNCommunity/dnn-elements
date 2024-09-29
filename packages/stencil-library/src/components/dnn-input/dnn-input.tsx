@@ -86,7 +86,15 @@ export class DnnInput {
   /** Can be used to set a custom validity message. */
   @Method()
   async setCustomValidity(message: string): Promise<void> {
+    if (message == undefined || message == "") {
+      this.inputField.setCustomValidity("");
+      this.valid = true;
+      this.fieldset.setValidity(true);
+      return;
+    }
+
     this.inputField.setCustomValidity(message);
+    this.valid = false;
     this.fieldset.setValidity(false, message);
   }
   
