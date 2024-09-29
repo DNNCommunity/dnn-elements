@@ -277,6 +277,7 @@ export class DnnExampleForm {
               <dnn-autocomplete
                 label="User"
                 helpText="Select a user"
+                required
                 suggestions={this.filteredUsers}
                 onSearchQueryChanged={e => {
                   if (e.detail == undefined || e.detail == "")
