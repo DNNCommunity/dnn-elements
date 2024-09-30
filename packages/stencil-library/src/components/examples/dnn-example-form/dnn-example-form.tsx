@@ -280,12 +280,7 @@ export class DnnExampleForm {
                 required
                 suggestions={this.filteredUsers}
                 onSearchQueryChanged={e => {
-                  if (e.detail == undefined || e.detail == "")
-                  {
-                    this.filteredUsers = [];
-                    return;
-                  }
-                  const search = (e.detail as string).toLowerCase();
+                  const search = (e.detail || "" as string).toLowerCase();
                   this.filteredUsers = this.users.filter(u => u.label.toLowerCase().includes(search));
                 }}
                 renderSuggestion={suggestion =>

@@ -253,6 +253,10 @@ export class DnnAutocomplete {
     return itemHeight * upcomingItems;
   }
 
+  private handleDropdownClick(): void {
+    this.handleSearchQueryChanged(this.value);
+  }
+
   @Debounce(100)
   private handleSuggestionsScroll(): void {
     const container = this.suggestionsContainer;
@@ -380,7 +384,7 @@ export class DnnAutocomplete {
               }
             </ul>
             <svg
-              onClick={() => this.focused = !this.focused}
+              onClick={() => this.handleDropdownClick()}
               class="chevron-down"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 -960 960 960">
