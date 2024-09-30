@@ -5,6 +5,8 @@
 <!-- Auto Generated Below -->
 
 
+> **[DEPRECATED]** - The label for the checkbox - Obsolete, implement your own label.
+
 ## Usage
 
 ### HTML
@@ -53,7 +55,6 @@
 
 | Slot                 | Description                                                |
 | -------------------- | ---------------------------------------------------------- |
-|                      | The label for the checkbox.                                |
 | `"checkedicon"`      | Allows overriding the default checked icon.                |
 | `"intermediateicon"` | If intermadiate state is used, allows overriding its icon. |
 | `"uncheckedicon"`    | Allows overriding the unchecked icon.                      |

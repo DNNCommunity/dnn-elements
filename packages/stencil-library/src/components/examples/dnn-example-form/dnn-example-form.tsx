@@ -245,9 +245,10 @@ export class DnnExampleForm {
                 helpText="Please enter the URL of your website."
                 name="website"
               />
-                <dnn-checkbox name="rememberMe" value="true">
+              <label>
+                <dnn-checkbox name="rememberMe" value="true" />
                   Remember me
-                </dnn-checkbox>
+              </label>
               <dnn-color-input
                 label="Favorite Color"
                 name="favoriteColor"

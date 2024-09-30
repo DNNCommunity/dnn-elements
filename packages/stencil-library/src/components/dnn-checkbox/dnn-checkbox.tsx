@@ -1,8 +1,8 @@
-import { Component, Element, Host, h, Prop, Event, EventEmitter, AttachInternals, Watch, State } from '@stencil/core';
+import { Component, Element, Host, h, Prop, Event, EventEmitter, AttachInternals, Watch, State, Listen } from '@stencil/core';
 import { CheckedState } from './types';
 
 /**
- * @slot - The label for the checkbox.
+ * @slot @deprecated - The label for the checkbox - Obsolete, implement your own label.
  * @slot checkedicon - Allows overriding the default checked icon.
  * @slot uncheckedicon - Allows overriding the unchecked icon.
  * @slot intermediateicon - If intermadiate state is used, allows overriding its icon.
@@ -30,6 +30,11 @@ export class DnnCheckbox {
 
   /** Fires up when the checkbox checked property changes. */
   @Event() checkedchange: EventEmitter<"checked" | "unchecked" | "intermediate">;
+
+  @Listen("click", { capture: true })
+  handleClick() {
+    this.changeState();
+  }
 
   @State() focused = false;
   
@@ -102,7 +107,6 @@ export class DnnCheckbox {
           onFocus={() => this.focused = true}
           onBlur={() => this.focused = false}
           class={`icon ${this.checked}`}
-          onClick={() => this.changeState()}
         >
           <div class="unchecked">
             <slot name="uncheckedicon">
@@ -120,7 +124,6 @@ export class DnnCheckbox {
             </slot>
           </div>
         </button>
-        <label htmlFor={this.el.id} onClick={() => this.changeState()}><slot></slot></label>
       </Host>
     );
   }
