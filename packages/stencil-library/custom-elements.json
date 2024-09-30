@@ -386,10 +386,6 @@
           ],
           "slots": [
             {
-              "name": " ",
-              "description": "The label for the checkbox."
-            },
-            {
               "name": "checkedicon",
               "description": "Allows overriding the default checked icon."
             },
