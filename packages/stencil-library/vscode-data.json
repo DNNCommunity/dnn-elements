@@ -904,6 +904,10 @@
           ]
         },
         {
+          "name": "rows",
+          "description": "Defines how many rows (lines of text) to initially show."
+        },
+        {
           "name": "value",
           "description": "Sets the value of the textarea."
         }

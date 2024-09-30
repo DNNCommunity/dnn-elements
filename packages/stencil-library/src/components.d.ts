@@ -678,6 +678,10 @@ export namespace Components {
          */
         "resizable": "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
         /**
+          * Defines how many rows (lines of text) to initially show.
+         */
+        "rows": number;
+        /**
           * Can be used to set a custom validity message.
          */
         "setCustomValidity": (message: string) => Promise<void>;
@@ -1970,6 +1974,10 @@ declare namespace LocalJSX {
           * Can be set to change how the user can resize the field.
          */
         "resizable"?: "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
+        /**
+          * Defines how many rows (lines of text) to initially show.
+         */
+        "rows"?: number;
         /**
           * Sets the value of the textarea.
          */
