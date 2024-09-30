@@ -130,6 +130,7 @@ export class DnnAutocomplete {
   
   private handleInput(e: Event) {
     const value = (e.target as HTMLInputElement).value;
+    this.value = value;
     var valid = this.inputField.checkValidity();
     this.valid = valid;
     this.valueInput.emit(value);
@@ -225,7 +226,7 @@ export class DnnAutocomplete {
         this.selectedIndex = Math.max(this.selectedIndex - 1, 0);
       }
     }
-    this.value = this.suggestions[this.selectedIndex]?.value;
+    this.value = this.suggestions[this.selectedIndex]?.value || this.value;
     if (e.key === "Enter") {
       var selectedItem = this.suggestions[this.selectedIndex];
       this.value = selectedItem.value;

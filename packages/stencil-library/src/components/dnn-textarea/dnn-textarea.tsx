@@ -84,6 +84,9 @@ export class DnnTextarea {
 
   componentWillLoad() {
     this.labelId = generateRandomId();
+  }
+
+  componentDidLoad() {
     this.textarea.style.minHeight = `${this.rows * 1.5}em`;
   }
 
