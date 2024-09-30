@@ -26,7 +26,8 @@ textarea{
   outline: none;
   background-color: transparent;
   color: var(--foreground);
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 1em);
+  height: calc(100% - 1em);
+  line-height: 1.5em;
   resize: none;
 }

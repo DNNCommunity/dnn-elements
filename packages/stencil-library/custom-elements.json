@@ -2078,6 +2078,15 @@
               "required": false
             },
             {
+              "name": "rows",
+              "type": {
+                "text": "number"
+              },
+              "description": "Defines how many rows (lines of text) to initially show.",
+              "default": "3",
+              "required": false
+            },
+            {
               "name": "value",
               "type": {
                 "text": "string"

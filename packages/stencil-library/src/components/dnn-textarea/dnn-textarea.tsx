@@ -42,6 +42,9 @@ export class DnnTextarea {
   /** Defines wheter the defined value is readonly. */
   @Prop() readonly: boolean;
 
+  /** Defines how many rows (lines of text) to initially show. */
+  @Prop() rows: number = 3;
+
   /** Fires when the using is inputing data (on keystrokes). */
   @Event() valueInput: EventEmitter<string>;
 
@@ -81,6 +84,7 @@ export class DnnTextarea {
 
   componentWillLoad() {
     this.labelId = generateRandomId();
+    this.textarea.style.minHeight = `${this.rows * 1.5}em`;
   }
 
   // eslint-disable-next-line @stencil-community/own-methods-must-be-private
@@ -162,6 +166,7 @@ export class DnnTextarea {
             maxlength={this.maxlength}
             readonly={this.readonly}
             aria-labelledby={this.labelId}
+            rows={this.rows}
           />
         </dnn-fieldset>
       </Host>
