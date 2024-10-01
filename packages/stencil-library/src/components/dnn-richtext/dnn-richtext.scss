@@ -1,5 +1,142 @@
-@import '~jodit/build/jodit.min.css';
+
+@import "../../../../../node_modules/jodit/es2021.en/jodit.fat.min.css";
 
 :host {
   display: block;
+
+  --jd-tooltip-color: #fff;
+  --jd-tooltip-background-color: rgba(0, 0, 0, .7);
+  --jd-tooltip-sfx-shadow: rgba(0, 0, 0, .15);
+  --jd-tooltip-border-width: 0;
+  --jd-tooltip-border-color: #e5e5e5;
+
+  --jd-popup-box-shadow: 0 4px 1px -2px rgba(76, 76, 76, .2), 0 3px 3px 0 rgba(76, 76, 76, .15), 0 1px 4px 0 rgba(76, 76, 76, .13);
+
+  --jd-em-color-border: #b6d4fe;
+  --jd-em-color-bg: #cfe2ff;
+  --jd-em-color-color: #084298;
+  --jd-em-border-radius: 0.375rem;
+  --jd-em-padding: 0.5rem 1rem;
+  --jd-em-font-size: 1rem;
+
+  --jd-button-trigger-size: 14px;
+
+  --jd-image-editor-resizer-border-color: #05ff00;
+  --jd-image-editor-resizer-target-size: padding-default;
+  --jd-image-editor-resizer-target-border-color: #383838;
+  --jd-image-editor-resizer-target-bg-color: #8c7878;
+
+  --jd-color-folder-title: #b1b1b1;
+
+  --jd-first-column: 31%;
+  --jd-cols: 4;
+  --jd-info-background: #e9e9e9;
+  --jd-icon-size: 12px;
+  --jd-col-size: 150px;
+
+  --jd-anl-color-new-line: var(--jd-color-border);
+  --jd-anl-handle-size: 20px;
+  --jd-anl-handle-offset: calc(100% - var(--jd-anl-handle-size));
+
+  --jd-color-picker-cell-size: 24px;
+
+  --jd-viewer-width: 70px;
+  --jd-viewer-height: 24px;
+  --jd-resizer-handle-size: 10px;
+  --jd-resizer-border-color: #98c1f1;
+  --jd-resizer-handle-color: #5ba4f3;
+  --jd-resizer-handle-hover-color: #537ebb;
+
+  --jd-height-search: 30px;
+  --jd-width-search: 320px;
+  --jd-width-search-input-box: 60%;
+  --jd-width-search-count-box: 15%;
+  --jd-transform-button-active: 0.95;
+  --jd-timeout-button-active: 0.1s;
+
+  --jd-color-white: #fff;
+  --jd-color-gray: #dadada;
+  --jd-color-gray-dark: #a5a5a5;
+  --jd-color-dark: #4c4c4c;
+  --jd-color-blue: #b5d6fd;
+  --jd-color-light-blue: rgba(181, 214, 253, .5);
+  --jd-color-red: #ff3b3b;
+  --jd-color-light-red: rgba(255, 59, 59, .4);
+  --jd-color-default: var(--jd-color-dark);
+  --jd-color-text: #222;
+  --jd-color-label: var(--jd-color-gray-dark);
+  --jd-color-error: var(--jd-color-red);
+  --jd-color-border: var(--jd-color-gray);
+  --jd-color-border-dark: var(--jd-color-dark);
+  --jd-color-border-selected: #1e88e5;
+  --jd-color-border-active: #b5b5b5;
+  --jd-color-selection: var(--jd-color-dark);
+  --jd-color-selection-area: #bdbdbd;
+  --jd-color-separator: var(--jd-color-border);
+  --jd-color-placeholder: var(--jd-color-gray-dark);
+  --jd-color-panel: #f9f9f9;
+  --jd-color-resizer: #c8c8c8;
+  --jd-color-background-default: var(--jd-color-white);
+  --jd-color-background-light-gray: #f5f5f6;
+  --jd-color-background-gray: var(--jd-color-gray);
+  --jd-color-background-gray-hover: #f8f8f8;
+  --jd-color-background-button-hover: #ecebe9;
+  --jd-color-background-button-hover-opacity30: hsla(40, 7%, 92%, .3);
+  --jd-color-background-progress: #b91f1f;
+  --jd-color-background-active: #2196f3;
+  --jd-color-background-selection: #b5d6fd;
+  --jd-color-text-selection: var(--jd-color-white);
+  --jd-color-background-selection-opacity50: rgba(181, 214, 253, .995);
+  --jd-color-source-area: #323232;
+  --jd-color-button-background-hover: #dcdcdc;
+  --jd-color-button-background-hover-opacity40: hsla(0, 0%, 86%, .4);
+  --jd-color-button-background-hover-opacity60: hsla(0, 0%, 86%, .6);
+  --jd-font-default: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, oxygen-sans, ubuntu, cantarell, "Helvetica Neue", sans-serif;
+  --jd-font-size-default: 14px;
+  --jd-font-size-small: 11px;
+  --jd-color-text-icons: rgba(0, 0, 0, .75);
+  --jd-color-icon: var(--jd-color-dark);
+  --jd-padding-default: 8px;
+  --jd-border-radius-default: 3px;
+  --jd-icon-tiny-size: 8px;
+  --jd-icon-xsmall-size: 10px;
+  --jd-icon-small-size: 12px;
+  --jd-icon-middle-size: 14px;
+  --jd-icon-large-size: 16px;
+  --jd-z-index-full-size: 100000;
+  --jd-z-index-popup: 10000001;
+  --jd-z-index-dialog-overlay: 20000003;
+  --jd-z-index-dialog: 20000004;
+  --jd-z-index-context-menu: 30000005;
+  --jd-z-index-tooltip: 30000006;
+  --jd-icon-loader-size: 48px;
+  --jd-width-element-default: 18px;
+  --jd-height-element-default: 18px;
+  --jd-dark-background-color: #575757;
+  --jd-dark-background-ligher: silver;
+  --jd-dark-background-darknes: #353535;
+  --jd-dark-border-color: #444;
+  --jd-dark-text-color: #d1cccc;
+  --jd-dark-text-color-opacity80: hsla(0, 5%, 81%, .8);
+  --jd-dark-text-color-opacity50: hsla(0, 5%, 81%, .5);
+  --jd-dark-icon-color: silver;
+  --jd-dark-toolbar-color: #5f5c5c;
+  --jd-dark-toolbar-seperator-color1: rgba(81, 81, 81, .41);
+  --jd-dark-toolbar-seperator-color2: #686767;
+  --jd-dark-toolbar-seperator-color-opacity80: hsla(0, 0%, 41%, .8);
+  --jd-dark-toolbar-seperator-color3: hsla(0, 0%, 41%, .75);
+  --jd-dark-color-border-selected: #152f5f;
+  --jd-width-default: 180px;
+  --jd-width-input-min: var(--jd-width-default);
+  --jd-input-height: 32px;
+  --jd-button-icon-size: 14px;
+  --jd-margin-v: 2px;
+  --jd-button-df-size: calc((var(--jd-button-icon-size) - 4px)*2);
+  --jd-button-size: calc(var(--jd-button-icon-size) + var(--jd-button-df-size) + var(--jd-margin-v)*2);
+  --jd-focus-input-box-shadow: 0 0 0 0.05rem rgba(0, 123, 255, .25);
+
+  --jd-switche-width: 60px;
+  --jd-switche-height: 32px;
+  --jd-switche-slider-margin: 4px;
+  --jd-switche-slider-size: calc(var(--jd-switche-height) - var(--jd-switche-slider-margin)*2);
 }

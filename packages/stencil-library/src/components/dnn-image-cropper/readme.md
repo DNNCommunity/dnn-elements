@@ -16,6 +16,7 @@ in an event that has a data-url of the image.
 | Property            | Attribute            | Description                                                                                                                                 | Type               | Default     |
 | ------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ----------- |
 | `height`            | `height`             | Sets the desired final image height.                                                                                                        | `number`           | `undefined` |
+| `name`              | `name`               | The name of the control when used in a form.                                                                                                | `string`           | `undefined` |
 | `preventUndersized` | `prevent-undersized` | When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry. | `boolean`          | `false`     |
 | `quality`           | `quality`            | Sets the output quality of the cropped image (number between 0 and 1).                                                                      | `number`           | `0.8`       |
 | `resx`              | --                   | Can be used to customize controls text. Some values support tokens, see default values for examples.                                        | `ImageCropperResx` | `undefined` |
@@ -24,9 +25,10 @@ in an event that has a data-url of the image.
 
 ## Events
 
-| Event              | Description                                                               | Type                  |
-| ------------------ | ------------------------------------------------------------------------- | --------------------- |
-| `imageCropChanged` | When the image crop changes, emits the dataurl for the new cropped image. | `CustomEvent<string>` |
+| Event                  | Description                                                                                                                                                                                                          | Type                  |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| `imageCropChanged`     | When the image crop changes, emits the dataurl for the new cropped image.                                                                                                                                            | `CustomEvent<string>` |
+| `imageFileCropChanged` | Emits both when a file is initially select and when the crop has changed. Compared to imageCropChanged, this event emits the file itself, which can be useful for uploading the file to a server including its name. | `CustomEvent<File>`   |
 
 
 ## Methods
@@ -44,6 +46,10 @@ Type: `Promise<void>`
 
 ## Dependencies
 
+### Used by
+
+ - [dnn-example-form](../examples/dnn-example-form)
+
 ### Depends on
 
 - [dnn-dropzone](../dnn-dropzone)
@@ -54,6 +60,7 @@ Type: `Promise<void>`
 graph TD;
   dnn-image-cropper --> dnn-dropzone
   dnn-image-cropper --> dnn-modal
+  dnn-example-form --> dnn-image-cropper
   style dnn-image-cropper fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

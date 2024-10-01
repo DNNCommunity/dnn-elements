@@ -2,12 +2,71 @@
   "version": 1.1,
   "tags": [
     {
+      "name": "dnn-autocomplete",
+      "description": {
+        "kind": "markdown",
+        "value": "Building a component that is flexible enough for multiple use cases is not easy. This component externalizes some of its behavior to make it more reusable. To use it effectivelly please read the usage examples carefuly."
+      },
+      "attributes": [
+        {
+          "name": "disabled",
+          "description": "Defines whether the field is disabled."
+        },
+        {
+          "name": "help-text",
+          "description": "Defines the help label displayed under the field."
+        },
+        {
+          "name": "label",
+          "description": "The label for this autocomplete."
+        },
+        {
+          "name": "name",
+          "description": "The name for this autocomplete when used in forms."
+        },
+        {
+          "name": "preload-threshold-pixels",
+          "description": "How many suggestions to preload in pixels of their height.\nThis is used to calculate the virtual scroll height and request\nmore items before they get into view."
+        },
+        {
+          "name": "required",
+          "description": "Defines whether the field requires having a value."
+        },
+        {
+          "name": "total-suggestions",
+          "description": "The total amount of suggestions for the given search query.\nThis can be used to show virtual scroll and pagination progressive feeding.\nThe needMoreItems event should be used to request more items."
+        },
+        {
+          "name": "value",
+          "description": "Defines the value for this autocomplete"
+        }
+      ]
+    },
+    {
       "name": "dnn-button",
       "description": {
         "kind": "markdown",
         "value": ""
       },
       "attributes": [
+        {
+          "name": "appearance",
+          "description": "Defines the look of the button.",
+          "values": [
+            {
+              "name": "danger"
+            },
+            {
+              "name": "primary"
+            },
+            {
+              "name": "secondary"
+            },
+            {
+              "name": "tertiary"
+            }
+          ]
+        },
         {
           "name": "confirm",
           "description": "Optionally add a confirmation dialog before firing the action."
@@ -27,6 +86,21 @@
         {
           "name": "disabled",
           "description": "Disables the button"
+        },
+        {
+          "name": "form-button-type",
+          "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.\nWarning: This will be deprecated in the next version and replaced with a new 'type' property.",
+          "values": [
+            {
+              "name": "button"
+            },
+            {
+              "name": "reset"
+            },
+            {
+              "name": "submit"
+            }
+          ]
         },
         {
           "name": "reversed",
@@ -49,7 +123,7 @@
         },
         {
           "name": "type",
-          "description": "Optional button style,\ncan be either primary, secondary or tertiary or danger and defaults to primary if not specified",
+          "description": "Optional button style,",
           "values": [
             {
               "name": "danger"
@@ -88,6 +162,10 @@
               "name": "unchecked"
             }
           ]
+        },
+        {
+          "name": "name",
+          "description": "The name to show in the formData (if using forms)."
         },
         {
           "name": "use-intermediate",
@@ -170,7 +248,7 @@
         },
         {
           "name": "name",
-          "description": "The name for this input, if not provided a random name will be assigned."
+          "description": "The name for this input if forms are used."
         },
         {
           "name": "readonly",
@@ -225,6 +303,75 @@
         {
           "name": "max-file-size",
           "description": "Max file size in bytes."
+        },
+        {
+          "name": "name",
+          "description": "The name of the field when used in a form."
+        }
+      ]
+    },
+    {
+      "name": "dnn-example-form",
+      "description": {
+        "kind": "markdown",
+        "value": "Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package."
+      },
+      "attributes": []
+    },
+    {
+      "name": "dnn-fieldset",
+      "description": {
+        "kind": "markdown",
+        "value": "A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features."
+      },
+      "attributes": [
+        {
+          "name": "disabled",
+          "description": "If true, the fieldset will display as disabled."
+        },
+        {
+          "name": "float-label",
+          "description": "If true, the label will float in the container, set false to show it on top."
+        },
+        {
+          "name": "focused",
+          "description": "If true the fieldset will display as focused."
+        },
+        {
+          "name": "help-text",
+          "description": "Can be used to show some help text about this field."
+        },
+        {
+          "name": "invalid",
+          "description": "If true, the  fieldset will display as invalid."
+        },
+        {
+          "name": "label",
+          "description": "Sets the text of the fieldset label (caption)."
+        },
+        {
+          "name": "resizable",
+          "description": "Can be set to specify if the fieldset can be resized by the user.",
+          "values": [
+            {
+              "name": "block"
+            },
+            {
+              "name": "both"
+            },
+            {
+              "name": "horizontal"
+            },
+            {
+              "name": "inline"
+            },
+            {
+              "name": "none"
+            },
+            {
+              "name": "vertical"
+            }
+          ]
         }
       ]
     },
@@ -238,6 +385,10 @@
         {
           "name": "height",
           "description": "Sets the desired final image height."
+        },
+        {
+          "name": "name",
+          "description": "The name of the control when used in a form."
         },
         {
           "name": "prevent-undersized",
@@ -270,7 +421,7 @@
         },
         {
           "name": "disable-validity-reporting",
-          "description": "If true, the browser default validation message will be hidden."
+          "description": ""
         },
         {
           "name": "disabled",
@@ -306,7 +457,7 @@
         },
         {
           "name": "name",
-          "description": "The name for this input, if not provided a random name will be assigned."
+          "description": "The name for this input when used in forms."
         },
         {
           "name": "pattern",
@@ -523,6 +674,10 @@
           ]
         },
         {
+          "name": "name",
+          "description": "The name of the control to use for forms."
+        },
+        {
           "name": "value",
           "description": "Sets the code contained in the editor"
         }
@@ -565,6 +720,10 @@
       },
       "attributes": [
         {
+          "name": "name",
+          "description": "Name of the field when used in a form."
+        },
+        {
           "name": "value",
           "description": "Sets the value of the content of the editor."
         }
@@ -578,8 +737,12 @@
       },
       "attributes": [
         {
+          "name": "debounce-time",
+          "description": "How many milliseconds to wait before firing the queryChanged event."
+        },
+        {
           "name": "debounced",
-          "description": "Debounces the queryChanged by 500ms."
+          "description": ""
         },
         {
           "name": "placeholder",
@@ -600,7 +763,7 @@
       "attributes": [
         {
           "name": "disable-validity-reporting",
-          "description": "If true, the browser default validation message will be hidden."
+          "description": ""
         },
         {
           "name": "disabled",
@@ -616,7 +779,7 @@
         },
         {
           "name": "name",
-          "description": "The name for this input, if not provided a random name will be assigned."
+          "description": "The name for this input, if used in forms."
         },
         {
           "name": "required",
@@ -674,6 +837,83 @@
       "attributes": []
     },
     {
+      "name": "dnn-textarea",
+      "description": {
+        "kind": "markdown",
+        "value": "A custom textarea component."
+      },
+      "attributes": [
+        {
+          "name": "autocomplete",
+          "description": "Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete."
+        },
+        {
+          "name": "disabled",
+          "description": "Defines whether the field is disabled."
+        },
+        {
+          "name": "help-text",
+          "description": "Defines the help label displayed under the field."
+        },
+        {
+          "name": "label",
+          "description": "The label for this input."
+        },
+        {
+          "name": "maxlength",
+          "description": "Defines the maximum amount of charaters."
+        },
+        {
+          "name": "minlength",
+          "description": "Defines the minimum amount of charaters."
+        },
+        {
+          "name": "name",
+          "description": "The name for this input when used in forms."
+        },
+        {
+          "name": "readonly",
+          "description": "Defines wheter the defined value is readonly."
+        },
+        {
+          "name": "required",
+          "description": "Defines whether the field requires having a value."
+        },
+        {
+          "name": "resizable",
+          "description": "Can be set to change how the user can resize the field.",
+          "values": [
+            {
+              "name": "block"
+            },
+            {
+              "name": "both"
+            },
+            {
+              "name": "horizontal"
+            },
+            {
+              "name": "inline"
+            },
+            {
+              "name": "none"
+            },
+            {
+              "name": "vertical"
+            }
+          ]
+        },
+        {
+          "name": "rows",
+          "description": "Defines how many rows (lines of text) to initially show."
+        },
+        {
+          "name": "value",
+          "description": "Sets the value of the textarea."
+        }
+      ]
+    },
+    {
       "name": "dnn-toggle",
       "description": {
         "kind": "markdown",
@@ -687,6 +927,14 @@
         {
           "name": "disabled",
           "description": "If 'true' the toggle is not be interacted with."
+        },
+        {
+          "name": "name",
+          "description": "The field name to use in forms."
+        },
+        {
+          "name": "value",
+          "description": "The value to post when used in forms."
         }
       ]
     },

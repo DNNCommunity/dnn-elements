@@ -67,8 +67,8 @@ table{
       }
       td{
         text-align: center;
-        dnn-checkbox{
-          span{
+        label{
+          .hidden{
             display: none;
           }
         }

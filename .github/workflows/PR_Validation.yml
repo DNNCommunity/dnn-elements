@@ -25,19 +25,14 @@ on:
       - development
 
 jobs:
-  pr-validation:
-    name: pr-validation
+  ubuntu-latest:
+    name: ubuntu-latest
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: Cache .nuke/temp, ~/.nuget/packages
-        uses: actions/cache@v2
+      - uses: actions/checkout@v4
         with:
-          path: |
-            .nuke/temp
-            ~/.nuget/packages
-          key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj') }}
-      - name: Run './build.sh Compile'
-        run: ./build.sh Compile
+          fetch-depth: 0
+      - name: 'Run: Compile'
+        run: ./build.cmd Compile
         env:
           GithubToken: ${{ secrets.GITHUB_TOKEN }}

@@ -1,7 +1,8 @@
-import { Component, Element, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, Element, Host, h, Prop, Event, EventEmitter, AttachInternals, Watch, State, Listen } from '@stencil/core';
+import { CheckedState } from './types';
 
 /**
- * @slot - The label for the checkbox.
+ * @slot @deprecated - The label for the checkbox - Obsolete, implement your own label.
  * @slot checkedicon - Allows overriding the default checked icon.
  * @slot uncheckedicon - Allows overriding the unchecked icon.
  * @slot intermediateicon - If intermadiate state is used, allows overriding its icon.
@@ -10,21 +11,57 @@ import { Component, Element, Host, h, Prop, Event, EventEmitter } from '@stencil
   tag: 'dnn-checkbox',
   styleUrl: 'dnn-checkbox.scss',
   shadow: true,
+  formAssociated: true,
 })
 export class DnnCheckbox {
   @Element() el: HTMLDnnCheckboxElement;
 
   /** Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined) */
-  @Prop({mutable: true}) checked: "checked" | "unchecked" | "intermediate" = "unchecked";
+  @Prop({mutable: true}) checked: CheckedState = "unchecked";
 
   /** Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state) */
   @Prop() useIntermediate: boolean = false;
 
   /** The value for this checkbox (not to be confused with its checked state). */
-  @Prop() value: string;
+  @Prop() value: string = "on";
+
+  /** The name to show in the formData (if using forms). */
+  @Prop() name: string;
 
   /** Fires up when the checkbox checked property changes. */
   @Event() checkedchange: EventEmitter<"checked" | "unchecked" | "intermediate">;
+
+  @Listen("click", { capture: true })
+  handleClick() {
+    this.changeState();
+  }
+
+  @State() focused = false;
+  
+  @AttachInternals() internals: ElementInternals;
+  
+  private originalChecked: CheckedState;
+  private button: HTMLButtonElement;
+
+  componentWillLoad() {
+    this.originalChecked = this.checked;
+    this.internals.setFormValue(this.checked);
+  }
+
+  @Watch("checked")
+  handleCheckedChange(newValue: CheckedState, oldValue: CheckedState) {
+    if (newValue !== oldValue && this.checked == "checked") {
+      var data = new FormData();
+      data.append(this.name, this.value);
+      this.internals.setFormValue(data);
+    }
+  }
+
+  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+  formResetCallback() {
+    this.internals.setValidity({});
+    this.checked = this.originalChecked;
+  }
 
   private changeState(): void {
     if (!this.useIntermediate){
@@ -60,10 +97,16 @@ export class DnnCheckbox {
 
   render() {
     return (
-      <Host>
+      <Host
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => this.button.focus()}
+        onBlur={() => this.button.blur()}
+      >
         <button
+          ref={el => this.button = el}
+          onFocus={() => this.focused = true}
+          onBlur={() => this.focused = false}
           class={`icon ${this.checked}`}
-          onClick={() => this.changeState()}
         >
           <div class="unchecked">
             <slot name="uncheckedicon">
@@ -81,7 +124,6 @@ export class DnnCheckbox {
             </slot>
           </div>
         </button>
-        <label htmlFor={this.el.id} onClick={() => this.changeState()}><slot></slot></label>
       </Host>
     );
   }

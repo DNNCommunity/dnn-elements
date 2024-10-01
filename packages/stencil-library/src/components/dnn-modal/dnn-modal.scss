@@ -56,7 +56,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        &:focus, &:hover{
+        &:focus-visible, &:hover{
           box-shadow: 0 0 2px 2px var(--dnn-color-primary, blue);
         }
         svg{

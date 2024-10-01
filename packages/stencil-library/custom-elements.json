@@ -3,6 +3,179 @@
   "modules": [
     {
       "kind": "javascript-module",
+      "path": "src/components/dnn-autocomplete/dnn-autocomplete.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-autocomplete.tsx",
+          "tagName": "dnn-autocomplete",
+          "description": "Building a component that is flexible enough for multiple use cases is not easy. This component externalizes some of its behavior to make it more reusable. To use it effectivelly please read the usage examples carefuly.",
+          "attributes": [
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines whether the field is disabled.",
+              "required": false
+            },
+            {
+              "name": "help-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "Defines the help label displayed under the field.",
+              "required": false
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "The label for this autocomplete.",
+              "required": false
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name for this autocomplete when used in forms.",
+              "required": false
+            },
+            {
+              "name": "preload-threshold-pixels",
+              "type": {
+                "text": "number"
+              },
+              "description": "How many suggestions to preload in pixels of their height.\nThis is used to calculate the virtual scroll height and request\nmore items before they get into view.",
+              "default": "1000",
+              "required": false
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines whether the field requires having a value.",
+              "required": false
+            },
+            {
+              "name": "total-suggestions",
+              "type": {
+                "text": "number"
+              },
+              "description": "The total amount of suggestions for the given search query.\nThis can be used to show virtual scroll and pagination progressive feeding.\nThe needMoreItems event should be used to request more items.",
+              "required": false
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "Defines the value for this autocomplete",
+              "required": false
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "renderSuggestion",
+              "type": {
+                "text": "(suggestion: DnnAutocompleteSuggestion) => HTMLElement"
+              },
+              "description": "Callback to render suggestions, if not provided, only the label will be rendered.",
+              "required": false
+            },
+            {
+              "kind": "field",
+              "name": "suggestions",
+              "type": {
+                "text": "DnnAutocompleteSuggestion[]"
+              },
+              "description": "Sets the list of suggestions.",
+              "default": "[]",
+              "required": false
+            },
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "description": "Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState",
+              "signature": "checkValidity() => Promise<ValidityState>"
+            },
+            {
+              "kind": "method",
+              "name": "setCustomValidity",
+              "description": "Can be used to set a custom validity message.",
+              "signature": "setCustomValidity(message: string) => Promise<void>"
+            }
+          ],
+          "events": [
+            {
+              "name": "itemSelected",
+              "type": {
+                "text": "string"
+              },
+              "description": "Fires when an item is selected."
+            },
+            {
+              "name": "needMoreItems",
+              "type": {
+                "text": "NeedMoreItemsEventArgs"
+              },
+              "description": "Fires when the component needs to display more items in the suggestions."
+            },
+            {
+              "name": "searchQueryChanged",
+              "type": {
+                "text": "string"
+              },
+              "description": "Fires when the search query has changed.\nThis is almost like valueInput, but it is debounced\nand can be used to trigger a search query without overloading\nAPI endpoints while typing."
+            },
+            {
+              "name": "valueChange",
+              "type": {
+                "text": "number | string | string[]"
+              },
+              "description": "Fires when the value has changed and the user exits the input."
+            },
+            {
+              "name": "valueInput",
+              "type": {
+                "text": "number | string | string[]"
+              },
+              "description": "Fires when the using is inputing data (on keystrokes)."
+            }
+          ],
+          "slots": [],
+          "cssProperties": [
+            {
+              "name": "--background-color",
+              "description": "Defines the background color."
+            },
+            {
+              "name": "--control-radius",
+              "description": "Defines the radius for the control corners."
+            },
+            {
+              "name": "--danger-color",
+              "description": "Defines the danger color used for invalid data."
+            },
+            {
+              "name": "--focus-color",
+              "description": "Defines the color when the component is focused."
+            },
+            {
+              "name": "--foreground-color",
+              "description": "Defines the foreground color."
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/dnn-button/dnn-button.tsx",
       "declarations": [
         {
@@ -11,6 +184,15 @@
           "tagName": "dnn-button",
           "description": "",
           "attributes": [
+            {
+              "name": "appearance",
+              "type": {
+                "text": "\"danger\" | \"primary\" | \"secondary\" | \"tertiary\""
+              },
+              "description": "Defines the look of the button.",
+              "default": "'primary'",
+              "required": false
+            },
             {
               "name": "confirm",
               "type": {
@@ -57,6 +239,15 @@
               "required": false
             },
             {
+              "name": "form-button-type",
+              "type": {
+                "text": "\"button\" | \"reset\" | \"submit\""
+              },
+              "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.\nWarning: This will be deprecated in the next version and replaced with a new 'type' property.",
+              "default": "'button'",
+              "required": false
+            },
+            {
               "name": "reversed",
               "type": {
                 "text": "boolean"
@@ -79,7 +270,7 @@
               "type": {
                 "text": "\"danger\" | \"primary\" | \"secondary\" | \"tertiary\""
               },
-              "description": "Optional button style,\ncan be either primary, secondary or tertiary or danger and defaults to primary if not specified",
+              "description": "Optional button style,",
               "default": "'primary'",
               "required": false
             }
@@ -157,6 +348,14 @@
               "required": false
             },
             {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name to show in the formData (if using forms).",
+              "required": false
+            },
+            {
               "name": "use-intermediate",
               "type": {
                 "text": "boolean"
@@ -171,6 +370,7 @@
                 "text": "string"
               },
               "description": "The value for this checkbox (not to be confused with its checked state).",
+              "default": "\"on\"",
               "required": false
             }
           ],
@@ -185,10 +385,6 @@
             }
           ],
           "slots": [
-            {
-              "name": " ",
-              "description": "The label for the checkbox."
-            },
             {
               "name": "checkedicon",
               "description": "Allows overriding the default checked icon."
@@ -385,7 +581,7 @@
               "type": {
                 "text": "string"
               },
-              "description": "The name for this input, if not provided a random name will be assigned.",
+              "description": "The name for this input if forms are used.",
               "required": false
             },
             {
@@ -565,6 +761,14 @@
               },
               "description": "Max file size in bytes.",
               "required": false
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name of the field when used in a form.",
+              "required": false
             }
           ],
           "members": [
@@ -617,6 +821,173 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/examples/dnn-example-form/dnn-example-form.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-example-form.tsx",
+          "tagName": "dnn-example-form",
+          "description": "Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.",
+          "attributes": [],
+          "members": [],
+          "events": [],
+          "slots": [],
+          "cssProperties": [],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/dnn-fieldset/dnn-fieldset.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-fieldset.tsx",
+          "tagName": "dnn-fieldset",
+          "description": "A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.",
+          "attributes": [
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, the fieldset will display as disabled.",
+              "required": false
+            },
+            {
+              "name": "float-label",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, the label will float in the container, set false to show it on top.",
+              "required": false
+            },
+            {
+              "name": "focused",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true the fieldset will display as focused.",
+              "required": false
+            },
+            {
+              "name": "help-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "Can be used to show some help text about this field.",
+              "required": false
+            },
+            {
+              "name": "invalid",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, the  fieldset will display as invalid.",
+              "required": false
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "Sets the text of the fieldset label (caption).",
+              "required": false
+            },
+            {
+              "name": "resizable",
+              "type": {
+                "text": "\"block\" | \"both\" | \"horizontal\" | \"inline\" | \"none\" | \"vertical\""
+              },
+              "description": "Can be set to specify if the fieldset can be resized by the user.",
+              "default": "\"none\"",
+              "required": false
+            }
+          ],
+          "members": [
+            {
+              "kind": "method",
+              "name": "disable",
+              "description": "Sets the fieldset to a disabled state.",
+              "signature": "disable() => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "enable",
+              "description": "Sets the fieldset to an enabled state.",
+              "signature": "enable() => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "pinLabel",
+              "description": "Places the label on the top of the container.",
+              "signature": "pinLabel() => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "setBlurred",
+              "description": "Unsets the fieldset focused state.",
+              "signature": "setBlurred() => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "setFocused",
+              "description": "Sets the fieldset to the focused state.",
+              "signature": "setFocused() => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "setValidity",
+              "description": "Sets the validity of the field.",
+              "signature": "setValidity(valid: boolean, message?: string) => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "unpinLabel",
+              "description": "Places the label in the vertical middle of the container.",
+              "signature": "unpinLabel() => Promise<void>"
+            }
+          ],
+          "events": [],
+          "slots": [
+            {
+              "name": "label-prefix",
+              "description": "Can be used to inject content before the labe."
+            },
+            {
+              "name": "label-suffix",
+              "description": "Can be used to inject content after the label."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--background",
+              "description": "Defines the background color."
+            },
+            {
+              "name": "--control-radius",
+              "description": "Defines the radius for the control corners."
+            },
+            {
+              "name": "--danger-color",
+              "description": "Defines the danger color used for invalid data."
+            },
+            {
+              "name": "--focus-color",
+              "description": "Defines the color when the component is focused."
+            },
+            {
+              "name": "--foreground",
+              "description": "Defines the foreground color."
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/dnn-image-cropper/dnn-image-cropper.tsx",
       "declarations": [
         {
@@ -631,6 +1002,14 @@
                 "text": "number"
               },
               "description": "Sets the desired final image height.",
+              "required": false
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name of the control when used in a form.",
               "required": false
             },
             {
@@ -684,6 +1063,13 @@
                 "text": "string"
               },
               "description": "When the image crop changes, emits the dataurl for the new cropped image."
+            },
+            {
+              "name": "imageFileCropChanged",
+              "type": {
+                "text": "File"
+              },
+              "description": "Emits both when a file is initially select and when the crop has changed.\nCompared to imageCropChanged, this event emits the file itself, which can be useful for uploading the file to a server including its name."
             }
           ],
           "slots": [],
@@ -724,7 +1110,7 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "If true, the browser default validation message will be hidden.",
+              "description": "",
               "required": false
             },
             {
@@ -796,7 +1182,7 @@
               "type": {
                 "text": "string"
               },
-              "description": "The name for this input, if not provided a random name will be assigned.",
+              "description": "The name for this input when used in forms.",
               "required": false
             },
             {
@@ -859,7 +1245,7 @@
             {
               "kind": "method",
               "name": "setCustomValidity",
-              "description": "",
+              "description": "Can be used to set a custom validity message.",
               "signature": "setCustomValidity(message: string) => Promise<void>"
             }
           ],
@@ -1029,11 +1415,20 @@
               "required": false
             },
             {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name of the control to use for forms.",
+              "required": false
+            },
+            {
               "name": "value",
               "type": {
                 "text": "string"
               },
               "description": "Sets the code contained in the editor",
+              "default": "\"\"",
               "required": false
             }
           ],
@@ -1231,6 +1626,14 @@
           "description": "",
           "attributes": [
             {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "Name of the field when used in a form.",
+              "required": false
+            },
+            {
               "name": "value",
               "type": {
                 "text": "string"
@@ -1283,11 +1686,20 @@
           "description": "",
           "attributes": [
             {
+              "name": "debounce-time",
+              "type": {
+                "text": "number"
+              },
+              "description": "How many milliseconds to wait before firing the queryChanged event.",
+              "default": "500",
+              "required": false
+            },
+            {
               "name": "debounced",
               "type": {
                 "text": "boolean"
               },
-              "description": "Debounces the queryChanged by 500ms.",
+              "description": "",
               "default": "true",
               "required": false
             },
@@ -1341,7 +1753,7 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "If true, the browser default validation message will be hidden.",
+              "description": "",
               "required": false
             },
             {
@@ -1373,7 +1785,7 @@
               "type": {
                 "text": "string"
               },
-              "description": "The name for this input, if not provided a random name will be assigned.",
+              "description": "The name for this input, if used in forms.",
               "required": false
             },
             {
@@ -1393,7 +1805,14 @@
               "required": false
             }
           ],
-          "members": [],
+          "members": [
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "description": "Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState",
+              "signature": "checkValidity() => Promise<ValidityState>"
+            }
+          ],
           "events": [
             {
               "name": "valueChange",
@@ -1564,6 +1983,173 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/dnn-textarea/dnn-textarea.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-textarea.tsx",
+          "tagName": "dnn-textarea",
+          "description": "A custom textarea component.",
+          "attributes": [
+            {
+              "name": "autocomplete",
+              "type": {
+                "text": "string"
+              },
+              "description": "Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.",
+              "default": "\"off\"",
+              "required": false
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines whether the field is disabled.",
+              "required": false
+            },
+            {
+              "name": "help-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "Defines the help label displayed under the field.",
+              "required": false
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "The label for this input.",
+              "required": false
+            },
+            {
+              "name": "maxlength",
+              "type": {
+                "text": "number"
+              },
+              "description": "Defines the maximum amount of charaters.",
+              "required": false
+            },
+            {
+              "name": "minlength",
+              "type": {
+                "text": "number"
+              },
+              "description": "Defines the minimum amount of charaters.",
+              "required": false
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name for this input when used in forms.",
+              "required": false
+            },
+            {
+              "name": "readonly",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines wheter the defined value is readonly.",
+              "required": false
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Defines whether the field requires having a value.",
+              "required": false
+            },
+            {
+              "name": "resizable",
+              "type": {
+                "text": "\"block\" | \"both\" | \"horizontal\" | \"inline\" | \"none\" | \"vertical\""
+              },
+              "description": "Can be set to change how the user can resize the field.",
+              "default": "\"block\"",
+              "required": false
+            },
+            {
+              "name": "rows",
+              "type": {
+                "text": "number"
+              },
+              "description": "Defines how many rows (lines of text) to initially show.",
+              "default": "3",
+              "required": false
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "Sets the value of the textarea.",
+              "required": false
+            }
+          ],
+          "members": [
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "description": "Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState",
+              "signature": "checkValidity() => Promise<ValidityState>"
+            },
+            {
+              "kind": "method",
+              "name": "setCustomValidity",
+              "description": "Can be used to set a custom validity message.",
+              "signature": "setCustomValidity(message: string) => Promise<void>"
+            }
+          ],
+          "events": [
+            {
+              "name": "valueChange",
+              "type": {
+                "text": "string"
+              },
+              "description": "Fires when the value has changed and the user exits the input."
+            },
+            {
+              "name": "valueInput",
+              "type": {
+                "text": "string"
+              },
+              "description": "Fires when the using is inputing data (on keystrokes)."
+            }
+          ],
+          "slots": [],
+          "cssProperties": [
+            {
+              "name": "--background",
+              "description": "Defines the background color."
+            },
+            {
+              "name": "--control-radius",
+              "description": "Defines the radius for the control corners."
+            },
+            {
+              "name": "--danger-color",
+              "description": "Defines the danger color used for invalid data."
+            },
+            {
+              "name": "--focus-color",
+              "description": "Defines the color when the component is focused."
+            },
+            {
+              "name": "--foreground",
+              "description": "Defines the foreground color."
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/dnn-toggle/dnn-toggle.tsx",
       "declarations": [
         {
@@ -1588,6 +2174,23 @@
               },
               "description": "If 'true' the toggle is not be interacted with.",
               "default": "false",
+              "required": false
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The field name to use in forms.",
+              "required": false
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "The value to post when used in forms.",
+              "default": "\"on\"",
               "required": false
             }
           ],

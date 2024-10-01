@@ -1,17 +1,19 @@
-import { Component, Element, Host, Prop, h, State, Event, EventEmitter } from '@stencil/core';
+import { Component, Element, Host, Prop, h, State, Event, EventEmitter, AttachInternals, Method } from '@stencil/core';
+import { generateRandomId } from '../../utilities/stringUtilities';
 
 @Component({
   tag: 'dnn-select',
   styleUrl: 'dnn-select.scss',
   shadow: true,
+  formAssociated: true,
 })
 export class DnnSelect {
 
   /** The label for this input. */
   @Prop() label: string;
 
-  /** The name for this input, if not provided a random name will be assigned. */
-  @Prop({mutable: true}) name: string;
+  /** The name for this input, if used in forms. */
+  @Prop() name: string;
 
   /** Defines whether the field requires having a value. */
   @Prop() required: boolean;
@@ -22,13 +24,13 @@ export class DnnSelect {
   /** Defines whether the field is disabled. */
   @Prop() disabled: boolean;
   
-  /** If true, the browser default validation message will be hidden. */
+  /** @deprecated This control has its own validatin reporting, will be removed in v0.25.0 */
   @Prop() disableValidityReporting: boolean;
   
   /** The value of the input. */
   @Prop({mutable: true, reflect:true}) value: string;
   
-  @Element() el: HTMLElement;
+  @Element() el: HTMLDnnSelectElement;
   
   @State() focused: boolean = false;
   @State() valid = true;
@@ -36,16 +38,29 @@ export class DnnSelect {
 
   /** Fires when the value has changed and the user exits the input. */
   @Event() valueChange: EventEmitter<string>;
-
+  
+  /** Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState */
+  @Method()
+  async checkValidity() {
+    var validity = this.select.checkValidity();
+    if (!validity) {
+      this.fieldset.setValidity(false, this.select.validationMessage);
+    }
+    return this.select.validity;
+  }
+  
+  @AttachInternals() internals: ElementInternals;
+  
   private slot: HTMLSlotElement;
   private select: HTMLSelectElement;
   private observer: MutationObserver;
-
+  private labelId: string;
+  private originalValue: string;
+  private fieldset: HTMLDnnFieldsetElement;
+  
   componentWillLoad() {
-    if (this.name === undefined)
-    {
-      this.name = `dnn-select-${Math.floor(Math.random() * 1000000)}`;
-    }
+    this.originalValue = this.value;
+    this.labelId = generateRandomId();
     this.observer = new MutationObserver((mutations) => {
       for (let mutation of mutations) {
         if (mutation.type === 'childList') {
@@ -57,9 +72,18 @@ export class DnnSelect {
     const config = { attributes: true, childList: true, subtree: true };
     this.observer.observe(this.el, config);
   }
-
+  
   componentDidLoad() {
     this.applySlottedItemsToSelect();
+    this.setFormValue();
+  }
+
+  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+  formResetCallback() {
+    this.internals.setValidity({});
+    this.value = this.originalValue;
+    this.internals.setFormValue("");
+    this.select.selectedIndex = -1;
   }
 
   private applySlottedItemsToSelect () {
@@ -70,35 +94,30 @@ export class DnnSelect {
         this.select.appendChild(optionElement);
       }
     });
-
   }
 
-  private getContainerClasses() {
-    const classes = ["container"];
-
-    if (this.focused) {
-      classes.push("focused");
+  private setFormValue(){
+    if (this.name != undefined){
+      var data = new FormData();
+      data.append(this.name, this.value);
+      this.internals.setFormValue(data);
     }
-
-    if (!this.valid){
-      classes.push("invalid");
-    }
-
-    if (this.disabled) {
-      classes.push("disabled");
-    }
-
-    return classes.join(" ");
   }
 
   private handleChange(value: string) {
     this.value = value;
     var valid = this.select.checkValidity();
     this.valid = valid;
-    if (!this.disableValidityReporting) {
-      this.select.reportValidity();
-    }
     this.valueChange.emit(this.value);
+    this.setFormValue();
+    if (this.valid){
+      this.internals.setValidity({});
+      this.fieldset.setValidity(true);
+    }
+    else{
+      this.internals.setValidity({customError: true}, this.select.validationMessage);
+      this.fieldset.setValidity(false, this.select.validationMessage);
+    }
   }
 
   private handleInvalid(): void {
@@ -108,27 +127,40 @@ export class DnnSelect {
     }
   }
 
+  private handleBlur(): void {
+    this.focused = false
+    var validity = this.select.checkValidity();
+    this.valid = validity;
+    this.fieldset.setValidity(validity, this.select.validationMessage);
+    this.internals.setValidity(this.select.validity, this.select.validationMessage);
+  }
+
   render() {
     return (
-      <Host>
-        <div
-          class={this.getContainerClasses()}
+      <Host
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => this.select.focus()}
+        onBlur={() => this.select.blur()}
+      >
+        <dnn-fieldset
+          invalid={!this.valid}
+          focused={this.focused}
+          label={`${this.label ?? ""}${this.required ? " *" : ""}`}
+          helpText={this.helpText}
+          id={this.labelId}
           onClick={() => !this.focused && this.select.focus()}
+          ref={el => this.fieldset = el}
         >
           <div class="inner-container">
-            {this.label &&
-              <label htmlFor={this.name}>
-                {`${this.label}${this.required ? " *" : ""}`}
-              </label>
-            }
             <select
               ref={el => this.select = el}
               onFocus={() => this.focused = true}
-              onBlur={() => this.focused = false}
+              onBlur={() => this.handleBlur()}
               onChange={e => this.handleChange((e.target as HTMLSelectElement).value)}
               onInvalid={() => this.handleInvalid()}
               required={this.required}
               disabled={this.disabled}
+              aria-labelledby={this.labelId}
             >
               <slot ref={el => this.slot = (el as HTMLSlotElement)}></slot>
             </select>
@@ -138,17 +170,8 @@ export class DnnSelect {
               </svg>
             }
           </div>
-        </div>
-        {!this.valid && this.customValidityMessage &&
-          <div class="error-message">
-            {this.customValidityMessage}
-          </div>
-        }
-        {this.valid &&
-          <div class="help-text">{this.helpText}</div>
-        }
+        </dnn-fieldset>
       </Host>
     );
   }
-
 }

@@ -1,5 +1,5 @@
-import { Component, Host, h, Event, EventEmitter, Watch, Prop } from '@stencil/core';
-import { Debounce } from '../../utilities/debounce';
+import { Component, Host, h, Event, EventEmitter, Watch, Prop, State } from '@stencil/core';
+
 @Component({
   tag: 'dnn-searchbox',
   styleUrl: 'dnn-searchbox.scss',
@@ -13,9 +13,15 @@ export class DnnSearchbox {
   @Prop() placeholder?: string = "";
 
   /**
+   * @deprecated Use debounceTime (or debounce-time) instead. Will be removed in v0.25.0
    * Debounces the queryChanged by 500ms.
    */
   @Prop() debounced: boolean = true;
+
+  /**
+   * How many milliseconds to wait before firing the queryChanged event.
+   */
+  @Prop() debounceTime: number = 500;
 
   /** Sets the query */
   @Prop({mutable: true}) query: string = "";
@@ -25,32 +31,36 @@ export class DnnSearchbox {
    * The data passed is the new query.
    */
   @Event() queryChanged: EventEmitter<string>;
-
+  
   @Watch('query')
-  fireQueryChanged(){
-    if (this.debounced){
-      this.debouncedHandleQueryChanged();
-    }
-    else{
-      this.handleQueryChanged();
-    }
+  handleQueryChanged(){
+    clearTimeout(this.debounceTimer);
+    this.debounceTimer = setTimeout(() => {
+      this.queryChanged.emit(this.query);
+    }, this.debounceTime);
   }
   
-  private handleQueryChanged(){
-    this.queryChanged.emit(this.query);
-  }
+  @State() focused: any;
 
-  @Debounce(500)
-  private debouncedHandleQueryChanged(){
-    this.handleQueryChanged();
-  }
+  private inputField: HTMLInputElement;
+  
+  private debounceTimer: any = null;
 
   render() {
     return (
-      <Host>
-        <input type="text" value={this.query}
+      <Host
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => this.inputField.focus()}
+        onBlur={() => this.inputField.blur()}
+      >
+        <input
+          ref={el => this.inputField = el}
+          type="text"
+          value={this.query}
           placeholder={this.placeholder}
           onInput={e => this.query = (e.target as HTMLInputElement).value}
+          onFocus={() => this.focused = true}
+          onBlur={() => this.focused = false}
         />
         {this.query !== "" ?
           <button class="svg clear"

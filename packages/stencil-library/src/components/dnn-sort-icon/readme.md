@@ -5,6 +5,27 @@
 <!-- Auto Generated Below -->
 
 
+## Usage
+
+### HTML
+
+```html
+<dnn-sort-icon
+    sort-direction="asc">
+</dnn-sort-icon>
+```
+
+
+### JSX-TSX
+
+```tsx
+<dnn-sort-icon
+    sortDirection="asc">
+</dnn-sort-icon>
+```
+
+
+
 ## Properties
 
 | Property        | Attribute        | Description                        | Type                        | Default  |

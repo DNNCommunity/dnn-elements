@@ -26,7 +26,8 @@ export class DnnTreeviewItem {
 
   /** Manages state for whether or not item has children. */
   @State() hasChildren: boolean = false;
-
+  @State() focused = false;
+  
   /** Watch expanded Prop */
   @Watch('expanded')
   watchExpanded(expanded: boolean) {
@@ -39,10 +40,10 @@ export class DnnTreeviewItem {
     this.expander.classList.remove("expanded");
     this.collapsible.expanded = false;
   }
-      
-  
+
   private childElement!: HTMLDivElement;
   private collapsible!: HTMLDnnCollapsibleElement;
+  private button: HTMLButtonElement;
 
   componentDidLoad() {
     requestAnimationFrame(() => {
@@ -73,13 +74,28 @@ export class DnnTreeviewItem {
     this.userCollapsed.emit();
   }
 
+  private getTabIndex(): any {
+    if (!this.hasChildren){
+      return -1;
+    }
+
+    return this.focused ? -1 : 0
+  }
+
   render() {
     return (
-      <Host>
+      <Host
+        tabIndex={this.getTabIndex()}
+        onFocus={() => this.button?.focus()}
+        onBlur={() => this.button?.blur()}
+      >
         <div class="expander" ref={el => this.expander = el}>
           {this.hasChildren &&
             <button
+              ref={el => this.button = el}
               onClick={() => this.toggleCollapse()}
+              onFocus={() => this.focused = true}
+              onBlur={() => this.focused = false}
             >
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M10 17l5-5-5-5v10z"/><path d="M0 24V0h24v24H0z" fill="none"/></svg>
             </button>

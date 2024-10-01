@@ -1,4 +1,5 @@
-import { Component, Host, Prop, State, h, Method, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, Prop, State, h, Method, Event, EventEmitter, AttachInternals } from '@stencil/core';
+import { generateRandomId } from '../../utilities/stringUtilities';
 
 /** A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
  * @slot prefix - Can be used to inject content before the input field.
@@ -8,6 +9,7 @@ import { Component, Host, Prop, State, h, Method, Event, EventEmitter } from '@s
   tag: 'dnn-input',
   styleUrl: 'dnn-input.scss',
   shadow: true,
+  formAssociated: true,
 })
 export class DnnInput {
 
@@ -17,8 +19,8 @@ export class DnnInput {
   /** The label for this input. */
   @Prop() label: string;
 
-  /** The name for this input, if not provided a random name will be assigned. */
-  @Prop({mutable: true}) name: string;
+  /** The name for this input when used in forms. */
+  @Prop() name: string;
 
   /** The value of the input. */
   @Prop({mutable: true, reflect:true}) value: number | string | string[];
@@ -59,7 +61,7 @@ export class DnnInput {
   /** Defines the possible steps for numbers and dates/times. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#step */
   @Prop() step: string | number;
 
-  /** If true, the browser default validation message will be hidden. */
+  /** @deprecated This control has it's own validation reporting, will be removed in v0.25.0 */
   @Prop() disableValidityReporting: boolean;
 
   /** If true, enables users to switch between a password and a text field (to view their password). */
@@ -74,54 +76,53 @@ export class DnnInput {
   /** Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState */
   @Method()
   async checkValidity(): Promise<ValidityState> {
+    var validity = this.inputField.checkValidity();
+    if (!validity) {
+      this.fieldset.setValidity(false, this.inputField.validationMessage);
+    }
     return this.inputField.validity;
   }
-
+  
+  /** Can be used to set a custom validity message. */
   @Method()
   async setCustomValidity(message: string): Promise<void> {
-    this.customValidityMessage = message;
-    return this.inputField.setCustomValidity(message);
+    if (message == undefined || message == "") {
+      this.inputField.setCustomValidity("");
+      this.valid = true;
+      this.fieldset.setValidity(true);
+      return;
+    }
+
+    this.inputField.setCustomValidity(message);
+    this.valid = false;
+    this.fieldset.setValidity(false, message);
   }
   
   @State() focused = false;
   @State() valid = true;
-  @State() customValidityMessage: string;
+  
+  @AttachInternals() internals: ElementInternals;
   
   private inputField!: HTMLInputElement;
+  private fieldset: HTMLDnnFieldsetElement;
+  private labelId: string;
 
   componentWillLoad() {
-    if (this.name === undefined)
-    {
-      this.name = `dnn-input-${Math.floor(Math.random() * 1000000)}`;
-    }
+    this.labelId = generateRandomId();
   }
 
-  private getContainerClasses() {
-    const classes: string[] = ["container"];
-    if (this.focused) {
-      classes.push("focused");
-    }
+  componentDidLoad() {
+    var validity = this.inputField.validity;
+    var validityMessage = validity.valid ? "" : this.inputField.validationMessage;
+    this.internals.setValidity(this.inputField.validity, validityMessage);
+  }
 
-    if (this.value !== undefined && this.value !== "")
-    {
-      classes.push("has-value");
-    }
-
-    if (this.required)
-    {
-      classes.push("required");
-    }
-
-    if (this.disabled)
-    {
-      classes.push("disabled");
-    }
-
-    if (!this.valid){
-      classes.push("invalid");
-    }
-
-    return classes.join(" ");
+  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+  formResetCallback() {
+    this.inputField.setCustomValidity("");
+    this.value = "";
+    this.internals.setValidity({});
+    this.internals.setFormValue("");
   }
 
   private handleInput(value: string): void {
@@ -132,17 +133,17 @@ export class DnnInput {
   }
 
   private handleInvalid(): void {
-    this.valid = false;
-    if (this.customValidityMessage == undefined){
-      this.customValidityMessage = this.inputField.validationMessage;
-    }
+    this.fieldset.setValidity(false, this.inputField.validationMessage);
+    this.internals.setValidity(this.inputField.validity, this.inputField.validationMessage);
   }
 
   private handleChange() {
-    if (!this.disableValidityReporting) {
-      this.inputField.reportValidity();
-    }
     this.valueChange.emit(this.value);
+    if (this.name != undefined){
+      var data = new FormData();
+      data.append(this.name, this.value.toString());
+      this.internals.setFormValue(data);
+    }
   }
 
   private switchPasswordVisibility(){
@@ -158,25 +159,58 @@ export class DnnInput {
     }
   }
 
+  private shouldLabelFloat(): boolean {
+    if (this.focused) {
+      return false;
+    }
+
+    if (this.value != undefined && this.value != "") {
+      return false;
+    }
+
+    if (this.type == "date" || this.type == "datetime-local" || this.type == "time") {
+      return false;
+    }
+    
+    return true;
+  }
+
+  handleBlur(): void {
+    this.focused = false
+    var validity = this.inputField.checkValidity();
+    this.valid = validity;
+    this.fieldset.setValidity(validity, this.inputField.validationMessage);
+    this.internals.setValidity(this.inputField.validity, this.inputField.validationMessage);
+  }
+
   render() {
     return (
-      <Host>
-        <div
-          class={this.getContainerClasses()}
+      <Host
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => this.inputField.focus()}
+        onBlur={() => this.inputField.blur()}
+      >
+        <dnn-fieldset
+          ref={el => this.fieldset = el}
+          invalid={!this.valid}
+          focused={this.focused}
+          label={`${this.label ?? ""}${this.required ? " *" : ""}`}
+          helpText={this.helpText}
+          id={this.labelId}
+          disabled={this.disabled}
+          floatLabel={this.shouldLabelFloat()}
           onClick={() => !this.focused && this.inputField.focus()}
+          onFocus={() => this.focused = true}
+          onBlur={() => this.focused = false}
         >
           <div class="inner-container">
-            {this.label &&
-              <label htmlFor={this.name}>
-                {`${this.label}${this.required ? " *" : ""}`}
-              </label>
+            {!this.shouldLabelFloat() &&
+              <slot name="prefix"></slot>
             }
-            <slot name="prefix"></slot>
             <input
               ref={el => this.inputField = el}
               name={this.name}
               type={this.type}
-              aria-label={this.label}
               disabled={this.disabled}
               required={this.required}
               autoComplete={this.autocomplete}
@@ -189,13 +223,16 @@ export class DnnInput {
               readonly={this.readonly}
               step={this.step}
               value={this.value}
-              onBlur={() => this.focused = false}
-              onFocus={() => this.focused=true}
+              onBlur={() => this.handleBlur()}
+              onFocus={() => this.focused = true}
               onInput={e => this.handleInput((e.target as HTMLInputElement).value)}
               onInvalid={() => this.handleInvalid()}
               onChange={() => this.handleChange()}
+              aria-labelledby={this.labelId}
             />
-            <slot name="suffix"></slot>
+            {!this.shouldLabelFloat() &&
+              <slot name="suffix"></slot>
+            }
             {!this.valid &&
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="error">
                 <path d="M479.982-280q14.018 0 23.518-9.482 9.5-9.483 9.5-23.5 0-14.018-9.482-23.518-9.483-9.5-23.5-9.5-14.018 0-23.518 9.482-9.5 9.483-9.5 23.5 0 14.018 9.482 23.518 9.483 9.5 23.5 9.5ZM453-433h60v-253h-60v253Zm27.266 353q-82.734 0-155.5-31.5t-127.266-86q-54.5-54.5-86-127.341Q80-397.681 80-480.5q0-82.819 31.5-155.659Q143-709 197.5-763t127.341-85.5Q397.681-880 480.5-880q82.819 0 155.659 31.5Q709-817 763-763t85.5 127Q880-563 880-480.266q0 82.734-31.5 155.5T763-197.684q-54 54.316-127 86Q563-80 480.266-80Zm.234-60Q622-140 721-239.5t99-241Q820-622 721.188-721 622.375-820 480-820q-141 0-240.5 98.812Q140-622.375 140-480q0 141 99.5 240.5t241 99.5Zm-.5-340Z"/>
@@ -216,15 +253,7 @@ export class DnnInput {
               </button>
             }
           </div>
-        </div>
-        {!this.valid && this.customValidityMessage &&
-          <div class="error-message">
-            {this.customValidityMessage}
-          </div>
-        }
-        {this.valid &&
-          <div class="help-text">{this.helpText}</div>
-        }
+        </dnn-fieldset>
       </Host>
     );
   }

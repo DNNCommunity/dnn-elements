@@ -5,6 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { DnnAutocompleteSuggestion, NeedMoreItemsEventArgs } from "./components/dnn-autocomplete/types";
+import { CheckedState } from "./components/dnn-checkbox/types";
 import { DnnColorInfo } from "./components/dnn-color-input/dnn-color-info";
 import { ColorInfo } from "./utilities/colorInfo";
 import { DropzoneResx } from "./components/dnn-dropzone/types";
@@ -16,6 +18,8 @@ import { ILocalization } from "./components/dnn-permissions-grid/localization-in
 import { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
 import { Config } from "jodit/types/config";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
+export { DnnAutocompleteSuggestion, NeedMoreItemsEventArgs } from "./components/dnn-autocomplete/types";
+export { CheckedState } from "./components/dnn-checkbox/types";
 export { DnnColorInfo } from "./components/dnn-color-input/dnn-color-info";
 export { ColorInfo } from "./utilities/colorInfo";
 export { DropzoneResx } from "./components/dnn-dropzone/types";
@@ -28,7 +32,61 @@ export { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-i
 export { Config } from "jodit/types/config";
 export { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export namespace Components {
+    interface DnnAutocomplete {
+        /**
+          * Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+         */
+        "checkValidity": () => Promise<ValidityState>;
+        /**
+          * Defines whether the field is disabled.
+         */
+        "disabled": boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText": string;
+        /**
+          * The label for this autocomplete.
+         */
+        "label": string;
+        /**
+          * The name for this autocomplete when used in forms.
+         */
+        "name": string;
+        /**
+          * How many suggestions to preload in pixels of their height. This is used to calculate the virtual scroll height and request more items before they get into view.
+         */
+        "preloadThresholdPixels": number;
+        /**
+          * Callback to render suggestions, if not provided, only the label will be rendered.
+         */
+        "renderSuggestion": (suggestion: DnnAutocompleteSuggestion) => HTMLElement;
+        /**
+          * Defines whether the field requires having a value.
+         */
+        "required": boolean;
+        /**
+          * Can be used to set a custom validity message.
+         */
+        "setCustomValidity": (message: string) => Promise<void>;
+        /**
+          * Sets the list of suggestions.
+         */
+        "suggestions": DnnAutocompleteSuggestion[];
+        /**
+          * The total amount of suggestions for the given search query. This can be used to show virtual scroll and pagination progressive feeding. The needMoreItems event should be used to request more items.
+         */
+        "totalSuggestions": number;
+        /**
+          * Defines the value for this autocomplete
+         */
+        "value": string;
+    }
     interface DnnButton {
+        /**
+          * Defines the look of the button.
+         */
+        "appearance": 'primary' | 'danger' | 'secondary' | 'tertiary';
         /**
           * Optionally add a confirmation dialog before firing the action.
          */
@@ -50,6 +108,10 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually. Warning: This will be deprecated in the next version and replaced with a new 'type' property.
+         */
+        "formButtonType": 'submit' | 'reset' | 'button';
+        /**
           * Optionally reverses the button style.
          */
         "reversed": boolean;
@@ -58,15 +120,23 @@ export namespace Components {
          */
         "size"?: 'small' | 'normal' | 'large';
         /**
-          * Optional button style, can be either primary, secondary or tertiary or danger and defaults to primary if not specified
+          * Optional button style,
+          * @deprecated This property will be reused in the next version to represent the type of button like "submit" or "reset". Use the appearance property instead.
          */
         "type": 'primary' | 'danger' | 'secondary' | 'tertiary';
     }
+    /**
+     * @deprecated - The label for the checkbox - Obsolete, implement your own label.
+     */
     interface DnnCheckbox {
         /**
           * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
          */
-        "checked": "checked" | "unchecked" | "intermediate";
+        "checked": CheckedState;
+        /**
+          * The name to show in the formData (if using forms).
+         */
+        "name": string;
         /**
           * Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)
          */
@@ -145,7 +215,7 @@ export namespace Components {
     dark: string,
   };
         /**
-          * The name for this input, if not provided a random name will be assigned.
+          * The name for this input if forms are used.
          */
         "name": string;
         /**
@@ -197,9 +267,79 @@ export namespace Components {
          */
         "maxFileSize"?: number;
         /**
+          * The name of the field when used in a form.
+         */
+        "name": string;
+        /**
           * Localization strings
          */
         "resx": DropzoneResx;
+    }
+    /**
+     * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
+     */
+    interface DnnExampleForm {
+    }
+    /**
+     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     */
+    interface DnnFieldset {
+        /**
+          * Sets the fieldset to a disabled state.
+         */
+        "disable": () => Promise<void>;
+        /**
+          * If true, the fieldset will display as disabled.
+         */
+        "disabled": boolean;
+        /**
+          * Sets the fieldset to an enabled state.
+         */
+        "enable": () => Promise<void>;
+        /**
+          * If true, the label will float in the container, set false to show it on top.
+         */
+        "floatLabel": boolean;
+        /**
+          * If true the fieldset will display as focused.
+         */
+        "focused": boolean;
+        /**
+          * Can be used to show some help text about this field.
+         */
+        "helpText": string;
+        /**
+          * If true, the  fieldset will display as invalid.
+         */
+        "invalid": boolean;
+        /**
+          * Sets the text of the fieldset label (caption).
+         */
+        "label": string;
+        /**
+          * Places the label on the top of the container.
+         */
+        "pinLabel": () => Promise<void>;
+        /**
+          * Can be set to specify if the fieldset can be resized by the user.
+         */
+        "resizable": "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
+        /**
+          * Unsets the fieldset focused state.
+         */
+        "setBlurred": () => Promise<void>;
+        /**
+          * Sets the fieldset to the focused state.
+         */
+        "setFocused": () => Promise<void>;
+        /**
+          * Sets the validity of the field.
+         */
+        "setValidity": (valid: boolean, message?: string) => Promise<void>;
+        /**
+          * Places the label in the vertical middle of the container.
+         */
+        "unpinLabel": () => Promise<void>;
     }
     /**
      * Allows cropping an image in-browser with the option to enforce a specific final size.
@@ -215,6 +355,10 @@ export namespace Components {
           * Sets the desired final image height.
          */
         "height": number;
+        /**
+          * The name of the control when used in a form.
+         */
+        "name": string;
         /**
           * When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry.
          */
@@ -249,7 +393,7 @@ export namespace Components {
          */
         "checkValidity": () => Promise<ValidityState>;
         /**
-          * If true, the browser default validation message will be hidden.
+          * @deprecated This control has it's own validation reporting, will be removed in v0.25.0
          */
         "disableValidityReporting": boolean;
         /**
@@ -285,7 +429,7 @@ export namespace Components {
          */
         "multiple": boolean;
         /**
-          * The name for this input, if not provided a random name will be assigned.
+          * The name for this input when used in forms.
          */
         "name": string;
         /**
@@ -300,6 +444,9 @@ export namespace Components {
           * Defines whether the field requires having a value.
          */
         "required": boolean;
+        /**
+          * Can be used to set a custom validity message.
+         */
         "setCustomValidity": (message: string) => Promise<void>;
         /**
           * Defines the possible steps for numbers and dates/times. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#step
@@ -350,6 +497,10 @@ export namespace Components {
          */
         "language": "plaintext" | "bat" | "coffeescript" | "c" | "cpp" | "csharp" | "dockerfile" | "fsharp" | "go" | "handlebars" | "html" | "ini" | "pug" | "java" | "lua" | "markdown" | "msdax" | "objective-c" | "postiats" | "php" | "powershell" | "python" | "r" | "razor" | "ruby" | "swift" | "sql" | "vb" | "xml" | "less" | "scss" | "css" | "yaml" | "sol" | "sb" | "json" | "typescript" | "javascript";
         /**
+          * The name of the control to use for forms.
+         */
+        "name": string;
+        /**
           * Sets the code contained in the editor
          */
         "value": string;
@@ -392,6 +543,10 @@ export namespace Components {
     }
     interface DnnRichtext {
         /**
+          * Name of the field when used in a form.
+         */
+        "name": string;
+        /**
           * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
          */
         "options": Config;
@@ -402,7 +557,11 @@ export namespace Components {
     }
     interface DnnSearchbox {
         /**
-          * Debounces the queryChanged by 500ms.
+          * How many milliseconds to wait before firing the queryChanged event.
+         */
+        "debounceTime": number;
+        /**
+          * @deprecated Use debounceTime (or debounce-time) instead. Will be removed in v0.25.0 Debounces the queryChanged by 500ms.
          */
         "debounced": boolean;
         /**
@@ -416,7 +575,11 @@ export namespace Components {
     }
     interface DnnSelect {
         /**
-          * If true, the browser default validation message will be hidden.
+          * Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+         */
+        "checkValidity": () => Promise<ValidityState>;
+        /**
+          * @deprecated This control has its own validatin reporting, will be removed in v0.25.0
          */
         "disableValidityReporting": boolean;
         /**
@@ -432,7 +595,7 @@ export namespace Components {
          */
         "label": string;
         /**
-          * The name for this input, if not provided a random name will be assigned.
+          * The name for this input, if used in forms.
          */
         "name": string;
         /**
@@ -469,6 +632,67 @@ export namespace Components {
     }
     interface DnnTabs {
     }
+    /**
+     * A custom textarea component.
+     */
+    interface DnnTextarea {
+        /**
+          * Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.
+         */
+        "autocomplete": string;
+        /**
+          * Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+         */
+        "checkValidity": () => Promise<ValidityState>;
+        /**
+          * Defines whether the field is disabled.
+         */
+        "disabled": boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText": string;
+        /**
+          * The label for this input.
+         */
+        "label": string;
+        /**
+          * Defines the maximum amount of charaters.
+         */
+        "maxlength": number;
+        /**
+          * Defines the minimum amount of charaters.
+         */
+        "minlength": number;
+        /**
+          * The name for this input when used in forms.
+         */
+        "name": string;
+        /**
+          * Defines wheter the defined value is readonly.
+         */
+        "readonly": boolean;
+        /**
+          * Defines whether the field requires having a value.
+         */
+        "required": boolean;
+        /**
+          * Can be set to change how the user can resize the field.
+         */
+        "resizable": "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
+        /**
+          * Defines how many rows (lines of text) to initially show.
+         */
+        "rows": number;
+        /**
+          * Can be used to set a custom validity message.
+         */
+        "setCustomValidity": (message: string) => Promise<void>;
+        /**
+          * Sets the value of the textarea.
+         */
+        "value": string;
+    }
     interface DnnToggle {
         /**
           * If 'true' the toggle is checked (on).
@@ -478,6 +702,14 @@ export namespace Components {
           * If 'true' the toggle is not be interacted with.
          */
         "disabled": boolean;
+        /**
+          * The field name to use in forms.
+         */
+        "name": string;
+        /**
+          * The value to post when used in forms.
+         */
+        "value": string;
     }
     interface DnnTreeviewItem {
         /**
@@ -508,6 +740,10 @@ export namespace Components {
          */
         "splitterWidth": number;
     }
+}
+export interface DnnAutocompleteCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnAutocompleteElement;
 }
 export interface DnnButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -573,6 +809,10 @@ export interface DnnSortIconCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnSortIconElement;
 }
+export interface DnnTextareaCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDnnTextareaElement;
+}
 export interface DnnToggleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDnnToggleElement;
@@ -586,6 +826,27 @@ export interface DnnVerticalSplitviewCustomEvent<T> extends CustomEvent<T> {
     target: HTMLDnnVerticalSplitviewElement;
 }
 declare global {
+    interface HTMLDnnAutocompleteElementEventMap {
+        "valueChange": number | string | string[];
+        "valueInput": number | string | string[];
+        "needMoreItems": NeedMoreItemsEventArgs;
+        "searchQueryChanged": string;
+        "itemSelected": string;
+    }
+    interface HTMLDnnAutocompleteElement extends Components.DnnAutocomplete, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnAutocompleteElementEventMap>(type: K, listener: (this: HTMLDnnAutocompleteElement, ev: DnnAutocompleteCustomEvent<HTMLDnnAutocompleteElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnAutocompleteElementEventMap>(type: K, listener: (this: HTMLDnnAutocompleteElement, ev: DnnAutocompleteCustomEvent<HTMLDnnAutocompleteElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDnnAutocompleteElement: {
+        prototype: HTMLDnnAutocompleteElement;
+        new (): HTMLDnnAutocompleteElement;
+    };
     interface HTMLDnnButtonElementEventMap {
         "confirmed": any;
         "canceled": any;
@@ -607,6 +868,9 @@ declare global {
     interface HTMLDnnCheckboxElementEventMap {
         "checkedchange": "checked" | "unchecked" | "intermediate";
     }
+    /**
+     * @deprecated - The label for the checkbox - Obsolete, implement your own label.
+     */
     interface HTMLDnnCheckboxElement extends Components.DnnCheckbox, HTMLStencilElement {
         addEventListener<K extends keyof HTMLDnnCheckboxElementEventMap>(type: K, listener: (this: HTMLDnnCheckboxElement, ev: DnnCheckboxCustomEvent<HTMLDnnCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -713,8 +977,27 @@ declare global {
         prototype: HTMLDnnDropzoneElement;
         new (): HTMLDnnDropzoneElement;
     };
+    /**
+     * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
+     */
+    interface HTMLDnnExampleFormElement extends Components.DnnExampleForm, HTMLStencilElement {
+    }
+    var HTMLDnnExampleFormElement: {
+        prototype: HTMLDnnExampleFormElement;
+        new (): HTMLDnnExampleFormElement;
+    };
+    /**
+     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     */
+    interface HTMLDnnFieldsetElement extends Components.DnnFieldset, HTMLStencilElement {
+    }
+    var HTMLDnnFieldsetElement: {
+        prototype: HTMLDnnFieldsetElement;
+        new (): HTMLDnnFieldsetElement;
+    };
     interface HTMLDnnImageCropperElementEventMap {
         "imageCropChanged": string;
+        "imageFileCropChanged": File;
     }
     /**
      * Allows cropping an image in-browser with the option to enforce a specific final size.
@@ -898,6 +1181,27 @@ declare global {
         prototype: HTMLDnnTabsElement;
         new (): HTMLDnnTabsElement;
     };
+    interface HTMLDnnTextareaElementEventMap {
+        "valueInput": string;
+        "valueChange": string;
+    }
+    /**
+     * A custom textarea component.
+     */
+    interface HTMLDnnTextareaElement extends Components.DnnTextarea, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDnnTextareaElementEventMap>(type: K, listener: (this: HTMLDnnTextareaElement, ev: DnnTextareaCustomEvent<HTMLDnnTextareaElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDnnTextareaElementEventMap>(type: K, listener: (this: HTMLDnnTextareaElement, ev: DnnTextareaCustomEvent<HTMLDnnTextareaElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDnnTextareaElement: {
+        prototype: HTMLDnnTextareaElement;
+        new (): HTMLDnnTextareaElement;
+    };
     interface HTMLDnnToggleElementEventMap {
         "checkChanged": DnnToggleChangeEventDetail;
     }
@@ -960,6 +1264,7 @@ declare global {
         new (): HTMLDnnVerticalSplitviewElement;
     };
     interface HTMLElementTagNameMap {
+        "dnn-autocomplete": HTMLDnnAutocompleteElement;
         "dnn-button": HTMLDnnButtonElement;
         "dnn-checkbox": HTMLDnnCheckboxElement;
         "dnn-chevron": HTMLDnnChevronElement;
@@ -967,6 +1272,8 @@ declare global {
         "dnn-color-input": HTMLDnnColorInputElement;
         "dnn-color-picker": HTMLDnnColorPickerElement;
         "dnn-dropzone": HTMLDnnDropzoneElement;
+        "dnn-example-form": HTMLDnnExampleFormElement;
+        "dnn-fieldset": HTMLDnnFieldsetElement;
         "dnn-image-cropper": HTMLDnnImageCropperElement;
         "dnn-input": HTMLDnnInputElement;
         "dnn-modal": HTMLDnnModalElement;
@@ -979,6 +1286,7 @@ declare global {
         "dnn-sort-icon": HTMLDnnSortIconElement;
         "dnn-tab": HTMLDnnTabElement;
         "dnn-tabs": HTMLDnnTabsElement;
+        "dnn-textarea": HTMLDnnTextareaElement;
         "dnn-toggle": HTMLDnnToggleElement;
         "dnn-treeview-item": HTMLDnnTreeviewItemElement;
         "dnn-vertical-overflow-menu": HTMLDnnVerticalOverflowMenuElement;
@@ -986,7 +1294,73 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface DnnAutocomplete {
+        /**
+          * Defines whether the field is disabled.
+         */
+        "disabled"?: boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText"?: string;
+        /**
+          * The label for this autocomplete.
+         */
+        "label"?: string;
+        /**
+          * The name for this autocomplete when used in forms.
+         */
+        "name"?: string;
+        /**
+          * Fires when an item is selected.
+         */
+        "onItemSelected"?: (event: DnnAutocompleteCustomEvent<string>) => void;
+        /**
+          * Fires when the component needs to display more items in the suggestions.
+         */
+        "onNeedMoreItems"?: (event: DnnAutocompleteCustomEvent<NeedMoreItemsEventArgs>) => void;
+        /**
+          * Fires when the search query has changed. This is almost like valueInput, but it is debounced and can be used to trigger a search query without overloading API endpoints while typing.
+         */
+        "onSearchQueryChanged"?: (event: DnnAutocompleteCustomEvent<string>) => void;
+        /**
+          * Fires when the value has changed and the user exits the input.
+         */
+        "onValueChange"?: (event: DnnAutocompleteCustomEvent<number | string | string[]>) => void;
+        /**
+          * Fires when the using is inputing data (on keystrokes).
+         */
+        "onValueInput"?: (event: DnnAutocompleteCustomEvent<number | string | string[]>) => void;
+        /**
+          * How many suggestions to preload in pixels of their height. This is used to calculate the virtual scroll height and request more items before they get into view.
+         */
+        "preloadThresholdPixels"?: number;
+        /**
+          * Callback to render suggestions, if not provided, only the label will be rendered.
+         */
+        "renderSuggestion"?: (suggestion: DnnAutocompleteSuggestion) => HTMLElement;
+        /**
+          * Defines whether the field requires having a value.
+         */
+        "required"?: boolean;
+        /**
+          * Sets the list of suggestions.
+         */
+        "suggestions"?: DnnAutocompleteSuggestion[];
+        /**
+          * The total amount of suggestions for the given search query. This can be used to show virtual scroll and pagination progressive feeding. The needMoreItems event should be used to request more items.
+         */
+        "totalSuggestions"?: number;
+        /**
+          * Defines the value for this autocomplete
+         */
+        "value"?: string;
+    }
     interface DnnButton {
+        /**
+          * Defines the look of the button.
+         */
+        "appearance"?: 'primary' | 'danger' | 'secondary' | 'tertiary';
         /**
           * Optionally add a confirmation dialog before firing the action.
          */
@@ -1008,6 +1382,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually. Warning: This will be deprecated in the next version and replaced with a new 'type' property.
+         */
+        "formButtonType"?: 'submit' | 'reset' | 'button';
+        /**
           * Fires when confirm is true and the user cancels the action.
          */
         "onCanceled"?: (event: DnnButtonCustomEvent<any>) => void;
@@ -1024,15 +1402,23 @@ declare namespace LocalJSX {
          */
         "size"?: 'small' | 'normal' | 'large';
         /**
-          * Optional button style, can be either primary, secondary or tertiary or danger and defaults to primary if not specified
+          * Optional button style,
+          * @deprecated This property will be reused in the next version to represent the type of button like "submit" or "reset". Use the appearance property instead.
          */
         "type"?: 'primary' | 'danger' | 'secondary' | 'tertiary';
     }
+    /**
+     * @deprecated - The label for the checkbox - Obsolete, implement your own label.
+     */
     interface DnnCheckbox {
         /**
           * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
          */
-        "checked"?: "checked" | "unchecked" | "intermediate";
+        "checked"?: CheckedState;
+        /**
+          * The name to show in the formData (if using forms).
+         */
+        "name"?: string;
         /**
           * Fires up when the checkbox checked property changes.
          */
@@ -1119,7 +1505,7 @@ declare namespace LocalJSX {
     dark: string,
   };
         /**
-          * The name for this input, if not provided a random name will be assigned.
+          * The name for this input if forms are used.
          */
         "name"?: string;
         /**
@@ -1184,6 +1570,10 @@ declare namespace LocalJSX {
          */
         "maxFileSize"?: number;
         /**
+          * The name of the field when used in a form.
+         */
+        "name"?: string;
+        /**
           * Fires when file were selected.
          */
         "onFilesSelected"?: (event: DnnDropzoneCustomEvent<File[]>) => void;
@@ -1191,6 +1581,44 @@ declare namespace LocalJSX {
           * Localization strings
          */
         "resx"?: DropzoneResx;
+    }
+    /**
+     * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
+     */
+    interface DnnExampleForm {
+    }
+    /**
+     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     */
+    interface DnnFieldset {
+        /**
+          * If true, the fieldset will display as disabled.
+         */
+        "disabled"?: boolean;
+        /**
+          * If true, the label will float in the container, set false to show it on top.
+         */
+        "floatLabel"?: boolean;
+        /**
+          * If true the fieldset will display as focused.
+         */
+        "focused"?: boolean;
+        /**
+          * Can be used to show some help text about this field.
+         */
+        "helpText"?: string;
+        /**
+          * If true, the  fieldset will display as invalid.
+         */
+        "invalid"?: boolean;
+        /**
+          * Sets the text of the fieldset label (caption).
+         */
+        "label"?: string;
+        /**
+          * Can be set to specify if the fieldset can be resized by the user.
+         */
+        "resizable"?: "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
     }
     /**
      * Allows cropping an image in-browser with the option to enforce a specific final size.
@@ -1203,9 +1631,17 @@ declare namespace LocalJSX {
          */
         "height"?: number;
         /**
+          * The name of the control when used in a form.
+         */
+        "name"?: string;
+        /**
           * When the image crop changes, emits the dataurl for the new cropped image.
          */
         "onImageCropChanged"?: (event: DnnImageCropperCustomEvent<string>) => void;
+        /**
+          * Emits both when a file is initially select and when the crop has changed. Compared to imageCropChanged, this event emits the file itself, which can be useful for uploading the file to a server including its name.
+         */
+        "onImageFileCropChanged"?: (event: DnnImageCropperCustomEvent<File>) => void;
         /**
           * When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry.
          */
@@ -1236,7 +1672,7 @@ declare namespace LocalJSX {
          */
         "autocomplete"?: string;
         /**
-          * If true, the browser default validation message will be hidden.
+          * @deprecated This control has it's own validation reporting, will be removed in v0.25.0
          */
         "disableValidityReporting"?: boolean;
         /**
@@ -1272,7 +1708,7 @@ declare namespace LocalJSX {
          */
         "multiple"?: boolean;
         /**
-          * The name for this input, if not provided a random name will be assigned.
+          * The name for this input when used in forms.
          */
         "name"?: string;
         /**
@@ -1340,6 +1776,10 @@ declare namespace LocalJSX {
          */
         "language"?: "plaintext" | "bat" | "coffeescript" | "c" | "cpp" | "csharp" | "dockerfile" | "fsharp" | "go" | "handlebars" | "html" | "ini" | "pug" | "java" | "lua" | "markdown" | "msdax" | "objective-c" | "postiats" | "php" | "powershell" | "python" | "r" | "razor" | "ruby" | "swift" | "sql" | "vb" | "xml" | "less" | "scss" | "css" | "yaml" | "sol" | "sb" | "json" | "typescript" | "javascript";
         /**
+          * The name of the control to use for forms.
+         */
+        "name"?: string;
+        /**
           * Emits the new value of the content when it is changed.
          */
         "onContentChanged"?: (event: DnnMonacoEditorCustomEvent<string>) => void;
@@ -1394,6 +1834,10 @@ declare namespace LocalJSX {
     }
     interface DnnRichtext {
         /**
+          * Name of the field when used in a form.
+         */
+        "name"?: string;
+        /**
           * Fires when the value changed.
          */
         "onValueChange"?: (event: DnnRichtextCustomEvent<string>) => void;
@@ -1412,7 +1856,11 @@ declare namespace LocalJSX {
     }
     interface DnnSearchbox {
         /**
-          * Debounces the queryChanged by 500ms.
+          * How many milliseconds to wait before firing the queryChanged event.
+         */
+        "debounceTime"?: number;
+        /**
+          * @deprecated Use debounceTime (or debounce-time) instead. Will be removed in v0.25.0 Debounces the queryChanged by 500ms.
          */
         "debounced"?: boolean;
         /**
@@ -1430,7 +1878,7 @@ declare namespace LocalJSX {
     }
     interface DnnSelect {
         /**
-          * If true, the browser default validation message will be hidden.
+          * @deprecated This control has its own validatin reporting, will be removed in v0.25.0
          */
         "disableValidityReporting"?: boolean;
         /**
@@ -1446,7 +1894,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
-          * The name for this input, if not provided a random name will be assigned.
+          * The name for this input, if used in forms.
          */
         "name"?: string;
         /**
@@ -1483,6 +1931,67 @@ declare namespace LocalJSX {
     }
     interface DnnTabs {
     }
+    /**
+     * A custom textarea component.
+     */
+    interface DnnTextarea {
+        /**
+          * Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.
+         */
+        "autocomplete"?: string;
+        /**
+          * Defines whether the field is disabled.
+         */
+        "disabled"?: boolean;
+        /**
+          * Defines the help label displayed under the field.
+         */
+        "helpText"?: string;
+        /**
+          * The label for this input.
+         */
+        "label"?: string;
+        /**
+          * Defines the maximum amount of charaters.
+         */
+        "maxlength"?: number;
+        /**
+          * Defines the minimum amount of charaters.
+         */
+        "minlength"?: number;
+        /**
+          * The name for this input when used in forms.
+         */
+        "name"?: string;
+        /**
+          * Fires when the value has changed and the user exits the input.
+         */
+        "onValueChange"?: (event: DnnTextareaCustomEvent<string>) => void;
+        /**
+          * Fires when the using is inputing data (on keystrokes).
+         */
+        "onValueInput"?: (event: DnnTextareaCustomEvent<string>) => void;
+        /**
+          * Defines wheter the defined value is readonly.
+         */
+        "readonly"?: boolean;
+        /**
+          * Defines whether the field requires having a value.
+         */
+        "required"?: boolean;
+        /**
+          * Can be set to change how the user can resize the field.
+         */
+        "resizable"?: "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
+        /**
+          * Defines how many rows (lines of text) to initially show.
+         */
+        "rows"?: number;
+        /**
+          * Sets the value of the textarea.
+         */
+        "value"?: string;
+    }
     interface DnnToggle {
         /**
           * If 'true' the toggle is checked (on).
@@ -1493,9 +2002,17 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The field name to use in forms.
+         */
+        "name"?: string;
+        /**
           * Fires when the toggle changed
          */
         "onCheckChanged"?: (event: DnnToggleCustomEvent<DnnToggleChangeEventDetail>) => void;
+        /**
+          * The value to post when used in forms.
+         */
+        "value"?: string;
     }
     interface DnnTreeviewItem {
         /**
@@ -1531,6 +2048,7 @@ declare namespace LocalJSX {
         "splitterWidth"?: number;
     }
     interface IntrinsicElements {
+        "dnn-autocomplete": DnnAutocomplete;
         "dnn-button": DnnButton;
         "dnn-checkbox": DnnCheckbox;
         "dnn-chevron": DnnChevron;
@@ -1538,6 +2056,8 @@ declare namespace LocalJSX {
         "dnn-color-input": DnnColorInput;
         "dnn-color-picker": DnnColorPicker;
         "dnn-dropzone": DnnDropzone;
+        "dnn-example-form": DnnExampleForm;
+        "dnn-fieldset": DnnFieldset;
         "dnn-image-cropper": DnnImageCropper;
         "dnn-input": DnnInput;
         "dnn-modal": DnnModal;
@@ -1550,6 +2070,7 @@ declare namespace LocalJSX {
         "dnn-sort-icon": DnnSortIcon;
         "dnn-tab": DnnTab;
         "dnn-tabs": DnnTabs;
+        "dnn-textarea": DnnTextarea;
         "dnn-toggle": DnnToggle;
         "dnn-treeview-item": DnnTreeviewItem;
         "dnn-vertical-overflow-menu": DnnVerticalOverflowMenu;
@@ -1560,7 +2081,11 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "dnn-autocomplete": LocalJSX.DnnAutocomplete & JSXBase.HTMLAttributes<HTMLDnnAutocompleteElement>;
             "dnn-button": LocalJSX.DnnButton & JSXBase.HTMLAttributes<HTMLDnnButtonElement>;
+            /**
+             * @deprecated - The label for the checkbox - Obsolete, implement your own label.
+             */
             "dnn-checkbox": LocalJSX.DnnCheckbox & JSXBase.HTMLAttributes<HTMLDnnCheckboxElement>;
             "dnn-chevron": LocalJSX.DnnChevron & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
             "dnn-collapsible": LocalJSX.DnnCollapsible & JSXBase.HTMLAttributes<HTMLDnnCollapsibleElement>;
@@ -1573,6 +2098,14 @@ declare module "@stencil/core" {
              */
             "dnn-color-picker": LocalJSX.DnnColorPicker & JSXBase.HTMLAttributes<HTMLDnnColorPickerElement>;
             "dnn-dropzone": LocalJSX.DnnDropzone & JSXBase.HTMLAttributes<HTMLDnnDropzoneElement>;
+            /**
+             * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
+             */
+            "dnn-example-form": LocalJSX.DnnExampleForm & JSXBase.HTMLAttributes<HTMLDnnExampleFormElement>;
+            /**
+             * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+             */
+            "dnn-fieldset": LocalJSX.DnnFieldset & JSXBase.HTMLAttributes<HTMLDnnFieldsetElement>;
             /**
              * Allows cropping an image in-browser with the option to enforce a specific final size.
              * All computation happens in the browser and the final image is emmited
@@ -1596,6 +2129,10 @@ declare module "@stencil/core" {
              */
             "dnn-tab": LocalJSX.DnnTab & JSXBase.HTMLAttributes<HTMLDnnTabElement>;
             "dnn-tabs": LocalJSX.DnnTabs & JSXBase.HTMLAttributes<HTMLDnnTabsElement>;
+            /**
+             * A custom textarea component.
+             */
+            "dnn-textarea": LocalJSX.DnnTextarea & JSXBase.HTMLAttributes<HTMLDnnTextareaElement>;
             "dnn-toggle": LocalJSX.DnnToggle & JSXBase.HTMLAttributes<HTMLDnnToggleElement>;
             "dnn-treeview-item": LocalJSX.DnnTreeviewItem & JSXBase.HTMLAttributes<HTMLDnnTreeviewItemElement>;
             /**

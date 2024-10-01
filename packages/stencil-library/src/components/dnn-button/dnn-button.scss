@@ -82,7 +82,7 @@
     background-color: var(--background-color);
     color: var(--color);
     outline: none;
-    &:focus, &:hover{
+    &:focus-visible, &:hover{
       box-shadow: 0 0 2px 2px var(--focus-color);
     }
   }

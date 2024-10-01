@@ -20,7 +20,7 @@ A custom input component that allows previewing and changing a color value.
 | `label`            | `label`              | The label for this input.                                                                           | `string`                                                                                                               | `undefined`                                                                                                                                                         |
 | `lightColor`       | `light-color`        | Sets the initial light color, must be a valid 8 character hexadecimal string without the # sign.    | `string`                                                                                                               | `"00000FF"`                                                                                                                                                         |
 | `localization`     | --                   | Can be used to customize the text language.                                                         | `{ contrast: string; preview: string; cancel: string; confirm: string; normal: string; light: string; dark: string; }` | `{     contrast: "Contrast",     preview: "Preview",     cancel: "Cancel",     confirm: "Confirm",     normal: "Normal",     light: "Light",     dark: "Dark",   }` |
-| `name`             | `name`               | The name for this input, if not provided a random name will be assigned.                            | `string`                                                                                                               | `undefined`                                                                                                                                                         |
+| `name`             | `name`               | The name for this input if forms are used.                                                          | `string`                                                                                                               | `undefined`                                                                                                                                                         |
 | `readonly`         | `readonly`           | Disables interacting with the component.                                                            | `boolean`                                                                                                              | `undefined`                                                                                                                                                         |
 | `useContrastColor` | `use-contrast-color` | If true, the picker will allow selecting a contast color too.                                       | `boolean`                                                                                                              | `undefined`                                                                                                                                                         |
 | `useDarkColor`     | `use-dark-color`     | If true, the picker will allow selecting a dark color too.                                          | `boolean`                                                                                                              | `undefined`                                                                                                                                                         |
@@ -56,8 +56,13 @@ A custom input component that allows previewing and changing a color value.
 
 ## Dependencies
 
+### Used by
+
+ - [dnn-example-form](../examples/dnn-example-form)
+
 ### Depends on
 
+- [dnn-fieldset](../dnn-fieldset)
 - [dnn-modal](../dnn-modal)
 - [dnn-tabs](../dnn-tabs)
 - [dnn-tab](../dnn-tab)
@@ -67,6 +72,7 @@ A custom input component that allows previewing and changing a color value.
 ### Graph
 ```mermaid
 graph TD;
+  dnn-color-input --> dnn-fieldset
   dnn-color-input --> dnn-modal
   dnn-color-input --> dnn-tabs
   dnn-color-input --> dnn-tab
@@ -74,6 +80,7 @@ graph TD;
   dnn-color-input --> dnn-button
   dnn-button --> dnn-modal
   dnn-button --> dnn-button
+  dnn-example-form --> dnn-color-input
   style dnn-color-input fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

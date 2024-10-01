@@ -7,6 +7,7 @@ import type { JSX } from '@dnncommunity/dnn-elements';
 
 
 
+export const DnnAutocomplete = /*@__PURE__*/createReactComponent<JSX.DnnAutocomplete, HTMLDnnAutocompleteElement>('dnn-autocomplete');
 export const DnnButton = /*@__PURE__*/createReactComponent<JSX.DnnButton, HTMLDnnButtonElement>('dnn-button');
 export const DnnCheckbox = /*@__PURE__*/createReactComponent<JSX.DnnCheckbox, HTMLDnnCheckboxElement>('dnn-checkbox');
 export const DnnChevron = /*@__PURE__*/createReactComponent<JSX.DnnChevron, HTMLDnnChevronElement>('dnn-chevron');
@@ -14,6 +15,8 @@ export const DnnCollapsible = /*@__PURE__*/createReactComponent<JSX.DnnCollapsib
 export const DnnColorInput = /*@__PURE__*/createReactComponent<JSX.DnnColorInput, HTMLDnnColorInputElement>('dnn-color-input');
 export const DnnColorPicker = /*@__PURE__*/createReactComponent<JSX.DnnColorPicker, HTMLDnnColorPickerElement>('dnn-color-picker');
 export const DnnDropzone = /*@__PURE__*/createReactComponent<JSX.DnnDropzone, HTMLDnnDropzoneElement>('dnn-dropzone');
+export const DnnExampleForm = /*@__PURE__*/createReactComponent<JSX.DnnExampleForm, HTMLDnnExampleFormElement>('dnn-example-form');
+export const DnnFieldset = /*@__PURE__*/createReactComponent<JSX.DnnFieldset, HTMLDnnFieldsetElement>('dnn-fieldset');
 export const DnnImageCropper = /*@__PURE__*/createReactComponent<JSX.DnnImageCropper, HTMLDnnImageCropperElement>('dnn-image-cropper');
 export const DnnInput = /*@__PURE__*/createReactComponent<JSX.DnnInput, HTMLDnnInputElement>('dnn-input');
 export const DnnModal = /*@__PURE__*/createReactComponent<JSX.DnnModal, HTMLDnnModalElement>('dnn-modal');
@@ -26,6 +29,7 @@ export const DnnSelect = /*@__PURE__*/createReactComponent<JSX.DnnSelect, HTMLDn
 export const DnnSortIcon = /*@__PURE__*/createReactComponent<JSX.DnnSortIcon, HTMLDnnSortIconElement>('dnn-sort-icon');
 export const DnnTab = /*@__PURE__*/createReactComponent<JSX.DnnTab, HTMLDnnTabElement>('dnn-tab');
 export const DnnTabs = /*@__PURE__*/createReactComponent<JSX.DnnTabs, HTMLDnnTabsElement>('dnn-tabs');
+export const DnnTextarea = /*@__PURE__*/createReactComponent<JSX.DnnTextarea, HTMLDnnTextareaElement>('dnn-textarea');
 export const DnnToggle = /*@__PURE__*/createReactComponent<JSX.DnnToggle, HTMLDnnToggleElement>('dnn-toggle');
 export const DnnTreeviewItem = /*@__PURE__*/createReactComponent<JSX.DnnTreeviewItem, HTMLDnnTreeviewItemElement>('dnn-treeview-item');
 export const DnnVerticalOverflowMenu = /*@__PURE__*/createReactComponent<JSX.DnnVerticalOverflowMenu, HTMLDnnVerticalOverflowMenuElement>('dnn-vertical-overflow-menu');

@@ -89,6 +89,33 @@ async function generateCustomElementsJson(docsData: JsonDocs) {
 
 export const config: Config = {
   namespace: 'dnn',
+  bundles: [
+    { components: ['dnn-autocomplete']},
+    { components: ['dnn-button']},
+    { components: ['dnn-checkbox']},
+    { components: ['dnn-chevron']},
+    { components: ['dnn-collapsible']},
+    { components: ['dnn-color-input']},
+    { components: ['dnn-color-picker']},
+    { components: ['dnn-dropzone']},
+    { components: ['dnn-fieldset']},
+    { components: ['dnn-image-cropper']},
+    { components: ['dnn-input']},
+    { components: ['dnn-modal']},
+    { components: ['dnn-monaco-editor']},
+    { components: ['dnn-permissions-grid']},
+    { components: ['dnn-progress-bar']},
+    { components: ['dnn-richtext']},
+    { components: ['dnn-searchbox']},
+    { components: ['dnn-select']},
+    { components: ['dnn-sort-icon']},
+    { components: ['dnn-tabs', 'dnn-tab']},
+    { components: ['dnn-textarea']},
+    { components: ['dnn-toggle']},
+    { components: ['dnn-treeview-item']},
+    { components: ['dnn-vertical-overflow-menu']},
+    { components: ['dnn-vertical-splitview']},
+  ],
   outputTargets: [
     {
       type: 'dist',
@@ -125,5 +152,5 @@ export const config: Config = {
   sourceMap: true,
   testing: {
     browserHeadless: "new",
-  }
+  },
 };

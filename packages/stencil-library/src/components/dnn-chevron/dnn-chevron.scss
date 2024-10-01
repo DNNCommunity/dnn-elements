@@ -12,7 +12,6 @@ button{
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  outline: none;
 }
 svg{
   height:2em;
@@ -21,7 +20,7 @@ svg{
 }
 
 // FOCUS
-button:focus, button:hover{
+button:focus-visible, button:hover{
   svg{
     color: var(--dnn-color-primary);
   }

@@ -5,13 +5,43 @@
 <!-- Auto Generated Below -->
 
 
+> **[DEPRECATED]** - The label for the checkbox - Obsolete, implement your own label.
+
+## Usage
+
+### HTML
+
+```html
+<dnn-checkbox
+    checked="unchecked"
+    name="agree"
+    value="1"
+    use-intermediate="false">
+</dnn-checkbox>
+```
+
+
+### JSX-TSX
+
+```tsx
+<dnn-checkbox
+    checked="unchecked"
+    name="agree"
+    value="1"
+    useIntermediate="false">
+</dnn-checkbox>
+```
+
+
+
 ## Properties
 
 | Property          | Attribute          | Description                                                                                                       | Type                                         | Default       |
 | ----------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | ------------- |
 | `checked`         | `checked`          | Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)            | `"checked" \| "intermediate" \| "unchecked"` | `"unchecked"` |
+| `name`            | `name`             | The name to show in the formData (if using forms).                                                                | `string`                                     | `undefined`   |
 | `useIntermediate` | `use-intermediate` | Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state) | `boolean`                                    | `false`       |
-| `value`           | `value`            | The value for this checkbox (not to be confused with its checked state).                                          | `string`                                     | `undefined`   |
+| `value`           | `value`            | The value for this checkbox (not to be confused with its checked state).                                          | `string`                                     | `"on"`        |
 
 
 ## Events
@@ -25,7 +55,6 @@
 
 | Slot                 | Description                                                |
 | -------------------- | ---------------------------------------------------------- |
-|                      | The label for the checkbox.                                |
 | `"checkedicon"`      | Allows overriding the default checked icon.                |
 | `"intermediateicon"` | If intermadiate state is used, allows overriding its icon. |
 | `"uncheckedicon"`    | Allows overriding the unchecked icon.                      |
@@ -42,11 +71,13 @@
 
 ### Used by
 
+ - [dnn-example-form](../examples/dnn-example-form)
  - [dnn-permissions-grid](../dnn-permissions-grid)
 
 ### Graph
 ```mermaid
 graph TD;
+  dnn-example-form --> dnn-checkbox
   dnn-permissions-grid --> dnn-checkbox
   style dnn-checkbox fill:#f9f,stroke:#333,stroke-width:4px
 ```

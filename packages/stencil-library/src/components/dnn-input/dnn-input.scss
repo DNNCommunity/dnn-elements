@@ -20,89 +20,25 @@
   --input-text-align: left;
 }
 
-.container{
-  border: 1px solid var(--foreground, #000);
-  border-radius: var(--control-radius, 3px);
-  padding: 0.75em;
-  display: flex;
-  justify-content: space-between;
-  gap: 0.1em;
-  position: relative;
-  background-color: var(--background);
-  .inner-container{
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    width: 100%;
-    background-color: var(--background);
-  }
-  label{
-    display: inline-block;
-    position: absolute;
-    opacity: 0.6;
-    transition: all 150ms ease-in-out;
-    left: 0;
-    top: 0;
-    padding: 0 0.5em;
-    background-color: var(--background);
-    white-space: nowrap;
-    max-width: 100%;
-    border-radius: var(--control-radius);
-    font-size: 1em;
-  }
-  input{
-    border: none;
-    outline: none;
-    background-color: var(--background);
-    color: transparent;
-    text-align: var(--input-text-align);
-    width: 100%;
-  }
-  &.focused{
-    border: 1px solid var(--focus-color);
-    box-shadow: 0 0 0 1px var(--focus-color);
-    &.invalid{
-      border: 1px solid var(--danger-color);
-      box-shadow: 0 0 0 1px var(--danger-color);
-    }
-    label{
-      opacity: 1;
-      left: 0.5em;
-      top: -1.5em;
-    }
-    input{
-      color: var(--foreground, #000);
-    }
-  }
-  &.has-value{
-    label{
-      opacity: 1;
-      left: 0.5em;
-      top: -1.5em;
-    }
-    input{
-      color: var(--foreground, #000);
-    }
-  }
-  &.disabled{
-    opacity: 0.5;
-  }
-  &.invalid{
-    border-color: var(--danger-color);
-  }
+dnn-fieldset{
+  width: 100%;
 }
 
-.help-text, .error-message{
-  font-style: italic;
-  opacity: 0.7;
-  font-size: 0.8em;
-  margin: 0.25em;
+.inner-container{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
 }
-.error-message{
-  color: var(--danger-color);
-  font-style: normal;
-  font-weight: bold;
+input{
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--foreground);
+  text-align: var(--input-text-align);
+  width: 100%;
 }
+
 .prefix, .suffix{
   font-size: 0.8em;
 }
@@ -112,6 +48,7 @@ svg{
     width: 1em;
     height: 1em;
     transform: scale(1.5);
+    margin-right: 0.5em;
   }
 }
 button.show-password{

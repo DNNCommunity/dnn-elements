@@ -15,7 +15,7 @@ A custom input component that wraps the html input element is a mobile friendly 
 | -------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ----------- |
 | `allowShowPassword`        | `allow-show-password`        | If true, enables users to switch between a password and a text field (to view their password).                                                                                                    | `boolean`                                                                                                           | `undefined` |
 | `autocomplete`             | `autocomplete`               | Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.                                                         | `string`                                                                                                            | `"off"`     |
-| `disableValidityReporting` | `disable-validity-reporting` | If true, the browser default validation message will be hidden.                                                                                                                                   | `boolean`                                                                                                           | `undefined` |
+| `disableValidityReporting` | `disable-validity-reporting` | <span style="color:red">**[DEPRECATED]**</span> This control has it's own validation reporting, will be removed in v0.25.0<br/><br/>                                                              | `boolean`                                                                                                           | `undefined` |
 | `disabled`                 | `disabled`                   | Defines whether the field is disabled.                                                                                                                                                            | `boolean`                                                                                                           | `undefined` |
 | `helpText`                 | `help-text`                  | Defines the help label displayed under the field.                                                                                                                                                 | `string`                                                                                                            | `undefined` |
 | `label`                    | `label`                      | The label for this input.                                                                                                                                                                         | `string`                                                                                                            | `undefined` |
@@ -24,7 +24,7 @@ A custom input component that wraps the html input element is a mobile friendly 
 | `min`                      | `min`                        | Defines the minimum allowed value.                                                                                                                                                                | `number \| string`                                                                                                  | `undefined` |
 | `minlength`                | `minlength`                  | Defines the minimum amount of charaters.                                                                                                                                                          | `number`                                                                                                            | `undefined` |
 | `multiple`                 | `multiple`                   | If true, allows multiple emails to be entered separated by commas.                                                                                                                                | `boolean`                                                                                                           | `undefined` |
-| `name`                     | `name`                       | The name for this input, if not provided a random name will be assigned.                                                                                                                          | `string`                                                                                                            | `undefined` |
+| `name`                     | `name`                       | The name for this input when used in forms.                                                                                                                                                       | `string`                                                                                                            | `undefined` |
 | `pattern`                  | `pattern`                    | Valid for text, search, url, tel, email, and password, the pattern attribute defines a regular expression that the input's value must match in order for the value to pass constraint validation. | `string`                                                                                                            | `undefined` |
 | `readonly`                 | `readonly`                   | Defines wheter the defined value is readonly.                                                                                                                                                     | `boolean`                                                                                                           | `undefined` |
 | `required`                 | `required`                   | Defines whether the field requires having a value.                                                                                                                                                | `boolean`                                                                                                           | `undefined` |
@@ -55,7 +55,13 @@ Type: `Promise<ValidityState>`
 
 ### `setCustomValidity(message: string) => Promise<void>`
 
+Can be used to set a custom validity message.
 
+#### Parameters
+
+| Name      | Type     | Description |
+| --------- | -------- | ----------- |
+| `message` | `string` |             |
 
 #### Returns
 
@@ -83,6 +89,24 @@ Type: `Promise<void>`
 | `--foreground`       | Defines the foreground color.                            |
 | `--input-text-align` | Allows customizing the text alignment of the input text. |
 
+
+## Dependencies
+
+### Used by
+
+ - [dnn-example-form](../examples/dnn-example-form)
+
+### Depends on
+
+- [dnn-fieldset](../dnn-fieldset)
+
+### Graph
+```mermaid
+graph TD;
+  dnn-input --> dnn-fieldset
+  dnn-example-form --> dnn-input
+  style dnn-input fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

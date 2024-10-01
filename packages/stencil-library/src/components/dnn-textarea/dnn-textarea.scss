@@ -1,0 +1,33 @@
+:host {
+  display: inline-block;
+
+    /** @prop --foreground: Defines the foreground color. */
+    --foreground: var(--dnn-color-foreground, #000);
+
+    /** @prop --background: Defines the background color. */
+    --background: var(--dnn-color-background, #fff);
+  
+    /** @prop --focus-color: Defines the color when the component is focused. */
+    --focus-color: var(--dnn-color-primary, #3792ED);
+  
+    /** @prop --danger-color: Defines the danger color used for invalid data. */
+    --danger-color: var(--dnn-color-danger, #900);
+  
+    /** @prop --control-radius: Defines the radius for the control corners. */
+    --control-radius: var(--dnn-controls-radius, 3px);
+}
+
+dnn-fieldset{
+  width: 100%;
+}
+
+textarea{
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--foreground);
+  width: calc(100% - 1em);
+  height: calc(100% - 1em);
+  line-height: 1.5em;
+  resize: none;
+}

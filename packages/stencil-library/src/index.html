@@ -33,6 +33,11 @@
         --dnn-color-background-light: #FFF;
         --dnn-color-background-dark: #ccc;
         --dnn-color-background-contrast: #000;
+
+        --dnn-color-surface: #BBB;
+        --dnn-color-surface-light: #DDD;
+        --dnn-color-surface-dark: #999;
+        --dnn-color-surface-contrast: #000;
         
         --dnn-color-foreground: #000;
         --dnn-color-foreground-light: #333;
@@ -61,7 +66,12 @@
 
         --dnn-controls-radius: 5px;
         --dnn-controls-padding: 5px;
+        --dnn-base-font-size: 16px;
+        --dnn-color-variation-opacity: 0.2;
       }
+    body{
+      font-size: var(--dnn-base-font-size);
+    }
     section{
       margin: 15px;
       padding: 15px;
@@ -77,6 +87,7 @@
 <body>
   <h1>Dnn HTML custom elements</h1>
   <ul>
+    <li><a href="#dnn-autocomplete">dnn-autocomplete</a></li>
     <li><a href="#dnn-button">dnn-button</a></li>
     <li><a href="#dnn-progress-bar">dnn-progress-bar</a></li>
     <li><a href="#dnn-checkbox">dnn-checkbox</a></li>
@@ -97,11 +108,46 @@
     <li><a href="#dnn-vertical-overflow-menu">dnn-vertical-overflow-menu</a></li>
     <li><a href="#dnn-permissions-grid">dnn-permissions-grid</a></li>
     <li><a href="#dnn-richtext">dnn-richtext</a></li>
+    <li><a href="#dnn-example-form">dnn-example-form</a></li>
   </ul>
+
+  <!-- dnn-autocomplete -->
+  <a name="dnn-autocomplete"></a>
+  <section>
+    <h2>dnn-autocomplete</h2>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", () => {
+        var values = [
+          {"value": "1", "label": "First"},
+          {"value": "2", "label": "Second"},
+          {"value": "3", "label": "Third"},
+          {"value": "4", "label": "Fourth"},
+          {"value": "5", "label": "Fifth"},
+          {"value": "6", "label": "Sixth"},
+          {"value": "7", "label": "Seventh"},
+          {"value": "8", "label": "Eighth"},
+          {"value": "9", "label": "Ninth"},
+          {"value": "10", "label": "Tenth"},
+        ];
+        let autocomplete = document.querySelector('#autocomplete-example');
+        autocomplete.suggestions = values;
+        autocomplete.addEventListener("valueInput", e => {
+          let value = e.detail;
+          let filteredValues = values.filter(v => v.label.toLowerCase().includes(value.toLowerCase()));
+          autocomplete.suggestions = filteredValues;
+        });
+      });
+    </script>
+    <dnn-autocomplete
+      id="autocomplete-example"
+      width="300px">
+    </dnn-autocomplete>
+  </section>
 
   <!-- dnn-color-input -->
   <a name="dnn-color-input"></a>
   <section>
+    <h2>dnn-color-input</h2>
     <div style="display: flex; flex-wrap: wrap; gap: 1em;">
       <dnn-input label="Normal input" value="test"></dnn-input>
       <dnn-color-input
@@ -187,7 +233,7 @@
     <div style="display: flex; flex-wrap: wrap;gap:1em;">
       <dnn-input></dnn-input>
       <dnn-input label="text"></dnn-input>
-      <dnn-input label="date" type="Date" help-text="What is your birthdate?"></dnn-input>
+      <dnn-input label="date" type="date" help-text="What is your birthdate?"></dnn-input>
       <dnn-input label="Datetime and Time" type="datetime-local"></dnn-input>
       <dnn-input label="Email" type="email"></dnn-input>
       <dnn-input label="Integer" type="number"></dnn-input>
@@ -435,14 +481,14 @@
   <section>
     <h2>dnn-button</h2>
     <dnn-button onclick="alert('clicked')">Default</dnn-button>
-    <dnn-button onclick="alert('clicked')" type="primary">Primary</dnn-button>
-    <dnn-button onclick="alert('clicked')" type="secondary">Secondary</dnn-button>
-    <dnn-button onclick="alert('clicked')" type="tertiary">Tertiary</dnn-button>
-    <dnn-button onclick="alert('clicked')" type="danger">Danger</dnn-button>
-    <dnn-button onclick="alert('clicked')" type="primary" reversed="reversed">Primary reversed</dnn-button>
-    <dnn-button onclick="alert('clicked')" type="secondary" reversed>Secondary reversed</dnn-button>
-    <dnn-button onclick="alert('clicked')" type="tertiary" reversed>Tertiary reversed</dnn-button>
-    <dnn-button onclick="alert('clicked')" type="danger" reversed>Danger reversed</dnn-button>
+    <dnn-button onclick="alert('clicked')" appearance="primary">Primary</dnn-button>
+    <dnn-button onclick="alert('clicked')" appearance="secondary">Secondary</dnn-button>
+    <dnn-button onclick="alert('clicked')" appearance="tertiary">Tertiary</dnn-button>
+    <dnn-button onclick="alert('clicked')" appearance="danger">Danger</dnn-button>
+    <dnn-button onclick="alert('clicked')" appearance="primary" reversed="reversed">Primary reversed</dnn-button>
+    <dnn-button onclick="alert('clicked')" appearance="secondary" reversed>Secondary reversed</dnn-button>
+    <dnn-button onclick="alert('clicked')" appearance="tertiary" reversed>Tertiary reversed</dnn-button>
+    <dnn-button onclick="alert('clicked')" appearance="danger" reversed>Danger reversed</dnn-button>
     <dnn-button onclick="alert('clicked')" disabled={true}>Disabled</dnn-button>
     <dnn-button onclick="alert('clicked')" size="small">Small</dnn-button>
     <dnn-button onclick="alert('clicked')" size="large">Large</dnn-button>
@@ -662,6 +708,9 @@
         // Testing dynamically added/removed content to collapsible
         setInterval(() => {
           const template = document.querySelector('#test-paragraph');
+          if (template == null){
+            return;
+          }
           const content = template.content;
           const slot = document.querySelector('#collapsible-slot-content')
           
@@ -672,7 +721,7 @@
           else{
             slot.appendChild(content.cloneNode(true));
           }
-        }, 1000);
+        }, 2000);
       </script>
     </section>
 
@@ -687,7 +736,7 @@
     <br /><br />
 
     <div style="display:flex;justify-content: space-between;">
-      <dnn-searchbox id="not-debounced" debounced="false" placeholder="Not debounced..." style="width: 48%;"></dnn-searchbox>
+      <dnn-searchbox id="not-debounced" placeholder="Not debounced..." style="width: 48%;" debounce-time="0"></dnn-searchbox>
       <span style="width: 48%;"></span>
     </div>
     <br /><br />
@@ -795,6 +844,7 @@
     <script type="text/javascript">
       const dnnImageCropper = document.querySelector("#dnnImageCropper");
       dnnImageCropper.addEventListener("imageCropChanged", e => console.log(e.detail));
+      dnnImageCropper.addEventListener("imageFileCropChanged", e => console.log(e.detail));
     </script>
   </section>
 
@@ -1128,6 +1178,14 @@
       const editor = document.getElementById('monaco-editor-demo');
       editor.value = '<h1>Hello, world!</h1>';
     </script>
+  </section>
+
+  <!-- dnn-example-form -->
+  <a name="dnn-example-form"></a>
+  <section>
+    <h2>dnn-example-form</h2>
+    <p>This is not a usable component, it is just used to test out interaction between multiple components.</p>
+    <dnn-example-form />
   </section>
 </body>
 </html>

@@ -33,7 +33,7 @@ button {
       fill: var(--color-sorted);
     }
   }
-  &:hover, &:focus{
+  &:hover, &:focus-visible{
     svg{
       fill: var(--color-hover);
     }

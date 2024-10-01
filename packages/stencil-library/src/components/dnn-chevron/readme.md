@@ -5,6 +5,31 @@
 <!-- Auto Generated Below -->
 
 
+## Usage
+
+### HTML
+
+```html
+<dnn-chevron
+    expand-text="expand"
+    collapse-text="collapse"
+    expanded="false">
+</dnn-chevron>
+```
+
+
+### JSX-TSX
+
+```tsx
+<dnn-chevron
+    expandText="expand"
+    collapseText="collapse"
+    expanded="false">
+</dnn-chevron>
+```
+
+
+
 ## Properties
 
 | Property       | Attribute       | Description                      | Type      | Default      |

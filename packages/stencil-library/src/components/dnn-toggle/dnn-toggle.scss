@@ -26,7 +26,7 @@ button {
     transition: background-color 300ms ease-in-out;
     position: relative;
     cursor: pointer;
-    &:hover, &:focus{
+    &:hover, &:focus-visible{
         box-shadow: 0 0 2px 2px var(--dnn-color-primary);
     }
     &.checked{

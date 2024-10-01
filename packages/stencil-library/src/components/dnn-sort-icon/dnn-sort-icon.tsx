@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, State } from '@stencil/core';
 
 @Component({
   tag: 'dnn-sort-icon',
@@ -11,6 +11,10 @@ export class DnnSortIcon {
 
   /** Emitted when the sort is changed. */
   @Event() sortChanged!: EventEmitter<"asc"|"desc"|"none">;
+  
+  @State() focused = false;
+  
+  private button: HTMLButtonElement;
   
   private changeSort(): void {
     switch (this.sortDirection) {
@@ -32,10 +36,17 @@ export class DnnSortIcon {
 
   render() {
     return (
-      <Host>
+      <Host
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => this.button.focus()}
+        onBlur={() => this.button.blur()}
+      >
         <button
+          ref={el => this.button = el}
           class={{"active": this.sortDirection != "none"}}
           onClick={() => this.changeSort()}
+          onFocus={() => this.focused = true}
+          onBlur={() => this.focused = false}
         >
           {this.sortDirection == "none" &&
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 16"><path d="M 0 7 H 12 L 6 0 Z M 0 9 H 12 L 6 16 Z"></path></svg>

@@ -1,7 +1,8 @@
-import { Component, Element, Host, h, State, Prop, Event, EventEmitter, Method, Watch } from '@stencil/core';
+import { Component, Element, Host, h, State, Prop, Event, EventEmitter, Method, Watch, AttachInternals } from '@stencil/core';
 import { CornerType } from './CornerType';
 import { getMovementFromEvent } from "../../utilities/mouseUtilities";
 import { ImageCropperResx } from './types';
+import { dataURLtoFile } from '../../utilities/fileUtilities';
 
 /**
  * Allows cropping an image in-browser with the option to enforce a specific final size.
@@ -12,6 +13,7 @@ import { ImageCropperResx } from './types';
   tag: 'dnn-image-cropper',
   styleUrl: 'dnn-image-cropper.scss',
   shadow: true,
+  formAssociated: true,
 })
 export class DnnImageCropper {
   /** Sets the desired final image width. */
@@ -31,25 +33,38 @@ export class DnnImageCropper {
   /** When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry. */
   @Prop() preventUndersized: boolean = false;
 
+  /** The name of the control when used in a form. */
+  @Prop() name: string;
+
   /** When the image crop changes, emits the dataurl for the new cropped image. */
   @Event() imageCropChanged: EventEmitter<string>;
 
+  /** Emits both when a file is initially select and when the crop has changed.
+   * Compared to imageCropChanged, this event emits the file itself, which can be useful for uploading the file to a server including its name.
+   */
+  @Event() imageFileCropChanged: EventEmitter<File>;
+  
   /** Clears the current image and crop (resets the component). */
   @Method()
   public async clear(){
     this.setView("noPictureView");
   }
-
+  
   @State() view: IComponentInterfaces["View"];
   @State() localResx: ImageCropperResx;
-
+  @State() fileName: string;
+  @State() focused = false;
+  
   @Element() host: HTMLDnnImageCropperElement;
-
+  
+  @AttachInternals() internals: ElementInternals;
+  
   private hasPictureView: HTMLDivElement;
   private noPictureView: HTMLDivElement;
   private canvas: HTMLCanvasElement;
   private image: HTMLImageElement;
   private crop: HTMLDivElement;
+  private inputField: HTMLDnnDropzoneElement;
   private previousTouch: Touch;
   private imageTooSmallModal!: HTMLDnnModalElement;
   private defaultResx: ImageCropperResx = {
@@ -75,6 +90,13 @@ export class DnnImageCropper {
   @Watch("resx")
   resxChanged() {
     this.mergeResx();
+  }
+
+  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+  formResetCallback(){
+    this.clear();
+    this.internals.setValidity({});
+    this.internals.setFormValue("");
   }
 
   private mergeResx(): void {
@@ -137,6 +159,8 @@ export class DnnImageCropper {
       return;
     }
 
+    this.fileName = file.name;
+
     var reader = new FileReader();
     reader.onload = readerLoadEvent => {
       var img = new Image();
@@ -192,8 +216,6 @@ export class DnnImageCropper {
     this.crop.style.width = `${Math.round(newWidth)}px`;
     this.crop.style.height = `${Math.round(newHeight)}px`;
   };
-  
-  
 
   private handleCropMouseDown = (event: MouseEvent | TouchEvent) => {
     event.stopPropagation();
@@ -268,6 +290,13 @@ export class DnnImageCropper {
 
     var dataUrl = this.generateCroppedImage(x, y, width, height, this.width ?? width, this.height ?? height);
     this.imageCropChanged.emit(dataUrl);
+    var file = dataURLtoFile(dataUrl, this.fileName);
+    this.imageFileCropChanged.emit(file);
+    if (this.name != undefined) {
+      var data = new FormData();
+      data.append(this.name, file);
+      this.internals.setFormValue(data);
+    }
   }
 
   private generateCroppedImage(x: number, y: number, width: number, height: number, desiredWidth: number, desiredHeight: number) {
@@ -478,7 +507,11 @@ export class DnnImageCropper {
 
   render() {
     return (
-      <Host>
+      <Host
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => this.inputField.focus()}
+        onBlur={() => this.inputField.blur()}
+      >
         <canvas ref={el => this.canvas = el} />
         <div
           class="view"
@@ -518,6 +551,9 @@ export class DnnImageCropper {
                 fileSizeLimit: "The maximum size is",
               }
             }
+            ref={el => this.inputField = el}
+            onFocus={() => this.focused = true}
+            onBlur={() => this.focused = false}
           />
         </div>
         <dnn-modal ref={el => this.imageTooSmallModal = el} close-text={this.localResx.modalCloseText}>

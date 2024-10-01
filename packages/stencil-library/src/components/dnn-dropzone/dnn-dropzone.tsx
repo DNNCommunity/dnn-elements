@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Event, EventEmitter, Watch } from '@stencil/core';
+import { Component, Host, h, Prop, State, Event, EventEmitter, Watch, AttachInternals } from '@stencil/core';
 import { getReadableFileSizeString } from '../../utilities/stringUtilities';
 import { DropzoneResx } from './types';
 
@@ -6,6 +6,7 @@ import { DropzoneResx } from './types';
   tag: 'dnn-dropzone',
   styleUrl: 'dnn-dropzone.scss',
   shadow: true,
+  formAssociated: true,
 })
 export class DnnDropzone {
   /** Localization strings */
@@ -35,23 +36,25 @@ export class DnnDropzone {
    */
   @Prop() maxFileSize?: number;
 
+  /** The name of the field when used in a form. */
+  @Prop() name: string;
+
   /** Fires when file were selected. */
   @Event() filesSelected: EventEmitter<File[]>;
   
   @State() canTakeSnapshots: boolean = false;
-
   @State() takingPicture: boolean = false;
-
   @State() fileTooLarge: boolean = false;
-
   @State() invalidExtension: boolean = false;
-
   @State() localResx: DropzoneResx;
-  
+  @State() focused = false;
+
+  @AttachInternals() internals: ElementInternals;
 
   private dropzone: HTMLElement;
   private fileInput: HTMLInputElement;
   private videoPreview: HTMLVideoElement;
+  private uploadLabel: HTMLLabelElement;
   private videoSettings!: MediaTrackSettings;
   private defaultResx: DropzoneResx = {
     dragAndDropFile: "Drag and drop a file",
@@ -84,6 +87,13 @@ export class DnnDropzone {
   @Watch('resx')
   resxChanged() {
     this.mergeResx();
+  }
+
+  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+  formResetCallback() {
+    this.internals.setValidity({});
+    this.fileInput.value = "";
+    this.internals.setFormValue("");
   }
 
   private mergeResx(): void {
@@ -126,6 +136,13 @@ export class DnnDropzone {
     return false;
   }
 
+  private handleUploadKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.fileInput.click();
+    }
+  }
+
   private handleUploadButton(element: HTMLInputElement): void {
     this.fileTooLarge = false;
     this.invalidExtension = false;
@@ -142,6 +159,13 @@ export class DnnDropzone {
     }
 
     this.filesSelected.emit(files);
+    if (this.name != undefined && this.name.length > 0){
+      var data = new FormData();
+      files.forEach(file => {
+        data.append(this.name, file);
+      });
+      this.internals.setFormValue(data);
+    }
   }
 
   private handleDragOver = (event: DragEvent) => 
@@ -162,8 +186,8 @@ export class DnnDropzone {
         hasInvalid = true;
       }
 
-      var loweredAllowedExtensions = this.allowedExtensions.map(e => e.toLowerCase());
-      if (this.allowedExtensions != undefined && !loweredAllowedExtensions.includes(fileExtension)){
+      var loweredAllowedExtensions = this.allowedExtensions?.map(e => e.toLowerCase());
+      if (this.allowedExtensions != undefined && !loweredAllowedExtensions?.includes(fileExtension)){
         hasInvalid = true;
       }
 
@@ -235,6 +259,9 @@ export class DnnDropzone {
         onDragOver={e => this.handleDragOver(e)}
         onDrop={e => this.handleDrop(e)}
         onDragLeave={() => this.dropzone.classList.remove("dropping")}
+        tabIndex={this.focused ? -1 : 0}
+        onFocus={() => this.uploadLabel.focus()}
+        onBlur={() => this.uploadLabel.blur()}
       >
         {!this.takingPicture &&
           [
@@ -242,7 +269,14 @@ export class DnnDropzone {
           ,
             <p>- {this.localResx?.or} -</p>
           ,
-            <label class="upload-file">
+            <label
+              class="upload-file"
+              tabIndex={0}
+              onKeyDown={e => this.handleUploadKeyDown(e)}
+              ref={el => this.uploadLabel = el}
+              onFocus={() => this.focused = true}
+              onBlur={() => this.focused = false}
+            >
               <input
                 type="file"
                 ref={el => this.fileInput = el}
@@ -250,7 +284,16 @@ export class DnnDropzone {
               >
               </input>
               <span>
-                <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><rect fill="none" height="24" width="24"/></g><g><path d="M5,20h14v-2H5V20z M5,10h4v6h6v-6h4l-7-7L5,10z"/></g></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  enable-background="new 0 0 24 24"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  width="24px"
+                  fill="#000000">
+                    <g><rect fill="none" height="24" width="24"/></g>
+                    <g><path d="M5,20h14v-2H5V20z M5,10h4v6h6v-6h4l-7-7L5,10z"/></g>
+                </svg>
               </span>
               &nbsp;
               {this.localResx?.uploadFile}
