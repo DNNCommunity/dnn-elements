@@ -117,8 +117,14 @@ class Build : NukeBuild
         }
         if (type == OutputType.Err)
         {
-          if (output.StartsWith("npm WARN", StringComparison.OrdinalIgnoreCase))
+          var infoWords = new[] {"lerna info", "lerna notice"};
+          if (infoWords.Any(w => output.StartsWith(w, StringComparison.OrdinalIgnoreCase)))
           {
+            Serilog.Log.Information(output);
+          }
+          else if (output.StartsWith("npm WARN", StringComparison.OrdinalIgnoreCase))
+          {
+
             Serilog.Log.Warning(output);
           }
           else

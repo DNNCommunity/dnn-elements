@@ -36,7 +36,7 @@
     "@chromatic-com/storybook": "^2.0.2",
     "@stencil-community/eslint-plugin": "0.8.0",
     "@stencil/core": "4.21.0",
-    "@stencil/react-output-target": "^0.5.1",
+    "@stencil/react-output-target": "^0.7.1",
     "@stencil/sass": "^3.0.4",
     "@storybook/addon-a11y": "^8.3.2",
     "@storybook/addon-essentials": "^8.3.2",
