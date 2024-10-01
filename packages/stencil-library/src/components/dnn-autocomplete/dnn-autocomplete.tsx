@@ -70,6 +70,11 @@ export class DnnAutocomplete {
   /** Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState */
   @Method()
   async checkValidity(): Promise<ValidityState> {
+    var validity = this.inputField.checkValidity();
+    if (!validity) {
+      this.fieldset.setValidity(false, this.inputField.validationMessage);
+    }
+    this.fieldset.setValidity(true, "");
     return this.inputField.validity;
   }
   
@@ -94,15 +99,16 @@ export class DnnAutocomplete {
   @State() selectedIndex: number;
   @State() positionInitialized = false;
   @State() lastScrollTop = 0;
+  @State() displayValue: string = "";
   
   /** attacth the internals for form validation */
   @AttachInternals() internals: ElementInternals;
   
   /** Listener for mouse down event */
   @Listen("click", { target: "document", capture: false })
-  handleOutsideClick(e: MouseEvent) {
-  const path = e.composedPath();
-  if (!path.includes(this.element))
+  handleClick(e: MouseEvent) {
+    const path = e.composedPath();
+    if (!path.includes(this.element))
     {
       this.focused = false;
     }
@@ -129,12 +135,13 @@ export class DnnAutocomplete {
   }
   
   private handleInput(e: Event) {
-    const value = (e.target as HTMLInputElement).value;
-    this.value = value;
+    const inputValue = (e.target as HTMLInputElement).value;
+    this.displayValue = inputValue;
+    this.value = inputValue;
     var valid = this.inputField.checkValidity();
     this.valid = valid;
-    this.valueInput.emit(value);
-    this.handleSearchQueryChanged(value);
+    this.valueInput.emit(inputValue);
+    this.handleSearchQueryChanged(inputValue);
   }
 
   @Debounce(300)
@@ -244,6 +251,9 @@ export class DnnAutocomplete {
     e.stopPropagation();
     this.selectedIndex = index;
     this.value = this.suggestions[this.selectedIndex].value;
+    this.displayValue = this.suggestions[this.selectedIndex].label;
+    this.inputField.value = this.displayValue;
+    this.checkValidity();
     this.focused = false;
     this.itemSelected.emit(this.suggestions[this.selectedIndex].value)
   }
@@ -313,7 +323,6 @@ export class DnnAutocomplete {
   }
 
   handleBlur(): void {
-    this.focused = false
     var validity = this.inputField.checkValidity();
     this.valid = validity;
     this.fieldset.setValidity(validity, this.inputField.validationMessage);
@@ -349,8 +358,11 @@ export class DnnAutocomplete {
               disabled={this.disabled}
               required={this.required}
               autoComplete="off"
-              value={this.suggestions.length > 0 && this.selectedIndex != undefined ? this.suggestions[this.selectedIndex].label : this.value}
-              onFocus={() => this.focused = true}
+              value={this.displayValue}
+              onFocus={() => {
+                this.searchQueryChanged.emit(this.value || "");
+                this.focused = true;
+              }}
               onBlur={() => this.handleBlur()}
               onInput={e => this.handleInput(e)}
               onInvalid={() => this.handleInvalid()}

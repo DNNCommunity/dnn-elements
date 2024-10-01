@@ -277,6 +277,7 @@ export class DnnExampleForm {
               </label>
               <dnn-autocomplete
                 label="User"
+                name="user"
                 helpText="Select a user"
                 required
                 suggestions={this.filteredUsers}
