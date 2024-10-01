@@ -125,6 +125,9 @@ export namespace Components {
          */
         "type": 'primary' | 'danger' | 'secondary' | 'tertiary';
     }
+    /**
+     * @deprecated - The label for the checkbox - Obsolete, implement your own label.
+     */
     interface DnnCheckbox {
         /**
           * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
@@ -678,6 +681,10 @@ export namespace Components {
          */
         "resizable": "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
         /**
+          * Defines how many rows (lines of text) to initially show.
+         */
+        "rows": number;
+        /**
           * Can be used to set a custom validity message.
          */
         "setCustomValidity": (message: string) => Promise<void>;
@@ -861,6 +868,9 @@ declare global {
     interface HTMLDnnCheckboxElementEventMap {
         "checkedchange": "checked" | "unchecked" | "intermediate";
     }
+    /**
+     * @deprecated - The label for the checkbox - Obsolete, implement your own label.
+     */
     interface HTMLDnnCheckboxElement extends Components.DnnCheckbox, HTMLStencilElement {
         addEventListener<K extends keyof HTMLDnnCheckboxElementEventMap>(type: K, listener: (this: HTMLDnnCheckboxElement, ev: DnnCheckboxCustomEvent<HTMLDnnCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1397,6 +1407,9 @@ declare namespace LocalJSX {
          */
         "type"?: 'primary' | 'danger' | 'secondary' | 'tertiary';
     }
+    /**
+     * @deprecated - The label for the checkbox - Obsolete, implement your own label.
+     */
     interface DnnCheckbox {
         /**
           * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
@@ -1971,6 +1984,10 @@ declare namespace LocalJSX {
          */
         "resizable"?: "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
         /**
+          * Defines how many rows (lines of text) to initially show.
+         */
+        "rows"?: number;
+        /**
           * Sets the value of the textarea.
          */
         "value"?: string;
@@ -2066,6 +2083,9 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "dnn-autocomplete": LocalJSX.DnnAutocomplete & JSXBase.HTMLAttributes<HTMLDnnAutocompleteElement>;
             "dnn-button": LocalJSX.DnnButton & JSXBase.HTMLAttributes<HTMLDnnButtonElement>;
+            /**
+             * @deprecated - The label for the checkbox - Obsolete, implement your own label.
+             */
             "dnn-checkbox": LocalJSX.DnnCheckbox & JSXBase.HTMLAttributes<HTMLDnnCheckboxElement>;
             "dnn-chevron": LocalJSX.DnnChevron & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
             "dnn-collapsible": LocalJSX.DnnCollapsible & JSXBase.HTMLAttributes<HTMLDnnCollapsibleElement>;

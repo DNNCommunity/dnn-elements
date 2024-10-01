@@ -70,14 +70,27 @@ export class DnnAutocomplete {
   /** Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState */
   @Method()
   async checkValidity(): Promise<ValidityState> {
+    var validity = this.inputField.checkValidity();
+    if (!validity) {
+      this.fieldset.setValidity(false, this.inputField.validationMessage);
+    }
+    this.fieldset.setValidity(true, "");
     return this.inputField.validity;
   }
   
   /** Can be used to set a custom validity message. */
   @Method()
   async setCustomValidity(message: string): Promise<void> {
-    this.customValidityMessage = message;
-    return this.inputField.setCustomValidity(message);
+    if (message == undefined || message == "") {
+      this.inputField.setCustomValidity("");
+      this.valid = true;
+      this.fieldset.setValidity(true);
+      return;
+    }
+
+    this.inputField.setCustomValidity(message);
+    this.valid = false;
+    this.fieldset.setValidity(false, message);
   }
 
   @State() focused = false;
@@ -86,15 +99,16 @@ export class DnnAutocomplete {
   @State() selectedIndex: number;
   @State() positionInitialized = false;
   @State() lastScrollTop = 0;
+  @State() displayValue: string = "";
   
   /** attacth the internals for form validation */
   @AttachInternals() internals: ElementInternals;
   
   /** Listener for mouse down event */
   @Listen("click", { target: "document", capture: false })
-  handleOutsideClick(e: MouseEvent) {
-  const path = e.composedPath();
-  if (!path.includes(this.element))
+  handleClick(e: MouseEvent) {
+    const path = e.composedPath();
+    if (!path.includes(this.element))
     {
       this.focused = false;
     }
@@ -109,6 +123,7 @@ export class DnnAutocomplete {
   private inputField!: HTMLInputElement;
   private suggestionsContainer: HTMLUListElement;
   private labelId: string;
+  private fieldset: HTMLDnnFieldsetElement;
   
   // eslint-disable-next-line @stencil-community/own-methods-must-be-private
   formResetCallback() {
@@ -120,11 +135,13 @@ export class DnnAutocomplete {
   }
   
   private handleInput(e: Event) {
-    const value = (e.target as HTMLInputElement).value;
+    const inputValue = (e.target as HTMLInputElement).value;
+    this.displayValue = inputValue;
+    this.value = inputValue;
     var valid = this.inputField.checkValidity();
     this.valid = valid;
-    this.valueInput.emit(value);
-    this.handleSearchQueryChanged(value);
+    this.valueInput.emit(inputValue);
+    this.handleSearchQueryChanged(inputValue);
   }
 
   @Debounce(300)
@@ -216,7 +233,7 @@ export class DnnAutocomplete {
         this.selectedIndex = Math.max(this.selectedIndex - 1, 0);
       }
     }
-    this.value = this.suggestions[this.selectedIndex]?.value;
+    this.value = this.suggestions[this.selectedIndex]?.value || this.value;
     if (e.key === "Enter") {
       var selectedItem = this.suggestions[this.selectedIndex];
       this.value = selectedItem.value;
@@ -234,6 +251,9 @@ export class DnnAutocomplete {
     e.stopPropagation();
     this.selectedIndex = index;
     this.value = this.suggestions[this.selectedIndex].value;
+    this.displayValue = this.suggestions[this.selectedIndex].label;
+    this.inputField.value = this.displayValue;
+    this.checkValidity();
     this.focused = false;
     this.itemSelected.emit(this.suggestions[this.selectedIndex].value)
   }
@@ -242,6 +262,10 @@ export class DnnAutocomplete {
     const itemHeight = this.findAverageSuggestionHeight();
     const upcomingItems = this.totalSuggestions - this.suggestions.length;
     return itemHeight * upcomingItems;
+  }
+
+  private handleDropdownClick(): void {
+    this.handleSearchQueryChanged(this.value);
   }
 
   @Debounce(100)
@@ -298,6 +322,13 @@ export class DnnAutocomplete {
     }
   }
 
+  handleBlur(): void {
+    var validity = this.inputField.checkValidity();
+    this.valid = validity;
+    this.fieldset.setValidity(validity, this.inputField.validationMessage);
+    this.internals.setValidity(this.inputField.validity, this.inputField.validationMessage);
+  }
+
   render() {
     return (
       <Host
@@ -306,6 +337,7 @@ export class DnnAutocomplete {
         onBlur={() => this.inputField.blur()}
       >
         <dnn-fieldset
+          ref={el => this.fieldset = el}
           invalid={!this.valid}
           focused={this.focused}
           label={`${this.label ?? ""}${this.required ? " *" : ""}`}
@@ -326,9 +358,12 @@ export class DnnAutocomplete {
               disabled={this.disabled}
               required={this.required}
               autoComplete="off"
-              value={this.suggestions.length > 0 && this.selectedIndex != undefined ? this.suggestions[this.selectedIndex].label : this.value}
-              onFocus={() => this.focused = true}
-              onBlur={() => this.focused = false}
+              value={this.displayValue}
+              onFocus={() => {
+                this.searchQueryChanged.emit(this.value || "");
+                this.focused = true;
+              }}
+              onBlur={() => this.handleBlur()}
               onInput={e => this.handleInput(e)}
               onInvalid={() => this.handleInvalid()}
               onChange={() => this.handleChange()}
@@ -362,7 +397,7 @@ export class DnnAutocomplete {
               }
             </ul>
             <svg
-              onClick={() => this.focused = !this.focused}
+              onClick={() => this.handleDropdownClick()}
               class="chevron-down"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 -960 960 960">

@@ -23,6 +23,7 @@ A custom textarea component.
 | `readonly`     | `readonly`     | Defines wheter the defined value is readonly.                                                                                             | `boolean`                                                               | `undefined` |
 | `required`     | `required`     | Defines whether the field requires having a value.                                                                                        | `boolean`                                                               | `undefined` |
 | `resizable`    | `resizable`    | Can be set to change how the user can resize the field.                                                                                   | `"block" \| "both" \| "horizontal" \| "inline" \| "none" \| "vertical"` | `"block"`   |
+| `rows`         | `rows`         | Defines how many rows (lines of text) to initially show.                                                                                  | `number`                                                                | `3`         |
 | `value`        | `value`        | Sets the value of the textarea.                                                                                                           | `string`                                                                | `undefined` |
 
 

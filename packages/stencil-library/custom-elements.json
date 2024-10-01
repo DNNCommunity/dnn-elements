@@ -386,10 +386,6 @@
           ],
           "slots": [
             {
-              "name": " ",
-              "description": "The label for the checkbox."
-            },
-            {
               "name": "checkedicon",
               "description": "Allows overriding the default checked icon."
             },
@@ -2075,6 +2071,15 @@
               },
               "description": "Can be set to change how the user can resize the field.",
               "default": "\"block\"",
+              "required": false
+            },
+            {
+              "name": "rows",
+              "type": {
+                "text": "number"
+              },
+              "description": "Defines how many rows (lines of text) to initially show.",
+              "default": "3",
               "required": false
             },
             {

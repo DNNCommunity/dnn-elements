@@ -42,6 +42,9 @@ export class DnnTextarea {
   /** Defines wheter the defined value is readonly. */
   @Prop() readonly: boolean;
 
+  /** Defines how many rows (lines of text) to initially show. */
+  @Prop() rows: number = 3;
+
   /** Fires when the using is inputing data (on keystrokes). */
   @Event() valueInput: EventEmitter<string>;
 
@@ -57,8 +60,16 @@ export class DnnTextarea {
   /** Can be used to set a custom validity message. */
   @Method()
   async setCustomValidity(message: string): Promise<void> {
+    if (message == undefined || message == "") {
+      this.textarea.setCustomValidity("");
+      this.valid = true;
+      this.fieldset.setValidity(true);
+      return;
+    }
+
     this.customValidityMessage = message;
-    return this.textarea.setCustomValidity(message);
+    this.valid = false;
+    this.textarea.setCustomValidity(message);
   }
 
   @State() focused = false;
@@ -68,10 +79,15 @@ export class DnnTextarea {
   @AttachInternals() internals: ElementInternals;
   
   private textarea: HTMLTextAreaElement;
+  private fieldset: HTMLDnnFieldsetElement;
   private labelId: string;
 
   componentWillLoad() {
     this.labelId = generateRandomId();
+  }
+
+  componentDidLoad() {
+    this.textarea.style.minHeight = `${this.rows * 1.5}em`;
   }
 
   // eslint-disable-next-line @stencil-community/own-methods-must-be-private
@@ -126,6 +142,7 @@ export class DnnTextarea {
         onBlur={() => this.textarea.blur()}
       >
         <dnn-fieldset
+          ref={el => this.fieldset = el}
           invalid={!this.valid}
           focused={this.focused}
           resizable={this.resizable}
@@ -152,6 +169,7 @@ export class DnnTextarea {
             maxlength={this.maxlength}
             readonly={this.readonly}
             aria-labelledby={this.labelId}
+            rows={this.rows}
           />
         </dnn-fieldset>
       </Host>

@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop, Event, EventEmitter, Watch, Host, AttachInternals, State } from "@stencil/core";
+import { Component, h, Element, Prop, Event, EventEmitter, Watch, Host, AttachInternals, State, Listen } from "@stencil/core";
 import { DnnToggleChangeEventDetail } from "./toggle-interface";
 
 
@@ -26,6 +26,11 @@ export class DnnToggle {
 
     /** Fires when the toggle changed */
     @Event() checkChanged!: EventEmitter<DnnToggleChangeEventDetail>;
+
+    @Listen("click", { capture: true })
+    handleClick() {
+        this.checked = !this.checked;
+    }
 
     @AttachInternals() internals: ElementInternals;
     
@@ -76,11 +81,6 @@ export class DnnToggle {
                     ref={el => this.button = el}
                     disabled={this.disabled}
                     class={{ 'checked': this.checked }}
-                    onClick={() => {
-                        if (!this.disabled) {
-                            this.checked = !this.checked;
-                        }
-                    }}
                     onFocus={() => this.focused = true}
                     onBlur={() => this.focused = false}
                 >

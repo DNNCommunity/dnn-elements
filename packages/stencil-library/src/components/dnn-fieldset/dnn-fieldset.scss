@@ -27,6 +27,7 @@
   position: relative;
   background-color: var(--fieldset-background);
   margin-top: 1em;
+  line-height: 1em;
   .resizer{
     width: 100%;
   }
@@ -52,6 +53,7 @@
     margin-top: 1em;
     z-index: 1;
     pointer-events: none;
+    line-height: 1em;
   }
   &.focused{
     border: 1px solid var(--fieldset-focus-color);

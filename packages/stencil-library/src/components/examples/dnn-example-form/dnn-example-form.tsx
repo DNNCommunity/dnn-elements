@@ -245,9 +245,10 @@ export class DnnExampleForm {
                 helpText="Please enter the URL of your website."
                 name="website"
               />
-                <dnn-checkbox name="rememberMe" value="true">
+              <label>
+                <dnn-checkbox name="rememberMe" value="true" />
                   Remember me
-                </dnn-checkbox>
+              </label>
               <dnn-color-input
                 label="Favorite Color"
                 name="favoriteColor"
@@ -276,15 +277,12 @@ export class DnnExampleForm {
               </label>
               <dnn-autocomplete
                 label="User"
+                name="user"
                 helpText="Select a user"
+                required
                 suggestions={this.filteredUsers}
                 onSearchQueryChanged={e => {
-                  if (e.detail == undefined || e.detail == "")
-                  {
-                    this.filteredUsers = [];
-                    return;
-                  }
-                  const search = (e.detail as string).toLowerCase();
+                  const search = (e.detail || "" as string).toLowerCase();
                   this.filteredUsers = this.users.filter(u => u.label.toLowerCase().includes(search));
                 }}
                 renderSuggestion={suggestion =>

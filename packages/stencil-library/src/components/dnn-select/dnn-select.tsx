@@ -127,6 +127,14 @@ export class DnnSelect {
     }
   }
 
+  private handleBlur(): void {
+    this.focused = false
+    var validity = this.select.checkValidity();
+    this.valid = validity;
+    this.fieldset.setValidity(validity, this.select.validationMessage);
+    this.internals.setValidity(this.select.validity, this.select.validationMessage);
+  }
+
   render() {
     return (
       <Host
@@ -147,7 +155,7 @@ export class DnnSelect {
             <select
               ref={el => this.select = el}
               onFocus={() => this.focused = true}
-              onBlur={() => this.focused = false}
+              onBlur={() => this.handleBlur()}
               onChange={e => this.handleChange((e.target as HTMLSelectElement).value)}
               onInvalid={() => this.handleInvalid()}
               required={this.required}
@@ -166,5 +174,4 @@ export class DnnSelect {
       </Host>
     );
   }
-
 }
