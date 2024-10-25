@@ -34,6 +34,10 @@ export { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-inter
 export namespace Components {
     interface DnnAutocomplete {
         /**
+          * Defines the type of automatic completion the browser could use. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+         */
+        "autocomplete": string;
+        /**
           * Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
          */
         "checkValidity": () => Promise<ValidityState>;
@@ -574,6 +578,10 @@ export namespace Components {
         "query": string;
     }
     interface DnnSelect {
+        /**
+          * Defines the type of automatic completion the browser can use. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+         */
+        "autocomplete": string;
         /**
           * Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
          */
@@ -1296,6 +1304,10 @@ declare global {
 declare namespace LocalJSX {
     interface DnnAutocomplete {
         /**
+          * Defines the type of automatic completion the browser could use. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+         */
+        "autocomplete"?: string;
+        /**
           * Defines whether the field is disabled.
          */
         "disabled"?: boolean;
@@ -1877,6 +1889,10 @@ declare namespace LocalJSX {
         "query"?: string;
     }
     interface DnnSelect {
+        /**
+          * Defines the type of automatic completion the browser can use. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+         */
+        "autocomplete"?: string;
         /**
           * @deprecated This control has its own validatin reporting, will be removed in v0.25.0
          */

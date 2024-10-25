@@ -33,18 +33,23 @@ export class DnnAutocomplete {
 
   /** Callback to render suggestions, if not provided, only the label will be rendered. */
   @Prop() renderSuggestion: (suggestion: DnnAutocompleteSuggestion) => HTMLElement;
-
+  
   /** The total amount of suggestions for the given search query.
    * This can be used to show virtual scroll and pagination progressive feeding.
    * The needMoreItems event should be used to request more items.
    */
   @Prop() totalSuggestions: number;
-
+ 
   /** How many suggestions to preload in pixels of their height.
-   * This is used to calculate the virtual scroll height and request
-   * more items before they get into view.
-   */
+  * This is used to calculate the virtual scroll height and request
+  * more items before they get into view.
+  */
   @Prop() preloadThresholdPixels: number = 1000;
+
+  /** Defines the type of automatic completion the browser could use.
+  * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+  */
+  @Prop() autocomplete: string = "off";
 
   @Element() element: HTMLDnnAutocompleteElement;
 
@@ -357,7 +362,7 @@ export class DnnAutocomplete {
               aria-activedescendant={this.selectedIndex !== undefined ? `option-${this.selectedIndex}` : undefined}
               disabled={this.disabled}
               required={this.required}
-              autoComplete="off"
+              autoComplete={this.autocomplete}
               value={this.displayValue}
               onFocus={() => {
                 this.searchQueryChanged.emit(this.value || "");

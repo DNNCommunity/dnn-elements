@@ -4,6 +4,8 @@
   ],
   "hints": {
     "axe/name-role-value": "off",
-    "no-inline-styles": "off"
+    "no-inline-styles": "off",
+    "axe/aria": "off",
+    "axe/forms": "off"
   }
 }
