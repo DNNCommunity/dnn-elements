@@ -171,6 +171,10 @@ export class DnnInput {
     if (this.type == "date" || this.type == "datetime-local" || this.type == "time") {
       return false;
     }
+
+    if (this.type === "number" && this.value === 0){
+      return false;
+    }
     
     return true;
   }
