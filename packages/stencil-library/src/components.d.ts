@@ -409,6 +409,10 @@ export namespace Components {
          */
         "helpText": string;
         /**
+          * Hints at the type of data that might be entered by the user while editing the element or its contents. This allows a browser to display an appropriate virtual keyboard.
+         */
+        "inputmode": "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
+        /**
           * The label for this input.
          */
         "label": string;
@@ -1695,6 +1699,10 @@ declare namespace LocalJSX {
           * Defines the help label displayed under the field.
          */
         "helpText"?: string;
+        /**
+          * Hints at the type of data that might be entered by the user while editing the element or its contents. This allows a browser to display an appropriate virtual keyboard.
+         */
+        "inputmode"?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
         /**
           * The label for this input.
          */
