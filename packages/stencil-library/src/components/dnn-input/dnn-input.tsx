@@ -184,7 +184,7 @@ export class DnnInput {
       return false;
     }
 
-    if (this.value == 0){
+    if (this.value == 0 || this.value !== ""){
       return false;
     }
     
