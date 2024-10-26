@@ -125,7 +125,12 @@ export class DnnInput {
     this.internals.setFormValue("");
   }
 
-  private handleInput(value: string): void {
+  private handleInput(e: InputEvent): void {
+    if (this.type === "number" && e.data === "-") {
+      // Ignore the minus sign if the input type is number
+      return;
+    }
+    var value = (e.target as HTMLInputElement).value;
     this.value = value;
     var valid = this.inputField.checkValidity();
     this.valid = valid;
@@ -229,7 +234,7 @@ export class DnnInput {
               value={this.value}
               onBlur={() => this.handleBlur()}
               onFocus={() => this.focused = true}
-              onInput={e => this.handleInput((e.target as HTMLInputElement).value)}
+              onInput={e => this.handleInput(e)}
               onInvalid={() => this.handleInvalid()}
               onChange={() => this.handleChange()}
               aria-labelledby={this.labelId}
