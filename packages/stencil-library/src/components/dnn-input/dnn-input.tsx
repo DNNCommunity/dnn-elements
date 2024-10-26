@@ -67,6 +67,11 @@ export class DnnInput {
   /** If true, enables users to switch between a password and a text field (to view their password). */
   @Prop() allowShowPassword: boolean;
 
+  /** Hints at the type of data that might be entered by the user while editing the element or its contents.
+   * This allows a browser to display an appropriate virtual keyboard.
+   */
+  @Prop() inputmode: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
+
   /** Fires when the value has changed and the user exits the input. */
   @Event() valueChange: EventEmitter<number | string | string[]>;
 
@@ -112,9 +117,11 @@ export class DnnInput {
   }
 
   componentDidLoad() {
-    var validity = this.inputField.validity;
-    var validityMessage = validity.valid ? "" : this.inputField.validationMessage;
-    this.internals.setValidity(this.inputField.validity, validityMessage);
+    requestAnimationFrame(() => {
+      var validity = this.inputField.validity;
+      var validityMessage = validity.valid ? "" : this.inputField.validationMessage;
+      this.internals.setValidity(this.inputField.validity, validityMessage);
+    });
   }
 
   // eslint-disable-next-line @stencil-community/own-methods-must-be-private
@@ -184,6 +191,39 @@ export class DnnInput {
     return true;
   }
 
+  private getInputMode(): string {
+    if (this.inputmode != undefined) {
+      return this.inputmode;
+    }
+
+    if (this.type === "number") {
+      var min = parseFloat(this.min?.toString());
+      if ((this.step === 1 || this.step == undefined) && min >= 0) {
+        return "numeric";
+      }
+
+      return "decimal";
+    }
+
+    if (this.type === "tel") {
+      return "tel";
+    }
+
+    if (this.type === "url") {
+      return "url";
+    }
+
+    if (this.type === "email") {
+      return "email";
+    }
+
+    if (this.type === "search") {
+      return "search";
+    }
+
+    return "text";
+  }
+
   handleBlur(): void {
     this.focused = false
     var validity = this.inputField.checkValidity();
@@ -220,6 +260,7 @@ export class DnnInput {
               ref={el => this.inputField = el}
               name={this.name}
               type={this.type}
+              inputMode={this.getInputMode()}
               disabled={this.disabled}
               required={this.required}
               autoComplete={this.autocomplete}
@@ -265,5 +306,5 @@ export class DnnInput {
         </dnn-fieldset>
       </Host>
     );
-  }
+  }  
 }
