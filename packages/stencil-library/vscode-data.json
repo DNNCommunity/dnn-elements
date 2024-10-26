@@ -9,6 +9,10 @@
       },
       "attributes": [
         {
+          "name": "autocomplete",
+          "description": "Defines the type of automatic completion the browser could use.\nSee https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete"
+        },
+        {
           "name": "disabled",
           "description": "Defines whether the field is disabled."
         },
@@ -432,6 +436,36 @@
           "description": "Defines the help label displayed under the field."
         },
         {
+          "name": "inputmode",
+          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents.\nThis allows a browser to display an appropriate virtual keyboard.",
+          "values": [
+            {
+              "name": "decimal"
+            },
+            {
+              "name": "email"
+            },
+            {
+              "name": "none"
+            },
+            {
+              "name": "numeric"
+            },
+            {
+              "name": "search"
+            },
+            {
+              "name": "tel"
+            },
+            {
+              "name": "text"
+            },
+            {
+              "name": "url"
+            }
+          ]
+        },
+        {
           "name": "label",
           "description": "The label for this input."
         },
@@ -761,6 +795,10 @@
         "value": ""
       },
       "attributes": [
+        {
+          "name": "autocomplete",
+          "description": "Defines the type of automatic completion the browser can use.\nSee https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete"
+        },
         {
           "name": "disable-validity-reporting",
           "description": ""
