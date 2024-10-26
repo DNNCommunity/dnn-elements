@@ -172,6 +172,10 @@ export class DnnInput {
   }
 
   private shouldLabelFloat(): boolean {
+    if (this.type === "number" && isNaN(this.value as number)) {
+      return true;
+    }
+    
     if (this.focused) {
       return false;
     }
