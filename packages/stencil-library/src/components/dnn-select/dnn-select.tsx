@@ -79,8 +79,13 @@ export class DnnSelect {
   }
   
   componentDidLoad() {
-    this.applySlottedItemsToSelect();
-    this.setFormValue();
+    requestAnimationFrame(() => {
+      var validity = this.select.validity;
+      var validityMessage = validity.valid ? "" : this.select.validationMessage;
+      this.internals.setValidity(this.select.validity, validityMessage);
+      this.applySlottedItemsToSelect();
+      this.setFormValue();
+    });
   }
 
   // eslint-disable-next-line @stencil-community/own-methods-must-be-private
