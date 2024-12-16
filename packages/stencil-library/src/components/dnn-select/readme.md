@@ -56,6 +56,7 @@ Type: `Promise<ValidityState>`
 ### Used by
 
  - [dnn-example-form](../examples/dnn-example-form)
+ - [test-form](../test-form)
 
 ### Depends on
 
@@ -66,6 +67,7 @@ Type: `Promise<ValidityState>`
 graph TD;
   dnn-select --> dnn-fieldset
   dnn-example-form --> dnn-select
+  test-form --> dnn-select
   style dnn-select fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

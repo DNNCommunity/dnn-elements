@@ -752,6 +752,8 @@ export namespace Components {
          */
         "splitterWidth": number;
     }
+    interface TestForm {
+    }
 }
 export interface DnnAutocompleteCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1275,6 +1277,12 @@ declare global {
         prototype: HTMLDnnVerticalSplitviewElement;
         new (): HTMLDnnVerticalSplitviewElement;
     };
+    interface HTMLTestFormElement extends Components.TestForm, HTMLStencilElement {
+    }
+    var HTMLTestFormElement: {
+        prototype: HTMLTestFormElement;
+        new (): HTMLTestFormElement;
+    };
     interface HTMLElementTagNameMap {
         "dnn-autocomplete": HTMLDnnAutocompleteElement;
         "dnn-button": HTMLDnnButtonElement;
@@ -1303,6 +1311,7 @@ declare global {
         "dnn-treeview-item": HTMLDnnTreeviewItemElement;
         "dnn-vertical-overflow-menu": HTMLDnnVerticalOverflowMenuElement;
         "dnn-vertical-splitview": HTMLDnnVerticalSplitviewElement;
+        "test-form": HTMLTestFormElement;
     }
 }
 declare namespace LocalJSX {
@@ -2071,6 +2080,8 @@ declare namespace LocalJSX {
          */
         "splitterWidth"?: number;
     }
+    interface TestForm {
+    }
     interface IntrinsicElements {
         "dnn-autocomplete": DnnAutocomplete;
         "dnn-button": DnnButton;
@@ -2099,6 +2110,7 @@ declare namespace LocalJSX {
         "dnn-treeview-item": DnnTreeviewItem;
         "dnn-vertical-overflow-menu": DnnVerticalOverflowMenu;
         "dnn-vertical-splitview": DnnVerticalSplitview;
+        "test-form": TestForm;
     }
 }
 export { LocalJSX as JSX };
@@ -2164,6 +2176,7 @@ declare module "@stencil/core" {
              */
             "dnn-vertical-overflow-menu": LocalJSX.DnnVerticalOverflowMenu & JSXBase.HTMLAttributes<HTMLDnnVerticalOverflowMenuElement>;
             "dnn-vertical-splitview": LocalJSX.DnnVerticalSplitview & JSXBase.HTMLAttributes<HTMLDnnVerticalSplitviewElement>;
+            "test-form": LocalJSX.TestForm & JSXBase.HTMLAttributes<HTMLTestFormElement>;
         }
     }
 }
