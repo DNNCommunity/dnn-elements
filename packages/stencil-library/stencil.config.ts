@@ -122,6 +122,10 @@ export const config: Config = {
       esmLoaderPath: '../loader',
     },
     {
+      type: 'dist-custom-elements',
+      externalRuntime: false,
+    },
+    {
       type: 'docs-readme'
     },
     {
@@ -137,8 +141,7 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
     reactOutputTarget({
-      componentCorePackage: '@dnncommunity/dnn-elements',
-      proxiesFile: '../react-library/lib/components/stencil-generated/index.ts',
+      outDir: '../react-library/lib/components/stencil-generated/',
     }),
   ],
   plugins: [
