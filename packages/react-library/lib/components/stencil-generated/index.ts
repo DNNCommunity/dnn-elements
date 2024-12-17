@@ -34,4 +34,3 @@ export const DnnToggle = /*@__PURE__*/createReactComponent<JSX.DnnToggle, HTMLDn
 export const DnnTreeviewItem = /*@__PURE__*/createReactComponent<JSX.DnnTreeviewItem, HTMLDnnTreeviewItemElement>('dnn-treeview-item');
 export const DnnVerticalOverflowMenu = /*@__PURE__*/createReactComponent<JSX.DnnVerticalOverflowMenu, HTMLDnnVerticalOverflowMenuElement>('dnn-vertical-overflow-menu');
 export const DnnVerticalSplitview = /*@__PURE__*/createReactComponent<JSX.DnnVerticalSplitview, HTMLDnnVerticalSplitviewElement>('dnn-vertical-splitview');
-export const TestForm = /*@__PURE__*/createReactComponent<JSX.TestForm, HTMLTestFormElement>('test-form');
