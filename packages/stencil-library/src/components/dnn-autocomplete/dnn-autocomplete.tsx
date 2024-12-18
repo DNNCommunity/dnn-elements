@@ -1,4 +1,4 @@
-import { Component, Prop, State, Event, Element, h, Host, EventEmitter, Method, AttachInternals, Listen } from '@stencil/core';
+import { Component, Prop, State, Event, Element, h, Host, EventEmitter, Method, AttachInternals, Listen, Watch } from '@stencil/core';
 import { DnnAutocompleteSuggestion, NeedMoreItemsEventArgs } from './types';
 import { Debounce } from '../../utilities/debounce';
 
@@ -105,6 +105,14 @@ export class DnnAutocomplete {
   @State() positionInitialized = false;
   @State() lastScrollTop = 0;
   @State() displayValue: string = "";
+
+  @Watch("value")
+  handleValueChange(newValue: string) {
+    this.displayValue = newValue;
+
+    // Find the index of the selected item
+    this.selectedIndex = this.suggestions.findIndex(s => s.value === newValue);
+  }
   
   /** attacth the internals for form validation */
   @AttachInternals() internals: ElementInternals;
