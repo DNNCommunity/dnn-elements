@@ -17,6 +17,7 @@ import { IRole } from "./components/dnn-permissions-grid/role-interface";
 import { ILocalization } from "./components/dnn-permissions-grid/localization-interface";
 import { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
 import { Config } from "jodit/types/config";
+import { Jodit } from "jodit";
 import { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export { DnnAutocompleteSuggestion, NeedMoreItemsEventArgs } from "./components/dnn-autocomplete/types";
 export { CheckedState } from "./components/dnn-checkbox/types";
@@ -30,6 +31,7 @@ export { IRole } from "./components/dnn-permissions-grid/role-interface";
 export { ILocalization } from "./components/dnn-permissions-grid/localization-interface";
 export { ISearchedUser } from "./components/dnn-permissions-grid/searched-user-interface";
 export { Config } from "jodit/types/config";
+export { Jodit } from "jodit";
 export { DnnToggleChangeEventDetail } from "./components/dnn-toggle/toggle-interface";
 export namespace Components {
     interface DnnAutocomplete {
@@ -555,13 +557,21 @@ export namespace Components {
     }
     interface DnnRichtext {
         /**
+          * Customize the options before initializing the editor, will have all the default options merged with 'options' if passed. This is called last after merging default options with your custom 'options' and just before initializing the editor.
+         */
+        "customizeOptions": (options: Config) => Config;
+        /**
           * Name of the field when used in a form.
          */
         "name": string;
         /**
-          * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
+          * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html This will be merged with the default options and passed to the editor. If you prefer to not have to pass a full config object, you can use 'customizeOptions' to modify the options before initializing the editor instead of providing all options here.
          */
         "options": Config;
+        /**
+          * Allows registering your own plugins. The callback will be called with the editor instance as the only argument durig initialization. All other behavior needs to be implemented in the plugin itself using editor.on("eventname"). See https://xdsoft.net/jodit/examples/plugin/custom_plugin.html for an example. Creating a plugin does NOT automatically add it to the toolbar, you need to do that yourself in 'options' or 'customizeOptions', See https://xdsoft.net/jodit/examples/toolbar/custom_button.html for an example.
+         */
+        "plugins": {name: string, callback: (editor: Jodit) => void}[];
         /**
           * Sets the value of the content of the editor.
          */
@@ -1862,6 +1872,10 @@ declare namespace LocalJSX {
     }
     interface DnnRichtext {
         /**
+          * Customize the options before initializing the editor, will have all the default options merged with 'options' if passed. This is called last after merging default options with your custom 'options' and just before initializing the editor.
+         */
+        "customizeOptions"?: (options: Config) => Config;
+        /**
           * Name of the field when used in a form.
          */
         "name"?: string;
@@ -1874,9 +1888,13 @@ declare namespace LocalJSX {
          */
         "onValueInput"?: (event: DnnRichtextCustomEvent<string>) => void;
         /**
-          * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
+          * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html This will be merged with the default options and passed to the editor. If you prefer to not have to pass a full config object, you can use 'customizeOptions' to modify the options before initializing the editor instead of providing all options here.
          */
         "options"?: Config;
+        /**
+          * Allows registering your own plugins. The callback will be called with the editor instance as the only argument durig initialization. All other behavior needs to be implemented in the plugin itself using editor.on("eventname"). See https://xdsoft.net/jodit/examples/plugin/custom_plugin.html for an example. Creating a plugin does NOT automatically add it to the toolbar, you need to do that yourself in 'options' or 'customizeOptions', See https://xdsoft.net/jodit/examples/toolbar/custom_button.html for an example.
+         */
+        "plugins"?: {name: string, callback: (editor: Jodit) => void}[];
         /**
           * Sets the value of the content of the editor.
          */

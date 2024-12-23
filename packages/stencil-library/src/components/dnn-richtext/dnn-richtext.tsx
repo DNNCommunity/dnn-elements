@@ -10,20 +10,33 @@ import { decodeHtml } from '../../utilities/stringUtilities';
   formAssociated: true,
 })
 export class DnnRichtext {
-  /** Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html */
+  /** Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html
+   * This will be merged with the default options and passed to the editor.
+   * If you prefer to not have to pass a full config object,
+   * you can use 'customizeOptions' to modify the options before initializing the editor
+   * instead of providing all options here.
+   */
   @Prop() options: Config;
-  private textArea: HTMLTextAreaElement;
-  private editor: Jodit;
-  private dnnDefaultOptions: Config = {
-    ...Jodit.defaultOptions,
-    useSplitMode: true,
-  }
-
+  
   /** Sets the value of the content of the editor. */
   @Prop() value: string;
 
   /** Name of the field when used in a form. */
   @Prop() name: string;
+
+  /** Allows registering your own plugins.
+   * The callback will be called with the editor instance as the only argument durig initialization.
+   * All other behavior needs to be implemented in the plugin itself using editor.on("eventname").
+   * See https://xdsoft.net/jodit/examples/plugin/custom_plugin.html for an example.
+   * Creating a plugin does NOT automatically add it to the toolbar, you need to do that yourself in 'options' or 'customizeOptions',
+   * See https://xdsoft.net/jodit/examples/toolbar/custom_button.html for an example.
+   */
+  @Prop() plugins: {name: string, callback: (editor: Jodit) => void}[] = [];
+
+  /** Customize the options before initializing the editor, will have all the default options merged with 'options' if passed.
+   * This is called last after merging default options with your custom 'options' and just before initializing the editor.
+  */
+  @Prop() customizeOptions: (options: Config) => Config;
 
   @Element() host: HTMLDnnRichtextElement;
   
@@ -44,14 +57,24 @@ export class DnnRichtext {
   @AttachInternals() internals: ElementInternals;
   
   @State() focused = false;
+
+  private textArea: HTMLTextAreaElement;
+  private editor: Jodit;
+  private dnnDefaultOptions: Config = {
+    ...Jodit.defaultOptions,
+    useSplitMode: true,
+  }
   
   componentDidLoad(){
-    var mergedOptions = {
+    var mergedOptions : Config = {
       ...this.dnnDefaultOptions,
       ...this.options,
-      globalFullSize: false,
       shadowRoot: this.host.shadowRoot,
     };
+    if (this.customizeOptions != undefined){
+      mergedOptions = this.customizeOptions(mergedOptions);
+    }
+    this.plugins.forEach(plugin => Jodit.plugins.add(plugin.name, plugin.callback));
     this.editor = Jodit.make(this.textArea, mergedOptions);
     this.editor.value = decodeHtml(this.value);
     this.setFormValue();
