@@ -390,7 +390,7 @@
               "type": {
                 "text": "(currentState: CheckedState) => CheckedState"
               },
-              "description": "A function that will be called when the checkbox changes needs to change and returns the next state.\nCan be used to customize the order of the states when the component is clicked.\nOnly called if you also use the tri-state feature (useIntermediate).",
+              "description": "A function that will be called when the checkbox needs to change state and returns the next state.\nCan be used to customize the order of the states when the component is clicked.\nOnly called if you also use the tri-state feature (useIntermediate).",
               "default": "this.defaultNextStateHandler",
               "required": false
             }
