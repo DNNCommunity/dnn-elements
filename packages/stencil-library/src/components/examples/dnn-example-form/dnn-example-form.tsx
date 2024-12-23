@@ -249,6 +249,30 @@ export class DnnExampleForm {
                 <dnn-checkbox name="rememberMe" value="true" />
                   Remember me
               </label>
+              <label></label>
+              <label>
+                <dnn-checkbox
+                  useIntermediate
+                  name="read"
+                />
+                  Allow read?
+              </label>
+              <label>
+                <dnn-checkbox
+                  useIntermediate
+                  name="write"
+                  nextStateHandler={currentState => {
+                    if (currentState == "checked") {
+                      return "unchecked";
+                    }
+                    if (currentState == "intermediate") {
+                      return "checked";
+                    }
+                    return "intermediate";
+                  }}
+                />
+                Allow write?
+              </label>
               <dnn-color-input
                 label="Favorite Color"
                 name="favoriteColor"
