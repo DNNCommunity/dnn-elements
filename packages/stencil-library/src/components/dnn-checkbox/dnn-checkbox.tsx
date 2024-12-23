@@ -28,7 +28,7 @@ export class DnnCheckbox {
   /** The name to show in the formData (if using forms). */
   @Prop() name: string;
 
-  /** A function that will be called when the checkbox changes needs to change and returns the next state.
+  /** A function that will be called when the checkbox needs to change state and returns the next state.
    * Can be used to customize the order of the states when the component is clicked.
    * Only called if you also use the tri-state feature (useIntermediate).
    */
