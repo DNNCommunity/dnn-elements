@@ -142,7 +142,7 @@ export namespace Components {
          */
         "name": string;
         /**
-          * A function that will be called when the checkbox changes its checked state. Can be used to customize the order of the states when the component is clicked. Only called if you also use the tri-state feature (useIntermediate).
+          * A function that will be called when the checkbox changes needs to change and returns the next state. Can be used to customize the order of the states when the component is clicked. Only called if you also use the tri-state feature (useIntermediate).
          */
         "nextStateHandler": (currentState: CheckedState) => CheckedState;
         /**
@@ -1440,7 +1440,7 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         /**
-          * A function that will be called when the checkbox changes its checked state. Can be used to customize the order of the states when the component is clicked. Only called if you also use the tri-state feature (useIntermediate).
+          * A function that will be called when the checkbox changes needs to change and returns the next state. Can be used to customize the order of the states when the component is clicked. Only called if you also use the tri-state feature (useIntermediate).
          */
         "nextStateHandler"?: (currentState: CheckedState) => CheckedState;
         /**
