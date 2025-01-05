@@ -28,6 +28,12 @@ export class DnnCheckbox {
   /** The name to show in the formData (if using forms). */
   @Prop() name: string;
 
+  /** A function that will be called when the checkbox needs to change state and returns the next state.
+   * Can be used to customize the order of the states when the component is clicked.
+   * Only called if you also use the tri-state feature (useIntermediate).
+   */
+  @Prop() nextStateHandler: (currentState: CheckedState) => CheckedState = this.defaultNextStateHandler;
+
   /** Fires up when the checkbox checked property changes. */
   @Event() checkedchange: EventEmitter<"checked" | "unchecked" | "intermediate">;
 
@@ -63,6 +69,17 @@ export class DnnCheckbox {
     this.checked = this.originalChecked;
   }
 
+  private defaultNextStateHandler(currentState: CheckedState): CheckedState {
+    switch (currentState) {
+      case "checked":
+          return "intermediate";
+        case "intermediate":
+          return "unchecked";
+        case "unchecked":
+          return "checked";
+    }
+  }
+
   private changeState(): void {
     if (!this.useIntermediate){
       switch (this.checked) {
@@ -79,19 +96,8 @@ export class DnnCheckbox {
       this.checkedchange.emit(this.checked);
       return;
     }
-    switch (this.checked) {
-      case "checked":
-        this.checked = "intermediate";
-        break;
-      case "intermediate":
-        this.checked = "unchecked";
-        break;
-      case "unchecked":
-        this.checked = "checked";
-        break;
-      default:
-        break;
-    }
+    
+    this.checked = this.nextStateHandler(this.checked);
     this.checkedchange.emit(this.checked);
   }
 

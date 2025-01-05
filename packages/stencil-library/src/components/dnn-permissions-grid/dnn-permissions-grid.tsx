@@ -4,6 +4,7 @@ import { IPermissionDefinition, IPermissions, IRolePermission, IUserPermission }
 import { IRoleGroup } from './role-group-interface';
 import { IRole } from './role-interface';
 import { ISearchedUser } from './searched-user-interface';
+import { CheckedState } from '../dnn-checkbox/types';
 
 @Component({
   tag: 'dnn-permissions-grid',
@@ -38,7 +39,6 @@ export class DnnPermissionsGrid {
   @State() pickedUser: ISearchedUser;
   @State() localResx: ILocalization;
   @State() focused = false;
-  
   
   @Watch("foundUsers")
   handleFoundUsersChanged(newValue: ISearchedUser[]){
@@ -166,7 +166,8 @@ export class DnnPermissionsGrid {
       <label>
         <span class="hidden">{permissionDefinition.permissionName}</span>
         <dnn-checkbox
-          use-intermediate
+          useIntermediate
+          nextStateHandler={state => this.handleNextState(state)}
           checked={checked}
           onCheckedchange={e => this.handleRoleChanged(e.detail, rolePermission, permissionDefinition)}
         >
@@ -189,7 +190,8 @@ export class DnnPermissionsGrid {
       <label>
         <span class="hidden">{permissionDefinition.permissionName}</span>
         <dnn-checkbox
-          use-intermediate
+          useIntermediate
+          nextStateHandler={state => this.handleNextState(state)}
           checked={checked}
           onCheckedchange={e => this.handleUserChanged(e.detail, userPermission, permissionDefinition)}
         >
@@ -202,6 +204,17 @@ export class DnnPermissionsGrid {
         </dnn-checkbox>
       </label>
     )
+  }
+  
+  private handleNextState(state: string): CheckedState {
+    switch (state) {
+      case "checked":
+        return "unchecked";
+      case "unchecked":
+        return "intermediate";
+      default:
+        return "checked";
+    }
   }
   
   private handleRoleChanged(
@@ -289,7 +302,7 @@ export class DnnPermissionsGrid {
   }
 
   private handleUserChanged(
-    checked: "checked" | "unchecked" | "intermediate",
+    checked: CheckedState,
     userPermission: IUserPermission,
     permissionDefinition: IPermissionDefinition
   ): void {

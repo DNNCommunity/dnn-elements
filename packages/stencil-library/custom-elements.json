@@ -383,7 +383,18 @@
               "required": false
             }
           ],
-          "members": [],
+          "members": [
+            {
+              "kind": "field",
+              "name": "nextStateHandler",
+              "type": {
+                "text": "(currentState: CheckedState) => CheckedState"
+              },
+              "description": "A function that will be called when the checkbox needs to change state and returns the next state.\nCan be used to customize the order of the states when the component is clicked.\nOnly called if you also use the tri-state feature (useIntermediate).",
+              "default": "this.defaultNextStateHandler",
+              "required": false
+            }
+          ],
           "events": [
             {
               "name": "checkedchange",
@@ -1662,11 +1673,30 @@
           "members": [
             {
               "kind": "field",
+              "name": "customizeOptions",
+              "type": {
+                "text": "(options: Config) => Config"
+              },
+              "description": "Customize the options before initializing the editor, will have all the default options merged with 'options' if passed.\nThis is called last after merging default options with your custom 'options' and just before initializing the editor.",
+              "required": false
+            },
+            {
+              "kind": "field",
               "name": "options",
               "type": {
                 "text": "Config"
               },
-              "description": "Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html",
+              "description": "Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html\nThis will be merged with the default options and passed to the editor.\nIf you prefer to not have to pass a full config object,\nyou can use 'customizeOptions' to modify the options before initializing the editor\ninstead of providing all options here.",
+              "required": false
+            },
+            {
+              "kind": "field",
+              "name": "plugins",
+              "type": {
+                "text": "{ name: string; callback: (editor: Jodit) => void; }[]"
+              },
+              "description": "Allows registering your own plugins.\nThe callback will be called with the editor instance as the only argument durig initialization.\nAll other behavior needs to be implemented in the plugin itself using editor.on(\"eventname\").\nSee https://xdsoft.net/jodit/examples/plugin/custom_plugin.html for an example.\nCreating a plugin does NOT automatically add it to the toolbar, you need to do that yourself in 'options' or 'customizeOptions',\nSee https://xdsoft.net/jodit/examples/toolbar/custom_button.html for an example.",
+              "default": "[]",
               "required": false
             }
           ],
@@ -2421,24 +2451,6 @@
               "description": "Allows customizing the right pane background-color"
             }
           ],
-          "cssParts": []
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/test-form/test-form.tsx",
-      "declarations": [
-        {
-          "kind": "class",
-          "name": "test-form.tsx",
-          "tagName": "test-form",
-          "description": "",
-          "attributes": [],
-          "members": [],
-          "events": [],
-          "slots": [],
-          "cssProperties": [],
           "cssParts": []
         }
       ]
