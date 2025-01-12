@@ -5,9 +5,9 @@
   * @prop --border-radius: The radius of the controls borders.
   * @prop --drop-background-color: The color of the background when a file is dropping.
   */
-  --border-color: var(--dnn-color-tertiary-contrast, lightgray);
+  --border-color: var(--dnn-color-foreground-light, lightgray);
   --border-radius: var(--dnn-controls-radius, 5px);
-  --drop-background-color: var(--dnn-color-tertiary, lightblue);
+  --drop-background-color: var(--dnn-color-neutral, #b2b2b2);
 
   display: flex;
   flex-direction: column;
