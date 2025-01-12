@@ -9,76 +9,213 @@
   <script nomodule src="build/dnn.js"></script>
   <style type="text/css">
     :root {
-        --dnn-color-primary: #3792ED;
-        --dnn-color-primary-light: #6CB6F3;
-        --dnn-color-primary-dark: #0D569E;
-        --dnn-color-primary-contrast: #FFF;
-
-        --dnn-color-secondary:#CCC;
-        --dnn-color-secondary-light: #EEE;
-        --dnn-color-secondary-dark: #AAA;
-        --dnn-color-secondary-contrast: #222;
-        
-        --dnn-color-tertiary: #EAEAEA;
-        --dnn-color-tertiary-light: #F2F2F2;
-        --dnn-color-tertiary-dark: #D8D8D8;
-        --dnn-color-tertiary-contrast: #333;
-        
-        --dnn-color-neutral: #b2b2b2;
-        --dnn-color-neutral-light: #e5e5e5;
-        --dnn-color-neutral-dark: #999999;
-        --dnn-color-neutral-contrast: #000000;
-
-        --dnn-color-background: #FFF;
-        --dnn-color-background-light: #FFF;
-        --dnn-color-background-dark: #ccc;
-        --dnn-color-background-contrast: #000;
-
-        --dnn-color-surface: #BBB;
-        --dnn-color-surface-light: #DDD;
-        --dnn-color-surface-dark: #999;
-        --dnn-color-surface-contrast: #000;
-        
-        --dnn-color-foreground: #000;
-        --dnn-color-foreground-light: #333;
-        --dnn-color-foreground-dark: #000;
-        --dnn-color-foreground-contrast: #FFF;
-        
-        --dnn-color-info: #17a2b8;
-        --dnn-color-info-light: #23b8cf;
-        --dnn-color-info-dark: #00889e;
-        --dnn-color-info-contrast: #FFFFFF;
-        
-        --dnn-color-success: #28a745;
-        --dnn-color-success-light: #49c25d;
-        --dnn-color-success-dark: #00902f;
-        --dnn-color-success-contrast: #FFFFFF;
-
-        --dnn-color-warning: #ffc107;
-        --dnn-color-warning-light: #ffd42e;
-        --dnn-color-warning-dark: #e9ad00;
-        --dnn-color-warning-contrast: #FFFFFF;
-
-        --dnn-color-danger: #dc3545;
-        --dnn-color-danger-light: #f14954;
-        --dnn-color-danger-dark: #c51535;
-        --dnn-color-danger-contrast: #FFFFFF;
-
-        --dnn-controls-radius: 5px;
-        --dnn-controls-padding: 5px;
-        --dnn-base-font-size: 16px;
-        --dnn-color-variation-opacity: 0.2;
-      }
-    body{
-      font-size: var(--dnn-base-font-size);
+      --dnn-color-primary: #00a5e0;
+      --dnn-color-primary-r: 0;
+      --dnn-color-primary-g: 165;
+      --dnn-color-primary-b: 224;
+      --dnn-color-primary-light: #1aaee3;
+      --dnn-color-primary-light-r: 26;
+      --dnn-color-primary-light-g: 174;
+      --dnn-color-primary-light-b: 227;
+      --dnn-color-primary-dark: #0091c5;
+      --dnn-color-primary-dark-r: 0;
+      --dnn-color-primary-dark-g: 145;
+      --dnn-color-primary-dark-b: 197;
+      --dnn-color-primary-contrast: #ffffff;
+      --dnn-color-primary-contrast-r: 255;
+      --dnn-color-primary-contrast-g: 255;
+      --dnn-color-primary-contrast-b: 255;
+  
+      --dnn-color-secondary: #ed3d46;
+      --dnn-color-secondary-r: 237;
+      --dnn-color-secondary-g: 61;
+      --dnn-color-secondary-b: 70;
+      --dnn-color-secondary-light: #ef5059;
+      --dnn-color-secondary-light-r: 239;
+      --dnn-color-secondary-light-g: 80;
+      --dnn-color-secondary-light-b: 89;
+      --dnn-color-secondary-dark: #d1363e;
+      --dnn-color-secondary-dark-r: 209;
+      --dnn-color-secondary-dark-g: 54;
+      --dnn-color-secondary-dark-b: 62;
+      --dnn-color-secondary-contrast: #ffffff;
+      --dnn-color-secondary-contrast-r: 255;
+      --dnn-color-secondary-contrast-g: 255;
+      --dnn-color-secondary-contrast-b: 255;
+  
+      --dnn-color-tertiary: #0e2936;
+      --dnn-color-tertiary-r: 0;
+      --dnn-color-tertiary-g: 165;
+      --dnn-color-tertiary-b: 225;
+      --dnn-color-tertiary-light: #3c7a9a;
+      --dnn-color-tertiary-light-r: 60;
+      --dnn-color-tertiary-light-g: 122;
+      --dnn-color-tertiary-light-b: 154;
+      --dnn-color-tertiary-dark: #0b1c24;
+      --dnn-color-tertiary-dark-r: 11;
+      --dnn-color-tertiary-dark-g: 28;
+      --dnn-color-tertiary-dark-b: 36;
+      --dnn-color-tertiary-contrast: #ffffff;
+      --dnn-color-tertiary-contrast-r: 255;
+      --dnn-color-tertiary-contrast-g: 255;
+      --dnn-color-tertiary-contrast-b: 255;
+  
+      --dnn-color-neutral: #ededee;
+      --dnn-color-neutral-r: 245;
+      --dnn-color-neutral-g: 245;
+      --dnn-color-neutral-b: 245;
+      --dnn-color-neutral-light: #ffffff;
+      --dnn-color-neutral-light-r: 255;
+      --dnn-color-neutral-light-g: 255;
+      --dnn-color-neutral-light-b: 255;
+      --dnn-color-neutral-dark: #999999;
+      --dnn-color-neutral-dark-r: 153;
+      --dnn-color-neutral-dark-g: 153;
+      --dnn-color-neutral-dark-b: 153;
+      --dnn-color-neutral-contrast: #000000;
+      --dnn-color-neutral-contrast-r: 0;
+      --dnn-color-neutral-contrast-g: 0;
+      --dnn-color-neutral-contrast-b: 0;
+  
+      --dnn-color-background: #ffffff;
+      --dnn-color-background-r: 255;
+      --dnn-color-background-g: 255;
+      --dnn-color-background-b: 255;
+      --dnn-color-background-light: #f5f5f5;
+      --dnn-color-background-light-r: 245;
+      --dnn-color-background-light-g: 245;
+      --dnn-color-background-light-b: 245;
+      --dnn-color-background-dark: #cccccc;
+      --dnn-color-background-dark-r: 204;
+      --dnn-color-background-dark-g: 204;
+      --dnn-color-background-dark-b: 204;
+      --dnn-color-background-contrast: #000000;
+      --dnn-color-background-contrast-r: 0;
+      --dnn-color-background-contrast-g: 0;
+      --dnn-color-background-contrast-b: 0;
+  
+      --dnn-color-foreground: #000000;
+      --dnn-color-foreground-r: 0;
+      --dnn-color-foreground-g: 0;
+      --dnn-color-foreground-b: 0;
+      --dnn-color-foreground-light: #333333;
+      --dnn-color-foreground-light-r: 51;
+      --dnn-color-foreground-light-g: 51;
+      --dnn-color-foreground-light-b: 51;
+      --dnn-color-foreground-dark: #000000;
+      --dnn-color-foreground-dark-r: 0;
+      --dnn-color-foreground-dark-g: 0;
+      --dnn-color-foreground-dark-b: 0;
+      --dnn-color-foreground-contrast: #ffffff;
+      --dnn-color-foreground-contrast-r: 255;
+      --dnn-color-foreground-contrast-g: 255;
+      --dnn-color-foreground-contrast-b: 255;
+  
+      --dnn-color-surface: #ffffff;
+      --dnn-color-surface-r: 255;
+      --dnn-color-surface-g: 255;
+      --dnn-color-surface-b: 255;
+      --dnn-color-surface-light: #f5f5f5;
+      --dnn-color-surface-light-r: 245;
+      --dnn-color-surface-light-g: 245;
+      --dnn-color-surface-light-b: 245;
+      --dnn-color-surface-dark: #cccccc;
+      --dnn-color-surface-dark-r: 204;
+      --dnn-color-surface-dark-g: 204;
+      --dnn-color-surface-dark-b: 204;
+      --dnn-color-surface-contrast: #000000;
+      --dnn-color-surface-contrast-r: 0;
+      --dnn-color-surface-contrast-g: 0;
+      --dnn-color-surface-contrast-b: 0;
+  
+      --dnn-color-info: #17a2b8;
+      --dnn-color-info-r: 23;
+      --dnn-color-info-g: 162;
+      --dnn-color-info-b: 184;
+      --dnn-color-info-light: #23b8cf;
+      --dnn-color-info-light-r: 35;
+      --dnn-color-info-light-g: 184;
+      --dnn-color-info-light-b: 207;
+      --dnn-color-info-dark: #00889e;
+      --dnn-color-info-dark-r: 0;
+      --dnn-color-info-dark-g: 136;
+      --dnn-color-info-dark-b: 158;
+      --dnn-color-info-contrast: #ffffff;
+      --dnn-color-info-contrast-r: 255;
+      --dnn-color-info-contrast-g: 255;
+      --dnn-color-info-contrast-b: 255;
+  
+      --dnn-color-success: #28a745;
+      --dnn-color-success-r: 40;
+      --dnn-color-success-g: 167;
+      --dnn-color-success-b: 69;
+      --dnn-color-success-light: #49c25d;
+      --dnn-color-success-light-r: 73;
+      --dnn-color-success-light-g: 194;
+      --dnn-color-success-light-b: 93;
+      --dnn-color-success-dark: #00902f;
+      --dnn-color-success-dark-r: 0;
+      --dnn-color-success-dark-g: 144;
+      --dnn-color-success-dark-b: 47;
+      --dnn-color-success-contrast: #ffffff;
+      --dnn-color-success-contrast-r: 255;
+      --dnn-color-success-contrast-g: 255;
+      --dnn-color-success-contrast-b: 255;
+  
+      --dnn-color-warning: #ffc107;
+      --dnn-color-warning-r: 255;
+      --dnn-color-warning-g: 193;
+      --dnn-color-warning-b: 7;
+      --dnn-color-warning-light: #ffd42e;
+      --dnn-color-warning-light-r: 255;
+      --dnn-color-warning-light-g: 212;
+      --dnn-color-warning-light-b: 46;
+      --dnn-color-warning-dark: #e9ad00;
+      --dnn-color-warning-dark-r: 233;
+      --dnn-color-warning-dark-g: 173;
+      --dnn-color-warning-dark-b: 0;
+      --dnn-color-warning-contrast: #ffffff;
+      --dnn-color-warning-contrast-r: 255;
+      --dnn-color-warning-contrast-g: 255;
+      --dnn-color-warning-contrast-b: 255;
+  
+      --dnn-color-danger: #dc3545;
+      --dnn-color-danger-r: 220;
+      --dnn-color-danger-g: 53;
+      --dnn-color-danger-b: 69;
+      --dnn-color-danger-light: #f14954;
+      --dnn-color-danger-light-r: 241;
+      --dnn-color-danger-light-g: 73;
+      --dnn-color-danger-light-b: 84;
+      --dnn-color-danger-dark: #c51535;
+      --dnn-color-danger-dark-r: 197;
+      --dnn-color-danger-dark-g: 21;
+      --dnn-color-danger-dark-b: 53;
+      --dnn-color-danger-contrast: #ffffff;
+      --dnn-color-danger-contrast-r: 255;
+      --dnn-color-danger-contrast-g: 255;
+      --dnn-color-danger-contrast-b: 255;
+  
+      --dnn-color-variation-opacity: 0.8;
+  
+      --dnn-base-font-size: 18;
+  
+      --dnn-controls-radius: 0;
+      --dnn-controls-padding: 0.5rem;
     }
-    section{
+  
+    body {
+      font-size: calc(var(--dnn-base-font-size) * 1px);
+    }
+  
+    section {
       margin: 15px;
       padding: 15px;
       border-radius: 15px;
       border: 1px solid grey;
     }
-    .toggle-custom-colors{
+  
+    .toggle-custom-colors {
       --background: red;
       --background-checked: green;
     }
