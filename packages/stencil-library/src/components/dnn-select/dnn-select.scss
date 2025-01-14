@@ -1,11 +1,11 @@
 :host {
   display: inline-block;
 
-  /** @prop --foreground: Defines the foreground color. */
-  --foreground: var(--dnn-color-foreground, #000);
+  /** @prop --foreground-color: Defines the foreground color. */
+  --foreground-color: var(--dnn-color-foreground, #000);
 
-  /** @prop --background: Defines the background color. */
-  --background: var(--dnn-color-background, #fff);
+  /** @prop --background-color: Defines the background color. */
+  --background-color: var(--dnn-color-background, #fff);
 
   /** @prop --focus-color: Defines the color when the component is focused. */
   --focus-color: var(--dnn-color-primary, #3792ED);
@@ -29,13 +29,14 @@ dnn-fieldset{
   justify-content: space-between;
   position: relative;
   width: 100%;
-  background-color: var(--background);
+  background-color: var(--background-color);
 }
 
 select{
   border: none;
   outline: none;
-  background-color: var(--background);
+  background-color: var(--background-color);
+  color: var(--foreground-color);
   text-align: var(--input-text-align);
   width: 100%;
   cursor: pointer; 
@@ -51,4 +52,12 @@ svg{
     height: 1em;
     transform: scale(1.5);
   }
+}
+
+dnn-fieldset{
+  --fieldset-foreground-color: var(--foreground-color);
+  --fieldset-background-color: var(--background-color);
+  --fieldset-focus-color: var(--focus-color);
+  --fieldset-danger-color: var(--danger-color);
+  --fieldset-control-radius: var(--control-radius);
 }

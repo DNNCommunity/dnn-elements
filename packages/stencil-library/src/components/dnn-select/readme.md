@@ -43,11 +43,11 @@ Type: `Promise<ValidityState>`
 
 | Name                 | Description                                              |
 | -------------------- | -------------------------------------------------------- |
-| `--background`       | Defines the background color.                            |
+| `--background-color` | Defines the background color.                            |
 | `--control-radius`   | Defines the radius for the control corners.              |
 | `--danger-color`     | Defines the danger color used for invalid data.          |
 | `--focus-color`      | Defines the color when the component is focused.         |
-| `--foreground`       | Defines the foreground color.                            |
+| `--foreground-color` | Defines the foreground color.                            |
 | `--input-text-align` | Allows customizing the text alignment of the input text. |
 
 
