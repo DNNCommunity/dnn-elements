@@ -47,11 +47,11 @@ A custom input component that allows previewing and changing a color value.
 
 | Name                   | Description                                                          |
 | ---------------------- | -------------------------------------------------------------------- |
-| `--background`         | Defines the background color.                                        |
+| `--background-color`   | Defines the background color.                                        |
 | `--contast-text-align` | Allows customizing the text alignment of the contast indicator text. |
 | `--control-radius`     | Defines the radius for the control corners.                          |
 | `--focus-color`        | Defines the color when the component is focused.                     |
-| `--foreground`         | Defines the foreground color.                                        |
+| `--foreground-color`   | Defines the foreground color.                                        |
 
 
 ## Dependencies

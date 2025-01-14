@@ -66,13 +66,13 @@ Type: `Promise<void>`
 
 ## CSS Custom Properties
 
-| Name               | Description                                      |
-| ------------------ | ------------------------------------------------ |
-| `--background`     | Defines the background color.                    |
-| `--control-radius` | Defines the radius for the control corners.      |
-| `--danger-color`   | Defines the danger color used for invalid data.  |
-| `--focus-color`    | Defines the color when the component is focused. |
-| `--foreground`     | Defines the foreground color.                    |
+| Name                 | Description                                      |
+| -------------------- | ------------------------------------------------ |
+| `--background-color` | Defines the background color.                    |
+| `--control-radius`   | Defines the radius for the control corners.      |
+| `--danger-color`     | Defines the danger color used for invalid data.  |
+| `--focus-color`      | Defines the color when the component is focused. |
+| `--foreground-color` | Defines the foreground color.                    |
 
 
 ## Dependencies

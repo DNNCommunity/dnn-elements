@@ -1,11 +1,11 @@
 :host {
   display: inline-block;
 
-    /** @prop --foreground: Defines the foreground color. */
-    --foreground: var(--dnn-color-foreground, #000);
+    /** @prop --foreground-color: Defines the foreground color. */
+    --foreground-color: var(--dnn-color-foreground, #000);
 
-    /** @prop --background: Defines the background color. */
-    --background: var(--dnn-color-background, #fff);
+    /** @prop --background-color: Defines the background color. */
+    --background-color: var(--dnn-color-background, #fff);
   
     /** @prop --focus-color: Defines the color when the component is focused. */
     --focus-color: var(--dnn-color-primary, #3792ED);
@@ -25,9 +25,17 @@ textarea{
   border: none;
   outline: none;
   background-color: transparent;
-  color: var(--foreground);
+  color: var(--foreground-color);
   width: calc(100% - 1em);
   height: calc(100% - 1em);
   line-height: 1.5em;
   resize: none;
+}
+
+dnn-fieldset{
+  --fieldset-foreground-color: var(--foreground-color);
+  --fieldset-background-color: var(--background-color);
+  --fieldset-focus-color: var(--focus-color);
+  --fieldset-danger-color: var(--danger-color);
+  --fieldset-control-radius: var(--control-radius);
 }

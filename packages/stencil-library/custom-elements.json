@@ -677,7 +677,7 @@
           ],
           "cssProperties": [
             {
-              "name": "--background",
+              "name": "--background-color",
               "description": "Defines the background color."
             },
             {
@@ -693,7 +693,7 @@
               "description": "Defines the color when the component is focused."
             },
             {
-              "name": "--foreground",
+              "name": "--foreground-color",
               "description": "Defines the foreground color."
             }
           ],
@@ -982,10 +982,6 @@
           ],
           "cssProperties": [
             {
-              "name": "--background",
-              "description": "Defines the background color."
-            },
-            {
               "name": "--control-radius",
               "description": "Defines the radius for the control corners."
             },
@@ -994,12 +990,16 @@
               "description": "Defines the danger color used for invalid data."
             },
             {
-              "name": "--focus-color",
-              "description": "Defines the color when the component is focused."
+              "name": "--fieldset-background-color",
+              "description": "Defines the background color."
             },
             {
-              "name": "--foreground",
+              "name": "--fieldset-foreground-color",
               "description": "Defines the foreground color."
+            },
+            {
+              "name": "--focus-color",
+              "description": "Defines the color when the component is focused."
             }
           ],
           "cssParts": []
@@ -1305,7 +1305,7 @@
           ],
           "cssProperties": [
             {
-              "name": "--background",
+              "name": "--background-color",
               "description": "Defines the background color."
             },
             {
@@ -1321,7 +1321,7 @@
               "description": "Defines the color when the component is focused."
             },
             {
-              "name": "--foreground",
+              "name": "--foreground-color",
               "description": "Defines the foreground color."
             },
             {
@@ -1862,7 +1862,7 @@
           "slots": [],
           "cssProperties": [
             {
-              "name": "--background",
+              "name": "--background-color",
               "description": "Defines the background color."
             },
             {
@@ -1878,7 +1878,7 @@
               "description": "Defines the color when the component is focused."
             },
             {
-              "name": "--foreground",
+              "name": "--foreground-color",
               "description": "Defines the foreground color."
             },
             {
@@ -2161,7 +2161,7 @@
           "slots": [],
           "cssProperties": [
             {
-              "name": "--background",
+              "name": "--background-color",
               "description": "Defines the background color."
             },
             {
@@ -2177,7 +2177,7 @@
               "description": "Defines the color when the component is focused."
             },
             {
-              "name": "--foreground",
+              "name": "--foreground-color",
               "description": "Defines the foreground color."
             }
           ],
