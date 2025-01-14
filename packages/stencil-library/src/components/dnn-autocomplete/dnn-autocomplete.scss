@@ -52,6 +52,7 @@ dnn-fieldset{
     height: 1rem;
     width: auto;
     transform: scale(1.2);
+    fill: var(--foreground-color);
     cursor: pointer;
   }
 
@@ -99,4 +100,12 @@ dnn-fieldset{
       opacity: 0.5;
     }
   }
+}
+
+dnn-fieldset{
+  --fieldset-foreground-color: var(--foreground-color);
+  --fieldset-background-color: var(--background-color);
+  --fieldset-focus-color: var(--focus-color);
+  --fieldset-danger-color: var(--danger-color);
+  --fieldset-control-radius: var(--control-radius);
 }

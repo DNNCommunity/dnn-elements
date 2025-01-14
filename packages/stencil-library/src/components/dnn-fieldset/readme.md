@@ -112,13 +112,13 @@ Type: `Promise<void>`
 
 ## CSS Custom Properties
 
-| Name               | Description                                      |
-| ------------------ | ------------------------------------------------ |
-| `--background`     | Defines the background color.                    |
-| `--control-radius` | Defines the radius for the control corners.      |
-| `--danger-color`   | Defines the danger color used for invalid data.  |
-| `--focus-color`    | Defines the color when the component is focused. |
-| `--foreground`     | Defines the foreground color.                    |
+| Name                          | Description                                      |
+| ----------------------------- | ------------------------------------------------ |
+| `--control-radius`            | Defines the radius for the control corners.      |
+| `--danger-color`              | Defines the danger color used for invalid data.  |
+| `--fieldset-background-color` | Defines the background color.                    |
+| `--fieldset-foreground-color` | Defines the foreground color.                    |
+| `--focus-color`               | Defines the color when the component is focused. |
 
 
 ## Dependencies
