@@ -17,8 +17,14 @@ const meta: Meta = {
     }
   },
   argTypes: {
-    type: {
+    appearance: {
       options: ['primary', 'danger', 'secondary', 'tertiary'],
+      control: {
+        type: 'select',
+      },
+    },
+    formButtonType: {
+      options: ['reset', 'submit', 'button'],
       control: {
         type: 'select',
       },
@@ -56,7 +62,8 @@ const eventsFromNames = actions('onClick', 'onConfirmed', 'onCanceled');
 const Template = (args) =>
     html`
         <dnn-button
-            type=${ifDefined(args.type)}
+            formButtonType=${ifDefined(args.formButtonType)}
+            appearance=${args.appearance ?? 'primary'}
             ?reversed=${args.reversed}
             size=${ifDefined(args.size)}
             ?confirm=${args.confirm}
@@ -86,19 +93,19 @@ Primary.args = {
 export const Secondary : Story = Template.bind({});
 Secondary.args = {
   ...Primary.args,
-  type: 'secondary',
+  appearance: 'secondary',
 };
 
 export const Tertiary : Story = Template.bind({});
 Tertiary.args = {
   ...Primary.args,
-  type: 'tertiary',
+  appearance: 'tertiary',
 };
 
 export const Danger : Story = Template.bind({});
 Danger.args = {
   ...Primary.args,
-  type: 'danger',
+  appearance: 'danger',
 };
 
 export const Reversed : Story = Template.bind({});
