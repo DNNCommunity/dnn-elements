@@ -116,7 +116,7 @@ export class DnnExampleForm {
         <dnn-fieldset
           class="full-form-width"
           ref={el => this.fieldset = el}
-          label="Sample Form"
+          label="dnn-fieldset"
           helpText="This is some help text."
         >
           <div slot="label-prefix">
@@ -134,7 +134,13 @@ export class DnnExampleForm {
             </svg>
           </div>
           <h2>This is a sample form</h2>
-          <p>It includes dnn elements commonly used in forms.</p>
+          <p>
+            The wrapper around this text is a dnn-fieldset which wraps most input fields
+            with useful and responsive utilites to support a label, help text and validation reporting.
+          </p>
+          <p>
+            The rest of this form includes dnn elements commonly used in forms.
+          </p>
           <button onClick={() => this.fieldset.setFocused()}>Focus</button>
           <button onClick={() => this.fieldset.setBlurred()}>Blur</button>
           <button onClick={() => this.fieldset.disable()}>Disable</button>
