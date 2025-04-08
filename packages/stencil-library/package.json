@@ -67,6 +67,7 @@
     "react-dom": "^18.2.0",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "storybook": "^8.3.2",
+    "ts-node": "^10.9.2",
     "typescript": "5.7.2",
     "typescript-debounce-decorator": "^0.0.18"
   },
