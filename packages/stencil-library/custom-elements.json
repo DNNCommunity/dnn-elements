@@ -62,11 +62,28 @@
               "required": false
             },
             {
+              "name": "render-suggestion",
+              "type": {
+                "text": "(suggestion: DnnAutocompleteSuggestion) => HTMLElement"
+              },
+              "description": "Callback to render suggestions, if not provided, only the label will be rendered.",
+              "required": false
+            },
+            {
               "name": "required",
               "type": {
                 "text": "boolean"
               },
               "description": "Defines whether the field requires having a value.",
+              "required": false
+            },
+            {
+              "name": "suggestions",
+              "type": {
+                "text": "DnnAutocompleteSuggestion[]"
+              },
+              "description": "Sets the list of suggestions.",
+              "default": "[]",
               "required": false
             },
             {
@@ -87,25 +104,6 @@
             }
           ],
           "members": [
-            {
-              "kind": "field",
-              "name": "renderSuggestion",
-              "type": {
-                "text": "(suggestion: DnnAutocompleteSuggestion) => HTMLElement"
-              },
-              "description": "Callback to render suggestions, if not provided, only the label will be rendered.",
-              "required": false
-            },
-            {
-              "kind": "field",
-              "name": "suggestions",
-              "type": {
-                "text": "DnnAutocompleteSuggestion[]"
-              },
-              "description": "Sets the list of suggestions.",
-              "default": "[]",
-              "required": false
-            },
             {
               "kind": "method",
               "name": "checkValidity",
@@ -365,6 +363,15 @@
               "required": false
             },
             {
+              "name": "next-state-handler",
+              "type": {
+                "text": "(currentState: CheckedState) => CheckedState"
+              },
+              "description": "A function that will be called when the checkbox needs to change state and returns the next state.\nCan be used to customize the order of the states when the component is clicked.\nOnly called if you also use the tri-state feature (useIntermediate).",
+              "default": "this.defaultNextStateHandler",
+              "required": false
+            },
+            {
               "name": "use-intermediate",
               "type": {
                 "text": "boolean"
@@ -383,18 +390,7 @@
               "required": false
             }
           ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "nextStateHandler",
-              "type": {
-                "text": "(currentState: CheckedState) => CheckedState"
-              },
-              "description": "A function that will be called when the checkbox needs to change state and returns the next state.\nCan be used to customize the order of the states when the component is clicked.\nOnly called if you also use the tri-state feature (useIntermediate).",
-              "default": "this.defaultNextStateHandler",
-              "required": false
-            }
-          ],
+          "members": [],
           "events": [
             {
               "name": "checkedchange",
@@ -597,6 +593,15 @@
               "required": false
             },
             {
+              "name": "localization",
+              "type": {
+                "text": "{ contrast: string; preview: string; cancel: string; confirm: string; normal: string; light: string; dark: string; }"
+              },
+              "description": "Can be used to customize the text language.",
+              "default": "{\n    contrast: \"Contrast\",\n    preview: \"Preview\",\n    cancel: \"Cancel\",\n    confirm: \"Confirm\",\n    normal: \"Normal\",\n    light: \"Light\",\n    dark: \"Dark\",\n  }",
+              "required": false
+            },
+            {
               "name": "name",
               "type": {
                 "text": "string"
@@ -637,18 +642,7 @@
               "required": false
             }
           ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "localization",
-              "type": {
-                "text": "{ contrast: string; preview: string; cancel: string; confirm: string; normal: string; light: string; dark: string; }"
-              },
-              "description": "Can be used to customize the text language.",
-              "default": "{\n    contrast: \"Contrast\",\n    preview: \"Preview\",\n    cancel: \"Cancel\",\n    confirm: \"Confirm\",\n    normal: \"Normal\",\n    light: \"Light\",\n    dark: \"Dark\",\n  }",
-              "required": false
-            }
-          ],
+          "members": [],
           "events": [
             {
               "name": "colorChange",
@@ -766,6 +760,14 @@
               "required": false
             },
             {
+              "name": "allowed-extensions",
+              "type": {
+                "text": "string[]"
+              },
+              "description": "A list of allowed file extensions.\nIf not specified, any file is allowed.\nEx: [\"jpg\", \"jpeg\", \"gif\", \"png\"]",
+              "required": false
+            },
+            {
               "name": "capture-quality",
               "type": {
                 "text": "number"
@@ -789,20 +791,8 @@
               },
               "description": "The name of the field when used in a form.",
               "required": false
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "allowedExtensions",
-              "type": {
-                "text": "string[]"
-              },
-              "description": "A list of allowed file extensions.\nIf not specified, any file is allowed.\nEx: [\"jpg\", \"jpeg\", \"gif\", \"png\"]",
-              "required": false
             },
             {
-              "kind": "field",
               "name": "resx",
               "type": {
                 "text": "DropzoneResx"
@@ -811,6 +801,7 @@
               "required": false
             }
           ],
+          "members": [],
           "events": [
             {
               "name": "filesSelected",
@@ -1051,6 +1042,14 @@
               "required": false
             },
             {
+              "name": "resx",
+              "type": {
+                "text": "ImageCropperResx"
+              },
+              "description": "Can be used to customize controls text.\nSome values support tokens, see default values for examples.",
+              "required": false
+            },
+            {
               "name": "width",
               "type": {
                 "text": "number"
@@ -1060,15 +1059,6 @@
             }
           ],
           "members": [
-            {
-              "kind": "field",
-              "name": "resx",
-              "type": {
-                "text": "ImageCropperResx"
-              },
-              "description": "Can be used to customize controls text.\nSome values support tokens, see default values for examples.",
-              "required": false
-            },
             {
               "kind": "method",
               "name": "clear",
@@ -1436,7 +1426,7 @@
             {
               "name": "language",
               "type": {
-                "text": "\"html\" | \"ruby\" | \"plaintext\" | \"bat\" | \"coffeescript\" | \"c\" | \"cpp\" | \"csharp\" | \"dockerfile\" | \"fsharp\" | \"go\" | \"handlebars\" | \"ini\" | \"pug\" | \"java\" | \"lua\" | \"markdown\" | \"msdax\" | \"objective-c\" | \"postiats\" | \"php\" | \"powershell\" | \"python\" | \"r\" | \"razor\" | \"swift\" | \"sql\" | \"vb\" | \"xml\" | \"less\" | \"scss\" | \"css\" | \"yaml\" | \"sol\" | \"sb\" | \"json\" | \"typescript\" | \"javascript\""
+                "text": "\"html\" | \"ruby\" | \"plaintext\" | \"r\" | \"bat\" | \"coffeescript\" | \"c\" | \"cpp\" | \"csharp\" | \"dockerfile\" | \"fsharp\" | \"go\" | \"handlebars\" | \"ini\" | \"pug\" | \"java\" | \"lua\" | \"markdown\" | \"msdax\" | \"objective-c\" | \"postiats\" | \"php\" | \"powershell\" | \"python\" | \"razor\" | \"swift\" | \"sql\" | \"vb\" | \"xml\" | \"less\" | \"scss\" | \"css\" | \"yaml\" | \"sol\" | \"sb\" | \"json\" | \"typescript\" | \"javascript\""
               },
               "description": "Defines the language for the editor.",
               "default": "\"html\"",
@@ -1494,11 +1484,9 @@
           "name": "dnn-permissions-grid.tsx",
           "tagName": "dnn-permissions-grid",
           "description": "",
-          "attributes": [],
-          "members": [
+          "attributes": [
             {
-              "kind": "field",
-              "name": "foundUsers",
+              "name": "found-users",
               "type": {
                 "text": "ISearchedUser[]"
               },
@@ -1507,7 +1495,6 @@
               "required": false
             },
             {
-              "kind": "field",
               "name": "permissions",
               "type": {
                 "text": "IPermissions"
@@ -1516,7 +1503,6 @@
               "required": true
             },
             {
-              "kind": "field",
               "name": "resx",
               "type": {
                 "text": "ILocalization"
@@ -1525,8 +1511,7 @@
               "required": false
             },
             {
-              "kind": "field",
-              "name": "roleGroups",
+              "name": "role-groups",
               "type": {
                 "text": "IRoleGroup[]"
               },
@@ -1534,7 +1519,6 @@
               "required": true
             },
             {
-              "kind": "field",
               "name": "roles",
               "type": {
                 "text": "IRole[]"
@@ -1543,6 +1527,7 @@
               "required": true
             }
           ],
+          "members": [],
           "events": [
             {
               "name": "permissionsChanged",
@@ -1654,11 +1639,36 @@
           "description": "",
           "attributes": [
             {
+              "name": "customize-options",
+              "type": {
+                "text": "(options: Config) => Config"
+              },
+              "description": "Customize the options before initializing the editor, will have all the default options merged with 'options' if passed.\nThis is called last after merging default options with your custom 'options' and just before initializing the editor.",
+              "required": false
+            },
+            {
               "name": "name",
               "type": {
                 "text": "string"
               },
               "description": "Name of the field when used in a form.",
+              "required": false
+            },
+            {
+              "name": "options",
+              "type": {
+                "text": "Config"
+              },
+              "description": "Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html\nThis will be merged with the default options and passed to the editor.\nIf you prefer to not have to pass a full config object,\nyou can use 'customizeOptions' to modify the options before initializing the editor\ninstead of providing all options here.",
+              "required": false
+            },
+            {
+              "name": "plugins",
+              "type": {
+                "text": "{ name: string; callback: (editor: Jodit) => void; }[]"
+              },
+              "description": "Allows registering your own plugins.\nThe callback will be called with the editor instance as the only argument durig initialization.\nAll other behavior needs to be implemented in the plugin itself using editor.on(\"eventname\").\nSee https://xdsoft.net/jodit/examples/plugin/custom_plugin.html for an example.\nCreating a plugin does NOT automatically add it to the toolbar, you need to do that yourself in 'options' or 'customizeOptions',\nSee https://xdsoft.net/jodit/examples/toolbar/custom_button.html for an example.",
+              "default": "[]",
               "required": false
             },
             {
@@ -1670,36 +1680,7 @@
               "required": false
             }
           ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "customizeOptions",
-              "type": {
-                "text": "(options: Config) => Config"
-              },
-              "description": "Customize the options before initializing the editor, will have all the default options merged with 'options' if passed.\nThis is called last after merging default options with your custom 'options' and just before initializing the editor.",
-              "required": false
-            },
-            {
-              "kind": "field",
-              "name": "options",
-              "type": {
-                "text": "Config"
-              },
-              "description": "Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html\nThis will be merged with the default options and passed to the editor.\nIf you prefer to not have to pass a full config object,\nyou can use 'customizeOptions' to modify the options before initializing the editor\ninstead of providing all options here.",
-              "required": false
-            },
-            {
-              "kind": "field",
-              "name": "plugins",
-              "type": {
-                "text": "{ name: string; callback: (editor: Jodit) => void; }[]"
-              },
-              "description": "Allows registering your own plugins.\nThe callback will be called with the editor instance as the only argument durig initialization.\nAll other behavior needs to be implemented in the plugin itself using editor.on(\"eventname\").\nSee https://xdsoft.net/jodit/examples/plugin/custom_plugin.html for an example.\nCreating a plugin does NOT automatically add it to the toolbar, you need to do that yourself in 'options' or 'customizeOptions',\nSee https://xdsoft.net/jodit/examples/toolbar/custom_button.html for an example.",
-              "default": "[]",
-              "required": false
-            }
-          ],
+          "members": [],
           "events": [
             {
               "name": "valueChange",
