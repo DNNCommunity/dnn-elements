@@ -1,6 +1,6 @@
 {
   "name": "@dnncommunity/dnn-elements",
-  "version": "0.24.2-beta.1",
+  "version": "0.26.0-alpha.2",
   "description": "Dnn themed custom elements.",
   "repository": "https://github.com/dnncommunity/dnn-elements",
   "homepage": "https://dnncommunity.github.io/dnn-elements",
@@ -41,7 +41,7 @@
     "@storybook/addon-a11y": "^8.3.2",
     "@storybook/addon-essentials": "^8.3.2",
     "@storybook/addon-links": "^8.3.2",
-    "@storybook/addon-webpack5-compiler-babel": "^3.0.3",
+    "@storybook/addon-webpack5-compiler-babel": "^3.0.6",
     "@storybook/addons": "^7.6.17",
     "@storybook/blocks": "^8.3.2",
     "@storybook/theming": "^8.3.2",
@@ -67,6 +67,7 @@
     "react-dom": "^18.2.0",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "storybook": "^8.3.2",
+    "ts-node": "^10.9.2",
     "typescript": "5.7.2",
     "typescript-debounce-decorator": "^0.0.18"
   },

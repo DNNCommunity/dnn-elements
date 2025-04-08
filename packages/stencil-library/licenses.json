@@ -1,9 +1,9 @@
 {
-    "@dnncommunity/dnn-elements@0.24.2-beta.1": {
+    "@dnncommunity/dnn-elements@0.26.0-alpha.2": {
         "licenses": "MIT",
         "repository": "https://github.com/dnncommunity/dnn-elements",
         "path": "",
-        "licenseFile": "C:\\dev\\dnn-elements\\packages\\stencil-library\\README.md"
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\README.md"
     },
     "@storybook/theming@8.3.2": {
         "licenses": "MIT",
