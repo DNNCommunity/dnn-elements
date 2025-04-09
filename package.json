@@ -10,7 +10,7 @@
     "test": "npx lerna run test"
   },
   "devDependencies": {
-    "@types/node": "^22.2.0",
+    "@types/node": "^22.14.0",
     "lerna": "^8.0.0",
     "typescript": "^5.0.3"
   }
