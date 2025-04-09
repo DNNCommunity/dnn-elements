@@ -16,8 +16,6 @@ const config: StorybookConfig = {
   ],
   "addons": [
     getAbsolutePath('@storybook/addon-essentials'),
-    getAbsolutePath('@chromatic-com/storybook'),
-    getAbsolutePath("@storybook/experimental-addon-test"),
     getAbsolutePath('@storybook/addon-a11y'),
   ],
   "framework": {
