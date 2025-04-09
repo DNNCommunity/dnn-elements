@@ -7,13 +7,13 @@
 
 ## Properties
 
-| Property                   | Attribute | Description                                                                        | Type              | Default     |
-| -------------------------- | --------- | ---------------------------------------------------------------------------------- | ----------------- | ----------- |
-| `foundUsers`               | --        | The list of users to show under the search users field when a search is performed. | `ISearchedUser[]` | `[]`        |
-| `permissions` _(required)_ | --        | The list of permissions.                                                           | `IPermissions`    | `undefined` |
-| `resx`                     | --        | Optionally allows localizing the component strings.                                | `ILocalization`   | `undefined` |
-| `roleGroups` _(required)_  | --        | The list of role groups.                                                           | `IRoleGroup[]`    | `undefined` |
-| `roles` _(required)_       | --        | The list of possible roles.                                                        | `IRole[]`         | `undefined` |
+| Property                   | Attribute     | Description                                                                        | Type              | Default     |
+| -------------------------- | ------------- | ---------------------------------------------------------------------------------- | ----------------- | ----------- |
+| `foundUsers`               | `found-users` | The list of users to show under the search users field when a search is performed. | `ISearchedUser[]` | `[]`        |
+| `permissions` _(required)_ | `permissions` | The list of permissions.                                                           | `IPermissions`    | `undefined` |
+| `resx`                     | `resx`        | Optionally allows localizing the component strings.                                | `ILocalization`   | `undefined` |
+| `roleGroups` _(required)_  | `role-groups` | The list of role groups.                                                           | `IRoleGroup[]`    | `undefined` |
+| `roles` _(required)_       | `roles`       | The list of possible roles.                                                        | `IRole[]`         | `undefined` |
 
 
 ## Events

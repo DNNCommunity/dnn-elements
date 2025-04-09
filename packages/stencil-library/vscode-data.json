@@ -33,8 +33,16 @@
           "description": "How many suggestions to preload in pixels of their height.\nThis is used to calculate the virtual scroll height and request\nmore items before they get into view."
         },
         {
+          "name": "render-suggestion",
+          "description": "Callback to render suggestions, if not provided, only the label will be rendered."
+        },
+        {
           "name": "required",
           "description": "Defines whether the field requires having a value."
+        },
+        {
+          "name": "suggestions",
+          "description": "Sets the list of suggestions."
         },
         {
           "name": "total-suggestions",
@@ -172,6 +180,10 @@
           "description": "The name to show in the formData (if using forms)."
         },
         {
+          "name": "next-state-handler",
+          "description": "A function that will be called when the checkbox needs to change state and returns the next state.\nCan be used to customize the order of the states when the component is clicked.\nOnly called if you also use the tri-state feature (useIntermediate)."
+        },
+        {
           "name": "use-intermediate",
           "description": "Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)"
         },
@@ -251,6 +263,10 @@
           "description": "Sets the initial light color, must be a valid 8 character hexadecimal string without the # sign."
         },
         {
+          "name": "localization",
+          "description": "Can be used to customize the text language."
+        },
+        {
           "name": "name",
           "description": "The name for this input if forms are used."
         },
@@ -301,6 +317,10 @@
           "description": "If true, will allow the user to take a snapshot\nusing the device camera. (only works over https)."
         },
         {
+          "name": "allowed-extensions",
+          "description": "A list of allowed file extensions.\nIf not specified, any file is allowed.\nEx: [\"jpg\", \"jpeg\", \"gif\", \"png\"]"
+        },
+        {
           "name": "capture-quality",
           "description": "Specifies the jpeg quality for when the device\ncamera is used to generate a picture.\nNeeds to be a number between 0 and 1 and defaults to 0.8"
         },
@@ -311,6 +331,10 @@
         {
           "name": "name",
           "description": "The name of the field when used in a form."
+        },
+        {
+          "name": "resx",
+          "description": "Localization strings"
         }
       ]
     },
@@ -401,6 +425,10 @@
         {
           "name": "quality",
           "description": "Sets the output quality of the cropped image (number between 0 and 1)."
+        },
+        {
+          "name": "resx",
+          "description": "Can be used to customize controls text.\nSome values support tokens, see default values for examples."
         },
         {
           "name": "width",
@@ -601,6 +629,9 @@
               "name": "plaintext"
             },
             {
+              "name": "r"
+            },
+            {
               "name": "bat"
             },
             {
@@ -659,9 +690,6 @@
             },
             {
               "name": "python"
-            },
-            {
-              "name": "r"
             },
             {
               "name": "razor"
@@ -723,7 +751,28 @@
         "kind": "markdown",
         "value": ""
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "found-users",
+          "description": "The list of users to show under the search users field when a search is performed."
+        },
+        {
+          "name": "permissions",
+          "description": "The list of permissions."
+        },
+        {
+          "name": "resx",
+          "description": "Optionally allows localizing the component strings."
+        },
+        {
+          "name": "role-groups",
+          "description": "The list of role groups."
+        },
+        {
+          "name": "roles",
+          "description": "The list of possible roles."
+        }
+      ]
     },
     {
       "name": "dnn-progress-bar",
@@ -754,8 +803,20 @@
       },
       "attributes": [
         {
+          "name": "customize-options",
+          "description": "Customize the options before initializing the editor, will have all the default options merged with 'options' if passed.\nThis is called last after merging default options with your custom 'options' and just before initializing the editor."
+        },
+        {
           "name": "name",
           "description": "Name of the field when used in a form."
+        },
+        {
+          "name": "options",
+          "description": "Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html\nThis will be merged with the default options and passed to the editor.\nIf you prefer to not have to pass a full config object,\nyou can use 'customizeOptions' to modify the options before initializing the editor\ninstead of providing all options here."
+        },
+        {
+          "name": "plugins",
+          "description": "Allows registering your own plugins.\nThe callback will be called with the editor instance as the only argument durig initialization.\nAll other behavior needs to be implemented in the plugin itself using editor.on(\"eventname\").\nSee https://xdsoft.net/jodit/examples/plugin/custom_plugin.html for an example.\nCreating a plugin does NOT automatically add it to the toolbar, you need to do that yourself in 'options' or 'customizeOptions',\nSee https://xdsoft.net/jodit/examples/toolbar/custom_button.html for an example."
         },
         {
           "name": "value",
