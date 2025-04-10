@@ -508,7 +508,7 @@ export class DnnPermissionsGrid {
                 </select>
               </div>,
               <dnn-button
-              type="primary"
+              appearance="primary"
               onClick={() => this.addRole()}
               >
                 {this.localResx.Add}

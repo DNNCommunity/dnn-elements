@@ -191,7 +191,7 @@ export class DnnButton {
           <slot></slot>
         </button>
         {this.confirm &&
-            <dnn-modal showCloseButton={false} backdropDismiss={false}>
+            <dnn-modal hideCloseButton preventBackdropDismiss>
               <p>{this.confirmMessage}</p>
               <div style={
                 {

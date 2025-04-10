@@ -1328,10 +1328,9 @@
             {
               "name": "backdrop-dismiss",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "",
-              "default": "true",
               "required": false
             },
             {
@@ -1376,7 +1375,6 @@
                 "text": "boolean | undefined"
               },
               "description": "",
-              "default": "true",
               "required": false
             },
             {

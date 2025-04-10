@@ -290,7 +290,7 @@ export class DnnExampleForm {
                 required
               >
                 <option value="">--- Select ---</option>
-                <option value="male">Male</option>
+                <option value="male" selected>Male</option>
                 <option value="female">Female</option>
                 <option value="other">Prefer not to say</option>
               </dnn-select>
@@ -420,8 +420,8 @@ export class DnnExampleForm {
             </div>
           </dnn-fieldset>
           <div class="controls">
-            <dnn-button reversed formButtonType="reset">Reset</dnn-button>
-            <dnn-button formButtonType="submit">Submit</dnn-button>
+            <dnn-button reversed type="reset">Reset</dnn-button>
+            <dnn-button type="submit">Submit</dnn-button>
           </div>
         </form>
       </Host>
