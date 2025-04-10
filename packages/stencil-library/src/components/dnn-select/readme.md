@@ -7,16 +7,15 @@
 
 ## Properties
 
-| Property                   | Attribute                    | Description                                                                                                                                 | Type                   | Default     |
-| -------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ----------- |
-| `autocomplete`             | `autocomplete`               | Defines the type of automatic completion the browser can use. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete | `string`               | `"off"`     |
-| `disableValidityReporting` | `disable-validity-reporting` | <span style="color:red">**[DEPRECATED]**</span> This control has its own validatin reporting, will be removed in v0.25.0<br/><br/>          | `boolean \| undefined` | `undefined` |
-| `disabled`                 | `disabled`                   | Defines whether the field is disabled.                                                                                                      | `boolean \| undefined` | `undefined` |
-| `helpText`                 | `help-text`                  | Defines the help label displayed under the field.                                                                                           | `string \| undefined`  | `undefined` |
-| `label`                    | `label`                      | The label for this input.                                                                                                                   | `string \| undefined`  | `undefined` |
-| `name`                     | `name`                       | The name for this input, if used in forms.                                                                                                  | `string \| undefined`  | `undefined` |
-| `required`                 | `required`                   | Defines whether the field requires having a value.                                                                                          | `boolean \| undefined` | `undefined` |
-| `value`                    | `value`                      | The value of the input.                                                                                                                     | `string`               | `""`        |
+| Property       | Attribute      | Description                                                                                                                                 | Type                   | Default     |
+| -------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ----------- |
+| `autocomplete` | `autocomplete` | Defines the type of automatic completion the browser can use. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete | `string`               | `"off"`     |
+| `disabled`     | `disabled`     | Defines whether the field is disabled.                                                                                                      | `boolean \| undefined` | `undefined` |
+| `helpText`     | `help-text`    | Defines the help label displayed under the field.                                                                                           | `string \| undefined`  | `undefined` |
+| `label`        | `label`        | The label for this input.                                                                                                                   | `string \| undefined`  | `undefined` |
+| `name`         | `name`         | The name for this input, if used in forms.                                                                                                  | `string \| undefined`  | `undefined` |
+| `required`     | `required`     | Defines whether the field requires having a value.                                                                                          | `boolean \| undefined` | `undefined` |
+| `value`        | `value`        | The value of the input.                                                                                                                     | `string`               | `""`        |
 
 
 ## Events

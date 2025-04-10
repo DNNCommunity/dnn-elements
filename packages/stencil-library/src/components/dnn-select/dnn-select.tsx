@@ -23,9 +23,6 @@ export class DnnSelect {
   
   /** Defines whether the field is disabled. */
   @Prop() disabled?: boolean;
-  
-  /** @deprecated This control has its own validatin reporting, will be removed in v0.25.0 */
-  @Prop() disableValidityReporting?: boolean;
 
   /** Defines the type of automatic completion the browser can use.
    * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete

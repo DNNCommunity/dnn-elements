@@ -10,7 +10,7 @@ export class DnnModal {
   @Element() el!: HTMLDnnModalElement;
   
   /**
-   * @deprecated boolean props should always default to being false per html specs, use preventBackdropDismiss instead, will be removed in v0.27.0.
+   * @deprecated boolean props should always default to being false per html specs, use preventBackdropDismiss instead, will be removed in v0.28.0.
    * Pass false to remove the backdrop click auto-dismiss feature.
    */
   // eslint-disable-next-line @stencil-community/ban-default-true
@@ -34,7 +34,7 @@ export class DnnModal {
   @Prop() resizable?: boolean = false;
 
   /**
-   * @deprecated boolean props should always default to being false per html specs, use hideCloseButton instead, will be removed in v0.27.0.
+   * @deprecated boolean props should always default to being false per html specs, use hideCloseButton instead, will be removed in v0.28.0.
    * Optionally you can pass false to not show the close button.
    * If you decide to do so, you should either not also prevent dismissal by clicking the backdrop
    * or provide your own dismissal logic in the modal content.
@@ -74,6 +74,11 @@ export class DnnModal {
    * Fires when the modal is dismissed.
   */
  @Event() dismissed!: EventEmitter;
+
+ componentWillLoad() {
+  this.preventBackdropDismiss = !this.backdropDismiss;
+  this.hideCloseButton = !this.showCloseButton;
+ }
  
  componentDidLoad() {
    this.seDrag?.addEventListener("mousedown", this.handleResizeMouseDown);

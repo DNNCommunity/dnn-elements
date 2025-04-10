@@ -246,15 +246,6 @@
               "required": false
             },
             {
-              "name": "form-button-type",
-              "type": {
-                "text": "\"button\" | \"reset\" | \"submit\""
-              },
-              "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.\nWarning: This will be deprecated in the next version and replaced with a new 'type' property.",
-              "default": "'button'",
-              "required": false
-            },
-            {
               "name": "reversed",
               "type": {
                 "text": "boolean"
@@ -275,10 +266,10 @@
             {
               "name": "type",
               "type": {
-                "text": "\"danger\" | \"primary\" | \"secondary\" | \"tertiary\""
+                "text": "\"button\" | \"reset\" | \"submit\""
               },
-              "description": "Optional button style,",
-              "default": "'primary'",
+              "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.",
+              "default": "'button'",
               "required": false
             }
           ],
@@ -1794,14 +1785,6 @@
               },
               "description": "Defines the type of automatic completion the browser can use.\nSee https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete",
               "default": "\"off\"",
-              "required": false
-            },
-            {
-              "name": "disable-validity-reporting",
-              "type": {
-                "text": "boolean | undefined"
-              },
-              "description": "",
               "required": false
             },
             {

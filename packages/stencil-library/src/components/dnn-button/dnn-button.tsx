@@ -10,13 +10,6 @@ import { Component, Element, Host, h, Prop, State, Event, EventEmitter, AttachIn
   formAssociated: true,
 })
 export class DnnButton {
-
-  /**
-   * Optional button style,
-   * @deprecated This property will be reused in the next version to represent the type of button like "submit" or "reset". Use the appearance property instead.
-   */
-  @Prop() type: 'primary' | 'danger' | 'secondary' | 'tertiary' = 'primary';
-
   /**
    * Defines the look of the button.
    */
@@ -27,9 +20,8 @@ export class DnnButton {
    * can be either submit, reset or button and defaults to button if not specified.
    * Warning: DNN wraps the whole page in a form, only use this if you are handling
    * form submission manually.
-   * Warning: This will be deprecated in the next version and replaced with a new 'type' property.
    */
-  @Prop() formButtonType: 'submit' | 'reset' | 'button' = 'button';
+  @Prop() type: 'submit' | 'reset' | 'button' = 'button';
 
   /**
    * Optionally reverses the button style.
@@ -113,7 +105,7 @@ export class DnnButton {
       return;
     }
 
-    if (this.formButtonType === 'submit')
+    if (this.type === 'submit')
     {
       var form = this.internals.form;
       if (form){
@@ -151,7 +143,7 @@ export class DnnButton {
         }
       }
     }
-    if (this.formButtonType === 'reset')
+    if (this.type === 'reset')
     {
       var form = this.internals.form;
       if (form){

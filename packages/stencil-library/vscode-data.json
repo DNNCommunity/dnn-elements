@@ -100,21 +100,6 @@
           "description": "Disables the button"
         },
         {
-          "name": "form-button-type",
-          "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.\nWarning: This will be deprecated in the next version and replaced with a new 'type' property.",
-          "values": [
-            {
-              "name": "button"
-            },
-            {
-              "name": "reset"
-            },
-            {
-              "name": "submit"
-            }
-          ]
-        },
-        {
           "name": "reversed",
           "description": "Optionally reverses the button style."
         },
@@ -135,19 +120,16 @@
         },
         {
           "name": "type",
-          "description": "Optional button style,",
+          "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.",
           "values": [
             {
-              "name": "danger"
+              "name": "button"
             },
             {
-              "name": "primary"
+              "name": "reset"
             },
             {
-              "name": "secondary"
-            },
-            {
-              "name": "tertiary"
+              "name": "submit"
             }
           ]
         }
@@ -863,10 +845,6 @@
         {
           "name": "autocomplete",
           "description": "Defines the type of automatic completion the browser can use.\nSee https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete"
-        },
-        {
-          "name": "disable-validity-reporting",
-          "description": ""
         },
         {
           "name": "disabled",

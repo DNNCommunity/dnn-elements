@@ -114,10 +114,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually. Warning: This will be deprecated in the next version and replaced with a new 'type' property.
-         */
-        "formButtonType": 'submit' | 'reset' | 'button';
-        /**
           * Optionally reverses the button style.
          */
         "reversed": boolean;
@@ -126,10 +122,9 @@ export namespace Components {
          */
         "size"?: 'small' | 'normal' | 'large';
         /**
-          * Optional button style,
-          * @deprecated This property will be reused in the next version to represent the type of button like "submit" or "reset". Use the appearance property instead.
+          * Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually.
          */
-        "type": 'primary' | 'danger' | 'secondary' | 'tertiary';
+        "type": 'submit' | 'reset' | 'button';
     }
     interface DnnCheckbox {
         /**
@@ -474,7 +469,7 @@ export namespace Components {
     }
     interface DnnModal {
         /**
-          * @deprecated boolean props should always default to being false per html specs, use preventBackdropDismiss instead, will be removed in v0.27.0. Pass false to remove the backdrop click auto-dismiss feature.
+          * @deprecated boolean props should always default to being false per html specs, use preventBackdropDismiss instead, will be removed in v0.28.0. Pass false to remove the backdrop click auto-dismiss feature.
          */
         "backdropDismiss": boolean;
         /**
@@ -502,7 +497,7 @@ export namespace Components {
          */
         "show": () => Promise<void>;
         /**
-          * @deprecated boolean props should always default to being false per html specs, use hideCloseButton instead, will be removed in v0.27.0. Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
+          * @deprecated boolean props should always default to being false per html specs, use hideCloseButton instead, will be removed in v0.28.0. Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
          */
         "showCloseButton"?: boolean;
         /**
@@ -605,10 +600,6 @@ export namespace Components {
           * Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
          */
         "checkValidity": () => Promise<ValidityState>;
-        /**
-          * @deprecated This control has its own validatin reporting, will be removed in v0.25.0
-         */
-        "disableValidityReporting"?: boolean;
         /**
           * Defines whether the field is disabled.
          */
@@ -1410,10 +1401,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually. Warning: This will be deprecated in the next version and replaced with a new 'type' property.
-         */
-        "formButtonType"?: 'submit' | 'reset' | 'button';
-        /**
           * Fires when confirm is true and the user cancels the action.
          */
         "onCanceled"?: (event: DnnButtonCustomEvent<any>) => void;
@@ -1430,10 +1417,9 @@ declare namespace LocalJSX {
          */
         "size"?: 'small' | 'normal' | 'large';
         /**
-          * Optional button style,
-          * @deprecated This property will be reused in the next version to represent the type of button like "submit" or "reset". Use the appearance property instead.
+          * Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually.
          */
-        "type"?: 'primary' | 'danger' | 'secondary' | 'tertiary';
+        "type"?: 'submit' | 'reset' | 'button';
     }
     interface DnnCheckbox {
         /**
@@ -1779,7 +1765,7 @@ declare namespace LocalJSX {
     }
     interface DnnModal {
         /**
-          * @deprecated boolean props should always default to being false per html specs, use preventBackdropDismiss instead, will be removed in v0.27.0. Pass false to remove the backdrop click auto-dismiss feature.
+          * @deprecated boolean props should always default to being false per html specs, use preventBackdropDismiss instead, will be removed in v0.28.0. Pass false to remove the backdrop click auto-dismiss feature.
          */
         "backdropDismiss"?: boolean;
         /**
@@ -1803,7 +1789,7 @@ declare namespace LocalJSX {
          */
         "resizable"?: boolean;
         /**
-          * @deprecated boolean props should always default to being false per html specs, use hideCloseButton instead, will be removed in v0.27.0. Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
+          * @deprecated boolean props should always default to being false per html specs, use hideCloseButton instead, will be removed in v0.28.0. Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
          */
         "showCloseButton"?: boolean;
         /**
@@ -1926,10 +1912,6 @@ declare namespace LocalJSX {
           * Defines the type of automatic completion the browser can use. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
          */
         "autocomplete"?: string;
-        /**
-          * @deprecated This control has its own validatin reporting, will be removed in v0.25.0
-         */
-        "disableValidityReporting"?: boolean;
         /**
           * Defines whether the field is disabled.
          */
