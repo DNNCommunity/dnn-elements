@@ -13,12 +13,12 @@ A custom input component that wraps the html input element is a mobile friendly 
 
 | Property     | Attribute     | Description                                                                  | Type                                                                    | Default     |
 | ------------ | ------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------- |
-| `disabled`   | `disabled`    | If true, the fieldset will display as disabled.                              | `boolean`                                                               | `undefined` |
-| `floatLabel` | `float-label` | If true, the label will float in the container, set false to show it on top. | `boolean`                                                               | `undefined` |
-| `focused`    | `focused`     | If true the fieldset will display as focused.                                | `boolean`                                                               | `undefined` |
-| `helpText`   | `help-text`   | Can be used to show some help text about this field.                         | `string`                                                                | `undefined` |
-| `invalid`    | `invalid`     | If true, the  fieldset will display as invalid.                              | `boolean`                                                               | `undefined` |
-| `label`      | `label`       | Sets the text of the fieldset label (caption).                               | `string`                                                                | `undefined` |
+| `disabled`   | `disabled`    | If true, the fieldset will display as disabled.                              | `boolean \| undefined`                                                  | `undefined` |
+| `floatLabel` | `float-label` | If true, the label will float in the container, set false to show it on top. | `boolean \| undefined`                                                  | `undefined` |
+| `focused`    | `focused`     | If true the fieldset will display as focused.                                | `boolean \| undefined`                                                  | `undefined` |
+| `helpText`   | `help-text`   | Can be used to show some help text about this field.                         | `string \| undefined`                                                   | `undefined` |
+| `invalid`    | `invalid`     | If true, the  fieldset will display as invalid.                              | `boolean \| undefined`                                                  | `undefined` |
+| `label`      | `label`       | Sets the text of the fieldset label (caption).                               | `string \| undefined`                                                   | `undefined` |
 | `resizable`  | `resizable`   | Can be set to specify if the fieldset can be resized by the user.            | `"block" \| "both" \| "horizontal" \| "inline" \| "none" \| "vertical"` | `"none"`    |
 
 

@@ -23,7 +23,7 @@
             {
               "name": "disabled",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines whether the field is disabled.",
               "required": false
@@ -31,7 +31,7 @@
             {
               "name": "help-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Defines the help label displayed under the field.",
               "required": false
@@ -39,7 +39,7 @@
             {
               "name": "label",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The label for this autocomplete.",
               "required": false
@@ -47,7 +47,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The name for this autocomplete when used in forms.",
               "required": false
@@ -64,7 +64,7 @@
             {
               "name": "render-suggestion",
               "type": {
-                "text": "(suggestion: DnnAutocompleteSuggestion) => HTMLElement"
+                "text": "((suggestion: DnnAutocompleteSuggestion) => HTMLElement) | undefined"
               },
               "description": "Callback to render suggestions, if not provided, only the label will be rendered.",
               "required": false
@@ -72,7 +72,7 @@
             {
               "name": "required",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines whether the field requires having a value.",
               "required": false
@@ -89,7 +89,7 @@
             {
               "name": "total-suggestions",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "The total amount of suggestions for the given search query.\nThis can be used to show virtual scroll and pagination progressive feeding.\nThe needMoreItems event should be used to request more items.",
               "required": false
@@ -97,7 +97,7 @@
             {
               "name": "value",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Defines the value for this autocomplete",
               "required": false
@@ -360,6 +360,7 @@
                 "text": "string"
               },
               "description": "The name to show in the formData (if using forms).",
+              "default": "\"\"",
               "required": false
             },
             {
@@ -570,7 +571,7 @@
             {
               "name": "help-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Defines the help label displayed under the field.",
               "required": false
@@ -578,7 +579,7 @@
             {
               "name": "label",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The label for this input.",
               "required": false
@@ -604,7 +605,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The name for this input if forms are used.",
               "required": false
@@ -612,7 +613,7 @@
             {
               "name": "readonly",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Disables interacting with the component.",
               "required": false
@@ -620,7 +621,7 @@
             {
               "name": "use-contrast-color",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true, the picker will allow selecting a contast color too.",
               "required": false
@@ -628,7 +629,7 @@
             {
               "name": "use-dark-color",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true, the picker will allow selecting a dark color too.",
               "required": false
@@ -636,7 +637,7 @@
             {
               "name": "use-light-color",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true, the picker will allow selecting a light color too.",
               "required": false
@@ -762,7 +763,7 @@
             {
               "name": "allowed-extensions",
               "type": {
-                "text": "string[]"
+                "text": "string[] | undefined"
               },
               "description": "A list of allowed file extensions.\nIf not specified, any file is allowed.\nEx: [\"jpg\", \"jpeg\", \"gif\", \"png\"]",
               "required": false
@@ -787,7 +788,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The name of the field when used in a form.",
               "required": false
@@ -795,7 +796,7 @@
             {
               "name": "resx",
               "type": {
-                "text": "DropzoneResx"
+                "text": "DropzoneResx | undefined"
               },
               "description": "Localization strings",
               "required": false
@@ -861,7 +862,7 @@
             {
               "name": "disabled",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true, the fieldset will display as disabled.",
               "required": false
@@ -869,7 +870,7 @@
             {
               "name": "float-label",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true, the label will float in the container, set false to show it on top.",
               "required": false
@@ -877,7 +878,7 @@
             {
               "name": "focused",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true the fieldset will display as focused.",
               "required": false
@@ -885,7 +886,7 @@
             {
               "name": "help-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Can be used to show some help text about this field.",
               "required": false
@@ -893,7 +894,7 @@
             {
               "name": "invalid",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true, the  fieldset will display as invalid.",
               "required": false
@@ -901,7 +902,7 @@
             {
               "name": "label",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Sets the text of the fieldset label (caption).",
               "required": false
@@ -1010,7 +1011,7 @@
             {
               "name": "height",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Sets the desired final image height.",
               "required": false
@@ -1018,7 +1019,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The name of the control when used in a form.",
               "required": false
@@ -1044,7 +1045,7 @@
             {
               "name": "resx",
               "type": {
-                "text": "ImageCropperResx"
+                "text": "ImageCropperResx | undefined"
               },
               "description": "Can be used to customize controls text.\nSome values support tokens, see default values for examples.",
               "required": false
@@ -1052,7 +1053,7 @@
             {
               "name": "width",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Sets the desired final image width.",
               "required": false
@@ -1453,7 +1454,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The name of the control to use for forms.",
               "required": false
@@ -1523,7 +1524,7 @@
             {
               "name": "resx",
               "type": {
-                "text": "ILocalization"
+                "text": "ILocalization | undefined"
               },
               "description": "Optionally allows localizing the component strings.",
               "required": false
@@ -1602,6 +1603,7 @@
                 "text": "number"
               },
               "description": "Sets to current value for the progress bar.",
+              "default": "0",
               "required": false
             }
           ],
@@ -1659,7 +1661,7 @@
             {
               "name": "customize-options",
               "type": {
-                "text": "(options: Config) => Config"
+                "text": "((options: Config) => Config) | undefined"
               },
               "description": "Customize the options before initializing the editor, will have all the default options merged with 'options' if passed.\nThis is called last after merging default options with your custom 'options' and just before initializing the editor.",
               "required": false
@@ -1667,7 +1669,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Name of the field when used in a form.",
               "required": false
@@ -1675,7 +1677,7 @@
             {
               "name": "options",
               "type": {
-                "text": "Config"
+                "text": "Config | undefined"
               },
               "description": "Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html\nThis will be merged with the default options and passed to the editor.\nIf you prefer to not have to pass a full config object,\nyou can use 'customizeOptions' to modify the options before initializing the editor\ninstead of providing all options here.",
               "required": false
@@ -1692,7 +1694,7 @@
             {
               "name": "value",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Sets the value of the content of the editor.",
               "required": false
@@ -1797,7 +1799,7 @@
             {
               "name": "disable-validity-reporting",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "",
               "required": false
@@ -1805,7 +1807,7 @@
             {
               "name": "disabled",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines whether the field is disabled.",
               "required": false
@@ -1813,7 +1815,7 @@
             {
               "name": "help-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Defines the help label displayed under the field.",
               "required": false
@@ -1821,7 +1823,7 @@
             {
               "name": "label",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The label for this input.",
               "required": false
@@ -1829,7 +1831,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The name for this input, if used in forms.",
               "required": false
@@ -1837,7 +1839,7 @@
             {
               "name": "required",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines whether the field requires having a value.",
               "required": false
@@ -1848,6 +1850,7 @@
                 "text": "string"
               },
               "description": "The value of the input.",
+              "default": "\"\"",
               "required": false
             }
           ],

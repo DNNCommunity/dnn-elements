@@ -34,11 +34,11 @@
 
 ## Properties
 
-| Property      | Attribute      | Description                                                  | Type      | Default     |
-| ------------- | -------------- | ------------------------------------------------------------ | --------- | ----------- |
-| `max`         | `max`          | Sets the max value for the progress bar.                     | `number`  | `100`       |
-| `useGradient` | `use-gradient` | Determines if gradient colors will be used for progress bar. | `boolean` | `false`     |
-| `value`       | `value`        | Sets to current value for the progress bar.                  | `number`  | `undefined` |
+| Property      | Attribute      | Description                                                  | Type      | Default |
+| ------------- | -------------- | ------------------------------------------------------------ | --------- | ------- |
+| `max`         | `max`          | Sets the max value for the progress bar.                     | `number`  | `100`   |
+| `useGradient` | `use-gradient` | Determines if gradient colors will be used for progress bar. | `boolean` | `false` |
+| `value`       | `value`        | Sets to current value for the progress bar.                  | `number`  | `0`     |
 
 
 ## CSS Custom Properties

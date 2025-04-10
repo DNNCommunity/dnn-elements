@@ -128,7 +128,6 @@ export class DnnImageCropper {
     this.crop.style.height = "100%";
 
     if (this.width == null || this.height == null) {
-      console.warn("Width or height is undefined. Proceeding without enforcing a ratio.");
       return;
     }
 
