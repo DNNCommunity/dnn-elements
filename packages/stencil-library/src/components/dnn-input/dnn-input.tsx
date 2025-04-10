@@ -146,6 +146,7 @@ export class DnnInput {
   }
 
   private handleInvalid(): void {
+    this.valid = false;
     this.fieldset.setValidity(false, this.inputField.validationMessage);
     this.internals.setValidity(this.inputField.validity, this.inputField.validationMessage);
   }
