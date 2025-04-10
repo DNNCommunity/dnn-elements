@@ -471,7 +471,7 @@ export namespace Components {
         /**
           * @deprecated boolean props should always default to being false per html specs, use preventBackdropDismiss instead, will be removed in v0.28.0. Pass false to remove the backdrop click auto-dismiss feature.
          */
-        "backdropDismiss": boolean;
+        "backdropDismiss"?: boolean;
         /**
           * Optionally pass the aria-label text for the close button. Defaults to "Close modal" if not provided.
          */

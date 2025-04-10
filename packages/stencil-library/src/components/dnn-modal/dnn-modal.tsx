@@ -13,14 +13,14 @@ export class DnnModal {
    * @deprecated boolean props should always default to being false per html specs, use preventBackdropDismiss instead, will be removed in v0.28.0.
    * Pass false to remove the backdrop click auto-dismiss feature.
    */
-  // eslint-disable-next-line @stencil-community/ban-default-true
-  @Prop() backdropDismiss: boolean = true;
+   
+  @Prop() backdropDismiss?: boolean;
 
   /**
    * Pass true to remove the backdrop click auto-dismiss feature.
    * Defaults to false.
    */
-  @Prop() preventBackdropDismiss?: boolean = false;
+  @Prop({mutable: true, reflect: true}) preventBackdropDismiss?: boolean = false;
 
   /**
    * Optionally pass the aria-label text for the close button.
@@ -39,15 +39,15 @@ export class DnnModal {
    * If you decide to do so, you should either not also prevent dismissal by clicking the backdrop
    * or provide your own dismissal logic in the modal content.
    */
-  // eslint-disable-next-line @stencil-community/ban-default-true
-  @Prop() showCloseButton?: boolean = true;
+   
+  @Prop() showCloseButton?: boolean;
 
   /**
    * Optionally you can pass true to not show the close button.
    * If you decide to do so, you should either not also prevent dismissal by clicking the backdrop
    * or provide your own dismissal logic in the modal content.
    */
-  @Prop() hideCloseButton: boolean = false;
+  @Prop({mutable: true, reflect: true}) hideCloseButton: boolean = false;
 
   /**
    * Reflects the visible state of the modal.
@@ -76,8 +76,15 @@ export class DnnModal {
  @Event() dismissed!: EventEmitter;
 
  componentWillLoad() {
-  this.preventBackdropDismiss = !this.backdropDismiss;
-  this.hideCloseButton = !this.showCloseButton;
+  if (this.backdropDismiss != undefined) {
+    console.warn("The 'backdropDismiss' prop is deprecated. Use 'preventBackdropDismiss' instead.");
+    this.preventBackdropDismiss = !this.backdropDismiss;
+  }
+
+  if (this.showCloseButton != undefined) {
+    console.warn("The 'showCloseButton' prop is deprecated. Use 'hideCloseButton' instead.");
+    this.hideCloseButton = !this.showCloseButton;
+  }
  }
  
  componentDidLoad() {
