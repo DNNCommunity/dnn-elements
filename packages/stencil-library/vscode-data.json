@@ -588,11 +588,19 @@
       "attributes": [
         {
           "name": "backdrop-dismiss",
-          "description": "Pass false to remove the backdrop click auto-dismiss feature."
+          "description": ""
         },
         {
           "name": "close-text",
           "description": "Optionally pass the aria-label text for the close button.\nDefaults to \"Close modal\" if not provided."
+        },
+        {
+          "name": "hide-close-button",
+          "description": "Optionally you can pass true to not show the close button.\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\nor provide your own dismissal logic in the modal content."
+        },
+        {
+          "name": "prevent-backdrop-dismiss",
+          "description": "Pass true to remove the backdrop click auto-dismiss feature.\nDefaults to false."
         },
         {
           "name": "resizable",
@@ -600,7 +608,7 @@
         },
         {
           "name": "show-close-button",
-          "description": "Optionally you can pass false to not show the close button.\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\nor provide your own dismissal logic in the modal content."
+          "description": ""
         },
         {
           "name": "visible",
@@ -834,10 +842,6 @@
         {
           "name": "debounce-time",
           "description": "How many milliseconds to wait before firing the queryChanged event."
-        },
-        {
-          "name": "debounced",
-          "description": ""
         },
         {
           "name": "placeholder",

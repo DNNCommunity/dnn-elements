@@ -203,7 +203,7 @@
             {
               "name": "confirm",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Optionally add a confirmation dialog before firing the action.",
               "default": "false",
@@ -212,7 +212,7 @@
             {
               "name": "confirm-message",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The text of the confirmation message;",
               "default": "\"Are you sure ?\"",
@@ -221,7 +221,7 @@
             {
               "name": "confirm-no-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The text of the no button for confirmation.",
               "default": "\"No\"",
@@ -230,7 +230,7 @@
             {
               "name": "confirm-yes-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The text of the yes button for confirmation.",
               "default": "\"Yes\"",
@@ -266,7 +266,7 @@
             {
               "name": "size",
               "type": {
-                "text": "\"large\" | \"normal\" | \"small\""
+                "text": "\"large\" | \"normal\" | \"small\" | undefined"
               },
               "description": "Optionally sets the button size, small normal or large, defaults to normal",
               "default": "'normal'",
@@ -437,7 +437,7 @@
             {
               "name": "collapse-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Collapse text for screen readers",
               "default": "\"collapse\"",
@@ -446,7 +446,7 @@
             {
               "name": "expand-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Expand text for screen readers",
               "default": "\"expand\"",
@@ -455,7 +455,7 @@
             {
               "name": "expanded",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Is the chevron expanded",
               "default": "false",
@@ -500,7 +500,7 @@
             {
               "name": "transition-duration",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Defines the transition time in ms, defaults to 150ms",
               "default": "150",
@@ -779,7 +779,7 @@
             {
               "name": "max-file-size",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Max file size in bytes.",
               "required": false
@@ -1101,7 +1101,7 @@
             {
               "name": "allow-show-password",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true, enables users to switch between a password and a text field (to view their password).",
               "required": false
@@ -1118,7 +1118,7 @@
             {
               "name": "disable-validity-reporting",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "",
               "required": false
@@ -1126,7 +1126,7 @@
             {
               "name": "disabled",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines whether the field is disabled.",
               "required": false
@@ -1134,7 +1134,7 @@
             {
               "name": "help-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Defines the help label displayed under the field.",
               "required": false
@@ -1142,7 +1142,7 @@
             {
               "name": "inputmode",
               "type": {
-                "text": "\"decimal\" | \"email\" | \"none\" | \"numeric\" | \"search\" | \"tel\" | \"text\" | \"url\""
+                "text": "\"decimal\" | \"email\" | \"none\" | \"numeric\" | \"search\" | \"tel\" | \"text\" | \"url\" | undefined"
               },
               "description": "Hints at the type of data that might be entered by the user while editing the element or its contents.\nThis allows a browser to display an appropriate virtual keyboard.",
               "required": false
@@ -1150,7 +1150,7 @@
             {
               "name": "label",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The label for this input.",
               "required": false
@@ -1158,7 +1158,7 @@
             {
               "name": "max",
               "type": {
-                "text": "number | string"
+                "text": "number | string | undefined"
               },
               "description": "Defines the maximum allowed value.",
               "required": false
@@ -1166,7 +1166,7 @@
             {
               "name": "maxlength",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Defines the maximum amount of charaters.",
               "required": false
@@ -1174,7 +1174,7 @@
             {
               "name": "min",
               "type": {
-                "text": "number | string"
+                "text": "number | string | undefined"
               },
               "description": "Defines the minimum allowed value.",
               "required": false
@@ -1182,7 +1182,7 @@
             {
               "name": "minlength",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Defines the minimum amount of charaters.",
               "required": false
@@ -1190,7 +1190,7 @@
             {
               "name": "multiple",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true, allows multiple emails to be entered separated by commas.",
               "required": false
@@ -1198,7 +1198,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The name for this input when used in forms.",
               "required": false
@@ -1206,7 +1206,7 @@
             {
               "name": "pattern",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Valid for text, search, url, tel, email, and password, the pattern attribute defines a regular expression that the input's value must match in order for the value to pass constraint validation.",
               "required": false
@@ -1214,7 +1214,7 @@
             {
               "name": "readonly",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines wheter the defined value is readonly.",
               "required": false
@@ -1222,7 +1222,7 @@
             {
               "name": "required",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines whether the field requires having a value.",
               "required": false
@@ -1230,7 +1230,7 @@
             {
               "name": "step",
               "type": {
-                "text": "number | string"
+                "text": "number | string | undefined"
               },
               "description": "Defines the possible steps for numbers and dates/times. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#step",
               "required": false
@@ -1247,7 +1247,7 @@
             {
               "name": "value",
               "type": {
-                "text": "number | string | string[]"
+                "text": "number | string | string[] | undefined"
               },
               "description": "The value of the input.",
               "required": false
@@ -1338,23 +1338,41 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "Pass false to remove the backdrop click auto-dismiss feature.",
+              "description": "",
               "default": "true",
               "required": false
             },
             {
               "name": "close-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Optionally pass the aria-label text for the close button.\nDefaults to \"Close modal\" if not provided.",
               "default": "\"Close modal\"",
               "required": false
             },
             {
-              "name": "resizable",
+              "name": "hide-close-button",
               "type": {
                 "text": "boolean"
+              },
+              "description": "Optionally you can pass true to not show the close button.\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\nor provide your own dismissal logic in the modal content.",
+              "default": "false",
+              "required": false
+            },
+            {
+              "name": "prevent-backdrop-dismiss",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "description": "Pass true to remove the backdrop click auto-dismiss feature.\nDefaults to false.",
+              "default": "false",
+              "required": false
+            },
+            {
+              "name": "resizable",
+              "type": {
+                "text": "boolean | undefined"
               },
               "description": "If set to true, the modal becomes resizable.",
               "default": "false",
@@ -1363,9 +1381,9 @@
             {
               "name": "show-close-button",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
-              "description": "Optionally you can pass false to not show the close button.\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\nor provide your own dismissal logic in the modal content.",
+              "description": "",
               "default": "true",
               "required": false
             },
@@ -1723,18 +1741,9 @@
               "required": false
             },
             {
-              "name": "debounced",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "",
-              "default": "true",
-              "required": false
-            },
-            {
               "name": "placeholder",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Sets the field placeholder text.",
               "default": "\"\"",
@@ -2040,7 +2049,7 @@
             {
               "name": "disabled",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines whether the field is disabled.",
               "required": false
@@ -2048,7 +2057,7 @@
             {
               "name": "help-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Defines the help label displayed under the field.",
               "required": false
@@ -2056,7 +2065,7 @@
             {
               "name": "label",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The label for this input.",
               "required": false
@@ -2064,7 +2073,7 @@
             {
               "name": "maxlength",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Defines the maximum amount of charaters.",
               "required": false
@@ -2072,7 +2081,7 @@
             {
               "name": "minlength",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Defines the minimum amount of charaters.",
               "required": false
@@ -2080,7 +2089,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The name for this input when used in forms.",
               "required": false
@@ -2088,7 +2097,7 @@
             {
               "name": "readonly",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines wheter the defined value is readonly.",
               "required": false
@@ -2096,7 +2105,7 @@
             {
               "name": "required",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines whether the field requires having a value.",
               "required": false
@@ -2122,7 +2131,7 @@
             {
               "name": "value",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Sets the value of the textarea.",
               "required": false
@@ -2216,7 +2225,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The field name to use in forms.",
               "required": false

@@ -73,25 +73,25 @@ export class DnnButton {
     bubbles: true,
     cancelable: true,
     composed: true
-  }) confirmed: EventEmitter;
+  }) confirmed!: EventEmitter;
 
   /**
    * Fires when confirm is true and the user cancels the action.
    */
-  @Event({bubbles: true}) canceled: EventEmitter;
+  @Event({bubbles: true}) canceled!: EventEmitter;
 
   @State() focused = false;
   @State() modalVisible = false;
 
   @Element() el!: HTMLDnnButtonElement;
 
-  @AttachInternals() internals: ElementInternals;
+  @AttachInternals() internals!: ElementInternals;
 
-  private button: HTMLButtonElement;
+  private button!: HTMLButtonElement;
   private modal!: HTMLDnnModalElement;
 
   componentDidLoad(){
-    this.modal = this.el.shadowRoot.querySelector('dnn-modal');
+    this.modal = this.el.shadowRoot!.querySelector('dnn-modal')!;
   }
 
   private handleConfirm(){
@@ -137,6 +137,7 @@ export class DnnButton {
               }
             }
             catch(e){
+              // eslint-disable-next-line no-console
               console.error(e, control);
             }
           }
@@ -170,7 +171,7 @@ export class DnnButton {
     if (this.reversed){
       classes.push('reversed');
     }
-    if (this.size !== 'normal'){
+    if (this.size !== 'normal' && this.size !== undefined){
       classes.push(this.size);
     }
     if (this.disabled) {
@@ -188,7 +189,7 @@ export class DnnButton {
         onBlur={() => this.button.blur()}
       >
         <button
-          ref={el => this.button = el}
+          ref={el => this.button = el!}
           class="button"
           onClick={() => this.handleClick()}
           disabled={this.disabled}

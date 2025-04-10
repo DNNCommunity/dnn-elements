@@ -10,22 +10,22 @@ import { generateRandomId } from '../../utilities/stringUtilities';
 export class DnnSelect {
 
   /** The label for this input. */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /** The name for this input, if used in forms. */
-  @Prop() name: string;
+  @Prop() name?: string;
 
   /** Defines whether the field requires having a value. */
-  @Prop() required: boolean;
+  @Prop() required?: boolean;
 
   /** Defines the help label displayed under the field. */
-  @Prop() helpText: string;
+  @Prop() helpText?: string;
   
   /** Defines whether the field is disabled. */
-  @Prop() disabled: boolean;
+  @Prop() disabled?: boolean;
   
   /** @deprecated This control has its own validatin reporting, will be removed in v0.25.0 */
-  @Prop() disableValidityReporting: boolean;
+  @Prop() disableValidityReporting?: boolean;
 
   /** Defines the type of automatic completion the browser can use.
    * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
@@ -33,16 +33,16 @@ export class DnnSelect {
   @Prop() autocomplete = "off";
   
   /** The value of the input. */
-  @Prop({mutable: true, reflect:true}) value: string;
+  @Prop({mutable: true, reflect:true}) value = "";
   
-  @Element() el: HTMLDnnSelectElement;
+  @Element() el!: HTMLDnnSelectElement;
   
   @State() focused: boolean = false;
   @State() valid = true;
-  @State() customValidityMessage: string;
+  @State() customValidityMessage?: string;
 
   /** Fires when the value has changed and the user exits the input. */
-  @Event() valueChange: EventEmitter<string>;
+  @Event() valueChange!: EventEmitter<string>;
   
   /** Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState */
   @Method()
@@ -54,14 +54,14 @@ export class DnnSelect {
     return this.select.validity;
   }
   
-  @AttachInternals() internals: ElementInternals;
+  @AttachInternals() internals!: ElementInternals;
   
-  private slot: HTMLSlotElement;
-  private select: HTMLSelectElement;
-  private observer: MutationObserver;
-  private labelId: string;
-  private originalValue: string;
-  private fieldset: HTMLDnnFieldsetElement;
+  private slot!: HTMLSlotElement;
+  private select!: HTMLSelectElement;
+  private observer!: MutationObserver;
+  private fieldset!: HTMLDnnFieldsetElement;
+  private labelId!: string;
+  private originalValue!: string;
   
   componentWillLoad() {
     this.originalValue = this.value;
@@ -87,8 +87,7 @@ export class DnnSelect {
       this.setFormValue();
     });
   }
-
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+   
   formResetCallback() {
     this.internals.setValidity({});
     this.value = this.originalValue;
@@ -159,11 +158,11 @@ export class DnnSelect {
           helpText={this.helpText}
           id={this.labelId}
           onClick={() => !this.focused && this.select.focus()}
-          ref={el => this.fieldset = el}
+          ref={el => this.fieldset = el!}
         >
           <div class="inner-container">
             <select
-              ref={el => this.select = el}
+              ref={el => this.select = el!}
               autoComplete={this.autocomplete}
               onFocus={() => this.focused = true}
               onBlur={() => this.handleBlur()}

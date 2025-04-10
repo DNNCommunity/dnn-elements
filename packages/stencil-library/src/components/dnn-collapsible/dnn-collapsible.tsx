@@ -7,7 +7,7 @@ import { Component, Host, h, Prop, Element, Event, EventEmitter, Watch, Listen, 
 })
 export class DnnCollapsible {
 
-  @Element() el: HTMLDnnCollapsibleElement;
+  @Element() el!: HTMLDnnCollapsibleElement;
 
   /** Defines if the panel is expanded or not. */
   @Prop({reflect: true}) expanded: boolean = false;
@@ -16,7 +16,7 @@ export class DnnCollapsible {
   @Prop() transitionDuration?: number = 150;
 
   /** Fires whenever the collapsible height has changed */
-  @Event({bubbles: true, composed: true}) dnnCollapsibleHeightChanged: EventEmitter<void>;
+  @Event({bubbles: true, composed: true}) dnnCollapsibleHeightChanged!: EventEmitter<void>;
 
   @Listen("dnnCollapsibleHeightChanged")
   handleHeightChanged(){
@@ -60,7 +60,7 @@ export class DnnCollapsible {
     }, this.transitionDuration);
   }
   
-  private container: HTMLDivElement;
+  private container!: HTMLDivElement;
 
   componentDidLoad() {
     this.container.style.transition = `max-height ${this.transitionDuration}ms ease-in-out`;
@@ -71,8 +71,8 @@ export class DnnCollapsible {
       <Host>
         <div
           id="container"
-          class={this.expanded && "expanded"}
-          ref={el => this.container = el}
+          class={{"expanded": this.expanded}}
+          ref={el => this.container = el!}
           style={{transition: `max-height ${this.transitionDuration}ms ease-in-out`}}
         >
             <slot></slot>

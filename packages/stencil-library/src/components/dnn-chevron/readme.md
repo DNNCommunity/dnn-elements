@@ -32,11 +32,11 @@
 
 ## Properties
 
-| Property       | Attribute       | Description                      | Type      | Default      |
-| -------------- | --------------- | -------------------------------- | --------- | ------------ |
-| `collapseText` | `collapse-text` | Collapse text for screen readers | `string`  | `"collapse"` |
-| `expandText`   | `expand-text`   | Expand text for screen readers   | `string`  | `"expand"`   |
-| `expanded`     | `expanded`      | Is the chevron expanded          | `boolean` | `false`      |
+| Property       | Attribute       | Description                      | Type                   | Default      |
+| -------------- | --------------- | -------------------------------- | ---------------------- | ------------ |
+| `collapseText` | `collapse-text` | Collapse text for screen readers | `string \| undefined`  | `"collapse"` |
+| `expandText`   | `expand-text`   | Expand text for screen readers   | `string \| undefined`  | `"expand"`   |
+| `expanded`     | `expanded`      | Is the chevron expanded          | `boolean \| undefined` | `false`      |
 
 
 ## Events

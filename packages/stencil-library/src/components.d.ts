@@ -46,19 +46,19 @@ export namespace Components {
         /**
           * Defines whether the field is disabled.
          */
-        "disabled": boolean;
+        "disabled"?: boolean;
         /**
           * Defines the help label displayed under the field.
          */
-        "helpText": string;
+        "helpText"?: string;
         /**
           * The label for this autocomplete.
          */
-        "label": string;
+        "label"?: string;
         /**
           * The name for this autocomplete when used in forms.
          */
-        "name": string;
+        "name"?: string;
         /**
           * How many suggestions to preload in pixels of their height. This is used to calculate the virtual scroll height and request more items before they get into view.
          */
@@ -66,11 +66,11 @@ export namespace Components {
         /**
           * Callback to render suggestions, if not provided, only the label will be rendered.
          */
-        "renderSuggestion": (suggestion: DnnAutocompleteSuggestion) => HTMLElement;
+        "renderSuggestion"?: (suggestion: DnnAutocompleteSuggestion) => HTMLElement;
         /**
           * Defines whether the field requires having a value.
          */
-        "required": boolean;
+        "required"?: boolean;
         /**
           * Can be used to set a custom validity message.
          */
@@ -82,11 +82,11 @@ export namespace Components {
         /**
           * The total amount of suggestions for the given search query. This can be used to show virtual scroll and pagination progressive feeding. The needMoreItems event should be used to request more items.
          */
-        "totalSuggestions": number;
+        "totalSuggestions"?: number;
         /**
           * Defines the value for this autocomplete
          */
-        "value": string;
+        "value"?: string;
     }
     interface DnnButton {
         /**
@@ -131,9 +131,6 @@ export namespace Components {
          */
         "type": 'primary' | 'danger' | 'secondary' | 'tertiary';
     }
-    /**
-     * @deprecated - The label for the checkbox - Obsolete, implement your own label.
-     */
     interface DnnCheckbox {
         /**
           * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
@@ -203,11 +200,11 @@ export namespace Components {
         /**
           * Defines the help label displayed under the field.
          */
-        "helpText": string;
+        "helpText"?: string;
         /**
           * The label for this input.
          */
-        "label": string;
+        "label"?: string;
         /**
           * Sets the initial light color, must be a valid 8 character hexadecimal string without the # sign.
          */
@@ -227,23 +224,23 @@ export namespace Components {
         /**
           * The name for this input if forms are used.
          */
-        "name": string;
+        "name"?: string;
         /**
           * Disables interacting with the component.
          */
-        "readonly": boolean;
+        "readonly"?: boolean;
         /**
           * If true, the picker will allow selecting a contast color too.
          */
-        "useContrastColor": boolean;
+        "useContrastColor"?: boolean;
         /**
           * If true, the picker will allow selecting a dark color too.
          */
-        "useDarkColor": boolean;
+        "useDarkColor"?: boolean;
         /**
           * If true, the picker will allow selecting a light color too.
          */
-        "useLightColor": boolean;
+        "useLightColor"?: boolean;
     }
     /**
      * Color Picker for Dnn
@@ -267,7 +264,7 @@ export namespace Components {
         /**
           * A list of allowed file extensions. If not specified, any file is allowed. Ex: ["jpg", "jpeg", "gif", "png"]
          */
-        "allowedExtensions": string[];
+        "allowedExtensions"?: string[];
         /**
           * Specifies the jpeg quality for when the device camera is used to generate a picture. Needs to be a number between 0 and 1 and defaults to 0.8
          */
@@ -279,11 +276,11 @@ export namespace Components {
         /**
           * The name of the field when used in a form.
          */
-        "name": string;
+        "name"?: string;
         /**
           * Localization strings
          */
-        "resx": DropzoneResx;
+        "resx"?: DropzoneResx;
     }
     /**
      * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
@@ -301,7 +298,7 @@ export namespace Components {
         /**
           * If true, the fieldset will display as disabled.
          */
-        "disabled": boolean;
+        "disabled"?: boolean;
         /**
           * Sets the fieldset to an enabled state.
          */
@@ -309,23 +306,23 @@ export namespace Components {
         /**
           * If true, the label will float in the container, set false to show it on top.
          */
-        "floatLabel": boolean;
+        "floatLabel"?: boolean;
         /**
           * If true the fieldset will display as focused.
          */
-        "focused": boolean;
+        "focused"?: boolean;
         /**
           * Can be used to show some help text about this field.
          */
-        "helpText": string;
+        "helpText"?: string;
         /**
           * If true, the  fieldset will display as invalid.
          */
-        "invalid": boolean;
+        "invalid"?: boolean;
         /**
           * Sets the text of the fieldset label (caption).
          */
-        "label": string;
+        "label"?: string;
         /**
           * Places the label on the top of the container.
          */
@@ -364,11 +361,11 @@ export namespace Components {
         /**
           * Sets the desired final image height.
          */
-        "height": number;
+        "height"?: number;
         /**
           * The name of the control when used in a form.
          */
-        "name": string;
+        "name"?: string;
         /**
           * When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry.
          */
@@ -380,11 +377,11 @@ export namespace Components {
         /**
           * Can be used to customize controls text. Some values support tokens, see default values for examples.
          */
-        "resx": ImageCropperResx;
+        "resx"?: ImageCropperResx;
         /**
           * Sets the desired final image width.
          */
-        "width": number;
+        "width"?: number;
     }
     /**
      * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
@@ -393,7 +390,7 @@ export namespace Components {
         /**
           * If true, enables users to switch between a password and a text field (to view their password).
          */
-        "allowShowPassword": boolean;
+        "allowShowPassword"?: boolean;
         /**
           * Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.
          */
@@ -405,59 +402,59 @@ export namespace Components {
         /**
           * @deprecated This control has it's own validation reporting, will be removed in v0.25.0
          */
-        "disableValidityReporting": boolean;
+        "disableValidityReporting"?: boolean;
         /**
           * Defines whether the field is disabled.
          */
-        "disabled": boolean;
+        "disabled"?: boolean;
         /**
           * Defines the help label displayed under the field.
          */
-        "helpText": string;
+        "helpText"?: string;
         /**
           * Hints at the type of data that might be entered by the user while editing the element or its contents. This allows a browser to display an appropriate virtual keyboard.
          */
-        "inputmode": "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
+        "inputmode"?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
         /**
           * The label for this input.
          */
-        "label": string;
+        "label"?: string;
         /**
           * Defines the maximum allowed value.
          */
-        "max": number | string;
+        "max"?: number | string;
         /**
           * Defines the maximum amount of charaters.
          */
-        "maxlength": number;
+        "maxlength"?: number;
         /**
           * Defines the minimum allowed value.
          */
-        "min": number | string;
+        "min"?: number | string;
         /**
           * Defines the minimum amount of charaters.
          */
-        "minlength": number;
+        "minlength"?: number;
         /**
           * If true, allows multiple emails to be entered separated by commas.
          */
-        "multiple": boolean;
+        "multiple"?: boolean;
         /**
           * The name for this input when used in forms.
          */
-        "name": string;
+        "name"?: string;
         /**
           * Valid for text, search, url, tel, email, and password, the pattern attribute defines a regular expression that the input's value must match in order for the value to pass constraint validation.
          */
-        "pattern": string;
+        "pattern"?: string;
         /**
           * Defines wheter the defined value is readonly.
          */
-        "readonly": boolean;
+        "readonly"?: boolean;
         /**
           * Defines whether the field requires having a value.
          */
-        "required": boolean;
+        "required"?: boolean;
         /**
           * Can be used to set a custom validity message.
          */
@@ -465,7 +462,7 @@ export namespace Components {
         /**
           * Defines the possible steps for numbers and dates/times. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#step
          */
-        "step": string | number;
+        "step"?: string | number;
         /**
           * The input type, supports most of html standard input type, see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types.
          */
@@ -473,11 +470,11 @@ export namespace Components {
         /**
           * The value of the input.
          */
-        "value": number | string | string[];
+        "value"?: number | string | string[];
     }
     interface DnnModal {
         /**
-          * Pass false to remove the backdrop click auto-dismiss feature.
+          * @deprecated boolean props should always default to being false per html specs, use preventBackdropDismiss instead, will be removed in v0.27.0. Pass false to remove the backdrop click auto-dismiss feature.
          */
         "backdropDismiss": boolean;
         /**
@@ -489,6 +486,14 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
+          * Optionally you can pass true to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
+         */
+        "hideCloseButton": boolean;
+        /**
+          * Pass true to remove the backdrop click auto-dismiss feature. Defaults to false.
+         */
+        "preventBackdropDismiss"?: boolean;
+        /**
           * If set to true, the modal becomes resizable.
          */
         "resizable"?: boolean;
@@ -497,7 +502,7 @@ export namespace Components {
          */
         "show": () => Promise<void>;
         /**
-          * Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
+          * @deprecated boolean props should always default to being false per html specs, use hideCloseButton instead, will be removed in v0.27.0. Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
          */
         "showCloseButton"?: boolean;
         /**
@@ -513,7 +518,7 @@ export namespace Components {
         /**
           * The name of the control to use for forms.
          */
-        "name": string;
+        "name"?: string;
         /**
           * Sets the code contained in the editor
          */
@@ -531,7 +536,7 @@ export namespace Components {
         /**
           * Optionally allows localizing the component strings.
          */
-        "resx": ILocalization;
+        "resx"?: ILocalization;
         /**
           * The list of role groups.
          */
@@ -559,15 +564,15 @@ export namespace Components {
         /**
           * Customize the options before initializing the editor, will have all the default options merged with 'options' if passed. This is called last after merging default options with your custom 'options' and just before initializing the editor.
          */
-        "customizeOptions": (options: Config) => Config;
+        "customizeOptions"?: (options: Config) => Config;
         /**
           * Name of the field when used in a form.
          */
-        "name": string;
+        "name"?: string;
         /**
           * Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html This will be merged with the default options and passed to the editor. If you prefer to not have to pass a full config object, you can use 'customizeOptions' to modify the options before initializing the editor instead of providing all options here.
          */
-        "options": Config;
+        "options"?: Config;
         /**
           * Allows registering your own plugins. The callback will be called with the editor instance as the only argument durig initialization. All other behavior needs to be implemented in the plugin itself using editor.on("eventname"). See https://xdsoft.net/jodit/examples/plugin/custom_plugin.html for an example. Creating a plugin does NOT automatically add it to the toolbar, you need to do that yourself in 'options' or 'customizeOptions', See https://xdsoft.net/jodit/examples/toolbar/custom_button.html for an example.
          */
@@ -575,17 +580,13 @@ export namespace Components {
         /**
           * Sets the value of the content of the editor.
          */
-        "value": string;
+        "value"?: string;
     }
     interface DnnSearchbox {
         /**
           * How many milliseconds to wait before firing the queryChanged event.
          */
         "debounceTime": number;
-        /**
-          * @deprecated Use debounceTime (or debounce-time) instead. Will be removed in v0.25.0 Debounces the queryChanged by 500ms.
-         */
-        "debounced": boolean;
         /**
           * Sets the field placeholder text.
          */
@@ -607,27 +608,27 @@ export namespace Components {
         /**
           * @deprecated This control has its own validatin reporting, will be removed in v0.25.0
          */
-        "disableValidityReporting": boolean;
+        "disableValidityReporting"?: boolean;
         /**
           * Defines whether the field is disabled.
          */
-        "disabled": boolean;
+        "disabled"?: boolean;
         /**
           * Defines the help label displayed under the field.
          */
-        "helpText": string;
+        "helpText"?: string;
         /**
           * The label for this input.
          */
-        "label": string;
+        "label"?: string;
         /**
           * The name for this input, if used in forms.
          */
-        "name": string;
+        "name"?: string;
         /**
           * Defines whether the field requires having a value.
          */
-        "required": boolean;
+        "required"?: boolean;
         /**
           * The value of the input.
          */
@@ -673,35 +674,35 @@ export namespace Components {
         /**
           * Defines whether the field is disabled.
          */
-        "disabled": boolean;
+        "disabled"?: boolean;
         /**
           * Defines the help label displayed under the field.
          */
-        "helpText": string;
+        "helpText"?: string;
         /**
           * The label for this input.
          */
-        "label": string;
+        "label"?: string;
         /**
           * Defines the maximum amount of charaters.
          */
-        "maxlength": number;
+        "maxlength"?: number;
         /**
           * Defines the minimum amount of charaters.
          */
-        "minlength": number;
+        "minlength"?: number;
         /**
           * The name for this input when used in forms.
          */
-        "name": string;
+        "name"?: string;
         /**
           * Defines wheter the defined value is readonly.
          */
-        "readonly": boolean;
+        "readonly"?: boolean;
         /**
           * Defines whether the field requires having a value.
          */
-        "required": boolean;
+        "required"?: boolean;
         /**
           * Can be set to change how the user can resize the field.
          */
@@ -717,7 +718,7 @@ export namespace Components {
         /**
           * Sets the value of the textarea.
          */
-        "value": string;
+        "value"?: string;
     }
     interface DnnToggle {
         /**
@@ -731,7 +732,7 @@ export namespace Components {
         /**
           * The field name to use in forms.
          */
-        "name": string;
+        "name"?: string;
         /**
           * The value to post when used in forms.
          */
@@ -894,9 +895,6 @@ declare global {
     interface HTMLDnnCheckboxElementEventMap {
         "checkedchange": "checked" | "unchecked" | "intermediate";
     }
-    /**
-     * @deprecated - The label for the checkbox - Obsolete, implement your own label.
-     */
     interface HTMLDnnCheckboxElement extends Components.DnnCheckbox, HTMLStencilElement {
         addEventListener<K extends keyof HTMLDnnCheckboxElementEventMap>(type: K, listener: (this: HTMLDnnCheckboxElement, ev: DnnCheckboxCustomEvent<HTMLDnnCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1437,9 +1435,6 @@ declare namespace LocalJSX {
          */
         "type"?: 'primary' | 'danger' | 'secondary' | 'tertiary';
     }
-    /**
-     * @deprecated - The label for the checkbox - Obsolete, implement your own label.
-     */
     interface DnnCheckbox {
         /**
           * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
@@ -1784,7 +1779,7 @@ declare namespace LocalJSX {
     }
     interface DnnModal {
         /**
-          * Pass false to remove the backdrop click auto-dismiss feature.
+          * @deprecated boolean props should always default to being false per html specs, use preventBackdropDismiss instead, will be removed in v0.27.0. Pass false to remove the backdrop click auto-dismiss feature.
          */
         "backdropDismiss"?: boolean;
         /**
@@ -1792,15 +1787,23 @@ declare namespace LocalJSX {
          */
         "closeText"?: string;
         /**
+          * Optionally you can pass true to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
+         */
+        "hideCloseButton"?: boolean;
+        /**
           * Fires when the modal is dismissed.
          */
         "onDismissed"?: (event: DnnModalCustomEvent<any>) => void;
+        /**
+          * Pass true to remove the backdrop click auto-dismiss feature. Defaults to false.
+         */
+        "preventBackdropDismiss"?: boolean;
         /**
           * If set to true, the modal becomes resizable.
          */
         "resizable"?: boolean;
         /**
-          * Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
+          * @deprecated boolean props should always default to being false per html specs, use hideCloseButton instead, will be removed in v0.27.0. Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
          */
         "showCloseButton"?: boolean;
         /**
@@ -1905,10 +1908,6 @@ declare namespace LocalJSX {
           * How many milliseconds to wait before firing the queryChanged event.
          */
         "debounceTime"?: number;
-        /**
-          * @deprecated Use debounceTime (or debounce-time) instead. Will be removed in v0.25.0 Debounces the queryChanged by 500ms.
-         */
-        "debounced"?: boolean;
         /**
           * Fires up each time the search query changes. The data passed is the new query.
          */
@@ -2133,9 +2132,6 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "dnn-autocomplete": LocalJSX.DnnAutocomplete & JSXBase.HTMLAttributes<HTMLDnnAutocompleteElement>;
             "dnn-button": LocalJSX.DnnButton & JSXBase.HTMLAttributes<HTMLDnnButtonElement>;
-            /**
-             * @deprecated - The label for the checkbox - Obsolete, implement your own label.
-             */
             "dnn-checkbox": LocalJSX.DnnCheckbox & JSXBase.HTMLAttributes<HTMLDnnCheckboxElement>;
             "dnn-chevron": LocalJSX.DnnChevron & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
             "dnn-collapsible": LocalJSX.DnnCollapsible & JSXBase.HTMLAttributes<HTMLDnnCollapsibleElement>;

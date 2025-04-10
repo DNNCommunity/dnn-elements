@@ -12,22 +12,22 @@ import { Component, Host, h, Prop, Method, State } from '@stencil/core';
 export class DnnFieldset {
 
   /** If true the fieldset will display as focused. */
-  @Prop({mutable: true, reflect: true}) focused: boolean;
+  @Prop({mutable: true, reflect: true}) focused?: boolean;
 
   /** If true, the fieldset will display as disabled. */
-  @Prop({mutable: true, reflect: true}) disabled: boolean;
+  @Prop({mutable: true, reflect: true}) disabled?: boolean;
 
   /** If true, the  fieldset will display as invalid. */
-  @Prop({mutable: true, reflect: true}) invalid: boolean;
+  @Prop({mutable: true, reflect: true}) invalid?: boolean;
 
   /** Sets the text of the fieldset label (caption). */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /** If true, the label will float in the container, set false to show it on top. */
-  @Prop({mutable: true, reflect: true}) floatLabel: boolean;
+  @Prop({mutable: true, reflect: true}) floatLabel?: boolean;
 
   /** Can be used to show some help text about this field. */
-  @Prop() helpText: string;
+  @Prop() helpText?: string;
 
   /** Can be set to specify if the fieldset can be resized by the user. */
   @Prop() resizable: "none" | "both" | "horizontal" | "vertical" | "block" | "inline" = "none";
@@ -75,7 +75,7 @@ export class DnnFieldset {
     this.customValidityMessage = message;
   }
 
-  @State() customValidityMessage: string;
+  @State() customValidityMessage?: string;
 
   private getContainerClasses() {
     const classes: string[] = ["container"];

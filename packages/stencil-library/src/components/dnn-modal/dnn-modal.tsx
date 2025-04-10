@@ -10,9 +10,17 @@ export class DnnModal {
   @Element() el!: HTMLDnnModalElement;
   
   /**
+   * @deprecated boolean props should always default to being false per html specs, use preventBackdropDismiss instead, will be removed in v0.27.0.
    * Pass false to remove the backdrop click auto-dismiss feature.
    */
+  // eslint-disable-next-line @stencil-community/ban-default-true
   @Prop() backdropDismiss: boolean = true;
+
+  /**
+   * Pass true to remove the backdrop click auto-dismiss feature.
+   * Defaults to false.
+   */
+  @Prop() preventBackdropDismiss?: boolean = false;
 
   /**
    * Optionally pass the aria-label text for the close button.
@@ -26,11 +34,20 @@ export class DnnModal {
   @Prop() resizable?: boolean = false;
 
   /**
+   * @deprecated boolean props should always default to being false per html specs, use hideCloseButton instead, will be removed in v0.27.0.
    * Optionally you can pass false to not show the close button.
    * If you decide to do so, you should either not also prevent dismissal by clicking the backdrop
    * or provide your own dismissal logic in the modal content.
    */
+  // eslint-disable-next-line @stencil-community/ban-default-true
   @Prop() showCloseButton?: boolean = true;
+
+  /**
+   * Optionally you can pass true to not show the close button.
+   * If you decide to do so, you should either not also prevent dismissal by clicking the backdrop
+   * or provide your own dismissal logic in the modal content.
+   */
+  @Prop() hideCloseButton: boolean = false;
 
   /**
    * Reflects the visible state of the modal.
@@ -71,13 +88,12 @@ export class DnnModal {
   
   
   
-  private modal: HTMLDivElement;
-  private seDrag: HTMLDivElement;
-  private mouseX: number;
-  private mouseY: number;
-  private w: number;
-  private h: number;
-  northDrag: HTMLDivElement;
+  private modal!: HTMLDivElement;
+  private seDrag!: HTMLDivElement;
+  private mouseX = 0;
+  private mouseY = 0;
+  private w = 0;
+  private h = 0;
   private handleDismiss(){
     this.visible = false;
     this.dismissed.emit();
@@ -86,7 +102,7 @@ export class DnnModal {
   // FOR BACKDROP CLICK
   private handleBackdropClick(e: MouseEvent): void {
     const element = (e.target as HTMLElement);
-    if (element.id === "backdrop" && this.backdropDismiss){
+    if (element.id === "backdrop" && !this.preventBackdropDismiss){
       this.handleDismiss();
     }
   }
@@ -129,8 +145,8 @@ export class DnnModal {
           class={this.visible ? 'overlay visible' : 'overlay'}
           onClick={e => this.handleBackdropClick(e)}
         >
-          <div class="modal" ref={el=>this.modal = el}> 
-            {this.showCloseButton &&
+          <div class="modal" ref={el=>this.modal = el!}> 
+            {!this.hideCloseButton &&
               <button
                 class="close"
                 aria-label={this.closeText}
@@ -142,7 +158,7 @@ export class DnnModal {
             <div class="content">
               <slot></slot>
             </div>
-            { this.resizable && <div class='se' ref={el=>this.seDrag = el}></div>}
+            { this.resizable && <div class='se' ref={el=>this.seDrag = el!}></div>}
           </div>
         </div>
       </Host>

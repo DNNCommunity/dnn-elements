@@ -6,7 +6,7 @@ import { Component, Host, h, State } from "@stencil/core";
     shadow: true,
 })
 export class DnnTabs {
-    private component: HTMLElement;
+    private component!: HTMLElement;
 
     @State() tabTitles: string[] = [];
     @State() selectedTabTitle: string = "";
@@ -19,7 +19,7 @@ export class DnnTabs {
     }
 
     private getTabs() {
-        return this.component.shadowRoot.querySelector("slot").assignedElements() as HTMLDnnTabElement[];
+        return this.component.shadowRoot!.querySelector("slot")!.assignedElements() as HTMLDnnTabElement[];
     }
 
     private updateTitles(){
@@ -48,7 +48,7 @@ export class DnnTabs {
 
     render() {
         return (
-            <Host ref={el => this.component = el}>
+            <Host ref={el => this.component = el!}>
                 <div class="tabTitles">
                     {this.tabTitles.map(tabTitle =>
                         <button

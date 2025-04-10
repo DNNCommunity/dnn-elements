@@ -15,7 +15,7 @@ import { Debounce } from "../../utilities/debounce";
 })
 export class DnnColorPicker {
 
-    @Element() el: HTMLDnnColorPickerElement;
+    @Element() el!: HTMLDnnColorPickerElement;
 
     /** Sets the initial color, must be a valid 8 character hexadecimal string without the # sign. */
     @Prop() color: string = "FFFFFF";
@@ -25,7 +25,7 @@ export class DnnColorPicker {
      */
     @Prop() colorBoxHeight: string = "50%";
     
-    @State() currentColor: ColorInfo;
+    @State() currentColor?: ColorInfo;
     @State() rgbDisplay: string = "flex";
     @State() hslDisplay: string = "none";
     @State() hexDisplay: string = "none";
@@ -34,7 +34,7 @@ export class DnnColorPicker {
     /** Fires up when the color is changed and emits a ColorInfo object
      * @see ../../utilities/colorInfo.ts
     */
-    @Event() colorChanged: EventEmitter<ColorInfo>;
+    @Event() colorChanged!: EventEmitter<ColorInfo>;
     
     @Debounce(100)
     private colorChangedHandler(color: ColorInfo) {
@@ -46,9 +46,9 @@ export class DnnColorPicker {
         this.colorChangedHandler(newValue);
     }
     
-    private saturationBrightnessButton: HTMLButtonElement;
-    private saturationLightnessBox?: HTMLDivElement;
-    private hueRange?: HTMLDivElement;
+    private saturationBrightnessButton!: HTMLButtonElement;
+    private saturationLightnessBox!: HTMLDivElement;
+    private hueRange!: HTMLDivElement;
 
 
     componentWillLoad() {
@@ -60,11 +60,11 @@ export class DnnColorPicker {
     }
     
     private getHex() {
-       return this.getDoublet(this.currentColor.red) + this.getDoublet(this.currentColor.green) + this.getDoublet(this.currentColor.blue);
+       return this.getDoublet(this.currentColor!.red) + this.getDoublet(this.currentColor!.green) + this.getDoublet(this.currentColor!.blue);
     }
 
     private getContrast() {
-        return this.currentColor.contrastColor;
+        return this.currentColor!.contrastColor;
     }
 
     private getDoublet(value: number){
@@ -75,14 +75,14 @@ export class DnnColorPicker {
         return valueString;
     }
 
-    private handleSaturationLightnessMouseDown = (e) => {
+    private handleSaturationLightnessMouseDown = (e: MouseEvent) => {
         e.preventDefault();
         this.handleDragLightnessSaturation(e);
         window.addEventListener('mousemove', this.handleDragLightnessSaturation);
         window.addEventListener('mouseup', this.handleSaturationLightnessMouseUp);
     }
 
-    private handleDragLightnessSaturation = (e) => {
+    private handleDragLightnessSaturation = (e: MouseEvent) => {
         const rect = this.saturationLightnessBox.getBoundingClientRect();        
 
         let x = e.clientX - rect.left;        
@@ -96,7 +96,7 @@ export class DnnColorPicker {
         y = 1 - (y/rect.height);
 
         const newColor = new ColorInfo();
-        newColor.hue = this.currentColor.hue;
+        newColor.hue = this.currentColor!.hue;
         newColor.saturation = x;
         newColor.lightness = y;
         this.currentColor = newColor;
@@ -107,7 +107,7 @@ export class DnnColorPicker {
         window.removeEventListener('mouseup', this.handleSaturationLightnessMouseUp);
     }
 
-    private handleHueMouseDown = (e) => {
+    private handleHueMouseDown = (e: MouseEvent) => {
         e.preventDefault();
         this.handleDragHue(e);
         window.addEventListener('mousemove', this.handleDragHue);
@@ -119,8 +119,8 @@ export class DnnColorPicker {
         window.removeEventListener('mouseup', this.handleHueMouseUp); 
     }
 
-    private handleDragHue = (e) => {
-        const rect = this.hueRange.getBoundingClientRect();        
+    private handleDragHue = (e: MouseEvent) => {
+        const rect = this.hueRange.getBoundingClientRect();
 
         let x = e.clientX - rect.left;
         if (x < 0) { x = 0}
@@ -129,20 +129,20 @@ export class DnnColorPicker {
 
         const newColor = new ColorInfo();
         newColor.hue = x;
-        newColor.saturation = this.currentColor.saturation;
-        newColor.lightness = this.currentColor.lightness;
+        newColor.saturation = this.currentColor!.saturation;
+        newColor.lightness = this.currentColor!.lightness;
         this.currentColor = newColor;
     }
 
-    private handleComponentValueChange = (e, channel) => {
-        let value = parseInt(e.target.value);
+    private handleComponentValueChange = (e: Event, channel: string) => {
+        let value = parseInt((e.target as HTMLInputElement).value);
         if (isNaN(value)) { return }
         const newColor = new ColorInfo();
         if (value < 0) { value = 0; }
         if (value > 255) { value = 255; }
-        let r = this.currentColor.red;
-        let g = this.currentColor.green;
-        let b = this.currentColor.blue;
+        let r = this.currentColor!.red;
+        let g = this.currentColor!.green;
+        let b = this.currentColor!.blue;
         switch (channel) {
             case 'red':
                 r = value;
@@ -162,14 +162,14 @@ export class DnnColorPicker {
         this.currentColor = newColor;
     }
 
-    private handleHSLChange = (e, component) => {        
-        let value = parseInt(e.target.value);
+    private handleHSLChange = (e: Event, component: string) => {        
+        let value = parseInt((e.target as HTMLInputElement).value);
         if (isNaN(value)) {return}
         const newColor = new ColorInfo();
         if (value != null) {            
-            let h = this.currentColor.hue;
-            let s = this.currentColor.saturation;
-            let l = this.currentColor.lightness;
+            let h = this.currentColor!.hue;
+            let s = this.currentColor!.saturation;
+            let l = this.currentColor!.lightness;
             switch (component) {
                 case "hue":
                     if (value < 0) { value = 0}
@@ -198,7 +198,7 @@ export class DnnColorPicker {
 
     private handleHexChange(value: string){
         const newColor = new ColorInfo();
-        if (value.match(/^(?:[\da-f]{3}|[\da-f]{6})$/i).length > 0) {
+        if (value.match(/^(?:[\da-f]{3}|[\da-f]{6})$/i)!.length > 0) {
             if (value.length === 3){
                 let expanded = value[0] + value[0] + value[1] + value[1] + value[2] + value [2];
                 value = expanded;
@@ -208,15 +208,15 @@ export class DnnColorPicker {
             newColor.blue = parseInt(value.substr(4,2), 16);
         }
         else{
-            newColor.red = this.currentColor.red;
-            newColor.green = this.currentColor.green;
-            newColor.blue = this.currentColor.blue;
+            newColor.red = this.currentColor!.red;
+            newColor.green = this.currentColor!.green;
+            newColor.blue = this.currentColor!.blue;
         }
         this.currentColor = newColor;
     }
 
-    private switchColorMode(e) {
-        switch(e.target.id) {
+    private switchColorMode(e: Event) {
+        switch((e.target as HTMLElement).id) {
             case "rgb-switch":
                 this.rgbDisplay = "none";
                 this.hslDisplay = "none";
@@ -239,11 +239,11 @@ export class DnnColorPicker {
         }
     }
 
-    private handleSaturationLightnessKeyDown = (e) => {        
+    private handleSaturationLightnessKeyDown = (e: KeyboardEvent) => {        
         let newColor = new ColorInfo();
-        newColor.hue = this.currentColor.hue;
-        newColor.saturation = this.currentColor.saturation;
-        newColor.lightness = this.currentColor.lightness;
+        newColor.hue = this.currentColor!.hue;
+        newColor.saturation = this.currentColor!.saturation;
+        newColor.lightness = this.currentColor!.lightness;
 
         let value = 0.01;
         if (e.shiftKey) { value = 0.1 ;}
@@ -266,11 +266,11 @@ export class DnnColorPicker {
         this.currentColor = newColor;
     }
 
-    private handleHueKeyDown = (e) => {
+    private handleHueKeyDown = (e: KeyboardEvent) => {
         let newColor = new ColorInfo();
-        newColor.hue = this.currentColor.hue;
-        newColor.saturation = this.currentColor.saturation;
-        newColor.lightness = this.currentColor.lightness;
+        newColor.hue = this.currentColor!.hue;
+        newColor.saturation = this.currentColor!.saturation;
+        newColor.lightness = this.currentColor!.lightness;
 
         let value = 1;
         if (e.shiftKey) { value = 10}
@@ -288,12 +288,12 @@ export class DnnColorPicker {
     }
 
     render() {
-        const hue = this.currentColor.hue;
-        const saturation = this.currentColor.saturation;
-        const lightness = this.currentColor.lightness;
-        const red = this.currentColor.red;
-        const green = this.currentColor.green;
-        const blue = this.currentColor.blue;
+        const hue = this.currentColor!.hue;
+        const saturation = this.currentColor!.saturation;
+        const lightness = this.currentColor!.lightness;
+        const red = this.currentColor!.red;
+        const green = this.currentColor!.green;
+        const blue = this.currentColor!.blue;
 
         return (
             <Host
@@ -308,18 +308,18 @@ export class DnnColorPicker {
                             onMouseDown={this.handleSaturationLightnessMouseDown.bind(this)}
                         >
                             <button
-                                ref={el => this.saturationBrightnessButton = el}
+                                ref={el => this.saturationBrightnessButton = el!}
                                 class="dnn-s-b-picker"
                                 aria-label="Press up or down to adjust lightness, left or right to adjust saturation, hold shift to move by 10%"
                                 role="slider"
                                 aria-valuemin="0"
                                 aria-valuemax="100"
-                                aria-valuetext={`Saturation: ${Math.round(this.currentColor.saturation*100)}%, Lightness: ${Math.round(this.currentColor.lightness*100)}%`}
+                                aria-valuetext={`Saturation: ${Math.round(this.currentColor!.saturation*100)}%, Lightness: ${Math.round(this.currentColor!.lightness*100)}%`}
                                 style={{
                                     left: Math.round(saturation * 100)  + "%",
                                     bottom: Math.round(lightness * 100)  + "%"
                                 }}
-                                onKeyDown={(e) => this.handleSaturationLightnessKeyDown(e)}
+                                onKeyDown={e => this.handleSaturationLightnessKeyDown(e)}
                                 onFocus={() => this.focused = true}
                                 onBlur={() => this.focused = false}
                             />

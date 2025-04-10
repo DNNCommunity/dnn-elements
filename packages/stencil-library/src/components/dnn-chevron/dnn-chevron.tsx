@@ -23,10 +23,10 @@ export class DnnChevron {
   }
 
   /** Fires up when the expanded status changes */
-  @Event() changed: EventEmitter;
+  @Event() changed!: EventEmitter;
     
   @State() focused: any;
-  private button: HTMLButtonElement;
+  private button!: HTMLButtonElement;
 
   render() {
     return (
@@ -36,7 +36,7 @@ export class DnnChevron {
         onBlur={() => this.button.blur()}
       >
         <button
-          ref={el => this.button = el}
+          ref={el => this.button = el!}
           aria-label={this.expanded ? this.collapseText : this.expandText}
           onClick={() => this.expanded = !this.expanded}
           onFocus={() => this.focused = true}

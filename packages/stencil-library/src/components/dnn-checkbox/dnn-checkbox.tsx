@@ -2,7 +2,6 @@ import { Component, Element, Host, h, Prop, Event, EventEmitter, AttachInternals
 import { CheckedState } from './types';
 
 /**
- * @slot @deprecated - The label for the checkbox - Obsolete, implement your own label.
  * @slot checkedicon - Allows overriding the default checked icon.
  * @slot uncheckedicon - Allows overriding the unchecked icon.
  * @slot intermediateicon - If intermadiate state is used, allows overriding its icon.
@@ -14,7 +13,7 @@ import { CheckedState } from './types';
   formAssociated: true,
 })
 export class DnnCheckbox {
-  @Element() el: HTMLDnnCheckboxElement;
+  @Element() el!: HTMLDnnCheckboxElement;
 
   /** Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined) */
   @Prop({mutable: true}) checked: CheckedState = "unchecked";
@@ -26,7 +25,7 @@ export class DnnCheckbox {
   @Prop() value: string = "on";
 
   /** The name to show in the formData (if using forms). */
-  @Prop() name: string;
+  @Prop() name = "";
 
   /** A function that will be called when the checkbox needs to change state and returns the next state.
    * Can be used to customize the order of the states when the component is clicked.
@@ -35,7 +34,7 @@ export class DnnCheckbox {
   @Prop() nextStateHandler: (currentState: CheckedState) => CheckedState = this.defaultNextStateHandler;
 
   /** Fires up when the checkbox checked property changes. */
-  @Event() checkedchange: EventEmitter<"checked" | "unchecked" | "intermediate">;
+  @Event() checkedchange!: EventEmitter<"checked" | "unchecked" | "intermediate">;
 
   @Listen("click", { capture: true })
   handleClick() {
@@ -44,10 +43,10 @@ export class DnnCheckbox {
 
   @State() focused = false;
   
-  @AttachInternals() internals: ElementInternals;
+  @AttachInternals() internals!: ElementInternals;
   
-  private originalChecked: CheckedState;
-  private button: HTMLButtonElement;
+  private originalChecked!: CheckedState;
+  private button!: HTMLButtonElement;
 
   componentWillLoad() {
     this.originalChecked = this.checked;
@@ -62,8 +61,7 @@ export class DnnCheckbox {
       this.internals.setFormValue(data);
     }
   }
-
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+   
   formResetCallback() {
     this.internals.setValidity({});
     this.checked = this.originalChecked;
@@ -109,7 +107,7 @@ export class DnnCheckbox {
         onBlur={() => this.button.blur()}
       >
         <button
-          ref={el => this.button = el}
+          ref={el => this.button = el!}
           onFocus={() => this.focused = true}
           onBlur={() => this.focused = false}
           class={`icon ${this.checked}`}
