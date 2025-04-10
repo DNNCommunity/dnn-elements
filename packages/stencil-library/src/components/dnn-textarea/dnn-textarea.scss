@@ -39,3 +39,15 @@ dnn-fieldset{
   --fieldset-danger-color: var(--danger-color);
   --fieldset-control-radius: var(--control-radius);
 }
+
+svg{
+  &.error{
+    fill: red;
+    width: 1em;
+    height: 1em;
+    transform: scale(1.5);
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+  }
+}
