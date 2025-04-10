@@ -61,7 +61,6 @@ export class DnnSelect {
   private originalValue!: string;
   
   componentWillLoad() {
-    this.originalValue = this.value;
     this.labelId = generateRandomId();
     this.observer = new MutationObserver((mutations) => {
       for (let mutation of mutations) {
@@ -77,11 +76,24 @@ export class DnnSelect {
   
   componentDidLoad() {
     requestAnimationFrame(() => {
+      this.applySlottedItemsToSelect();
+      
+      // Initialize value based on the "selected" attribute of slotted options
+      const slottedItems = this.el.querySelectorAll('option');
+      const selectedOption = Array.from(slottedItems).find(option => option.hasAttribute('selected'));
+      if (selectedOption) {
+        this.value = selectedOption.getAttribute('value') || selectedOption.textContent || '';
+      } else if (slottedItems.length > 0) {
+        this.value = slottedItems[0].getAttribute('value') || slottedItems[0].textContent || '';
+      }
+
+      // Set the original value for form reset
+      this.originalValue = this.value;
       var validity = this.select.validity;
       var validityMessage = validity.valid ? "" : this.select.validationMessage;
       this.internals.setValidity(this.select.validity, validityMessage);
-      this.applySlottedItemsToSelect();
       this.setFormValue();
+
     });
   }
    

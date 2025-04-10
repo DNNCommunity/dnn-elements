@@ -120,6 +120,8 @@ export class DnnButton {
         }
         else
         {
+          const invalidEvent = new window.Event('invalid', { bubbles: true, cancelable: true });
+          form.dispatchEvent(invalidEvent);
           var formControls = form.elements;
           for (let i = 0; i < formControls.length; i++){
             var control = formControls[i] as HTMLFormElement;
