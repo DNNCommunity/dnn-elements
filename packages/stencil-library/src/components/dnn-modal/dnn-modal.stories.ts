@@ -17,13 +17,13 @@ const meta: Meta = {
           }
     },
     argTypes: {
-        backdropDismiss: {
+        preventBackdropDismiss: {
             control: 'boolean',
         },
         closeText: {
             control: 'text',
         },
-        showCloseButton: {
+        hideCloseButton: {
           control: 'boolean',
         },
         visible: {
@@ -39,9 +39,9 @@ const eventsFromNames = actions('dismissed',);
 const Template = (args) =>
     html`
         <dnn-modal
-            ?backdrop-dismiss=${ifDefined(args.backdropDismiss)}
+            ?prevent-backdrop-dismiss=${ifDefined(args.preventBackdropDismiss)}
             close-text=${ifDefined(args.closeText)}
-            ?show-close-button=${ifDefined(args.showCloseButton)}
+            ?hide-close-button=${ifDefined(args.hideCloseButton)}
             ?visible=${ifDefined(args.visible)}>
             ${unsafeHTML(args.slot)}
         </dnn-modal>

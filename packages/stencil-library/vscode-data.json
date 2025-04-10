@@ -100,21 +100,6 @@
           "description": "Disables the button"
         },
         {
-          "name": "form-button-type",
-          "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.\nWarning: This will be deprecated in the next version and replaced with a new 'type' property.",
-          "values": [
-            {
-              "name": "button"
-            },
-            {
-              "name": "reset"
-            },
-            {
-              "name": "submit"
-            }
-          ]
-        },
-        {
           "name": "reversed",
           "description": "Optionally reverses the button style."
         },
@@ -135,19 +120,16 @@
         },
         {
           "name": "type",
-          "description": "Optional button style,",
+          "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.",
           "values": [
             {
-              "name": "danger"
+              "name": "button"
             },
             {
-              "name": "primary"
+              "name": "reset"
             },
             {
-              "name": "secondary"
-            },
-            {
-              "name": "tertiary"
+              "name": "submit"
             }
           ]
         }
@@ -588,11 +570,19 @@
       "attributes": [
         {
           "name": "backdrop-dismiss",
-          "description": "Pass false to remove the backdrop click auto-dismiss feature."
+          "description": ""
         },
         {
           "name": "close-text",
           "description": "Optionally pass the aria-label text for the close button.\nDefaults to \"Close modal\" if not provided."
+        },
+        {
+          "name": "hide-close-button",
+          "description": "Optionally you can pass true to not show the close button.\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\nor provide your own dismissal logic in the modal content."
+        },
+        {
+          "name": "prevent-backdrop-dismiss",
+          "description": "Pass true to remove the backdrop click auto-dismiss feature.\nDefaults to false."
         },
         {
           "name": "resizable",
@@ -600,7 +590,7 @@
         },
         {
           "name": "show-close-button",
-          "description": "Optionally you can pass false to not show the close button.\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\nor provide your own dismissal logic in the modal content."
+          "description": ""
         },
         {
           "name": "visible",
@@ -836,10 +826,6 @@
           "description": "How many milliseconds to wait before firing the queryChanged event."
         },
         {
-          "name": "debounced",
-          "description": ""
-        },
-        {
           "name": "placeholder",
           "description": "Sets the field placeholder text."
         },
@@ -859,10 +845,6 @@
         {
           "name": "autocomplete",
           "description": "Defines the type of automatic completion the browser can use.\nSee https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete"
-        },
-        {
-          "name": "disable-validity-reporting",
-          "description": ""
         },
         {
           "name": "disabled",

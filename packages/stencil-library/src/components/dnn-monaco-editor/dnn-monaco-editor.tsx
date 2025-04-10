@@ -27,18 +27,18 @@ export class DnnMonacoEditor {
   }
   
   /** The name of the control to use for forms. */
-  @Prop() name: string;
+  @Prop() name?: string;
   
   /** Emits the new value of the content when it is changed. */
-  @Event() contentChanged: EventEmitter<string>;
+  @Event() contentChanged!: EventEmitter<string>;
   
-  @AttachInternals() internals: ElementInternals;
+  @AttachInternals() internals!: ElementInternals;
   
   @State() focused = false;
   
-  private editorContainer: HTMLDivElement;
-  private editor: monaco.editor.IStandaloneCodeEditor;
-  private textArea: HTMLTextAreaElement;
+  private editorContainer!: HTMLDivElement;
+  private editor!: monaco.editor.IStandaloneCodeEditor;
+  private textArea!: HTMLTextAreaElement;
   
   componentDidLoad(){
     this.originalValue = this.value;
@@ -55,7 +55,7 @@ export class DnnMonacoEditor {
       this.setFormValue();
     });
 
-    this.textArea = this.editorContainer.querySelector("textarea");
+    this.textArea = this.editorContainer.querySelector("textarea")!;
     this.textArea.addEventListener("focus", () => {
       this.focused = true;
     });
@@ -63,17 +63,17 @@ export class DnnMonacoEditor {
     this.textArea.addEventListener("focus", () => this.focused = true);
   }
 
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+   
   formResetCallback() {
     this.internals.setValidity({});
     this.value = this.originalValue;
     this.setFormValue();
   }
 
-  private originalValue: string;
+  private originalValue!: string;
 
   private focusElement() {
-    var element = this.editorContainer.querySelector("textarea");
+    var element = this.editorContainer.querySelector("textarea")!;
     element.focus();
   }
 
@@ -94,7 +94,7 @@ export class DnnMonacoEditor {
       >
         <div
           class="editor-container"
-          ref={el => this.editorContainer = el}
+          ref={el => this.editorContainer = el!}
         />
       </Host>
     );

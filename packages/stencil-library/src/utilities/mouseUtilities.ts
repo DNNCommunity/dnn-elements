@@ -1,6 +1,6 @@
 export function getMovementFromEvent(
     event: MouseEvent | TouchEvent,
-    previousTouch: Touch
+    previousTouch?: Touch
 ) {
     let movementX = 0;
     let movementY = 0;
@@ -12,8 +12,8 @@ export function getMovementFromEvent(
       if (event instanceof TouchEvent) {
         let touch = event.touches[0];
         if (previousTouch != undefined) {
-          movementX = touch.pageX - this.previousTouch.pageX;
-          movementY = touch.pageY - this.previousTouch.pageY;
+          movementX = touch.pageX - previousTouch.pageX;
+          movementY = touch.pageY - previousTouch.pageY;
         }
         previousTouch = touch;
       }

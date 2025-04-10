@@ -13,43 +13,43 @@ export class DnnTextarea {
   @Prop() resizable: "none" | "both" | "horizontal" | "vertical" | "block" | "inline" = "block";
 
   /** Sets the value of the textarea. */
-  @Prop({mutable: true}) value: string;
+  @Prop({mutable: true}) value?: string;
 
   /** The label for this input. */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /** The name for this input when used in forms. */
-  @Prop() name: string;
+  @Prop() name?: string;
 
   /** Defines the help label displayed under the field. */
-  @Prop() helpText: string;
+  @Prop() helpText?: string;
 
   /** Defines whether the field requires having a value. */
-  @Prop() required: boolean;
+  @Prop() required?: boolean;
 
   /** Defines whether the field is disabled. */
-  @Prop() disabled: boolean;
+  @Prop() disabled?: boolean;
 
   /** Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete. */
   @Prop() autocomplete: string = "off";
 
   /** Defines the minimum amount of charaters. */
-  @Prop() minlength: number;
+  @Prop() minlength?: number;
 
   /** Defines the maximum amount of charaters. */
-  @Prop() maxlength: number;
+  @Prop() maxlength?: number;
 
   /** Defines wheter the defined value is readonly. */
-  @Prop() readonly: boolean;
+  @Prop() readonly?: boolean;
 
   /** Defines how many rows (lines of text) to initially show. */
   @Prop() rows: number = 3;
 
   /** Fires when the using is inputing data (on keystrokes). */
-  @Event() valueInput: EventEmitter<string>;
+  @Event() valueInput!: EventEmitter<string>;
 
   /** Fires when the value has changed and the user exits the input. */
-  @Event() valueChange: EventEmitter<string>;
+  @Event() valueChange!: EventEmitter<string>;
 
   /** Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState */
   @Method()
@@ -74,13 +74,13 @@ export class DnnTextarea {
 
   @State() focused = false;
   @State() valid = true;
-  @State() customValidityMessage: string;
+  @State() customValidityMessage?: string;
 
-  @AttachInternals() internals: ElementInternals;
+  @AttachInternals() internals!: ElementInternals;
   
-  private textarea: HTMLTextAreaElement;
-  private fieldset: HTMLDnnFieldsetElement;
-  private labelId: string;
+  private textarea!: HTMLTextAreaElement;
+  private fieldset!: HTMLDnnFieldsetElement;
+  private labelId?: string;
 
   componentWillLoad() {
     this.labelId = generateRandomId();
@@ -90,7 +90,6 @@ export class DnnTextarea {
     this.textarea.style.minHeight = `${this.rows * 1.5}em`;
   }
 
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
   formResetCallback() {
     this.textarea.setCustomValidity("");
     this.valid = true;
@@ -117,7 +116,7 @@ export class DnnTextarea {
     this.valueChange.emit(this.value);
     if (this.name != undefined){
       var data = new FormData();
-      data.append(this.name, this.value.toString());
+      data.append(this.name, this.value?.toString() ?? "");
       this.internals.setFormValue(data);
     }
   }
@@ -142,7 +141,7 @@ export class DnnTextarea {
         onBlur={() => this.textarea.blur()}
       >
         <dnn-fieldset
-          ref={el => this.fieldset = el}
+          ref={el => this.fieldset = el!}
           invalid={!this.valid}
           focused={this.focused}
           resizable={this.resizable}
@@ -154,7 +153,7 @@ export class DnnTextarea {
           onClick={() => !this.focused && this.textarea.focus()}
         >
           <textarea
-            ref={el => this.textarea = el}
+            ref={el => this.textarea = el!}
             name={this.name}
             value={this.value}
             required={this.required}

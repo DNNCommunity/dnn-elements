@@ -3,7 +3,7 @@ export function dataURLtoFile(dataUrl: string, filename: string): File
 {
     // A dataUrl has metadate before the coma and the data after.
     let dataUrlParts = dataUrl.split(',');
-    let mime = dataUrlParts[0].match(/:(.*?);/)[1]; // Extract mime type
+    let mime = dataUrlParts[0]!.match(/:(.*?);/)![1]; // Extract mime type
     let binaryString = atob(dataUrlParts[1]); // Decode base64 (convert ascii to binary)
     let length = binaryString.length;
     

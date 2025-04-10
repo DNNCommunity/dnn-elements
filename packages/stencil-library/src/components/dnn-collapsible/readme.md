@@ -76,10 +76,10 @@
 
 ## Properties
 
-| Property             | Attribute             | Description                                          | Type      | Default |
-| -------------------- | --------------------- | ---------------------------------------------------- | --------- | ------- |
-| `expanded`           | `expanded`            | Defines if the panel is expanded or not.             | `boolean` | `false` |
-| `transitionDuration` | `transition-duration` | Defines the transition time in ms, defaults to 150ms | `number`  | `150`   |
+| Property             | Attribute             | Description                                          | Type                  | Default |
+| -------------------- | --------------------- | ---------------------------------------------------- | --------------------- | ------- |
+| `expanded`           | `expanded`            | Defines if the panel is expanded or not.             | `boolean`             | `false` |
+| `transitionDuration` | `transition-duration` | Defines the transition time in ms, defaults to 150ms | `number \| undefined` | `150`   |
 
 
 ## Events

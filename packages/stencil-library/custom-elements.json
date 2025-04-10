@@ -23,7 +23,7 @@
             {
               "name": "disabled",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines whether the field is disabled.",
               "required": false
@@ -31,7 +31,7 @@
             {
               "name": "help-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Defines the help label displayed under the field.",
               "required": false
@@ -39,7 +39,7 @@
             {
               "name": "label",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The label for this autocomplete.",
               "required": false
@@ -47,7 +47,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The name for this autocomplete when used in forms.",
               "required": false
@@ -64,7 +64,7 @@
             {
               "name": "render-suggestion",
               "type": {
-                "text": "(suggestion: DnnAutocompleteSuggestion) => HTMLElement"
+                "text": "((suggestion: DnnAutocompleteSuggestion) => HTMLElement) | undefined"
               },
               "description": "Callback to render suggestions, if not provided, only the label will be rendered.",
               "required": false
@@ -72,7 +72,7 @@
             {
               "name": "required",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines whether the field requires having a value.",
               "required": false
@@ -89,7 +89,7 @@
             {
               "name": "total-suggestions",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "The total amount of suggestions for the given search query.\nThis can be used to show virtual scroll and pagination progressive feeding.\nThe needMoreItems event should be used to request more items.",
               "required": false
@@ -97,7 +97,7 @@
             {
               "name": "value",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Defines the value for this autocomplete",
               "required": false
@@ -203,7 +203,7 @@
             {
               "name": "confirm",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Optionally add a confirmation dialog before firing the action.",
               "default": "false",
@@ -212,7 +212,7 @@
             {
               "name": "confirm-message",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The text of the confirmation message;",
               "default": "\"Are you sure ?\"",
@@ -221,7 +221,7 @@
             {
               "name": "confirm-no-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The text of the no button for confirmation.",
               "default": "\"No\"",
@@ -230,7 +230,7 @@
             {
               "name": "confirm-yes-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The text of the yes button for confirmation.",
               "default": "\"Yes\"",
@@ -246,15 +246,6 @@
               "required": false
             },
             {
-              "name": "form-button-type",
-              "type": {
-                "text": "\"button\" | \"reset\" | \"submit\""
-              },
-              "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.\nWarning: This will be deprecated in the next version and replaced with a new 'type' property.",
-              "default": "'button'",
-              "required": false
-            },
-            {
               "name": "reversed",
               "type": {
                 "text": "boolean"
@@ -266,7 +257,7 @@
             {
               "name": "size",
               "type": {
-                "text": "\"large\" | \"normal\" | \"small\""
+                "text": "\"large\" | \"normal\" | \"small\" | undefined"
               },
               "description": "Optionally sets the button size, small normal or large, defaults to normal",
               "default": "'normal'",
@@ -275,10 +266,10 @@
             {
               "name": "type",
               "type": {
-                "text": "\"danger\" | \"primary\" | \"secondary\" | \"tertiary\""
+                "text": "\"button\" | \"reset\" | \"submit\""
               },
-              "description": "Optional button style,",
-              "default": "'primary'",
+              "description": "Optional button type,\ncan be either submit, reset or button and defaults to button if not specified.\nWarning: DNN wraps the whole page in a form, only use this if you are handling\nform submission manually.",
+              "default": "'button'",
               "required": false
             }
           ],
@@ -360,6 +351,7 @@
                 "text": "string"
               },
               "description": "The name to show in the formData (if using forms).",
+              "default": "\"\"",
               "required": false
             },
             {
@@ -437,7 +429,7 @@
             {
               "name": "collapse-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Collapse text for screen readers",
               "default": "\"collapse\"",
@@ -446,7 +438,7 @@
             {
               "name": "expand-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Expand text for screen readers",
               "default": "\"expand\"",
@@ -455,7 +447,7 @@
             {
               "name": "expanded",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Is the chevron expanded",
               "default": "false",
@@ -500,7 +492,7 @@
             {
               "name": "transition-duration",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Defines the transition time in ms, defaults to 150ms",
               "default": "150",
@@ -570,7 +562,7 @@
             {
               "name": "help-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Defines the help label displayed under the field.",
               "required": false
@@ -578,7 +570,7 @@
             {
               "name": "label",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The label for this input.",
               "required": false
@@ -604,7 +596,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The name for this input if forms are used.",
               "required": false
@@ -612,7 +604,7 @@
             {
               "name": "readonly",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Disables interacting with the component.",
               "required": false
@@ -620,7 +612,7 @@
             {
               "name": "use-contrast-color",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true, the picker will allow selecting a contast color too.",
               "required": false
@@ -628,7 +620,7 @@
             {
               "name": "use-dark-color",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true, the picker will allow selecting a dark color too.",
               "required": false
@@ -636,7 +628,7 @@
             {
               "name": "use-light-color",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true, the picker will allow selecting a light color too.",
               "required": false
@@ -762,7 +754,7 @@
             {
               "name": "allowed-extensions",
               "type": {
-                "text": "string[]"
+                "text": "string[] | undefined"
               },
               "description": "A list of allowed file extensions.\nIf not specified, any file is allowed.\nEx: [\"jpg\", \"jpeg\", \"gif\", \"png\"]",
               "required": false
@@ -779,7 +771,7 @@
             {
               "name": "max-file-size",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Max file size in bytes.",
               "required": false
@@ -787,7 +779,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The name of the field when used in a form.",
               "required": false
@@ -795,7 +787,7 @@
             {
               "name": "resx",
               "type": {
-                "text": "DropzoneResx"
+                "text": "DropzoneResx | undefined"
               },
               "description": "Localization strings",
               "required": false
@@ -861,7 +853,7 @@
             {
               "name": "disabled",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true, the fieldset will display as disabled.",
               "required": false
@@ -869,7 +861,7 @@
             {
               "name": "float-label",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true, the label will float in the container, set false to show it on top.",
               "required": false
@@ -877,7 +869,7 @@
             {
               "name": "focused",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true the fieldset will display as focused.",
               "required": false
@@ -885,7 +877,7 @@
             {
               "name": "help-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Can be used to show some help text about this field.",
               "required": false
@@ -893,7 +885,7 @@
             {
               "name": "invalid",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true, the  fieldset will display as invalid.",
               "required": false
@@ -901,7 +893,7 @@
             {
               "name": "label",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Sets the text of the fieldset label (caption).",
               "required": false
@@ -1010,7 +1002,7 @@
             {
               "name": "height",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Sets the desired final image height.",
               "required": false
@@ -1018,7 +1010,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The name of the control when used in a form.",
               "required": false
@@ -1044,7 +1036,7 @@
             {
               "name": "resx",
               "type": {
-                "text": "ImageCropperResx"
+                "text": "ImageCropperResx | undefined"
               },
               "description": "Can be used to customize controls text.\nSome values support tokens, see default values for examples.",
               "required": false
@@ -1052,7 +1044,7 @@
             {
               "name": "width",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Sets the desired final image width.",
               "required": false
@@ -1101,7 +1093,7 @@
             {
               "name": "allow-show-password",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true, enables users to switch between a password and a text field (to view their password).",
               "required": false
@@ -1118,7 +1110,7 @@
             {
               "name": "disable-validity-reporting",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "",
               "required": false
@@ -1126,7 +1118,7 @@
             {
               "name": "disabled",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines whether the field is disabled.",
               "required": false
@@ -1134,7 +1126,7 @@
             {
               "name": "help-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Defines the help label displayed under the field.",
               "required": false
@@ -1142,7 +1134,7 @@
             {
               "name": "inputmode",
               "type": {
-                "text": "\"decimal\" | \"email\" | \"none\" | \"numeric\" | \"search\" | \"tel\" | \"text\" | \"url\""
+                "text": "\"decimal\" | \"email\" | \"none\" | \"numeric\" | \"search\" | \"tel\" | \"text\" | \"url\" | undefined"
               },
               "description": "Hints at the type of data that might be entered by the user while editing the element or its contents.\nThis allows a browser to display an appropriate virtual keyboard.",
               "required": false
@@ -1150,7 +1142,7 @@
             {
               "name": "label",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The label for this input.",
               "required": false
@@ -1158,7 +1150,7 @@
             {
               "name": "max",
               "type": {
-                "text": "number | string"
+                "text": "number | string | undefined"
               },
               "description": "Defines the maximum allowed value.",
               "required": false
@@ -1166,7 +1158,7 @@
             {
               "name": "maxlength",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Defines the maximum amount of charaters.",
               "required": false
@@ -1174,7 +1166,7 @@
             {
               "name": "min",
               "type": {
-                "text": "number | string"
+                "text": "number | string | undefined"
               },
               "description": "Defines the minimum allowed value.",
               "required": false
@@ -1182,7 +1174,7 @@
             {
               "name": "minlength",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Defines the minimum amount of charaters.",
               "required": false
@@ -1190,7 +1182,7 @@
             {
               "name": "multiple",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If true, allows multiple emails to be entered separated by commas.",
               "required": false
@@ -1198,7 +1190,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The name for this input when used in forms.",
               "required": false
@@ -1206,7 +1198,7 @@
             {
               "name": "pattern",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Valid for text, search, url, tel, email, and password, the pattern attribute defines a regular expression that the input's value must match in order for the value to pass constraint validation.",
               "required": false
@@ -1214,7 +1206,7 @@
             {
               "name": "readonly",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines wheter the defined value is readonly.",
               "required": false
@@ -1222,7 +1214,7 @@
             {
               "name": "required",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines whether the field requires having a value.",
               "required": false
@@ -1230,7 +1222,7 @@
             {
               "name": "step",
               "type": {
-                "text": "number | string"
+                "text": "number | string | undefined"
               },
               "description": "Defines the possible steps for numbers and dates/times. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#step",
               "required": false
@@ -1247,7 +1239,7 @@
             {
               "name": "value",
               "type": {
-                "text": "number | string | string[]"
+                "text": "number | string | string[] | undefined"
               },
               "description": "The value of the input.",
               "required": false
@@ -1338,23 +1330,41 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "Pass false to remove the backdrop click auto-dismiss feature.",
+              "description": "",
               "default": "true",
               "required": false
             },
             {
               "name": "close-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Optionally pass the aria-label text for the close button.\nDefaults to \"Close modal\" if not provided.",
               "default": "\"Close modal\"",
               "required": false
             },
             {
-              "name": "resizable",
+              "name": "hide-close-button",
               "type": {
                 "text": "boolean"
+              },
+              "description": "Optionally you can pass true to not show the close button.\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\nor provide your own dismissal logic in the modal content.",
+              "default": "false",
+              "required": false
+            },
+            {
+              "name": "prevent-backdrop-dismiss",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "description": "Pass true to remove the backdrop click auto-dismiss feature.\nDefaults to false.",
+              "default": "false",
+              "required": false
+            },
+            {
+              "name": "resizable",
+              "type": {
+                "text": "boolean | undefined"
               },
               "description": "If set to true, the modal becomes resizable.",
               "default": "false",
@@ -1363,9 +1373,9 @@
             {
               "name": "show-close-button",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
-              "description": "Optionally you can pass false to not show the close button.\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\nor provide your own dismissal logic in the modal content.",
+              "description": "",
               "default": "true",
               "required": false
             },
@@ -1435,7 +1445,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The name of the control to use for forms.",
               "required": false
@@ -1505,7 +1515,7 @@
             {
               "name": "resx",
               "type": {
-                "text": "ILocalization"
+                "text": "ILocalization | undefined"
               },
               "description": "Optionally allows localizing the component strings.",
               "required": false
@@ -1584,6 +1594,7 @@
                 "text": "number"
               },
               "description": "Sets to current value for the progress bar.",
+              "default": "0",
               "required": false
             }
           ],
@@ -1641,7 +1652,7 @@
             {
               "name": "customize-options",
               "type": {
-                "text": "(options: Config) => Config"
+                "text": "((options: Config) => Config) | undefined"
               },
               "description": "Customize the options before initializing the editor, will have all the default options merged with 'options' if passed.\nThis is called last after merging default options with your custom 'options' and just before initializing the editor.",
               "required": false
@@ -1649,7 +1660,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Name of the field when used in a form.",
               "required": false
@@ -1657,7 +1668,7 @@
             {
               "name": "options",
               "type": {
-                "text": "Config"
+                "text": "Config | undefined"
               },
               "description": "Optional configuration for Jodit, see https://xdsoft.net/jodit/docs/classes/config.Config.html\nThis will be merged with the default options and passed to the editor.\nIf you prefer to not have to pass a full config object,\nyou can use 'customizeOptions' to modify the options before initializing the editor\ninstead of providing all options here.",
               "required": false
@@ -1674,7 +1685,7 @@
             {
               "name": "value",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Sets the value of the content of the editor.",
               "required": false
@@ -1723,18 +1734,9 @@
               "required": false
             },
             {
-              "name": "debounced",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "",
-              "default": "true",
-              "required": false
-            },
-            {
               "name": "placeholder",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Sets the field placeholder text.",
               "default": "\"\"",
@@ -1786,17 +1788,9 @@
               "required": false
             },
             {
-              "name": "disable-validity-reporting",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "",
-              "required": false
-            },
-            {
               "name": "disabled",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines whether the field is disabled.",
               "required": false
@@ -1804,7 +1798,7 @@
             {
               "name": "help-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Defines the help label displayed under the field.",
               "required": false
@@ -1812,7 +1806,7 @@
             {
               "name": "label",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The label for this input.",
               "required": false
@@ -1820,7 +1814,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The name for this input, if used in forms.",
               "required": false
@@ -1828,7 +1822,7 @@
             {
               "name": "required",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines whether the field requires having a value.",
               "required": false
@@ -1839,6 +1833,7 @@
                 "text": "string"
               },
               "description": "The value of the input.",
+              "default": "\"\"",
               "required": false
             }
           ],
@@ -2040,7 +2035,7 @@
             {
               "name": "disabled",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines whether the field is disabled.",
               "required": false
@@ -2048,7 +2043,7 @@
             {
               "name": "help-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Defines the help label displayed under the field.",
               "required": false
@@ -2056,7 +2051,7 @@
             {
               "name": "label",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The label for this input.",
               "required": false
@@ -2064,7 +2059,7 @@
             {
               "name": "maxlength",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Defines the maximum amount of charaters.",
               "required": false
@@ -2072,7 +2067,7 @@
             {
               "name": "minlength",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Defines the minimum amount of charaters.",
               "required": false
@@ -2080,7 +2075,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The name for this input when used in forms.",
               "required": false
@@ -2088,7 +2083,7 @@
             {
               "name": "readonly",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines wheter the defined value is readonly.",
               "required": false
@@ -2096,7 +2091,7 @@
             {
               "name": "required",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Defines whether the field requires having a value.",
               "required": false
@@ -2122,7 +2117,7 @@
             {
               "name": "value",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Sets the value of the textarea.",
               "required": false
@@ -2216,7 +2211,7 @@
             {
               "name": "name",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The field name to use in forms.",
               "required": false

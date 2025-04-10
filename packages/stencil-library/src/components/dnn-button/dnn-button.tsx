@@ -10,13 +10,6 @@ import { Component, Element, Host, h, Prop, State, Event, EventEmitter, AttachIn
   formAssociated: true,
 })
 export class DnnButton {
-
-  /**
-   * Optional button style,
-   * @deprecated This property will be reused in the next version to represent the type of button like "submit" or "reset". Use the appearance property instead.
-   */
-  @Prop() type: 'primary' | 'danger' | 'secondary' | 'tertiary' = 'primary';
-
   /**
    * Defines the look of the button.
    */
@@ -27,9 +20,8 @@ export class DnnButton {
    * can be either submit, reset or button and defaults to button if not specified.
    * Warning: DNN wraps the whole page in a form, only use this if you are handling
    * form submission manually.
-   * Warning: This will be deprecated in the next version and replaced with a new 'type' property.
    */
-  @Prop() formButtonType: 'submit' | 'reset' | 'button' = 'button';
+  @Prop() type: 'submit' | 'reset' | 'button' = 'button';
 
   /**
    * Optionally reverses the button style.
@@ -73,25 +65,25 @@ export class DnnButton {
     bubbles: true,
     cancelable: true,
     composed: true
-  }) confirmed: EventEmitter;
+  }) confirmed!: EventEmitter;
 
   /**
    * Fires when confirm is true and the user cancels the action.
    */
-  @Event({bubbles: true}) canceled: EventEmitter;
+  @Event({bubbles: true}) canceled!: EventEmitter;
 
   @State() focused = false;
   @State() modalVisible = false;
 
   @Element() el!: HTMLDnnButtonElement;
 
-  @AttachInternals() internals: ElementInternals;
+  @AttachInternals() internals!: ElementInternals;
 
-  private button: HTMLButtonElement;
+  private button!: HTMLButtonElement;
   private modal!: HTMLDnnModalElement;
 
   componentDidLoad(){
-    this.modal = this.el.shadowRoot.querySelector('dnn-modal');
+    this.modal = this.el.shadowRoot!.querySelector('dnn-modal')!;
   }
 
   private handleConfirm(){
@@ -113,7 +105,7 @@ export class DnnButton {
       return;
     }
 
-    if (this.formButtonType === 'submit')
+    if (this.type === 'submit')
     {
       var form = this.internals.form;
       if (form){
@@ -137,6 +129,7 @@ export class DnnButton {
               }
             }
             catch(e){
+              // eslint-disable-next-line no-console
               console.error(e, control);
             }
           }
@@ -150,7 +143,7 @@ export class DnnButton {
         }
       }
     }
-    if (this.formButtonType === 'reset')
+    if (this.type === 'reset')
     {
       var form = this.internals.form;
       if (form){
@@ -170,7 +163,7 @@ export class DnnButton {
     if (this.reversed){
       classes.push('reversed');
     }
-    if (this.size !== 'normal'){
+    if (this.size !== 'normal' && this.size !== undefined){
       classes.push(this.size);
     }
     if (this.disabled) {
@@ -188,7 +181,7 @@ export class DnnButton {
         onBlur={() => this.button.blur()}
       >
         <button
-          ref={el => this.button = el}
+          ref={el => this.button = el!}
           class="button"
           onClick={() => this.handleClick()}
           disabled={this.disabled}

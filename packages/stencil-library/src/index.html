@@ -693,9 +693,9 @@
   <a name="dnn-modal"></a>
   <section>
     <h2>dnn-modal</h2>
-    <dnn-modal id="my-modal" backdrop-dismiss="false">I am a modal !</dnn-modal>
+    <dnn-modal id="my-modal" prevent-backdrop-dismiss>I am a modal !</dnn-modal>
     <dnn-modal id="my-modal2" >I am a modal, but you can click outside me to dismiss me !</dnn-modal>
-    <dnn-modal id="my-modal3" show-close-button="false" >I am a modal, I have no close button, so click the backdrop to get rid of me !</dnn-modal>
+    <dnn-modal id="my-modal3" hide-close-button >I am a modal, I have no close button, so click the backdrop to get rid of me !</dnn-modal>
     <dnn-button
       onclick="showModal()"
     >Show Modal</dnn-button>
@@ -962,7 +962,7 @@
   <section>
     <h2>dnn-dropzone</h2>
     <p>Allows dropping a file, selecting a file or taking a picture with the device camera.</p>
-    <dnn-dropzone max-file-size='10000' allow-camera-mode id="dnnDropZone" />
+    <dnn-dropzone max-file-size='100000' allow-camera-mode id="dnnDropZone" />
     <script type="text/javascript">
       const dnnDropZone = document.querySelector("#dnnDropZone");
       dnnDropZone.allowedExtensions = ["jpg", "png", "gif", "pdf"];
@@ -976,7 +976,7 @@
     <h2>dnn-image-cropper</h2>
     <p>Allows cropping an image in the browser.</p>
     <div style="max-width: 500px;">
-      <dnn-image-cropper id="dnnImageCropper" width="600" height="400" prevent-undersized />
+      <dnn-image-cropper id="dnnImageCropper" />
     </div>
     <script type="text/javascript">
       const dnnImageCropper = document.querySelector("#dnnImageCropper");
@@ -1182,16 +1182,16 @@
             });
             if (trueCount > 0 && falseCount > 0){
               parentCheckbox.useIntermediate = true;
-              parentCheckbox.checked = undefined;
+              parentCheckbox.checked = "intermediate";
               return;
             }
             if (trueCount == 0 && falseCount > 0){
-              parentCheckbox.useIntermediate = false;
-              parentCheckbox.checked = false;
+              parentCheckbox.useIntermediate = true;
+              parentCheckbox.checked = "unchecked";
               return;
             }
-            parentCheckbox.useIntermediate = false;
-            parentCheckbox.checked = true;
+            parentCheckbox.useIntermediate = true;
+            parentCheckbox.checked = "checked";
           })
         });
       })();
