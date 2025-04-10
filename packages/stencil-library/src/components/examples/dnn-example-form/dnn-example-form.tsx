@@ -151,6 +151,18 @@ export class DnnExampleForm {
           <button onClick={() => this.fieldset.unpinLabel()}>Unpin Label</button>
         </dnn-fieldset>
         <form
+          onError={e => console.error(e)}
+          onInvalid={e => {
+            e.preventDefault();
+            console.group("Form invalid");
+            const form = e.target as HTMLFormElement;
+            const invalidControls = form.querySelectorAll<HTMLElement>(":invalid");
+            invalidControls.forEach(control => {
+              const validityState = (control as HTMLInputElement).validity;
+              console.log(control, validityState);
+            });
+            console.groupEnd();
+          }}
           onSubmit={e => {
             e.preventDefault();
             /* eslint-disable no-console */
