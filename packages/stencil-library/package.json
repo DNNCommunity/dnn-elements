@@ -29,7 +29,8 @@
     "generate": "stencil generate",
     "lint": "eslint --fix --ext .ts,.tsx,.js,.jsx src/",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "deploy-storybook": "gh-pages -d storybook-static --branch site"
   },
   "devDependencies": {
     "@stencil-community/eslint-plugin": "0.10.0",
