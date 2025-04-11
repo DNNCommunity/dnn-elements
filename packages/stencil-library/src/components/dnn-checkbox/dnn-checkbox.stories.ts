@@ -26,6 +26,9 @@ const meta : Meta = {
         value: {
             control: 'text',
         },
+        required: {
+            control: 'boolean',
+        },
       },
 }
 
@@ -33,20 +36,23 @@ const eventsFromNames = actions("checkedchange");
 
 export default meta;
 
-const Template = (args) =>
-    html`
-        <dnn-checkbox
-            checked=${args.checked}
-            ?use-intermediate=${ifDefined(args.useIntermediate)}
-            value=${args.value}>
-        </dnn-checkbox>
-    `;
-
 type Story = StoryObj;
 
-export const Checkbox : Story = Template.bind({});
-Checkbox.args = {
-    checked: 'unchecked',
-    useIntermediate: false,
-    value: '1',
+export const Checkbox : Story = {
+    args:
+    {
+        checked: 'unchecked',
+        useIntermediate: false,
+        value: '1',
+        required: false,
+    },
+    render: (args) =>
+        html`
+            <dnn-checkbox
+                checked=${args.checked}
+                ?use-intermediate=${ifDefined(args.useIntermediate)}
+                value=${args.value}
+                ?required=${ifDefined(args.required)}
+            />
+        `,
 };

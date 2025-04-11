@@ -166,6 +166,14 @@
           "description": "A function that will be called when the checkbox needs to change state and returns the next state.\nCan be used to customize the order of the states when the component is clicked.\nOnly called if you also use the tri-state feature (useIntermediate)."
         },
         {
+          "name": "required",
+          "description": "If true, the checkbox needs to be checked for the form validation to succeed."
+        },
+        {
+          "name": "required-message",
+          "description": "Can be used to customize the validation message when the field is required but not checked."
+        },
+        {
           "name": "use-intermediate",
           "description": "Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)"
         },

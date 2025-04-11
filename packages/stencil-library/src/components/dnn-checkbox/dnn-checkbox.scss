@@ -31,6 +31,9 @@ button{
   &:focus-visible{
     box-shadow: 0 0 2px 2px var(--focus-color);
   }
+  &.invalid{
+    border: 2px solid var(--dnn-color-danger);
+  }
 }
 label {
   cursor: pointer; 
