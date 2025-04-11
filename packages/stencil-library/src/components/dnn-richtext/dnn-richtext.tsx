@@ -19,7 +19,7 @@ export class DnnRichtext {
   @Prop() options?: Config;
   
   /** Sets the value of the content of the editor. */
-  @Prop() value?: string;
+  @Prop() value = "";
 
   /** Name of the field when used in a form. */
   @Prop() name?: string;

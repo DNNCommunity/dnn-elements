@@ -13,7 +13,7 @@ export class DnnTextarea {
   @Prop() resizable: "none" | "both" | "horizontal" | "vertical" | "block" | "inline" = "block";
 
   /** Sets the value of the textarea. */
-  @Prop({mutable: true}) value?: string;
+  @Prop({mutable: true}) value = "";
 
   /** The label for this input. */
   @Prop() label?: string;

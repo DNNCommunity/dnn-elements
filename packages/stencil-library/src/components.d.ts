@@ -86,7 +86,7 @@ export namespace Components {
         /**
           * Defines the value for this autocomplete
          */
-        "value"?: string;
+        "value": string;
     }
     interface DnnButton {
         /**
@@ -465,7 +465,7 @@ export namespace Components {
         /**
           * The value of the input.
          */
-        "value"?: number | string | string[];
+        "value": number | string | string[];
     }
     interface DnnModal {
         /**
@@ -575,7 +575,7 @@ export namespace Components {
         /**
           * Sets the value of the content of the editor.
          */
-        "value"?: string;
+        "value": string;
     }
     interface DnnSearchbox {
         /**
@@ -709,7 +709,7 @@ export namespace Components {
         /**
           * Sets the value of the textarea.
          */
-        "value"?: string;
+        "value": string;
     }
     interface DnnToggle {
         /**
