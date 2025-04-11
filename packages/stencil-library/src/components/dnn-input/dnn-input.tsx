@@ -23,7 +23,7 @@ export class DnnInput {
   @Prop() name?: string;
 
   /** The value of the input. */
-  @Prop({mutable: true, reflect:true}) value?: number | string | string[];
+  @Prop({mutable: true, reflect:true}) value: number | string | string[] = "";
 
   /** Defines the help label displayed under the field. */
   @Prop() helpText?: string;
@@ -155,7 +155,7 @@ export class DnnInput {
     this.valueChange.emit(this.value);
     if (this.name != undefined){
       var data = new FormData();
-      data.append(this.name, this.value?.toString() ?? "");
+      data.append(this.name, this.value.toString());
       this.internals.setFormValue(data);
     }
   }

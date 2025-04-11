@@ -20,7 +20,7 @@ export class DnnAutocomplete {
   @Prop() helpText?: string;
 
   /** Defines the value for this autocomplete */
-  @Prop({mutable: true, reflect: true}) value?: string;
+  @Prop({mutable: true, reflect: true}) value = "";
 
   /** Defines whether the field requires having a value. */
   @Prop() required?: boolean;
@@ -80,6 +80,8 @@ export class DnnAutocomplete {
       this.fieldset.setValidity(false, this.inputField.validationMessage);
     }
     this.fieldset.setValidity(true, "");
+    this.valid = validity;
+    this.internals.setValidity(this.inputField.validity, this.inputField.validationMessage);
     return this.inputField.validity;
   }
   
@@ -175,7 +177,7 @@ export class DnnAutocomplete {
     this.valueChange.emit(this.value);
     if (this.name != undefined) {
       var data = new FormData();
-      data.append(this.name, this.value?.toString() || "");
+      data.append(this.name, this.value);
       this.internals.setFormValue(data);
     }
   }
@@ -186,7 +188,7 @@ export class DnnAutocomplete {
       return false;
     }
 
-    if (this.value != undefined && this.value != "") {
+    if (this.value != "") {
       return false;
     }
 
@@ -282,7 +284,7 @@ export class DnnAutocomplete {
   }
 
   private handleDropdownClick(): void {
-    this.handleSearchQueryChanged(this.value || "");
+    this.handleSearchQueryChanged(this.value);
   }
 
   @Debounce(100)
@@ -377,7 +379,7 @@ export class DnnAutocomplete {
               autoComplete={this.autocomplete}
               value={this.displayValue}
               onFocus={() => {
-                this.searchQueryChanged.emit(this.value || "");
+                this.searchQueryChanged.emit(this.value);
                 this.focused = true;
               }}
               onBlur={() => this.handleBlur()}

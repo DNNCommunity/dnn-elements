@@ -97,9 +97,10 @@
             {
               "name": "value",
               "type": {
-                "text": "string | undefined"
+                "text": "string"
               },
               "description": "Defines the value for this autocomplete",
+              "default": "\"\"",
               "required": false
             }
           ],
@@ -1239,9 +1240,10 @@
             {
               "name": "value",
               "type": {
-                "text": "number | string | string[] | undefined"
+                "text": "number | string | string[]"
               },
               "description": "The value of the input.",
+              "default": "\"\"",
               "required": false
             }
           ],
@@ -1683,9 +1685,10 @@
             {
               "name": "value",
               "type": {
-                "text": "string | undefined"
+                "text": "string"
               },
               "description": "Sets the value of the content of the editor.",
+              "default": "\"\"",
               "required": false
             }
           ],
@@ -2115,9 +2118,10 @@
             {
               "name": "value",
               "type": {
-                "text": "string | undefined"
+                "text": "string"
               },
               "description": "Sets the value of the textarea.",
+              "default": "\"\"",
               "required": false
             }
           ],
