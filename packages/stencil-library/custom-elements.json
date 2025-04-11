@@ -365,6 +365,24 @@
               "required": false
             },
             {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, the checkbox needs to be checked for the form validation to succeed.",
+              "default": "false",
+              "required": false
+            },
+            {
+              "name": "required-message",
+              "type": {
+                "text": "string"
+              },
+              "description": "Can be used to customize the validation message when the field is required but not checked.",
+              "default": "\"The checkbox must be checked\"",
+              "required": false
+            },
+            {
               "name": "use-intermediate",
               "type": {
                 "text": "boolean"
@@ -383,7 +401,14 @@
               "required": false
             }
           ],
-          "members": [],
+          "members": [
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "description": "Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState",
+              "signature": "checkValidity() => Promise<ValidityState>"
+            }
+          ],
           "events": [
             {
               "name": "checkedchange",

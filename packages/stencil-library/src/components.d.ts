@@ -128,6 +128,10 @@ export namespace Components {
     }
     interface DnnCheckbox {
         /**
+          * Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+         */
+        "checkValidity": () => Promise<ValidityState>;
+        /**
           * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
          */
         "checked": CheckedState;
@@ -139,6 +143,14 @@ export namespace Components {
           * A function that will be called when the checkbox needs to change state and returns the next state. Can be used to customize the order of the states when the component is clicked. Only called if you also use the tri-state feature (useIntermediate).
          */
         "nextStateHandler": (currentState: CheckedState) => CheckedState;
+        /**
+          * If true, the checkbox needs to be checked for the form validation to succeed.
+         */
+        "required": boolean;
+        /**
+          * Can be used to customize the validation message when the field is required but not checked.
+         */
+        "requiredMessage": string;
         /**
           * Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)
          */
@@ -1438,6 +1450,14 @@ declare namespace LocalJSX {
           * Fires up when the checkbox checked property changes.
          */
         "onCheckedchange"?: (event: DnnCheckboxCustomEvent<"checked" | "unchecked" | "intermediate">) => void;
+        /**
+          * If true, the checkbox needs to be checked for the form validation to succeed.
+         */
+        "required"?: boolean;
+        /**
+          * Can be used to customize the validation message when the field is required but not checked.
+         */
+        "requiredMessage"?: string;
         /**
           * Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)
          */
