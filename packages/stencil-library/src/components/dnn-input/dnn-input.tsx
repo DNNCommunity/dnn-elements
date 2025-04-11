@@ -17,66 +17,67 @@ export class DnnInput {
   @Prop({mutable: true}) type: "date" | "datetime-local" | "email" | "number" | "password" | "tel" | "text" | "time" | "url" | "search" = "text";
   
   /** The label for this input. */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /** The name for this input when used in forms. */
-  @Prop() name: string;
+  @Prop() name?: string;
 
   /** The value of the input. */
-  @Prop({mutable: true, reflect:true}) value: number | string | string[];
+  @Prop({mutable: true, reflect:true}) value: number | string | string[] = "";
 
   /** Defines the help label displayed under the field. */
-  @Prop() helpText: string;
+  @Prop() helpText?: string;
 
   /** Defines whether the field requires having a value. */
-  @Prop() required: boolean;
+  @Prop() required?: boolean;
   
   /** Defines whether the field is disabled. */
-  @Prop() disabled: boolean;
+  @Prop() disabled?: boolean;
 
   /** Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete. */
   @Prop() autocomplete: string = "off";
 
   /** Defines the minimum allowed value. */
-  @Prop() min: number | string;
+  @Prop() min?: number | string;
 
   /** Defines the maximum allowed value. */
-  @Prop() max: number | string;
+  @Prop() max?: number | string;
 
   /** Defines the minimum amount of charaters. */
-  @Prop() minlength: number;
+  @Prop() minlength?: number;
 
   /** Defines the maximum amount of charaters. */
-  @Prop() maxlength: number;
+  @Prop() maxlength?: number;
 
   /** If true, allows multiple emails to be entered separated by commas. */
-  @Prop() multiple: boolean;
+  @Prop() multiple?: boolean;
 
   /** Valid for text, search, url, tel, email, and password, the pattern attribute defines a regular expression that the input's value must match in order for the value to pass constraint validation. */
-  @Prop() pattern: string;
+  @Prop() pattern?: string;
 
   /** Defines wheter the defined value is readonly. */
-  @Prop() readonly: boolean;
+  @Prop() readonly?: boolean;
 
   /** Defines the possible steps for numbers and dates/times. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#step */
-  @Prop() step: string | number;
+  @Prop() step?: string | number;
 
   /** @deprecated This control has it's own validation reporting, will be removed in v0.25.0 */
-  @Prop() disableValidityReporting: boolean;
+  @Prop() disableValidityReporting?: boolean;
 
   /** If true, enables users to switch between a password and a text field (to view their password). */
-  @Prop() allowShowPassword: boolean;
+  @Prop() allowShowPassword?: boolean;
 
   /** Hints at the type of data that might be entered by the user while editing the element or its contents.
    * This allows a browser to display an appropriate virtual keyboard.
    */
-  @Prop() inputmode: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
+  // eslint-disable-next-line @stencil-community/reserved-member-names
+  @Prop() inputmode?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
 
   /** Fires when the value has changed and the user exits the input. */
-  @Event() valueChange: EventEmitter<number | string | string[]>;
+  @Event() valueChange!: EventEmitter<number | string | string[]>;
 
   /** Fires when the using is inputing data (on keystrokes). */
-  @Event() valueInput: EventEmitter<number | string | string[]>;
+  @Event() valueInput!: EventEmitter<number | string | string[]>;
   
   /** Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState */
   @Method()
@@ -106,11 +107,11 @@ export class DnnInput {
   @State() focused = false;
   @State() valid = true;
   
-  @AttachInternals() internals: ElementInternals;
+  @AttachInternals() internals!: ElementInternals;
   
   private inputField!: HTMLInputElement;
-  private fieldset: HTMLDnnFieldsetElement;
-  private labelId: string;
+  private fieldset!: HTMLDnnFieldsetElement;
+  private labelId?: string;
 
   componentWillLoad() {
     this.labelId = generateRandomId();
@@ -124,7 +125,7 @@ export class DnnInput {
     });
   }
 
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+   
   formResetCallback() {
     this.inputField.setCustomValidity("");
     this.value = "";
@@ -145,6 +146,7 @@ export class DnnInput {
   }
 
   private handleInvalid(): void {
+    this.valid = false;
     this.fieldset.setValidity(false, this.inputField.validationMessage);
     this.internals.setValidity(this.inputField.validity, this.inputField.validationMessage);
   }
@@ -188,7 +190,7 @@ export class DnnInput {
       return false;
     }
 
-    if (this.value === 0 || this.value === "0") {
+    if ((typeof this.value === "string" && (this.value as string) === "0") || (typeof this.value === "number" && (this.value as number) === 0)) {
       return false;
     }
     
@@ -200,8 +202,8 @@ export class DnnInput {
       return this.inputmode;
     }
 
-    if (this.type === "number") {
-      var min = parseFloat(this.min?.toString());
+    if (this.type === "number" && this.min != undefined) {
+      var min = parseFloat(this.min.toString());
       if ((this.step === 1 || this.step == undefined) && min >= 0) {
         return "numeric";
       }
@@ -228,7 +230,7 @@ export class DnnInput {
     return "text";
   }
 
-  handleBlur(): void {
+  private handleBlur(): void {
     this.focused = false
     var validity = this.inputField.checkValidity();
     this.valid = validity;
@@ -244,7 +246,7 @@ export class DnnInput {
         onBlur={() => this.inputField.blur()}
       >
         <dnn-fieldset
-          ref={el => this.fieldset = el}
+          ref={el => this.fieldset = el!}
           invalid={!this.valid}
           focused={this.focused}
           label={`${this.label ?? ""}${this.required ? " *" : ""}`}
@@ -261,7 +263,7 @@ export class DnnInput {
               <slot name="prefix"></slot>
             }
             <input
-              ref={el => this.inputField = el}
+              ref={el => this.inputField = el!}
               name={this.name}
               type={this.type}
               inputMode={this.getInputMode()}

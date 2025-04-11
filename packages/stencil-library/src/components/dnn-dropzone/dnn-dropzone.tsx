@@ -10,13 +10,13 @@ import { DropzoneResx } from './types';
 })
 export class DnnDropzone {
   /** Localization strings */
-  @Prop() resx:DropzoneResx;
+  @Prop() resx?:DropzoneResx;
 
   /** A list of allowed file extensions.
    * If not specified, any file is allowed.
    * Ex: ["jpg", "jpeg", "gif", "png"]
    */
-  @Prop() allowedExtensions: string[];
+  @Prop() allowedExtensions?: string[];
 
   /**
    * If true, will allow the user to take a snapshot
@@ -37,24 +37,24 @@ export class DnnDropzone {
   @Prop() maxFileSize?: number;
 
   /** The name of the field when used in a form. */
-  @Prop() name: string;
+  @Prop() name?: string;
 
   /** Fires when file were selected. */
-  @Event() filesSelected: EventEmitter<File[]>;
+  @Event() filesSelected!: EventEmitter<File[]>;
   
   @State() canTakeSnapshots: boolean = false;
   @State() takingPicture: boolean = false;
   @State() fileTooLarge: boolean = false;
   @State() invalidExtension: boolean = false;
-  @State() localResx: DropzoneResx;
+  @State() localResx!: DropzoneResx;
   @State() focused = false;
 
-  @AttachInternals() internals: ElementInternals;
+  @AttachInternals() internals!: ElementInternals;
 
-  private dropzone: HTMLElement;
-  private fileInput: HTMLInputElement;
-  private videoPreview: HTMLVideoElement;
-  private uploadLabel: HTMLLabelElement;
+  private dropzone!: HTMLElement;
+  private fileInput!: HTMLInputElement;
+  private videoPreview!: HTMLVideoElement;
+  private uploadLabel!: HTMLLabelElement;
   private videoSettings!: MediaTrackSettings;
   private defaultResx: DropzoneResx = {
     dragAndDropFile: "Drag and drop a file",
@@ -89,7 +89,7 @@ export class DnnDropzone {
     this.mergeResx();
   }
 
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+   
   formResetCallback() {
     this.internals.setValidity({});
     this.fileInput.value = "";
@@ -114,8 +114,12 @@ export class DnnDropzone {
     });
   }
 
-  private getFilesFromFileList(files: FileList) : File[] {
+  private getFilesFromFileList(files: FileList | undefined | null) : File[] {
     var fileList: File[] = [];
+    if (files == undefined) {
+      return fileList;
+    }
+
     for (let index = 0; index < files.length; index++) {
       const file = files[index];
       fileList.push(file);
@@ -129,7 +133,7 @@ export class DnnDropzone {
       return false;
     } 
 
-    if ( files.some(file => file.size > this.maxFileSize )) {
+    if (this.maxFileSize != undefined && files.some(file => file.size > this.maxFileSize! )) {
       return true;
     }
 
@@ -162,7 +166,7 @@ export class DnnDropzone {
     if (this.name != undefined && this.name.length > 0){
       var data = new FormData();
       files.forEach(file => {
-        data.append(this.name, file);
+        data.append(this.name || "", file);
       });
       this.internals.setFormValue(data);
     }
@@ -172,7 +176,9 @@ export class DnnDropzone {
   {
     event.stopPropagation();
     event.preventDefault();
-    event.dataTransfer.dropEffect = "copy";
+    if (event.dataTransfer != null){
+      event.dataTransfer.dropEffect = "copy";
+    }
     this.dropzone.classList.add("dropping");
   };
 
@@ -181,7 +187,7 @@ export class DnnDropzone {
     for (let fileIndex = 0; fileIndex < files.length; fileIndex++) {
       const file = files[fileIndex];
       var regex = /(?:\.([^.]+))?$/;
-      const fileExtension = regex.exec(file.name)[1]?.toLowerCase();
+      const fileExtension = regex.exec(file.name)![1]?.toLowerCase();
       if (fileExtension == undefined){
         hasInvalid = true;
       }
@@ -193,6 +199,8 @@ export class DnnDropzone {
 
       return hasInvalid;
     }
+
+    return false;
   }
 
   private handleDrop = (dropEvent: DragEvent) => {
@@ -200,7 +208,7 @@ export class DnnDropzone {
     this.fileTooLarge = false;
     dropEvent.stopPropagation();
     dropEvent.preventDefault();
-    const files = dropEvent.dataTransfer.files;
+    const files = dropEvent.dataTransfer!.files;
 
     if (this.hasInvalidExtensions(Array.from(files))){
       this.invalidExtension = true;
@@ -233,11 +241,11 @@ export class DnnDropzone {
   private applySnapshot(): void {
     var canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
-    canvas.width = this.videoSettings.width;
-    canvas.height = this.videoSettings.height;
-    context.drawImage(this.videoPreview, 0, 0);
+    canvas.width = this.videoSettings.width!;
+    canvas.height = this.videoSettings.height!;
+    context!.drawImage(this.videoPreview, 0, 0);
     canvas.toBlob(blob => {
-      var file = new File([blob], "image.jpeg", {type:"image/jpeg"});
+      var file = new File([blob!], "image.jpeg", {type:"image/jpeg"});
       this.takingPicture = false;
       
       var fileList = [file];
@@ -246,18 +254,18 @@ export class DnnDropzone {
   }
 
   private getInvalidExtensionsMessage() {
-    var message = this.localResx.allowedFileExtensions;
-    var message = message.replace("{0}", this.allowedExtensions.join(", "));
+    var message = this.localResx.allowedFileExtensions!;
+    var message = message.replace("{0}", this.allowedExtensions!.join(", "));
     return message;
   }
   
   render() {
     return (
       <Host
-        ref={e => this.dropzone = e}
+        ref={e => this.dropzone = e!}
         class="dropzone"
-        onDragOver={e => this.handleDragOver(e)}
-        onDrop={e => this.handleDrop(e)}
+        onDragOver={(e: DragEvent) => this.handleDragOver(e)}
+        onDrop={(e: DragEvent) => this.handleDrop(e)}
         onDragLeave={() => this.dropzone.classList.remove("dropping")}
         tabIndex={this.focused ? -1 : 0}
         onFocus={() => this.uploadLabel.focus()}
@@ -273,13 +281,13 @@ export class DnnDropzone {
               class="upload-file"
               tabIndex={0}
               onKeyDown={e => this.handleUploadKeyDown(e)}
-              ref={el => this.uploadLabel = el}
+              ref={el => this.uploadLabel = el!}
               onFocus={() => this.focused = true}
               onBlur={() => this.focused = false}
             >
               <input
                 type="file"
-                ref={el => this.fileInput = el}
+                ref={el => this.fileInput = el!}
                 onChange={e => this.handleUploadButton(e.target as HTMLInputElement)}
               >
               </input>
@@ -314,7 +322,7 @@ export class DnnDropzone {
         }
         {this.takingPicture &&
           <div class="video-preview">
-            <video ref={e => this.videoPreview = e} />
+            <video ref={e => this.videoPreview = e!} />
             <button
               onClick={() => this.applySnapshot()}
             >
@@ -328,7 +336,7 @@ export class DnnDropzone {
               <p>
                 {this.localResx.uploadSizeTooLarge}
                 <br/>
-                {this.localResx.fileSizeLimit.replace("{0}", getReadableFileSizeString(this.maxFileSize)) } 
+                {this.localResx.fileSizeLimit!.replace("{0}", getReadableFileSizeString(this.maxFileSize!)) } 
               </p>
           </div>
         }

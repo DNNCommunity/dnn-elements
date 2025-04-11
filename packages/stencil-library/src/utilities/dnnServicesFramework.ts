@@ -20,13 +20,13 @@ export class DnnServicesFramework{
 
     getServiceRoot = (moduleName: string) =>
     {
-        var serviceRoot = window.top.dnn.getVar("sf_siteRoot", "/");
+        var serviceRoot = window.top!.dnn.getVar("sf_siteRoot", "/");
         serviceRoot += "API/" + moduleName + "/";
         return serviceRoot;
     }
 
     getTabId = () => {
-        var tabId = window.top.dnn.getVar("sf_tabId", "-1");
+        var tabId = window.top!.dnn.getVar("sf_tabId", "-1");
         return parseInt(tabId);
     }
 

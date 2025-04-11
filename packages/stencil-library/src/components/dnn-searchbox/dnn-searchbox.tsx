@@ -13,12 +13,6 @@ export class DnnSearchbox {
   @Prop() placeholder?: string = "";
 
   /**
-   * @deprecated Use debounceTime (or debounce-time) instead. Will be removed in v0.25.0
-   * Debounces the queryChanged by 500ms.
-   */
-  @Prop() debounced: boolean = true;
-
-  /**
    * How many milliseconds to wait before firing the queryChanged event.
    */
   @Prop() debounceTime: number = 500;
@@ -30,7 +24,7 @@ export class DnnSearchbox {
    * Fires up each time the search query changes.
    * The data passed is the new query.
    */
-  @Event() queryChanged: EventEmitter<string>;
+  @Event() queryChanged!: EventEmitter<string>;
   
   @Watch('query')
   handleQueryChanged(){
@@ -42,7 +36,7 @@ export class DnnSearchbox {
   
   @State() focused: any;
 
-  private inputField: HTMLInputElement;
+  private inputField!: HTMLInputElement;
   
   private debounceTimer: any = null;
 
@@ -54,7 +48,7 @@ export class DnnSearchbox {
         onBlur={() => this.inputField.blur()}
       >
         <input
-          ref={el => this.inputField = el}
+          ref={el => this.inputField = el!}
           type="text"
           value={this.query}
           placeholder={this.placeholder}

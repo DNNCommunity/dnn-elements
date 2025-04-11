@@ -7,12 +7,12 @@ import { DnnAutocompleteSuggestion } from '../../dnn-autocomplete/types';
   styleUrl: 'dnn-example-form.scss',
 })
 export class DnnExampleForm {
-  @State() resume: File;
-  @State() profilePicData: string;
+  @State() resume?: File;
+  @State() profilePicData?: string;
   @State() profilePicConfirmed = false;
 
-  private fieldset: HTMLDnnFieldsetElement;
-  private characterPicker: HTMLDnnAutocompleteElement;
+  private fieldset!: HTMLDnnFieldsetElement;
+  private characterPicker!: HTMLDnnAutocompleteElement;
   
   @State() filteredUsers: DnnAutocompleteSuggestion[] = [];
 
@@ -36,8 +36,8 @@ export class DnnExampleForm {
   ];
 
 
-  private characters = [];
-  private charactersAbortController: AbortController;
+  private characters: any[] = [];
+  private charactersAbortController?: AbortController;
   private lastFetchedPage = 0;
 
   private searchCharacters = async (search: string, page: number) => {
@@ -59,7 +59,7 @@ export class DnnExampleForm {
       }
     }
     catch (error) {
-      if (error.name != "AbortError") {
+      if ((error as any).name != "AbortError") {
         // Handle the error unless it is a normal AbortError which we ignore.
         // eslint-disable-next-line no-console
         console.error(error);
@@ -77,7 +77,7 @@ export class DnnExampleForm {
     this.searchCharacters(search, 1)
     .then(result => {
       this.characters = result.results;
-      var suggestions: DnnAutocompleteSuggestion[] = result.results.map(r => ({
+      var suggestions: DnnAutocompleteSuggestion[] = result.results.map((r: any) => ({
         value: r.id,
         label: r.name,
       }));
@@ -115,8 +115,8 @@ export class DnnExampleForm {
       <Host>
         <dnn-fieldset
           class="full-form-width"
-          ref={el => this.fieldset = el}
-          label="Sample Form"
+          ref={el => this.fieldset = el!}
+          label="dnn-fieldset"
           helpText="This is some help text."
         >
           <div slot="label-prefix">
@@ -134,7 +134,13 @@ export class DnnExampleForm {
             </svg>
           </div>
           <h2>This is a sample form</h2>
-          <p>It includes dnn elements commonly used in forms.</p>
+          <p>
+            The wrapper around this text is a dnn-fieldset which wraps most input fields
+            with useful and responsive utilites to support a label, help text and validation reporting.
+          </p>
+          <p>
+            The rest of this form includes dnn elements commonly used in forms.
+          </p>
           <button onClick={() => this.fieldset.setFocused()}>Focus</button>
           <button onClick={() => this.fieldset.setBlurred()}>Blur</button>
           <button onClick={() => this.fieldset.disable()}>Disable</button>
@@ -145,6 +151,18 @@ export class DnnExampleForm {
           <button onClick={() => this.fieldset.unpinLabel()}>Unpin Label</button>
         </dnn-fieldset>
         <form
+          onError={e => console.error(e)}
+          onInvalid={e => {
+            e.preventDefault();
+            console.group("Form invalid");
+            const form = e.target as HTMLFormElement;
+            const invalidControls = form.querySelectorAll<HTMLElement>(":invalid");
+            invalidControls.forEach(control => {
+              const validityState = (control as HTMLInputElement).validity;
+              console.log(control, validityState);
+            });
+            console.groupEnd();
+          }}
           onSubmit={e => {
             e.preventDefault();
             /* eslint-disable no-console */
@@ -284,7 +302,7 @@ export class DnnExampleForm {
                 required
               >
                 <option value="">--- Select ---</option>
-                <option value="male">Male</option>
+                <option value="male" selected>Male</option>
                 <option value="female">Female</option>
                 <option value="other">Prefer not to say</option>
               </dnn-select>
@@ -317,13 +335,13 @@ export class DnnExampleForm {
                     />
                     <div style={{display: "flex", flexDirection:"column", justifyContent: "center"}}>
                       <span>{suggestion.label.split(":")[0]}</span>
-                      <span>{suggestion.label.split(":").pop().trim()}</span>
+                      <span>{suggestion.label.split(":")!.pop()!.trim()}</span>
                     </div>
                   </div>
                 }
               />
               <dnn-autocomplete
-                ref={el => this.characterPicker = el}
+                ref={el => this.characterPicker = el!}
                 label="Favorite Character"
                 helpText="Select your favorite Rick and Morty character"
                 renderSuggestion={suggestion =>{
@@ -411,11 +429,15 @@ export class DnnExampleForm {
                   }}
                 />
               </label>
+              <label>
+                I agree to terms
+                <dnn-checkbox name="terms" required />
+              </label>
             </div>
           </dnn-fieldset>
           <div class="controls">
-            <dnn-button reversed formButtonType="reset">Reset</dnn-button>
-            <dnn-button formButtonType="submit">Submit</dnn-button>
+            <dnn-button reversed type="reset">Reset</dnn-button>
+            <dnn-button type="submit">Submit</dnn-button>
           </div>
         </form>
       </Host>

@@ -19,10 +19,10 @@ export class DnnTreeviewItem {
   @Prop({mutable: true, reflect: true}) expanded: boolean = false;
 
   /** Fires when the user expands a node. */
-  @Event({bubbles: false}) userExpanded: EventEmitter<void>;
+  @Event({bubbles: false}) userExpanded!: EventEmitter<void>;
 
   /** Fires when the user collapses a node. */
-  @Event({bubbles: false}) userCollapsed: EventEmitter<void>;
+  @Event({bubbles: false}) userCollapsed!: EventEmitter<void>;
 
   /** Manages state for whether or not item has children. */
   @State() hasChildren: boolean = false;
@@ -43,7 +43,7 @@ export class DnnTreeviewItem {
 
   private childElement!: HTMLDivElement;
   private collapsible!: HTMLDnnCollapsibleElement;
-  private button: HTMLButtonElement;
+  private button!: HTMLButtonElement;
 
   componentDidLoad() {
     requestAnimationFrame(() => {
@@ -89,10 +89,10 @@ export class DnnTreeviewItem {
         onFocus={() => this.button?.focus()}
         onBlur={() => this.button?.blur()}
       >
-        <div class="expander" ref={el => this.expander = el}>
+        <div class="expander" ref={el => this.expander = el!}>
           {this.hasChildren &&
             <button
-              ref={el => this.button = el}
+              ref={el => this.button = el!}
               onClick={() => this.toggleCollapse()}
               onFocus={() => this.focused = true}
               onBlur={() => this.focused = false}
@@ -105,8 +105,8 @@ export class DnnTreeviewItem {
           <div class="item-slot">
             <slot></slot>
           </div>
-          <dnn-collapsible ref={el => this.collapsible = el} expanded={this.expanded}>
-            <div ref={el => this.childElement = el}>
+          <dnn-collapsible ref={el => this.collapsible = el!} expanded={this.expanded}>
+            <div ref={el => this.childElement = el!}>
               <slot name="children"></slot>
             </div>
           </dnn-collapsible>

@@ -16,13 +16,13 @@ export class DnnRichtext {
    * you can use 'customizeOptions' to modify the options before initializing the editor
    * instead of providing all options here.
    */
-  @Prop() options: Config;
+  @Prop() options?: Config;
   
   /** Sets the value of the content of the editor. */
-  @Prop() value: string;
+  @Prop() value = "";
 
   /** Name of the field when used in a form. */
-  @Prop() name: string;
+  @Prop() name?: string;
 
   /** Allows registering your own plugins.
    * The callback will be called with the editor instance as the only argument durig initialization.
@@ -36,9 +36,9 @@ export class DnnRichtext {
   /** Customize the options before initializing the editor, will have all the default options merged with 'options' if passed.
    * This is called last after merging default options with your custom 'options' and just before initializing the editor.
   */
-  @Prop() customizeOptions: (options: Config) => Config;
+  @Prop() customizeOptions?: (options: Config) => Config;
 
-  @Element() host: HTMLDnnRichtextElement;
+  @Element() host!: HTMLDnnRichtextElement;
   
   @Watch("value")
   watchValueChanged(newValue: string) {
@@ -49,17 +49,17 @@ export class DnnRichtext {
   }
   
   /** Fires when the value changed. */
-  @Event() valueChange: EventEmitter<string>;
+  @Event() valueChange!: EventEmitter<string>;
   
   /** Fires during value input. */
-  @Event() valueInput: EventEmitter<string>;
+  @Event() valueInput!: EventEmitter<string>;
   
-  @AttachInternals() internals: ElementInternals;
+  @AttachInternals() internals!: ElementInternals;
   
   @State() focused = false;
 
-  private textArea: HTMLTextAreaElement;
-  private editor: Jodit;
+  private textArea!: HTMLTextAreaElement;
+  private editor!: Jodit;
   private dnnDefaultOptions: Config = {
     ...Jodit.defaultOptions,
     useSplitMode: true,
@@ -76,7 +76,7 @@ export class DnnRichtext {
     }
     this.plugins.forEach(plugin => Jodit.plugins.add(plugin.name, plugin.callback));
     this.editor = Jodit.make(this.textArea, mergedOptions);
-    this.editor.value = decodeHtml(this.value);
+    this.editor.value = decodeHtml(this.value ?? "");
     this.setFormValue();
     this.editor.e.on('input', () => this.valueInput.emit(this.editor.value));
     this.editor.e.on("focus", () => this.focused = true);
@@ -87,9 +87,9 @@ export class DnnRichtext {
     });
   }
 
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+   
   formResetCallback() {
-    this.editor.value = decodeHtml(this.value);
+    this.editor.value = decodeHtml(this.value || "");
     this.internals.setValidity({});
     this.setFormValue();
   }
@@ -113,7 +113,7 @@ export class DnnRichtext {
         onBlur={() => this.focused = false}
       >
         <textarea
-          ref={el => this.textArea = el}
+          ref={el => this.textArea = el!}
           onFocus={() => this.focused = true}
           onBlur={() => this.focused = false}
         >

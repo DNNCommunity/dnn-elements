@@ -8,7 +8,7 @@ import { Component, Prop, Host, h } from '@stencil/core';
 export class DnnProgressBar {
 
   /** Sets to current value for the progress bar. */
-  @Prop() value: number;
+  @Prop() value = 0;
 
   /** Sets the max value for the progress bar. */
   @Prop() max: number = 100;

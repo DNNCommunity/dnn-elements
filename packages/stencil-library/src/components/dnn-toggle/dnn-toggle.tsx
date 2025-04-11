@@ -1,7 +1,6 @@
 import { Component, h, Element, Prop, Event, EventEmitter, Watch, Host, AttachInternals, State, Listen } from "@stencil/core";
 import { DnnToggleChangeEventDetail } from "./toggle-interface";
 
-
 @Component({
     tag: "dnn-toggle",
     styleUrl: "dnn-toggle.scss",
@@ -10,7 +9,7 @@ import { DnnToggleChangeEventDetail } from "./toggle-interface";
 })
 export class DnnToggle {
 
-    @Element() element: HTMLDnnToggleElement;
+    @Element() element!: HTMLDnnToggleElement;
 
     /** If 'true' the toggle is checked (on). */
     @Prop({ mutable: true }) checked = false;
@@ -19,7 +18,7 @@ export class DnnToggle {
     @Prop() disabled = false;
 
     /** The field name to use in forms. */
-    @Prop() name: string;
+    @Prop() name?: string;
 
     /** The value to post when used in forms. */
     @Prop() value: string = "on";
@@ -32,7 +31,7 @@ export class DnnToggle {
         this.checked = !this.checked;
     }
 
-    @AttachInternals() internals: ElementInternals;
+    @AttachInternals() internals!: ElementInternals;
     
     @Watch("checked")
     checkedChanged(newValue: boolean) {
@@ -42,16 +41,15 @@ export class DnnToggle {
     
     @State() focused = false;
     
-    private button: HTMLButtonElement;
+    private button!: HTMLButtonElement;
     
     componentWillLoad() {
         this.originalChecked = this.checked;
         this.setFormValue();
     }
 
-    private originalChecked: boolean;
+    private originalChecked!: boolean;
 
-    // eslint-disable-next-line @stencil-community/own-methods-must-be-private
     formResetCallback() {
         this.internals.setValidity({});
         this.checked = this.originalChecked;
@@ -78,7 +76,7 @@ export class DnnToggle {
                 onBlur={() => this.button.blur()}
             >
                 <button
-                    ref={el => this.button = el}
+                    ref={el => this.button = el!}
                     disabled={this.disabled}
                     class={{ 'checked': this.checked }}
                     onFocus={() => this.focused = true}

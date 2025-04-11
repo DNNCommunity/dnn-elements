@@ -10,9 +10,17 @@ export class DnnModal {
   @Element() el!: HTMLDnnModalElement;
   
   /**
+   * @deprecated boolean props should always default to being false per html specs, use preventBackdropDismiss instead, will be removed in v0.28.0.
    * Pass false to remove the backdrop click auto-dismiss feature.
    */
-  @Prop() backdropDismiss: boolean = true;
+   
+  @Prop() backdropDismiss?: boolean;
+
+  /**
+   * Pass true to remove the backdrop click auto-dismiss feature.
+   * Defaults to false.
+   */
+  @Prop({mutable: true, reflect: true}) preventBackdropDismiss?: boolean = false;
 
   /**
    * Optionally pass the aria-label text for the close button.
@@ -26,11 +34,20 @@ export class DnnModal {
   @Prop() resizable?: boolean = false;
 
   /**
+   * @deprecated boolean props should always default to being false per html specs, use hideCloseButton instead, will be removed in v0.28.0.
    * Optionally you can pass false to not show the close button.
    * If you decide to do so, you should either not also prevent dismissal by clicking the backdrop
    * or provide your own dismissal logic in the modal content.
    */
-  @Prop() showCloseButton?: boolean = true;
+   
+  @Prop() showCloseButton?: boolean;
+
+  /**
+   * Optionally you can pass true to not show the close button.
+   * If you decide to do so, you should either not also prevent dismissal by clicking the backdrop
+   * or provide your own dismissal logic in the modal content.
+   */
+  @Prop({mutable: true, reflect: true}) hideCloseButton: boolean = false;
 
   /**
    * Reflects the visible state of the modal.
@@ -57,6 +74,20 @@ export class DnnModal {
    * Fires when the modal is dismissed.
   */
  @Event() dismissed!: EventEmitter;
+
+ componentWillLoad() {
+   if (this.backdropDismiss != undefined) {
+    // eslint-disable-next-line no-console
+    console.warn("The 'backdropDismiss' prop is deprecated. Use 'preventBackdropDismiss' instead.");
+    this.preventBackdropDismiss = !this.backdropDismiss;
+  }
+
+  if (this.showCloseButton != undefined) {
+    // eslint-disable-next-line no-console
+    console.warn("The 'showCloseButton' prop is deprecated. Use 'hideCloseButton' instead.");
+    this.hideCloseButton = !this.showCloseButton;
+  }
+ }
  
  componentDidLoad() {
    this.seDrag?.addEventListener("mousedown", this.handleResizeMouseDown);
@@ -71,13 +102,12 @@ export class DnnModal {
   
   
   
-  private modal: HTMLDivElement;
-  private seDrag: HTMLDivElement;
-  private mouseX: number;
-  private mouseY: number;
-  private w: number;
-  private h: number;
-  northDrag: HTMLDivElement;
+  private modal!: HTMLDivElement;
+  private seDrag!: HTMLDivElement;
+  private mouseX = 0;
+  private mouseY = 0;
+  private w = 0;
+  private h = 0;
   private handleDismiss(){
     this.visible = false;
     this.dismissed.emit();
@@ -86,7 +116,7 @@ export class DnnModal {
   // FOR BACKDROP CLICK
   private handleBackdropClick(e: MouseEvent): void {
     const element = (e.target as HTMLElement);
-    if (element.id === "backdrop" && this.backdropDismiss){
+    if (element.id === "backdrop" && !this.preventBackdropDismiss){
       this.handleDismiss();
     }
   }
@@ -129,8 +159,8 @@ export class DnnModal {
           class={this.visible ? 'overlay visible' : 'overlay'}
           onClick={e => this.handleBackdropClick(e)}
         >
-          <div class="modal" ref={el=>this.modal = el}> 
-            {this.showCloseButton &&
+          <div class="modal" ref={el=>this.modal = el!}> 
+            {!this.hideCloseButton &&
               <button
                 class="close"
                 aria-label={this.closeText}
@@ -142,7 +172,7 @@ export class DnnModal {
             <div class="content">
               <slot></slot>
             </div>
-            { this.resizable && <div class='se' ref={el=>this.seDrag = el}></div>}
+            { this.resizable && <div class='se' ref={el=>this.seDrag = el!}></div>}
           </div>
         </div>
       </Host>

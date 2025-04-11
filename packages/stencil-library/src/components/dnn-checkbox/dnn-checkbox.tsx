@@ -1,8 +1,7 @@
-import { Component, Element, Host, h, Prop, Event, EventEmitter, AttachInternals, Watch, State, Listen } from '@stencil/core';
+import { Component, Element, Host, h, Prop, Event, EventEmitter, AttachInternals, Watch, State, Listen, Method } from '@stencil/core';
 import { CheckedState } from './types';
 
 /**
- * @slot @deprecated - The label for the checkbox - Obsolete, implement your own label.
  * @slot checkedicon - Allows overriding the default checked icon.
  * @slot uncheckedicon - Allows overriding the unchecked icon.
  * @slot intermediateicon - If intermadiate state is used, allows overriding its icon.
@@ -14,7 +13,7 @@ import { CheckedState } from './types';
   formAssociated: true,
 })
 export class DnnCheckbox {
-  @Element() el: HTMLDnnCheckboxElement;
+  @Element() el!: HTMLDnnCheckboxElement;
 
   /** Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined) */
   @Prop({mutable: true}) checked: CheckedState = "unchecked";
@@ -26,7 +25,10 @@ export class DnnCheckbox {
   @Prop() value: string = "on";
 
   /** The name to show in the formData (if using forms). */
-  @Prop() name: string;
+  @Prop() name = "";
+
+  /** If true, the checkbox needs to be checked for the form validation to succeed. */
+  @Prop() required: boolean = false;
 
   /** A function that will be called when the checkbox needs to change state and returns the next state.
    * Can be used to customize the order of the states when the component is clicked.
@@ -34,20 +36,36 @@ export class DnnCheckbox {
    */
   @Prop() nextStateHandler: (currentState: CheckedState) => CheckedState = this.defaultNextStateHandler;
 
+  /** Can be used to customize the validation message when the field is required but not checked. */
+  @Prop() requiredMessage: string = "The checkbox must be checked";
+
   /** Fires up when the checkbox checked property changes. */
-  @Event() checkedchange: EventEmitter<"checked" | "unchecked" | "intermediate">;
+  @Event() checkedchange!: EventEmitter<"checked" | "unchecked" | "intermediate">;
 
   @Listen("click", { capture: true })
   handleClick() {
     this.changeState();
   }
 
+  /** Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState */
+    @Method()
+    async checkValidity(): Promise<ValidityState> {
+      if (this.required && this.checked != "checked") {
+        this.valid = false;
+      }
+      if (!this.valid) {
+        this.internals.setValidity({ valueMissing: true }, this.requiredMessage);
+      }
+      return this.internals.validity;
+    }
+
   @State() focused = false;
+  @State() valid = true;
   
-  @AttachInternals() internals: ElementInternals;
+  @AttachInternals() internals!: ElementInternals;
   
-  private originalChecked: CheckedState;
-  private button: HTMLButtonElement;
+  private originalChecked!: CheckedState;
+  private button!: HTMLButtonElement;
 
   componentWillLoad() {
     this.originalChecked = this.checked;
@@ -60,10 +78,16 @@ export class DnnCheckbox {
       var data = new FormData();
       data.append(this.name, this.value);
       this.internals.setFormValue(data);
+      this.internals.setValidity({});
+      this.valid = true;
+    }
+
+    if (newValue != "checked" && this.required) {
+      this.valid = false;
+      this.internals.setValidity({ valueMissing: true }, this.requiredMessage);
     }
   }
-
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+   
   formResetCallback() {
     this.internals.setValidity({});
     this.checked = this.originalChecked;
@@ -101,6 +125,15 @@ export class DnnCheckbox {
     this.checkedchange.emit(this.checked);
   }
 
+  private getButtonClasses(): string | { [className: string]: boolean; } | undefined {
+    let classes = `icon ${this.checked}`;
+    if (!this.valid) {
+      classes += " invalid";
+    }
+
+    return classes;
+  }
+
   render() {
     return (
       <Host
@@ -109,10 +142,10 @@ export class DnnCheckbox {
         onBlur={() => this.button.blur()}
       >
         <button
-          ref={el => this.button = el}
+          ref={el => this.button = el!}
           onFocus={() => this.focused = true}
           onBlur={() => this.focused = false}
-          class={`icon ${this.checked}`}
+          class={this.getButtonClasses()}
         >
           <div class="unchecked">
             <slot name="uncheckedicon">

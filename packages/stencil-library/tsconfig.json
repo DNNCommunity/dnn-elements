@@ -16,6 +16,8 @@
     "jsx": "react",
     "jsxFactory": "h",
     "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true
   },
   "include": [
     "src",

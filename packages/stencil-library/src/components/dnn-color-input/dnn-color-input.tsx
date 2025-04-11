@@ -28,10 +28,10 @@ export class DnnColorInput {
   @Prop({mutable: true}) darkColor: string = "0000044";
 
   /** The label for this input. */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /** Disables interacting with the component. */
-  @Prop() readonly: boolean;
+  @Prop() readonly?: boolean;
 
   /** Can be used to customize the text language. */
   @Prop() localization: {
@@ -53,30 +53,30 @@ export class DnnColorInput {
   };
 
   /** The name for this input if forms are used. */
-  @Prop() name: string;
+  @Prop() name?: string;
 
   /** Defines the help label displayed under the field. */
-  @Prop() helpText: string;
+  @Prop() helpText?: string;
 
   /** If true, the picker will allow selecting a contast color too. */
-  @Prop() useContrastColor: boolean;
+  @Prop() useContrastColor?: boolean;
 
   /** If true, the picker will allow selecting a light color too. */
-  @Prop() useLightColor: boolean;
+  @Prop() useLightColor?: boolean;
 
   /** If true, the picker will allow selecting a dark color too. */
-  @Prop() useDarkColor: boolean;
+  @Prop() useDarkColor?: boolean;
 
   /** Fires when the color was changed and confirmed. */
-  @Event() colorChange: EventEmitter<DnnColorInfo>;
+  @Event() colorChange!: EventEmitter<DnnColorInfo>;
 
   /** Fires live as the user is trying color changes inside the modal. */
-  @Event() colorInput: EventEmitter<DnnColorInfo>;
+  @Event() colorInput!: EventEmitter<DnnColorInfo>;
   
-  @State() currentColor: DnnColorInfo;
-  @State() focused: boolean;
+  @State() currentColor?: DnnColorInfo;
+  @State() focused?: boolean;
 
-  @AttachInternals() internals: ElementInternals;
+  @AttachInternals() internals!: ElementInternals;
 
   @Watch("currentColor")
   currentColorChanged(oldValue: DnnColorInfo, newValue: DnnColorInfo){
@@ -87,7 +87,7 @@ export class DnnColorInput {
     }
   }
 
-  private button: HTMLButtonElement;
+  private button!: HTMLButtonElement;
   
   componentWillLoad() {
     this.labelId = generateRandomId();
@@ -103,8 +103,7 @@ export class DnnColorInput {
   componentDidLoad() {
     this.setFormValue();
   }
-
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+   
   formResetCallback() {
     this.internals.setValidity({});
     this.color = this.originalColor.color;
@@ -114,14 +113,14 @@ export class DnnColorInput {
     this.currentColor = this.originalColor;
   }
   
-  private colorModal: HTMLDnnModalElement;
-  private originalColor: DnnColorInfo;
+  private colorModal!: HTMLDnnModalElement;
+  private originalColor!: DnnColorInfo;
   
   private hasMultipleColors = () => {
     return this.useContrastColor || this.useLightColor || this.useDarkColor;
   }
 
-  private labelId: string;
+  private labelId?: string;
 
   private showPicker(): void {
     this.currentColor = {
@@ -134,10 +133,10 @@ export class DnnColorInput {
   }
 
   private saveColor(): void {
-    this.color = this.currentColor.color;
-    this.contrastColor = this.currentColor.contrastColor;
-    this.lightColor = this.currentColor.lightColor;
-    this.darkColor = this.currentColor.darkColor;
+    this.color = this.currentColor!.color;
+    this.contrastColor = this.currentColor!.contrastColor;
+    this.lightColor = this.currentColor!.lightColor;
+    this.darkColor = this.currentColor!.darkColor;
     this.colorModal.hide();
     this.colorChange.emit(this.currentColor);
   }
@@ -186,7 +185,7 @@ export class DnnColorInput {
             </div>
             {!this.readonly &&
               <button
-                ref={el => this.button = el}
+                ref={el => this.button = el!}
                 aria-labelledby={this.labelId}
                 onClick={() => this.showPicker()}
                 onFocus={() => this.focused = true}
@@ -203,7 +202,7 @@ export class DnnColorInput {
             <slot name="suffix"></slot>
           </div>
         </dnn-fieldset>
-        <dnn-modal ref={el => this.colorModal = el} backdropDismiss={false}>
+        <dnn-modal ref={el => this.colorModal = el!} preventBackdropDismiss>
           {this.currentColor &&
             <div class="modal-content">
               {this.hasMultipleColors() &&
@@ -211,14 +210,14 @@ export class DnnColorInput {
                   <dnn-tab tabTitle={this.localization.normal}>
                     <dnn-color-picker
                       color={this.currentColor?.color}
-                      onColorChanged={e => this.currentColor = {...this.currentColor, color: e.detail.hex}}
+                      onColorChanged={e => this.currentColor = {...this.currentColor!, color: e.detail.hex}}
                     />
                   </dnn-tab>
                   {this.useLightColor &&
                     <dnn-tab tabTitle={this.localization.light}>
                       <dnn-color-picker
                         color={this.currentColor?.lightColor}
-                        onColorChanged={e => this.currentColor = {...this.currentColor, lightColor: e.detail.hex}}
+                        onColorChanged={e => this.currentColor = {...this.currentColor!, lightColor: e.detail.hex}}
                       />
                     </dnn-tab>
                   }
@@ -226,7 +225,7 @@ export class DnnColorInput {
                     <dnn-tab tabTitle={this.localization.dark}>
                       <dnn-color-picker
                         color={this.currentColor?.darkColor}
-                        onColorChanged={e => this.currentColor = {...this.currentColor, darkColor: e.detail.hex}}
+                        onColorChanged={e => this.currentColor = {...this.currentColor!, darkColor: e.detail.hex}}
                       />
                     </dnn-tab>
                   }
@@ -234,7 +233,7 @@ export class DnnColorInput {
                     <dnn-tab tabTitle={this.localization.contrast}>
                       <dnn-color-picker
                         color={this.currentColor?.contrastColor}
-                        onColorChanged={e => this.currentColor = {...this.currentColor, contrastColor: e.detail.hex}}
+                        onColorChanged={e => this.currentColor = {...this.currentColor!, contrastColor: e.detail.hex}}
                       />
                     </dnn-tab>
                   }
@@ -243,7 +242,7 @@ export class DnnColorInput {
               {!this.hasMultipleColors() &&
                 <dnn-color-picker
                   color={this.currentColor?.color}
-                  onColorChanged={e => this.currentColor = {...this.currentColor, color: e.detail.hex}}
+                  onColorChanged={e => this.currentColor = {...this.currentColor!, color: e.detail.hex}}
                 />
               }
               <h3>Preview</h3>

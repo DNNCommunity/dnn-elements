@@ -14,7 +14,7 @@ export class DnnSortIcon {
   
   @State() focused = false;
   
-  private button: HTMLButtonElement;
+  private button!: HTMLButtonElement;
   
   private changeSort(): void {
     switch (this.sortDirection) {
@@ -42,7 +42,7 @@ export class DnnSortIcon {
         onBlur={() => this.button.blur()}
       >
         <button
-          ref={el => this.button = el}
+          ref={el => this.button = el!}
           class={{"active": this.sortDirection != "none"}}
           onClick={() => this.changeSort()}
           onFocus={() => this.focused = true}

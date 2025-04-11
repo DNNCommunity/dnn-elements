@@ -13,7 +13,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: readme,
+        component: readme.default,
       }
     }
   },

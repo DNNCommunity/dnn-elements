@@ -5,8 +5,6 @@
 <!-- Auto Generated Below -->
 
 
-> **[DEPRECATED]** - The label for the checkbox - Obsolete, implement your own label.
-
 ## Usage
 
 ### HTML
@@ -36,13 +34,15 @@
 
 ## Properties
 
-| Property           | Attribute          | Description                                                                                                                                                                                                                                             | Type                                           | Default                        |
-| ------------------ | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------ |
-| `checked`          | `checked`          | Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)                                                                                                                                                  | `"checked" \| "intermediate" \| "unchecked"`   | `"unchecked"`                  |
-| `name`             | `name`             | The name to show in the formData (if using forms).                                                                                                                                                                                                      | `string`                                       | `undefined`                    |
-| `nextStateHandler` | --                 | A function that will be called when the checkbox needs to change state and returns the next state. Can be used to customize the order of the states when the component is clicked. Only called if you also use the tri-state feature (useIntermediate). | `(currentState: CheckedState) => CheckedState` | `this.defaultNextStateHandler` |
-| `useIntermediate`  | `use-intermediate` | Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)                                                                                                                                       | `boolean`                                      | `false`                        |
-| `value`            | `value`            | The value for this checkbox (not to be confused with its checked state).                                                                                                                                                                                | `string`                                       | `"on"`                         |
+| Property           | Attribute            | Description                                                                                                                                                                                                                                             | Type                                           | Default                          |
+| ------------------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | -------------------------------- |
+| `checked`          | `checked`            | Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)                                                                                                                                                  | `"checked" \| "intermediate" \| "unchecked"`   | `"unchecked"`                    |
+| `name`             | `name`               | The name to show in the formData (if using forms).                                                                                                                                                                                                      | `string`                                       | `""`                             |
+| `nextStateHandler` | `next-state-handler` | A function that will be called when the checkbox needs to change state and returns the next state. Can be used to customize the order of the states when the component is clicked. Only called if you also use the tri-state feature (useIntermediate). | `(currentState: CheckedState) => CheckedState` | `this.defaultNextStateHandler`   |
+| `required`         | `required`           | If true, the checkbox needs to be checked for the form validation to succeed.                                                                                                                                                                           | `boolean`                                      | `false`                          |
+| `requiredMessage`  | `required-message`   | Can be used to customize the validation message when the field is required but not checked.                                                                                                                                                             | `string`                                       | `"The checkbox must be checked"` |
+| `useIntermediate`  | `use-intermediate`   | Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)                                                                                                                                       | `boolean`                                      | `false`                          |
+| `value`            | `value`              | The value for this checkbox (not to be confused with its checked state).                                                                                                                                                                                | `string`                                       | `"on"`                           |
 
 
 ## Events
@@ -50,6 +50,19 @@
 | Event           | Description                                          | Type                                                      |
 | --------------- | ---------------------------------------------------- | --------------------------------------------------------- |
 | `checkedchange` | Fires up when the checkbox checked property changes. | `CustomEvent<"checked" \| "intermediate" \| "unchecked">` |
+
+
+## Methods
+
+### `checkValidity() => Promise<ValidityState>`
+
+Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+
+#### Returns
+
+Type: `Promise<ValidityState>`
+
+
 
 
 ## Slots

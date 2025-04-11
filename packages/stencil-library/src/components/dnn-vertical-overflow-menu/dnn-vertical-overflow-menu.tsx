@@ -17,8 +17,8 @@ export class DnnVerticalOverflowMenu {
   @State() showDropdownMenu = false;
 
   private menu!: HTMLDivElement;
-  private dropdown: HTMLDivElement;
-  private resizeObserver: ResizeObserver;
+  private dropdown!: HTMLDivElement;
+  private resizeObserver!: ResizeObserver;
   private button!: HTMLButtonElement;
   private previousMenuWidth = 0;
 
@@ -41,7 +41,7 @@ export class DnnVerticalOverflowMenu {
   }
 
   private moveItemsToDropDownIfNecessery(){
-    const menuItems = Array.from(this.menu.querySelector("slot").assignedElements());
+    const menuItems = Array.from(this.menu.querySelector("slot")!.assignedElements());
     const availableWidth = this.menu.getBoundingClientRect().width;
     let neededWidth = parseFloat(getComputedStyle(this.element).fontSize)*2;
     menuItems.forEach(item => neededWidth += this.getFullWidth(item));
@@ -61,12 +61,12 @@ export class DnnVerticalOverflowMenu {
     if (this.dropdown == undefined || !this.dropdown.hasChildNodes()){
       return;
     }
-    const menuItems = Array.from(this.menu.querySelector("slot").assignedElements());
+    const menuItems = Array.from(this.menu.querySelector("slot")!.assignedElements());
     const availableWidth = this.menu.getBoundingClientRect().width;
     let neededWidth = parseFloat(getComputedStyle(this.element).fontSize)*2;
     neededWidth += (menuItems.length - 1) * parseFloat(getComputedStyle(this.element).fontSize);
     menuItems.forEach(item => neededWidth += this.getFullWidth(item));
-    const firstItem = this.dropdown.querySelector("slot").assignedElements()[0];
+    const firstItem = this.dropdown.querySelector("slot")!.assignedElements()[0];
     if (firstItem != undefined){
       neededWidth += this.getFullWidth(firstItem);
     }
@@ -98,7 +98,7 @@ export class DnnVerticalOverflowMenu {
     if (this.showDropdownMenu){
       this.dropdown.classList.add("visible");
       let contentHeight = 0;
-      const items = Array.from(this.dropdown.querySelector("slot").assignedElements());
+      const items = Array.from(this.dropdown.querySelector("slot")!.assignedElements());
       items.forEach(item => contentHeight += item.getBoundingClientRect().height);
       const emHeight = parseFloat(getComputedStyle(this.dropdown).fontSize);
       const gapsHeight = emHeight * (this.dropdown.children.length - 1) / 2;
@@ -131,18 +131,18 @@ export class DnnVerticalOverflowMenu {
     return (
       <Host>
         <div class="menu-container">
-          <div class="menu" ref={el => this.menu = el}>
+          <div class="menu" ref={el => this.menu = el!}>
             <slot></slot>
           </div>
             {this.showDropdownButton &&
               <div class="overflow">
                 <button
-                  ref={el => this.button = el}
+                  ref={el => this.button = el!}
                   class="icon"
                   onClick={() => this.toggleOverflowMenu()}>
                   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
                 </button>
-                <div class="dropdown" ref={el => this.dropdown = el}>
+                <div class="dropdown" ref={el => this.dropdown = el!}>
                   <slot name="dropdown"></slot>
                 </div>
               </div>

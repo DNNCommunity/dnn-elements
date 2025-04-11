@@ -11,34 +11,34 @@ import { Debounce } from '../../utilities/debounce';
 export class DnnAutocomplete {
 
   /** The label for this autocomplete. */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /** The name for this autocomplete when used in forms. */
-  @Prop() name: string;
+  @Prop() name?: string;
 
   /** Defines the help label displayed under the field. */
-  @Prop() helpText: string;
+  @Prop() helpText?: string;
 
   /** Defines the value for this autocomplete */
-  @Prop({mutable: true, reflect: true}) value: string;
+  @Prop({mutable: true, reflect: true}) value = "";
 
   /** Defines whether the field requires having a value. */
-  @Prop() required: boolean;
+  @Prop() required?: boolean;
 
   /** Defines whether the field is disabled. */
-  @Prop() disabled: boolean;
+  @Prop() disabled?: boolean;
 
   /** Sets the list of suggestions. */
   @Prop() suggestions: DnnAutocompleteSuggestion[] = [];
 
   /** Callback to render suggestions, if not provided, only the label will be rendered. */
-  @Prop() renderSuggestion: (suggestion: DnnAutocompleteSuggestion) => HTMLElement;
+  @Prop() renderSuggestion?: (suggestion: DnnAutocompleteSuggestion) => HTMLElement;
   
   /** The total amount of suggestions for the given search query.
    * This can be used to show virtual scroll and pagination progressive feeding.
    * The needMoreItems event should be used to request more items.
    */
-  @Prop() totalSuggestions: number;
+  @Prop() totalSuggestions?: number;
  
   /** How many suggestions to preload in pixels of their height.
   * This is used to calculate the virtual scroll height and request
@@ -51,26 +51,26 @@ export class DnnAutocomplete {
   */
   @Prop() autocomplete: string = "off";
 
-  @Element() element: HTMLDnnAutocompleteElement;
+  @Element() element!: HTMLDnnAutocompleteElement;
 
   /** Fires when the value has changed and the user exits the input. */
-  @Event() valueChange: EventEmitter<number | string | string[]>;
+  @Event() valueChange!: EventEmitter<number | string | string[]>;
 
   /** Fires when the using is inputing data (on keystrokes). */
-  @Event() valueInput: EventEmitter<number | string | string[]>;
+  @Event() valueInput!: EventEmitter<number | string | string[]>;
 
   /** Fires when the component needs to display more items in the suggestions. */
-  @Event() needMoreItems: EventEmitter<NeedMoreItemsEventArgs>;
+  @Event() needMoreItems!: EventEmitter<NeedMoreItemsEventArgs>;
 
   /** Fires when the search query has changed.
    * This is almost like valueInput, but it is debounced
    * and can be used to trigger a search query without overloading
    * API endpoints while typing.
    */
-  @Event() searchQueryChanged: EventEmitter<string>;
+  @Event() searchQueryChanged!: EventEmitter<string>;
   
   /** Fires when an item is selected. */
-  @Event() itemSelected: EventEmitter<string>;
+  @Event() itemSelected!: EventEmitter<string>;
 
   /** Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState */
   @Method()
@@ -80,6 +80,8 @@ export class DnnAutocomplete {
       this.fieldset.setValidity(false, this.inputField.validationMessage);
     }
     this.fieldset.setValidity(true, "");
+    this.valid = validity;
+    this.internals.setValidity(this.inputField.validity, this.inputField.validationMessage);
     return this.inputField.validity;
   }
   
@@ -100,8 +102,8 @@ export class DnnAutocomplete {
 
   @State() focused = false;
   @State() valid = true;
-  @State() customValidityMessage: string;
-  @State() selectedIndex: number;
+  @State() customValidityMessage?: string;
+  @State() selectedIndex?: number;
   @State() positionInitialized = false;
   @State() lastScrollTop = 0;
   @State() displayValue: string = "";
@@ -115,7 +117,7 @@ export class DnnAutocomplete {
   }
   
   /** attacth the internals for form validation */
-  @AttachInternals() internals: ElementInternals;
+  @AttachInternals() internals!: ElementInternals;
   
   /** Listener for mouse down event */
   @Listen("click", { target: "document", capture: false })
@@ -134,11 +136,11 @@ export class DnnAutocomplete {
   }
 
   private inputField!: HTMLInputElement;
-  private suggestionsContainer: HTMLUListElement;
-  private labelId: string;
-  private fieldset: HTMLDnnFieldsetElement;
+  private suggestionsContainer!: HTMLUListElement;
+  private fieldset!: HTMLDnnFieldsetElement;
+  private labelId!: string;
   
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+   
   formResetCallback() {
     this.inputField.setCustomValidity("");
     this.valid = true;
@@ -167,13 +169,15 @@ export class DnnAutocomplete {
     if (this.customValidityMessage == undefined) {
       this.customValidityMessage = this.inputField.validationMessage;
     }
+    this.fieldset.setValidity(false, this.inputField.validationMessage);
+    this.internals.setValidity(this.inputField.validity, this.inputField.validationMessage);
   }
 
   private handleChange() {
     this.valueChange.emit(this.value);
     if (this.name != undefined) {
       var data = new FormData();
-      data.append(this.name, this.value.toString());
+      data.append(this.name, this.value);
       this.internals.setFormValue(data);
     }
   }
@@ -184,7 +188,7 @@ export class DnnAutocomplete {
       return false;
     }
 
-    if (this.value != undefined && this.value != "") {
+    if (this.value != "") {
       return false;
     }
 
@@ -246,13 +250,15 @@ export class DnnAutocomplete {
         this.selectedIndex = Math.max(this.selectedIndex - 1, 0);
       }
     }
-    this.value = this.suggestions[this.selectedIndex]?.value || this.value;
+    this.value = this.selectedIndex == undefined ? this.value : this.suggestions[this.selectedIndex]?.value;
     if (e.key === "Enter") {
-      var selectedItem = this.suggestions[this.selectedIndex];
-      this.value = selectedItem.value;
-      this.inputField.value = selectedItem.label;
-      this.itemSelected.emit(selectedItem.value);
-      this.focused = false;
+      if (this.selectedIndex != undefined){
+        var selectedItem = this.suggestions[this.selectedIndex];
+        this.value = selectedItem.value;
+        this.inputField.value = selectedItem.label;
+        this.itemSelected.emit(selectedItem.value);
+        this.focused = false;
+      }
     }
     if (e.key === "Tab"){
       this.focused = false;
@@ -273,7 +279,7 @@ export class DnnAutocomplete {
 
   private getVirtualScrollHeight(): number {
     const itemHeight = this.findAverageSuggestionHeight();
-    const upcomingItems = this.totalSuggestions - this.suggestions.length;
+    const upcomingItems = (this.totalSuggestions || NaN) - this.suggestions.length;
     return itemHeight * upcomingItems;
   }
 
@@ -335,7 +341,7 @@ export class DnnAutocomplete {
     }
   }
 
-  handleBlur(): void {
+  private handleBlur(): void {
     var validity = this.inputField.checkValidity();
     this.valid = validity;
     this.fieldset.setValidity(validity, this.inputField.validationMessage);
@@ -350,7 +356,7 @@ export class DnnAutocomplete {
         onBlur={() => this.inputField.blur()}
       >
         <dnn-fieldset
-          ref={el => this.fieldset = el}
+          ref={el => this.fieldset = el!}
           invalid={!this.valid}
           focused={this.focused}
           label={`${this.label ?? ""}${this.required ? " *" : ""}`}
@@ -361,7 +367,7 @@ export class DnnAutocomplete {
         >
           <div class="inner-container">
             <input
-              ref={(el) => this.inputField = el}
+              ref={(el) => this.inputField = el!}
               name={this.name}
               type="search"
               role="combobox"
@@ -373,7 +379,7 @@ export class DnnAutocomplete {
               autoComplete={this.autocomplete}
               value={this.displayValue}
               onFocus={() => {
-                this.searchQueryChanged.emit(this.value || "");
+                this.searchQueryChanged.emit(this.value);
                 this.focused = true;
               }}
               onBlur={() => this.handleBlur()}
@@ -383,10 +389,15 @@ export class DnnAutocomplete {
               aria-labelledby={this.labelId}
               onKeyDown={e => this.handleKeyDown(e)}
             />
+            {!this.valid &&
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="error">
+                <path d="M479.982-280q14.018 0 23.518-9.482 9.5-9.483 9.5-23.5 0-14.018-9.482-23.518-9.483-9.5-23.5-9.5-14.018 0-23.518 9.482-9.5 9.483-9.5 23.5 0 14.018 9.482 23.518 9.483 9.5 23.5 9.5ZM453-433h60v-253h-60v253Zm27.266 353q-82.734 0-155.5-31.5t-127.266-86q-54.5-54.5-86-127.341Q80-397.681 80-480.5q0-82.819 31.5-155.659Q143-709 197.5-763t127.341-85.5Q397.681-880 480.5-880q82.819 0 155.659 31.5Q709-817 763-763t85.5 127Q880-563 880-480.266q0 82.734-31.5 155.5T763-197.684q-54 54.316-127 86Q563-80 480.266-80Zm.234-60Q622-140 721-239.5t99-241Q820-622 721.188-721 622.375-820 480-820q-141 0-240.5 98.812Q140-622.375 140-480q0 141 99.5 240.5t241 99.5Zm-.5-340Z"/>
+              </svg>
+            }
             <ul
               class={this.focused && this.suggestions.length > 0 ? "show" : ""}
               role="listbox"
-              ref={el => this.suggestionsContainer = el}
+              ref={el => this.suggestionsContainer = el!}
               onScroll={() => this.handleSuggestionsScroll()}
             >
               {this.suggestions.map((suggestion, index) => (

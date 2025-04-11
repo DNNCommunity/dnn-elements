@@ -10,22 +10,19 @@ import { generateRandomId } from '../../utilities/stringUtilities';
 export class DnnSelect {
 
   /** The label for this input. */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /** The name for this input, if used in forms. */
-  @Prop() name: string;
+  @Prop() name?: string;
 
   /** Defines whether the field requires having a value. */
-  @Prop() required: boolean;
+  @Prop() required?: boolean;
 
   /** Defines the help label displayed under the field. */
-  @Prop() helpText: string;
+  @Prop() helpText?: string;
   
   /** Defines whether the field is disabled. */
-  @Prop() disabled: boolean;
-  
-  /** @deprecated This control has its own validatin reporting, will be removed in v0.25.0 */
-  @Prop() disableValidityReporting: boolean;
+  @Prop() disabled?: boolean;
 
   /** Defines the type of automatic completion the browser can use.
    * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
@@ -33,16 +30,16 @@ export class DnnSelect {
   @Prop() autocomplete = "off";
   
   /** The value of the input. */
-  @Prop({mutable: true, reflect:true}) value: string;
+  @Prop({mutable: true, reflect:true}) value = "";
   
-  @Element() el: HTMLDnnSelectElement;
+  @Element() el!: HTMLDnnSelectElement;
   
   @State() focused: boolean = false;
   @State() valid = true;
-  @State() customValidityMessage: string;
+  @State() customValidityMessage?: string;
 
   /** Fires when the value has changed and the user exits the input. */
-  @Event() valueChange: EventEmitter<string>;
+  @Event() valueChange!: EventEmitter<string>;
   
   /** Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState */
   @Method()
@@ -54,17 +51,16 @@ export class DnnSelect {
     return this.select.validity;
   }
   
-  @AttachInternals() internals: ElementInternals;
+  @AttachInternals() internals!: ElementInternals;
   
-  private slot: HTMLSlotElement;
-  private select: HTMLSelectElement;
-  private observer: MutationObserver;
-  private labelId: string;
-  private originalValue: string;
-  private fieldset: HTMLDnnFieldsetElement;
+  private slot!: HTMLSlotElement;
+  private select!: HTMLSelectElement;
+  private observer!: MutationObserver;
+  private fieldset!: HTMLDnnFieldsetElement;
+  private labelId!: string;
+  private originalValue!: string;
   
   componentWillLoad() {
-    this.originalValue = this.value;
     this.labelId = generateRandomId();
     this.observer = new MutationObserver((mutations) => {
       for (let mutation of mutations) {
@@ -80,15 +76,27 @@ export class DnnSelect {
   
   componentDidLoad() {
     requestAnimationFrame(() => {
+      this.applySlottedItemsToSelect();
+      
+      // Initialize value based on the "selected" attribute of slotted options
+      const slottedItems = this.el.querySelectorAll('option');
+      const selectedOption = Array.from(slottedItems).find(option => option.hasAttribute('selected'));
+      if (selectedOption) {
+        this.value = selectedOption.getAttribute('value') || selectedOption.textContent || '';
+      } else if (slottedItems.length > 0) {
+        this.value = slottedItems[0].getAttribute('value') || slottedItems[0].textContent || '';
+      }
+
+      // Set the original value for form reset
+      this.originalValue = this.value;
       var validity = this.select.validity;
       var validityMessage = validity.valid ? "" : this.select.validationMessage;
       this.internals.setValidity(this.select.validity, validityMessage);
-      this.applySlottedItemsToSelect();
       this.setFormValue();
+
     });
   }
-
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+   
   formResetCallback() {
     this.internals.setValidity({});
     this.value = this.originalValue;
@@ -159,11 +167,11 @@ export class DnnSelect {
           helpText={this.helpText}
           id={this.labelId}
           onClick={() => !this.focused && this.select.focus()}
-          ref={el => this.fieldset = el}
+          ref={el => this.fieldset = el!}
         >
           <div class="inner-container">
             <select
-              ref={el => this.select = el}
+              ref={el => this.select = el!}
               autoComplete={this.autocomplete}
               onFocus={() => this.focused = true}
               onBlur={() => this.handleBlur()}
