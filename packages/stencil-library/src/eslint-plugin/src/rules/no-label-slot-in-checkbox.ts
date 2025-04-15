@@ -46,7 +46,7 @@ export const noLabelSlotInCheckbox: Rule.RuleModule = {
                                                 const checkboxText = context.sourceCode.getText(node);
 
                                                 // Combine the label text and checkbox into a label wrapper with multiline formatting
-                                                const fixedText = `<label>\n${labelText}\n${checkboxText}</dnn-checkbox>\n</label>`;
+                                                const fixedText = `<label>\n${checkboxText}</dnn-checkbox>\n${labelText}\n</label>`;
 
                                                 return fixer.replaceText(parent, fixedText);
                                             }
