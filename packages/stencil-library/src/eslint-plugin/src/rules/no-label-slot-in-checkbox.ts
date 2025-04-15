@@ -19,7 +19,6 @@ export const noLabelSlotInCheckbox: Rule.RuleModule = {
             JSXOpeningElement(node: Rule.Node) {
                 if (node.type === "JSXOpeningElement") {
                     const jsxNode = node as JSXOpeningElement;
-                    console.log(jsxNode);
                     if (jsxNode.name.type === "JSXIdentifier" && jsxNode.name.name === "dnn-checkbox") {
                         const parent = context.getAncestors().find(ancestor => ancestor.type === "JSXElement");
                         if (parent) {

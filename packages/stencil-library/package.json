@@ -15,10 +15,11 @@
   "unpkg": "dist/dnn/dnn.js",
   "files": [
     "dist/",
-    "loader/"
+    "loader/",
+    "src/eslint-plugin/"
   ],
   "scripts": {
-    "build": "npm run eslint && stencil build --docs",
+    "build": "npm run build:eslint-plugin && npm run eslint && stencil build --docs",
     "postbuild": "license-checker-rseidelsohn --out licenses.json --json --direct --relativeLicensePath --relativeModulePath",
     "watch": "stencil build --dev --watch",
     "start": "stencil build --dev --watch --serve",
