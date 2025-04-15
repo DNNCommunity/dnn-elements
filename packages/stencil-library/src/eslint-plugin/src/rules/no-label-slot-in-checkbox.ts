@@ -21,38 +21,21 @@ export const noLabelSlotInCheckbox: Rule.RuleModule = {
                     const jsxNode = node as JSXOpeningElement;
                     if (jsxNode.name.type === "JSXIdentifier" && jsxNode.name.name === "dnn-checkbox") {
                         const parent = context.getAncestors().find(ancestor => ancestor.type === "JSXElement");
-                        if (parent) {
-                            const hasLabel = parent.children.some(child => {
-                                return child.type === "JSXElement" &&
-                                    child.openingElement.name.type === "JSXIdentifier" &&
-                                    child.openingElement.name.name === "label";
-                            });
-                            if (hasLabel) {
+                        if (parent && parent.type === "JSXElement") {
+                            const parentElement = parent as any; // Cast to access children
+                            const innerContent = parentElement.children
+                                .map((child: any) => context.sourceCode.getText(child))
+                                .join("")
+                                .trim();
+
+                            if (innerContent) {
                                 context.report({
                                     node: node,
                                     messageId: "noLabelSlotInCheckbox",
                                     fix: (fixer) => {
-                                        if (parent && parent.type === "JSXElement" && Array.isArray(parent.children)) {
-                                            const label = parent.children.find(child => 
-                                                child &&
-                                                child.type === "JSXElement" &&
-                                                child.openingElement &&
-                                                child.openingElement.name &&
-                                                child.openingElement.name.type === "JSXIdentifier" &&
-                                                child.openingElement.name.name === "label");
-
-                                            if (label && label.type === "JSXElement") {
-                                                const labelText = context.sourceCode.getText(label).replace(/<label>|<\/label>/g, '').trim();
-                                                const checkboxText = context.sourceCode.getText(node);
-
-                                                // Combine the label text and checkbox into a label wrapper with multiline formatting
-                                                const fixedText = `<label>\n${checkboxText}</dnn-checkbox>\n${labelText}\n</label>`;
-
-                                                return fixer.replaceText(parent, fixedText);
-                                            }
-                                        }
-
-                                        return null;
+                                        const checkboxText = context.sourceCode.getText(node);
+                                        const fixedText = `<label>\n${checkboxText.replace(innerContent, "").trim()}</dnn-checkbox>\n${innerContent}\n</label>`;
+                                        return fixer.replaceText(parent, fixedText);
                                     }
                                 });
                             }
