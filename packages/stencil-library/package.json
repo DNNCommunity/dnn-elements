@@ -31,7 +31,7 @@
     "generate": "stencil generate",
     "eslint": "eslint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build-storybook": "echo 'Storybook build is disabled for this release.'",
     "deploy-storybook": "gh-pages -d storybook-static --branch site",
     "build:eslint-plugin": "tsc -p src/eslint-plugin/tsconfig.json"
   },

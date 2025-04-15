@@ -144,9 +144,9 @@ class Build : NukeBuild
             .SetCommand("test")
             .SetProcessWorkingDirectory(StencilDirectory));
         }
-      NpmRun(s => s
-        .SetProcessWorkingDirectory(StencilDirectory)
-        .SetCommand("build-storybook"));
+      // NpmRun(s => s
+      //   .SetProcessWorkingDirectory(StencilDirectory)
+      //   .SetCommand("build-storybook"));
     });
   Target SetupGithubActor => _ => _
     .Executes(() =>
@@ -279,8 +279,8 @@ class Build : NukeBuild
     .DependsOn(Compile)
     .Executes(() =>
     {
-      NpmRun(s => s
-        .SetProcessWorkingDirectory(StencilDirectory)
-        .SetCommand("deploy-storybook"));
+      // NpmRun(s => s
+      //   .SetProcessWorkingDirectory(StencilDirectory)
+      //   .SetCommand("deploy-storybook"));
     });
 }
