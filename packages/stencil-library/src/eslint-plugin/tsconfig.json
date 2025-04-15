@@ -3,7 +3,7 @@
       "target": "es2019",
       "module": "commonjs",
       "moduleResolution": "Node",
-      "outDir": "../../dist/eslint-plugin",
+      "outDir": "../../eslint-plugin",
       "strict": true,
       "esModuleInterop": true,
       "declaration": true,

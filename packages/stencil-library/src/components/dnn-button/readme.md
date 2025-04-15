@@ -87,7 +87,6 @@
  - [dnn-color-input](../dnn-color-input)
  - [dnn-example-form](../examples/dnn-example-form)
  - [dnn-permissions-grid](../dnn-permissions-grid)
- - [test-form](../test-form)
 
 ### Depends on
 
@@ -101,7 +100,6 @@ graph TD;
   dnn-color-input --> dnn-button
   dnn-example-form --> dnn-button
   dnn-permissions-grid --> dnn-button
-  test-form --> dnn-button
   style dnn-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

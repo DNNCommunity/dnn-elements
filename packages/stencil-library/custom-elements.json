@@ -2424,24 +2424,6 @@
           "cssParts": []
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/test-form/test-form.tsx",
-      "declarations": [
-        {
-          "kind": "class",
-          "name": "test-form.tsx",
-          "tagName": "test-form",
-          "description": "",
-          "attributes": [],
-          "members": [],
-          "events": [],
-          "slots": [],
-          "cssProperties": [],
-          "cssParts": []
-        }
-      ]
     }
   ]
 }

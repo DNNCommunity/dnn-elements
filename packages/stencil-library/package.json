@@ -16,7 +16,7 @@
   "files": [
     "dist/",
     "loader/",
-    "src/eslint-plugin/"
+    "eslint-plugin/"
   ],
   "scripts": {
     "build": "npm run build:eslint-plugin && npm run eslint && stencil build --docs",
