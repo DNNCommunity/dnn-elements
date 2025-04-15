@@ -1,19 +1,21 @@
-import { noLabelSlotInCheckbox } from "./rules/no-label-slot-in-checkbox";
-
-export const rules = {
-    "no-label-slot-in-checkbox": noLabelSlotInCheckbox
-};
+import { Linter } from "eslint";
+import rules from "./rules";
+import configs from "./configs"
 
 const plugin = {
     rules,
-    configs: {
-        recommended: {
-            plugins: ["@dnn-community/eslint-plugin"],
-            rules: {
-                "@dnn-community/no-label-slot-in-checkbox": "error"
-            }
-        }
-    }
+    configs,
+};
+
+const flatRecommended: Linter.FlatConfig = {
+    plugins: {
+        "@dnn-elements": plugin,
+    },
+    rules: configs.recommended.rules,
+};
+
+configs.flat = {
+    recommended: flatRecommended,
 }
 
 export default plugin;
