@@ -26,6 +26,11 @@ export class DnnSelect {
   
   /** @deprecated This control has its own validatin reporting, will be removed in v0.25.0 */
   @Prop() disableValidityReporting: boolean;
+
+  /** Defines the type of automatic completion the browser can use.
+   * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+   */
+  @Prop() autocomplete = "off";
   
   /** The value of the input. */
   @Prop({mutable: true, reflect:true}) value: string;
@@ -74,8 +79,13 @@ export class DnnSelect {
   }
   
   componentDidLoad() {
-    this.applySlottedItemsToSelect();
-    this.setFormValue();
+    requestAnimationFrame(() => {
+      var validity = this.select.validity;
+      var validityMessage = validity.valid ? "" : this.select.validationMessage;
+      this.internals.setValidity(this.select.validity, validityMessage);
+      this.applySlottedItemsToSelect();
+      this.setFormValue();
+    });
   }
 
   // eslint-disable-next-line @stencil-community/own-methods-must-be-private
@@ -154,6 +164,7 @@ export class DnnSelect {
           <div class="inner-container">
             <select
               ref={el => this.select = el}
+              autoComplete={this.autocomplete}
               onFocus={() => this.focused = true}
               onBlur={() => this.handleBlur()}
               onChange={e => this.handleChange((e.target as HTMLSelectElement).value)}

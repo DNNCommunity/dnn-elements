@@ -1,4 +1,4 @@
-import { Component, Prop, State, Event, Element, h, Host, EventEmitter, Method, AttachInternals, Listen } from '@stencil/core';
+import { Component, Prop, State, Event, Element, h, Host, EventEmitter, Method, AttachInternals, Listen, Watch } from '@stencil/core';
 import { DnnAutocompleteSuggestion, NeedMoreItemsEventArgs } from './types';
 import { Debounce } from '../../utilities/debounce';
 
@@ -33,18 +33,23 @@ export class DnnAutocomplete {
 
   /** Callback to render suggestions, if not provided, only the label will be rendered. */
   @Prop() renderSuggestion: (suggestion: DnnAutocompleteSuggestion) => HTMLElement;
-
+  
   /** The total amount of suggestions for the given search query.
    * This can be used to show virtual scroll and pagination progressive feeding.
    * The needMoreItems event should be used to request more items.
    */
   @Prop() totalSuggestions: number;
-
+ 
   /** How many suggestions to preload in pixels of their height.
-   * This is used to calculate the virtual scroll height and request
-   * more items before they get into view.
-   */
+  * This is used to calculate the virtual scroll height and request
+  * more items before they get into view.
+  */
   @Prop() preloadThresholdPixels: number = 1000;
+
+  /** Defines the type of automatic completion the browser could use.
+  * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+  */
+  @Prop() autocomplete: string = "off";
 
   @Element() element: HTMLDnnAutocompleteElement;
 
@@ -100,6 +105,14 @@ export class DnnAutocomplete {
   @State() positionInitialized = false;
   @State() lastScrollTop = 0;
   @State() displayValue: string = "";
+
+  @Watch("value")
+  handleValueChange(newValue: string) {
+    this.displayValue = newValue;
+
+    // Find the index of the selected item
+    this.selectedIndex = this.suggestions.findIndex(s => s.value === newValue);
+  }
   
   /** attacth the internals for form validation */
   @AttachInternals() internals: ElementInternals;
@@ -357,7 +370,7 @@ export class DnnAutocomplete {
               aria-activedescendant={this.selectedIndex !== undefined ? `option-${this.selectedIndex}` : undefined}
               disabled={this.disabled}
               required={this.required}
-              autoComplete="off"
+              autoComplete={this.autocomplete}
               value={this.displayValue}
               onFocus={() => {
                 this.searchQueryChanged.emit(this.value || "");

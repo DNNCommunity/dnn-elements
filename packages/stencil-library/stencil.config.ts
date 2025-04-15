@@ -152,5 +152,6 @@ export const config: Config = {
   sourceMap: true,
   testing: {
     browserHeadless: "new",
+    browserArgs: ["--no-sandbox", "--disable-setuid-sandbox"],
   },
 };

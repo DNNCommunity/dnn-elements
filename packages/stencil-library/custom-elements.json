@@ -12,6 +12,15 @@
           "description": "Building a component that is flexible enough for multiple use cases is not easy. This component externalizes some of its behavior to make it more reusable. To use it effectivelly please read the usage examples carefuly.",
           "attributes": [
             {
+              "name": "autocomplete",
+              "type": {
+                "text": "string"
+              },
+              "description": "Defines the type of automatic completion the browser could use.\nSee https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete",
+              "default": "\"off\"",
+              "required": false
+            },
+            {
               "name": "disabled",
               "type": {
                 "text": "boolean"
@@ -1130,6 +1139,14 @@
               "required": false
             },
             {
+              "name": "inputmode",
+              "type": {
+                "text": "\"decimal\" | \"email\" | \"none\" | \"numeric\" | \"search\" | \"tel\" | \"text\" | \"url\""
+              },
+              "description": "Hints at the type of data that might be entered by the user while editing the element or its contents.\nThis allows a browser to display an appropriate virtual keyboard.",
+              "required": false
+            },
+            {
               "name": "label",
               "type": {
                 "text": "string"
@@ -1748,6 +1765,15 @@
           "tagName": "dnn-select",
           "description": "",
           "attributes": [
+            {
+              "name": "autocomplete",
+              "type": {
+                "text": "string"
+              },
+              "description": "Defines the type of automatic completion the browser can use.\nSee https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete",
+              "default": "\"off\"",
+              "required": false
+            },
             {
               "name": "disable-validity-reporting",
               "type": {
@@ -2395,6 +2421,24 @@
               "description": "Allows customizing the right pane background-color"
             }
           ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/test-form/test-form.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "test-form.tsx",
+          "tagName": "test-form",
+          "description": "",
+          "attributes": [],
+          "members": [],
+          "events": [],
+          "slots": [],
+          "cssProperties": [],
           "cssParts": []
         }
       ]

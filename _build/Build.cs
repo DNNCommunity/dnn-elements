@@ -109,24 +109,6 @@ class Build : NukeBuild
     .DependsOn(Clean)
     .Executes(() =>
     {
-      NpmLogger = (type, output) =>
-      {
-        if (type == OutputType.Std)
-        {
-          Serilog.Log.Information(output);
-        }
-        if (type == OutputType.Err)
-        {
-          if (output.StartsWith("npm WARN", StringComparison.OrdinalIgnoreCase))
-          {
-            Serilog.Log.Warning(output);
-          }
-          else
-          {
-            Serilog.Log.Error(output);
-          }
-        }
-      };
       var version = gitRepository.IsOnMainOrMasterBranch() ? GitVersion.MajorMinorPatch : GitVersion.SemVer;
       Npm($"version {version} --allow-same-version --git-tag-version false --workspaces", RootDirectory);
       
@@ -182,9 +164,6 @@ class Build : NukeBuild
     .DependsOn(SetupGithubActor)
     .Executes(() =>
     {
-      // Prevents a bug where git sends ok message to the error output sink
-      GitLogger = (type, output) => Serilog.Log.Information(output);
-
       // Because in CI we are in detached head,
       // we create a local deploy branch to track our commit.
       Git("switch -c deploy");
@@ -211,7 +190,6 @@ class Build : NukeBuild
     .Executes(() =>
     {
       var version = gitRepository.IsOnMainOrMasterBranch() ? GitVersion.MajorMinorPatch : GitVersion.SemVer;
-      GitLogger = (type, output) => Serilog.Log.Information(output);
       Git($"tag v{version}");
       Git($"push origin --tags");
     });
