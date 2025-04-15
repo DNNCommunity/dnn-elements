@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
-      "target": "ES2022",
-      "module": "CommonJS",
+      "target": "es2019",
+      "module": "commonjs",
       "moduleResolution": "Node",
-      "outDir": "./dist",
+      "outDir": "../../dist/eslint-plugin",
       "strict": true,
       "esModuleInterop": true,
       "declaration": true,
@@ -12,5 +12,5 @@
       "forceConsistentCasingInFileNames": true,
       "sourceMap": true
     },
-    "include": ["src", "jest.config.js"]
-  }
+    "include": ["src/index.ts"]
+}
