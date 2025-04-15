@@ -35,3 +35,37 @@ Stay tuned - coming soon.
 
 ## Usage (Individual Components)
 Usage of each component is documented within the component folder right here on GitHub, along with some code samples too.
+
+## Usage (ESLint Plugin)
+
+The `dnn-elements` package includes an ESLint plugin with custom rules, such as `noLabelSlotInCheckbox`. Here's how to configure it:
+
+### For Older ESLint Configurations (e.g., `.eslintrc`)
+
+Update your ESLint configuration file (e.g., `.eslintrc.json`):
+```json
+{
+  "plugins": ["@dnncommunity/dnn-elements"],
+  "rules": {
+    "@dnncommunity/dnn-elements/no-label-slot-in-checkbox": "error"
+  }
+}
+```
+
+### For Newer ESLint Flat Configurations
+
+Update your ESLint configuration file (e.g., `eslint.config.js`):
+```javascript
+import dnnElementsPlugin from "@dnncommunity/dnn-elements/src/eslint-plugin/dist";
+
+export default [
+  {
+    plugins: {
+      "@dnncommunity/dnn-elements": dnnElementsPlugin
+    },
+    rules: {
+      "@dnncommunity/dnn-elements/no-label-slot-in-checkbox": "error"
+    }
+  }
+];
+```

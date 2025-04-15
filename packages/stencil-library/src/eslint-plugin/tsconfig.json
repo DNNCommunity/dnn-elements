@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "target": "ES2022",
+      "module": "CommonJS",
+      "moduleResolution": "Node",
+      "outDir": "./dist",
+      "strict": true,
+      "esModuleInterop": true,
+      "declaration": true,
+      "skipLibCheck": true,
+      "types": ["jest", "node", "estree-jsx"],
+      "forceConsistentCasingInFileNames": true,
+      "sourceMap": true
+    },
+    "include": ["src", "jest.config.js"]
+  }

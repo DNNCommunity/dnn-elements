@@ -15,10 +15,11 @@
   "unpkg": "dist/dnn/dnn.js",
   "files": [
     "dist/",
-    "loader/"
+    "loader/",
+    "src/eslint-plugin/"
   ],
   "scripts": {
-    "build": "npm run eslint && stencil build --docs",
+    "build": "npm run build:eslint-plugin && npm run eslint && stencil build --docs",
     "postbuild": "license-checker-rseidelsohn --out licenses.json --json --direct --relativeLicensePath --relativeModulePath",
     "watch": "stencil build --dev --watch",
     "start": "stencil build --dev --watch --serve",
@@ -26,11 +27,13 @@
     "poststart": "license-checker-rseidelsohn --out licenses.json --json --direct --relativeLicensePath --relativeModulePath",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
+    "test.eslint": "jest --config jest.eslint.config.js",
     "generate": "stencil generate",
     "eslint": "eslint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "deploy-storybook": "gh-pages -d storybook-static --branch site"
+    "deploy-storybook": "gh-pages -d storybook-static --branch site",
+    "build:eslint-plugin": "tsc -p src/eslint-plugin/tsconfig.json"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.1.0",
@@ -48,6 +51,7 @@
     "@storybook/web-components": "^8.3.2",
     "@storybook/web-components-webpack5": "^8.3.2",
     "@timkendrick/monaco-editor": "^0.0.9",
+    "@types/estree-jsx": "^1.0.5",
     "@types/jest": "^29.5.10",
     "@typescript-eslint/eslint-plugin": "^8.0.1",
     "@typescript-eslint/parser": "^8.0.1",
@@ -67,8 +71,8 @@
     "react-dom": "^18.2.0",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "storybook": "^8.3.2",
-    "typescript": "5.6.3",
-    "typescript-debounce-decorator": "^0.0.18"
+    "ts-jest": "^29.3.2",
+    "typescript": "5.6.3"
   },
   "dependencies": {
     "jodit": "^4.2.27"
