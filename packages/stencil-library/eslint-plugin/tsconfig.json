@@ -10,6 +10,7 @@
       "skipLibCheck": true,
       "types": ["jest", "node", "estree-jsx"],
       "forceConsistentCasingInFileNames": true,
+      "resolveJsonModule": true,
       "sourceMap": true,
       "isolatedModules":true,
       "jsx": "react",
