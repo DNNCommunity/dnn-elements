@@ -19,7 +19,7 @@
     "eslint-plugin/dist"
   ],
   "exports": {
-    "./eslint": {
+    "./eslint-plugin": {
       "import": "./eslint-plugin/dist/index.js"
     }
   },

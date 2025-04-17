@@ -4,6 +4,7 @@
       "module": "NodeNext",
       "moduleResolution": "nodenext",
       "outDir": "dist",
+      "rootDir": "src",
       "strict": true,
       "esModuleInterop": true,
       "declaration": true,
@@ -12,6 +13,8 @@
       "forceConsistentCasingInFileNames": true,
       "resolveJsonModule": true,
       "sourceMap": true,
+      "inlineSources": true,
+      "inlineSourceMap": false,
       "isolatedModules":true,
       "jsx": "react",
       "jsxFactory": "h"
