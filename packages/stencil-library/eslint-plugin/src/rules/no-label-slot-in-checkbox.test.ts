@@ -24,6 +24,19 @@ ruleTester.run("no-label-slot-in-checkbox", rule, {
             code: "<dnn-checkbox></dnn-checkbox>",
             languageOptions: jsxParserOptions,
         },
+        {
+            code: '<dnn-checkbox><div slot="uncheckedicon">Test</div></dnn-checkbox>',
+            languageOptions: jsxParserOptions,
+        },
+        {
+            code: [
+                "<dnn-checkbox>",
+                "  <div slot=\"uncheckedicon\">unchecked</div>",
+                "  <div slot=\"checkedicon\">checked</div>",
+                "</dnn-checkbox>",
+            ].join("\n"),
+            languageOptions: jsxParserOptions,
+        }
     ],
     invalid: [
         {
@@ -33,13 +46,27 @@ ruleTester.run("no-label-slot-in-checkbox", rule, {
                 "</dnn-checkbox>",
             ].join("\n"),
             languageOptions: jsxParserOptions,
-            errors: [{ messageId: "noLabelSlotInCheckbox" }],
-            output: [
-                "<label>",
-                "  <dnn-checkbox onClick={e => console.log(e)} />",
+            errors: [{ messageId: "noDefaultSlotInCheckbox" }],
+        },
+        {
+            code: [
+                "<dnn-checkbox onClick={e => console.log(e)}>",
+                "  <div slot=\"uncheckedicon\">unchecked</div>",
                 "  Something",
-                "</label>",
+                "</dnn-checkbox>",
             ].join("\n"),
+            languageOptions: jsxParserOptions,
+            errors: [{ messageId: "noDefaultSlotInCheckbox" }],
+        },
+        {
+            code: [
+                "<dnn-checkbox onClick={e => console.log(e)}>",
+                "  <div slot=\"uncheckedicon\">unchecked</div>",
+                "  <p>Something</p>",
+                "</dnn-checkbox>",
+            ].join("\n"),
+            languageOptions: jsxParserOptions,
+            errors: [{ messageId: "noDefaultSlotInCheckbox" }],
         },
     ],
 });

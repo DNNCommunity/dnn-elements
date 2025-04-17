@@ -12,12 +12,6 @@ const prefixedRules: Linter.RulesRecord = Object.fromEntries(
   ])
 );
 
-// ✅ Classic config (extends-based)
-export const recommended: Linter.Config = {
-  plugins: [pluginName],
-  rules: prefixedRules,
-};
-
 // ✅ Flat config (for modern eslint.config.js)
 export const flatRecommended: FlatConfig.Config[] = [
   {

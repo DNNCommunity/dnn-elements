@@ -144,7 +144,6 @@ export class DnnVerticalSplitview {
             }}>
             <slot name="left"></slot>
           </div>
-          <dnn-checkbox>Testing</dnn-checkbox>
           <button
             onMouseDown={e => this.handleMouseDown(e)}
             onTouchStart={e => this.handleMouseDown(e)}

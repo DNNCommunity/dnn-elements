@@ -77,7 +77,7 @@ export class DnnModal {
   private mouseY: number;
   private w: number;
   private h: number;
-  northDrag: HTMLDivElement;
+  private northDrag: HTMLDivElement;
   private handleDismiss(){
     this.visible = false;
     this.dismissed.emit();

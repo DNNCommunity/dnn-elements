@@ -335,7 +335,7 @@ export class DnnAutocomplete {
     }
   }
 
-  handleBlur(): void {
+  private handleBlur(): void {
     var validity = this.inputField.checkValidity();
     this.valid = validity;
     this.fieldset.setValidity(validity, this.inputField.validationMessage);

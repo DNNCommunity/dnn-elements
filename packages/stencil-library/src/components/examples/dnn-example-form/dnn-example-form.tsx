@@ -112,9 +112,6 @@ export class DnnExampleForm {
   render() {
     return (
       <Host>
-        <dnn-checkbox>
-          Test Label
-        </dnn-checkbox>
         <dnn-fieldset
           class="full-form-width"
           ref={el => this.fieldset = el}

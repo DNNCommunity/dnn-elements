@@ -11,7 +11,6 @@ export type Plugin = {
   };
   rules: RulesRecord;
   configs: {
-    recommended: Linter.Config;
     flat: {
       recommended: FlatConfig.Config[];
     }

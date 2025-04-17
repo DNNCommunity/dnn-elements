@@ -5,16 +5,15 @@ export const rule = createRule({
     defaultOptions: [],
     meta: {
         docs: {
-            description: "Disallow label slot in checkbox",
+            description: "Disallow default slot in dnn-checkbox; all children must have a named slot",
             recommended: true,
             url: "https://github.com/DNNCommunity/dnn-elements/releases/tag/v0.24.0",
         },
         type: "problem",
         messages: {
-            noLabelSlotInCheckbox: "Label slot is not allowed in dnn-checkbox, wrap dnn-checkbox with a label instead."
+            noDefaultSlotInCheckbox: "All children of dnn-checkbox must have a named slot. Default slot is not allowed."
         },
-        fixable: "code",
-        schema: [], // Ensure schema is defined as an empty array or with the appropriate schema definition
+        schema: [],
     },
     create(context) {
         return {
@@ -23,29 +22,25 @@ export const rule = createRule({
                     node.openingElement.name.type === "JSXIdentifier" &&
                     node.openingElement.name.name === "dnn-checkbox"
                 ) {
-                    const innerContent = node.children
-                        .map(child => context.sourceCode.getText(child))
-                        .join("")
-                        .trim();
-    
-                    if (innerContent) {
-                        context.report({
-                            node,
-                            messageId: "noLabelSlotInCheckbox",
-                            fix: fixer => {
-                                const sourceCode = context.sourceCode;
-                                const checkboxText = sourceCode.getText(node.openingElement);
-                                const selfClosing = checkboxText.replace(/>$/, " />");
-                                const innerContent = node.children.map(child => sourceCode.getText(child)).join("").trim();
-
-                                return [
-                                    fixer.insertTextBefore(node, `<label>\n`),
-                                    fixer.replaceText(node, `  ${selfClosing}\n`),
-                                    fixer.insertTextAfter(node, `  ${innerContent}\n`),
-                                    fixer.insertTextAfter(node, `</label>`),
-                                ];
-                            }
-                        });
+                    for (const child of node.children) {
+                        if (
+                            child.type === "JSXText" && child.value.trim() !== ""
+                        ) {
+                            context.report({
+                                node: child,
+                                messageId: "noDefaultSlotInCheckbox",
+                            });
+                        } else if (
+                            child.type === "JSXElement" &&
+                            child.openingElement.attributes.every(attr =>
+                                !(attr.type === "JSXAttribute" && attr.name.name === "slot")
+                            )
+                        ) {
+                            context.report({
+                                node: child,
+                                messageId: "noDefaultSlotInCheckbox",
+                            });
+                        }
                     }
                 }
             }

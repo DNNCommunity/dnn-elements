@@ -228,7 +228,7 @@ export class DnnInput {
     return "text";
   }
 
-  handleBlur(): void {
+  private handleBlur(): void {
     this.focused = false
     var validity = this.inputField.checkValidity();
     this.valid = validity;
