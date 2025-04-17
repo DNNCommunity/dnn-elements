@@ -1,16 +1,19 @@
 {
     "compilerOptions": {
       "target": "es2019",
-      "module": "commonjs",
-      "moduleResolution": "Node",
-      "outDir": "../../eslint-plugin",
+      "module": "NodeNext",
+      "moduleResolution": "nodenext",
+      "outDir": "dist",
       "strict": true,
       "esModuleInterop": true,
       "declaration": true,
       "skipLibCheck": true,
       "types": ["jest", "node", "estree-jsx"],
       "forceConsistentCasingInFileNames": true,
-      "sourceMap": true
+      "sourceMap": true,
+      "isolatedModules":true,
+      "jsx": "react",
+      "jsxFactory": "h"
     },
-    "include": ["src/index.ts"]
+    "include": ["src/**/*.ts"]
 }

@@ -9,5 +9,50 @@
         "licenses": "MIT",
         "repository": "https://github.com/storybookjs/storybook",
         "path": "node_modules\\@storybook\\theming"
+    },
+    "ansi-styles@4.3.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/chalk/ansi-styles",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\ansi-styles",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\ansi-styles\\license"
+    },
+    "chalk@4.1.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/chalk/chalk",
+        "path": "node_modules\\chalk",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\chalk\\license"
+    },
+    "has-flag@4.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/has-flag",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\has-flag",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\has-flag\\license"
+    },
+    "license-checker-rseidelsohn@4.4.2": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/RSeidelsohn/license-checker-rseidelsohn",
+        "publisher": "Roman Seidelsohn",
+        "email": "rseidelsohn@gmail.com",
+        "path": "node_modules\\license-checker-rseidelsohn",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\license-checker-rseidelsohn\\LICENSE"
+    },
+    "semver@7.7.1": {
+        "licenses": "ISC",
+        "repository": "https://github.com/npm/node-semver",
+        "publisher": "GitHub Inc.",
+        "path": "node_modules\\semver",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\semver\\LICENSE"
+    },
+    "supports-color@7.2.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/chalk/supports-color",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\supports-color",
+        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\supports-color\\license"
     }
 }

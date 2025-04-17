@@ -4,4 +4,3 @@ node_modules/
 .vscode/
 _build/bin
 _build/obj
-packages/stencil-library/eslint-plugin

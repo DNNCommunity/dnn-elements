@@ -16,8 +16,13 @@
   "files": [
     "dist/",
     "loader/",
-    "eslint-plugin/"
+    "eslint-plugin/dist"
   ],
+  "exports": {
+    "./eslint": {
+      "import": "./eslint-plugin/dist/index.js"
+    }
+  },
   "scripts": {
     "build": "npm run build:eslint-plugin && npm run eslint && stencil build --docs",
     "postbuild": "license-checker-rseidelsohn --out licenses.json --json --direct --relativeLicensePath --relativeModulePath",
@@ -28,12 +33,13 @@
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "test.eslint": "jest --config jest.eslint.config.js",
+    "test.eslint.watch": "jest --config jest.eslint.config.js --watchAll",
     "generate": "stencil generate",
     "eslint": "eslint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "echo 'Storybook build is disabled for this release.'",
     "deploy-storybook": "gh-pages -d storybook-static --branch site",
-    "build:eslint-plugin": "tsc -p src/eslint-plugin/tsconfig.json"
+    "build:eslint-plugin": "tsc -p eslint-plugin/tsconfig.json"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.1.0",
@@ -53,8 +59,10 @@
     "@timkendrick/monaco-editor": "^0.0.9",
     "@types/estree-jsx": "^1.0.5",
     "@types/jest": "^29.5.10",
-    "@typescript-eslint/eslint-plugin": "^8.0.1",
-    "@typescript-eslint/parser": "^8.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.30.1",
+    "@typescript-eslint/parser": "^8.30.1",
+    "@typescript-eslint/rule-tester": "^8.30.1",
+    "@typescript-eslint/utils": "^8.30.1",
     "axe-playwright": "^2.0.1",
     "babel-loader": "^9.1.2",
     "eslint": "^8.57.0",
@@ -72,7 +80,8 @@
     "rollup-plugin-node-polyfills": "^0.2.1",
     "storybook": "^8.3.2",
     "ts-jest": "^29.3.2",
-    "typescript": "5.6.3"
+    "typescript": "5.6.3",
+    "typescript-eslint": "^8.30.1"
   },
   "dependencies": {
     "jodit": "^4.2.27"
