@@ -155,7 +155,7 @@ export class DnnExampleForm {
               console.log(key, value);
             });
             console.groupEnd();
-            /* eslint-enable no-console */
+             
           }}
         >
           <dnn-fieldset label="User Information">
