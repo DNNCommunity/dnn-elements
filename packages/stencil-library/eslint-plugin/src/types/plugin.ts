@@ -4,20 +4,16 @@ import type { FlatConfig } from "@typescript-eslint/utils/ts-eslint";
 
 type RulesRecord = Record<string, RuleModule<string, readonly unknown[]>>;
 
-type FlatConfigs = {
-  flat?: {
-    recommended?: FlatConfig.Config[];
-    [key: string]: FlatConfig.Config[] | undefined;
-  };
-};
-
 export type Plugin = {
-  meta?: {
+  meta: {
     name: string;
     version: string;
   };
   rules: RulesRecord;
-  configs?: {
-    recommended?: Linter.Config;
-  } & FlatConfigs;
+  configs: {
+    recommended: Linter.Config;
+    flat: {
+      recommended: FlatConfig.Config[];
+    }
+  };
 };
