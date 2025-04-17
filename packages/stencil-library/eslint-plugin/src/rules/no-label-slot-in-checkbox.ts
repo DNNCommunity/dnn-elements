@@ -33,15 +33,16 @@ export const rule = createRule({
                             node,
                             messageId: "noLabelSlotInCheckbox",
                             fix: fixer => {
-                                const sourceCode = context.getSourceCode();
+                                const sourceCode = context.sourceCode;
                                 const checkboxText = sourceCode.getText(node.openingElement);
                                 const selfClosing = checkboxText.replace(/>$/, " />");
                                 const innerContent = node.children.map(child => sourceCode.getText(child)).join("").trim();
 
                                 // Detect leading indentation of the node
-                                const lines = sourceCode.getText(node).split("\n");
-                                const firstLine = lines[0];
-                                const indentMatch = firstLine.match(/^(\s*)/);
+                                const parent = node.parent;
+                                const parentLine = parent ? context.sourceCode.getLocFromIndex(parent.range[0]).line : node.loc.start.line;
+                                const baseLineText = context.sourceCode.lines[parentLine - 1];
+                                const indentMatch = baseLineText.match(/^(\s*)/);
                                 const indent = indentMatch?.[1] ?? "";
 
                                 // Build replacement with proper indentation

@@ -27,14 +27,18 @@ ruleTester.run("no-label-slot-in-checkbox", rule, {
     ],
     invalid: [
         {
-            code: "<dnn-checkbox onClick={e => console.log(e)}>Something</dnn-checkbox>",
+            code: [
+                "<dnn-checkbox onClick={e => console.log(e)}>",
+                "  Something",
+                "</dnn-checkbox>",
+            ].join("\n"),
             languageOptions: jsxParserOptions,
             errors: [{ messageId: "noLabelSlotInCheckbox" }],
             output: [
                 "<label>",
                 "  <dnn-checkbox onClick={e => console.log(e)} />",
                 "  Something",
-                "</label>"
+                "</label>",
             ].join("\n"),
         },
     ],
