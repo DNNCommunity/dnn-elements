@@ -1,25 +1,20 @@
 import { rules } from "./rules";
+import { recommended, flatRecommended } from "./configs/recommended";
+import type { Plugin } from "./types/plugin";
+const { name, version } = require("../../package.json") as {
+    name: string;
+    version: string;
+  };
 
-const { name, version } =
-  // `import`ing here would bypass the TSConfig's `"rootDir": "src"`
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  require("../../package.json") as typeof import("../../package.json");
-
-const plugin = {
-    configs: {
-        get recommended() {
-            return recommended;
-        },
+const plugin: Plugin = {
+  meta: { name, version },
+  rules,
+  configs: {
+    recommended,
+    flat: {
+      recommended: flatRecommended,
     },
-    meta: { name, version },
-    rules,
-};
-
-const recommended = {
-    plugins: {
-        "dnn-elements": plugin,
-    },
-    rules,
+  },
 };
 
 export default plugin;
