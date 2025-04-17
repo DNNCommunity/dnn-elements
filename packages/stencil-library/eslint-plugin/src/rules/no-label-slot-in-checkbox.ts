@@ -38,22 +38,12 @@ export const rule = createRule({
                                 const selfClosing = checkboxText.replace(/>$/, " />");
                                 const innerContent = node.children.map(child => sourceCode.getText(child)).join("").trim();
 
-                                // Detect leading indentation of the node
-                                const parent = node.parent;
-                                const parentLine = parent ? context.sourceCode.getLocFromIndex(parent.range[0]).line : node.loc.start.line;
-                                const baseLineText = context.sourceCode.lines[parentLine - 1];
-                                const indentMatch = baseLineText.match(/^(\s*)/);
-                                const indent = indentMatch?.[1] ?? "";
-
-                                // Build replacement with proper indentation
-                                const replacement = [
-                                    `${indent}<label>`,
-                                    `${indent}  ${selfClosing}`,
-                                    `${indent}  ${innerContent}`,
-                                    `${indent}</label>`,
-                                ].join("\n");
-
-                                return fixer.replaceText(node, replacement);
+                                return [
+                                    fixer.insertTextBefore(node, `<label>\n`),
+                                    fixer.replaceText(node, `  ${selfClosing}\n`),
+                                    fixer.insertTextAfter(node, `  ${innerContent}\n`),
+                                    fixer.insertTextAfter(node, `</label>`),
+                                ];
                             }
                         });
                     }
