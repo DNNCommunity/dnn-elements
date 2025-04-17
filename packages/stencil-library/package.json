@@ -32,8 +32,8 @@
     "poststart": "license-checker-rseidelsohn --out licenses.json --json --direct --relativeLicensePath --relativeModulePath",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "test.eslint": "jest --config jest.eslint.config.js",
-    "test.eslint.watch": "jest --config jest.eslint.config.js --watchAll",
+    "test.eslint": "vitest run --config ./eslint-plugin/vitest.config.ts",
+    "test.eslint.watch": "vitest --config ./eslint-plugin/vitest.config.ts --watch",
     "generate": "stencil generate",
     "eslint": "eslint",
     "storybook": "storybook dev -p 6006",
@@ -80,8 +80,9 @@
     "rollup-plugin-node-polyfills": "^0.2.1",
     "storybook": "^8.3.2",
     "ts-jest": "^29.3.2",
-    "typescript": "5.6.3",
-    "typescript-eslint": "^8.30.1"
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.30.1",
+    "vitest": "^3.1.1"
   },
   "dependencies": {
     "jodit": "^4.2.27"
