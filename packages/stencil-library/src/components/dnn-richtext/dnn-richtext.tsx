@@ -64,7 +64,7 @@ export class DnnRichtext {
     });
   }
 
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+  
   formResetCallback() {
     this.editor.value = decodeHtml(this.value);
     this.internals.setValidity({});

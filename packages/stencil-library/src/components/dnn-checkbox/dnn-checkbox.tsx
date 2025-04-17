@@ -2,7 +2,6 @@ import { Component, Element, Host, h, Prop, Event, EventEmitter, AttachInternals
 import { CheckedState } from './types';
 
 /**
- * @slot @deprecated - The label for the checkbox - Obsolete, implement your own label.
  * @slot checkedicon - Allows overriding the default checked icon.
  * @slot uncheckedicon - Allows overriding the unchecked icon.
  * @slot intermediateicon - If intermadiate state is used, allows overriding its icon.
@@ -57,7 +56,7 @@ export class DnnCheckbox {
     }
   }
 
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+  
   formResetCallback() {
     this.internals.setValidity({});
     this.checked = this.originalChecked;

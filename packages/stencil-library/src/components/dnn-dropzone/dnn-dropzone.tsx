@@ -89,7 +89,7 @@ export class DnnDropzone {
     this.mergeResx();
   }
 
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+  
   formResetCallback() {
     this.internals.setValidity({});
     this.fileInput.value = "";

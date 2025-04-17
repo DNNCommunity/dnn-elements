@@ -90,7 +90,7 @@ export class DnnTextarea {
     this.textarea.style.minHeight = `${this.rows * 1.5}em`;
   }
 
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+  
   formResetCallback() {
     this.textarea.setCustomValidity("");
     this.valid = true;

@@ -124,7 +124,7 @@ export class DnnInput {
     });
   }
 
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+  
   formResetCallback() {
     this.inputField.setCustomValidity("");
     this.value = "";

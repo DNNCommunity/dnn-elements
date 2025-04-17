@@ -63,7 +63,7 @@ export class DnnMonacoEditor {
     this.textArea.addEventListener("focus", () => this.focused = true);
   }
 
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
+  
   formResetCallback() {
     this.internals.setValidity({});
     this.value = this.originalValue;

@@ -4,12 +4,15 @@
     "allowUnreachableCode": false,
     "declaration": false,
     "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "lib": [
       "dom",
       "es2017"
     ],
     "moduleResolution": "node",
     "module": "esnext",
+    "strict": true,
     "target": "es2017",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -19,7 +22,9 @@
   },
   "include": [
     "src",
-    "types/jsx.d.ts"
+    "types/jsx.d.ts",
+    "eslint-plugin",
+    "eslint.config.ts"
   ],
   "exclude": [
     "node_modules",
