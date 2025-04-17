@@ -1,5 +1,5 @@
 import { RuleTester } from "@typescript-eslint/rule-tester";
-import { rule } from "./no-label-slot-in-checkbox";
+import { rule } from "./no-label-slot-in-checkbox.js";
 
 const ruleTester = new RuleTester();
 

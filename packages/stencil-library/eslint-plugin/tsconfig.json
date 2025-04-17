@@ -1,10 +1,10 @@
 {
     "compilerOptions": {
-      "target": "es2019",
+      "target": "ES2019",
       "module": "NodeNext",
       "moduleResolution": "nodenext",
-      "outDir": "dist",
       "rootDir": "src",
+      "outDir": "dist",
       "strict": true,
       "esModuleInterop": true,
       "declaration": true,

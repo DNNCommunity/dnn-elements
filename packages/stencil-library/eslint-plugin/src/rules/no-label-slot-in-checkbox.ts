@@ -1,4 +1,4 @@
-import { createRule } from "../utils";
+import { createRule } from "../utils.js";
 
 export const rule = createRule({
     name: "no-label-slot-in-checkbox",
