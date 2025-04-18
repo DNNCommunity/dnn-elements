@@ -50,7 +50,7 @@ using Newtonsoft.Json.Linq;
   "Publish_Site",
     GitHubActionsImage.UbuntuLatest,
     ImportSecrets = new[] { nameof(GithubToken) },
-    OnPushBranches = new[] { "main", "master", "release/*" },
+    OnPushBranches = new[] { "main", "master" },
     InvokedTargets = new[] { nameof(PublishSite) },
     FetchDepth = 0,
     CacheKeyFiles = new string[] {}
@@ -145,9 +145,6 @@ class Build : NukeBuild
             .SetCommand("test")
             .SetProcessWorkingDirectory(StencilDirectory));
         }
-      NpmRun(s => s
-        .SetProcessWorkingDirectory(StencilDirectory)
-        .SetCommand("build-storybook"));
     });
   Target SetupGithubActor => _ => _
     .Executes(() =>
@@ -280,6 +277,9 @@ class Build : NukeBuild
     .DependsOn(Compile)
     .Executes(() =>
     {
+      NpmRun(s => s
+        .SetProcessWorkingDirectory(StencilDirectory)
+        .SetCommand("build-storybook"));
       NpmRun(s => s
         .SetProcessWorkingDirectory(StencilDirectory)
         .SetCommand("deploy-storybook"));
