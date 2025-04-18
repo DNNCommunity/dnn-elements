@@ -41,6 +41,7 @@ using Newtonsoft.Json.Linq;
     GitHubActionsImage.UbuntuLatest,
     ImportSecrets = new[] { nameof(GithubToken), "NPM_TOKEN" },
     OnPushBranches = new[] { "main", "master", "release/*" },
+    OnPushTags = new[] { "v*" },
     InvokedTargets = new[] { nameof(Deploy) },
     FetchDepth = 0,
     CacheKeyFiles = new string[] {}

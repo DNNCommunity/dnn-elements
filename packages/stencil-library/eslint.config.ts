@@ -16,6 +16,12 @@ export default (tseslint.config(
         ]
     },
     {
+        files: ['stencil.config.ts'],
+        languageOptions: {
+            parser: undefined,
+        },
+    },
+    {
         ignores: [
             "node_modules/*",
             "src/stories/**/*",
@@ -29,6 +35,7 @@ export default (tseslint.config(
             "**/*.spec.ts",
             ".storybook/**/*",
             "eslint.config.ts",
+            "stencil.config.ts",
         ],
     },
     {
