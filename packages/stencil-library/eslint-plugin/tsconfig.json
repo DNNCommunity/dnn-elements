@@ -19,5 +19,6 @@
       "jsx": "react",
       "jsxFactory": "h"
     },
-    "include": ["src/", "src/**/*.test.ts"]
+    "include": ["src/**/*.ts"],
+    "exclude": ["src/**/*.test.ts"]
 }
