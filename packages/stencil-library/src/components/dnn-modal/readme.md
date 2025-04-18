@@ -7,13 +7,13 @@
 
 ## Properties
 
-| Property          | Attribute           | Description                                                                                                                                                                                                         | Type      | Default         |
-| ----------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | --------------- |
-| `backdropDismiss` | `backdrop-dismiss`  | Pass false to remove the backdrop click auto-dismiss feature.                                                                                                                                                       | `boolean` | `true`          |
-| `closeText`       | `close-text`        | Optionally pass the aria-label text for the close button. Defaults to "Close modal" if not provided.                                                                                                                | `string`  | `"Close modal"` |
-| `resizable`       | `resizable`         | If set to true, the modal becomes resizable.                                                                                                                                                                        | `boolean` | `false`         |
-| `showCloseButton` | `show-close-button` | Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content. | `boolean` | `true`          |
-| `visible`         | `visible`           | Reflects the visible state of the modal.                                                                                                                                                                            | `boolean` | `false`         |
+| Property          | Attribute           | Description                                                                                                                                                                                                         | Type                   | Default         |
+| ----------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | --------------- |
+| `backdropDismiss` | `backdrop-dismiss`  | Pass false to remove the backdrop click auto-dismiss feature.                                                                                                                                                       | `boolean`              | `true`          |
+| `closeText`       | `close-text`        | Optionally pass the aria-label text for the close button. Defaults to "Close modal" if not provided.                                                                                                                | `string \| undefined`  | `"Close modal"` |
+| `resizable`       | `resizable`         | If set to true, the modal becomes resizable.                                                                                                                                                                        | `boolean \| undefined` | `false`         |
+| `showCloseButton` | `show-close-button` | Optionally you can pass false to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content. | `boolean \| undefined` | `true`          |
+| `visible`         | `visible`           | Reflects the visible state of the modal.                                                                                                                                                                            | `boolean`              | `false`         |
 
 
 ## Events

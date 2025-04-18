@@ -80,10 +80,10 @@ Sets the validity of the field.
 
 #### Parameters
 
-| Name      | Type      | Description |
-| --------- | --------- | ----------- |
-| `valid`   | `boolean` |             |
-| `message` | `string`  |             |
+| Name      | Type                  | Description |
+| --------- | --------------------- | ----------- |
+| `valid`   | `boolean`             |             |
+| `message` | `string \| undefined` |             |
 
 #### Returns
 

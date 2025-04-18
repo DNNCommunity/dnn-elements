@@ -5,8 +5,6 @@
 <!-- Auto Generated Below -->
 
 
-> **[DEPRECATED]** - The label for the checkbox - Obsolete, implement your own label.
-
 ## Usage
 
 ### HTML

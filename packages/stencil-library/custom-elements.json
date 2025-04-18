@@ -205,7 +205,7 @@
             {
               "name": "confirm",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Optionally add a confirmation dialog before firing the action.",
               "default": "false",
@@ -214,7 +214,7 @@
             {
               "name": "confirm-message",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The text of the confirmation message;",
               "default": "\"Are you sure ?\"",
@@ -223,7 +223,7 @@
             {
               "name": "confirm-no-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The text of the no button for confirmation.",
               "default": "\"No\"",
@@ -232,7 +232,7 @@
             {
               "name": "confirm-yes-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "The text of the yes button for confirmation.",
               "default": "\"Yes\"",
@@ -268,7 +268,7 @@
             {
               "name": "size",
               "type": {
-                "text": "\"large\" | \"normal\" | \"small\""
+                "text": "\"large\" | \"normal\" | \"small\" | undefined"
               },
               "description": "Optionally sets the button size, small normal or large, defaults to normal",
               "default": "'normal'",
@@ -430,7 +430,7 @@
             {
               "name": "collapse-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Collapse text for screen readers",
               "default": "\"collapse\"",
@@ -439,7 +439,7 @@
             {
               "name": "expand-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Expand text for screen readers",
               "default": "\"expand\"",
@@ -448,7 +448,7 @@
             {
               "name": "expanded",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Is the chevron expanded",
               "default": "false",
@@ -493,7 +493,7 @@
             {
               "name": "transition-duration",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Defines the transition time in ms, defaults to 150ms",
               "default": "150",
@@ -766,7 +766,7 @@
             {
               "name": "max-file-size",
               "type": {
-                "text": "number"
+                "text": "number | undefined"
               },
               "description": "Max file size in bytes.",
               "required": false
@@ -1344,7 +1344,7 @@
             {
               "name": "close-text",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Optionally pass the aria-label text for the close button.\nDefaults to \"Close modal\" if not provided.",
               "default": "\"Close modal\"",
@@ -1353,7 +1353,7 @@
             {
               "name": "resizable",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "If set to true, the modal becomes resizable.",
               "default": "false",
@@ -1362,7 +1362,7 @@
             {
               "name": "show-close-button",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
               "description": "Optionally you can pass false to not show the close button.\nIf you decide to do so, you should either not also prevent dismissal by clicking the backdrop\nor provide your own dismissal logic in the modal content.",
               "default": "true",
@@ -1723,7 +1723,7 @@
             {
               "name": "placeholder",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
               "description": "Sets the field placeholder text.",
               "default": "\"\"",
