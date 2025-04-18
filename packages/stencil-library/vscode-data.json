@@ -1013,14 +1013,6 @@
           "description": "The width of the splitter area."
         }
       ]
-    },
-    {
-      "name": "test-form",
-      "description": {
-        "kind": "markdown",
-        "value": ""
-      },
-      "attributes": []
     }
   ]
 }
