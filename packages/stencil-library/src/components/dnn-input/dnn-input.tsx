@@ -124,7 +124,6 @@ export class DnnInput {
     });
   }
 
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
   formResetCallback() {
     this.inputField.setCustomValidity("");
     this.value = "";
@@ -228,7 +227,7 @@ export class DnnInput {
     return "text";
   }
 
-  handleBlur(): void {
+  private handleBlur(): void {
     this.focused = false
     var validity = this.inputField.checkValidity();
     this.valid = validity;

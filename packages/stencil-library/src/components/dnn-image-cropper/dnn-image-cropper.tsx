@@ -92,7 +92,6 @@ export class DnnImageCropper {
     this.mergeResx();
   }
 
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
   formResetCallback(){
     this.clear();
     this.internals.setValidity({});

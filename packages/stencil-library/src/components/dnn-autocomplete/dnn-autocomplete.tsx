@@ -138,7 +138,6 @@ export class DnnAutocomplete {
   private labelId: string;
   private fieldset: HTMLDnnFieldsetElement;
   
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
   formResetCallback() {
     this.inputField.setCustomValidity("");
     this.valid = true;
@@ -335,7 +334,7 @@ export class DnnAutocomplete {
     }
   }
 
-  handleBlur(): void {
+  private handleBlur(): void {
     var validity = this.inputField.checkValidity();
     this.valid = validity;
     this.fieldset.setValidity(validity, this.inputField.validationMessage);

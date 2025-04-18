@@ -61,7 +61,7 @@ export class DnnExampleForm {
     catch (error) {
       if (error.name != "AbortError") {
         // Handle the error unless it is a normal AbortError which we ignore.
-        // eslint-disable-next-line no-console
+         
         console.error(error);
       }
     }
@@ -147,7 +147,7 @@ export class DnnExampleForm {
         <form
           onSubmit={e => {
             e.preventDefault();
-            /* eslint-disable no-console */
+             
             console.group("Form submitted");
             console.log(e);
             console.groupEnd();
@@ -157,7 +157,7 @@ export class DnnExampleForm {
               console.log(key, value);
             });
             console.groupEnd();
-            /* eslint-enable no-console */
+             
           }}
         >
           <dnn-fieldset label="User Information">

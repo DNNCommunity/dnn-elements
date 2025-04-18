@@ -1,5 +1,5 @@
-import { rules } from "./rules";
-import { flatRecommended } from "./configs/recommended";
+import { rules } from "./rules/index.js";
+import { flatRecommended } from "./configs/recommended.js";
 
 
 const { name, version } = require("../../package.json") as {

@@ -1,6 +1,6 @@
 import type { Linter } from "eslint";
 import type { FlatConfig } from "@typescript-eslint/utils/ts-eslint";
-import { rules } from "../rules";
+import { rules } from "../rules/index.js";
 
 const pluginName = "dnn-elements";
 

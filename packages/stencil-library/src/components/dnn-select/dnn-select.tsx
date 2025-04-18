@@ -88,7 +88,6 @@ export class DnnSelect {
     });
   }
 
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
   formResetCallback() {
     this.internals.setValidity({});
     this.value = this.originalValue;

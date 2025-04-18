@@ -104,7 +104,6 @@ export class DnnColorInput {
     this.setFormValue();
   }
 
-  // eslint-disable-next-line @stencil-community/own-methods-must-be-private
   formResetCallback() {
     this.internals.setValidity({});
     this.color = this.originalColor.color;
