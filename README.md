@@ -76,3 +76,12 @@ export default tseslint.config(
   },
 )
 ```
+
+## Upgrading
+As we work towards a `v1.x.x` release, we had several unavoidable breaking changes to handle. The above `eslint` setup is highly recommended to help you through auto-fixes handling those breaking changes smoothly even with hundreds of usages. This means you need to follow a known upgrade path.
+
+- From `<v0.24.0` you should upgrade directly to `v0.24.4` and handle all the breaking changes (ideally using `eslint --fix`).
+- From `v0.24.4` - `v0.25.1` you should upgrade to `v0.26.0` and check manually if you used any of the removed CSS variables to adjust accordingly (see https://github.com/DNNCommunity/dnn-elements/pull/1252/files to spot the removals). Since this is CSS, there are no `eslint` rules to help you there.
+- From `v0.26.0` onwards, you should upgrade to `v0.27.1` and handle all deprecations.
+- From `v0.27.1 - v1.x.x` we will add auto-fixes at each latest minor release.
+- From `v1.x.x` we will use semantic versioning and you can simply upgrade one major version at a time. They will include auto-fixes in the same release where breaking changes happen.
