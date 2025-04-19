@@ -77,13 +77,11 @@ export class DnnModal {
 
  componentWillLoad() {
    if (this.backdropDismiss != undefined) {
-    // eslint-disable-next-line no-console
     console.warn("The 'backdropDismiss' prop is deprecated. Use 'preventBackdropDismiss' instead.");
     this.preventBackdropDismiss = !this.backdropDismiss;
   }
 
   if (this.showCloseButton != undefined) {
-    // eslint-disable-next-line no-console
     console.warn("The 'showCloseButton' prop is deprecated. Use 'hideCloseButton' instead.");
     this.hideCloseButton = !this.showCloseButton;
   }

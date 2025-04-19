@@ -23,7 +23,7 @@ const meta: Meta = {
         type: 'select',
       },
     },
-    formButtonType: {
+    type: {
       options: ['reset', 'submit', 'button'],
       control: {
         type: 'select',
@@ -62,7 +62,7 @@ const eventsFromNames = actions('onClick', 'onConfirmed', 'onCanceled');
 const Template = (args) =>
     html`
         <dnn-button
-            formButtonType=${ifDefined(args.formButtonType)}
+            type=${ifDefined(args.type)}
             appearance=${args.appearance ?? 'primary'}
             ?reversed=${args.reversed}
             size=${ifDefined(args.size)}

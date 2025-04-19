@@ -31,7 +31,7 @@ export class DnnCheckbox {
    * Can be used to customize the order of the states when the component is clicked.
    * Only called if you also use the tri-state feature (useIntermediate).
    */
-  @Prop() nextStateHandler: (currentState: CheckedState) => CheckedState = this.defaultNextStateHandler;
+  @Prop() nextStateHandler: (currentState: CheckedState) => CheckedState = (currentState) => this.defaultNextStateHandler(currentState);
 
   /** Fires up when the checkbox checked property changes. */
   @Event() checkedchange!: EventEmitter<"checked" | "unchecked" | "intermediate">;

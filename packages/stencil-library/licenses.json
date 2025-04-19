@@ -5,16 +5,10 @@
         "path": "",
         "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\README.md"
     },
-    "@storybook/experimental-addon-test@8.6.12": {
-        "licenses": "MIT",
-        "repository": "https://github.com/storybookjs/storybook",
-        "path": "node_modules\\@storybook\\.experimental-addon-test-dfC6j8RE",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\@storybook\\.experimental-addon-test-dfC6j8RE\\README.md"
-    },
     "react@18.3.1": {
         "licenses": "MIT",
         "repository": "https://github.com/facebook/react",
         "path": "node_modules\\react",
-        "licenseFile": "D:\\dnn-elements\\dnn-elements\\packages\\stencil-library\\node_modules\\react\\LICENSE"
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\react\\LICENSE"
     }
 }

@@ -1,6 +1,6 @@
 import { RuleTester } from "@typescript-eslint/rule-tester";
 import * as vitest from "vitest";
-import { rule } from "./button-type-to-appearance";
+import { rule } from "./button-formButtonType-to-type";
 
 RuleTester.afterAll = vitest.afterAll;
 RuleTester.it = vitest.it;
@@ -18,23 +18,23 @@ const jsxParserOptions = {
     },
 };
 
-ruleTester.run("button-type-to-appearance", rule, {
+ruleTester.run("button-formButtonType-to-type", rule, {
     valid: [
         {
             code: "<dnn-button></dnn-button>",
             languageOptions: jsxParserOptions,
         },
         {
-            code: "<dnn-button appearance=\"secondary\"></dnn-button>",
+            code: "<dnn-button type=\"submit\"></dnn-button>",
             languageOptions: jsxParserOptions,
         },
     ],
     invalid: [
         {
-            code: "<dnn-button type=\"primary\"></dnn-button>",
+            code: "<dnn-button formButtonType=\"submit\"></dnn-button>",
             languageOptions: jsxParserOptions,
-            errors: [{ messageId: "buttonTypeToAppearance" }],
-            output: "<dnn-button appearance=\"primary\"></dnn-button>",
+            errors: [{ messageId: "formButtonTypeToType" }],
+            output: "<dnn-button type=\"submit\"></dnn-button>",
         },
     ],
 });
