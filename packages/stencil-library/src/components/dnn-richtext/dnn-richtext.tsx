@@ -87,7 +87,6 @@ export class DnnRichtext {
     });
   }
 
-   
   formResetCallback() {
     this.editor.value = decodeHtml(this.value || "");
     this.internals.setValidity({});

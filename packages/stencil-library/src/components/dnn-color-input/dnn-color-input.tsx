@@ -103,7 +103,7 @@ export class DnnColorInput {
   componentDidLoad() {
     this.setFormValue();
   }
-   
+
   formResetCallback() {
     this.internals.setValidity({});
     this.color = this.originalColor.color;
