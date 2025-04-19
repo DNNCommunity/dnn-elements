@@ -429,6 +429,10 @@ export class DnnExampleForm {
                   }}
                 />
               </label>
+              <label>
+                I agree to terms
+                <dnn-checkbox name="terms" required />
+              </label>
             </div>
           </dnn-fieldset>
           <div class="controls">

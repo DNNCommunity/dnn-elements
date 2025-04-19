@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Prop, Event, EventEmitter, AttachInternals, Watch, State, Listen } from '@stencil/core';
+import { Component, Element, Host, h, Prop, Event, EventEmitter, AttachInternals, Watch, State, Listen, Method } from '@stencil/core';
 import { CheckedState } from './types';
 
 /**
@@ -27,11 +27,17 @@ export class DnnCheckbox {
   /** The name to show in the formData (if using forms). */
   @Prop() name = "";
 
+  /** If true, the checkbox needs to be checked for the form validation to succeed. */
+  @Prop() required: boolean = false;
+
   /** A function that will be called when the checkbox needs to change state and returns the next state.
    * Can be used to customize the order of the states when the component is clicked.
    * Only called if you also use the tri-state feature (useIntermediate).
    */
   @Prop() nextStateHandler: (currentState: CheckedState) => CheckedState = (currentState) => this.defaultNextStateHandler(currentState);
+
+  /** Can be used to customize the validation message when the field is required but not checked. */
+  @Prop() requiredMessage: string = "The checkbox must be checked";
 
   /** Fires up when the checkbox checked property changes. */
   @Event() checkedchange!: EventEmitter<"checked" | "unchecked" | "intermediate">;
@@ -41,7 +47,20 @@ export class DnnCheckbox {
     this.changeState();
   }
 
+  /** Reports the input validity details. See https://developer.mozilla.org/en-US/docs/Web/API/ValidityState */
+    @Method()
+    async checkValidity(): Promise<ValidityState> {
+      if (this.required && this.checked != "checked") {
+        this.valid = false;
+      }
+      if (!this.valid) {
+        this.internals.setValidity({ valueMissing: true }, this.requiredMessage);
+      }
+      return this.internals.validity;
+    }
+
   @State() focused = false;
+  @State() valid = true;
   
   @AttachInternals() internals!: ElementInternals;
   
@@ -59,6 +78,13 @@ export class DnnCheckbox {
       var data = new FormData();
       data.append(this.name, this.value);
       this.internals.setFormValue(data);
+      this.internals.setValidity({});
+      this.valid = true;
+    }
+
+    if (newValue != "checked" && this.required) {
+      this.valid = false;
+      this.internals.setValidity({ valueMissing: true }, this.requiredMessage);
     }
   }
 
@@ -99,6 +125,15 @@ export class DnnCheckbox {
     this.checkedchange.emit(this.checked);
   }
 
+  private getButtonClasses(): string | { [className: string]: boolean; } | undefined {
+    let classes = `icon ${this.checked}`;
+    if (!this.valid) {
+      classes += " invalid";
+    }
+
+    return classes;
+  }
+
   render() {
     return (
       <Host
@@ -110,7 +145,7 @@ export class DnnCheckbox {
           ref={el => this.button = el!}
           onFocus={() => this.focused = true}
           onBlur={() => this.focused = false}
-          class={`icon ${this.checked}`}
+          class={this.getButtonClasses()}
         >
           <div class="unchecked">
             <slot name="uncheckedicon">
