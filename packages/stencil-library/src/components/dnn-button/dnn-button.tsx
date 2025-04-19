@@ -24,6 +24,16 @@ export class DnnButton {
   @Prop() type: 'submit' | 'reset' | 'button' = 'button';
 
   /**
+  * @deprecated Use type instead.
+  * Optional button type,
+  * can be either submit, reset or button and defaults to button if not specified.
+  * Warning: DNN wraps the whole page in a form, only use this if you are handling
+  * form submission manually.
+  * Warning: This will be deprecated in the next version and replaced with a new 'type' property.
+  */
+  @Prop() formButtonType: 'submit' | 'reset' | 'button' = 'button';
+
+  /**
    * Optionally reverses the button style.
    */
   @Prop() reversed: boolean = false;
@@ -131,7 +141,6 @@ export class DnnButton {
               }
             }
             catch(e){
-              // eslint-disable-next-line no-console
               console.error(e, control);
             }
           }

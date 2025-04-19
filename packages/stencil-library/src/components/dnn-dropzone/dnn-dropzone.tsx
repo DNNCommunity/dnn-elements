@@ -89,7 +89,6 @@ export class DnnDropzone {
     this.mergeResx();
   }
 
-   
   formResetCallback() {
     this.internals.setValidity({});
     this.fileInput.value = "";
