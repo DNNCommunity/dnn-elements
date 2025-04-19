@@ -34,7 +34,7 @@ Stencil components are just Web Components, so they work in any major framework 
 Stay tuned - coming soon.
 
 ## Usage (Individual Components)
-Usage of each component is documented within the component folder right here on GitHub, along with some code samples too.
+Usage of each component is documented within the library `components` folder along with code samples.
 
 ## Usage (eslint-plugin)
 To help handle breaking changes and provide advise about usage, we have a custom eslint plugin as part of this very package. Some breaking changes have auto-fixes. Until we release a v1.0.0, it is advisable to upgrade one minor version at a time and if you use eslint/tslint, you can get some of the autofixes apply automatically for you. We currently only support the flat config format so you will need of of those setups:
