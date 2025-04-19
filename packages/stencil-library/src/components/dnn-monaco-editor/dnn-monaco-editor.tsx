@@ -63,7 +63,6 @@ export class DnnMonacoEditor {
     this.textArea.addEventListener("focus", () => this.focused = true);
   }
 
-   
   formResetCallback() {
     this.internals.setValidity({});
     this.value = this.originalValue;

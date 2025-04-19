@@ -70,7 +70,6 @@ export class DnnInput {
   /** Hints at the type of data that might be entered by the user while editing the element or its contents.
    * This allows a browser to display an appropriate virtual keyboard.
    */
-  // eslint-disable-next-line @stencil-community/reserved-member-names
   @Prop() inputmode?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
 
   /** Fires when the value has changed and the user exits the input. */
@@ -125,7 +124,6 @@ export class DnnInput {
     });
   }
 
-   
   formResetCallback() {
     this.inputField.setCustomValidity("");
     this.value = "";

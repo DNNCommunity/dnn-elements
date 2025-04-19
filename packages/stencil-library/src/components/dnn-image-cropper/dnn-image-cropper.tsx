@@ -92,7 +92,6 @@ export class DnnImageCropper {
     this.mergeResx();
   }
 
-   
   formResetCallback(){
     this.clear();
     this.internals.setValidity({});

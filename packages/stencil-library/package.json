@@ -13,27 +13,49 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/dnn/dnn.js",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs.js"
+    },
+    "./loader": {
+      "types": "./loader/index.d.ts",
+      "import": "./loader/index.js",
+      "require": "./loader/index.cjs.js"
+    },
+    "./eslint-plugin": {
+      "types": "./eslint-plugin/dist/index.d.ts",
+      "import": "./eslint-plugin/dist/index.js"
+    }
+  },
   "files": [
     "dist/",
-    "loader/"
+    "loader/",
+    "eslint-plugin/dist"
   ],
   "scripts": {
-    "build": "npm run lint && stencil build --docs",
+    "build": "npm run build.eslint-plugin && npm run lint && stencil build --docs",
     "postbuild": "license-checker-rseidelsohn --out licenses.json --json --direct --relativeLicensePath --relativeModulePath",
     "watch": "stencil build --dev --watch",
     "start": "stencil build --dev --watch --serve",
     "start.edge": "stencil build --dev --watch --serve --es5",
     "poststart": "license-checker-rseidelsohn --out licenses.json --json --direct --relativeLicensePath --relativeModulePath",
-    "test": "stencil test --spec --e2e",
+    "test": "stencil test --spec --e2e && npm run test.eslint-plugin",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "lint": "eslint --fix --ext .ts,.tsx,.js,.jsx src/",
+    "lint": "eslint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "deploy-storybook": "gh-pages -d storybook-static --branch site"
+    "deploy-storybook": "gh-pages -d storybook-static --branch site",
+    "build.eslint-plugin": "tsc -p eslint-plugin/tsconfig.json",
+    "test.eslint-plugin": "vitest run --config eslint-plugin/vitest.config.ts",
+    "test.eslint-plugin.watch": "vitest --config eslint-plugin/vitest.config.ts --watch"
   },
   "devDependencies": {
-    "@stencil-community/eslint-plugin": "0.10.0",
+    "@chromatic-com/storybook": "^3.1.0",
+    "@eslint/js": "^9.24.0",
+    "@stencil/eslint-plugin": "1.0.0",
     "@stencil/core": "4.29.2",
     "@stencil/react-output-target": "^0.5.1",
     "@stencil/sass": "^3.0.4",
@@ -47,8 +69,10 @@
     "@storybook/web-components-vite": "^8.6.12",
     "@timkendrick/monaco-editor": "^0.0.9",
     "@types/jest": "^29.5.10",
-    "@typescript-eslint/eslint-plugin": "^8.0.1",
-    "@typescript-eslint/parser": "^8.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.30.1",
+    "@typescript-eslint/parser": "^8.30.1",
+    "@typescript-eslint/rule-tester": "^8.30.1",
+    "@typescript-eslint/utils": "^8.30.1",
     "axe-playwright": "^2.0.1",
     "babel-loader": "^9.1.2",
     "eslint": "^9.24.0",
@@ -57,6 +81,7 @@
     "gh-pages": "^6.0.0",
     "jest": "^29.7.0",
     "jest-cli": "^29.7.0",
+    "jiti": "^2.4.2",
     "license-checker-rseidelsohn": "^4.2.6",
     "lit": "^3.1.0",
     "npm-run-all": "^4.1.5",
@@ -67,7 +92,9 @@
     "storybook": "^8.6.12",
     "ts-node": "^10.9.2",
     "typescript": "5.8.3",
-    "typescript-debounce-decorator": "^0.0.18"
+    "typescript-debounce-decorator": "^0.0.18",
+    "typescript-eslint": "^8.30.1",
+    "vitest": "^3.1.1"
   },
   "dependencies": {
     "jodit": "^4.2.27"

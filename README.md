@@ -34,4 +34,54 @@ Stencil components are just Web Components, so they work in any major framework 
 Stay tuned - coming soon.
 
 ## Usage (Individual Components)
-Usage of each component is documented within the component folder right here on GitHub, along with some code samples too.
+Usage of each component is documented within the library `components` folder along with code samples.
+
+## Usage (`eslint-plugin`)
+To help better handle breaking changes, and to provide advice regarding usage, a custom `eslint` plugin is included in this package. Some breaking changes have auto-fixes. Until we release v1.0.0, it is advisable to upgrade one minor version at a time, and if you use `eslint` or `tslint`, you can get some of the fixes applied automatically for you. We currently only support the flat config format, so you will need those set up:
+- `eslint` v8 (with the option to use the flat config type)
+- `eslint` v9 (flat config is already mandatory)
+- `typescript-eslint` (flat config is already mandatory) **recommended if you use typescript**
+
+No additional package is needed.  Just use the already installed `@dnncommunity/dnn-elements` and import the `eslint-plugin`.  Then use it in your config:
+
+```diff
+import tseslint from 'typescript-eslint';
+import eslint from '@eslint/js';
++import dnnelements from '@dnncommunity/dnn-elements/eslint-plugin';
+
+export default tseslint.config(
+  tseslint.configs.recommendedTypeChecked,
+  stencil.configs.flat.recommended,
++ dnnelements.configs.flat.recommended,
+  {
+    files: [
+      "src/**/*.{ts,tsx}",
+    ],
+  },
+  {
+      ignores: [
+        "dist/",
+        "www/",
+      ],
+  },
+  {
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      parserOptions: {
+        projectService: true,
+        project: './tsconfig.json',
+      }
+    }
+  },
+)
+```
+
+## Upgrading
+As we worked towards a `v1.x.x` release, we had several unavoidable breaking changes to handle along the way. The above `eslint` setup is highly recommended to help you with auto-fixes to handle those breaking changes smoothly, even with hundreds of usages. This means you need to follow a known upgrade path.
+
+- From `<v0.24.0` you should upgrade directly to `v0.24.4` and handle all the breaking changes (ideally using `eslint --fix`).
+- From `v0.24.4` - `v0.25.1` you should upgrade to `v0.26.0` and check manually if you used any of the removed CSS variables to adjust accordingly (see https://github.com/DNNCommunity/dnn-elements/pull/1252/files to spot the removals). Since this is CSS, there are no `eslint` rules to help you there.
+- From `v0.26.0` onwards, you should upgrade to `v0.27.1` and handle all deprecations.
+- From `v0.27.1 - v1.x.x` we will add auto-fixes at each latest minor release.
+- From `v1.x.x` we will use semantic versioning, and you can simply upgrade one major version at a time. They will include auto-fixes in the same release where breaking changes happen.

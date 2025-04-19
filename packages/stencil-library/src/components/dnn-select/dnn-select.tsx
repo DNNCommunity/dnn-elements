@@ -96,7 +96,7 @@ export class DnnSelect {
 
     });
   }
-   
+
   formResetCallback() {
     this.internals.setValidity({});
     this.value = this.originalValue;

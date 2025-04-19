@@ -114,6 +114,10 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * @deprecated Use type instead. Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually. Warning: This will be deprecated in the next version and replaced with a new 'type' property.
+         */
+        "formButtonType": 'submit' | 'reset' | 'button';
+        /**
           * Optionally reverses the button style.
          */
         "reversed": boolean;
@@ -1412,6 +1416,10 @@ declare namespace LocalJSX {
           * Disables the button
          */
         "disabled"?: boolean;
+        /**
+          * @deprecated Use type instead. Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually. Warning: This will be deprecated in the next version and replaced with a new 'type' property.
+         */
+        "formButtonType"?: 'submit' | 'reset' | 'button';
         /**
           * Fires when confirm is true and the user cancels the action.
          */
