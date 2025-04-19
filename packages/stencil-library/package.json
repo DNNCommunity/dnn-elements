@@ -15,18 +15,18 @@
   "unpkg": "dist/dnn/dnn.js",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs.js",
-      "types": "./dist/types/index.d.ts"
+      "require": "./dist/index.cjs.js"
     },
     "./loader": {
+      "types": "./loader/index.d.ts",
       "import": "./loader/index.js",
-      "require": "./loader/index.cjs.js",
-      "types": "./loader/index.d.ts"
+      "require": "./loader/index.cjs.js"
     },
     "./eslint-plugin": {
-      "import": "./eslint-plugin/dist/index.js",
-      "types": "./eslint-plugin/dist/index.d.ts"
+      "types": "./eslint-plugin/dist/index.d.ts",
+      "import": "./eslint-plugin/dist/index.js"
     }
   },
   "files": [
@@ -41,7 +41,7 @@
     "start": "stencil build --dev --watch --serve",
     "start.edge": "stencil build --dev --watch --serve --es5",
     "poststart": "license-checker-rseidelsohn --out licenses.json --json --direct --relativeLicensePath --relativeModulePath",
-    "test": "stencil test --spec --e2e",
+    "test": "stencil test --spec --e2e && npm run test.eslint-plugin",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "lint": "eslint",
