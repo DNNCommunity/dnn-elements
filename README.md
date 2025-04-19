@@ -35,3 +35,44 @@ Stay tuned - coming soon.
 
 ## Usage (Individual Components)
 Usage of each component is documented within the component folder right here on GitHub, along with some code samples too.
+
+## Usage (eslint-plugin)
+To help handle breaking changes and provide advise about usage, we have a custom eslint plugin as part of this very package. Some breaking changes have auto-fixes. Until we release a v1.0.0, it is advisable to upgrade one minor version at a time and if you use eslint/tslint, you can get some of the autofixes apply automatically for you. We currently only support the flat config format so you will need of of those setups:
+- eslint v8 (with the option to use the flat config type)
+- eslint v9 (flat config is already mandatory)
+- typescript-eslint (flat config is already mandatory) **recommended if you use typescript**
+
+No extra package is needed, just use the already installed `@dnncommunity/dnn-elements`, import the `eslint-plugin` and use it in your config:
+
+```diff
+import tseslint from 'typescript-eslint';
+import eslint from '@eslint/js';
++import dnnelements from '@dnncommunity/dnn-elements/eslint-plugin';
+
+export default tseslint.config(
+  tseslint.configs.recommendedTypeChecked,
+  stencil.configs.flat.recommended,
++ dnnelements.configs.flat.recommended,
+  {
+    files: [
+      "src/**/*.{ts,tsx}",
+    ],
+  },
+  {
+      ignores: [
+        "dist/",
+        "www/",
+      ],
+  },
+  {
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      parserOptions: {
+        projectService: true,
+        project: './tsconfig.json',
+      }
+    }
+  },
+)
+```

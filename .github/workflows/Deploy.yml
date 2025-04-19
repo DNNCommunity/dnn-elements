@@ -22,6 +22,8 @@ on:
       - main
       - master
       - 'release/*'
+    tags:
+      - 'v*'
 
 jobs:
   ubuntu-latest:

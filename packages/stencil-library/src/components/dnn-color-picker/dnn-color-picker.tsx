@@ -260,6 +260,7 @@ export class DnnColorPicker {
                 break;
             case "ArrowRight":
                 newColor.saturation += value;
+                break;
             default:
                 break;                
         }

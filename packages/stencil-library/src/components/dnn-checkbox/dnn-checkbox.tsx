@@ -61,7 +61,7 @@ export class DnnCheckbox {
       this.internals.setFormValue(data);
     }
   }
-   
+
   formResetCallback() {
     this.internals.setValidity({});
     this.checked = this.originalChecked;

@@ -125,7 +125,6 @@ export class DnnInput {
     });
   }
 
-   
   formResetCallback() {
     this.inputField.setCustomValidity("");
     this.value = "";
