@@ -247,6 +247,15 @@
               "required": false
             },
             {
+              "name": "form-button-type",
+              "type": {
+                "text": "\"button\" | \"reset\" | \"submit\""
+              },
+              "description": "",
+              "default": "'button'",
+              "required": false
+            },
+            {
               "name": "reversed",
               "type": {
                 "text": "boolean"

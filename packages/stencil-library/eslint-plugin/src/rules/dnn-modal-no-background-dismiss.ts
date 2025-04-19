@@ -28,10 +28,39 @@ export const rule = createRule({
                         attr.name.name === "backgroundDismiss"
                     );
 
-                    if (backgroundDismissAttr) {
+                    if (backgroundDismissAttr?.type === "JSXAttribute") {
                         context.report({
                             node: backgroundDismissAttr,
                             messageId: "dnnModalNoBackgroundDismiss",
+                            fix(fixer) {
+                                const attrValue = backgroundDismissAttr.value;
+                                const isImplicitTrue = !attrValue;
+                                const isExplicitTrue = attrValue &&
+                                    attrValue.type === "JSXExpressionContainer" &&
+                                    attrValue.expression.type === "Literal" &&
+                                    attrValue.expression.value === true;
+
+                                const isExplicitFalse = attrValue &&
+                                    attrValue.type === "JSXExpressionContainer" &&
+                                    attrValue.expression.type === "Literal" &&
+                                    attrValue.expression.value === false;
+
+                                if (isImplicitTrue || isExplicitTrue) {
+                                    // Remove attribute entirely
+                                    return fixer.remove(backgroundDismissAttr);
+                                }
+
+                                if (isExplicitFalse) {
+                                    // Replace with opposite meaning
+                                    return fixer.replaceText(
+                                        backgroundDismissAttr,
+                                        "preventBackgroundDismiss"
+                                    );
+                                }
+
+                                // Default behavior: just remove it
+                                return fixer.remove(backgroundDismissAttr);
+                            },
                         });
                     }
                 }
