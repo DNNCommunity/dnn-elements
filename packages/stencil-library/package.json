@@ -56,7 +56,7 @@
     "@chromatic-com/storybook": "^3.1.0",
     "@eslint/js": "^9.24.0",
     "@stencil/eslint-plugin": "1.0.0",
-    "@stencil/core": "4.29.2",
+    "@stencil/core": "4.29.3",
     "@stencil/react-output-target": "^0.5.1",
     "@stencil/sass": "^3.0.4",
     "@storybook/addon-a11y": "^8.6.12",
