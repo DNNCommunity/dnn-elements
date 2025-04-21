@@ -97,6 +97,6 @@
     "vitest": "^3.1.1"
   },
   "dependencies": {
-    "jodit": "^4.2.27"
+    "jodit": "^4.6.2"
   }
 }
