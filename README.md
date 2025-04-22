@@ -85,3 +85,5 @@ As we worked towards a `v1.x.x` release, we had several unavoidable breaking cha
 - From `v0.26.0` onwards, you should upgrade to `v0.27.1` and handle all deprecations.
 - From `v0.27.1 - v1.x.x` we will add auto-fixes at each latest minor release.
 - From `v1.x.x` we will use semantic versioning, and you can simply upgrade one major version at a time. They will include auto-fixes in the same release where breaking changes happen.
+
+This project is tested with BrowserStack
