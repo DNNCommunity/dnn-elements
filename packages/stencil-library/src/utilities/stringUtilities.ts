@@ -15,7 +15,7 @@ export function getReadableFileSizeString (fileSizeInBytes: number) : string {
 
 /** Takes an html encoded string and converts it to actual decoded html. */
 export function decodeHtml(html: string) : string {
-  if (html != undefined){
+  if (html == undefined){
     return '';
   }
 
