@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { ifDefined } from 'lit-html/directives/if-defined.js';
 import { actions } from '@storybook/addon-actions';
-import readme from "./readme.md";
+import readme from "./readme.md?raw";
 
 const meta : Meta = {
     title: 'Elements/Checkbox',

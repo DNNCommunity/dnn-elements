@@ -4,7 +4,7 @@ import { IPermissions } from "./permissions-interface";
 import { IRoleGroup } from "./role-group-interface";
 import { IRole } from "./role-interface";
 import { actions } from '@storybook/addon-actions';
-import readme from "./readme.md";
+import readme from "./readme.md?raw";
 
 const meta: Meta = {
     title: "Elements/Permissions Grid",
