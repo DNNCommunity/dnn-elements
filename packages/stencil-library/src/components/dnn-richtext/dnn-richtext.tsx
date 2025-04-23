@@ -2,11 +2,12 @@ import { Component, Host, h, Prop, Event, EventEmitter, Watch, AttachInternals, 
 import { Jodit } from "jodit";
 import type { Config } from "jodit/types/config";
 import { decodeHtml } from '../../utilities/stringUtilities';
+import { DeepPartial } from 'jodit/types/types';
 
 @Component({
   tag: 'dnn-richtext',
   styleUrl: 'dnn-richtext.scss',
-  shadow: true,
+  shadow: false,
   formAssociated: true,
 })
 export class DnnRichtext {
@@ -66,16 +67,17 @@ export class DnnRichtext {
   }
   
   componentDidLoad(){
-    var mergedOptions : Config = {
+    var mergedOptions : Partial<Config> = {
       ...this.dnnDefaultOptions,
       ...this.options,
       shadowRoot: this.host.shadowRoot,
     };
+
     if (this.customizeOptions != undefined){
-      mergedOptions = this.customizeOptions(mergedOptions);
+      mergedOptions = this.customizeOptions(mergedOptions as Config);
     }
     this.plugins.forEach(plugin => Jodit.plugins.add(plugin.name, plugin.callback));
-    this.editor = Jodit.make(this.textArea, mergedOptions);
+    this.editor = Jodit.make(this.textArea, (mergedOptions as DeepPartial<Config>));
     this.editor.value = decodeHtml(this.value ?? "");
     this.setFormValue();
     this.editor.e.on('input', () => this.valueInput.emit(this.editor.value));

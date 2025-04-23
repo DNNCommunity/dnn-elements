@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { actions } from '@storybook/addon-actions';
-import readme from "./readme.md";
+import readme from "./readme.md?raw";
 
 const meta: Meta = {
     title: "Elements/Searchbox",
