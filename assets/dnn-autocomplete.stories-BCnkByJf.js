@@ -316,7 +316,7 @@ graph TD;
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
-`,c={title:"Elements/AutoComplete",component:"dnn-autocomplete",tags:["autodocs"],parameters:{docs:{description:{component:u.default}}},argTypes:{disabled:{control:"boolean"},helpText:{control:"text"},label:{control:"text"},name:{control:"text"},preloadThresholdPixels:{control:"number"},renderSuggestions:{control:"object"},required:{control:"boolean"},suggestions:{control:"object"},totalSuggestions:{control:"number"},value:{control:"text"},onSearchQueryChanged:{action:"onSearchQueryChanged"}}},t=l("itemSelected","needMoreItems","searchQueryChanged","valueChange","valueInput"),d=e=>i`
+`,c={title:"Elements/AutoComplete",component:"dnn-autocomplete",tags:["autodocs"],parameters:{docs:{description:{component:u}}},argTypes:{disabled:{control:"boolean"},helpText:{control:"text"},label:{control:"text"},name:{control:"text"},preloadThresholdPixels:{control:"number"},renderSuggestions:{control:"object"},required:{control:"boolean"},suggestions:{control:"object"},totalSuggestions:{control:"number"},value:{control:"text"},onSearchQueryChanged:{action:"onSearchQueryChanged"}}},t=l("itemSelected","needMoreItems","searchQueryChanged","valueChange","valueInput"),d=e=>i`
     <dnn-autocomplete
         .disabled=${e.disabled}
         .helpText=${e.helpText}
