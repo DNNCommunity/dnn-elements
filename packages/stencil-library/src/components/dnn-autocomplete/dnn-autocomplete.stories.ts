@@ -1,10 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
-import { html, LitElement } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
-import { ifDefined } from 'lit-html/directives/if-defined.js';
-import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import { html } from 'lit';
 import { actions } from '@storybook/addon-actions';
-import readme from "./readme.md";
+import readme from "./readme.md?raw";
 
 const meta: Meta = {
   title: 'Elements/AutoComplete',
@@ -13,7 +10,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: readme.default,
+        component: readme,
       }
     }
   },
