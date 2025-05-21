@@ -36,6 +36,9 @@ export default (tseslint.config(
             ".storybook/**/*",
             "eslint.config.ts",
             "stencil.config.ts",
+            "storybook-static",
+            "types",
+            "vite.config.ts",
         ],
     },
     {

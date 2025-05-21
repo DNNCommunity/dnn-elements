@@ -1,5 +1,4 @@
 import type { StorybookConfig } from '@storybook/web-components-vite';
-
 import { join, dirname } from "path"
 
 /**
@@ -12,7 +11,7 @@ function getAbsolutePath(value: string): any {
 const config: StorybookConfig = {
   "stories": [
     "../src/**/*.mdx",
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   "addons": [
     getAbsolutePath('@storybook/addon-essentials'),

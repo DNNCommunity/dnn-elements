@@ -7,7 +7,7 @@ import { DeepPartial } from 'jodit/types/types';
 @Component({
   tag: 'dnn-richtext',
   styleUrl: 'dnn-richtext.scss',
-  shadow: true,
+  shadow: false,
   formAssociated: true,
 })
 export class DnnRichtext {
