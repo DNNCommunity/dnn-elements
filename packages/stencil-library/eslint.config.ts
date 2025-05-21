@@ -34,6 +34,7 @@ export default (tseslint.config(
             "eslint-plugin/**/*",
             "**/*.spec.ts",
             ".storybook/**/*",
+            "storybook-static/**/*",
             "eslint.config.ts",
             "stencil.config.ts",
             "storybook-static",
