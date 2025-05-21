@@ -98,5 +98,8 @@
   },
   "dependencies": {
     "jodit": "^4.6.2"
+  },
+  "peerDependencies": {
+    "@typescript-eslint/utils": "^8.30.1"
   }
 }
