@@ -4,11 +4,5 @@
         "repository": "https://github.com/dnncommunity/dnn-elements",
         "path": "",
         "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\README.md"
-    },
-    "react@18.3.1": {
-        "licenses": "MIT",
-        "repository": "https://github.com/facebook/react",
-        "path": "node_modules\\react",
-        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\react\\LICENSE"
     }
 }
