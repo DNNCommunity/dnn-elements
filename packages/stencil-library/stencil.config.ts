@@ -122,6 +122,11 @@ export const config: Config = {
       esmLoaderPath: '../loader',
     },
     {
+      type: 'dist-custom-elements',
+      customElementsExportBehavior: 'auto-define-custom-elements',
+      externalRuntime: false,
+    },
+    {
       type: 'docs-readme'
     },
     {
@@ -151,8 +156,11 @@ export const config: Config = {
   },
   sourceMap: true,
   testing: {
-    browserHeadless: "new",
+    browserHeadless: "shell",
     browserArgs: ["--no-sandbox", "--disable-setuid-sandbox"],
     testPathIgnorePatterns: ["<rootDir>/eslint-plugin/"],
   },
+  extras: {
+    enableImportInjection: true,
+  }
 };
