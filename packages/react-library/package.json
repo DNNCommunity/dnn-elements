@@ -2,7 +2,7 @@
   "name": "@dnncommunity/dnn-elements-react",
   "version": "0.26.0-alpha.2",
   "description": "Dnn themed custom elements with react wrappers.",
-  "homepage": "https://github.com/valadas/dnn-elements",
+  "homepage": "https://github.com/dnncommunity/dnn-elements",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -18,17 +18,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/valadas/dnn-elements.git"
+    "url": "git+https://github.com/dnncommunity/dnn-elements.git"
   },
   "scripts": {
     "build": "npm run tsc",
     "tsc": "tsc -p ."
   },
   "bugs": {
-    "url": "https://github.com/valadas/dnn-elements/issues"
+    "url": "https://github.com/dnncommunity/dnn-elements/issues"
   },
   "dependencies": {
-    "@dnncommunity/dnn-elements": "*"
+    "@dnncommunity/dnn-elements": "*",
+    "@stencil/react-output-target": "^1.2.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.21.4",
@@ -38,6 +39,6 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^19.1.0",
-    "typescript": "^5.0.3"
+    "typescript": "^5.9.2"
   }
 }

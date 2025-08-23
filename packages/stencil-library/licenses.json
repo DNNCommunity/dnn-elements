@@ -18,13 +18,6 @@
         "path": "node_modules\\react",
         "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\react\\LICENSE"
     },
-    "rollup@3.29.5": {
-        "licenses": "MIT",
-        "repository": "https://github.com/rollup/rollup",
-        "publisher": "Rich Harris",
-        "path": "node_modules\\rollup",
-        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\rollup\\LICENSE.md"
-    },
     "unplugin-stencil@0.3.5": {
         "licenses": "MIT",
         "repository": "https://github.com/stencil-community/unplugin-stencil",

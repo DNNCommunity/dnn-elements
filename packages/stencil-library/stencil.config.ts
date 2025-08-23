@@ -136,9 +136,12 @@ export const config: Config = {
       type: 'www',
       serviceWorker: null, // disable service workers
     },
+    {
+      type: 'dist-custom-elements',
+      externalRuntime: false,
+    },
     reactOutputTarget({
-      componentCorePackage: '@dnncommunity/dnn-elements',
-      proxiesFile: '../react-library/lib/components/stencil-generated/index.ts',
+      outDir: '../react-library/lib/components/stencil-generated/',
     }),
   ],
   plugins: [
@@ -151,7 +154,7 @@ export const config: Config = {
   },
   sourceMap: true,
   testing: {
-    browserHeadless: "new",
+    browserHeadless: true,
     browserArgs: ["--no-sandbox", "--disable-setuid-sandbox"],
     testPathIgnorePatterns: ["<rootDir>/eslint-plugin/"],
   },
