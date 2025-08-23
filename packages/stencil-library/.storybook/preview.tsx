@@ -1,14 +1,13 @@
 // Reverting to .ts as React is no longer part of this version
 import type { Preview } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
-import { defineCustomElements } from '../loader';
 import customElements from '../custom-elements.json';
 import { Title, Subtitle, Description, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
 import React from 'react';
 import { h } from '@stencil/core';
 
-// Register Stencil components and set the custom elements manifest
-defineCustomElements();
+// Import the full bundle instead of using the loader
+import '../dist/dnn/dnn.esm.js';
 setCustomElementsManifest(customElements);
 
 const preview: Preview = {
