@@ -40,6 +40,9 @@ export default (tseslint.config(
             "storybook-static",
             "types",
             "vite.config.ts",
+            "vitest.config.ts",
+            "vitest.node.config.ts",
+            ".stencil/**/*",
         ],
     },
     {
