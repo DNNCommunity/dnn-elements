@@ -1,9 +1,9 @@
 // Reverting to .ts as React is no longer part of this version
-import type { Preview } from '@storybook/web-components';
-import { setCustomElementsManifest } from '@storybook/web-components';
+import type { Preview } from '@storybook/web-components-vite';
+import { setCustomElementsManifest } from '@storybook/web-components-vite';
 import { defineCustomElements } from '../loader';
 import customElements from '../custom-elements.json';
-import { Title, Subtitle, Description, Primary, Controls, Stories } from '@storybook/blocks';
+import { Title, Subtitle, Description, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
 import React from 'react';
 import { h } from '@stencil/core';
 

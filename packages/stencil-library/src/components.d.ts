@@ -37,6 +37,7 @@ export namespace Components {
     interface DnnAutocomplete {
         /**
           * Defines the type of automatic completion the browser could use. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+          * @default "off"
          */
         "autocomplete": string;
         /**
@@ -61,6 +62,7 @@ export namespace Components {
         "name"?: string;
         /**
           * How many suggestions to preload in pixels of their height. This is used to calculate the virtual scroll height and request more items before they get into view.
+          * @default 1000
          */
         "preloadThresholdPixels": number;
         /**
@@ -77,6 +79,7 @@ export namespace Components {
         "setCustomValidity": (message: string) => Promise<void>;
         /**
           * Sets the list of suggestions.
+          * @default []
          */
         "suggestions": DnnAutocompleteSuggestion[];
         /**
@@ -85,48 +88,59 @@ export namespace Components {
         "totalSuggestions"?: number;
         /**
           * Defines the value for this autocomplete
+          * @default ""
          */
         "value": string;
     }
     interface DnnButton {
         /**
           * Defines the look of the button.
+          * @default 'primary'
          */
         "appearance": 'primary' | 'danger' | 'secondary' | 'tertiary';
         /**
           * Optionally add a confirmation dialog before firing the action.
+          * @default false
          */
         "confirm"?: boolean;
         /**
           * The text of the confirmation message;
+          * @default "Are you sure ?"
          */
         "confirmMessage"?: string;
         /**
           * The text of the no button for confirmation.
+          * @default "No"
          */
         "confirmNoText"?: string;
         /**
           * The text of the yes button for confirmation.
+          * @default "Yes"
          */
         "confirmYesText"?: string;
         /**
           * Disables the button
+          * @default false
          */
         "disabled": boolean;
         /**
           * @deprecated Use type instead. Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually. Warning: This will be deprecated in the next version and replaced with a new 'type' property.
+          * @default 'button'
          */
         "formButtonType": 'submit' | 'reset' | 'button';
         /**
           * Optionally reverses the button style.
+          * @default false
          */
         "reversed": boolean;
         /**
           * Optionally sets the button size, small normal or large, defaults to normal
+          * @default 'normal'
          */
         "size"?: 'small' | 'normal' | 'large';
         /**
           * Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually.
+          * @default 'button'
          */
         "type": 'submit' | 'reset' | 'button';
     }
@@ -137,54 +151,66 @@ export namespace Components {
         "checkValidity": () => Promise<ValidityState>;
         /**
           * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
+          * @default "unchecked"
          */
         "checked": CheckedState;
         /**
           * The name to show in the formData (if using forms).
+          * @default ""
          */
         "name": string;
         /**
           * A function that will be called when the checkbox needs to change state and returns the next state. Can be used to customize the order of the states when the component is clicked. Only called if you also use the tri-state feature (useIntermediate).
+          * @default (currentState) => this.defaultNextStateHandler(currentState)
          */
         "nextStateHandler": (currentState: CheckedState) => CheckedState;
         /**
           * If true, the checkbox needs to be checked for the form validation to succeed.
+          * @default false
          */
         "required": boolean;
         /**
           * Can be used to customize the validation message when the field is required but not checked.
+          * @default "The checkbox must be checked"
          */
         "requiredMessage": string;
         /**
           * Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)
+          * @default false
          */
         "useIntermediate": boolean;
         /**
           * The value for this checkbox (not to be confused with its checked state).
+          * @default "on"
          */
         "value": string;
     }
     interface DnnChevron {
         /**
           * Collapse text for screen readers
+          * @default "collapse"
          */
         "collapseText"?: string;
         /**
           * Expand text for screen readers
+          * @default "expand"
          */
         "expandText"?: string;
         /**
           * Is the chevron expanded
+          * @default false
          */
         "expanded"?: boolean;
     }
     interface DnnCollapsible {
         /**
           * Defines if the panel is expanded or not.
+          * @default false
          */
         "expanded": boolean;
         /**
           * Defines the transition time in ms, defaults to 150ms
+          * @default 150
          */
         "transitionDuration"?: number;
         /**
@@ -198,14 +224,17 @@ export namespace Components {
     interface DnnColorInput {
         /**
           * Sets the initial color, must be a valid 8 character hexadecimal string without the # sign.
+          * @default "000088"
          */
         "color": string;
         /**
           * Sets the initial contrast color, must be a valid 8 character hexadecimal string without the # sign.
+          * @default "FFFFFF"
          */
         "contrastColor": string;
         /**
           * Sets the initial dark color, must be a valid 8 character hexadecimal string without the # sign.
+          * @default "0000044"
          */
         "darkColor": string;
         /**
@@ -218,10 +247,12 @@ export namespace Components {
         "label"?: string;
         /**
           * Sets the initial light color, must be a valid 8 character hexadecimal string without the # sign.
+          * @default "00000FF"
          */
         "lightColor": string;
         /**
           * Can be used to customize the text language.
+          * @default {     contrast: "Contrast",     preview: "Preview",     cancel: "Cancel",     confirm: "Confirm",     normal: "Normal",     light: "Light",     dark: "Dark",   }
          */
         "localization": {
     contrast: string,
@@ -259,17 +290,20 @@ export namespace Components {
     interface DnnColorPicker {
         /**
           * Sets the initial color, must be a valid 8 character hexadecimal string without the # sign.
+          * @default "FFFFFF"
          */
         "color": string;
         /**
           * Sets the width-height ratio of the color picker saturation-lightness box.
           * @example 100% renders a perfect square
+          * @default "50%"
          */
         "colorBoxHeight": string;
     }
     interface DnnDropzone {
         /**
           * If true, will allow the user to take a snapshot using the device camera. (only works over https).
+          * @default false
          */
         "allowCameraMode": boolean;
         /**
@@ -278,6 +312,7 @@ export namespace Components {
         "allowedExtensions"?: string[];
         /**
           * Specifies the jpeg quality for when the device camera is used to generate a picture. Needs to be a number between 0 and 1 and defaults to 0.8
+          * @default 0.8
          */
         "captureQuality": number;
         /**
@@ -340,6 +375,7 @@ export namespace Components {
         "pinLabel": () => Promise<void>;
         /**
           * Can be set to specify if the fieldset can be resized by the user.
+          * @default "none"
          */
         "resizable": "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
         /**
@@ -379,10 +415,12 @@ export namespace Components {
         "name"?: string;
         /**
           * When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry.
+          * @default false
          */
         "preventUndersized": boolean;
         /**
           * Sets the output quality of the cropped image (number between 0 and 1).
+          * @default 0.8
          */
         "quality": number;
         /**
@@ -404,6 +442,7 @@ export namespace Components {
         "allowShowPassword"?: boolean;
         /**
           * Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.
+          * @default "off"
          */
         "autocomplete": string;
         /**
@@ -476,10 +515,12 @@ export namespace Components {
         "step"?: string | number;
         /**
           * The input type, supports most of html standard input type, see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types.
+          * @default "text"
          */
         "type": "date" | "datetime-local" | "email" | "number" | "password" | "tel" | "text" | "time" | "url" | "search";
         /**
           * The value of the input.
+          * @default ""
          */
         "value": number | string | string[];
     }
@@ -490,6 +531,7 @@ export namespace Components {
         "backdropDismiss"?: boolean;
         /**
           * Optionally pass the aria-label text for the close button. Defaults to "Close modal" if not provided.
+          * @default "Close modal"
          */
         "closeText"?: string;
         /**
@@ -498,14 +540,17 @@ export namespace Components {
         "hide": () => Promise<void>;
         /**
           * Optionally you can pass true to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
+          * @default false
          */
         "hideCloseButton": boolean;
         /**
           * Pass true to remove the backdrop click auto-dismiss feature. Defaults to false.
+          * @default false
          */
         "preventBackdropDismiss"?: boolean;
         /**
           * If set to true, the modal becomes resizable.
+          * @default false
          */
         "resizable"?: boolean;
         /**
@@ -518,12 +563,14 @@ export namespace Components {
         "showCloseButton"?: boolean;
         /**
           * Reflects the visible state of the modal.
+          * @default false
          */
         "visible": boolean;
     }
     interface DnnMonacoEditor {
         /**
           * Defines the language for the editor.
+          * @default "html"
          */
         "language": "plaintext" | "bat" | "coffeescript" | "c" | "cpp" | "csharp" | "dockerfile" | "fsharp" | "go" | "handlebars" | "html" | "ini" | "pug" | "java" | "lua" | "markdown" | "msdax" | "objective-c" | "postiats" | "php" | "powershell" | "python" | "r" | "razor" | "ruby" | "swift" | "sql" | "vb" | "xml" | "less" | "scss" | "css" | "yaml" | "sol" | "sb" | "json" | "typescript" | "javascript";
         /**
@@ -532,12 +579,14 @@ export namespace Components {
         "name"?: string;
         /**
           * Sets the code contained in the editor
+          * @default ""
          */
         "value": string;
     }
     interface DnnPermissionsGrid {
         /**
           * The list of users to show under the search users field when a search is performed.
+          * @default []
          */
         "foundUsers": ISearchedUser[];
         /**
@@ -560,14 +609,17 @@ export namespace Components {
     interface DnnProgressBar {
         /**
           * Sets the max value for the progress bar.
+          * @default 100
          */
         "max": number;
         /**
           * Determines if gradient colors will be used for progress bar.
+          * @default false
          */
         "useGradient": boolean;
         /**
           * Sets to current value for the progress bar.
+          * @default 0
          */
         "value": number;
     }
@@ -586,30 +638,36 @@ export namespace Components {
         "options"?: Config;
         /**
           * Allows registering your own plugins. The callback will be called with the editor instance as the only argument durig initialization. All other behavior needs to be implemented in the plugin itself using editor.on("eventname"). See https://xdsoft.net/jodit/examples/plugin/custom_plugin.html for an example. Creating a plugin does NOT automatically add it to the toolbar, you need to do that yourself in 'options' or 'customizeOptions', See https://xdsoft.net/jodit/examples/toolbar/custom_button.html for an example.
+          * @default []
          */
         "plugins": {name: string, callback: (editor: Jodit) => void}[];
         /**
           * Sets the value of the content of the editor.
+          * @default ""
          */
         "value": string;
     }
     interface DnnSearchbox {
         /**
           * How many milliseconds to wait before firing the queryChanged event.
+          * @default 500
          */
         "debounceTime": number;
         /**
           * Sets the field placeholder text.
+          * @default ""
          */
         "placeholder"?: string;
         /**
           * Sets the query
+          * @default ""
          */
         "query": string;
     }
     interface DnnSelect {
         /**
           * Defines the type of automatic completion the browser can use. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+          * @default "off"
          */
         "autocomplete": string;
         /**
@@ -638,12 +696,14 @@ export namespace Components {
         "required"?: boolean;
         /**
           * The value of the input.
+          * @default ""
          */
         "value": string;
     }
     interface DnnSortIcon {
         /**
           * Defines the current sort direction
+          * @default "none"
          */
         "sortDirection": "asc" | "desc" | "none";
     }
@@ -672,6 +732,7 @@ export namespace Components {
     interface DnnTextarea {
         /**
           * Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.
+          * @default "off"
          */
         "autocomplete": string;
         /**
@@ -712,10 +773,12 @@ export namespace Components {
         "required"?: boolean;
         /**
           * Can be set to change how the user can resize the field.
+          * @default "block"
          */
         "resizable": "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
         /**
           * Defines how many rows (lines of text) to initially show.
+          * @default 3
          */
         "rows": number;
         /**
@@ -724,16 +787,19 @@ export namespace Components {
         "setCustomValidity": (message: string) => Promise<void>;
         /**
           * Sets the value of the textarea.
+          * @default ""
          */
         "value": string;
     }
     interface DnnToggle {
         /**
           * If 'true' the toggle is checked (on).
+          * @default false
          */
         "checked": boolean;
         /**
           * If 'true' the toggle is not be interacted with.
+          * @default false
          */
         "disabled": boolean;
         /**
@@ -742,12 +808,14 @@ export namespace Components {
         "name"?: string;
         /**
           * The value to post when used in forms.
+          * @default "on"
          */
         "value": string;
     }
     interface DnnTreeviewItem {
         /**
           * Defines if the current node is expanded.
+          * @default false
          */
         "expanded": boolean;
     }
@@ -767,10 +835,12 @@ export namespace Components {
         "setSplitWidthPercentage": (newWidth: number) => Promise<void>;
         /**
           * The percentage position of the splitter in the container.
+          * @default 30
          */
         "splitWidthPercentage": number;
         /**
           * The width of the splitter area.
+          * @default 16
          */
         "splitterWidth": number;
     }
@@ -1328,6 +1398,7 @@ declare namespace LocalJSX {
     interface DnnAutocomplete {
         /**
           * Defines the type of automatic completion the browser could use. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+          * @default "off"
          */
         "autocomplete"?: string;
         /**
@@ -1368,6 +1439,7 @@ declare namespace LocalJSX {
         "onValueInput"?: (event: DnnAutocompleteCustomEvent<number | string | string[]>) => void;
         /**
           * How many suggestions to preload in pixels of their height. This is used to calculate the virtual scroll height and request more items before they get into view.
+          * @default 1000
          */
         "preloadThresholdPixels"?: number;
         /**
@@ -1380,6 +1452,7 @@ declare namespace LocalJSX {
         "required"?: boolean;
         /**
           * Sets the list of suggestions.
+          * @default []
          */
         "suggestions"?: DnnAutocompleteSuggestion[];
         /**
@@ -1388,36 +1461,44 @@ declare namespace LocalJSX {
         "totalSuggestions"?: number;
         /**
           * Defines the value for this autocomplete
+          * @default ""
          */
         "value"?: string;
     }
     interface DnnButton {
         /**
           * Defines the look of the button.
+          * @default 'primary'
          */
         "appearance"?: 'primary' | 'danger' | 'secondary' | 'tertiary';
         /**
           * Optionally add a confirmation dialog before firing the action.
+          * @default false
          */
         "confirm"?: boolean;
         /**
           * The text of the confirmation message;
+          * @default "Are you sure ?"
          */
         "confirmMessage"?: string;
         /**
           * The text of the no button for confirmation.
+          * @default "No"
          */
         "confirmNoText"?: string;
         /**
           * The text of the yes button for confirmation.
+          * @default "Yes"
          */
         "confirmYesText"?: string;
         /**
           * Disables the button
+          * @default false
          */
         "disabled"?: boolean;
         /**
           * @deprecated Use type instead. Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually. Warning: This will be deprecated in the next version and replaced with a new 'type' property.
+          * @default 'button'
          */
         "formButtonType"?: 'submit' | 'reset' | 'button';
         /**
@@ -1430,28 +1511,34 @@ declare namespace LocalJSX {
         "onConfirmed"?: (event: DnnButtonCustomEvent<any>) => void;
         /**
           * Optionally reverses the button style.
+          * @default false
          */
         "reversed"?: boolean;
         /**
           * Optionally sets the button size, small normal or large, defaults to normal
+          * @default 'normal'
          */
         "size"?: 'small' | 'normal' | 'large';
         /**
           * Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually.
+          * @default 'button'
          */
         "type"?: 'submit' | 'reset' | 'button';
     }
     interface DnnCheckbox {
         /**
           * Defines if the checkbox is checked (true) or unchecked (false) or in an intermediate state (undefined)
+          * @default "unchecked"
          */
         "checked"?: CheckedState;
         /**
           * The name to show in the formData (if using forms).
+          * @default ""
          */
         "name"?: string;
         /**
           * A function that will be called when the checkbox needs to change state and returns the next state. Can be used to customize the order of the states when the component is clicked. Only called if you also use the tri-state feature (useIntermediate).
+          * @default (currentState) => this.defaultNextStateHandler(currentState)
          */
         "nextStateHandler"?: (currentState: CheckedState) => CheckedState;
         /**
@@ -1460,32 +1547,39 @@ declare namespace LocalJSX {
         "onCheckedchange"?: (event: DnnCheckboxCustomEvent<"checked" | "unchecked" | "intermediate">) => void;
         /**
           * If true, the checkbox needs to be checked for the form validation to succeed.
+          * @default false
          */
         "required"?: boolean;
         /**
           * Can be used to customize the validation message when the field is required but not checked.
+          * @default "The checkbox must be checked"
          */
         "requiredMessage"?: string;
         /**
           * Defines if clicking the checkbox will go through the intermediate state between checked and unchecked (tri-state)
+          * @default false
          */
         "useIntermediate"?: boolean;
         /**
           * The value for this checkbox (not to be confused with its checked state).
+          * @default "on"
          */
         "value"?: string;
     }
     interface DnnChevron {
         /**
           * Collapse text for screen readers
+          * @default "collapse"
          */
         "collapseText"?: string;
         /**
           * Expand text for screen readers
+          * @default "expand"
          */
         "expandText"?: string;
         /**
           * Is the chevron expanded
+          * @default false
          */
         "expanded"?: boolean;
         /**
@@ -1496,6 +1590,7 @@ declare namespace LocalJSX {
     interface DnnCollapsible {
         /**
           * Defines if the panel is expanded or not.
+          * @default false
          */
         "expanded"?: boolean;
         /**
@@ -1504,6 +1599,7 @@ declare namespace LocalJSX {
         "onDnnCollapsibleHeightChanged"?: (event: DnnCollapsibleCustomEvent<void>) => void;
         /**
           * Defines the transition time in ms, defaults to 150ms
+          * @default 150
          */
         "transitionDuration"?: number;
     }
@@ -1513,14 +1609,17 @@ declare namespace LocalJSX {
     interface DnnColorInput {
         /**
           * Sets the initial color, must be a valid 8 character hexadecimal string without the # sign.
+          * @default "000088"
          */
         "color"?: string;
         /**
           * Sets the initial contrast color, must be a valid 8 character hexadecimal string without the # sign.
+          * @default "FFFFFF"
          */
         "contrastColor"?: string;
         /**
           * Sets the initial dark color, must be a valid 8 character hexadecimal string without the # sign.
+          * @default "0000044"
          */
         "darkColor"?: string;
         /**
@@ -1533,10 +1632,12 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Sets the initial light color, must be a valid 8 character hexadecimal string without the # sign.
+          * @default "00000FF"
          */
         "lightColor"?: string;
         /**
           * Can be used to customize the text language.
+          * @default {     contrast: "Contrast",     preview: "Preview",     cancel: "Cancel",     confirm: "Confirm",     normal: "Normal",     light: "Light",     dark: "Dark",   }
          */
         "localization"?: {
     contrast: string,
@@ -1582,11 +1683,13 @@ declare namespace LocalJSX {
     interface DnnColorPicker {
         /**
           * Sets the initial color, must be a valid 8 character hexadecimal string without the # sign.
+          * @default "FFFFFF"
          */
         "color"?: string;
         /**
           * Sets the width-height ratio of the color picker saturation-lightness box.
           * @example 100% renders a perfect square
+          * @default "50%"
          */
         "colorBoxHeight"?: string;
         /**
@@ -1598,6 +1701,7 @@ declare namespace LocalJSX {
     interface DnnDropzone {
         /**
           * If true, will allow the user to take a snapshot using the device camera. (only works over https).
+          * @default false
          */
         "allowCameraMode"?: boolean;
         /**
@@ -1606,6 +1710,7 @@ declare namespace LocalJSX {
         "allowedExtensions"?: string[];
         /**
           * Specifies the jpeg quality for when the device camera is used to generate a picture. Needs to be a number between 0 and 1 and defaults to 0.8
+          * @default 0.8
          */
         "captureQuality"?: number;
         /**
@@ -1660,6 +1765,7 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Can be set to specify if the fieldset can be resized by the user.
+          * @default "none"
          */
         "resizable"?: "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
     }
@@ -1687,10 +1793,12 @@ declare namespace LocalJSX {
         "onImageFileCropChanged"?: (event: DnnImageCropperCustomEvent<File>) => void;
         /**
           * When set to true, prevents cropping an image smaller than the required size, which would blow pixel and make the final picture look blurry.
+          * @default false
          */
         "preventUndersized"?: boolean;
         /**
           * Sets the output quality of the cropped image (number between 0 and 1).
+          * @default 0.8
          */
         "quality"?: number;
         /**
@@ -1712,6 +1820,7 @@ declare namespace LocalJSX {
         "allowShowPassword"?: boolean;
         /**
           * Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.
+          * @default "off"
          */
         "autocomplete"?: string;
         /**
@@ -1784,10 +1893,12 @@ declare namespace LocalJSX {
         "step"?: string | number;
         /**
           * The input type, supports most of html standard input type, see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types.
+          * @default "text"
          */
         "type"?: "date" | "datetime-local" | "email" | "number" | "password" | "tel" | "text" | "time" | "url" | "search";
         /**
           * The value of the input.
+          * @default ""
          */
         "value"?: number | string | string[];
     }
@@ -1798,10 +1909,12 @@ declare namespace LocalJSX {
         "backdropDismiss"?: boolean;
         /**
           * Optionally pass the aria-label text for the close button. Defaults to "Close modal" if not provided.
+          * @default "Close modal"
          */
         "closeText"?: string;
         /**
           * Optionally you can pass true to not show the close button. If you decide to do so, you should either not also prevent dismissal by clicking the backdrop or provide your own dismissal logic in the modal content.
+          * @default false
          */
         "hideCloseButton"?: boolean;
         /**
@@ -1810,10 +1923,12 @@ declare namespace LocalJSX {
         "onDismissed"?: (event: DnnModalCustomEvent<any>) => void;
         /**
           * Pass true to remove the backdrop click auto-dismiss feature. Defaults to false.
+          * @default false
          */
         "preventBackdropDismiss"?: boolean;
         /**
           * If set to true, the modal becomes resizable.
+          * @default false
          */
         "resizable"?: boolean;
         /**
@@ -1822,12 +1937,14 @@ declare namespace LocalJSX {
         "showCloseButton"?: boolean;
         /**
           * Reflects the visible state of the modal.
+          * @default false
          */
         "visible"?: boolean;
     }
     interface DnnMonacoEditor {
         /**
           * Defines the language for the editor.
+          * @default "html"
          */
         "language"?: "plaintext" | "bat" | "coffeescript" | "c" | "cpp" | "csharp" | "dockerfile" | "fsharp" | "go" | "handlebars" | "html" | "ini" | "pug" | "java" | "lua" | "markdown" | "msdax" | "objective-c" | "postiats" | "php" | "powershell" | "python" | "r" | "razor" | "ruby" | "swift" | "sql" | "vb" | "xml" | "less" | "scss" | "css" | "yaml" | "sol" | "sb" | "json" | "typescript" | "javascript";
         /**
@@ -1840,12 +1957,14 @@ declare namespace LocalJSX {
         "onContentChanged"?: (event: DnnMonacoEditorCustomEvent<string>) => void;
         /**
           * Sets the code contained in the editor
+          * @default ""
          */
         "value"?: string;
     }
     interface DnnPermissionsGrid {
         /**
           * The list of users to show under the search users field when a search is performed.
+          * @default []
          */
         "foundUsers"?: ISearchedUser[];
         /**
@@ -1876,14 +1995,17 @@ declare namespace LocalJSX {
     interface DnnProgressBar {
         /**
           * Sets the max value for the progress bar.
+          * @default 100
          */
         "max"?: number;
         /**
           * Determines if gradient colors will be used for progress bar.
+          * @default false
          */
         "useGradient"?: boolean;
         /**
           * Sets to current value for the progress bar.
+          * @default 0
          */
         "value"?: number;
     }
@@ -1910,16 +2032,19 @@ declare namespace LocalJSX {
         "options"?: Config;
         /**
           * Allows registering your own plugins. The callback will be called with the editor instance as the only argument durig initialization. All other behavior needs to be implemented in the plugin itself using editor.on("eventname"). See https://xdsoft.net/jodit/examples/plugin/custom_plugin.html for an example. Creating a plugin does NOT automatically add it to the toolbar, you need to do that yourself in 'options' or 'customizeOptions', See https://xdsoft.net/jodit/examples/toolbar/custom_button.html for an example.
+          * @default []
          */
         "plugins"?: {name: string, callback: (editor: Jodit) => void}[];
         /**
           * Sets the value of the content of the editor.
+          * @default ""
          */
         "value"?: string;
     }
     interface DnnSearchbox {
         /**
           * How many milliseconds to wait before firing the queryChanged event.
+          * @default 500
          */
         "debounceTime"?: number;
         /**
@@ -1928,16 +2053,19 @@ declare namespace LocalJSX {
         "onQueryChanged"?: (event: DnnSearchboxCustomEvent<string>) => void;
         /**
           * Sets the field placeholder text.
+          * @default ""
          */
         "placeholder"?: string;
         /**
           * Sets the query
+          * @default ""
          */
         "query"?: string;
     }
     interface DnnSelect {
         /**
           * Defines the type of automatic completion the browser can use. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+          * @default "off"
          */
         "autocomplete"?: string;
         /**
@@ -1966,6 +2094,7 @@ declare namespace LocalJSX {
         "required"?: boolean;
         /**
           * The value of the input.
+          * @default ""
          */
         "value"?: string;
     }
@@ -1976,6 +2105,7 @@ declare namespace LocalJSX {
         "onSortChanged"?: (event: DnnSortIconCustomEvent<"asc"|"desc"|"none">) => void;
         /**
           * Defines the current sort direction
+          * @default "none"
          */
         "sortDirection"?: "asc" | "desc" | "none";
     }
@@ -1996,6 +2126,7 @@ declare namespace LocalJSX {
     interface DnnTextarea {
         /**
           * Defines the type of auto-completion to use for this field, see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete.
+          * @default "off"
          */
         "autocomplete"?: string;
         /**
@@ -2040,24 +2171,29 @@ declare namespace LocalJSX {
         "required"?: boolean;
         /**
           * Can be set to change how the user can resize the field.
+          * @default "block"
          */
         "resizable"?: "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
         /**
           * Defines how many rows (lines of text) to initially show.
+          * @default 3
          */
         "rows"?: number;
         /**
           * Sets the value of the textarea.
+          * @default ""
          */
         "value"?: string;
     }
     interface DnnToggle {
         /**
           * If 'true' the toggle is checked (on).
+          * @default false
          */
         "checked"?: boolean;
         /**
           * If 'true' the toggle is not be interacted with.
+          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -2070,12 +2206,14 @@ declare namespace LocalJSX {
         "onCheckChanged"?: (event: DnnToggleCustomEvent<DnnToggleChangeEventDetail>) => void;
         /**
           * The value to post when used in forms.
+          * @default "on"
          */
         "value"?: string;
     }
     interface DnnTreeviewItem {
         /**
           * Defines if the current node is expanded.
+          * @default false
          */
         "expanded"?: boolean;
         /**
@@ -2099,10 +2237,12 @@ declare namespace LocalJSX {
         "onWidthChanged"?: (event: DnnVerticalSplitviewCustomEvent<number>) => void;
         /**
           * The percentage position of the splitter in the container.
+          * @default 30
          */
         "splitWidthPercentage"?: number;
         /**
           * The width of the splitter area.
+          * @default 16
          */
         "splitterWidth"?: number;
     }

@@ -1,8 +1,8 @@
 import { html } from "lit";
-import { actions } from '@storybook/addon-actions';
+import { actions } from 'storybook/actions';
 //import { ifDefined } from 'lit-html/directives/if-defined';
 //import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import readme from './readme.md';
 
 const meta: Meta = {
