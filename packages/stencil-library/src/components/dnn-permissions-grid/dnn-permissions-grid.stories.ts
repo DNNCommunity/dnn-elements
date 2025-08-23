@@ -1,9 +1,9 @@
 import { html } from "lit";
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { IPermissions } from "./permissions-interface";
 import { IRoleGroup } from "./role-group-interface";
 import { IRole } from "./role-interface";
-import { actions } from '@storybook/addon-actions';
+import { actions } from 'storybook/actions';
 import readme from "./readme.md?raw";
 
 const meta: Meta = {
