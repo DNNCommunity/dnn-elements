@@ -14,13 +14,16 @@ const config: StorybookConfig = {
     "../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   "addons": [
-    getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath("@storybook/addon-docs")
   ],
   "framework": {
     "name": getAbsolutePath('@storybook/web-components-vite'),
     "options": {}
   },
-  staticDirs: [{ from: './assets', to: '/assets'}],
+  staticDirs: [
+    { from: './assets', to: '/assets'},
+    { from: '../dist/dnn', to: '/assets'}
+  ],
 };
 export default config;

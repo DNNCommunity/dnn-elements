@@ -1,6 +1,6 @@
 import { html } from "lit";
-import { actions } from '@storybook/addon-actions';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import { actions } from 'storybook/actions';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import readme from './readme.md';
 
 const meta: Meta = {
