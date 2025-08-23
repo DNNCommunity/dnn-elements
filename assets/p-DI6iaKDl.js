@@ -1,0 +1,2 @@
+function t(t=500){return function(e,n,i){let o=i.value;let r;i.value=function(...e){clearTimeout(r);return new Promise((n=>{r=setTimeout((()=>{n(o.apply(this,e))}),t)}))}}}export{t as D};
+//# sourceMappingURL=p-DI6iaKDl.js.map
