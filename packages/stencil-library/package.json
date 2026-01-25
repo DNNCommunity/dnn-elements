@@ -34,7 +34,9 @@
     },
     "./eslint-plugin": {
       "types": "./eslint-plugin/dist/index.d.ts",
-      "import": "./eslint-plugin/dist/index.js"
+      "import": "./eslint-plugin/dist/index.js",
+      "require": "./eslint-plugin/dist/index.js",
+	    "default": "./eslint-plugin/dist/index.js"
     }
   },
   "files": [
