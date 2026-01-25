@@ -65,7 +65,7 @@
     "build.eslint-plugin": "tsc -p eslint-plugin/tsconfig.json"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^4.1.1",
+    "@chromatic-com/storybook": "^5.0.0",
     "@eslint/js": "^9.24.0",
     "@stencil/core": "4.37.1",
     "@stencil/eslint-plugin": "1.1.0",
