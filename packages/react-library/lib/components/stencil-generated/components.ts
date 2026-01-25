@@ -7,7 +7,7 @@
 
 /* eslint-disable */
 
-import { type ColorInfo, type DnnAutocompleteCustomEvent, type DnnColorInfo, type DnnColorInputCustomEvent, type DnnColorPickerCustomEvent, type DnnDropzoneCustomEvent, type DnnImageCropperCustomEvent, type DnnPermissionsGridCustomEvent, type DnnToggleChangeEventDetail, type DnnToggleCustomEvent, type IPermissions, type NeedMoreItemsEventArgs } from "@dnncommunity/dnn-elements";
+import { type ColorInfo, type DnnAutocompleteCustomEvent, type DnnButtonCustomEvent, type DnnCheckboxCustomEvent, type DnnChevronCustomEvent, type DnnCollapsibleCustomEvent, type DnnColorInfo, type DnnColorInputCustomEvent, type DnnColorPickerCustomEvent, type DnnDropzoneCustomEvent, type DnnImageCropperCustomEvent, type DnnInputCustomEvent, type DnnModalCustomEvent, type DnnMonacoEditorCustomEvent, type DnnPermissionsGridCustomEvent, type DnnRichtextCustomEvent, type DnnSearchboxCustomEvent, type DnnSelectCustomEvent, type DnnSortIconCustomEvent, type DnnTextareaCustomEvent, type DnnToggleChangeEventDetail, type DnnToggleCustomEvent, type DnnTreeviewItemCustomEvent, type DnnVerticalSplitviewCustomEvent, type IPermissions, type NeedMoreItemsEventArgs } from "@dnncommunity/dnn-elements";
 import { DnnAutocomplete as DnnAutocompleteElement, defineCustomElement as defineDnnAutocomplete } from "@dnncommunity/dnn-elements/dist/components/dnn-autocomplete.js";
 import { DnnButton as DnnButtonElement, defineCustomElement as defineDnnButton } from "@dnncommunity/dnn-elements/dist/components/dnn-button.js";
 import { DnnCheckbox as DnnCheckboxElement, defineCustomElement as defineDnnCheckbox } from "@dnncommunity/dnn-elements/dist/components/dnn-checkbox.js";
@@ -40,11 +40,11 @@ import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
 export type DnnAutocompleteEvents = {
-    onValueChange: EventName<CustomEvent<number | string | string[]>>,
-    onValueInput: EventName<CustomEvent<number | string | string[]>>,
+    onValueChange: EventName<DnnAutocompleteCustomEvent<number | string | string[]>>,
+    onValueInput: EventName<DnnAutocompleteCustomEvent<number | string | string[]>>,
     onNeedMoreItems: EventName<DnnAutocompleteCustomEvent<NeedMoreItemsEventArgs>>,
-    onSearchQueryChanged: EventName<CustomEvent<string>>,
-    onItemSelected: EventName<CustomEvent<string>>
+    onSearchQueryChanged: EventName<DnnAutocompleteCustomEvent<string>>,
+    onItemSelected: EventName<DnnAutocompleteCustomEvent<string>>
 };
 
 export const DnnAutocomplete: StencilReactComponent<DnnAutocompleteElement, DnnAutocompleteEvents> = /*@__PURE__*/ createComponent<DnnAutocompleteElement, DnnAutocompleteEvents>({
@@ -63,8 +63,8 @@ export const DnnAutocomplete: StencilReactComponent<DnnAutocompleteElement, DnnA
 });
 
 export type DnnButtonEvents = {
-    onConfirmed: EventName<CustomEvent<any>>,
-    onCanceled: EventName<CustomEvent<any>>
+    onConfirmed: EventName<DnnButtonCustomEvent<any>>,
+    onCanceled: EventName<DnnButtonCustomEvent<any>>
 };
 
 export const DnnButton: StencilReactComponent<DnnButtonElement, DnnButtonEvents> = /*@__PURE__*/ createComponent<DnnButtonElement, DnnButtonEvents>({
@@ -79,7 +79,7 @@ export const DnnButton: StencilReactComponent<DnnButtonElement, DnnButtonEvents>
     defineCustomElement: defineDnnButton
 });
 
-export type DnnCheckboxEvents = { onCheckedchange: EventName<CustomEvent<"checked" | "unchecked" | "intermediate">> };
+export type DnnCheckboxEvents = { onCheckedchange: EventName<DnnCheckboxCustomEvent<"checked" | "unchecked" | "intermediate">> };
 
 export const DnnCheckbox: StencilReactComponent<DnnCheckboxElement, DnnCheckboxEvents> = /*@__PURE__*/ createComponent<DnnCheckboxElement, DnnCheckboxEvents>({
     tagName: 'dnn-checkbox',
@@ -90,7 +90,7 @@ export const DnnCheckbox: StencilReactComponent<DnnCheckboxElement, DnnCheckboxE
     defineCustomElement: defineDnnCheckbox
 });
 
-export type DnnChevronEvents = { onChanged: EventName<CustomEvent<any>> };
+export type DnnChevronEvents = { onChanged: EventName<DnnChevronCustomEvent<any>> };
 
 export const DnnChevron: StencilReactComponent<DnnChevronElement, DnnChevronEvents> = /*@__PURE__*/ createComponent<DnnChevronElement, DnnChevronEvents>({
     tagName: 'dnn-chevron',
@@ -101,7 +101,7 @@ export const DnnChevron: StencilReactComponent<DnnChevronElement, DnnChevronEven
     defineCustomElement: defineDnnChevron
 });
 
-export type DnnCollapsibleEvents = { onDnnCollapsibleHeightChanged: EventName<CustomEvent<void>> };
+export type DnnCollapsibleEvents = { onDnnCollapsibleHeightChanged: EventName<DnnCollapsibleCustomEvent<void>> };
 
 export const DnnCollapsible: StencilReactComponent<DnnCollapsibleElement, DnnCollapsibleEvents> = /*@__PURE__*/ createComponent<DnnCollapsibleElement, DnnCollapsibleEvents>({
     tagName: 'dnn-collapsible',
@@ -174,7 +174,7 @@ export const DnnFieldset: StencilReactComponent<DnnFieldsetElement, DnnFieldsetE
 });
 
 export type DnnImageCropperEvents = {
-    onImageCropChanged: EventName<CustomEvent<string>>,
+    onImageCropChanged: EventName<DnnImageCropperCustomEvent<string>>,
     onImageFileCropChanged: EventName<DnnImageCropperCustomEvent<File>>
 };
 
@@ -191,8 +191,8 @@ export const DnnImageCropper: StencilReactComponent<DnnImageCropperElement, DnnI
 });
 
 export type DnnInputEvents = {
-    onValueChange: EventName<CustomEvent<number | string | string[]>>,
-    onValueInput: EventName<CustomEvent<number | string | string[]>>
+    onValueChange: EventName<DnnInputCustomEvent<number | string | string[]>>,
+    onValueInput: EventName<DnnInputCustomEvent<number | string | string[]>>
 };
 
 export const DnnInput: StencilReactComponent<DnnInputElement, DnnInputEvents> = /*@__PURE__*/ createComponent<DnnInputElement, DnnInputEvents>({
@@ -207,7 +207,7 @@ export const DnnInput: StencilReactComponent<DnnInputElement, DnnInputEvents> = 
     defineCustomElement: defineDnnInput
 });
 
-export type DnnModalEvents = { onDismissed: EventName<CustomEvent<any>> };
+export type DnnModalEvents = { onDismissed: EventName<DnnModalCustomEvent<any>> };
 
 export const DnnModal: StencilReactComponent<DnnModalElement, DnnModalEvents> = /*@__PURE__*/ createComponent<DnnModalElement, DnnModalEvents>({
     tagName: 'dnn-modal',
@@ -218,7 +218,7 @@ export const DnnModal: StencilReactComponent<DnnModalElement, DnnModalEvents> = 
     defineCustomElement: defineDnnModal
 });
 
-export type DnnMonacoEditorEvents = { onContentChanged: EventName<CustomEvent<string>> };
+export type DnnMonacoEditorEvents = { onContentChanged: EventName<DnnMonacoEditorCustomEvent<string>> };
 
 export const DnnMonacoEditor: StencilReactComponent<DnnMonacoEditorElement, DnnMonacoEditorEvents> = /*@__PURE__*/ createComponent<DnnMonacoEditorElement, DnnMonacoEditorEvents>({
     tagName: 'dnn-monaco-editor',
@@ -230,7 +230,7 @@ export const DnnMonacoEditor: StencilReactComponent<DnnMonacoEditorElement, DnnM
 });
 
 export type DnnPermissionsGridEvents = {
-    onUserSearchQueryChanged: EventName<CustomEvent<string>>,
+    onUserSearchQueryChanged: EventName<DnnPermissionsGridCustomEvent<string>>,
     onPermissionsChanged: EventName<DnnPermissionsGridCustomEvent<IPermissions>>
 };
 
@@ -258,8 +258,8 @@ export const DnnProgressBar: StencilReactComponent<DnnProgressBarElement, DnnPro
 });
 
 export type DnnRichtextEvents = {
-    onValueChange: EventName<CustomEvent<string>>,
-    onValueInput: EventName<CustomEvent<string>>
+    onValueChange: EventName<DnnRichtextCustomEvent<string>>,
+    onValueInput: EventName<DnnRichtextCustomEvent<string>>
 };
 
 export const DnnRichtext: StencilReactComponent<DnnRichtextElement, DnnRichtextEvents> = /*@__PURE__*/ createComponent<DnnRichtextElement, DnnRichtextEvents>({
@@ -274,7 +274,7 @@ export const DnnRichtext: StencilReactComponent<DnnRichtextElement, DnnRichtextE
     defineCustomElement: defineDnnRichtext
 });
 
-export type DnnSearchboxEvents = { onQueryChanged: EventName<CustomEvent<string>> };
+export type DnnSearchboxEvents = { onQueryChanged: EventName<DnnSearchboxCustomEvent<string>> };
 
 export const DnnSearchbox: StencilReactComponent<DnnSearchboxElement, DnnSearchboxEvents> = /*@__PURE__*/ createComponent<DnnSearchboxElement, DnnSearchboxEvents>({
     tagName: 'dnn-searchbox',
@@ -285,7 +285,7 @@ export const DnnSearchbox: StencilReactComponent<DnnSearchboxElement, DnnSearchb
     defineCustomElement: defineDnnSearchbox
 });
 
-export type DnnSelectEvents = { onValueChange: EventName<CustomEvent<string>> };
+export type DnnSelectEvents = { onValueChange: EventName<DnnSelectCustomEvent<string>> };
 
 export const DnnSelect: StencilReactComponent<DnnSelectElement, DnnSelectEvents> = /*@__PURE__*/ createComponent<DnnSelectElement, DnnSelectEvents>({
     tagName: 'dnn-select',
@@ -296,7 +296,7 @@ export const DnnSelect: StencilReactComponent<DnnSelectElement, DnnSelectEvents>
     defineCustomElement: defineDnnSelect
 });
 
-export type DnnSortIconEvents = { onSortChanged: EventName<CustomEvent<"asc" | "desc" | "none">> };
+export type DnnSortIconEvents = { onSortChanged: EventName<DnnSortIconCustomEvent<"asc" | "desc" | "none">> };
 
 export const DnnSortIcon: StencilReactComponent<DnnSortIconElement, DnnSortIconEvents> = /*@__PURE__*/ createComponent<DnnSortIconElement, DnnSortIconEvents>({
     tagName: 'dnn-sort-icon',
@@ -330,8 +330,8 @@ export const DnnTabs: StencilReactComponent<DnnTabsElement, DnnTabsEvents> = /*@
 });
 
 export type DnnTextareaEvents = {
-    onValueInput: EventName<CustomEvent<string>>,
-    onValueChange: EventName<CustomEvent<string>>
+    onValueInput: EventName<DnnTextareaCustomEvent<string>>,
+    onValueChange: EventName<DnnTextareaCustomEvent<string>>
 };
 
 export const DnnTextarea: StencilReactComponent<DnnTextareaElement, DnnTextareaEvents> = /*@__PURE__*/ createComponent<DnnTextareaElement, DnnTextareaEvents>({
@@ -358,8 +358,8 @@ export const DnnToggle: StencilReactComponent<DnnToggleElement, DnnToggleEvents>
 });
 
 export type DnnTreeviewItemEvents = {
-    onUserExpanded: EventName<CustomEvent<void>>,
-    onUserCollapsed: EventName<CustomEvent<void>>
+    onUserExpanded: EventName<DnnTreeviewItemCustomEvent<void>>,
+    onUserCollapsed: EventName<DnnTreeviewItemCustomEvent<void>>
 };
 
 export const DnnTreeviewItem: StencilReactComponent<DnnTreeviewItemElement, DnnTreeviewItemEvents> = /*@__PURE__*/ createComponent<DnnTreeviewItemElement, DnnTreeviewItemEvents>({
@@ -385,7 +385,7 @@ export const DnnVerticalOverflowMenu: StencilReactComponent<DnnVerticalOverflowM
     defineCustomElement: defineDnnVerticalOverflowMenu
 });
 
-export type DnnVerticalSplitviewEvents = { onWidthChanged: EventName<CustomEvent<number>> };
+export type DnnVerticalSplitviewEvents = { onWidthChanged: EventName<DnnVerticalSplitviewCustomEvent<number>> };
 
 export const DnnVerticalSplitview: StencilReactComponent<DnnVerticalSplitviewElement, DnnVerticalSplitviewEvents> = /*@__PURE__*/ createComponent<DnnVerticalSplitviewElement, DnnVerticalSplitviewEvents>({
     tagName: 'dnn-vertical-splitview',

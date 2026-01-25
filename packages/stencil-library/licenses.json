@@ -5,29 +5,10 @@
         "path": "",
         "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\README.md"
     },
-    "picomatch@4.0.3": {
-        "licenses": "MIT",
-        "repository": "https://github.com/micromatch/picomatch",
-        "publisher": "Jon Schlinkert",
-        "path": "node_modules\\picomatch",
-        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\picomatch\\LICENSE"
-    },
     "react@18.3.1": {
         "licenses": "MIT",
         "repository": "https://github.com/facebook/react",
         "path": "node_modules\\react",
         "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\react\\LICENSE"
-    },
-    "unplugin-stencil@0.3.5": {
-        "licenses": "MIT",
-        "repository": "https://github.com/stencil-community/unplugin-stencil",
-        "path": "node_modules\\unplugin-stencil",
-        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\unplugin-stencil\\LICENSE"
-    },
-    "unplugin@2.3.8": {
-        "licenses": "MIT",
-        "repository": "https://github.com/unjs/unplugin",
-        "path": "node_modules\\unplugin",
-        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\unplugin\\LICENSE"
     }
 }
