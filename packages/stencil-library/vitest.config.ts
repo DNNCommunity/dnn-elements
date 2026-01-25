@@ -1,6 +1,6 @@
-/// <reference types="@vitest/browser/providers/webdriverio" />
 import { defineConfig } from "vitest/config";
 import stencil from "unplugin-stencil/vite";
+import { webdriverio } from "@vitest/browser-webdriverio";
 
 // Browser config for Stencil component tests
 export default defineConfig({
@@ -13,12 +13,13 @@ export default defineConfig({
     browser: {
       enabled: true,
       headless: true,
-      provider: "webdriverio",
+      provider: webdriverio(),
       instances: [
         { 
           browser: "edge"
         }
-      ]
+      ],
+      isolate: false,
     },
     
     testTimeout: 60000,
