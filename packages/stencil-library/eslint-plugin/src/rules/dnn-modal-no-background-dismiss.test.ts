@@ -25,28 +25,28 @@ ruleTester.run("dnn-modal-no-background-dismiss", rule, {
             languageOptions: jsxParserOptions,
         },
         {
-            code: "<dnn-modal preventBackgdropDismiss></dnn-modal>",
+            code: "<dnn-modal preventBackdropDismiss></dnn-modal>",
             languageOptions: jsxParserOptions,
         },
     ],
     invalid: [
         {
-            code: "<dnn-modal backgroundDismiss></dnn-modal>",
+            code: "<dnn-modal backdropDismiss></dnn-modal>",
             languageOptions: jsxParserOptions,
             errors: [{ messageId: "dnnModalNoBackgroundDismiss" }],
             output: "<dnn-modal ></dnn-modal>",
         },
         {
-            code: "<dnn-modal backgroundDismiss={true}></dnn-modal>",
+            code: "<dnn-modal backdropDismiss={true}></dnn-modal>",
             languageOptions: jsxParserOptions,
             errors: [{ messageId: "dnnModalNoBackgroundDismiss" }],
             output: "<dnn-modal ></dnn-modal>",
         },
         {
-            code: "<dnn-modal backgroundDismiss={false}></dnn-modal>",
+            code: "<dnn-modal backdropDismiss={false}></dnn-modal>",
             languageOptions: jsxParserOptions,
             errors: [{ messageId: "dnnModalNoBackgroundDismiss" }],
-            output: "<dnn-modal preventBackgroundDismiss></dnn-modal>",
+            output: "<dnn-modal preventBackdropDismiss></dnn-modal>",
         },
     ],
 });
