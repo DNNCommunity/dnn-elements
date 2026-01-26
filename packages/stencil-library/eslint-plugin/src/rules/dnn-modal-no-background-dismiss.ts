@@ -12,7 +12,7 @@ export const rule = createRule({
         type: "problem",
         fixable: "code",
         messages: {
-            dnnModalNoBackgroundDismiss: "Background dismiss is obsolete in dnn-modal, use preventBackgroundDismiss instead."
+            dnnModalNoBackgroundDismiss: "Background dismiss is obsolete in dnn-modal, use preventBackdropDismiss instead."
         },
         schema: [],
     },
@@ -23,17 +23,17 @@ export const rule = createRule({
                     node.openingElement.name.type === "JSXIdentifier" &&
                     node.openingElement.name.name === "dnn-modal"
                 ) {
-                    const backgroundDismissAttr = node.openingElement.attributes.find(attr =>
+                    const backdropDismissAttr = node.openingElement.attributes.find(attr =>
                         attr.type === "JSXAttribute" &&
-                        attr.name.name === "backgroundDismiss"
+                        attr.name.name === "backdropDismiss"
                     );
 
-                    if (backgroundDismissAttr?.type === "JSXAttribute") {
+                    if (backdropDismissAttr?.type === "JSXAttribute") {
                         context.report({
-                            node: backgroundDismissAttr,
+                            node: backdropDismissAttr,
                             messageId: "dnnModalNoBackgroundDismiss",
                             fix(fixer) {
-                                const attrValue = backgroundDismissAttr.value;
+                                const attrValue = backdropDismissAttr.value;
                                 const isImplicitTrue = !attrValue;
                                 const isExplicitTrue = attrValue &&
                                     attrValue.type === "JSXExpressionContainer" &&
@@ -47,19 +47,19 @@ export const rule = createRule({
 
                                 if (isImplicitTrue || isExplicitTrue) {
                                     // Remove attribute entirely
-                                    return fixer.remove(backgroundDismissAttr);
+                                    return fixer.remove(backdropDismissAttr);
                                 }
 
                                 if (isExplicitFalse) {
                                     // Replace with opposite meaning
                                     return fixer.replaceText(
-                                        backgroundDismissAttr,
-                                        "preventBackgroundDismiss"
+                                        backdropDismissAttr,
+                                        "preventBackdropDismiss"
                                     );
                                 }
 
                                 // Default behavior: just remove it
-                                return fixer.remove(backgroundDismissAttr);
+                                return fixer.remove(backdropDismissAttr);
                             },
                         });
                     }
