@@ -36,6 +36,7 @@ export class DnnCollapsible {
         });
         setTimeout(() => {
           this.container.style.maxHeight = "none";
+          this.container.style.overflow = "visible";
         }, this.transitionDuration);
     }
   }
@@ -48,6 +49,7 @@ export class DnnCollapsible {
     else{
       requestAnimationFrame(() => {
         this.container.style.maxHeight = `${this.container.scrollHeight}px`;
+          this.container.style.overflow = "hidden";
         requestAnimationFrame(() => {
           this.container.style.maxHeight = "0px";
         });
