@@ -286,6 +286,7 @@ export class DnnDropzone {
             >
               <input
                 type="file"
+                multiple
                 ref={el => this.fileInput = el!}
                 onChange={e => this.handleUploadButton(e.target as HTMLInputElement)}
               >
