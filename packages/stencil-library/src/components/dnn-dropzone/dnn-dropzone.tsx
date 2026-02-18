@@ -182,24 +182,14 @@ export class DnnDropzone {
   };
 
   private hasInvalidExtensions(files: File[]): boolean{
-    var hasInvalid = false;
-    for (let fileIndex = 0; fileIndex < files.length; fileIndex++) {
-      const file = files[fileIndex];
-      var regex = /(?:\.([^.]+))?$/;
-      const fileExtension = regex.exec(file.name)![1]?.toLowerCase();
-      if (fileExtension == undefined){
-        hasInvalid = true;
-      }
-
-      var loweredAllowedExtensions = this.allowedExtensions?.map(e => e.toLowerCase());
-      if (this.allowedExtensions != undefined && !loweredAllowedExtensions?.includes(fileExtension)){
-        hasInvalid = true;
-      }
-
-      return hasInvalid;
+    if (!this.allowedExtensions) {
+      return false;
     }
 
-    return false;
+    const loweredAllowedExtensions = new Set(this.allowedExtensions.map(ext => ext.toLowerCase()));
+    return files
+      .map(file => /(?:\.([^.]+))?$/.exec(file.name)![1]?.toLowerCase())
+      .some(ext => !loweredAllowedExtensions.has(ext));
   }
 
   private handleDrop = (dropEvent: DragEvent) => {
