@@ -46,8 +46,7 @@ using Newtonsoft.Json.Linq;
     WritePermissions = new[] {
       GitHubActionsPermissions.IdToken,
       GitHubActionsPermissions.Contents,
-    },
-    ReadPermissions = new[] { GitHubActionsPermissions.Contents }
+    }
 )]
 [GitHubActions(
   "Publish_Site",
