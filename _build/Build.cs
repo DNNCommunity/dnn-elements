@@ -30,7 +30,7 @@ using Newtonsoft.Json.Linq;
   GitHubActionsImage.UbuntuLatest,
   ImportSecrets = new[] { nameof(GithubToken) },
   OnPullRequestBranches = new[] { "main", "master", "develop", "development" },
-  InvokedTargets = new[] { nameof(Compile) },
+  InvokedTargets = new[] { nameof(Compile), nameof(BuildStorybook) },
   FetchDepth = 0,
   CacheKeyFiles = new string[] {}
   )]
@@ -272,14 +272,20 @@ class Build : NukeBuild
 
   Target PublishSite => _ => _
     .DependsOn(CreateDeployBranch)
+    .DependsOn(BuildStorybook)
+    .Executes(() =>
+    {
+      NpmRun(s => s
+        .SetProcessWorkingDirectory(StencilDirectory)
+        .SetCommand("deploy-storybook"));
+    });
+
+  Target BuildStorybook => _ => _
     .DependsOn(Compile)
     .Executes(() =>
     {
       NpmRun(s => s
         .SetProcessWorkingDirectory(StencilDirectory)
         .SetCommand("build-storybook"));
-      NpmRun(s => s
-        .SetProcessWorkingDirectory(StencilDirectory)
-        .SetCommand("deploy-storybook"));
     });
 }
