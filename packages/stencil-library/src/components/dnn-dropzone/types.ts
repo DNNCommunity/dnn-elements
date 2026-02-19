@@ -27,4 +27,7 @@ export interface DropzoneResx {
     /** The information displayed about the allowed file extensions.
      * {0} will be replaced by a comma separated list of allowed extensions. */
     allowedFileExtensions?: string;
+
+    /** The text displayed when more than one file is provided but multiple is false. */
+    tooManyFiles?: string;
 }
