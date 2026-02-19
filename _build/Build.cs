@@ -43,7 +43,10 @@ using Newtonsoft.Json.Linq;
     InvokedTargets = new[] { nameof(Deploy) },
     FetchDepth = 0,
     CacheKeyFiles = new string[] {},
-    WritePermissions = new[] { GitHubActionsPermissions.IdToken },
+    WritePermissions = new[] {
+      GitHubActionsPermissions.IdToken,
+      GitHubActionsPermissions.Contents,
+    },
     ReadPermissions = new[] { GitHubActionsPermissions.Contents }
 )]
 [GitHubActions(
