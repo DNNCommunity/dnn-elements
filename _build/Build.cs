@@ -268,7 +268,7 @@ class Build : NukeBuild
     .DependsOn(Release)
     .Executes(() => {
       var tag = gitRepository.IsOnMainOrMasterBranch() ? "latest" : "next";
-      Npm($"publish --access public --tag {tag} --workspaces");
+      Npm($"publish --access public --tag {tag} --workspaces --provenance");
     });
 
   Target PublishSite => _ => _

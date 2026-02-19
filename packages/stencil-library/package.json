@@ -2,7 +2,10 @@
   "name": "@dnncommunity/dnn-elements",
   "version": "0.28.0-beta.2",
   "description": "Dnn themed custom elements.",
-  "repository": "https://github.com/dnncommunity/dnn-elements",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dnncommunity/dnn-elements.git"
+  },
   "homepage": "https://dnncommunity.github.io/dnn-elements",
   "license": "MIT",
   "main": "dist/index.cjs.js",
