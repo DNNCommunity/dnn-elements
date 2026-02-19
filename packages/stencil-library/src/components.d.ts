@@ -1406,6 +1406,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Defines the help label displayed under the field.
          */
         "helpText"?: string;
@@ -1497,10 +1501,18 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * @deprecated Use type instead. Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually. Warning: This will be deprecated in the next version and replaced with a new 'type' property.
           * @default 'button'
          */
         "formButtonType"?: 'submit' | 'reset' | 'button';
+        /**
+          * The name of the element, used when submitting an HTML form.
+         */
+        "name"?: string;
         /**
           * Fires when confirm is true and the user cancels the action.
          */
@@ -1531,6 +1543,14 @@ declare namespace LocalJSX {
           * @default "unchecked"
          */
         "checked"?: CheckedState;
+        /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * The name to show in the formData (if using forms).
           * @default ""
@@ -1623,6 +1643,14 @@ declare namespace LocalJSX {
          */
         "darkColor"?: string;
         /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Defines the help label displayed under the field.
          */
         "helpText"?: string;
@@ -1714,6 +1742,14 @@ declare namespace LocalJSX {
          */
         "captureQuality"?: number;
         /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Max file size in bytes.
          */
         "maxFileSize"?: number;
@@ -1776,6 +1812,14 @@ declare namespace LocalJSX {
      */
     interface DnnImageCropper {
         /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Sets the desired final image height.
          */
         "height"?: number;
@@ -1831,6 +1875,10 @@ declare namespace LocalJSX {
           * Defines whether the field is disabled.
          */
         "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Defines the help label displayed under the field.
          */
@@ -1943,6 +1991,14 @@ declare namespace LocalJSX {
     }
     interface DnnMonacoEditor {
         /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Defines the language for the editor.
           * @default "html"
          */
@@ -2015,6 +2071,14 @@ declare namespace LocalJSX {
          */
         "customizeOptions"?: (options: Config) => Config;
         /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Name of the field when used in a form.
          */
         "name"?: string;
@@ -2072,6 +2136,10 @@ declare namespace LocalJSX {
           * Defines whether the field is disabled.
          */
         "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Defines the help label displayed under the field.
          */
@@ -2133,6 +2201,10 @@ declare namespace LocalJSX {
           * Defines whether the field is disabled.
          */
         "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Defines the help label displayed under the field.
          */
@@ -2196,6 +2268,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * The field name to use in forms.
          */
