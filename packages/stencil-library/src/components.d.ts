@@ -320,6 +320,11 @@ export namespace Components {
          */
         "maxFileSize"?: number;
         /**
+          * If true, allows multiple file selection.
+          * @default false
+         */
+        "multiple": boolean;
+        /**
           * The name of the field when used in a form.
          */
         "name"?: string;
@@ -1753,6 +1758,11 @@ declare namespace LocalJSX {
           * Max file size in bytes.
          */
         "maxFileSize"?: number;
+        /**
+          * If true, allows multiple file selection.
+          * @default false
+         */
+        "multiple"?: boolean;
         /**
           * The name of the field when used in a form.
          */

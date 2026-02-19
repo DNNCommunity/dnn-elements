@@ -314,6 +314,10 @@
           "description": "Max file size in bytes."
         },
         {
+          "name": "multiple",
+          "description": "If true, allows multiple file selection."
+        },
+        {
           "name": "name",
           "description": "The name of the field when used in a form."
         }
