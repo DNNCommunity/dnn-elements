@@ -809,6 +809,15 @@
               "required": false
             },
             {
+              "name": "multiple",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, allows multiple file selection.",
+              "default": "false",
+              "required": false
+            },
+            {
               "name": "name",
               "type": {
                 "text": "string | undefined"
