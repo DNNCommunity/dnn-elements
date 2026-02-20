@@ -1,6 +1,6 @@
 {
   "name": "@dnncommunity/dnn-elements-react",
-  "version": "0.28.0-alpha.330",
+  "version": "0.28.0-beta.2",
   "description": "Dnn themed custom elements with react wrappers.",
   "homepage": "https://github.com/dnncommunity/dnn-elements",
   "license": "MIT",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dnncommunity/dnn-elements.git"
+    "url": "https://github.com/DNNCommunity/dnn-elements"
   },
   "scripts": {
     "build": "npm run tsc",

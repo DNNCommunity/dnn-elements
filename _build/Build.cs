@@ -37,12 +37,17 @@ using Newtonsoft.Json.Linq;
 [GitHubActions(
     "Deploy",
     GitHubActionsImage.UbuntuLatest,
-    ImportSecrets = new[] { nameof(GithubToken), "NPM_TOKEN" },
+    ImportSecrets = new[] { nameof(GithubToken) },
     OnPushBranches = new[] { "main", "master", "release/*" },
     OnPushTags = new[] { "v*" },
     InvokedTargets = new[] { nameof(Deploy) },
     FetchDepth = 0,
-    CacheKeyFiles = new string[] {}
+    CacheKeyFiles = new string[] {},
+    WritePermissions = new[] {
+      GitHubActionsPermissions.IdToken,
+      GitHubActionsPermissions.Contents,
+    },
+    AutoGenerate = false
 )]
 [GitHubActions(
   "Publish_Site",
@@ -263,11 +268,8 @@ class Build : NukeBuild
     .DependsOn(TagRelease)
     .DependsOn(Release)
     .Executes(() => {
-    var npmToken = Environment.GetEnvironmentVariable("NPM_TOKEN");
-      var npmrcFile = RootDirectory / ".npmrc";
-      npmrcFile.WriteAllText($"//registry.npmjs.org/:_authToken={npmToken}");
       var tag = gitRepository.IsOnMainOrMasterBranch() ? "latest" : "next";
-      Npm($"publish --access public --tag {tag} --workspaces");
+      Npm($"publish --access public --tag {tag} --workspaces --provenance");
     });
 
   Target PublishSite => _ => _
