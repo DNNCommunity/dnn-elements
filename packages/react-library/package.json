@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dnncommunity/dnn-elements.git"
+    "url": "https://github.com/DNNCommunity/dnn-elements"
   },
   "scripts": {
     "build": "npm run tsc",

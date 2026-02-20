@@ -4,7 +4,7 @@
   "description": "Dnn themed custom elements.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dnncommunity/dnn-elements.git"
+    "url": "https://github.com/DNNCommunity/dnn-elements"
   },
   "homepage": "https://dnncommunity.github.io/dnn-elements",
   "license": "MIT",
