@@ -7,7 +7,7 @@ import { DnnAutocompleteSuggestion } from '../../dnn-autocomplete/types';
   styleUrl: 'dnn-example-form.scss',
 })
 export class DnnExampleForm {
-  @State() resume?: File;
+  @State() supportingDocuments: File[] = [];
   @State() profilePicData?: string;
   @State() profilePicConfirmed = false;
 
@@ -102,8 +102,7 @@ export class DnnExampleForm {
   }
 
   private resumeDropped(detail: File[]): void {
-    var singleFile = detail[0];
-    this.resume = singleFile;
+    this.supportingDocuments = detail;
   }
 
   private profilePicCropped(imageData: string): void {
@@ -369,16 +368,24 @@ export class DnnExampleForm {
                 }}
                 onNeedMoreItems={e => this.loadMoreCharacters(e.detail.searchTerm)}
               />
-              <dnn-fieldset label="Your Resume">
-                {this.resume === undefined &&
-                  <dnn-dropzone name="resume" onFilesSelected={e => this.resumeDropped(e.detail)} />
+              <dnn-fieldset label="Your Resume and other supporting documents">
+                {this.supportingDocuments.length === 0 &&
+                  <dnn-dropzone
+                    name="resume"
+                    onFilesSelected={e => this.resumeDropped(e.detail)}
+                    multiple
+                  />
                 }
-                {this.resume &&
+                {this.supportingDocuments.map(file => (
                   <p class="filename">
-                    File: {this.resume.name}
-                    <dnn-button appearance="danger" onClick={() => this.resume = undefined}>Remove</dnn-button>
+                    File: {file.name}
+                    <dnn-button
+                      appearance="danger"
+                      onClick={() => this.supportingDocuments = [...this.supportingDocuments!.filter(f => f.name != file.name)]}>
+                        Remove
+                      </dnn-button>
                   </p>
-                }
+                ))}
               </dnn-fieldset>
               <dnn-fieldset label="Your profile Picture">
                 <div class="profile-pic">

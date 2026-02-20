@@ -39,6 +39,9 @@ export class DnnDropzone {
   /** The name of the field when used in a form. */
   @Prop() name?: string;
 
+  /** If true, allows multiple file selection. */
+  @Prop() multiple: boolean = false;
+
   /** Fires when file were selected. */
   @Event() filesSelected!: EventEmitter<File[]>;
   
@@ -46,6 +49,7 @@ export class DnnDropzone {
   @State() takingPicture: boolean = false;
   @State() fileTooLarge: boolean = false;
   @State() invalidExtension: boolean = false;
+  @State() tooManyFiles: boolean = false;
   @State() localResx!: DropzoneResx;
   @State() focused = false;
 
@@ -56,16 +60,24 @@ export class DnnDropzone {
   private videoPreview!: HTMLVideoElement;
   private uploadLabel!: HTMLLabelElement;
   private videoSettings!: MediaTrackSettings;
-  private defaultResx: DropzoneResx = {
-    dragAndDropFile: "Drag and drop a file",
-    capture: "Capture",
-    or: "or",
-    takePicture: "Take a picture",
-    uploadFile: "Upload a file",
-    uploadSizeTooLarge: "The file you tried to upload is too large.",
-    fileSizeLimit: "The maximum size is {0}",
-    invalidExtension: "The file you tried to upload has an invalid extension.",
-    allowedFileExtensions: "Allowed file extensions: {0}",
+
+  private get defaultResx(): DropzoneResx {
+    return {
+      dragAndDropFile: this.multiple ? "Drag and drop files" : "Drag and drop a file",
+      capture: "Capture",
+      or: "or",
+      takePicture: "Take a picture",
+      uploadFile: this.multiple ? "Upload files" : "Upload a file",
+      uploadSizeTooLarge: this.multiple
+        ? "One or more files you tried to upload are too large."
+        : "The file you tried to upload is too large.",
+      fileSizeLimit: "The maximum size is {0}",
+      invalidExtension: this.multiple
+        ? "One or more files you tried to upload have an invalid extension."
+        : "The file you tried to upload has an invalid extension.",
+      allowedFileExtensions: "Allowed file extensions: {0}",
+      tooManyFiles: "Only one file can be uploaded at a time.",
+    };
   }
 
   componentWillLoad() {
@@ -89,10 +101,18 @@ export class DnnDropzone {
     this.mergeResx();
   }
 
+  @Watch('multiple')
+  multipleChanged() {
+    this.mergeResx();
+  }
+
   formResetCallback() {
     this.internals.setValidity({});
     this.fileInput.value = "";
     this.internals.setFormValue("");
+    this.fileTooLarge = false;
+    this.invalidExtension = false;
+    this.tooManyFiles = false;
   }
 
   private mergeResx(): void {
@@ -149,8 +169,14 @@ export class DnnDropzone {
   private handleUploadButton(element: HTMLInputElement): void {
     this.fileTooLarge = false;
     this.invalidExtension = false;
+    this.tooManyFiles = false;
     let files = this.getFilesFromFileList(element.files);
-    
+
+    if (!this.multiple && files.length > 1) {
+      this.tooManyFiles = true;
+      return;
+    }
+
     if (this.isAnyFileLargerThanAllowed(files)) {
       this.fileTooLarge = true;
       return;
@@ -182,32 +208,28 @@ export class DnnDropzone {
   };
 
   private hasInvalidExtensions(files: File[]): boolean{
-    var hasInvalid = false;
-    for (let fileIndex = 0; fileIndex < files.length; fileIndex++) {
-      const file = files[fileIndex];
-      var regex = /(?:\.([^.]+))?$/;
-      const fileExtension = regex.exec(file.name)![1]?.toLowerCase();
-      if (fileExtension == undefined){
-        hasInvalid = true;
-      }
-
-      var loweredAllowedExtensions = this.allowedExtensions?.map(e => e.toLowerCase());
-      if (this.allowedExtensions != undefined && !loweredAllowedExtensions?.includes(fileExtension)){
-        hasInvalid = true;
-      }
-
-      return hasInvalid;
+    if (!this.allowedExtensions) {
+      return false;
     }
 
-    return false;
+    const loweredAllowedExtensions = new Set(this.allowedExtensions.map(ext => ext.toLowerCase()));
+    return files
+      .map(file => /(?:\.([^.]+))?$/.exec(file.name)![1]?.toLowerCase())
+      .some(ext => !loweredAllowedExtensions.has(ext));
   }
 
   private handleDrop = (dropEvent: DragEvent) => {
     this.invalidExtension = false;
     this.fileTooLarge = false;
+    this.tooManyFiles = false;
     dropEvent.stopPropagation();
     dropEvent.preventDefault();
     const files = dropEvent.dataTransfer!.files;
+
+    if (!this.multiple && files.length > 1) {
+      this.tooManyFiles = true;
+      return;
+    }
 
     if (this.hasInvalidExtensions(Array.from(files))){
       this.invalidExtension = true;
@@ -286,6 +308,7 @@ export class DnnDropzone {
             >
               <input
                 type="file"
+                multiple={this.multiple}
                 ref={el => this.fileInput = el!}
                 onChange={e => this.handleUploadButton(e.target as HTMLInputElement)}
               >
@@ -337,6 +360,11 @@ export class DnnDropzone {
                 <br/>
                 {this.localResx.fileSizeLimit!.replace("{0}", getReadableFileSizeString(this.maxFileSize!)) } 
               </p>
+          </div>
+        }
+        { this.tooManyFiles &&
+          <div class='error'>
+            <p>{this.localResx.tooManyFiles}</p>
           </div>
         }
         { this.invalidExtension &&

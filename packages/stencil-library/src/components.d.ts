@@ -320,6 +320,11 @@ export namespace Components {
          */
         "maxFileSize"?: number;
         /**
+          * If true, allows multiple file selection.
+          * @default false
+         */
+        "multiple": boolean;
+        /**
           * The name of the field when used in a form.
          */
         "name"?: string;
@@ -1395,6 +1400,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
+
     interface DnnAutocomplete {
         /**
           * Defines the type of automatic completion the browser could use. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
@@ -1405,6 +1412,10 @@ declare namespace LocalJSX {
           * Defines whether the field is disabled.
          */
         "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Defines the help label displayed under the field.
          */
@@ -1497,10 +1508,18 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * @deprecated Use type instead. Optional button type, can be either submit, reset or button and defaults to button if not specified. Warning: DNN wraps the whole page in a form, only use this if you are handling form submission manually. Warning: This will be deprecated in the next version and replaced with a new 'type' property.
           * @default 'button'
          */
         "formButtonType"?: 'submit' | 'reset' | 'button';
+        /**
+          * The name of the element, used when submitting an HTML form.
+         */
+        "name"?: string;
         /**
           * Fires when confirm is true and the user cancels the action.
          */
@@ -1531,6 +1550,14 @@ declare namespace LocalJSX {
           * @default "unchecked"
          */
         "checked"?: CheckedState;
+        /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * The name to show in the formData (if using forms).
           * @default ""
@@ -1623,6 +1650,14 @@ declare namespace LocalJSX {
          */
         "darkColor"?: string;
         /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Defines the help label displayed under the field.
          */
         "helpText"?: string;
@@ -1714,9 +1749,22 @@ declare namespace LocalJSX {
          */
         "captureQuality"?: number;
         /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Max file size in bytes.
          */
         "maxFileSize"?: number;
+        /**
+          * If true, allows multiple file selection.
+          * @default false
+         */
+        "multiple"?: boolean;
         /**
           * The name of the field when used in a form.
          */
@@ -1776,6 +1824,14 @@ declare namespace LocalJSX {
      */
     interface DnnImageCropper {
         /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Sets the desired final image height.
          */
         "height"?: number;
@@ -1831,6 +1887,10 @@ declare namespace LocalJSX {
           * Defines whether the field is disabled.
          */
         "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Defines the help label displayed under the field.
          */
@@ -1943,6 +2003,14 @@ declare namespace LocalJSX {
     }
     interface DnnMonacoEditor {
         /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Defines the language for the editor.
           * @default "html"
          */
@@ -2015,6 +2083,14 @@ declare namespace LocalJSX {
          */
         "customizeOptions"?: (options: Config) => Config;
         /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Name of the field when used in a form.
          */
         "name"?: string;
@@ -2072,6 +2148,10 @@ declare namespace LocalJSX {
           * Defines whether the field is disabled.
          */
         "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Defines the help label displayed under the field.
          */
@@ -2133,6 +2213,10 @@ declare namespace LocalJSX {
           * Defines whether the field is disabled.
          */
         "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Defines the help label displayed under the field.
          */
@@ -2197,6 +2281,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * The field name to use in forms.
          */
         "name"?: string;
@@ -2246,96 +2334,269 @@ declare namespace LocalJSX {
          */
         "splitterWidth"?: number;
     }
+
+    interface DnnAutocompleteAttributes {
+        "label": string;
+        "name": string;
+        "helpText": string;
+        "value": string;
+        "required": boolean;
+        "disabled": boolean;
+        "totalSuggestions": number;
+        "preloadThresholdPixels": number;
+        "autocomplete": string;
+    }
+    interface DnnButtonAttributes {
+        "appearance": 'primary' | 'danger' | 'secondary' | 'tertiary';
+        "type": 'submit' | 'reset' | 'button';
+        "formButtonType": 'submit' | 'reset' | 'button';
+        "reversed": boolean;
+        "size": 'small' | 'normal' | 'large';
+        "confirm": boolean;
+        "confirmYesText": string;
+        "confirmNoText": string;
+        "confirmMessage": string;
+        "disabled": boolean;
+    }
+    interface DnnCheckboxAttributes {
+        "checked": CheckedState;
+        "useIntermediate": boolean;
+        "value": string;
+        "name": string;
+        "required": boolean;
+        "requiredMessage": string;
+    }
+    interface DnnChevronAttributes {
+        "expandText": string;
+        "collapseText": string;
+        "expanded": boolean;
+    }
+    interface DnnCollapsibleAttributes {
+        "expanded": boolean;
+        "transitionDuration": number;
+    }
+    interface DnnColorInputAttributes {
+        "color": string;
+        "contrastColor": string;
+        "lightColor": string;
+        "darkColor": string;
+        "label": string;
+        "readonly": boolean;
+        "name": string;
+        "helpText": string;
+        "useContrastColor": boolean;
+        "useLightColor": boolean;
+        "useDarkColor": boolean;
+    }
+    interface DnnColorPickerAttributes {
+        "color": string;
+        "colorBoxHeight": string;
+    }
+    interface DnnDropzoneAttributes {
+        "allowCameraMode": boolean;
+        "captureQuality": number;
+        "maxFileSize": number;
+        "name": string;
+        "multiple": boolean;
+    }
+    interface DnnFieldsetAttributes {
+        "focused": boolean;
+        "disabled": boolean;
+        "invalid": boolean;
+        "label": string;
+        "floatLabel": boolean;
+        "helpText": string;
+        "resizable": "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
+    }
+    interface DnnImageCropperAttributes {
+        "width": number;
+        "height": number;
+        "quality": number;
+        "preventUndersized": boolean;
+        "name": string;
+    }
+    interface DnnInputAttributes {
+        "type": "date" | "datetime-local" | "email" | "number" | "password" | "tel" | "text" | "time" | "url" | "search";
+        "label": string;
+        "name": string;
+        "value": string;
+        "helpText": string;
+        "required": boolean;
+        "disabled": boolean;
+        "autocomplete": string;
+        "min": string;
+        "max": string;
+        "minlength": number;
+        "maxlength": number;
+        "multiple": boolean;
+        "pattern": string;
+        "readonly": boolean;
+        "step": string;
+        "disableValidityReporting": boolean;
+        "allowShowPassword": boolean;
+        "inputmode": "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
+    }
+    interface DnnModalAttributes {
+        "backdropDismiss": boolean;
+        "preventBackdropDismiss": boolean;
+        "closeText": string;
+        "resizable": boolean;
+        "showCloseButton": boolean;
+        "hideCloseButton": boolean;
+        "visible": boolean;
+    }
+    interface DnnMonacoEditorAttributes {
+        "language": "plaintext" | "bat" | "coffeescript" | "c" | "cpp" | "csharp" | "dockerfile" | "fsharp" | "go" | "handlebars" | "html" | "ini" | "pug" | "java" | "lua" | "markdown" | "msdax" | "objective-c" | "postiats" | "php" | "powershell" | "python" | "r" | "razor" | "ruby" | "swift" | "sql" | "vb" | "xml" | "less" | "scss" | "css" | "yaml" | "sol" | "sb" | "json" | "typescript" | "javascript";
+        "value": string;
+        "name": string;
+    }
+    interface DnnProgressBarAttributes {
+        "value": number;
+        "max": number;
+        "useGradient": boolean;
+    }
+    interface DnnRichtextAttributes {
+        "value": string;
+        "name": string;
+    }
+    interface DnnSearchboxAttributes {
+        "placeholder": string;
+        "debounceTime": number;
+        "query": string;
+    }
+    interface DnnSelectAttributes {
+        "label": string;
+        "name": string;
+        "required": boolean;
+        "helpText": string;
+        "disabled": boolean;
+        "autocomplete": string;
+        "value": string;
+    }
+    interface DnnSortIconAttributes {
+        "sortDirection": "asc" | "desc" | "none";
+    }
+    interface DnnTabAttributes {
+        "tabTitle": string;
+    }
+    interface DnnTextareaAttributes {
+        "resizable": "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
+        "value": string;
+        "label": string;
+        "name": string;
+        "helpText": string;
+        "required": boolean;
+        "disabled": boolean;
+        "autocomplete": string;
+        "minlength": number;
+        "maxlength": number;
+        "readonly": boolean;
+        "rows": number;
+    }
+    interface DnnToggleAttributes {
+        "checked": boolean;
+        "disabled": boolean;
+        "name": string;
+        "value": string;
+    }
+    interface DnnTreeviewItemAttributes {
+        "expanded": boolean;
+    }
+    interface DnnVerticalSplitviewAttributes {
+        "splitterWidth": number;
+        "splitWidthPercentage": number;
+    }
+
     interface IntrinsicElements {
-        "dnn-autocomplete": DnnAutocomplete;
-        "dnn-button": DnnButton;
-        "dnn-checkbox": DnnCheckbox;
-        "dnn-chevron": DnnChevron;
-        "dnn-collapsible": DnnCollapsible;
-        "dnn-color-input": DnnColorInput;
-        "dnn-color-picker": DnnColorPicker;
-        "dnn-dropzone": DnnDropzone;
+        "dnn-autocomplete": Omit<DnnAutocomplete, keyof DnnAutocompleteAttributes> & { [K in keyof DnnAutocomplete & keyof DnnAutocompleteAttributes]?: DnnAutocomplete[K] } & { [K in keyof DnnAutocomplete & keyof DnnAutocompleteAttributes as `attr:${K}`]?: DnnAutocompleteAttributes[K] } & { [K in keyof DnnAutocomplete & keyof DnnAutocompleteAttributes as `prop:${K}`]?: DnnAutocomplete[K] };
+        "dnn-button": Omit<DnnButton, keyof DnnButtonAttributes> & { [K in keyof DnnButton & keyof DnnButtonAttributes]?: DnnButton[K] } & { [K in keyof DnnButton & keyof DnnButtonAttributes as `attr:${K}`]?: DnnButtonAttributes[K] } & { [K in keyof DnnButton & keyof DnnButtonAttributes as `prop:${K}`]?: DnnButton[K] };
+        "dnn-checkbox": Omit<DnnCheckbox, keyof DnnCheckboxAttributes> & { [K in keyof DnnCheckbox & keyof DnnCheckboxAttributes]?: DnnCheckbox[K] } & { [K in keyof DnnCheckbox & keyof DnnCheckboxAttributes as `attr:${K}`]?: DnnCheckboxAttributes[K] } & { [K in keyof DnnCheckbox & keyof DnnCheckboxAttributes as `prop:${K}`]?: DnnCheckbox[K] };
+        "dnn-chevron": Omit<DnnChevron, keyof DnnChevronAttributes> & { [K in keyof DnnChevron & keyof DnnChevronAttributes]?: DnnChevron[K] } & { [K in keyof DnnChevron & keyof DnnChevronAttributes as `attr:${K}`]?: DnnChevronAttributes[K] } & { [K in keyof DnnChevron & keyof DnnChevronAttributes as `prop:${K}`]?: DnnChevron[K] };
+        "dnn-collapsible": Omit<DnnCollapsible, keyof DnnCollapsibleAttributes> & { [K in keyof DnnCollapsible & keyof DnnCollapsibleAttributes]?: DnnCollapsible[K] } & { [K in keyof DnnCollapsible & keyof DnnCollapsibleAttributes as `attr:${K}`]?: DnnCollapsibleAttributes[K] } & { [K in keyof DnnCollapsible & keyof DnnCollapsibleAttributes as `prop:${K}`]?: DnnCollapsible[K] };
+        "dnn-color-input": Omit<DnnColorInput, keyof DnnColorInputAttributes> & { [K in keyof DnnColorInput & keyof DnnColorInputAttributes]?: DnnColorInput[K] } & { [K in keyof DnnColorInput & keyof DnnColorInputAttributes as `attr:${K}`]?: DnnColorInputAttributes[K] } & { [K in keyof DnnColorInput & keyof DnnColorInputAttributes as `prop:${K}`]?: DnnColorInput[K] };
+        "dnn-color-picker": Omit<DnnColorPicker, keyof DnnColorPickerAttributes> & { [K in keyof DnnColorPicker & keyof DnnColorPickerAttributes]?: DnnColorPicker[K] } & { [K in keyof DnnColorPicker & keyof DnnColorPickerAttributes as `attr:${K}`]?: DnnColorPickerAttributes[K] } & { [K in keyof DnnColorPicker & keyof DnnColorPickerAttributes as `prop:${K}`]?: DnnColorPicker[K] };
+        "dnn-dropzone": Omit<DnnDropzone, keyof DnnDropzoneAttributes> & { [K in keyof DnnDropzone & keyof DnnDropzoneAttributes]?: DnnDropzone[K] } & { [K in keyof DnnDropzone & keyof DnnDropzoneAttributes as `attr:${K}`]?: DnnDropzoneAttributes[K] } & { [K in keyof DnnDropzone & keyof DnnDropzoneAttributes as `prop:${K}`]?: DnnDropzone[K] };
         "dnn-example-form": DnnExampleForm;
-        "dnn-fieldset": DnnFieldset;
-        "dnn-image-cropper": DnnImageCropper;
-        "dnn-input": DnnInput;
-        "dnn-modal": DnnModal;
-        "dnn-monaco-editor": DnnMonacoEditor;
+        "dnn-fieldset": Omit<DnnFieldset, keyof DnnFieldsetAttributes> & { [K in keyof DnnFieldset & keyof DnnFieldsetAttributes]?: DnnFieldset[K] } & { [K in keyof DnnFieldset & keyof DnnFieldsetAttributes as `attr:${K}`]?: DnnFieldsetAttributes[K] } & { [K in keyof DnnFieldset & keyof DnnFieldsetAttributes as `prop:${K}`]?: DnnFieldset[K] };
+        "dnn-image-cropper": Omit<DnnImageCropper, keyof DnnImageCropperAttributes> & { [K in keyof DnnImageCropper & keyof DnnImageCropperAttributes]?: DnnImageCropper[K] } & { [K in keyof DnnImageCropper & keyof DnnImageCropperAttributes as `attr:${K}`]?: DnnImageCropperAttributes[K] } & { [K in keyof DnnImageCropper & keyof DnnImageCropperAttributes as `prop:${K}`]?: DnnImageCropper[K] };
+        "dnn-input": Omit<DnnInput, keyof DnnInputAttributes> & { [K in keyof DnnInput & keyof DnnInputAttributes]?: DnnInput[K] } & { [K in keyof DnnInput & keyof DnnInputAttributes as `attr:${K}`]?: DnnInputAttributes[K] } & { [K in keyof DnnInput & keyof DnnInputAttributes as `prop:${K}`]?: DnnInput[K] };
+        "dnn-modal": Omit<DnnModal, keyof DnnModalAttributes> & { [K in keyof DnnModal & keyof DnnModalAttributes]?: DnnModal[K] } & { [K in keyof DnnModal & keyof DnnModalAttributes as `attr:${K}`]?: DnnModalAttributes[K] } & { [K in keyof DnnModal & keyof DnnModalAttributes as `prop:${K}`]?: DnnModal[K] };
+        "dnn-monaco-editor": Omit<DnnMonacoEditor, keyof DnnMonacoEditorAttributes> & { [K in keyof DnnMonacoEditor & keyof DnnMonacoEditorAttributes]?: DnnMonacoEditor[K] } & { [K in keyof DnnMonacoEditor & keyof DnnMonacoEditorAttributes as `attr:${K}`]?: DnnMonacoEditorAttributes[K] } & { [K in keyof DnnMonacoEditor & keyof DnnMonacoEditorAttributes as `prop:${K}`]?: DnnMonacoEditor[K] };
         "dnn-permissions-grid": DnnPermissionsGrid;
-        "dnn-progress-bar": DnnProgressBar;
-        "dnn-richtext": DnnRichtext;
-        "dnn-searchbox": DnnSearchbox;
-        "dnn-select": DnnSelect;
-        "dnn-sort-icon": DnnSortIcon;
-        "dnn-tab": DnnTab;
+        "dnn-progress-bar": Omit<DnnProgressBar, keyof DnnProgressBarAttributes> & { [K in keyof DnnProgressBar & keyof DnnProgressBarAttributes]?: DnnProgressBar[K] } & { [K in keyof DnnProgressBar & keyof DnnProgressBarAttributes as `attr:${K}`]?: DnnProgressBarAttributes[K] } & { [K in keyof DnnProgressBar & keyof DnnProgressBarAttributes as `prop:${K}`]?: DnnProgressBar[K] };
+        "dnn-richtext": Omit<DnnRichtext, keyof DnnRichtextAttributes> & { [K in keyof DnnRichtext & keyof DnnRichtextAttributes]?: DnnRichtext[K] } & { [K in keyof DnnRichtext & keyof DnnRichtextAttributes as `attr:${K}`]?: DnnRichtextAttributes[K] } & { [K in keyof DnnRichtext & keyof DnnRichtextAttributes as `prop:${K}`]?: DnnRichtext[K] };
+        "dnn-searchbox": Omit<DnnSearchbox, keyof DnnSearchboxAttributes> & { [K in keyof DnnSearchbox & keyof DnnSearchboxAttributes]?: DnnSearchbox[K] } & { [K in keyof DnnSearchbox & keyof DnnSearchboxAttributes as `attr:${K}`]?: DnnSearchboxAttributes[K] } & { [K in keyof DnnSearchbox & keyof DnnSearchboxAttributes as `prop:${K}`]?: DnnSearchbox[K] };
+        "dnn-select": Omit<DnnSelect, keyof DnnSelectAttributes> & { [K in keyof DnnSelect & keyof DnnSelectAttributes]?: DnnSelect[K] } & { [K in keyof DnnSelect & keyof DnnSelectAttributes as `attr:${K}`]?: DnnSelectAttributes[K] } & { [K in keyof DnnSelect & keyof DnnSelectAttributes as `prop:${K}`]?: DnnSelect[K] };
+        "dnn-sort-icon": Omit<DnnSortIcon, keyof DnnSortIconAttributes> & { [K in keyof DnnSortIcon & keyof DnnSortIconAttributes]?: DnnSortIcon[K] } & { [K in keyof DnnSortIcon & keyof DnnSortIconAttributes as `attr:${K}`]?: DnnSortIconAttributes[K] } & { [K in keyof DnnSortIcon & keyof DnnSortIconAttributes as `prop:${K}`]?: DnnSortIcon[K] };
+        "dnn-tab": Omit<DnnTab, keyof DnnTabAttributes> & { [K in keyof DnnTab & keyof DnnTabAttributes]?: DnnTab[K] } & { [K in keyof DnnTab & keyof DnnTabAttributes as `attr:${K}`]?: DnnTabAttributes[K] } & { [K in keyof DnnTab & keyof DnnTabAttributes as `prop:${K}`]?: DnnTab[K] } & OneOf<"tabTitle", DnnTab["tabTitle"], DnnTabAttributes["tabTitle"]>;
         "dnn-tabs": DnnTabs;
-        "dnn-textarea": DnnTextarea;
-        "dnn-toggle": DnnToggle;
-        "dnn-treeview-item": DnnTreeviewItem;
+        "dnn-textarea": Omit<DnnTextarea, keyof DnnTextareaAttributes> & { [K in keyof DnnTextarea & keyof DnnTextareaAttributes]?: DnnTextarea[K] } & { [K in keyof DnnTextarea & keyof DnnTextareaAttributes as `attr:${K}`]?: DnnTextareaAttributes[K] } & { [K in keyof DnnTextarea & keyof DnnTextareaAttributes as `prop:${K}`]?: DnnTextarea[K] };
+        "dnn-toggle": Omit<DnnToggle, keyof DnnToggleAttributes> & { [K in keyof DnnToggle & keyof DnnToggleAttributes]?: DnnToggle[K] } & { [K in keyof DnnToggle & keyof DnnToggleAttributes as `attr:${K}`]?: DnnToggleAttributes[K] } & { [K in keyof DnnToggle & keyof DnnToggleAttributes as `prop:${K}`]?: DnnToggle[K] };
+        "dnn-treeview-item": Omit<DnnTreeviewItem, keyof DnnTreeviewItemAttributes> & { [K in keyof DnnTreeviewItem & keyof DnnTreeviewItemAttributes]?: DnnTreeviewItem[K] } & { [K in keyof DnnTreeviewItem & keyof DnnTreeviewItemAttributes as `attr:${K}`]?: DnnTreeviewItemAttributes[K] } & { [K in keyof DnnTreeviewItem & keyof DnnTreeviewItemAttributes as `prop:${K}`]?: DnnTreeviewItem[K] };
         "dnn-vertical-overflow-menu": DnnVerticalOverflowMenu;
-        "dnn-vertical-splitview": DnnVerticalSplitview;
+        "dnn-vertical-splitview": Omit<DnnVerticalSplitview, keyof DnnVerticalSplitviewAttributes> & { [K in keyof DnnVerticalSplitview & keyof DnnVerticalSplitviewAttributes]?: DnnVerticalSplitview[K] } & { [K in keyof DnnVerticalSplitview & keyof DnnVerticalSplitviewAttributes as `attr:${K}`]?: DnnVerticalSplitviewAttributes[K] } & { [K in keyof DnnVerticalSplitview & keyof DnnVerticalSplitviewAttributes as `prop:${K}`]?: DnnVerticalSplitview[K] };
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "dnn-autocomplete": LocalJSX.DnnAutocomplete & JSXBase.HTMLAttributes<HTMLDnnAutocompleteElement>;
-            "dnn-button": LocalJSX.DnnButton & JSXBase.HTMLAttributes<HTMLDnnButtonElement>;
-            "dnn-checkbox": LocalJSX.DnnCheckbox & JSXBase.HTMLAttributes<HTMLDnnCheckboxElement>;
-            "dnn-chevron": LocalJSX.DnnChevron & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
-            "dnn-collapsible": LocalJSX.DnnCollapsible & JSXBase.HTMLAttributes<HTMLDnnCollapsibleElement>;
+            "dnn-autocomplete": LocalJSX.IntrinsicElements["dnn-autocomplete"] & JSXBase.HTMLAttributes<HTMLDnnAutocompleteElement>;
+            "dnn-button": LocalJSX.IntrinsicElements["dnn-button"] & JSXBase.HTMLAttributes<HTMLDnnButtonElement>;
+            "dnn-checkbox": LocalJSX.IntrinsicElements["dnn-checkbox"] & JSXBase.HTMLAttributes<HTMLDnnCheckboxElement>;
+            "dnn-chevron": LocalJSX.IntrinsicElements["dnn-chevron"] & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
+            "dnn-collapsible": LocalJSX.IntrinsicElements["dnn-collapsible"] & JSXBase.HTMLAttributes<HTMLDnnCollapsibleElement>;
             /**
              * A custom input component that allows previewing and changing a color value.
              */
-            "dnn-color-input": LocalJSX.DnnColorInput & JSXBase.HTMLAttributes<HTMLDnnColorInputElement>;
+            "dnn-color-input": LocalJSX.IntrinsicElements["dnn-color-input"] & JSXBase.HTMLAttributes<HTMLDnnColorInputElement>;
             /**
              * Color Picker for Dnn
              */
-            "dnn-color-picker": LocalJSX.DnnColorPicker & JSXBase.HTMLAttributes<HTMLDnnColorPickerElement>;
-            "dnn-dropzone": LocalJSX.DnnDropzone & JSXBase.HTMLAttributes<HTMLDnnDropzoneElement>;
+            "dnn-color-picker": LocalJSX.IntrinsicElements["dnn-color-picker"] & JSXBase.HTMLAttributes<HTMLDnnColorPickerElement>;
+            "dnn-dropzone": LocalJSX.IntrinsicElements["dnn-dropzone"] & JSXBase.HTMLAttributes<HTMLDnnDropzoneElement>;
             /**
              * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
              */
-            "dnn-example-form": LocalJSX.DnnExampleForm & JSXBase.HTMLAttributes<HTMLDnnExampleFormElement>;
+            "dnn-example-form": LocalJSX.IntrinsicElements["dnn-example-form"] & JSXBase.HTMLAttributes<HTMLDnnExampleFormElement>;
             /**
              * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
              */
-            "dnn-fieldset": LocalJSX.DnnFieldset & JSXBase.HTMLAttributes<HTMLDnnFieldsetElement>;
+            "dnn-fieldset": LocalJSX.IntrinsicElements["dnn-fieldset"] & JSXBase.HTMLAttributes<HTMLDnnFieldsetElement>;
             /**
              * Allows cropping an image in-browser with the option to enforce a specific final size.
              * All computation happens in the browser and the final image is emmited
              * in an event that has a data-url of the image.
              */
-            "dnn-image-cropper": LocalJSX.DnnImageCropper & JSXBase.HTMLAttributes<HTMLDnnImageCropperElement>;
+            "dnn-image-cropper": LocalJSX.IntrinsicElements["dnn-image-cropper"] & JSXBase.HTMLAttributes<HTMLDnnImageCropperElement>;
             /**
              * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
              */
-            "dnn-input": LocalJSX.DnnInput & JSXBase.HTMLAttributes<HTMLDnnInputElement>;
-            "dnn-modal": LocalJSX.DnnModal & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
-            "dnn-monaco-editor": LocalJSX.DnnMonacoEditor & JSXBase.HTMLAttributes<HTMLDnnMonacoEditorElement>;
-            "dnn-permissions-grid": LocalJSX.DnnPermissionsGrid & JSXBase.HTMLAttributes<HTMLDnnPermissionsGridElement>;
-            "dnn-progress-bar": LocalJSX.DnnProgressBar & JSXBase.HTMLAttributes<HTMLDnnProgressBarElement>;
-            "dnn-richtext": LocalJSX.DnnRichtext & JSXBase.HTMLAttributes<HTMLDnnRichtextElement>;
-            "dnn-searchbox": LocalJSX.DnnSearchbox & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
-            "dnn-select": LocalJSX.DnnSelect & JSXBase.HTMLAttributes<HTMLDnnSelectElement>;
-            "dnn-sort-icon": LocalJSX.DnnSortIcon & JSXBase.HTMLAttributes<HTMLDnnSortIconElement>;
+            "dnn-input": LocalJSX.IntrinsicElements["dnn-input"] & JSXBase.HTMLAttributes<HTMLDnnInputElement>;
+            "dnn-modal": LocalJSX.IntrinsicElements["dnn-modal"] & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
+            "dnn-monaco-editor": LocalJSX.IntrinsicElements["dnn-monaco-editor"] & JSXBase.HTMLAttributes<HTMLDnnMonacoEditorElement>;
+            "dnn-permissions-grid": LocalJSX.IntrinsicElements["dnn-permissions-grid"] & JSXBase.HTMLAttributes<HTMLDnnPermissionsGridElement>;
+            "dnn-progress-bar": LocalJSX.IntrinsicElements["dnn-progress-bar"] & JSXBase.HTMLAttributes<HTMLDnnProgressBarElement>;
+            "dnn-richtext": LocalJSX.IntrinsicElements["dnn-richtext"] & JSXBase.HTMLAttributes<HTMLDnnRichtextElement>;
+            "dnn-searchbox": LocalJSX.IntrinsicElements["dnn-searchbox"] & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
+            "dnn-select": LocalJSX.IntrinsicElements["dnn-select"] & JSXBase.HTMLAttributes<HTMLDnnSelectElement>;
+            "dnn-sort-icon": LocalJSX.IntrinsicElements["dnn-sort-icon"] & JSXBase.HTMLAttributes<HTMLDnnSortIconElement>;
             /**
              * Represents a single tab and must be used inside a dnn-tabs element.
              */
-            "dnn-tab": LocalJSX.DnnTab & JSXBase.HTMLAttributes<HTMLDnnTabElement>;
-            "dnn-tabs": LocalJSX.DnnTabs & JSXBase.HTMLAttributes<HTMLDnnTabsElement>;
+            "dnn-tab": LocalJSX.IntrinsicElements["dnn-tab"] & JSXBase.HTMLAttributes<HTMLDnnTabElement>;
+            "dnn-tabs": LocalJSX.IntrinsicElements["dnn-tabs"] & JSXBase.HTMLAttributes<HTMLDnnTabsElement>;
             /**
              * A custom textarea component.
              */
-            "dnn-textarea": LocalJSX.DnnTextarea & JSXBase.HTMLAttributes<HTMLDnnTextareaElement>;
-            "dnn-toggle": LocalJSX.DnnToggle & JSXBase.HTMLAttributes<HTMLDnnToggleElement>;
-            "dnn-treeview-item": LocalJSX.DnnTreeviewItem & JSXBase.HTMLAttributes<HTMLDnnTreeviewItemElement>;
+            "dnn-textarea": LocalJSX.IntrinsicElements["dnn-textarea"] & JSXBase.HTMLAttributes<HTMLDnnTextareaElement>;
+            "dnn-toggle": LocalJSX.IntrinsicElements["dnn-toggle"] & JSXBase.HTMLAttributes<HTMLDnnToggleElement>;
+            "dnn-treeview-item": LocalJSX.IntrinsicElements["dnn-treeview-item"] & JSXBase.HTMLAttributes<HTMLDnnTreeviewItemElement>;
             /**
              * A component that shows a vertical list of items as they fit. When they don't all fit, it puts the ones that don't fit into a dropdown menu.
              */
-            "dnn-vertical-overflow-menu": LocalJSX.DnnVerticalOverflowMenu & JSXBase.HTMLAttributes<HTMLDnnVerticalOverflowMenuElement>;
-            "dnn-vertical-splitview": LocalJSX.DnnVerticalSplitview & JSXBase.HTMLAttributes<HTMLDnnVerticalSplitviewElement>;
+            "dnn-vertical-overflow-menu": LocalJSX.IntrinsicElements["dnn-vertical-overflow-menu"] & JSXBase.HTMLAttributes<HTMLDnnVerticalOverflowMenuElement>;
+            "dnn-vertical-splitview": LocalJSX.IntrinsicElements["dnn-vertical-splitview"] & JSXBase.HTMLAttributes<HTMLDnnVerticalSplitviewElement>;
         }
     }
 }
