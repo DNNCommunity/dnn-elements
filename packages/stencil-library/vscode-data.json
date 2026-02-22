@@ -295,6 +295,19 @@
       ]
     },
     {
+      "name": "dnn-context-menu",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "close-on-click",
+          "description": "If true, the menu will close when an item is clicked."
+        }
+      ]
+    },
+    {
       "name": "dnn-dropzone",
       "description": {
         "kind": "markdown",

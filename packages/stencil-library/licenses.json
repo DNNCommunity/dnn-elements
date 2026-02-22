@@ -1,7 +1,7 @@
 {
     "@dnncommunity/dnn-elements@0.28.0-beta.2": {
         "licenses": "MIT",
-        "repository": "https://github.com/dnncommunity/dnn-elements",
+        "repository": "https://github.com/DNNCommunity/dnn-elements",
         "path": "",
         "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\README.md"
     },

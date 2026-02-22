@@ -774,6 +774,60 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/dnn-context-menu/dnn-context-menu.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "dnn-context-menu.tsx",
+          "tagName": "dnn-context-menu",
+          "description": "",
+          "attributes": [
+            {
+              "name": "close-on-click",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "If true, the menu will close when an item is clicked.",
+              "default": "false",
+              "required": false
+            }
+          ],
+          "members": [
+            {
+              "kind": "method",
+              "name": "close",
+              "description": "Closes the menu.",
+              "signature": "close() => Promise<void>"
+            },
+            {
+              "kind": "method",
+              "name": "open",
+              "description": "Opens the menu using a pointer event.",
+              "signature": "open(event: PointerEvent) => Promise<void>"
+            }
+          ],
+          "events": [],
+          "slots": [],
+          "cssProperties": [
+            {
+              "name": "--color-background",
+              "description": "The background color of the context menu."
+            },
+            {
+              "name": "--color-border",
+              "description": "The border color of the context menu."
+            },
+            {
+              "name": "--padding",
+              "description": "The padding inside the context menu."
+            }
+          ],
+          "cssParts": []
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/dnn-dropzone/dnn-dropzone.tsx",
       "declarations": [
         {

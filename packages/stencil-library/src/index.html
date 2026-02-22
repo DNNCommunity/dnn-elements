@@ -230,7 +230,7 @@
     <li><a href="#dnn-checkbox">dnn-checkbox</a></li>
     <li><a href="#dnn-chevron">dnn-chevron</a></li>
     <li><a href="#dnn-collapsible">dnn-collapsible</a></li>
-    <il><a href="#dnn-color-input">dnn-color-input</a></il>
+    <li><a href="#dnn-color-input">dnn-color-input</a></li>
     <li><a href="#dnn-input">dnn-input</a></li>
     <li><a href="#dnn-modal">dnn-modal</a></li>
     <li><a href="#dnn-searchbox">dnn-searchbox</a></li>
@@ -246,6 +246,7 @@
     <li><a href="#dnn-permissions-grid">dnn-permissions-grid</a></li>
     <li><a href="#dnn-richtext">dnn-richtext</a></li>
     <li><a href="#dnn-example-form">dnn-example-form</a></li>
+    <li><a href="#dnn-context-menu">dnn-context-menu</a></li>
   </ul>
 
   <!-- dnn-autocomplete -->
@@ -279,6 +280,43 @@
       id="autocomplete-example"
       width="300px">
     </dnn-autocomplete>
+  </section>
+
+  <!-- dnn-context-menu -->
+  <a name="dnn-context-menu"></a>
+  <section>
+    <h2>dnn-context-menu</h2>
+    <p>
+      The button below has a context menu, there are 2 ways to open it:
+      <ul>
+        <li>Right click on the button</li>
+        <li>Focus it using your keyboard and then press the context menu key on your keyboard.</li>
+      </ul>
+    </p>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", () => {
+        let contextMenuButton = document.querySelector('#context-menu-button');
+        let contextMenu = contextMenuButton.querySelector('#context-menu');
+        contextMenuButton.addEventListener("contextmenu", e => {
+          e.preventDefault();
+          contextMenu.open(e);
+        });
+      }); 
+    </script>
+    <dnn-button
+      id="context-menu-button"
+    >
+      Right click me or press the context menu key when I'm focused
+      <dnn-context-menu
+        id="context-menu"
+        close-on-click
+      >
+        <a href="">Item 1</a>
+        <a href="">Item 2</a>
+        <a href="">Item 3 is a longer item</a>
+        <button>And a button for good measure</button>
+      </dnn-context-menu>
+    </dnn-button>
   </section>
 
   <!-- dnn-color-input -->
