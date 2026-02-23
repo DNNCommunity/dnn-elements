@@ -300,6 +300,21 @@ export namespace Components {
          */
         "colorBoxHeight": string;
     }
+    interface DnnContextMenu {
+        /**
+          * Closes the menu.
+         */
+        "close": () => Promise<void>;
+        /**
+          * If true, the menu will close when an item is clicked.
+          * @default false
+         */
+        "closeOnClick": boolean;
+        /**
+          * Opens the menu using a pointer event.
+         */
+        "open": (event: PointerEvent) => Promise<void>;
+    }
     interface DnnDropzone {
         /**
           * If true, will allow the user to take a snapshot using the device camera. (only works over https).
@@ -1066,6 +1081,12 @@ declare global {
         prototype: HTMLDnnColorPickerElement;
         new (): HTMLDnnColorPickerElement;
     };
+    interface HTMLDnnContextMenuElement extends Components.DnnContextMenu, HTMLStencilElement {
+    }
+    var HTMLDnnContextMenuElement: {
+        prototype: HTMLDnnContextMenuElement;
+        new (): HTMLDnnContextMenuElement;
+    };
     interface HTMLDnnDropzoneElementEventMap {
         "filesSelected": File[];
     }
@@ -1377,6 +1398,7 @@ declare global {
         "dnn-collapsible": HTMLDnnCollapsibleElement;
         "dnn-color-input": HTMLDnnColorInputElement;
         "dnn-color-picker": HTMLDnnColorPickerElement;
+        "dnn-context-menu": HTMLDnnContextMenuElement;
         "dnn-dropzone": HTMLDnnDropzoneElement;
         "dnn-example-form": HTMLDnnExampleFormElement;
         "dnn-fieldset": HTMLDnnFieldsetElement;
@@ -1732,6 +1754,13 @@ declare namespace LocalJSX {
           * @see .. /../utilities/colorInfo.ts
          */
         "onColorChanged"?: (event: DnnColorPickerCustomEvent<ColorInfo>) => void;
+    }
+    interface DnnContextMenu {
+        /**
+          * If true, the menu will close when an item is clicked.
+          * @default false
+         */
+        "closeOnClick"?: boolean;
     }
     interface DnnDropzone {
         /**
@@ -2392,6 +2421,9 @@ declare namespace LocalJSX {
         "color": string;
         "colorBoxHeight": string;
     }
+    interface DnnContextMenuAttributes {
+        "closeOnClick": boolean;
+    }
     interface DnnDropzoneAttributes {
         "allowCameraMode": boolean;
         "captureQuality": number;
@@ -2515,6 +2547,7 @@ declare namespace LocalJSX {
         "dnn-collapsible": Omit<DnnCollapsible, keyof DnnCollapsibleAttributes> & { [K in keyof DnnCollapsible & keyof DnnCollapsibleAttributes]?: DnnCollapsible[K] } & { [K in keyof DnnCollapsible & keyof DnnCollapsibleAttributes as `attr:${K}`]?: DnnCollapsibleAttributes[K] } & { [K in keyof DnnCollapsible & keyof DnnCollapsibleAttributes as `prop:${K}`]?: DnnCollapsible[K] };
         "dnn-color-input": Omit<DnnColorInput, keyof DnnColorInputAttributes> & { [K in keyof DnnColorInput & keyof DnnColorInputAttributes]?: DnnColorInput[K] } & { [K in keyof DnnColorInput & keyof DnnColorInputAttributes as `attr:${K}`]?: DnnColorInputAttributes[K] } & { [K in keyof DnnColorInput & keyof DnnColorInputAttributes as `prop:${K}`]?: DnnColorInput[K] };
         "dnn-color-picker": Omit<DnnColorPicker, keyof DnnColorPickerAttributes> & { [K in keyof DnnColorPicker & keyof DnnColorPickerAttributes]?: DnnColorPicker[K] } & { [K in keyof DnnColorPicker & keyof DnnColorPickerAttributes as `attr:${K}`]?: DnnColorPickerAttributes[K] } & { [K in keyof DnnColorPicker & keyof DnnColorPickerAttributes as `prop:${K}`]?: DnnColorPicker[K] };
+        "dnn-context-menu": Omit<DnnContextMenu, keyof DnnContextMenuAttributes> & { [K in keyof DnnContextMenu & keyof DnnContextMenuAttributes]?: DnnContextMenu[K] } & { [K in keyof DnnContextMenu & keyof DnnContextMenuAttributes as `attr:${K}`]?: DnnContextMenuAttributes[K] } & { [K in keyof DnnContextMenu & keyof DnnContextMenuAttributes as `prop:${K}`]?: DnnContextMenu[K] };
         "dnn-dropzone": Omit<DnnDropzone, keyof DnnDropzoneAttributes> & { [K in keyof DnnDropzone & keyof DnnDropzoneAttributes]?: DnnDropzone[K] } & { [K in keyof DnnDropzone & keyof DnnDropzoneAttributes as `attr:${K}`]?: DnnDropzoneAttributes[K] } & { [K in keyof DnnDropzone & keyof DnnDropzoneAttributes as `prop:${K}`]?: DnnDropzone[K] };
         "dnn-example-form": DnnExampleForm;
         "dnn-fieldset": Omit<DnnFieldset, keyof DnnFieldsetAttributes> & { [K in keyof DnnFieldset & keyof DnnFieldsetAttributes]?: DnnFieldset[K] } & { [K in keyof DnnFieldset & keyof DnnFieldsetAttributes as `attr:${K}`]?: DnnFieldsetAttributes[K] } & { [K in keyof DnnFieldset & keyof DnnFieldsetAttributes as `prop:${K}`]?: DnnFieldset[K] };
@@ -2554,6 +2587,7 @@ declare module "@stencil/core" {
              * Color Picker for Dnn
              */
             "dnn-color-picker": LocalJSX.IntrinsicElements["dnn-color-picker"] & JSXBase.HTMLAttributes<HTMLDnnColorPickerElement>;
+            "dnn-context-menu": LocalJSX.IntrinsicElements["dnn-context-menu"] & JSXBase.HTMLAttributes<HTMLDnnContextMenuElement>;
             "dnn-dropzone": LocalJSX.IntrinsicElements["dnn-dropzone"] & JSXBase.HTMLAttributes<HTMLDnnDropzoneElement>;
             /**
              * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.

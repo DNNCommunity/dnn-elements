@@ -15,6 +15,7 @@ import { DnnChevron as DnnChevronElement, defineCustomElement as defineDnnChevro
 import { DnnCollapsible as DnnCollapsibleElement, defineCustomElement as defineDnnCollapsible } from "@dnncommunity/dnn-elements/dist/components/dnn-collapsible.js";
 import { DnnColorInput as DnnColorInputElement, defineCustomElement as defineDnnColorInput } from "@dnncommunity/dnn-elements/dist/components/dnn-color-input.js";
 import { DnnColorPicker as DnnColorPickerElement, defineCustomElement as defineDnnColorPicker } from "@dnncommunity/dnn-elements/dist/components/dnn-color-picker.js";
+import { DnnContextMenu as DnnContextMenuElement, defineCustomElement as defineDnnContextMenu } from "@dnncommunity/dnn-elements/dist/components/dnn-context-menu.js";
 import { DnnDropzone as DnnDropzoneElement, defineCustomElement as defineDnnDropzone } from "@dnncommunity/dnn-elements/dist/components/dnn-dropzone.js";
 import { DnnExampleForm as DnnExampleFormElement, defineCustomElement as defineDnnExampleForm } from "@dnncommunity/dnn-elements/dist/components/dnn-example-form.js";
 import { DnnFieldset as DnnFieldsetElement, defineCustomElement as defineDnnFieldset } from "@dnncommunity/dnn-elements/dist/components/dnn-fieldset.js";
@@ -138,6 +139,17 @@ export const DnnColorPicker: StencilReactComponent<DnnColorPickerElement, DnnCol
     react: React,
     events: { onColorChanged: 'colorChanged' } as DnnColorPickerEvents,
     defineCustomElement: defineDnnColorPicker
+});
+
+export type DnnContextMenuEvents = NonNullable<unknown>;
+
+export const DnnContextMenu: StencilReactComponent<DnnContextMenuElement, DnnContextMenuEvents> = /*@__PURE__*/ createComponent<DnnContextMenuElement, DnnContextMenuEvents>({
+    tagName: 'dnn-context-menu',
+    elementClass: DnnContextMenuElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as DnnContextMenuEvents,
+    defineCustomElement: defineDnnContextMenu
 });
 
 export type DnnDropzoneEvents = { onFilesSelected: EventName<DnnDropzoneCustomEvent<File[]>> };
