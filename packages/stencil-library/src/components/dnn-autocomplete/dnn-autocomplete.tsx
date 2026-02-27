@@ -110,10 +110,7 @@ export class DnnAutocomplete {
 
   @Watch("value")
   handleValueChange(newValue: string) {
-    this.displayValue = newValue;
-
-    // Find the index of the selected item
-    this.selectedIndex = this.suggestions.findIndex(s => s.value === newValue);
+    this.selectItemFromValue(newValue);
   }
   
   /** attacth the internals for form validation */
@@ -126,6 +123,12 @@ export class DnnAutocomplete {
     if (!path.includes(this.element))
     {
       this.focused = false;
+    }
+  }
+
+  componentDidLoad() {
+    if (this.value != ""){
+      this.selectItemFromValue(this.value);
     }
   }
   
@@ -162,6 +165,11 @@ export class DnnAutocomplete {
   @Debounce(300)
   private handleSearchQueryChanged(value: string) {
     this.searchQueryChanged.emit(value);
+  }
+
+  private selectItemFromValue(value: string) {
+    this.selectedIndex = this.suggestions.findIndex(s => s.value === value);
+    this.displayValue = this.selectedIndex != -1 ? this.suggestions[this.selectedIndex].label : value;
   }
 
   private handleInvalid(): void {
