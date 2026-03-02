@@ -5,6 +5,44 @@
 <!-- Auto Generated Below -->
 
 
+## Usage
+
+### HTML
+
+### Most basic usage
+
+```html
+<dnn-dropzone id="dz"></dnn-dropzone>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const dz = document.getElementById('dz');
+    dz.addEventListener('filesSelected', e => console.log('files', e.detail));
+  });
+</script>
+```
+
+Notes:
+- `dnn-dropzone` emits `filesSelected` with the selected FileList.
+
+
+### JSX-TSX
+
+### JSX / TSX usage
+
+```tsx
+render() {
+  return (
+    <dnn-dropzone onFilesSelected={e => console.log(e.detail)} />
+  );
+}
+```
+
+Notes:
+- Use a framework ref to call methods on the element if needed.
+
+
+
 ## Properties
 
 | Property            | Attribute           | Description                                                                                                                                   | Type                        | Default     |

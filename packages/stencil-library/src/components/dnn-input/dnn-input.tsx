@@ -132,12 +132,23 @@ export class DnnInput {
   }
 
   private handleInput(e: InputEvent): void {
-    if (this.type === "number" && e.data === "-") {
-      // Ignore the minus sign if the input type is number
-      return;
-    }
     var value = (e.target as HTMLInputElement).value;
-    this.value = value;
+    if (this.type === "number") {
+      value = value.replace(/,/g, '.');
+      if (value === "") {
+        this.value = "";
+      }
+      else if (!isNaN(Number(value))) {
+        this.value = Number(value);
+      }
+      else {
+        this.value = value;
+      }
+    }
+    else{
+      this.value = value;
+    }
+
     var valid = this.inputField.checkValidity();
     this.valid = valid;
     this.valueInput.emit(this.value);
