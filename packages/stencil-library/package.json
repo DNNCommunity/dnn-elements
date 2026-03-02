@@ -74,7 +74,7 @@
     "@stencil/eslint-plugin": "1.1.0",
     "@stencil/react-output-target": "^1.2.0",
     "@stencil/sass": "^3.0.4",
-    "@storybook/addon-a11y": "10.2.10",
+    "@storybook/addon-a11y": "10.2.13",
     "@storybook/addon-docs": "10.2.10",
     "@storybook/web-components-vite": "10.2.10",
     "@timkendrick/monaco-editor": "^0.0.9",
