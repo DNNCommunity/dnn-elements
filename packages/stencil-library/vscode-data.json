@@ -10,7 +10,7 @@
       "attributes": [
         {
           "name": "autocomplete",
-          "description": "Defines the type of automatic completion the browser could use.\nSee https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete"
+          "description": "Defines the type of automatic completion the browser could use.\r\nSee https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete"
         },
         {
           "name": "disabled",
@@ -30,7 +30,7 @@
         },
         {
           "name": "preload-threshold-pixels",
-          "description": "How many suggestions to preload in pixels of their height.\nThis is used to calculate the virtual scroll height and request\nmore items before they get into view."
+          "description": "How many suggestions to preload in pixels of their height.\r\nThis is used to calculate the virtual scroll height and request\r\nmore items before they get into view."
         },
         {
           "name": "required",
@@ -38,7 +38,7 @@
         },
         {
           "name": "total-suggestions",
-          "description": "The total amount of suggestions for the given search query.\nThis can be used to show virtual scroll and pagination progressive feeding.\nThe needMoreItems event should be used to request more items."
+          "description": "The total amount of suggestions for the given search query.\r\nThis can be used to show virtual scroll and pagination progressive feeding.\r\nThe needMoreItems event should be used to request more items."
         },
         {
           "name": "value",
