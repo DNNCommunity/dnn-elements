@@ -127,7 +127,7 @@ Type: `Promise<void>`
 
  - [dnn-autocomplete](../dnn-autocomplete)
  - [dnn-color-input](../dnn-color-input)
- - [dnn-example-form](../examples/dnn-example-form)
+ - dnn-example-form
  - [dnn-input](../dnn-input)
  - [dnn-select](../dnn-select)
  - [dnn-textarea](../dnn-textarea)

@@ -58,7 +58,7 @@ A custom input component that allows previewing and changing a color value.
 
 ### Used by
 
- - [dnn-example-form](../examples/dnn-example-form)
+ - dnn-example-form
 
 ### Depends on
 

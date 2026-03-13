@@ -780,7 +780,7 @@
           "kind": "class",
           "name": "dnn-context-menu.tsx",
           "tagName": "dnn-context-menu",
-          "description": "",
+          "description": "Can be used to display a context menu.\r\nThe contents of the menu as entirely up to the user.\r\nItems insile of `dnn-context-menu` that can be activated should have `role=\"menuitem\"` or similar for accessibility reasons.",
           "attributes": [
             {
               "name": "close-on-click",
@@ -924,24 +924,6 @@
               "description": "The color of the background when a file is dropping."
             }
           ],
-          "cssParts": []
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/examples/dnn-example-form/dnn-example-form.tsx",
-      "declarations": [
-        {
-          "kind": "class",
-          "name": "dnn-example-form.tsx",
-          "tagName": "dnn-example-form",
-          "description": "Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.",
-          "attributes": [],
-          "members": [],
-          "events": [],
-          "slots": [],
-          "cssProperties": [],
           "cssParts": []
         }
       ]
@@ -1243,7 +1225,7 @@
               "type": {
                 "text": "\"decimal\" | \"email\" | \"none\" | \"numeric\" | \"search\" | \"tel\" | \"text\" | \"url\" | undefined"
               },
-              "description": "Hints at the type of data that might be entered by the user while editing the element or its contents.\nThis allows a browser to display an appropriate virtual keyboard.",
+              "description": "Hints at the type of data that might be entered by the user while editing the element or its contents.\r\nThis allows a browser to display an appropriate virtual keyboard.",
               "required": false
             },
             {
