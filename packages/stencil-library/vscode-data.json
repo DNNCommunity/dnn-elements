@@ -298,7 +298,7 @@
       "name": "dnn-context-menu",
       "description": {
         "kind": "markdown",
-        "value": ""
+        "value": "Can be used to display a context menu.\r\nThe contents of the menu as entirely up to the user.\r\nItems insile of `dnn-context-menu` that can be activated should have `role=\"menuitem\"` or similar for accessibility reasons."
       },
       "attributes": [
         {
@@ -335,14 +335,6 @@
           "description": "The name of the field when used in a form."
         }
       ]
-    },
-    {
-      "name": "dnn-example-form",
-      "description": {
-        "kind": "markdown",
-        "value": "Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package."
-      },
-      "attributes": []
     },
     {
       "name": "dnn-fieldset",
@@ -459,7 +451,7 @@
         },
         {
           "name": "inputmode",
-          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents.\nThis allows a browser to display an appropriate virtual keyboard.",
+          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents.\r\nThis allows a browser to display an appropriate virtual keyboard.",
           "values": [
             {
               "name": "decimal"

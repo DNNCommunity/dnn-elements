@@ -348,9 +348,6 @@ export namespace Components {
          */
         "resx"?: DropzoneResx;
     }
-    /**
-     * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
-     */
     interface DnnExampleForm {
     }
     /**
@@ -1104,9 +1101,6 @@ declare global {
         prototype: HTMLDnnDropzoneElement;
         new (): HTMLDnnDropzoneElement;
     };
-    /**
-     * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
-     */
     interface HTMLDnnExampleFormElement extends Components.DnnExampleForm, HTMLStencilElement {
     }
     var HTMLDnnExampleFormElement: {
@@ -1807,9 +1801,6 @@ declare namespace LocalJSX {
          */
         "resx"?: DropzoneResx;
     }
-    /**
-     * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
-     */
     interface DnnExampleForm {
     }
     /**
@@ -2589,9 +2580,6 @@ declare module "@stencil/core" {
             "dnn-color-picker": LocalJSX.IntrinsicElements["dnn-color-picker"] & JSXBase.HTMLAttributes<HTMLDnnColorPickerElement>;
             "dnn-context-menu": LocalJSX.IntrinsicElements["dnn-context-menu"] & JSXBase.HTMLAttributes<HTMLDnnContextMenuElement>;
             "dnn-dropzone": LocalJSX.IntrinsicElements["dnn-dropzone"] & JSXBase.HTMLAttributes<HTMLDnnDropzoneElement>;
-            /**
-             * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
-             */
             "dnn-example-form": LocalJSX.IntrinsicElements["dnn-example-form"] & JSXBase.HTMLAttributes<HTMLDnnExampleFormElement>;
             /**
              * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.

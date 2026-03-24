@@ -76,7 +76,7 @@ Notes:
 
 ### Used by
 
- - [dnn-example-form](../examples/dnn-example-form)
+ - dnn-example-form
  - [dnn-image-cropper](../dnn-image-cropper)
 
 ### Graph
