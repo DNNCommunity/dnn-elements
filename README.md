@@ -37,32 +37,30 @@ Stay tuned - coming soon.
 Usage of each component is documented within the library `components` folder along with code samples.
 
 ## Usage (`eslint-plugin`)
-To help better handle breaking changes, and to provide advice regarding usage, a custom `eslint` plugin is included in this package. Some breaking changes have auto-fixes. Until we release v1.0.0, it is advisable to upgrade one minor version at a time, and if you use `eslint` or `tslint`, you can get some of the fixes applied automatically for you. We currently only support the flat config format, so you will need those set up:
-- `eslint` v8 (with the option to use the flat config type)
-- `eslint` v9 (flat config is already mandatory)
-- `typescript-eslint` (flat config is already mandatory) **recommended if you use typescript**
+To help better handle breaking changes, and to provide advice regarding usage, a custom `eslint` plugin is included in this package. Some breaking changes have auto-fixes. Until we release v1.0.0, it is advisable to upgrade one minor version at a time, and if you use `eslint`, you can get some of the fixes applied automatically for you. We currently only support the flat config format, so you will need:
+- `eslint` v9 or v10
+- `typescript-eslint` **recommended if you use TypeScript**
 
 No additional package is needed.  Just use the already installed `@dnncommunity/dnn-elements` and import the `eslint-plugin`.  Then use it in your config:
 
+### ESLint v10+ (recommended)
+
 ```diff
++import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 import eslint from '@eslint/js';
-+import dnnelements from '@dnncommunity/dnn-elements/eslint-plugin';
++import dnnElements from '@dnncommunity/dnn-elements/eslint-plugin';
 
-export default tseslint.config(
-  tseslint.configs.recommendedTypeChecked,
-  stencil.configs.flat.recommended,
-+ dnnelements.configs.flat.recommended,
+-export default [
++export default defineConfig(
+  eslint.configs.recommended,
+  tseslint.configs.recommended,
++ dnnElements.configs.recommended,
   {
-    files: [
-      "src/**/*.{ts,tsx}",
-    ],
+    files: ["src/**/*.{ts,tsx}"],
   },
   {
-      ignores: [
-        "dist/",
-        "www/",
-      ],
+    ignores: ["dist/", "www/"],
   },
   {
     languageOptions: {
@@ -70,9 +68,40 @@ export default tseslint.config(
       sourceType: "module",
       parserOptions: {
         projectService: true,
-        project: './tsconfig.json',
-      }
-    }
+      },
+    },
+  },
+-]
++)
+```
+
+### ESLint v9
+
+If you are on ESLint v9 (before v9.22.0 which introduced `defineConfig`), you can use `tseslint.config()` instead:
+
+```diff
+import tseslint from 'typescript-eslint';
+import eslint from '@eslint/js';
++import dnnElements from '@dnncommunity/dnn-elements/eslint-plugin';
+
+export default tseslint.config(
+  eslint.configs.recommended,
+  tseslint.configs.recommended,
++ dnnElements.configs.recommended,
+  {
+    files: ["src/**/*.{ts,tsx}"],
+  },
+  {
+    ignores: ["dist/", "www/"],
+  },
+  {
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      parserOptions: {
+        projectService: true,
+      },
+    },
   },
 )
 ```

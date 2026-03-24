@@ -2,14 +2,16 @@ import stencil from "@stencil/eslint-plugin";
 import tseslint from "typescript-eslint";
 import eslint from "@eslint/js";
 import dnnElements from "./eslint-plugin";
+// @ts-expect-error - no top-level types field; resolves fine at runtime
 import storybook from "eslint-plugin-storybook";
+import { defineConfig, type Config } from "eslint/config";
 
-export default (tseslint.config(
+export default defineConfig(
     eslint.configs.recommended,
-    tseslint.configs.recommendedTypeChecked,
-    stencil.configs.flat.recommended,
-    dnnElements.configs.flat.recommended,
-    storybook.configs["flat/recommended"],
+    tseslint.configs.recommendedTypeChecked as Config[],
+    stencil.configs.flat.recommended as Config[],
+    dnnElements.configs.recommended as Config[],
+    storybook.configs["flat/recommended"] as Config[],
     {
         files: [
             "src/**/*.{ts,tsx}",
@@ -81,4 +83,4 @@ export default (tseslint.config(
             "no-fallthrough": "off",
         }
     },
-));
+);

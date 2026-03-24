@@ -135,7 +135,7 @@ export class ColorInfo{
         const min = Math.min(r, g, b);
         const max = Math.max(r, g, b);
         const diff = max - min;
-        let h = 0, s = 0, l = 0;
+        let h = 0, s: number, l: number;
 
         // HUE
         if (diff === 0) { // neutral

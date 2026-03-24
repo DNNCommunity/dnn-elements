@@ -5,10 +5,100 @@
         "path": "",
         "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\README.md"
     },
+    "@vitest/browser-webdriverio@4.1.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/vitest-dev/vitest",
+        "path": "node_modules\\@vitest\\browser-webdriverio",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\@vitest\\browser-webdriverio\\LICENSE"
+    },
+    "@vitest/browser@4.1.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/vitest-dev/vitest",
+        "path": "node_modules\\@vitest\\browser",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\@vitest\\browser\\LICENSE"
+    },
+    "@vitest/expect@4.1.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/vitest-dev/vitest",
+        "path": "node_modules\\@vitest\\expect",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\@vitest\\expect\\LICENSE"
+    },
+    "@vitest/mocker@4.1.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/vitest-dev/vitest",
+        "path": "node_modules\\@vitest\\browser\\node_modules\\@vitest\\mocker",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\@vitest\\browser\\node_modules\\@vitest\\mocker\\LICENSE"
+    },
+    "@vitest/pretty-format@4.1.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/vitest-dev/vitest",
+        "path": "node_modules\\@vitest\\pretty-format",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\@vitest\\pretty-format\\LICENSE"
+    },
+    "@vitest/runner@4.1.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/vitest-dev/vitest",
+        "path": "node_modules\\@vitest\\runner",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\@vitest\\runner\\LICENSE"
+    },
+    "@vitest/snapshot@4.1.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/vitest-dev/vitest",
+        "path": "node_modules\\@vitest\\snapshot",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\@vitest\\snapshot\\LICENSE"
+    },
+    "@vitest/spy@4.1.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/vitest-dev/vitest",
+        "path": "node_modules\\@vitest\\spy",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\@vitest\\spy\\LICENSE"
+    },
+    "@vitest/utils@4.1.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/vitest-dev/vitest",
+        "path": "node_modules\\@vitest\\utils",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\@vitest\\utils\\LICENSE"
+    },
+    "chai@6.2.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/chaijs/chai",
+        "publisher": "Jake Luer",
+        "email": "jake@alogicalparadox.com",
+        "path": "node_modules\\chai",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\chai\\LICENSE"
+    },
+    "es-module-lexer@2.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/guybedford/es-module-lexer",
+        "publisher": "Guy Bedford",
+        "path": "node_modules\\es-module-lexer",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\es-module-lexer\\LICENSE"
+    },
+    "std-env@4.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/unjs/std-env",
+        "path": "node_modules\\std-env",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\std-env\\LICENCE"
+    },
+    "tinyglobby@0.2.15": {
+        "licenses": "MIT",
+        "repository": "https://github.com/SuperchupuDev/tinyglobby",
+        "publisher": "Superchupu",
+        "path": "node_modules\\tinyglobby",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\tinyglobby\\LICENSE"
+    },
     "unplugin-stencil@0.4.1": {
         "licenses": "MIT",
         "repository": "https://github.com/stencil-community/unplugin-stencil",
         "path": "node_modules\\unplugin-stencil",
         "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\unplugin-stencil\\LICENSE"
+    },
+    "vitest@4.1.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/vitest-dev/vitest",
+        "publisher": "Anthony Fu",
+        "email": "anthonyfu117@hotmail.com",
+        "path": "node_modules\\vitest",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\vitest\\LICENSE.md"
     }
 }
