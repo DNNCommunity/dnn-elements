@@ -68,8 +68,8 @@ export class DnnContextMenu {
     this.positioned = false;
 
     // Determine initial origin point (viewport coordinates)
-    let originX = 0;
-    let originY = 0;
+    let originX: number;
+    let originY: number;
     const usedPointer = event.button === 2;
 
     if (usedPointer) {
