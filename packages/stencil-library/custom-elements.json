@@ -1085,7 +1085,7 @@
           "kind": "class",
           "name": "dnn-image-cropper.tsx",
           "tagName": "dnn-image-cropper",
-          "description": "Allows cropping an image in-browser with the option to enforce a specific final size.\nAll computation happens in the browser and the final image is emmited\nin an event that has a data-url of the image.",
+          "description": "Allows cropping an image in-browser with the option to enforce a specific final size.\r\nAll computation happens in the browser and the final image is emmited\r\nin an event that has a data-url of the image.",
           "attributes": [
             {
               "name": "height",
@@ -1137,7 +1137,7 @@
               "type": {
                 "text": "ImageCropperResx | undefined"
               },
-              "description": "Can be used to customize controls text.\nSome values support tokens, see default values for examples.",
+              "description": "Can be used to customize controls text.\r\nSome values support tokens, see default values for examples.",
               "required": false
             },
             {
@@ -1160,7 +1160,7 @@
               "type": {
                 "text": "File"
               },
-              "description": "Emits both when a file is initially select and when the crop has changed.\nCompared to imageCropChanged, this event emits the file itself, which can be useful for uploading the file to a server including its name."
+              "description": "Emits both when a file is initially select and when the crop has changed.\r\nCompared to imageCropChanged, this event emits the file itself, which can be useful for uploading the file to a server including its name."
             }
           ],
           "slots": [],

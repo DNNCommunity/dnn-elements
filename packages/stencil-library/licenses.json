@@ -5,6 +5,40 @@
         "path": "",
         "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\README.md"
     },
+    "@eslint/config-array@0.23.3": {
+        "licenses": "Apache-2.0",
+        "repository": "https://github.com/eslint/rewrite",
+        "publisher": "Nicholas C. Zakas",
+        "path": "node_modules\\@eslint\\config-array",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\@eslint\\config-array\\LICENSE"
+    },
+    "@eslint/config-helpers@0.5.3": {
+        "licenses": "Apache-2.0",
+        "repository": "https://github.com/eslint/rewrite",
+        "path": "node_modules\\@eslint\\config-helpers",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\@eslint\\config-helpers\\LICENSE"
+    },
+    "@eslint/core@1.1.1": {
+        "licenses": "Apache-2.0",
+        "repository": "https://github.com/eslint/rewrite",
+        "publisher": "Nicholas C. Zakas",
+        "path": "node_modules\\@eslint\\core",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\@eslint\\core\\LICENSE"
+    },
+    "@eslint/object-schema@3.0.3": {
+        "licenses": "Apache-2.0",
+        "repository": "https://github.com/eslint/rewrite",
+        "publisher": "Nicholas C. Zakas",
+        "path": "node_modules\\@eslint\\object-schema",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\@eslint\\object-schema\\LICENSE"
+    },
+    "@eslint/plugin-kit@0.6.1": {
+        "licenses": "Apache-2.0",
+        "repository": "https://github.com/eslint/rewrite",
+        "publisher": "Nicholas C. Zakas",
+        "path": "node_modules\\@eslint\\plugin-kit",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\@eslint\\plugin-kit\\LICENSE"
+    },
     "@vitest/browser-webdriverio@4.1.1": {
         "licenses": "MIT",
         "repository": "https://github.com/vitest-dev/vitest",
@@ -59,6 +93,18 @@
         "path": "node_modules\\@vitest\\utils",
         "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\@vitest\\utils\\LICENSE"
     },
+    "balanced-match@4.0.4": {
+        "licenses": "MIT",
+        "repository": "https://github.com/juliangruber/balanced-match",
+        "path": "node_modules\\balanced-match",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\balanced-match\\LICENSE.md"
+    },
+    "brace-expansion@5.0.5": {
+        "licenses": "MIT",
+        "repository": "https://github.com/juliangruber/brace-expansion",
+        "path": "node_modules\\brace-expansion",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\brace-expansion\\LICENSE"
+    },
     "chai@6.2.2": {
         "licenses": "MIT",
         "repository": "https://github.com/chaijs/chai",
@@ -73,6 +119,90 @@
         "publisher": "Guy Bedford",
         "path": "node_modules\\es-module-lexer",
         "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\es-module-lexer\\LICENSE"
+    },
+    "escape-string-regexp@4.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/escape-string-regexp",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\escape-string-regexp",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\escape-string-regexp\\license"
+    },
+    "eslint-scope@9.1.2": {
+        "licenses": "BSD-2-Clause",
+        "repository": "https://github.com/eslint/js",
+        "path": "node_modules\\eslint-scope",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\eslint-scope\\LICENSE"
+    },
+    "eslint-visitor-keys@5.0.1": {
+        "licenses": "Apache-2.0",
+        "repository": "https://github.com/eslint/js",
+        "publisher": "Toru Nagashima",
+        "path": "node_modules\\eslint-visitor-keys",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\eslint-visitor-keys\\LICENSE"
+    },
+    "eslint@10.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/eslint/eslint",
+        "publisher": "Nicholas C. Zakas",
+        "email": "nicholas+npm@nczconsulting.com",
+        "path": "node_modules\\eslint",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\eslint\\LICENSE"
+    },
+    "espree@11.2.0": {
+        "licenses": "BSD-2-Clause",
+        "repository": "https://github.com/eslint/js",
+        "publisher": "Nicholas C. Zakas",
+        "email": "nicholas+npm@nczconsulting.com",
+        "path": "node_modules\\espree",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\espree\\LICENSE"
+    },
+    "find-up@5.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/find-up",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\find-up",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\find-up\\license"
+    },
+    "ignore@5.3.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/kaelzhang/node-ignore",
+        "publisher": "kael",
+        "path": "node_modules\\ignore",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\ignore\\LICENSE-MIT"
+    },
+    "locate-path@6.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/locate-path",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\locate-path",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\locate-path\\license"
+    },
+    "minimatch@10.2.4": {
+        "licenses": "BlueOak-1.0.0",
+        "repository": "https://github.com/isaacs/minimatch",
+        "publisher": "Isaac Z. Schlueter",
+        "email": "i@izs.me",
+        "path": "node_modules\\minimatch",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\minimatch\\LICENSE.md"
+    },
+    "p-limit@3.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/p-limit",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\p-limit",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\p-limit\\license"
+    },
+    "p-locate@5.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/p-locate",
+        "publisher": "Sindre Sorhus",
+        "email": "sindresorhus@gmail.com",
+        "path": "node_modules\\p-locate",
+        "licenseFile": "D:\\dnn-elements\\packages\\stencil-library\\node_modules\\p-locate\\license"
     },
     "std-env@4.0.0": {
         "licenses": "MIT",
