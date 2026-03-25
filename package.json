@@ -12,7 +12,7 @@
   "devDependencies": {
     "@types/node": "^25.0.10",
     "lerna": "^9.0.3",
-    "typescript": "^5.0.3"
+    "typescript": "^6.0.2"
   },
   "version": ""
 }
