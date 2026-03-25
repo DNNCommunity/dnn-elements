@@ -88,7 +88,7 @@
     "axe-playwright": "^2.0.1",
     "babel-loader": "^10.1.1",
     "eslint": "^10.1.0",
-    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-storybook": "10.3.3",
     "gh-pages": "^6.3.0",
     "jiti": "^2.6.1",
