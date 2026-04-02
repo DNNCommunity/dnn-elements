@@ -1,0 +1,40 @@
+import{n as e}from"./chunk-BneVvdWh.js";import{_ as t,b as n}from"./iframe-BqLFqqtI.js";var r,i=e((()=>{r=`data:text/markdown;base64,IyBkbm4tbW9uYWNvLWVkaXRvcgoKCgo8IS0tIEF1dG8gR2VuZXJhdGVkIEJlbG93IC0tPgoKCiMjIFVzYWdlCgojIyMgSFRNTAoKYGBgaHRtbAo8ZG5uLW1vbmFjby1lZGl0b3IKICAgIGxhbmd1YWdlPSJodG1sIgogICAgdmFsdWU9IjxoMT5IZWxsbyBXb3JsZDwvaDE+CiAgICAgICAgPGRpdiBjbGFzcz0mcXVvdDtjYXJkJnF1b3Q7PgogICAgICAgICAgICA8cD5Tb21lIHRleHQ8L3A+CiAgICAgICAgPC9kaXY+Igo+CjwvZG5uLW1vbmFjby1lZGl0b3I+CmBgYAoKCiMjIyBKU1gtVFNYCgpgYGB0c3gKPGRubi1tb25hY28tZWRpdG9yCiAgICBsYW5ndWFnZT0iaHRtbCIKICAgIHZhbHVlPSI8aDE+SGVsbG8gV29ybGQ8L2gxPgogICAgICAgIDxkaXYgY2xhc3M9JnF1b3Q7Y2FyZCZxdW90Oz4KICAgICAgICAgICAgPHA+U29tZSB0ZXh0PC9wPgogICAgICAgIDwvZGl2PiIKPgo8L2Rubi1tb25hY28tZWRpdG9yPgpgYGAKCgoKIyMgUHJvcGVydGllcwoKfCBQcm9wZXJ0eSAgIHwgQXR0cmlidXRlICB8IERlc2NyaXB0aW9uICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgVHlwZSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgRGVmYXVsdCAgICAgfAp8IC0tLS0tLS0tLS0gfCAtLS0tLS0tLS0tIHwgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gfCAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gfCAtLS0tLS0tLS0tLSB8CnwgYGxhbmd1YWdlYCB8IGBsYW5ndWFnZWAgfCBEZWZpbmVzIHRoZSBsYW5ndWFnZSBmb3IgdGhlIGVkaXRvci4gICAgICB8IGAiYmF0IiBcfCAiYyIgXHwgImNvZmZlZXNjcmlwdCIgXHwgImNwcCIgXHwgImNzaGFycCIgXHwgImNzcyIgXHwgImRvY2tlcmZpbGUiIFx8ICJmc2hhcnAiIFx8ICJnbyIgXHwgImhhbmRsZWJhcnMiIFx8ICJodG1sIiBcfCAiaW5pIiBcfCAiamF2YSIgXHwgImphdmFzY3JpcHQiIFx8ICJqc29uIiBcfCAibGVzcyIgXHwgImx1YSIgXHwgIm1hcmtkb3duIiBcfCAibXNkYXgiIFx8ICJvYmplY3RpdmUtYyIgXHwgInBocCIgXHwgInBsYWludGV4dCIgXHwgInBvc3RpYXRzIiBcfCAicG93ZXJzaGVsbCIgXHwgInB1ZyIgXHwgInB5dGhvbiIgXHwgInIiIFx8ICJyYXpvciIgXHwgInJ1YnkiIFx8ICJzYiIgXHwgInNjc3MiIFx8ICJzb2wiIFx8ICJzcWwiIFx8ICJzd2lmdCIgXHwgInR5cGVzY3JpcHQiIFx8ICJ2YiIgXHwgInhtbCIgXHwgInlhbWwiYCB8IGAiaHRtbCJgICAgIHwKfCBgbmFtZWAgICAgIHwgYG5hbWVgICAgICB8IFRoZSBuYW1lIG9mIHRoZSBjb250cm9sIHRvIHVzZSBmb3IgZm9ybXMuIHwgYHN0cmluZyBcfCB1bmRlZmluZWRgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgYHVuZGVmaW5lZGAgfAp8IGB2YWx1ZWAgICAgfCBgdmFsdWVgICAgIHwgU2V0cyB0aGUgY29kZSBjb250YWluZWQgaW4gdGhlIGVkaXRvciAgICAgfCBgc3RyaW5nYCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCBgIiJgICAgICAgICB8CgoKIyMgRXZlbnRzCgp8IEV2ZW50ICAgICAgICAgICAgfCBEZXNjcmlwdGlvbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCBUeXBlICAgICAgICAgICAgICAgICAgfAp8IC0tLS0tLS0tLS0tLS0tLS0gfCAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gfCAtLS0tLS0tLS0tLS0tLS0tLS0tLS0gfAp8IGBjb250ZW50Q2hhbmdlZGAgfCBFbWl0cyB0aGUgbmV3IHZhbHVlIG9mIHRoZSBjb250ZW50IHdoZW4gaXQgaXMgY2hhbmdlZC4gfCBgQ3VzdG9tRXZlbnQ8c3RyaW5nPmAgfAoKCiMjIENTUyBDdXN0b20gUHJvcGVydGllcwoKfCBOYW1lICAgICAgICAgICAgICAgICAgICAgfCBEZXNjcmlwdGlvbiAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKfCAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gfCAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tIHwKfCBgLS1tb25hY28tZWRpdG9yLWhlaWdodGAgfCBoZWlnaHQgb2YgdGhlIGVkaXRvciwgZGVmYXVsdCBpcyA1MHZoIHwKfCBgLS1tb25hY28tZWRpdG9yLXdpZHRoYCAgfCB3aWR0aCBvZiB0aGUgZWRpdG9yLCBkZWZhdWx0IGlzIDEwMCUgIHwKCgojIyBEZXBlbmRlbmNpZXMKCiMjIyBVc2VkIGJ5CgogLSBkbm4tZXhhbXBsZS1mb3JtCgojIyMgR3JhcGgKYGBgbWVybWFpZApncmFwaCBURDsKICBkbm4tZXhhbXBsZS1mb3JtIC0tPiBkbm4tbW9uYWNvLWVkaXRvcgogIHN0eWxlIGRubi1tb25hY28tZWRpdG9yIGZpbGw6I2Y5ZixzdHJva2U6IzMzMyxzdHJva2Utd2lkdGg6NHB4CmBgYAoKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKKkJ1aWx0IHdpdGggW1N0ZW5jaWxKU10oaHR0cHM6Ly9zdGVuY2lsanMuY29tLykqCg==`})),a,o,s,c,l,u,d;e((()=>{t(),i(),{actions:a}=__STORYBOOK_MODULE_ACTIONS__,o={title:`Elements/Monaco Editor`,component:`dnn-monaco-editor`,tags:[`autodocs`],parameters:{docs:{description:{component:r}}},argTypes:{language:{options:`bat.c.coffeescript.cpp.csharp.css.dockerfile.fsharp.go.handlebars.html.ini.java.javascript.json.less.lua.markdown.msdax.objective-c.php.plaintext.postiats.powershell.pug.python.r.razor.ruby.sb.scss.sol.sql.swift.typescript.vb.xml.yaml`.split(`.`),control:{type:`select`}},value:{control:`text`}}},s=a(`onContentChanged`),c=e=>n`
+    <dnn-monaco-editor
+        language=${e.language}
+        value=${e.value}
+        @contentChanged=${s.onContentChanged}
+    />
+    `,l=c.bind({}),l.args={language:`html`,value:`<h1>Hello World</h1>
+<div class="card">
+    <p>Some text</p>
+</div>
+`},u=c.bind({}),u.args={language:`typescript`,value:`/** Defines basic info about a person. */
+interface Person {
+
+    /** The person's first name. */
+    firstName: string;
+
+    /** The person's last name. */
+    lastName: string;
+}
+
+/** Greets a person. */
+const greeter = (person: Person) =>
+{
+    return "Hello, " + person.firstName + " " + person.lastName;
+}
+
+export default greeter;
+`},l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`args => html\`
+    <dnn-monaco-editor
+        language=\${args.language}
+        value=\${args.value}
+        @contentChanged=\${eventsFromNames.onContentChanged}
+    />
+    \``,...l.parameters?.docs?.source}}},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`args => html\`
+    <dnn-monaco-editor
+        language=\${args.language}
+        value=\${args.value}
+        @contentChanged=\${eventsFromNames.onContentChanged}
+    />
+    \``,...u.parameters?.docs?.source}}},d=[`HTML`,`Typescript`]}))();export{l as HTML,u as Typescript,d as __namedExportsOrder,o as default};

@@ -1,0 +1,1 @@
+import{n as e}from"./chunk-BneVvdWh.js";function t(e,t){let n=0,r=0,i=t;if(e instanceof MouseEvent&&(n=e.movementX,r=e.movementY),typeof TouchEvent<`u`&&e instanceof TouchEvent){let a=e.touches[0];t!=null&&(n=a.pageX-t.pageX,r=a.pageY-t.pageY),i=a}return{movementX:n,movementY:r,previousTouch:i}}var n=e((()=>{}));export{n,t};
