@@ -85,7 +85,7 @@ Type: `Promise<ValidityState>`
 
 ### Used by
 
- - [dnn-example-form](../examples/dnn-example-form)
+ - dnn-example-form
  - [dnn-permissions-grid](../dnn-permissions-grid)
 
 ### Graph

@@ -1,7 +1,10 @@
 import { Component, Host, h, State } from '@stencil/core';
 import { DnnAutocompleteSuggestion } from '../../dnn-autocomplete/types';
 
-/** Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package. */
+/**
+* @internal
+ * Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.
+ */
 @Component({
   tag: 'dnn-example-form',
   styleUrl: 'dnn-example-form.scss',

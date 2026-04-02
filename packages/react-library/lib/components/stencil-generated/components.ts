@@ -17,7 +17,6 @@ import { DnnColorInput as DnnColorInputElement, defineCustomElement as defineDnn
 import { DnnColorPicker as DnnColorPickerElement, defineCustomElement as defineDnnColorPicker } from "@dnncommunity/dnn-elements/dist/components/dnn-color-picker.js";
 import { DnnContextMenu as DnnContextMenuElement, defineCustomElement as defineDnnContextMenu } from "@dnncommunity/dnn-elements/dist/components/dnn-context-menu.js";
 import { DnnDropzone as DnnDropzoneElement, defineCustomElement as defineDnnDropzone } from "@dnncommunity/dnn-elements/dist/components/dnn-dropzone.js";
-import { DnnExampleForm as DnnExampleFormElement, defineCustomElement as defineDnnExampleForm } from "@dnncommunity/dnn-elements/dist/components/dnn-example-form.js";
 import { DnnFieldset as DnnFieldsetElement, defineCustomElement as defineDnnFieldset } from "@dnncommunity/dnn-elements/dist/components/dnn-fieldset.js";
 import { DnnImageCropper as DnnImageCropperElement, defineCustomElement as defineDnnImageCropper } from "@dnncommunity/dnn-elements/dist/components/dnn-image-cropper.js";
 import { DnnInput as DnnInputElement, defineCustomElement as defineDnnInput } from "@dnncommunity/dnn-elements/dist/components/dnn-input.js";
@@ -161,17 +160,6 @@ export const DnnDropzone: StencilReactComponent<DnnDropzoneElement, DnnDropzoneE
     react: React,
     events: { onFilesSelected: 'filesSelected' } as DnnDropzoneEvents,
     defineCustomElement: defineDnnDropzone
-});
-
-export type DnnExampleFormEvents = NonNullable<unknown>;
-
-export const DnnExampleForm: StencilReactComponent<DnnExampleFormElement, DnnExampleFormEvents> = /*@__PURE__*/ createComponent<DnnExampleFormElement, DnnExampleFormEvents>({
-    tagName: 'dnn-example-form',
-    elementClass: DnnExampleFormElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
-    react: React,
-    events: {} as DnnExampleFormEvents,
-    defineCustomElement: defineDnnExampleForm
 });
 
 export type DnnFieldsetEvents = NonNullable<unknown>;

@@ -331,7 +331,8 @@ export class DnnImageCropper {
     const cropRect = this.crop.getBoundingClientRect();
     const imageRect = this.image.getBoundingClientRect();
 
-    let { movementX, movementY } = getMovementFromEvent(event, this.previousTouch!);
+    let { movementX, movementY, previousTouch } = getMovementFromEvent(event, this.previousTouch!);
+    this.previousTouch = previousTouch;
 
     let newWidth: number, newHeight: number;
 
@@ -443,7 +444,8 @@ export class DnnImageCropper {
     if (!this.isMouseStillInTarget(ev)) {
       return;
     }
-    let { movementX, movementY } = getMovementFromEvent(ev, this.previousTouch!);
+    let { movementX, movementY, previousTouch } = getMovementFromEvent(ev, this.previousTouch!);
+    this.previousTouch = previousTouch;
     let newLeft = this.crop.offsetLeft + movementX;
     let newTop = this.crop.offsetTop + movementY;
     var imageRect = this.image.getBoundingClientRect();

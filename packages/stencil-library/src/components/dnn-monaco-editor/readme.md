@@ -64,7 +64,7 @@
 
 ### Used by
 
- - [dnn-example-form](../examples/dnn-example-form)
+ - dnn-example-form
 
 ### Graph
 ```mermaid

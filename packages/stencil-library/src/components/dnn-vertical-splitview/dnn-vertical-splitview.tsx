@@ -83,7 +83,8 @@ export class DnnVerticalSplitview {
     const handleDrag = (ev: MouseEvent | TouchEvent) => {
       requestAnimationFrame(() => {
         let fullWidth = this.element.getBoundingClientRect().width;
-        let {movementX} = getMovementFromEvent(ev, this.previousTouch);
+        let {movementX, previousTouch} = getMovementFromEvent(ev, this.previousTouch);
+        this.previousTouch = previousTouch;
         let newLeft = this.leftWidth + movementX;
         if (newLeft < 0){
           newLeft = 0;
@@ -110,7 +111,7 @@ export class DnnVerticalSplitview {
   }
 
   private handleKeyDown(e: KeyboardEvent): void {
-    let movementX = 0;
+    let movementX: number;
     switch (e.key) {
       case "ArrowLeft":
         movementX = -10;

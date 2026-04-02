@@ -126,7 +126,10 @@ export const config: Config = {
     },
     {
       type: "docs-custom",
-      generator: generateCustomElementsJson,
+      generator: (docsData) => generateCustomElementsJson({
+        ...docsData,
+        components: docsData.components.filter(c => !c.docsTags.some(t => t.name === 'internal')),
+      }),
     },
     {
       type: "docs-vscode",

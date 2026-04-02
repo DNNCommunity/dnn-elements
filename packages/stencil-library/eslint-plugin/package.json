@@ -5,5 +5,9 @@
     "exports": {
       "import": "./dist/index.js"
     },
-    "types": "./dist/index.d.ts"
+    "types": "./dist/index.d.ts",
+    "peerDependencies": {
+      "@typescript-eslint/utils": "^8.30.1",
+      "eslint": "^9.0.0 || ^10.0.0"
+    }
   }

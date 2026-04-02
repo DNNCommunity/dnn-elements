@@ -780,7 +780,7 @@
           "kind": "class",
           "name": "dnn-context-menu.tsx",
           "tagName": "dnn-context-menu",
-          "description": "",
+          "description": "Can be used to display a context menu.\r\nThe contents of the menu as entirely up to the user.\r\nItems insile of `dnn-context-menu` that can be activated should have `role=\"menuitem\"` or similar for accessibility reasons.",
           "attributes": [
             {
               "name": "close-on-click",
@@ -924,24 +924,6 @@
               "description": "The color of the background when a file is dropping."
             }
           ],
-          "cssParts": []
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/examples/dnn-example-form/dnn-example-form.tsx",
-      "declarations": [
-        {
-          "kind": "class",
-          "name": "dnn-example-form.tsx",
-          "tagName": "dnn-example-form",
-          "description": "Do not use this component in production, it is meant for testing purposes only and is not distributed in the production package.",
-          "attributes": [],
-          "members": [],
-          "events": [],
-          "slots": [],
-          "cssProperties": [],
           "cssParts": []
         }
       ]
@@ -1103,7 +1085,7 @@
           "kind": "class",
           "name": "dnn-image-cropper.tsx",
           "tagName": "dnn-image-cropper",
-          "description": "Allows cropping an image in-browser with the option to enforce a specific final size.\nAll computation happens in the browser and the final image is emmited\nin an event that has a data-url of the image.",
+          "description": "Allows cropping an image in-browser with the option to enforce a specific final size.\r\nAll computation happens in the browser and the final image is emmited\r\nin an event that has a data-url of the image.",
           "attributes": [
             {
               "name": "height",
@@ -1155,7 +1137,7 @@
               "type": {
                 "text": "ImageCropperResx | undefined"
               },
-              "description": "Can be used to customize controls text.\nSome values support tokens, see default values for examples.",
+              "description": "Can be used to customize controls text.\r\nSome values support tokens, see default values for examples.",
               "required": false
             },
             {
@@ -1178,7 +1160,7 @@
               "type": {
                 "text": "File"
               },
-              "description": "Emits both when a file is initially select and when the crop has changed.\nCompared to imageCropChanged, this event emits the file itself, which can be useful for uploading the file to a server including its name."
+              "description": "Emits both when a file is initially select and when the crop has changed.\r\nCompared to imageCropChanged, this event emits the file itself, which can be useful for uploading the file to a server including its name."
             }
           ],
           "slots": [],
@@ -1243,7 +1225,7 @@
               "type": {
                 "text": "\"decimal\" | \"email\" | \"none\" | \"numeric\" | \"search\" | \"tel\" | \"text\" | \"url\" | undefined"
               },
-              "description": "Hints at the type of data that might be entered by the user while editing the element or its contents.\nThis allows a browser to display an appropriate virtual keyboard.",
+              "description": "Hints at the type of data that might be entered by the user while editing the element or its contents.\r\nThis allows a browser to display an appropriate virtual keyboard.",
               "required": false
             },
             {
