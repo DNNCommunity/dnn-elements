@@ -76,7 +76,7 @@
     "@stencil/sass": "^3.2.3",
     "@storybook/addon-a11y": "10.6.1",
     "@storybook/addon-docs": "10.6.1",
-    "@storybook/web-components-vite": "10.3.3",
+    "@storybook/web-components-vite": "10.6.1",
     "@timkendrick/monaco-editor": "^0.0.9",
     "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^8.71.0",
