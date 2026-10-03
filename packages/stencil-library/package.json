@@ -80,7 +80,7 @@
     "@timkendrick/monaco-editor": "^0.0.9",
     "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^8.57.2",
-    "@typescript-eslint/parser": "^8.57.2",
+    "@typescript-eslint/parser": "^8.58.0",
     "@typescript-eslint/rule-tester": "^8.57.2",
     "@typescript-eslint/utils": "^8.57.2",
     "@vitest/browser": "^4.1.1",
