@@ -106,7 +106,7 @@
     "unplugin-stencil": "^0.4.1",
     "vite": "^8.0.16",
     "vitest": "^5.0.3",
-    "webdriverio": "^9.27.0"
+    "webdriverio": "^9.32.0"
   },
   "dependencies": {
     "jodit": "^4.17.1"
