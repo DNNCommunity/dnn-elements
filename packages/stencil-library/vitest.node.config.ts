@@ -3,7 +3,7 @@ import { defineConfig } from "vitest/config";
 // Node config for ESLint plugin tests
 export default defineConfig({
   test: {
-    include: ["eslint-plugin/src/**/*.test.ts"],
+    include: ["eslint-plugin/src/**/*.test.ts", "build.spec.ts"],
     exclude: ["node_modules/**/*"],
     globals: true,
     environment: "node",

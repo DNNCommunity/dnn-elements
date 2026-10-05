@@ -14,5 +14,8 @@
     "lerna": "^10.0.1",
     "typescript": "^5.0.3"
   },
-  "version": ""
+  "version": "",
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.44.0"
+  }
 }
