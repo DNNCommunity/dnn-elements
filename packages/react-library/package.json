@@ -32,7 +32,7 @@
     "@stencil/react-output-target": "^1.2.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-env": "^8.0.6",
     "@babel/preset-react": "^8.0.1",
     "@babel/preset-typescript": "^7.21.4",
     "@types/react": "^19.3.0",
