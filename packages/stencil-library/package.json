@@ -1,6 +1,6 @@
 {
   "name": "@dnncommunity/dnn-elements",
-  "version": "0.29.3",
+  "version": "0.30.0-net10-build.1",
   "description": "Dnn themed custom elements.",
   "repository": {
     "type": "git",
