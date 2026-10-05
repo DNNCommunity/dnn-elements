@@ -137,7 +137,7 @@ class Build : NukeBuild
         }
       }
 
-      NpmInstall();
+      NpmCi();
       NpmRun(s => s.SetCommand("build"));
       // Only run tests on PRs.
       if (!(
