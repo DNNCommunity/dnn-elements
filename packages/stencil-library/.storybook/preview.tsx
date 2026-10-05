@@ -21,14 +21,14 @@ const preview: Preview = {
     tags: ["autodocs"],
     docs: {
       page: () => (
-        [
-          <Title />,
-          <Subtitle />,
-          <Primary />,
-          <Controls />,
-          <Stories />,
+        <>
+          <Title />
+          <Subtitle />
+          <Primary />
+          <Controls />
+          <Stories />
           <Description />
-        ]
+        </>
       ),
       extractComponentDescription: (component, { notes }) => {
         if (notes) {
