@@ -1,6 +1,6 @@
 import { defineConfig } from "vitest/config";
+import { playwright } from "@vitest/browser-playwright";
 import stencil from "unplugin-stencil/vite";
-import { webdriverio } from "@vitest/browser-webdriverio";
 
 // Browser config for Stencil component tests
 export default defineConfig({
@@ -9,21 +9,21 @@ export default defineConfig({
     include: ["src/**/*.{spec,test}.ts"],
     exclude: ["node_modules/**/*"],
     globals: true,
-    
-    // Browser configuration with webdriverio using Firefox
+
+    // Use Playwright so Vitest runs against the installed Chrome/Chromium
+    // instead of trying to download a broken ChromeDriver binary.
     browser: {
       enabled: true,
-      headless: true,
-      provider: webdriverio({
-        capabilities: {
-          "goog:chromeOptions": {
-            args: ["--no-sandbox", "--disable-setuid-sandbox"],
-          },
+      provider: playwright({
+        launchOptions: {
+          channel: "chrome",
+          args: ["--no-sandbox", "--disable-setuid-sandbox"],
         },
       }),
+      headless: true,
       instances: [
         {
-          browser: "chrome"
+          browser: "chromium"
         }
       ],
     },
