@@ -98,6 +98,7 @@
     "@storybook/addon-docs": "10.6.1",
     "@storybook/web-components-vite": "10.6.1",
     "@timkendrick/monaco-editor": "^0.0.9",
+    "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^8.71.0",
     "@typescript-eslint/parser": "^8.58.0",
     "@typescript-eslint/rule-tester": "^8.71.0",
