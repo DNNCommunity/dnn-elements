@@ -41,7 +41,7 @@ export default defineConfig(
             "stencil.config.ts",
             "storybook-static",
             "types",
-            "vite.config.ts",
+            "vite.config.mts",
             "vite-env.d.ts",
             "vitest.config.mts",
             "vitest.node.config.mts",
