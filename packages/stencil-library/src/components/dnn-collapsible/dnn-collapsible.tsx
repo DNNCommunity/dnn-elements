@@ -1,5 +1,9 @@
 import { Component, Host, h, Prop, Element, Event, EventEmitter, Watch, Listen, Method } from '@stencil/core';
 
+/**
+ * A collapsible component that can be expanded or collapsed to show or hide content.
+ * @slot - The content of the collapsible.
+ */
 @Component({
   tag: "dnn-collapsible",
   styleUrl: "dnn-collapsible.scss",

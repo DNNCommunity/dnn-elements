@@ -451,33 +451,7 @@
         },
         {
           "name": "inputmode",
-          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents.\r\nThis allows a browser to display an appropriate virtual keyboard.",
-          "values": [
-            {
-              "name": "decimal"
-            },
-            {
-              "name": "email"
-            },
-            {
-              "name": "none"
-            },
-            {
-              "name": "numeric"
-            },
-            {
-              "name": "search"
-            },
-            {
-              "name": "tel"
-            },
-            {
-              "name": "text"
-            },
-            {
-              "name": "url"
-            }
-          ]
+          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents.\nThis allows a browser to display an appropriate virtual keyboard."
         },
         {
           "name": "label",
