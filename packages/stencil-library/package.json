@@ -22,13 +22,33 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs.js"
     },
+    "./dist": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs.js"
+    },
     "./dist/*": {
+      "types": "./dist/*.d.ts",
       "import": "./dist/*",
-      "types": "./dist/*"
+      "require": "./dist/*",
+      "default": "./dist/*"
+    },
+    "./dist/components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js",
+      "default": "./dist/components/index.js"
+    },
+    "./dist/components/*": {
+      "types": "./dist/components/*.d.ts",
+      "import": "./dist/components/*",
+      "require": "./dist/components/*",
+      "default": "./dist/components/*"
     },
     "./components/*": {
-      "import": "./dist/components/*.js",
-      "types": "./dist/components/*.d.ts"
+      "types": "./dist/components/*.d.ts",
+      "import": "./dist/components/*",
+      "require": "./dist/components/*",
+      "default": "./dist/components/*"
     },
     "./loader": {
       "types": "./loader/index.d.ts",
