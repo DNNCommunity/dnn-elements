@@ -5,6 +5,10 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+A modal component that can be used to show content in a modal dialog.
+
 ## Properties
 
 | Property                 | Attribute                  | Description                                                                                                                                                                                                                                                                                                                                                                                               | Type                   | Default         |
@@ -46,6 +50,13 @@ Shows the modal
 Type: `Promise<void>`
 
 
+
+
+## Slots
+
+| Slot | Description               |
+| ---- | ------------------------- |
+|      | The content of the modal. |
 
 
 ## CSS Custom Properties

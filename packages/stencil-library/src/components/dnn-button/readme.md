@@ -62,9 +62,9 @@
 
 ## Slots
 
-| Slot                      | Description |
-| ------------------------- | ----------- |
-| `"Content of the button"` |             |
+| Slot | Description           |
+| ---- | --------------------- |
+|      | Content of the button |
 
 
 ## CSS Custom Properties

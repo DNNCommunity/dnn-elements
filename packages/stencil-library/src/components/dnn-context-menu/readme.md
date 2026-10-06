@@ -7,6 +7,10 @@ Items insile of `dnn-context-menu` that can be activated should have `role="menu
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+A context menu component that can be opened with a pointer event or keyboard event. It will position itself to avoid overflowing the viewport.
+
 ## Usage
 
 ### HTML
@@ -115,6 +119,13 @@ Opens the menu using a pointer event.
 Type: `Promise<void>`
 
 
+
+
+## Slots
+
+| Slot | Description                      |
+| ---- | -------------------------------- |
+|      | The content of the context menu. |
 
 
 ## CSS Custom Properties

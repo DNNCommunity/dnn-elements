@@ -70,6 +70,13 @@ Type: `Promise<void>`
 
 
 
+## Slots
+
+| Slot | Description             |
+| ---- | ----------------------- |
+|      | The content of the tab. |
+
+
 ## Dependencies
 
 ### Used by

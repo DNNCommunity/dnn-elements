@@ -5,6 +5,10 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+A collapsible component that can be expanded or collapsed to show or hide content.
+
 ## Usage
 
 ### HTML
@@ -100,6 +104,13 @@ Updates the component height, use to update after a slot content changes.
 Type: `Promise<void>`
 
 
+
+
+## Slots
+
+| Slot | Description                     |
+| ---- | ------------------------------- |
+|      | The content of the collapsible. |
 
 
 ## Dependencies

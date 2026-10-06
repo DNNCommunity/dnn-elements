@@ -7,7 +7,7 @@
 
 ## Overview
 
-A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+A custom fieldset component that wraps one or more elements.
 
 ## Properties
 
@@ -104,10 +104,11 @@ Type: `Promise<void>`
 
 ## Slots
 
-| Slot             | Description                                    |
-| ---------------- | ---------------------------------------------- |
-| `"label-prefix"` | Can be used to inject content before the labe. |
-| `"label-suffix"` | Can be used to inject content after the label. |
+| Slot             | Description                                     |
+| ---------------- | ----------------------------------------------- |
+|                  | The content of the input.                       |
+| `"label-prefix"` | Can be used to inject content before the label. |
+| `"label-suffix"` | Can be used to inject content after the label.  |
 
 
 ## CSS Custom Properties

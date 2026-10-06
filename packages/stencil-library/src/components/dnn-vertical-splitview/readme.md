@@ -110,11 +110,11 @@ Type: `Promise<void>`
 
 ## Slots
 
-| Slot        | Description                                |
-| ----------- | ------------------------------------------ |
-| `"default"` | The split divider control you want to use. |
-| `"left"`    | The content of the left pane.              |
-| `"right"`   | The content of the right pane.             |
+| Slot      | Description                                |
+| --------- | ------------------------------------------ |
+|           | The split divider control you want to use. |
+| `"left"`  | The content of the left pane.              |
+| `"right"` | The content of the right pane.             |
 
 
 ## CSS Custom Properties

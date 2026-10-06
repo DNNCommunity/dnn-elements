@@ -5,6 +5,10 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+A component that shows a set of tabs. Each tab is a dnn-tab component.
+
 ## Usage
 
 ### HTML
@@ -34,6 +38,13 @@
 </dnn-tabs>
 ```
 
+
+
+## Slots
+
+| Slot | Description                                 |
+| ---- | ------------------------------------------- |
+|      | The dnn-tab components to show in the tabs. |
 
 
 ## CSS Custom Properties
