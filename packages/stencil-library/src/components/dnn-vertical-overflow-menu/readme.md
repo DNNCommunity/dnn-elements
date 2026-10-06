@@ -11,9 +11,10 @@ A component that shows a vertical list of items as they fit. When they don't all
 
 ## Slots
 
-| Slot   | Description                    |
-| ------ | ------------------------------ |
-| `"()"` | The items to show in the menu. |
+| Slot         | Description                                                      |
+| ------------ | ---------------------------------------------------------------- |
+|              | The items to show in the menu.                                   |
+| `"dropdown"` | The items that don't fit in the menu will be moved to this slot. |
 
 
 ## CSS Custom Properties

@@ -304,8 +304,8 @@
           ],
           "slots": [
             {
-              "name": "Content of the button",
-              "description": ""
+              "name": " ",
+              "description": "Content of the button"
             }
           ],
           "cssProperties": [
@@ -516,7 +516,7 @@
           "kind": "class",
           "name": "dnn-collapsible.tsx",
           "tagName": "dnn-collapsible",
-          "description": "",
+          "description": "A collapsible component that can be expanded or collapsed to show or hide content.",
           "attributes": [
             {
               "name": "expanded",
@@ -554,7 +554,12 @@
               "description": "Fires whenever the collapsible height has changed"
             }
           ],
-          "slots": [],
+          "slots": [
+            {
+              "name": " ",
+              "description": "The content of the collapsible."
+            }
+          ],
           "cssProperties": [],
           "cssParts": []
         }
@@ -780,7 +785,7 @@
           "kind": "class",
           "name": "dnn-context-menu.tsx",
           "tagName": "dnn-context-menu",
-          "description": "Can be used to display a context menu.\r\nThe contents of the menu as entirely up to the user.\r\nItems insile of `dnn-context-menu` that can be activated should have `role=\"menuitem\"` or similar for accessibility reasons.",
+          "description": "A context menu component that can be opened with a pointer event or keyboard event. It will position itself to avoid overflowing the viewport.",
           "attributes": [
             {
               "name": "close-on-click",
@@ -807,7 +812,12 @@
             }
           ],
           "events": [],
-          "slots": [],
+          "slots": [
+            {
+              "name": " ",
+              "description": "The content of the context menu."
+            }
+          ],
           "cssProperties": [
             {
               "name": "--color-background",
@@ -936,7 +946,7 @@
           "kind": "class",
           "name": "dnn-fieldset.tsx",
           "tagName": "dnn-fieldset",
-          "description": "A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.",
+          "description": "A custom fieldset component that wraps one or more elements.",
           "attributes": [
             {
               "name": "disabled",
@@ -1043,8 +1053,12 @@
           "events": [],
           "slots": [
             {
+              "name": " ",
+              "description": "The content of the input."
+            },
+            {
               "name": "label-prefix",
-              "description": "Can be used to inject content before the labe."
+              "description": "Can be used to inject content before the label."
             },
             {
               "name": "label-suffix",
@@ -1413,7 +1427,7 @@
           "kind": "class",
           "name": "dnn-modal.tsx",
           "tagName": "dnn-modal",
-          "description": "",
+          "description": "A modal component that can be used to show content in a modal dialog.",
           "attributes": [
             {
               "name": "backdrop-dismiss",
@@ -1500,7 +1514,12 @@
               "description": "Fires when the modal is dismissed."
             }
           ],
-          "slots": [],
+          "slots": [
+            {
+              "name": " ",
+              "description": "The content of the modal."
+            }
+          ],
           "cssProperties": [
             {
               "name": "--max-width",
@@ -1874,7 +1893,7 @@
           "kind": "class",
           "name": "dnn-select.tsx",
           "tagName": "dnn-select",
-          "description": "",
+          "description": "A custom select component that wraps the html select element is a mobile friendly component that supports a label, some help text and other features.",
           "attributes": [
             {
               "name": "autocomplete",
@@ -1952,7 +1971,12 @@
               "description": "Fires when the value has changed and the user exits the input."
             }
           ],
-          "slots": [],
+          "slots": [
+            {
+              "name": " ",
+              "description": "The options to show in the select."
+            }
+          ],
           "cssProperties": [
             {
               "name": "--background-color",
@@ -2066,7 +2090,12 @@
             }
           ],
           "events": [],
-          "slots": [],
+          "slots": [
+            {
+              "name": " ",
+              "description": "The content of the tab."
+            }
+          ],
           "cssProperties": [],
           "cssParts": []
         }
@@ -2080,11 +2109,16 @@
           "kind": "class",
           "name": "dnn-tabs.tsx",
           "tagName": "dnn-tabs",
-          "description": "`dnn-tabs` is a container for `dnn-tab` and should only contain `dnn-tab` elements for its content.",
+          "description": "A component that shows a set of tabs. Each tab is a dnn-tab component.",
           "attributes": [],
           "members": [],
           "events": [],
-          "slots": [],
+          "slots": [
+            {
+              "name": " ",
+              "description": "The dnn-tab components to show in the tabs."
+            }
+          ],
           "cssProperties": [
             {
               "name": "--color-background",
@@ -2432,8 +2466,12 @@
           "events": [],
           "slots": [
             {
-              "name": "()",
+              "name": " ",
               "description": "The items to show in the menu."
+            },
+            {
+              "name": "dropdown",
+              "description": "The items that don't fit in the menu will be moved to this slot."
             }
           ],
           "cssProperties": [
@@ -2504,7 +2542,7 @@
           ],
           "slots": [
             {
-              "name": "default",
+              "name": " ",
               "description": "The split divider control you want to use."
             },
             {
