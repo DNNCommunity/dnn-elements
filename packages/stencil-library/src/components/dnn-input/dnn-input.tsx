@@ -1,4 +1,4 @@
-import { Component, Host, Prop, State, h, Method, Event, EventEmitter, AttachInternals } from '@stencil/core';
+import { Component, Host, Prop, State, h, Method, Event, EventEmitter, AttachInternals, Element } from '@stencil/core';
 import { generateRandomId } from '../../utilities/stringUtilities';
 
 /** A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
@@ -69,8 +69,11 @@ export class DnnInput {
 
   /** Hints at the type of data that might be entered by the user while editing the element or its contents.
    * This allows a browser to display an appropriate virtual keyboard.
+   * @deprecated Use the standard HTMLElement `inputMode` property
+   * or `inputmode` attribute instead.
    */
-  @Prop() inputmode?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
+  // eslint-disable-next-line stencil/reserved-member-names
+  @Prop() inputmode?: HTMLInputElement['inputMode'];
 
   /** Fires when the value has changed and the user exits the input. */
   @Event() valueChange!: EventEmitter<number | string | string[]>;
@@ -105,6 +108,8 @@ export class DnnInput {
   
   @State() focused = false;
   @State() valid = true;
+
+  @Element() el!: HTMLDnnInputElement;
   
   @AttachInternals() internals!: ElementInternals;
   
@@ -207,8 +212,8 @@ export class DnnInput {
   }
 
   private getInputMode(): string {
-    if (this.inputmode != undefined) {
-      return this.inputmode;
+    if (this.el.inputMode != undefined) {
+      return this.el.inputMode;
     }
 
     if (this.type === "number" && this.min != undefined) {

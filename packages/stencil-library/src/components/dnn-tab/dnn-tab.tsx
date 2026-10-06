@@ -1,6 +1,8 @@
 import { Component, Host, h, Prop, State, Method } from "@stencil/core";
 
-/** Represents a single tab and must be used inside a dnn-tabs element. */
+/** Represents a single tab and must be used inside a dnn-tabs element.
+ * @slot - The content of the tab.
+ */
 @Component({
     tag: 'dnn-tab',
     styleUrl: 'dnn-tab.scss',

@@ -7,7 +7,12 @@
 
 /* eslint-disable */
 
+import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
+import { createComponent } from '@stencil/react-output-target/runtime';
+import React from 'react';
+
 import { type ColorInfo, type DnnAutocompleteCustomEvent, type DnnButtonCustomEvent, type DnnCheckboxCustomEvent, type DnnChevronCustomEvent, type DnnCollapsibleCustomEvent, type DnnColorInfo, type DnnColorInputCustomEvent, type DnnColorPickerCustomEvent, type DnnDropzoneCustomEvent, type DnnImageCropperCustomEvent, type DnnInputCustomEvent, type DnnModalCustomEvent, type DnnMonacoEditorCustomEvent, type DnnPermissionsGridCustomEvent, type DnnRichtextCustomEvent, type DnnSearchboxCustomEvent, type DnnSelectCustomEvent, type DnnSortIconCustomEvent, type DnnTextareaCustomEvent, type DnnToggleChangeEventDetail, type DnnToggleCustomEvent, type DnnTreeviewItemCustomEvent, type DnnVerticalSplitviewCustomEvent, type IPermissions, type NeedMoreItemsEventArgs } from "@dnncommunity/dnn-elements";
+import type { Components } from "@dnncommunity/dnn-elements/dist/components";
 import { DnnAutocomplete as DnnAutocompleteElement, defineCustomElement as defineDnnAutocomplete } from "@dnncommunity/dnn-elements/dist/components/dnn-autocomplete.js";
 import { DnnButton as DnnButtonElement, defineCustomElement as defineDnnButton } from "@dnncommunity/dnn-elements/dist/components/dnn-button.js";
 import { DnnCheckbox as DnnCheckboxElement, defineCustomElement as defineDnnCheckbox } from "@dnncommunity/dnn-elements/dist/components/dnn-checkbox.js";
@@ -35,9 +40,6 @@ import { DnnToggle as DnnToggleElement, defineCustomElement as defineDnnToggle }
 import { DnnTreeviewItem as DnnTreeviewItemElement, defineCustomElement as defineDnnTreeviewItem } from "@dnncommunity/dnn-elements/dist/components/dnn-treeview-item.js";
 import { DnnVerticalOverflowMenu as DnnVerticalOverflowMenuElement, defineCustomElement as defineDnnVerticalOverflowMenu } from "@dnncommunity/dnn-elements/dist/components/dnn-vertical-overflow-menu.js";
 import { DnnVerticalSplitview as DnnVerticalSplitviewElement, defineCustomElement as defineDnnVerticalSplitview } from "@dnncommunity/dnn-elements/dist/components/dnn-vertical-splitview.js";
-import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
-import { createComponent } from '@stencil/react-output-target/runtime';
-import React from 'react';
 
 export type DnnAutocompleteEvents = {
     onValueChange: EventName<DnnAutocompleteCustomEvent<number | string | string[]>>,
@@ -47,7 +49,7 @@ export type DnnAutocompleteEvents = {
     onItemSelected: EventName<DnnAutocompleteCustomEvent<string>>
 };
 
-export const DnnAutocomplete: StencilReactComponent<DnnAutocompleteElement, DnnAutocompleteEvents> = /*@__PURE__*/ createComponent<DnnAutocompleteElement, DnnAutocompleteEvents>({
+export const DnnAutocomplete: StencilReactComponent<DnnAutocompleteElement, DnnAutocompleteEvents, Components.DnnAutocomplete> = /*@__PURE__*/ createComponent<DnnAutocompleteElement, DnnAutocompleteEvents, Components.DnnAutocomplete>({
     tagName: 'dnn-autocomplete',
     elementClass: DnnAutocompleteElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -67,7 +69,7 @@ export type DnnButtonEvents = {
     onCanceled: EventName<DnnButtonCustomEvent<any>>
 };
 
-export const DnnButton: StencilReactComponent<DnnButtonElement, DnnButtonEvents> = /*@__PURE__*/ createComponent<DnnButtonElement, DnnButtonEvents>({
+export const DnnButton: StencilReactComponent<DnnButtonElement, DnnButtonEvents, Components.DnnButton> = /*@__PURE__*/ createComponent<DnnButtonElement, DnnButtonEvents, Components.DnnButton>({
     tagName: 'dnn-button',
     elementClass: DnnButtonElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -81,7 +83,7 @@ export const DnnButton: StencilReactComponent<DnnButtonElement, DnnButtonEvents>
 
 export type DnnCheckboxEvents = { onCheckedchange: EventName<DnnCheckboxCustomEvent<"checked" | "unchecked" | "intermediate">> };
 
-export const DnnCheckbox: StencilReactComponent<DnnCheckboxElement, DnnCheckboxEvents> = /*@__PURE__*/ createComponent<DnnCheckboxElement, DnnCheckboxEvents>({
+export const DnnCheckbox: StencilReactComponent<DnnCheckboxElement, DnnCheckboxEvents, Components.DnnCheckbox> = /*@__PURE__*/ createComponent<DnnCheckboxElement, DnnCheckboxEvents, Components.DnnCheckbox>({
     tagName: 'dnn-checkbox',
     elementClass: DnnCheckboxElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -92,7 +94,7 @@ export const DnnCheckbox: StencilReactComponent<DnnCheckboxElement, DnnCheckboxE
 
 export type DnnChevronEvents = { onChanged: EventName<DnnChevronCustomEvent<any>> };
 
-export const DnnChevron: StencilReactComponent<DnnChevronElement, DnnChevronEvents> = /*@__PURE__*/ createComponent<DnnChevronElement, DnnChevronEvents>({
+export const DnnChevron: StencilReactComponent<DnnChevronElement, DnnChevronEvents, Components.DnnChevron> = /*@__PURE__*/ createComponent<DnnChevronElement, DnnChevronEvents, Components.DnnChevron>({
     tagName: 'dnn-chevron',
     elementClass: DnnChevronElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -103,7 +105,7 @@ export const DnnChevron: StencilReactComponent<DnnChevronElement, DnnChevronEven
 
 export type DnnCollapsibleEvents = { onDnnCollapsibleHeightChanged: EventName<DnnCollapsibleCustomEvent<void>> };
 
-export const DnnCollapsible: StencilReactComponent<DnnCollapsibleElement, DnnCollapsibleEvents> = /*@__PURE__*/ createComponent<DnnCollapsibleElement, DnnCollapsibleEvents>({
+export const DnnCollapsible: StencilReactComponent<DnnCollapsibleElement, DnnCollapsibleEvents, Components.DnnCollapsible> = /*@__PURE__*/ createComponent<DnnCollapsibleElement, DnnCollapsibleEvents, Components.DnnCollapsible>({
     tagName: 'dnn-collapsible',
     elementClass: DnnCollapsibleElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -117,7 +119,7 @@ export type DnnColorInputEvents = {
     onColorInput: EventName<DnnColorInputCustomEvent<DnnColorInfo>>
 };
 
-export const DnnColorInput: StencilReactComponent<DnnColorInputElement, DnnColorInputEvents> = /*@__PURE__*/ createComponent<DnnColorInputElement, DnnColorInputEvents>({
+export const DnnColorInput: StencilReactComponent<DnnColorInputElement, DnnColorInputEvents, Components.DnnColorInput> = /*@__PURE__*/ createComponent<DnnColorInputElement, DnnColorInputEvents, Components.DnnColorInput>({
     tagName: 'dnn-color-input',
     elementClass: DnnColorInputElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -131,7 +133,7 @@ export const DnnColorInput: StencilReactComponent<DnnColorInputElement, DnnColor
 
 export type DnnColorPickerEvents = { onColorChanged: EventName<DnnColorPickerCustomEvent<ColorInfo>> };
 
-export const DnnColorPicker: StencilReactComponent<DnnColorPickerElement, DnnColorPickerEvents> = /*@__PURE__*/ createComponent<DnnColorPickerElement, DnnColorPickerEvents>({
+export const DnnColorPicker: StencilReactComponent<DnnColorPickerElement, DnnColorPickerEvents, Components.DnnColorPicker> = /*@__PURE__*/ createComponent<DnnColorPickerElement, DnnColorPickerEvents, Components.DnnColorPicker>({
     tagName: 'dnn-color-picker',
     elementClass: DnnColorPickerElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -142,7 +144,7 @@ export const DnnColorPicker: StencilReactComponent<DnnColorPickerElement, DnnCol
 
 export type DnnContextMenuEvents = NonNullable<unknown>;
 
-export const DnnContextMenu: StencilReactComponent<DnnContextMenuElement, DnnContextMenuEvents> = /*@__PURE__*/ createComponent<DnnContextMenuElement, DnnContextMenuEvents>({
+export const DnnContextMenu: StencilReactComponent<DnnContextMenuElement, DnnContextMenuEvents, Components.DnnContextMenu> = /*@__PURE__*/ createComponent<DnnContextMenuElement, DnnContextMenuEvents, Components.DnnContextMenu>({
     tagName: 'dnn-context-menu',
     elementClass: DnnContextMenuElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -153,7 +155,7 @@ export const DnnContextMenu: StencilReactComponent<DnnContextMenuElement, DnnCon
 
 export type DnnDropzoneEvents = { onFilesSelected: EventName<DnnDropzoneCustomEvent<File[]>> };
 
-export const DnnDropzone: StencilReactComponent<DnnDropzoneElement, DnnDropzoneEvents> = /*@__PURE__*/ createComponent<DnnDropzoneElement, DnnDropzoneEvents>({
+export const DnnDropzone: StencilReactComponent<DnnDropzoneElement, DnnDropzoneEvents, Components.DnnDropzone> = /*@__PURE__*/ createComponent<DnnDropzoneElement, DnnDropzoneEvents, Components.DnnDropzone>({
     tagName: 'dnn-dropzone',
     elementClass: DnnDropzoneElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -164,7 +166,7 @@ export const DnnDropzone: StencilReactComponent<DnnDropzoneElement, DnnDropzoneE
 
 export type DnnFieldsetEvents = NonNullable<unknown>;
 
-export const DnnFieldset: StencilReactComponent<DnnFieldsetElement, DnnFieldsetEvents> = /*@__PURE__*/ createComponent<DnnFieldsetElement, DnnFieldsetEvents>({
+export const DnnFieldset: StencilReactComponent<DnnFieldsetElement, DnnFieldsetEvents, Components.DnnFieldset> = /*@__PURE__*/ createComponent<DnnFieldsetElement, DnnFieldsetEvents, Components.DnnFieldset>({
     tagName: 'dnn-fieldset',
     elementClass: DnnFieldsetElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -178,7 +180,7 @@ export type DnnImageCropperEvents = {
     onImageFileCropChanged: EventName<DnnImageCropperCustomEvent<File>>
 };
 
-export const DnnImageCropper: StencilReactComponent<DnnImageCropperElement, DnnImageCropperEvents> = /*@__PURE__*/ createComponent<DnnImageCropperElement, DnnImageCropperEvents>({
+export const DnnImageCropper: StencilReactComponent<DnnImageCropperElement, DnnImageCropperEvents, Components.DnnImageCropper> = /*@__PURE__*/ createComponent<DnnImageCropperElement, DnnImageCropperEvents, Components.DnnImageCropper>({
     tagName: 'dnn-image-cropper',
     elementClass: DnnImageCropperElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -195,7 +197,7 @@ export type DnnInputEvents = {
     onValueInput: EventName<DnnInputCustomEvent<number | string | string[]>>
 };
 
-export const DnnInput: StencilReactComponent<DnnInputElement, DnnInputEvents> = /*@__PURE__*/ createComponent<DnnInputElement, DnnInputEvents>({
+export const DnnInput: StencilReactComponent<DnnInputElement, DnnInputEvents, Components.DnnInput> = /*@__PURE__*/ createComponent<DnnInputElement, DnnInputEvents, Components.DnnInput>({
     tagName: 'dnn-input',
     elementClass: DnnInputElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -209,7 +211,7 @@ export const DnnInput: StencilReactComponent<DnnInputElement, DnnInputEvents> = 
 
 export type DnnModalEvents = { onDismissed: EventName<DnnModalCustomEvent<any>> };
 
-export const DnnModal: StencilReactComponent<DnnModalElement, DnnModalEvents> = /*@__PURE__*/ createComponent<DnnModalElement, DnnModalEvents>({
+export const DnnModal: StencilReactComponent<DnnModalElement, DnnModalEvents, Components.DnnModal> = /*@__PURE__*/ createComponent<DnnModalElement, DnnModalEvents, Components.DnnModal>({
     tagName: 'dnn-modal',
     elementClass: DnnModalElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -220,7 +222,7 @@ export const DnnModal: StencilReactComponent<DnnModalElement, DnnModalEvents> = 
 
 export type DnnMonacoEditorEvents = { onContentChanged: EventName<DnnMonacoEditorCustomEvent<string>> };
 
-export const DnnMonacoEditor: StencilReactComponent<DnnMonacoEditorElement, DnnMonacoEditorEvents> = /*@__PURE__*/ createComponent<DnnMonacoEditorElement, DnnMonacoEditorEvents>({
+export const DnnMonacoEditor: StencilReactComponent<DnnMonacoEditorElement, DnnMonacoEditorEvents, Components.DnnMonacoEditor> = /*@__PURE__*/ createComponent<DnnMonacoEditorElement, DnnMonacoEditorEvents, Components.DnnMonacoEditor>({
     tagName: 'dnn-monaco-editor',
     elementClass: DnnMonacoEditorElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -234,7 +236,7 @@ export type DnnPermissionsGridEvents = {
     onPermissionsChanged: EventName<DnnPermissionsGridCustomEvent<IPermissions>>
 };
 
-export const DnnPermissionsGrid: StencilReactComponent<DnnPermissionsGridElement, DnnPermissionsGridEvents> = /*@__PURE__*/ createComponent<DnnPermissionsGridElement, DnnPermissionsGridEvents>({
+export const DnnPermissionsGrid: StencilReactComponent<DnnPermissionsGridElement, DnnPermissionsGridEvents, Components.DnnPermissionsGrid, 'permissions' | 'roleGroups' | 'roles'> = /*@__PURE__*/ createComponent<DnnPermissionsGridElement, DnnPermissionsGridEvents, Components.DnnPermissionsGrid, 'permissions' | 'roleGroups' | 'roles'>({
     tagName: 'dnn-permissions-grid',
     elementClass: DnnPermissionsGridElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -248,7 +250,7 @@ export const DnnPermissionsGrid: StencilReactComponent<DnnPermissionsGridElement
 
 export type DnnProgressBarEvents = NonNullable<unknown>;
 
-export const DnnProgressBar: StencilReactComponent<DnnProgressBarElement, DnnProgressBarEvents> = /*@__PURE__*/ createComponent<DnnProgressBarElement, DnnProgressBarEvents>({
+export const DnnProgressBar: StencilReactComponent<DnnProgressBarElement, DnnProgressBarEvents, Components.DnnProgressBar> = /*@__PURE__*/ createComponent<DnnProgressBarElement, DnnProgressBarEvents, Components.DnnProgressBar>({
     tagName: 'dnn-progress-bar',
     elementClass: DnnProgressBarElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -262,7 +264,7 @@ export type DnnRichtextEvents = {
     onValueInput: EventName<DnnRichtextCustomEvent<string>>
 };
 
-export const DnnRichtext: StencilReactComponent<DnnRichtextElement, DnnRichtextEvents> = /*@__PURE__*/ createComponent<DnnRichtextElement, DnnRichtextEvents>({
+export const DnnRichtext: StencilReactComponent<DnnRichtextElement, DnnRichtextEvents, Components.DnnRichtext> = /*@__PURE__*/ createComponent<DnnRichtextElement, DnnRichtextEvents, Components.DnnRichtext>({
     tagName: 'dnn-richtext',
     elementClass: DnnRichtextElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -276,7 +278,7 @@ export const DnnRichtext: StencilReactComponent<DnnRichtextElement, DnnRichtextE
 
 export type DnnSearchboxEvents = { onQueryChanged: EventName<DnnSearchboxCustomEvent<string>> };
 
-export const DnnSearchbox: StencilReactComponent<DnnSearchboxElement, DnnSearchboxEvents> = /*@__PURE__*/ createComponent<DnnSearchboxElement, DnnSearchboxEvents>({
+export const DnnSearchbox: StencilReactComponent<DnnSearchboxElement, DnnSearchboxEvents, Components.DnnSearchbox> = /*@__PURE__*/ createComponent<DnnSearchboxElement, DnnSearchboxEvents, Components.DnnSearchbox>({
     tagName: 'dnn-searchbox',
     elementClass: DnnSearchboxElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -287,7 +289,7 @@ export const DnnSearchbox: StencilReactComponent<DnnSearchboxElement, DnnSearchb
 
 export type DnnSelectEvents = { onValueChange: EventName<DnnSelectCustomEvent<string>> };
 
-export const DnnSelect: StencilReactComponent<DnnSelectElement, DnnSelectEvents> = /*@__PURE__*/ createComponent<DnnSelectElement, DnnSelectEvents>({
+export const DnnSelect: StencilReactComponent<DnnSelectElement, DnnSelectEvents, Components.DnnSelect> = /*@__PURE__*/ createComponent<DnnSelectElement, DnnSelectEvents, Components.DnnSelect>({
     tagName: 'dnn-select',
     elementClass: DnnSelectElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -298,7 +300,7 @@ export const DnnSelect: StencilReactComponent<DnnSelectElement, DnnSelectEvents>
 
 export type DnnSortIconEvents = { onSortChanged: EventName<DnnSortIconCustomEvent<"asc" | "desc" | "none">> };
 
-export const DnnSortIcon: StencilReactComponent<DnnSortIconElement, DnnSortIconEvents> = /*@__PURE__*/ createComponent<DnnSortIconElement, DnnSortIconEvents>({
+export const DnnSortIcon: StencilReactComponent<DnnSortIconElement, DnnSortIconEvents, Components.DnnSortIcon> = /*@__PURE__*/ createComponent<DnnSortIconElement, DnnSortIconEvents, Components.DnnSortIcon>({
     tagName: 'dnn-sort-icon',
     elementClass: DnnSortIconElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -309,7 +311,7 @@ export const DnnSortIcon: StencilReactComponent<DnnSortIconElement, DnnSortIconE
 
 export type DnnTabEvents = NonNullable<unknown>;
 
-export const DnnTab: StencilReactComponent<DnnTabElement, DnnTabEvents> = /*@__PURE__*/ createComponent<DnnTabElement, DnnTabEvents>({
+export const DnnTab: StencilReactComponent<DnnTabElement, DnnTabEvents, Components.DnnTab, 'tabTitle'> = /*@__PURE__*/ createComponent<DnnTabElement, DnnTabEvents, Components.DnnTab, 'tabTitle'>({
     tagName: 'dnn-tab',
     elementClass: DnnTabElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -320,7 +322,7 @@ export const DnnTab: StencilReactComponent<DnnTabElement, DnnTabEvents> = /*@__P
 
 export type DnnTabsEvents = NonNullable<unknown>;
 
-export const DnnTabs: StencilReactComponent<DnnTabsElement, DnnTabsEvents> = /*@__PURE__*/ createComponent<DnnTabsElement, DnnTabsEvents>({
+export const DnnTabs: StencilReactComponent<DnnTabsElement, DnnTabsEvents, Components.DnnTabs> = /*@__PURE__*/ createComponent<DnnTabsElement, DnnTabsEvents, Components.DnnTabs>({
     tagName: 'dnn-tabs',
     elementClass: DnnTabsElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -334,7 +336,7 @@ export type DnnTextareaEvents = {
     onValueChange: EventName<DnnTextareaCustomEvent<string>>
 };
 
-export const DnnTextarea: StencilReactComponent<DnnTextareaElement, DnnTextareaEvents> = /*@__PURE__*/ createComponent<DnnTextareaElement, DnnTextareaEvents>({
+export const DnnTextarea: StencilReactComponent<DnnTextareaElement, DnnTextareaEvents, Components.DnnTextarea> = /*@__PURE__*/ createComponent<DnnTextareaElement, DnnTextareaEvents, Components.DnnTextarea>({
     tagName: 'dnn-textarea',
     elementClass: DnnTextareaElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -348,7 +350,7 @@ export const DnnTextarea: StencilReactComponent<DnnTextareaElement, DnnTextareaE
 
 export type DnnToggleEvents = { onCheckChanged: EventName<DnnToggleCustomEvent<DnnToggleChangeEventDetail>> };
 
-export const DnnToggle: StencilReactComponent<DnnToggleElement, DnnToggleEvents> = /*@__PURE__*/ createComponent<DnnToggleElement, DnnToggleEvents>({
+export const DnnToggle: StencilReactComponent<DnnToggleElement, DnnToggleEvents, Components.DnnToggle> = /*@__PURE__*/ createComponent<DnnToggleElement, DnnToggleEvents, Components.DnnToggle>({
     tagName: 'dnn-toggle',
     elementClass: DnnToggleElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -362,7 +364,7 @@ export type DnnTreeviewItemEvents = {
     onUserCollapsed: EventName<DnnTreeviewItemCustomEvent<void>>
 };
 
-export const DnnTreeviewItem: StencilReactComponent<DnnTreeviewItemElement, DnnTreeviewItemEvents> = /*@__PURE__*/ createComponent<DnnTreeviewItemElement, DnnTreeviewItemEvents>({
+export const DnnTreeviewItem: StencilReactComponent<DnnTreeviewItemElement, DnnTreeviewItemEvents, Components.DnnTreeviewItem> = /*@__PURE__*/ createComponent<DnnTreeviewItemElement, DnnTreeviewItemEvents, Components.DnnTreeviewItem>({
     tagName: 'dnn-treeview-item',
     elementClass: DnnTreeviewItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -376,7 +378,7 @@ export const DnnTreeviewItem: StencilReactComponent<DnnTreeviewItemElement, DnnT
 
 export type DnnVerticalOverflowMenuEvents = NonNullable<unknown>;
 
-export const DnnVerticalOverflowMenu: StencilReactComponent<DnnVerticalOverflowMenuElement, DnnVerticalOverflowMenuEvents> = /*@__PURE__*/ createComponent<DnnVerticalOverflowMenuElement, DnnVerticalOverflowMenuEvents>({
+export const DnnVerticalOverflowMenu: StencilReactComponent<DnnVerticalOverflowMenuElement, DnnVerticalOverflowMenuEvents, Components.DnnVerticalOverflowMenu> = /*@__PURE__*/ createComponent<DnnVerticalOverflowMenuElement, DnnVerticalOverflowMenuEvents, Components.DnnVerticalOverflowMenu>({
     tagName: 'dnn-vertical-overflow-menu',
     elementClass: DnnVerticalOverflowMenuElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -387,7 +389,7 @@ export const DnnVerticalOverflowMenu: StencilReactComponent<DnnVerticalOverflowM
 
 export type DnnVerticalSplitviewEvents = { onWidthChanged: EventName<DnnVerticalSplitviewCustomEvent<number>> };
 
-export const DnnVerticalSplitview: StencilReactComponent<DnnVerticalSplitviewElement, DnnVerticalSplitviewEvents> = /*@__PURE__*/ createComponent<DnnVerticalSplitviewElement, DnnVerticalSplitviewEvents>({
+export const DnnVerticalSplitview: StencilReactComponent<DnnVerticalSplitviewElement, DnnVerticalSplitviewEvents, Components.DnnVerticalSplitview> = /*@__PURE__*/ createComponent<DnnVerticalSplitviewElement, DnnVerticalSplitviewEvents, Components.DnnVerticalSplitview>({
     tagName: 'dnn-vertical-splitview',
     elementClass: DnnVerticalSplitviewElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.

@@ -1,5 +1,9 @@
 import { Component, Host, h, State } from "@stencil/core";
 
+/**
+ * A component that shows a set of tabs. Each tab is a dnn-tab component.
+ * @slot - The dnn-tab components to show in the tabs.
+ */
 @Component({
     tag: 'dnn-tabs',
     styleUrl: 'dnn-tabs.scss',

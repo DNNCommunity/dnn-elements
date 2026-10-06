@@ -1,5 +1,9 @@
 import { Component, Element, Host, h, Prop, Event, EventEmitter, Method } from '@stencil/core';
 
+/**
+ * A modal component that can be used to show content in a modal dialog.
+ * @slot - The content of the modal.
+ */
 @Component({
   tag: 'dnn-modal',
   styleUrl: 'dnn-modal.scss',

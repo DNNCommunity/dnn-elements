@@ -480,8 +480,9 @@ export namespace Components {
         "helpText"?: string;
         /**
           * Hints at the type of data that might be entered by the user while editing the element or its contents. This allows a browser to display an appropriate virtual keyboard.
+          * @deprecated Use the standard HTMLElement `inputMode` property or `inputmode` attribute instead.
          */
-        "inputmode"?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
+        "inputmode"?: HTMLInputElement['inputMode'];
         /**
           * The label for this input.
          */
@@ -1917,8 +1918,9 @@ declare namespace LocalJSX {
         "helpText"?: string;
         /**
           * Hints at the type of data that might be entered by the user while editing the element or its contents. This allows a browser to display an appropriate virtual keyboard.
+          * @deprecated Use the standard HTMLElement `inputMode` property or `inputmode` attribute instead.
          */
-        "inputmode"?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
+        "inputmode"?: HTMLInputElement['inputMode'];
         /**
           * The label for this input.
          */
@@ -2457,7 +2459,7 @@ declare namespace LocalJSX {
         "step": string;
         "disableValidityReporting": boolean;
         "allowShowPassword": boolean;
-        "inputmode": "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
+        "inputmode": HTMLInputElement['inputMode'];
     }
     interface DnnModalAttributes {
         "backdropDismiss": boolean;
