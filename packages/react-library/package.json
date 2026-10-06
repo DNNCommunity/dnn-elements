@@ -28,8 +28,7 @@
     "url": "https://github.com/dnncommunity/dnn-elements/issues"
   },
   "dependencies": {
-    "@dnncommunity/dnn-elements": "*",
-    "@stencil/react-output-target": "^1.2.0"
+    "@dnncommunity/dnn-elements": "*"
   },
   "devDependencies": {
     "@babel/preset-env": "^8.0.6",
