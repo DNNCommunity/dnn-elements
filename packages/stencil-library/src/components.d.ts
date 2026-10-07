@@ -202,6 +202,9 @@ export namespace Components {
          */
         "expanded"?: boolean;
     }
+    /**
+     * A collapsible component that can be expanded or collapsed to show or hide content.
+     */
     interface DnnCollapsible {
         /**
           * Defines if the panel is expanded or not.
@@ -300,6 +303,9 @@ export namespace Components {
          */
         "colorBoxHeight": string;
     }
+    /**
+     * A context menu component that can be opened with a pointer event or keyboard event. It will position itself to avoid overflowing the viewport.
+     */
     interface DnnContextMenu {
         /**
           * Closes the menu.
@@ -351,7 +357,7 @@ export namespace Components {
     interface DnnExampleForm {
     }
     /**
-     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     * A custom fieldset component that wraps one or more elements.
      */
     interface DnnFieldset {
         /**
@@ -480,8 +486,9 @@ export namespace Components {
         "helpText"?: string;
         /**
           * Hints at the type of data that might be entered by the user while editing the element or its contents. This allows a browser to display an appropriate virtual keyboard.
+          * @deprecated Use the standard HTMLElement `inputMode` property or `inputmode` attribute instead.
          */
-        "inputmode"?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
+        "inputmode"?: HTMLInputElement['inputMode'];
         /**
           * The label for this input.
          */
@@ -541,6 +548,9 @@ export namespace Components {
          */
         "value": number | string | string[];
     }
+    /**
+     * A modal component that can be used to show content in a modal dialog.
+     */
     interface DnnModal {
         /**
           * @deprecated boolean props should always default to being false per html specs, use preventBackdropDismiss instead, will be removed in v0.28.0. Pass false to remove the backdrop click auto-dismiss feature.
@@ -681,6 +691,9 @@ export namespace Components {
          */
         "query": string;
     }
+    /**
+     * A custom select component that wraps the html select element is a mobile friendly component that supports a label, some help text and other features.
+     */
     interface DnnSelect {
         /**
           * Defines the type of automatic completion the browser can use. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
@@ -741,6 +754,9 @@ export namespace Components {
          */
         "tabTitle": string;
     }
+    /**
+     * A component that shows a set of tabs. Each tab is a dnn-tab component.
+     */
     interface DnnTabs {
     }
     /**
@@ -1023,6 +1039,9 @@ declare global {
     interface HTMLDnnCollapsibleElementEventMap {
         "dnnCollapsibleHeightChanged": void;
     }
+    /**
+     * A collapsible component that can be expanded or collapsed to show or hide content.
+     */
     interface HTMLDnnCollapsibleElement extends Components.DnnCollapsible, HTMLStencilElement {
         addEventListener<K extends keyof HTMLDnnCollapsibleElementEventMap>(type: K, listener: (this: HTMLDnnCollapsibleElement, ev: DnnCollapsibleCustomEvent<HTMLDnnCollapsibleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1078,6 +1097,9 @@ declare global {
         prototype: HTMLDnnColorPickerElement;
         new (): HTMLDnnColorPickerElement;
     };
+    /**
+     * A context menu component that can be opened with a pointer event or keyboard event. It will position itself to avoid overflowing the viewport.
+     */
     interface HTMLDnnContextMenuElement extends Components.DnnContextMenu, HTMLStencilElement {
     }
     var HTMLDnnContextMenuElement: {
@@ -1108,7 +1130,7 @@ declare global {
         new (): HTMLDnnExampleFormElement;
     };
     /**
-     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     * A custom fieldset component that wraps one or more elements.
      */
     interface HTMLDnnFieldsetElement extends Components.DnnFieldset, HTMLStencilElement {
     }
@@ -1163,6 +1185,9 @@ declare global {
     interface HTMLDnnModalElementEventMap {
         "dismissed": any;
     }
+    /**
+     * A modal component that can be used to show content in a modal dialog.
+     */
     interface HTMLDnnModalElement extends Components.DnnModal, HTMLStencilElement {
         addEventListener<K extends keyof HTMLDnnModalElementEventMap>(type: K, listener: (this: HTMLDnnModalElement, ev: DnnModalCustomEvent<HTMLDnnModalElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1256,6 +1281,9 @@ declare global {
     interface HTMLDnnSelectElementEventMap {
         "valueChange": string;
     }
+    /**
+     * A custom select component that wraps the html select element is a mobile friendly component that supports a label, some help text and other features.
+     */
     interface HTMLDnnSelectElement extends Components.DnnSelect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLDnnSelectElementEventMap>(type: K, listener: (this: HTMLDnnSelectElement, ev: DnnSelectCustomEvent<HTMLDnnSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1296,6 +1324,9 @@ declare global {
         prototype: HTMLDnnTabElement;
         new (): HTMLDnnTabElement;
     };
+    /**
+     * A component that shows a set of tabs. Each tab is a dnn-tab component.
+     */
     interface HTMLDnnTabsElement extends Components.DnnTabs, HTMLStencilElement {
     }
     var HTMLDnnTabsElement: {
@@ -1416,7 +1447,7 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K]?: never };
 
     interface DnnAutocomplete {
         /**
@@ -1630,6 +1661,9 @@ declare namespace LocalJSX {
          */
         "onChanged"?: (event: DnnChevronCustomEvent<any>) => void;
     }
+    /**
+     * A collapsible component that can be expanded or collapsed to show or hide content.
+     */
     interface DnnCollapsible {
         /**
           * Defines if the panel is expanded or not.
@@ -1749,6 +1783,9 @@ declare namespace LocalJSX {
          */
         "onColorChanged"?: (event: DnnColorPickerCustomEvent<ColorInfo>) => void;
     }
+    /**
+     * A context menu component that can be opened with a pointer event or keyboard event. It will position itself to avoid overflowing the viewport.
+     */
     interface DnnContextMenu {
         /**
           * If true, the menu will close when an item is clicked.
@@ -1804,7 +1841,7 @@ declare namespace LocalJSX {
     interface DnnExampleForm {
     }
     /**
-     * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+     * A custom fieldset component that wraps one or more elements.
      */
     interface DnnFieldset {
         /**
@@ -1917,8 +1954,9 @@ declare namespace LocalJSX {
         "helpText"?: string;
         /**
           * Hints at the type of data that might be entered by the user while editing the element or its contents. This allows a browser to display an appropriate virtual keyboard.
+          * @deprecated Use the standard HTMLElement `inputMode` property or `inputmode` attribute instead.
          */
-        "inputmode"?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
+        "inputmode"?: HTMLInputElement['inputMode'];
         /**
           * The label for this input.
          */
@@ -1982,6 +2020,9 @@ declare namespace LocalJSX {
          */
         "value"?: number | string | string[];
     }
+    /**
+     * A modal component that can be used to show content in a modal dialog.
+     */
     interface DnnModal {
         /**
           * @deprecated boolean props should always default to being false per html specs, use preventBackdropDismiss instead, will be removed in v0.28.0. Pass false to remove the backdrop click auto-dismiss feature.
@@ -2158,6 +2199,9 @@ declare namespace LocalJSX {
          */
         "query"?: string;
     }
+    /**
+     * A custom select component that wraps the html select element is a mobile friendly component that supports a label, some help text and other features.
+     */
     interface DnnSelect {
         /**
           * Defines the type of automatic completion the browser can use. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
@@ -2218,6 +2262,9 @@ declare namespace LocalJSX {
          */
         "tabTitle": string;
     }
+    /**
+     * A component that shows a set of tabs. Each tab is a dnn-tab component.
+     */
     interface DnnTabs {
     }
     /**
@@ -2457,7 +2504,7 @@ declare namespace LocalJSX {
         "step": string;
         "disableValidityReporting": boolean;
         "allowShowPassword": boolean;
-        "inputmode": "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
+        "inputmode": HTMLInputElement['inputMode'];
     }
     interface DnnModalAttributes {
         "backdropDismiss": boolean;
@@ -2569,6 +2616,9 @@ declare module "@stencil/core" {
             "dnn-button": LocalJSX.IntrinsicElements["dnn-button"] & JSXBase.HTMLAttributes<HTMLDnnButtonElement>;
             "dnn-checkbox": LocalJSX.IntrinsicElements["dnn-checkbox"] & JSXBase.HTMLAttributes<HTMLDnnCheckboxElement>;
             "dnn-chevron": LocalJSX.IntrinsicElements["dnn-chevron"] & JSXBase.HTMLAttributes<HTMLDnnChevronElement>;
+            /**
+             * A collapsible component that can be expanded or collapsed to show or hide content.
+             */
             "dnn-collapsible": LocalJSX.IntrinsicElements["dnn-collapsible"] & JSXBase.HTMLAttributes<HTMLDnnCollapsibleElement>;
             /**
              * A custom input component that allows previewing and changing a color value.
@@ -2578,11 +2628,14 @@ declare module "@stencil/core" {
              * Color Picker for Dnn
              */
             "dnn-color-picker": LocalJSX.IntrinsicElements["dnn-color-picker"] & JSXBase.HTMLAttributes<HTMLDnnColorPickerElement>;
+            /**
+             * A context menu component that can be opened with a pointer event or keyboard event. It will position itself to avoid overflowing the viewport.
+             */
             "dnn-context-menu": LocalJSX.IntrinsicElements["dnn-context-menu"] & JSXBase.HTMLAttributes<HTMLDnnContextMenuElement>;
             "dnn-dropzone": LocalJSX.IntrinsicElements["dnn-dropzone"] & JSXBase.HTMLAttributes<HTMLDnnDropzoneElement>;
             "dnn-example-form": LocalJSX.IntrinsicElements["dnn-example-form"] & JSXBase.HTMLAttributes<HTMLDnnExampleFormElement>;
             /**
-             * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
+             * A custom fieldset component that wraps one or more elements.
              */
             "dnn-fieldset": LocalJSX.IntrinsicElements["dnn-fieldset"] & JSXBase.HTMLAttributes<HTMLDnnFieldsetElement>;
             /**
@@ -2595,18 +2648,27 @@ declare module "@stencil/core" {
              * A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features.
              */
             "dnn-input": LocalJSX.IntrinsicElements["dnn-input"] & JSXBase.HTMLAttributes<HTMLDnnInputElement>;
+            /**
+             * A modal component that can be used to show content in a modal dialog.
+             */
             "dnn-modal": LocalJSX.IntrinsicElements["dnn-modal"] & JSXBase.HTMLAttributes<HTMLDnnModalElement>;
             "dnn-monaco-editor": LocalJSX.IntrinsicElements["dnn-monaco-editor"] & JSXBase.HTMLAttributes<HTMLDnnMonacoEditorElement>;
             "dnn-permissions-grid": LocalJSX.IntrinsicElements["dnn-permissions-grid"] & JSXBase.HTMLAttributes<HTMLDnnPermissionsGridElement>;
             "dnn-progress-bar": LocalJSX.IntrinsicElements["dnn-progress-bar"] & JSXBase.HTMLAttributes<HTMLDnnProgressBarElement>;
             "dnn-richtext": LocalJSX.IntrinsicElements["dnn-richtext"] & JSXBase.HTMLAttributes<HTMLDnnRichtextElement>;
             "dnn-searchbox": LocalJSX.IntrinsicElements["dnn-searchbox"] & JSXBase.HTMLAttributes<HTMLDnnSearchboxElement>;
+            /**
+             * A custom select component that wraps the html select element is a mobile friendly component that supports a label, some help text and other features.
+             */
             "dnn-select": LocalJSX.IntrinsicElements["dnn-select"] & JSXBase.HTMLAttributes<HTMLDnnSelectElement>;
             "dnn-sort-icon": LocalJSX.IntrinsicElements["dnn-sort-icon"] & JSXBase.HTMLAttributes<HTMLDnnSortIconElement>;
             /**
              * Represents a single tab and must be used inside a dnn-tabs element.
              */
             "dnn-tab": LocalJSX.IntrinsicElements["dnn-tab"] & JSXBase.HTMLAttributes<HTMLDnnTabElement>;
+            /**
+             * A component that shows a set of tabs. Each tab is a dnn-tab component.
+             */
             "dnn-tabs": LocalJSX.IntrinsicElements["dnn-tabs"] & JSXBase.HTMLAttributes<HTMLDnnTabsElement>;
             /**
              * A custom textarea component.

@@ -2,7 +2,7 @@ import { Component, Host, h, Prop, Element, State, Method, Event, EventEmitter }
 import { getMovementFromEvent } from "../../utilities/mouseUtilities";
 
 /**
- * @slot default - The split divider control you want to use.
+ * @slot - The split divider control you want to use.
  * @slot left - The content of the left pane.
  * @slot right - The content of the right pane.
  */

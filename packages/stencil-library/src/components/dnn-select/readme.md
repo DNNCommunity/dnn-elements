@@ -5,6 +5,10 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+A custom select component that wraps the html select element is a mobile friendly component that supports a label, some help text and other features.
+
 ## Properties
 
 | Property       | Attribute      | Description                                                                                                                                 | Type                   | Default     |
@@ -36,6 +40,13 @@ Reports the input validity details. See https://developer.mozilla.org/en-US/docs
 Type: `Promise<ValidityState>`
 
 
+
+
+## Slots
+
+| Slot | Description                        |
+| ---- | ---------------------------------- |
+|      | The options to show in the select. |
 
 
 ## CSS Custom Properties

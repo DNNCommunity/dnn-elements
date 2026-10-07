@@ -1,5 +1,9 @@
 import { Component, Host, State, Method, h, Element, Listen, Prop } from '@stencil/core';
 
+/**
+ * A context menu component that can be opened with a pointer event or keyboard event. It will position itself to avoid overflowing the viewport.
+ * @slot - The content of the context menu.
+ */
 @Component({
   tag: 'dnn-context-menu',
   styleUrl: 'dnn-context-menu.scss',
@@ -21,7 +25,7 @@ export class DnnContextMenu {
     await this.handleClose();
   }
 
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLDnnContextMenuElement;
   
   @State() isOpen = false;
   @State() position = { x: 0, y: 0 };

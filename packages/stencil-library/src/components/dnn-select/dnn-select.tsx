@@ -1,6 +1,10 @@
 import { Component, Element, Host, Prop, h, State, Event, EventEmitter, AttachInternals, Method } from '@stencil/core';
 import { generateRandomId } from '../../utilities/stringUtilities';
 
+/**
+ * A custom select component that wraps the html select element is a mobile friendly component that supports a label, some help text and other features.
+ * @slot - The options to show in the select.
+ */
 @Component({
   tag: 'dnn-select',
   styleUrl: 'dnn-select.scss',

@@ -211,7 +211,7 @@
       "name": "dnn-collapsible",
       "description": {
         "kind": "markdown",
-        "value": ""
+        "value": "A collapsible component that can be expanded or collapsed to show or hide content."
       },
       "attributes": [
         {
@@ -298,7 +298,7 @@
       "name": "dnn-context-menu",
       "description": {
         "kind": "markdown",
-        "value": "Can be used to display a context menu.\r\nThe contents of the menu as entirely up to the user.\r\nItems insile of `dnn-context-menu` that can be activated should have `role=\"menuitem\"` or similar for accessibility reasons."
+        "value": "A context menu component that can be opened with a pointer event or keyboard event. It will position itself to avoid overflowing the viewport."
       },
       "attributes": [
         {
@@ -340,7 +340,7 @@
       "name": "dnn-fieldset",
       "description": {
         "kind": "markdown",
-        "value": "A custom input component that wraps the html input element is a mobile friendly component that supports a label, some help text and other features."
+        "value": "A custom fieldset component that wraps one or more elements."
       },
       "attributes": [
         {
@@ -451,33 +451,7 @@
         },
         {
           "name": "inputmode",
-          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents.\r\nThis allows a browser to display an appropriate virtual keyboard.",
-          "values": [
-            {
-              "name": "decimal"
-            },
-            {
-              "name": "email"
-            },
-            {
-              "name": "none"
-            },
-            {
-              "name": "numeric"
-            },
-            {
-              "name": "search"
-            },
-            {
-              "name": "tel"
-            },
-            {
-              "name": "text"
-            },
-            {
-              "name": "url"
-            }
-          ]
+          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents.\nThis allows a browser to display an appropriate virtual keyboard."
         },
         {
           "name": "label",
@@ -569,7 +543,7 @@
       "name": "dnn-modal",
       "description": {
         "kind": "markdown",
-        "value": ""
+        "value": "A modal component that can be used to show content in a modal dialog."
       },
       "attributes": [
         {
@@ -810,7 +784,7 @@
       "name": "dnn-select",
       "description": {
         "kind": "markdown",
-        "value": ""
+        "value": "A custom select component that wraps the html select element is a mobile friendly component that supports a label, some help text and other features."
       },
       "attributes": [
         {
@@ -884,7 +858,7 @@
       "name": "dnn-tabs",
       "description": {
         "kind": "markdown",
-        "value": "`dnn-tabs` is a container for `dnn-tab` and should only contain `dnn-tab` elements for its content."
+        "value": "A component that shows a set of tabs. Each tab is a dnn-tab component."
       },
       "attributes": []
     },

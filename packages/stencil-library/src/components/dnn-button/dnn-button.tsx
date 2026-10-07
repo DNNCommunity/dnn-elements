@@ -1,7 +1,7 @@
 import { Component, Element, Host, h, Prop, State, Event, EventEmitter, AttachInternals } from '@stencil/core';
 
 /**
- * @slot Content of the button
+ * @slot - Content of the button
  */
 @Component({
   tag: 'dnn-button',

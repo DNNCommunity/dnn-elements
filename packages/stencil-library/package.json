@@ -22,13 +22,33 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs.js"
     },
+    "./dist": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs.js"
+    },
     "./dist/*": {
+      "types": "./dist/*.d.ts",
       "import": "./dist/*",
-      "types": "./dist/*"
+      "require": "./dist/*",
+      "default": "./dist/*"
+    },
+    "./dist/components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js",
+      "default": "./dist/components/index.js"
+    },
+    "./dist/components/*": {
+      "types": "./dist/components/*.d.ts",
+      "import": "./dist/components/*",
+      "require": "./dist/components/*",
+      "default": "./dist/components/*"
     },
     "./components/*": {
-      "import": "./dist/components/*.js",
-      "types": "./dist/components/*.d.ts"
+      "types": "./dist/components/*.d.ts",
+      "import": "./dist/components/*",
+      "require": "./dist/components/*",
+      "default": "./dist/components/*"
     },
     "./loader": {
       "types": "./loader/index.d.ts",
@@ -56,9 +76,9 @@
     "poststart": "license-checker-rseidelsohn --out licenses.json --json --direct --relativeLicensePath --relativeModulePath",
     "test": "npm run test.node && npm run test.browser",
     "test.watch": "vitest --watch",
-    "test.node": "vitest run --config vitest.node.config.ts",
+    "test.node": "vitest run --config vitest.node.config.mts",
     "test.browser": "vitest run",
-    "test.node.watch": "vitest --watch --config vitest.node.config.ts",
+    "test.node.watch": "vitest --watch --config vitest.node.config.mts",
     "test.browser.watch": "vitest --watch",
     "generate": "stencil generate",
     "lint": "eslint",
@@ -68,48 +88,48 @@
     "build.eslint-plugin": "tsc -p eslint-plugin/tsconfig.json"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^5.0.2",
+    "@chromatic-com/storybook": "^5.3.1",
     "@eslint/js": "^10.0.1",
-    "@stencil/core": "4.43.3",
+    "@stencil/core": "^4.45.2",
     "@stencil/eslint-plugin": "^1.2.0",
-    "@stencil/react-output-target": "^1.4.2",
-    "@stencil/sass": "^3.2.3",
-    "@storybook/addon-a11y": "10.3.3",
-    "@storybook/addon-docs": "10.3.3",
-    "@storybook/web-components-vite": "10.3.3",
+    "@stencil/react-output-target": "^1.6.2",
+    "@stencil/sass": "^3.3.3",
+    "@storybook/addon-a11y": "10.6.1",
+    "@storybook/addon-docs": "10.6.1",
+    "@storybook/web-components-vite": "10.6.1",
     "@timkendrick/monaco-editor": "^0.0.9",
     "@types/jest": "^29.5.14",
-    "@typescript-eslint/eslint-plugin": "^8.57.2",
-    "@typescript-eslint/parser": "^8.57.2",
-    "@typescript-eslint/rule-tester": "^8.57.2",
+    "@typescript-eslint/eslint-plugin": "^8.71.0",
+    "@typescript-eslint/parser": "^8.58.0",
+    "@typescript-eslint/rule-tester": "^8.71.0",
     "@typescript-eslint/utils": "^8.57.2",
-    "@vitest/browser": "^4.1.1",
-    "@vitest/browser-webdriverio": "^4.1.1",
+    "@vitest/browser": "^5.0.3",
+    "@vitest/browser-playwright": "^5.0.3",
     "axe-playwright": "^2.0.1",
     "babel-loader": "^10.1.1",
     "eslint": "^10.1.0",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-storybook": "10.3.3",
+    "eslint-plugin-storybook": "10.6.1",
     "gh-pages": "^6.3.0",
-    "jiti": "^2.6.1",
-    "license-checker-rseidelsohn": "^4.4.2",
-    "lit": "^3.3.2",
+    "jiti": "^2.7.0",
+    "license-checker-rseidelsohn": "^5.0.1",
+    "lit": "^3.3.3",
     "npm-run-all": "^4.1.5",
-    "react": "^19.2.4",
+    "playwright": "^1.63.0",
+    "react": "^19.3.0",
     "react-dom": "^19.2.4",
     "rollup-plugin-node-polyfills": "^0.2.1",
-    "storybook": "10.3.3",
+    "storybook": "10.6.1",
     "ts-node": "^10.9.2",
     "typescript": "5.9.3",
     "typescript-debounce-decorator": "^0.0.18",
-    "typescript-eslint": "^8.57.2",
+    "typescript-eslint": "^8.71.0",
     "unplugin-stencil": "^0.4.1",
-    "vite": "^8.0.2",
-    "vitest": "^4.1.1",
-    "webdriverio": "^9.27.0"
+    "vite": "^8.3.3",
+    "vitest": "^5.0.3"
   },
   "dependencies": {
-    "jodit": "^4.11.15"
+    "jodit": "^4.17.1"
   },
   "peerDependencies": {
     "@typescript-eslint/utils": "^8.30.1",
