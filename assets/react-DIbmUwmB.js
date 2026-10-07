@@ -1,1 +1,0 @@
-import{n as e,t}from"./react-Dy_Lxfuw.js";t();export{e as MDXProvider};
